@@ -1,0 +1,21 @@
+<!DOCTYPE HTML>
+<html>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="search-domain" content="http://gvwilson.github.io/js-vs-rc" />
+    <link href="{{'/css/bootstrap.css' | absolute_url}}" rel="stylesheet" />
+    <link href="{{'/css/bootstrap-theme.css' | absolute_url}}" rel="stylesheet" />
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title>{% if page.title %}{{page.title}}{% elsif page.headtitle %}{{page.headtitle}}{% else %}FIXME: no title for {{page.path}}{% endif %}</title>
+  </head>
+  <body>
+    <div class="container shadow">
+      <div class="row-fluid">
+        <div class="span10 offset1">
+          {% if page.title %}<h1>{{page.title}}</h1>{% endif %}
+          {{content}}
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
