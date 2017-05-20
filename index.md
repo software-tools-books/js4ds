@@ -13,6 +13,7 @@ title: "Contents"
 *   [Visualizing Data with D3](./d3/)
 
 *   [HTML and CSS](./htmlcss/)
+*   [Legacy JavaScript Issues](./legacy/)
 *   [References](./refs/)
 
 *   [License](./license/)
