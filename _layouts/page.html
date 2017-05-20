@@ -12,7 +12,7 @@
     <div class="container shadow">
       <div class="row-fluid">
         <div class="span10 offset1">
-          {% if page.title %}<h1>{{page.title}}</h1>{% endif %}
+          {% unless page.headtitle %}<h1>{{page.title}}</h1>{% endunless %}
           {{content}}
           <hr/>
           <em>Last built {{site.time}}</em>
