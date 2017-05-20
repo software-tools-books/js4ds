@@ -1,0 +1,27 @@
+{
+  "name": "js-vs-rc",
+  "version": "0.1.0",
+  "description": "JavaScript versus Research Computing",
+  "keywords": [
+    "lesson",
+    "JavaScript",
+    "research computing"
+  ],
+  "main": "index.js",
+  "author": "Greg Wilson",
+  "license": "SEE LICENSE IN LICENSE.md",
+  "homepage": "http://gvwilson.github.io/js-vs-rc/",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gvwilson/js-vs-rc.git"
+  },
+  "bugs": {
+    "url": "https://github.com/gvwilson/js-vs-rc/issues"
+  },
+  "dependencies": {
+    "node": "0.0.0"
+  }
+}
