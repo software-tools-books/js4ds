@@ -4,11 +4,22 @@ permalink: "/intro/"
 title: "Introduction"
 ---
 
-FIXME
+I was originally going to call this book *JavaScript for Scientists and Engineers*,
+but [David Beazley thought that "versus" would make a better title][beazley-tweet].
+That one-word change sums up how many programmers view the language,
+but I hope I can convince you that modern JavaScript is usable as well as useful.
+I also hope that what I've written will help librarians,
+digital humanists,
+and everyone else who uses computing in their research,
+not just scientists and engineers.
 
 ## Who You Are
 
-**Bhadra** received a B.Sc. in microbiology five years ago,
+Every lesson should aim to meet the needs of specific learners
+[[Wilson2017](./refs/#wilson-teaching)].
+The three people described below define the intended audience for this one.
+
+**Bhadra** received a BSc in microbiology five years ago,
 and has worked since then for a biotech firm with labs in four countries.
 She did a statistics class using R as an undergrad,
 then learned some more R and some Unix shell scripting
@@ -32,4 +43,17 @@ This book will show him how to create a service
 to share those projects' data with the world,
 and how to build a web-based administrative interface for it.
 
+**Sumi** is completing a PhD in 19th Century history.
+As part of her research,
+she is transcribing and cataloging the records of several dozen Japanese-American midwives.
+She has been creating and customizing [WordPress][wordpress] sites for several years,
+and has picked up bits and pieces of JavaScript while doing so.
+
+Sumi is about to start looking for a job,
+and wants to create an interactive website to showcase her research.
+This book will fill in some of the gaps in her knowledge
+and show her how to take advantage of JavaScript's more modern features.
+
+[beazley-tweet]: https://twitter.com/dabeaz/status/863566969240514560
 [swc]: http://software-carpentry.org
+[wordpress]: https://wordpress.org/
