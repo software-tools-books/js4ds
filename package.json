@@ -12,7 +12,8 @@
   "license": "SEE LICENSE IN LICENSE.md",
   "homepage": "http://gvwilson.github.io/js-vs-rc/",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "words": "bin/wc.js *.md"
   },
   "repository": {
     "type": "git",
@@ -22,6 +23,7 @@
     "url": "https://github.com/gvwilson/js-vs-rc/issues"
   },
   "dependencies": {
+    "marked": "^0.3.6",
     "node": "0.0.0"
   }
 }
