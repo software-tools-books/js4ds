@@ -283,6 +283,7 @@ clip(-1,5,3,0,10) -> 0,1,2,3
   - Then refer to contents as `module.thing`
 - Use a relative path starting with `./` or `../` to import local files
   - Paths that start with names are taken from installed Node libraries
+- FIXME: explain how to install libraries using NPM
 
 ## Challenges
 
