@@ -59,8 +59,8 @@ the type of function () { [native code] } is function
 - Use `const` to define a _constant_
 - `number`
   - JavaScript doesn't have separate types for integers and floating-point
-  - All numbers are floating point
-  - And yes, that does occasionally cause unexpected behavior
+  - All numbers are 64-bit floating point
+  - Accurate up to 15 digits
 - `string` for text
   - Which is always _Unicode_
 - `boolean` for `true` and `false`
@@ -154,15 +154,139 @@ creature[species] is Jacchus
   - Back-quotes around string
   - `${expression}` to insert the value of an expression in the string
 
+## Functions
+
+```js
+// src/core/functions-classic.js
+function limits(values) {
+  if (! values.length) {
+    return [undefined, undefined]
+  }
+  let low = values[0]
+  let high = values[0]
+  for (let v of values) {
+    if (v < low) low = v
+    if (v > high) high = v
+  }
+  return [low, high]
+}
+```
+
+- Definition is:
+  - Keyword `function`
+  - Function name
+  - Possibly-empty list of _parameters_ in parentheses
+  - Body
+- Use `return` to explicitly return a value at any time
+  - If nothing returned, result is `undefined`
+- Every function is a _scope_
+  - Parameters and variables created inside function are _local_
+
+```js
+// src/core/functions-classic.js
+allTests = [
+  [],
+  [9],
+  [3, 30, 300],
+  ['apple', 'Grapefruit', 'banana'],
+  [3, 'apple', ['sub-array']]
+]
+for (let test of allTests) {
+  console.log(`limits of ${test} are ${limits(test)}`)
+}
+```
+```output
+limits of  are ,
+limits of 9 are 9,9
+limits of 3,30,300 are 3,300
+limits of apple,Grapefruit,banana are Grapefruit,banana
+limits of 3,apple,sub-array are 3,3
+```
+
+- Generally don't write functions this way any longer
+  - Interacts in odd ways with other features of the language
+  - [Section on legacy issues](./legacy/) explains why in more detail
+- Instead, use _fat arrow_ functions
+  - Parameter list, `=>`, and body creates a function without a name
+  - Assign that to a constant or variable
+
+```js
+// src/core/functions-modern.js
+const limits = (values) => {
+  if (! values.length) {
+    return [undefined, undefined]
+  }
+  let low = values[0]
+  let high = values[0]
+  for (let v of values) {
+    if (v < low) low = v
+    if (v > high) high = v
+  }
+  return [low, high]
+}
+```
+
+- Same output as previous example
+
+> - Why not stick to `function` and fix behavior?
+> - Would break legacy programs that rely on old behavior
+> - Want to make it really easy to define little functions
+> - The way a language is used shapes the evolution of its syntax
+
+## Modules
+
+- Want to put code in multiple files
+- Unavoidable bad news is that JavaScript has several module systems
+  - Node still uses CommonJS
+  - But is converting to modern ES6
+  - So what we use on the command line is different from what we use in the browser
+
+```js
+// src/core/utilities.js
+const bound = 3
+
+const clip = (values) => {
+  let result = []
+  for (let v in values) {
+    if (v <= bound) {
+      result.push(v)
+    }
+  }
+  return result
+}
+
+module.exports = {
+  clip: clip
+}
+```
+
+- Notes
+  - Don't have to quote the keys of objects when they are simple names
+  - `bound` isn't exported
+
+```
+// src/core/import.js
+const utilities = require('./utilities')
+
+data = [-1, 5, 3, 0, 10]
+result = utilities.clip(data)
+console.log(`clip(${data}) -> ${result}`)
+```
+```output
+clip(-1,5,3,0,10) -> 0,1,2,3
+```
+
+- `require` returns an object
+  - Keys are the names of the things the module exports
+  - Values are the things (usually functions)
+- Usually assign result of `require` to a variable with the same name as the module
+  - Then refer to contents as `module.thing`
+- Use a relative path starting with `./` or `../` to import local files
+  - Paths that start with names are taken from installed Node libraries
+
 ## Challenges
 
 1. What is the type of `typeof`?
-
-1. Write a function called `isTruthy` that returns `true`
-   for everything that JavaScript considers truthy,
-   and `false` for everything it considers `falsy`,
-   *except* empty arrays:
-   `isTruthy` should return `false` for those.
 
 1. Fill in the blanks in the program below
    so that it produces the output shown.
@@ -191,4 +315,38 @@ square of 3 is 9
 square of 2 is 4
 square of 1 is 1
 square of 0 is 0
+```
+
+1. Write a function called `isTruthy` that returns `true`
+   for everything that JavaScript considers truthy,
+   and `false` for everything it considers `falsy`,
+   *except* empty arrays:
+   `isTruthy` should return `false` for those.
+
+1. Explain what is happening in the assignment statement that creates the constant `creature`.
+
+```js
+// ex/core/implied.js
+const genus = 'Callithrix'
+const species = 'Jacchus'
+const creature = {genus, species}
+console.log(creature)
+```
+```output
+{ genus: 'Callithrix', species: 'Jacchus' }
+```
+
+1. Explain what is happening in the assignment statement in this program.
+   Use this technique to rewrite `src/core/import.js`
+   so that `clip` can be called directly as `clip(…)` rather than `utilities.clip(…)`.
+
+```js
+// ex/core/destructuring.js
+const creature = {
+  genus: 'Callithrix',
+  species: 'Jacchus'
+}
+const {genus, species} = creature
+console.log(`genus is ${genus}`)
+console.log(`species is ${species}`)
 ```
