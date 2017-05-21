@@ -54,6 +54,10 @@ and wants to create an interactive website to showcase her research.
 This book will fill in some of the gaps in her knowledge
 and show her how to take advantage of JavaScript's more modern features.
 
+## Setting Up
+
+FIXME: setup instructions
+
 [beazley-tweet]: https://twitter.com/dabeaz/status/863566969240514560
 [swc]: http://software-carpentry.org
 [wordpress]: https://wordpress.org/

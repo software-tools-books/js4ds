@@ -11,3 +11,5 @@ const otherValues = [true, undefined, null]
 for (let value of otherValues) {
   console.log('the type of', value, 'is', typeof value)
 }
+
+console.log('the type of', console.log, 'is', typeof console.log)
