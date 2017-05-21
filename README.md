@@ -1,11 +1,18 @@
-# js-vs-rc
-JavaScript versus Research Computing
+# JavaScript versus Research Computing
 
-I was originally going to call this book *JavaScript for Scientists and Engineers*,
-but [David Beazley thought][beazley-tweet] that "versus" would be a better title.
-I hope I can convince you otherwise–that modern JavaScript is usable as well as useful–but
-it's still funny.
-I also hope that what I've written will be useful to everyone who does research computing,
-from astronomers and ecologists to librarians and humanities scholars.
+This short book is an introduction to modern JavaScript
+for scientists, engineers, librarians, digital humanists,
+and anyone else who uses computing in their research.
+All material is freely available under
+the [Creative Commons - Attribution license][license],
+and can be viewed on [the book's website][site].
+Questions, suggestions, and corrections are very welcome:
+please [file an issue][issues]
+in the book's [GitHub repository][repo]
+or [email the author][email] directly.
 
-[beazley-tweet]: https://twitter.com/dabeaz/status/863566969240514560
+[email]: mailto:gvwilson@third-bit.com?subject=JavaScript%20versus%20Research%20Computing
+[issues]: https://github.com/gvwilson/js-vs-rc/issues
+[license]: https://gvwilson.github.io/js-vs-rc/license/
+[repo]: https://github.com/gvwilson/js-vs-rc/
+[site]: https://gvwilson.github.io/js-vs-rc/
