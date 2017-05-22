@@ -128,8 +128,90 @@ first: o,t,t
 
 ## Functional Programming
 
-FIXME: describe commonly-used JavaScript array methods
+- _Functional programming_ is a style of programming that:
+  - Relies heavily on _higher-order functions_ (i.e., functions that take functions as arguments)
+  - Doesn't modify data structures in place, but instead creates new ones from old
+- JavaScript arrays provide several methods to support functional programming
+
+- `Array.some` returns `true` if *any* element in an array passes a test
+- `Array.every` returns `true` if *all* elements in an array pass a test
+
+```js
+// src/callbacks/some-every.js
+const data = ['this', 'is', 'a', 'test']
+console.log('some longer than 3:', data.some((x) => { return x.length > 3 }))
+console.log('all greater than 3:', data.every((x) => { return x.length > 3 }))
+```
+```output
+some longer than 3: true
+all greater than 3: false
+```
+
+- `Array.filter` creates a new array containing only values that pass a test
+
+```js
+// src/callbacks/filter.js
+const data = ['this', 'is', 'a', 'test']
+console.log('those greater than 3:', data.filter((x) => { return x.length > 3 }))
+```
+```output
+those greater than 3: [ 'this', 'test' ]
+```
+
+- So do all of the element with more than 3 characters start with a 't'?
+
+``js
+// src/callbacks/filter-every.js
+const data = ['this', 'is', 'a', 'test']
+console.log('all longer than 3 start with t',
+            data
+            .filter((x) => { return x.length > 3 })
+            .every((x) => { return x[0] == 't' }))
+```
+```output
+all longer than 3 start with t true
+```
+
+- `Array.map` creates a new array
+  by calling a function for each element of an existing array
+
+```js
+// src/callbacks/map.js
+const data = ['this', 'is', 'a', 'test']
+console.log('shortened', data.map((x) => { return x.slice(0, 2) }))
+```
+```output
+shortened [ 'th', 'is', 'a', 'te' ]
+```
+
+- `Array.scan` reduces an array to a single value
+  using a given function and a starting value
+  - Need the starting value because the combiner function must take two values
+    (next in sequence and running total)
+
+```js
+// src/callback/reduce.js
+const data = ['this', 'is', 'a', 'test']
+
+const concatFirst = (accumulator, nextValue) => {
+  return accumulator + nextValue[0]
+}
+const acronym = data.reduce(concatFirst, '')
+console.log(`acronym of ${data} is ${acronym}`)
+
+console.log('in one step', data.reduce((accum, next) => {
+  return accum + next[0]
+}, ''))
+```
+```output
+acronym of this,is,a,test is tiat
+in one step tiat
+```
 
 ## Closures
 
 FIXME: explain variable capture
+
+## Challenges
+
+FIXME: `forEach`
