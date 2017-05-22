@@ -103,7 +103,7 @@ null of type object is falsy
   - Arrays are _heterogeneous_, i.e., can contain values of many different types
   - Including other arrays
 - Use `let` to define a _variable_ (as opposed to `const`)
-- `for...of` loops over the values in an array
+- `for…of` loops over the values in an array
   - See other kinds of loops later
 - `if` and `else` work as they do in other languages
   - It's the _truthiness_ that's different

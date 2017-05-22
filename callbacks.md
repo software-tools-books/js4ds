@@ -20,6 +20,7 @@ title: "Programming with Callbacks"
   JavaScript allocates a block of memory big enough to store several instructions,
   copies the instructions into that block,
   and stores a reference to it in the variable `oneMore`
+- Draw a _memory diagram_ to show this
 
 FIXME: diagram
 
@@ -210,7 +211,96 @@ in one step tiat
 
 ## Closures
 
-FIXME: explain variable capture
+- Last tool we need to introduce is an extremely useful side-effect of the way memory is handled
+  - Explain by example
+- Have already created a function `pipeline` that combines any set of functions we want
+
+```js
+// src/callbacks/general-pipeline.js
+const pipeline = (initial, operations) => {
+  let current = initial
+  for (let op of operations) {
+    current = op(current)
+  }
+  return current
+}
+```
+
+- But this only works if each function in `operations` has a single parameter
+- If we want to be able to add 1, add 2, and so on, we have to write separate functions
+- Better choice: write a function that creates the function we want
+
+```js
+// src/callbacks/adder.js
+const adder = (increment) => {
+  const f = (value) => {
+    return value + increment
+  }
+  return f
+}
+
+const add1 = adder(1)
+const add2 = adder(2)
+console.log(`add1(100) is ${add1(100)} and add2(100) is ${add2(100)}`)
+```
+```output
+add1(100) is 101 and add2(100) is 102
+```
+
+- Best way to understand what's going on is to draw a step-by-step memory diagram
+- Step 1: call `adder(1)`
+
+FIXME: diagram
+
+- Step 2: `adder` creates a new function that includes a reference to that 1
+
+FIXME: diagram
+
+- Step 3: `adder` returns that function, which is assigned to `add1`
+
+FIXME: diagram
+
+- Step 4: same sequence to create another function with an embedded reference to 2
+
+FIXME: diagram
+
+- Step 5: call to `add1` inside `console.log`
+  - Call to `add2` works the same way
+
+FIXME: diagram
+
+- The combination of a function and some embedded variable bindings is called a _closure_
+  - Works because a function "capture" the values of the variables
+    that are in scope when it is defined but it doesn't define itself
+
+```
+// src/callbacks/closure.js
+const pipeline = …as before…
+
+const adder = …as before…
+
+const result = pipeline(100, [adder(1), adder(2)])
+console.log(`adding 1 and 2 to 100 -> ${result}`)
+```
+```output
+adding 1 and 2 to 100 -> 103
+```
+
+- Again, `adder(1)` and `adder(2)` do not add anything to anything
+  - They define new (unnamed) functions that will add 1 and 2 when called
+- Often go one step further and define the function inline
+
+```
+// src/callbacks/closure-inline.js
+const pipeline = …as before…
+
+const result = pipeline(100, [(x) => { return x+1 },
+                              (x) => { return x+2 }])
+console.log(`adding 1 and 2 to 100 -> ${result}`)
+```
+```output
+adding 1 and 2 to 100 -> 103
+```
 
 ## Challenges
 
