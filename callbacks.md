@@ -38,8 +38,8 @@ FIXME: diagram
   what we're really giving it is a reference to its block of memory
 - So we can pass a function just as easily as we can pass a string or a number
 
+<!-- @src/callbacks/do-twice.js -->
 ```js
-// src/callbacks/do-twice.js
 const doTwice = (action) => {
   action()
   action()
@@ -60,8 +60,8 @@ FIXME: diagram
 
 - More useful when the function passed in takes arguments
 
+<!-- @src/callbacks/two-functions.js -->
 ```js
-// src/callbacks/two-functions.js
 const pipeline = (initial, first, second) => {
   return second(first(initial))
 }
@@ -84,8 +84,8 @@ dot then trim: |..this.example.uses.text..|
 
 - Make a general pipeline by passing an array of functions
 
+<!-- @src/callbacks/general-pipeline.js -->
 ```js
-// src/callbacks/general-pipeline.js
 const pipeline = (initial, operations) => {
   let current = initial
   for (let op of operations) {
@@ -111,8 +111,8 @@ console.log(`|${original}| -> |${final}|`)
     rather than assigning that value to a variable
     and then passing in the variable
 
+<!-- @src/callbacks/transform.js -->
 ```js
-// src/callbacks/transform.js
 const transform = (values, operation) => {
   let result = []
   for (let v of values) {
@@ -148,8 +148,8 @@ first: o,t,t
 - `Array.some` returns `true` if *any* element in an array passes a test
 - `Array.every` returns `true` if *all* elements in an array pass a test
 
+<!-- @src/callbacks/some-every.js -->
 ```js
-// src/callbacks/some-every.js
 const data = ['this', 'is', 'a', 'test']
 console.log('some longer than 3:', data.some((x) => { return x.length > 3 }))
 console.log('all greater than 3:', data.every((x) => { return x.length > 3 }))
@@ -161,8 +161,8 @@ all greater than 3: false
 
 - `Array.filter` creates a new array containing only values that pass a test
 
+<!-- @src/callbacks/filter.js -->
 ```js
-// src/callbacks/filter.js
 const data = ['this', 'is', 'a', 'test']
 console.log('those greater than 3:', data.filter((x) => { return x.length > 3 }))
 ```
@@ -172,8 +172,8 @@ those greater than 3: [ 'this', 'test' ]
 
 - So do all of the element with more than 3 characters start with a 't'?
 
+<!-- @src/callbacks/filter-every.js -->
 ```js
-// src/callbacks/filter-every.js
 const data = ['this', 'is', 'a', 'test']
 console.log('all longer than 3 start with t',
             data
@@ -187,8 +187,8 @@ all longer than 3 start with t true
 - `Array.map` creates a new array
   by calling a function for each element of an existing array
 
+<!-- @src/callbacks/map.js -->
 ```js
-// src/callbacks/map.js
 const data = ['this', 'is', 'a', 'test']
 console.log('shortened', data.map((x) => { return x.slice(0, 2) }))
 ```
@@ -201,8 +201,8 @@ shortened [ 'th', 'is', 'a', 'te' ]
   - Need the starting value because the combiner function must take two values
     (next in sequence and running total)
 
+<!-- @src/callback/reduce.js -->
 ```js
-// src/callback/reduce.js
 const data = ['this', 'is', 'a', 'test']
 
 const concatFirst = (accumulator, nextValue) => {
@@ -226,8 +226,8 @@ in one step tiat
   - Explain by example
 - Have already created a function `pipeline` that combines any set of functions we want
 
+<!-- @src/callbacks/general-pipeline.js -->
 ```js
-// src/callbacks/general-pipeline.js
 const pipeline = (initial, operations) => {
   let current = initial
   for (let op of operations) {
@@ -241,8 +241,8 @@ const pipeline = (initial, operations) => {
 - If we want to be able to add 1, add 2, and so on, we have to write separate functions
 - Better choice: write a function that creates the function we want
 
+<!-- @src/callbacks/adder.js -->
 ```js
-// src/callbacks/adder.js
 const adder = (increment) => {
   const f = (value) => {
     return value + increment
@@ -284,8 +284,8 @@ FIXME: diagram
   - Works because a function "capture" the values of the variables
     that are in scope when it is defined but it doesn't define itself
 
-```
-// src/callbacks/closure.js
+<!-- @src/callbacks/closure.js -->
+```js
 const pipeline = …as before…
 
 const adder = …as before…
@@ -301,8 +301,8 @@ adding 1 and 2 to 100 -> 103
   - They define new (unnamed) functions that will add 1 and 2 when called
 - Often go one step further and define the function inline
 
-```
-// src/callbacks/closure-inline.js
+<!-- @src/callbacks/closure-inline.js -->
+```js
 const pipeline = …as before…
 
 const result = pipeline(100, [(x) => { return x+1 },
@@ -312,6 +312,10 @@ console.log(`adding 1 and 2 to 100 -> ${result}`)
 ```output
 adding 1 and 2 to 100 -> 103
 ```
+
+## Summary
+
+FIXME: summarize chapter
 
 > **Key Points**
 >

@@ -64,6 +64,10 @@ and show her how to take advantage of JavaScript's more modern features.
 
 FIXME: setup instructions
 
+## Summary
+
+FIXME: summarize chapter
+
 > **Key Points**
 >
 > - FIXME

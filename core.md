@@ -20,14 +20,15 @@ title: "Core Features of Modern JavaScript"
 > - How do I define functions?
 > - How do I divide source code into multiple files?
 > - FIXME: regular expressions
+> - How do I create and use classes?
 
 - Introduce enough of JavaScript's core features to get started
 - Experiment with these interactively in the Node REPL
 
 ## Hello, World
 
+<!-- @src/core/hello.js -->
 ```js
-// src/core/hello.js
 console.log('hello, world')
 ```
 ```output
@@ -46,8 +47,8 @@ node src/core/hello.js
 
 ## Basic Data Types
 
+<!-- @src/core/types.js -->
 ```js
-// src/core/types.js
 const aNumber = 123.45
 console.log('the type of', aNumber, 'is', typeof aNumber)
 
@@ -91,8 +92,8 @@ the type of function () { [native code] } is function
 
 ## Control Flow
 
+<!-- @src/core/control-flow.js -->
 ```js
-// src/core/control-flow.js
 const values = [false, true, 0, 1, '', 'text', undefined, null, [], [2, 3]]
 for (let v of values) {
   if (v) {
@@ -135,8 +136,8 @@ null of type object is falsy
 
 ## Objects
 
+<!-- @src/core/objects.js -->
 ```js
-// src/core/objects.js
 creature = {
   'order': 'Primates',
   'family': 'Callitrichidae',
@@ -174,8 +175,8 @@ creature[species] is Jacchus
 
 ## Functions
 
+<!-- @src/core/functions-classic.js -->
 ```js
-// src/core/functions-classic.js
 function limits(values) {
   if (! values.length) {
     return [undefined, undefined]
@@ -200,8 +201,8 @@ function limits(values) {
 - Every function is a _scope_
   - Parameters and variables created inside function are _local_
 
+<!-- @src/core/functions-classic.js -->
 ```js
-// src/core/functions-classic.js
 allTests = [
   [],
   [9],
@@ -228,8 +229,8 @@ limits of 3,apple,sub-array are 3,3
   - Parameter list, `=>`, and body creates a function without a name
   - Assign that to a constant or variable
 
+<!-- @src/core/functions-modern.js -->
 ```js
-// src/core/functions-modern.js
 const limits = (values) => {
   if (! values.length) {
     return [undefined, undefined]
@@ -259,8 +260,8 @@ const limits = (values) => {
   - But is converting to modern ES6
   - So what we use on the command line is different from what we use in the browser
 
+<!-- @src/core/utilities.js -->
 ```js
-// src/core/utilities.js
 const bound = 3
 
 const clip = (values) => {
@@ -307,6 +308,14 @@ clip(-1,5,3,0,10) -> 0,1,2,3
 
 FIXME: explain regexp
 
+## Classes
+
+FIXME: object-oriented programming
+
+## Summary
+
+FIXME: summarize chapter
+
 > **Key Points**
 >
 > - FIXME
@@ -322,8 +331,8 @@ FIXME: explain regexp
    1. What does `+=` do?
    1. What does `Array.reverse` do, and what does it return?
 
+<!-- @ex/core/table-of-squares.js -->
 ```js
-// ex/core/table-of-squares.js
 let current = 0
 let table = []
 while (current < 5) {
@@ -352,8 +361,8 @@ square of 0 is 0
 
 1. Explain what is happening in the assignment statement that creates the constant `creature`.
 
+<!-- @ex/core/implied.js -->
 ```js
-// ex/core/implied.js
 const genus = 'Callithrix'
 const species = 'Jacchus'
 const creature = {genus, species}
@@ -367,8 +376,8 @@ console.log(creature)
    Use this technique to rewrite `src/core/import.js`
    so that `clip` can be called directly as `clip(…)` rather than `utilities.clip(…)`.
 
+<!-- @ex/core/destructuring.js -->
 ```js
-// ex/core/destructuring.js
 const creature = {
   genus: 'Callithrix',
   species: 'Jacchus'
