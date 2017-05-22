@@ -4,6 +4,7 @@ permalink: "/core/"
 title: "Core Features of Modern JavaScript"
 ---
 
+- Introduce enough of JavaScript's core features to get started
 - Experiment with these interactively in the Node REPL
 
 ## Hello, World
@@ -284,6 +285,10 @@ clip(-1,5,3,0,10) -> 0,1,2,3
 - Use a relative path starting with `./` or `../` to import local files
   - Paths that start with names are taken from installed Node libraries
 - FIXME: explain how to install libraries using NPM
+
+## Regular Expressions
+
+FIXME: explain regexp
 
 ## Challenges
 
