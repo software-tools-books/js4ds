@@ -160,7 +160,7 @@ those greater than 3: [ 'this', 'test' ]
 
 - So do all of the element with more than 3 characters start with a 't'?
 
-``js
+```js
 // src/callbacks/filter-every.js
 const data = ['this', 'is', 'a', 'test']
 console.log('all longer than 3 start with t',
