@@ -4,6 +4,16 @@ permalink: "/callbacks/"
 title: "Programming with Callbacks"
 ---
 
+> **Questions**
+>
+> - What happens when a function is defined?
+> - How can I pass a function to another function?
+> - Why would I want to do that?
+> - What are higher-order functions?
+> - What higher-order functions do JavaScript arrays provide?
+> - What is a closure?
+> - When and why are closures useful?
+
 - JavaScript relies heavily on _callback functions_
   - Instead of me giving you a result,
     you give me a function that tells me what to do next
@@ -130,7 +140,8 @@ first: o,t,t
 ## Functional Programming
 
 - _Functional programming_ is a style of programming that:
-  - Relies heavily on _higher-order functions_ (i.e., functions that take functions as arguments)
+  - Relies heavily on _higher-order functions_
+    (i.e., functions that take functions as arguments)
   - Doesn't modify data structures in place, but instead creates new ones from old
 - JavaScript arrays provide several methods to support functional programming
 
@@ -301,6 +312,10 @@ console.log(`adding 1 and 2 to 100 -> ${result}`)
 ```output
 adding 1 and 2 to 100 -> 103
 ```
+
+> **Key Points**
+>
+> - FIXME: key points
 
 ## Challenges
 

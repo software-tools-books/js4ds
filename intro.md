@@ -4,6 +4,12 @@ permalink: "/intro/"
 title: "Introduction"
 ---
 
+> **Questions**
+>
+> - What are the main topics of this course?
+> - Is this an appropriate course for me?
+> - How do I set up my computer to do the coursework?
+
 I was originally going to call this book *JavaScript for Scientists and Engineers*,
 but [David Beazley thought that "versus" would make a better title][beazley-tweet].
 That one-word change sums up how many programmers view the language,
@@ -57,6 +63,14 @@ and show her how to take advantage of JavaScript's more modern features.
 ## Setting Up
 
 FIXME: setup instructions
+
+> **Key Points**
+>
+> - FIXME
+
+## Challenges
+
+FIXME: challenges
 
 [beazley-tweet]: https://twitter.com/dabeaz/status/863566969240514560
 [swc]: http://software-carpentry.org

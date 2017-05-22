@@ -4,6 +4,23 @@ permalink: "/core/"
 title: "Core Features of Modern JavaScript"
 ---
 
+> **Questions**
+>
+> - How can I execute short snippets of JavaScript interactively?
+> - How can I run small JavaScript programs from the command line?
+> - How can I print text in JavaScript?
+> - What are JavaScript's basic data types?
+> - How can I find out what type something is?
+> - How do I write loops?
+> - How do I write conditionals?
+> - What counts as true and false?
+> - How do I format text?
+> - How do I store lists of values?
+> - How do I store values by name?
+> - How do I define functions?
+> - How do I divide source code into multiple files?
+> - FIXME: regular expressions
+
 - Introduce enough of JavaScript's core features to get started
 - Experiment with these interactively in the Node REPL
 
@@ -289,6 +306,10 @@ clip(-1,5,3,0,10) -> 0,1,2,3
 ## Regular Expressions
 
 FIXME: explain regexp
+
+> **Key Points**
+>
+> - FIXME
 
 ## Challenges
 
