@@ -6,6 +6,5 @@ const pipeline = (initial, operations) => {
   return current
 }
 
-const result = pipeline(100, [(x) => { return x+1 },
-                              (x) => { return x+2 }])
+const result = pipeline(100, [(x) => x + 1, (x) => x + 2])
 console.log(`adding 1 and 2 to 100 -> ${result}`)

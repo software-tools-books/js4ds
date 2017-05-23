@@ -98,8 +98,7 @@ const values = [false, true, 0, 1, '', 'text', undefined, null, [], [2, 3]]
 for (let v of values) {
   if (v) {
     console.log(`${v} of type ${typeof v} is truthy`)
-  }
-  else {
+  } else {
     console.log(`${v} of type ${typeof v} is falsy`)
   }
 }
@@ -138,7 +137,7 @@ null of type object is falsy
 
 <!-- @src/core/objects.js -->
 ```js
-creature = {
+const creature = {
   'order': 'Primates',
   'family': 'Callitrichidae',
   'genus': 'Callithrix',
@@ -177,8 +176,8 @@ creature[species] is Jacchus
 
 <!-- @src/core/functions-classic.js -->
 ```js
-function limits(values) {
-  if (! values.length) {
+function limits (values) {
+  if (!values.length) {
     return [undefined, undefined]
   }
   let low = values[0]
@@ -203,7 +202,7 @@ function limits(values) {
 
 <!-- @src/core/functions-classic.js -->
 ```js
-allTests = [
+const allTests = [
   [],
   [9],
   [3, 30, 300],
@@ -232,7 +231,7 @@ limits of 3,apple,sub-array are 3,3
 <!-- @src/core/functions-modern.js -->
 ```js
 const limits = (values) => {
-  if (! values.length) {
+  if (!values.length) {
     return [undefined, undefined]
   }
   let low = values[0]
@@ -283,12 +282,12 @@ module.exports = {
   - Don't have to quote the keys of objects when they are simple names
   - `bound` isn't exported
 
-```
-// src/core/import.js
+<!-- @src/core/import.js -->
+```js
 const utilities = require('./utilities')
 
-data = [-1, 5, 3, 0, 10]
-result = utilities.clip(data)
+const data = [-1, 5, 3, 0, 10]
+const result = utilities.clip(data)
 console.log(`clip(${data}) -> ${result}`)
 ```
 ```output

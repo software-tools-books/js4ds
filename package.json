@@ -12,6 +12,7 @@
   "license": "SEE LICENSE IN LICENSE.md",
   "homepage": "http://gvwilson.github.io/js-vs-rc/",
   "scripts": {
+    "standard": "standard bin/*.js src/**/*.js",
     "test": "echo \"Error: no test specified\" && exit 1",
     "words": "bin/wc.js *.md"
   },
@@ -24,6 +25,7 @@
   },
   "dependencies": {
     "marked": "^0.3.6",
-    "node": "0.0.0"
+    "node": "0.0.0",
+    "standard": "^10.0.2"
   }
 }

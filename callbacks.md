@@ -178,7 +178,7 @@ const data = ['this', 'is', 'a', 'test']
 console.log('all longer than 3 start with t',
             data
             .filter((x) => { return x.length > 3 })
-            .every((x) => { return x[0] == 't' }))
+            .every((x) => { return x[0] === 't' }))
 ```
 ```output
 all longer than 3 start with t true
@@ -303,10 +303,15 @@ adding 1 and 2 to 100 -> 103
 
 <!-- @src/callbacks/closure-inline.js -->
 ```js
-const pipeline = …as before…
+const pipeline = (initial, operations) => {
+  let current = initial
+  for (let op of operations) {
+    current = op(current)
+  }
+  return current
+}
 
-const result = pipeline(100, [(x) => { return x+1 },
-                              (x) => { return x+2 }])
+const result = pipeline(100, [(x) => x + 1, (x) => x + 2])
 console.log(`adding 1 and 2 to 100 -> ${result}`)
 ```
 ```output

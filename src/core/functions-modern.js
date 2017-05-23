@@ -1,5 +1,5 @@
 const limits = (values) => {
-  if (! values.length) {
+  if (!values.length) {
     return [undefined, undefined]
   }
   let low = values[0]
@@ -11,7 +11,7 @@ const limits = (values) => {
   return [low, high]
 }
 
-allTests = [
+const allTests = [
   [],
   [9],
   [3, 30, 300],

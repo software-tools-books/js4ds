@@ -1,4 +1,4 @@
-creature = {
+const creature = {
   'order': 'Primates',
   'family': 'Callitrichidae',
   'genus': 'Callithrix',
