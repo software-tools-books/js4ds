@@ -315,6 +315,8 @@ span.keyword {
 
 FIXME: summarize chapter
 
+FIXME: explain that interactive elements (buttons, forms) are deferred to React chapter
+
 > **Key Points**
 >
 > - FIXME
