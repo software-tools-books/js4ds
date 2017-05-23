@@ -15,6 +15,7 @@ title: "Core Features of Modern JavaScript"
 > - How do I write conditionals?
 > - What counts as true and false?
 > - How do I format text?
+> - How do I format JavaScript code?
 > - How do I store lists of values?
 > - How do I store values by name?
 > - How do I define functions?
@@ -132,6 +133,10 @@ null of type object is falsy
   - Argument is that there's something there, it just happens to be empty
   - Test `Array.length` instead
   - This is a _property_, not a _method_
+
+## Formatting
+
+FIXME: explain `standard`
 
 ## Objects
 
