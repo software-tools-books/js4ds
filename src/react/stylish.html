@@ -11,8 +11,14 @@
       <!-- this is replaced -->
     </div>
     <script>
+      const attributes = {
+        'style': {
+          'background': 'pink',
+          'font-style': 'italic'
+        }
+      }
       ReactDOM.render(
-        React.DOM.h1(null, "Hello, world"),
+        React.DOM.h1(attributes, "Hello, world"),
         document.getElementById("app")
       )
     </script>
