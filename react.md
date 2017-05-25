@@ -84,26 +84,78 @@ FIXME: diagram
 
 <!-- @src/react/stylish.html -->
 ```html
-<body>
-  <div id="app">
-    <!-- this is filled in -->
-  </div>
-  <script>
-    const attributes = {
-      'style': {
-        'background': 'pink',
-        'font-style': 'italic'
+  <body>
+    <div id="app">
+      <!-- this is filled in -->
+    </div>
+    <script>
+      const attributes = {
+        'style': {
+          'background': 'pink',
+          'font-style': 'italic'
+        }
       }
-    }
-    ReactDOM.render(
-      React.DOM.h1(attributes, "Hello, world"),
-      document.getElementById("app")
-    )
-  </script>
-</body>
+      ReactDOM.render(
+        React.DOM.h1(attributes, "Hello, world"),
+        document.getElementById("app")
+      )
+    </script>
+  </body>
 ```
 
 ## JSX
 
 - Writing nested functions is a clumsy way to write HTML
 - So add a tool called JSX that translates HTML into JavaScript function calls
+
+<!-- @src/react/hello-jsx.html -->
+```html
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Hello World</title>
+    <meta charset="utf-8">
+    <script src="https://fb.me/react-15.0.1.js"></script>
+    <script src="https://fb.me/react-dom-15.0.1.js"></script>
+    <script src="https://unpkg.com/babel-standalone@6/babel.js"></script>
+  </head>
+  <body>
+    <div id="app">
+      <!-- this is filled in -->
+    </div>
+    <script type="text/babel">
+      ReactDOM.render(
+        <h1>Hello, world</h1>,
+        document.getElementById("app")
+      )
+    </script>
+  </body>
+</html>
+```
+
+- Include Babel to translate mixed content into pure JavaScript
+- Add `type="text/babel"` to the `script` tag to tell Babel where to do its work
+- Remember: the script is translated into pure JavaScript and then run as before
+
+- Why bother?
+- Because we can put JavaScript inside our HTML (inside our JavaScript)
+- E.g., use `map` to turn a list of strings into an HTML list
+
+<!-- @src/react/jsx-list.html -->
+```html
+  <body>
+    <div id="app">
+      <!-- this is filled in -->
+    </div>
+    <script type="text/babel">
+      const allNames = ['McNulty', 'Jennings', 'Snyder', 'Meltzer', 'Bilas', 'Lichterman']
+      ReactDOM.render(
+        <ul>{allNames.map((name) => { return <li>{name}</li> })}</ul>,
+        document.getElementById("app")
+      )
+    </script>
+  </body>
+```
+
+- FIXME: explain need to return one root node
+  - Because one function call
