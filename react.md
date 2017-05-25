@@ -55,7 +55,7 @@ FIXME: diagram
   </head>
   <body>
     <div id="app">
-      <!-- this is replaced -->
+      <!-- this is filled in -->
     </div>
     <script>
       ReactDOM.render(
@@ -74,7 +74,7 @@ FIXME: diagram
 - Script
   - Create an `h1` with the text "Hello, world"
   - Find the element whose ID is "app"
-  - Replace the latter with the former
+  - Insert the former into the latter
 - Notes
   - Alters the representation of the page in memory, not the source of the page on disk
   - Can't put the script in a separate JavaScript file and load it in the head
@@ -86,7 +86,7 @@ FIXME: diagram
 ```html
 <body>
   <div id="app">
-    <!-- this is replaced -->
+    <!-- this is filled in -->
   </div>
   <script>
     const attributes = {

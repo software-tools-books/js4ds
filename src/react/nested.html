@@ -12,7 +12,10 @@
     </div>
     <script>
       ReactDOM.render(
-        React.DOM.h1(null, "Hello, world"),
+        React.DOM.h1(null,
+                     React.DOM.em(null, "hello"),
+                     ' ',
+                     React.DOM.strong(null, "world")),
         document.getElementById("app")
       )
     </script>
