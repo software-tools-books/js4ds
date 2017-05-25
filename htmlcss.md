@@ -165,11 +165,157 @@ FIXME: example
 
 ## Cascading Style Sheets
 
-- FIXME: explain
+- When HTML first appeared, people styled it using attributes
+
+<!-- @src/htmlcss/style-with-attributes.html -->
+```html
+<html>
+  <body>
+    <h1 align="center">Heading is Centered</h1>
+    <p>
+      <b>Text</b> can be highlighted
+      or <font color="coral">colorized</font>.
+    </p>
+  </body>
+</html>
+```
+
+- Many still do, but a better way is to using _Cascading Style Sheets_ (CSS)
+  - Separates content from presentation
+  - Easier to maintain consistency
+
+<!-- @src/htmlcss/style-with-css.html -->
+```html
+<html>
+  <head>
+    <link href="simple-style.css" rel="stylesheet" />
+  </head>
+  <body>
+    <h1 class="title">Heading is Centered</h1>
+    <p>
+      <span class="keyword">Text</span> can be highlighted
+      or <span class="highlight">colorized</span>.
+    </p>
+  </body>
+</html>
+```
+
+<!-- @src/htmlcss/simple-style.css -->
+```css
+h1.title {
+  text-align: center;
+}
+span.keyword {
+  font-weight: bold;
+}
+.highlight {
+  color: coral;
+}
+```
+
+- Usual form is `tag.class` followed by a group of properties
+  - Each property is a key/value pair
+- Can omit the class, in which case the style applies to everything with that tag
+  - Unless overridden by something more specific
+- Can omit the tag and simply use `.class`
+- Element may have multiple values for class
+  - Try `<span class="keyword highlight">…</span>`
+
+- Can label particular elements uniquely within the page using `id="name"` attribute
+- Then refer to those elements using `#name` _selector_
+- Can also use `parent > child` to select elements that are within specified other elements
+
+<!-- @src/htmlcss/selectors.html -->
+```html
+<html>
+  <head>
+    <link href="selector-style.css" rel="stylesheet" />
+  </head>
+  <body>
+    <p>
+      First <span id="major">keyword</span>.
+    </p>
+    <p class="details">
+      Full <span id="minor">explanation</span>.
+    </p>
+  </body>
+</html>
+```
+
+<!-- @src/htmlcss/selector-style.css -->
+```css
+#major {
+  text-decoration: underline red;
+}
+#minor {
+  text-decoration: overline blue;
+}
+.details {
+  font-style: italic;
+}
+```
+
+## Bootstrap
+
+- CSS can become very complicated very quickly
+- Most people rely on a framework to take care of the details
+- One of the most widely used is Bootstrap
+
+<!-- @src/htmlcss/bootstrap.html -->
+```html
+<html>
+  <head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <style>
+      div {
+        border: solid 1px;
+      }
+    </style>
+  </head>
+  <body>
+
+    <div class="jumbotron text-center">
+      <h1>Page Title</h1>
+      <p>Resize this page to see how the layout adjusts dynamically.</p>
+    </div>
+
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-4">
+          <h2>First column is 4 wide</h2>
+          <p>Text here goes</p>
+          <p>in the column</p>
+        </div>
+        <div class="col-sm-8">
+          <h2>Second column is 8 wide</h2>
+          <p>Text over here goes</p>
+          <p>in the other column</p>
+        </div>
+      </div>
+    </div>
+
+  </body>
+</html>
+```
+
+- Page opens by loading Bootstrap from the web
+  - Can also download and use locally
+- Then defines a style that puts a solid one-pixel border around every `div`
+  - Defining styles in the page header is generally a bad idea, but it's a good way to test things quickly
+- First div creates a header box with centered text
+- Second div is a container (creates a bit of marging on the left and right)
+- Inside is a row with two columns
+  - First column is 4/12 wide
+  - Second column is 8/12 wide
+  - Bootstrap uses 12 because it has lots of divisors
+- Bootstrap is _responsive_
+  - Elements change to stacked layout when screen is small
 
 ## Summary
 
 FIXME: summarize chapter
+
+FIXME: explain that interactive elements (buttons, forms) are deferred to React chapter
 
 > **Key Points**
 >
