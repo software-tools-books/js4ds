@@ -102,3 +102,8 @@ FIXME: diagram
   </script>
 </body>
 ```
+
+## JSX
+
+- Writing nested functions is a clumsy way to write HTML
+- So add a tool called JSX that translates HTML into JavaScript function calls
