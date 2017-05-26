@@ -157,5 +157,63 @@ FIXME: diagram
   </body>
 ```
 
+- FIXME: explain why we can't just use a loop
+  - Because it has to return something
 - FIXME: explain need to return one root node
   - Because one function call
+
+## Creating Components
+
+- If we're defining functions, we can write new ones
+
+<!-- @src/react/create-components.html -->
+```html
+  <body>
+    <div id="app">
+      <!-- this is filled in -->
+    </div>
+    <script type="text/babel">
+      const allNames = ['McNulty', 'Jennings', 'Snyder', 'Meltzer', 'Bilas', 'Lichterman']
+
+      const ListOfNames = () => {
+        return (<ul>{allNames.map((name) => { return <li>{name}</li> })}</ul>)
+      }
+
+      ReactDOM.render(
+        <div>
+          <ListOfNames />
+        </div>,
+        document.getElementById("app")
+      )
+    </script>
+  </body>
+```
+
+- What we really want to do is parameterize
+  - After all, the JSX is being turned into a function
+- All the attributes are passed to our function in a single `props` object
+
+<!-- @src/react/pass-parameters.html -->
+```html
+  <body>
+    <div id="app">
+      <!-- this is filled in -->
+    </div>
+    <script type="text/babel">
+      const allNames = ['McNulty', 'Jennings', 'Snyder', 'Meltzer', 'Bilas', 'Lichterman']
+
+      const ListElement = (props) => {
+        return (<li id="{props.name}"><em>{props.name}</em></li>)
+      }
+
+      ReactDOM.render(
+        <div>
+          <ul>{allNames.map((name) => { return <ListElement name={name} /> })}</ul>
+        </div>,
+        document.getElementById("app")
+      )
+    </script>
+  </body>
+```
+
+- Gives us exactly one logical place to do calculations, set style, etc.
