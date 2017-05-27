@@ -217,3 +217,14 @@ FIXME: diagram
 ```
 
 - Gives us exactly one logical place to do calculations, set style, etc.
+
+## Developing with a Server
+
+- Putting all the source in the HTML file, in one block, is bad practice
+- Already seen problems with loading source in header
+  - Page doesn't exist yet
+- And what about `require` statements?
+  - Browser tries to load files when it sees those
+  - But whose serves them?
+
+FIXME: what's the simplest way to do this?
