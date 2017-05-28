@@ -7,7 +7,7 @@ title: "Contents"
 *   [Introduction](./intro/)
 *   [Core Features of Modern JavaScript](./core/)
 *   [Programming with Callbacks](./callbacks/)
-*   [Building Static Web Pages with React](./react/)
+*   [Building Static Web Pages with React](./display/)
 *   [Making Web Pages Interactive](./interactive/)
 *   [Building Data Services with Express](./express/)
 *   [Testing](./testing/)

@@ -1,6 +1,6 @@
 ---
 layout: page
-permalink: "/react/"
+permalink: "/display/"
 title: "Building Static Web Pages with React"
 ---
 
