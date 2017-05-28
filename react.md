@@ -43,12 +43,12 @@ FIXME: diagram
 
 ## Hello, World
 
-<!-- @src/react/hello.html -->
+<!-- @src/react/hello-react.html -->
 ```html
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Hello World</title>
+    <title>Hello React</title>
     <meta charset="utf-8">
     <script src="https://fb.me/react-15.0.1.js"></script>
     <script src="https://fb.me/react-dom-15.0.1.js"></script>
@@ -59,7 +59,7 @@ FIXME: diagram
     </div>
     <script>
       ReactDOM.render(
-        React.DOM.h1(null, "Hello, world"),
+        React.DOM.h1(null, "Hello, React"),
         document.getElementById("app")
       )
     </script>
@@ -72,7 +72,7 @@ FIXME: diagram
 - Body contains a `div` with an ID to make it findable
   - React will replace this entire `div`
 - Script
-  - Create an `h1` with the text "Hello, world"
+  - Create an `h1` with the text "Hello, React"
   - Find the element whose ID is "app"
   - Insert the former into the latter
 - Notes

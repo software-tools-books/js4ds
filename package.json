@@ -12,6 +12,7 @@
   "license": "SEE LICENSE IN LICENSE.md",
   "homepage": "http://gvwilson.github.io/js-vs-rc/",
   "scripts": {
+    "demo": "./bin/run-server",
     "start": "react-scripts start",
     "standard": "standard bin/*.js src/**/*.js",
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -25,6 +26,7 @@
     "url": "https://github.com/gvwilson/js-vs-rc/issues"
   },
   "dependencies": {
+    "http-server": "^0.10.0",
     "marked": "^0.3.6",
     "node": "0.0.0",
     "react": "^15.5.4",
