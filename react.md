@@ -1,7 +1,7 @@
 ---
 layout: page
 permalink: "/react/"
-title: "Building Dynamic Web Pages with React"
+title: "Building Static Web Pages with React"
 ---
 
 > **Questions**
