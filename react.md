@@ -226,5 +226,106 @@ FIXME: diagram
 - And what about `require` statements?
   - Browser tries to load files when it sees those
   - But whose serves them?
+- `npm install --save http-server` to get a little HTTP server
+- Write a little shell script to change directories and run the server:
 
-FIXME: what's the simplest way to do this?
+<!-- @bin/run-server -->
+```sh
+#!/usr/bin/env bash
+server_path=${PWD}/node_modules/.bin/http-server
+cd $1 && ${server_path}
+```
+
+- Add a line to `package.json` to run this
+
+```js
+  "scripts": {
+    "demo": "./bin/run-server",
+    …
+  }
+```
+
+- Everything after `--` on the command line is passed to the script
+  - So `npm run demo -- src/react/hello-separate` will serve what's in that directory
+- Now include the JavaScript like any other script
+
+<!-- @src/react/hello-separate/index.html -->
+```html
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Hello Separate</title>
+    <meta charset="utf-8">
+    <script src="https://fb.me/react-15.0.1.js"></script>
+    <script src="https://fb.me/react-dom-15.0.1.js"></script>
+    <script src="https://unpkg.com/babel-standalone@6/babel.js"></script>
+    <script src="app.js" type="text/babel"></script>
+  </head>
+  <body>
+    <div id="app">
+      <!-- this is filled in -->
+    </div>
+  </body>
+</html>
+```
+
+- And put the JavaScript in the file
+
+<!-- @src/react/hello-separate/app.js -->
+```js
+ReactDOM.render(
+  <h1>Hello, separate</h1>,
+  document.getElementById("app")
+)
+```
+
+- Can now load many separate files
+  - Warning: do this in the HTML with multiple script tags
+  - This is *not* how we will do production applications (which will have a compilation step)
+- HTML page:
+
+<!-- @src/react/multiple-files/index.html -->
+```html
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Hello Separate</title>
+    <meta charset="utf-8">
+    <script src="https://fb.me/react-15.0.1.js"></script>
+    <script src="https://fb.me/react-dom-15.0.1.js"></script>
+    <script src="https://unpkg.com/babel-standalone@6/babel.js"></script>
+    <script src="ListElement.js" type="text/babel"></script>
+    <script src="app.js" type="text/babel"></script>
+  </head>
+  <body>
+    <div id="app">
+      <!-- this is filled in -->
+    </div>
+  </body>
+```
+
+- React code to format a list element
+
+<!-- @src/react/multiple-files/ListElement.js -->
+```js
+const ListElement = (props) => {
+  return (<li id="{props.name}"><em>{props.name}</em></li>)
+}
+```
+
+- Main application
+- Note that this JavaScript *doesn't* have an `import` or `require` statement
+
+<!-- @src/react/multiple-files/app.js -->
+```js
+const allNames = ['McNulty', 'Jennings', 'Snyder', 'Meltzer', 'Bilas', 'Lichterman']
+ReactDOM.render(
+  <ul>{allNames.map((name) => { return <ListElement name={name} /> })}</ul>,
+  document.getElementById("app")
+)
+```
+
+- But this is probably a bad layout
+  - Would make more sense to have a `Name` element that formatted a name
+  - And then let the application decide to put those names in a list
+  - Exercise for the reader
