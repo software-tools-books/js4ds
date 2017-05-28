@@ -4,3 +4,33 @@ highlighter: rouge
 # Magic to make URLs resolve both locally and on GitHub.
 # See https://help.github.com/articles/repository-metadata-on-github-pages/.
 repository: <USERNAME>/<PROJECT>
+
+toc:
+- permalink: /intro/
+  title: Introduction
+- permalink: /core/
+  title: Core Features of Modern JavaScript
+- permalink: /callbacks/
+  title: Programming with Callbacks
+- permalink: /display/
+  title: Building Static Web Pages with React
+- permalink: /interactive/
+  title: Making Web Pages Interactive
+- permalink: /express/
+  title: Building Data Services with Express
+- permalink: /testing/
+  title: Testing
+- permalink: /d3/
+  title: Visualizing Data with D3
+- permalink: /htmlcss/
+  title: HTML and CSS
+- permalink: /legacy/
+  title: Legacy JavaScript Issues
+- permalink: /refs/
+  title: References
+- permalink: /license/
+  title: License
+- permalink: /conduct/
+  title: Code of Conduct
+- permalink: /contributing/
+  title: Contributing
