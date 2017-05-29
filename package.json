@@ -16,7 +16,7 @@
     "start": "react-scripts start",
     "standard": "standard bin/*.js src/**/*.js",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "words": "bin/wc.js *.md"
+    "words": "bin/wc.js *.md _lessons/*.md"
   },
   "repository": {
     "type": "git",
