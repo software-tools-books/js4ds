@@ -116,6 +116,36 @@ app.listen(PORT, () => {console.log('listening...');});
   5. Return that data
 - Exercise: make this 404 for missing files
 
+## Content Types
+
+- Clients expect to know what kind of data we're sending
+  - Images, etc.
+- We're going to serve JSON
+
+<!-- @src/express/data-server.js -->
+```js
+…
+
+app.use((req, res, next) => {
+  const actual = path.join(root, req.url);
+
+  if (actual.endsWith('.json')){
+    const data = fs.readFileSync(actual, 'utf-8');
+    const json = JSON.parse(data);
+    res.setHeader('Content-Type', 'application/json');
+    res.status(200).send(json);
+  }
+
+  else {
+    const data = fs.readFileSync(actual, 'utf-8');
+    res.status(200).send(data);
+  }
+});
+```
+
+- The `Content-Type` header tells the client how to handle the bytes we're sending
+  - Though it can still do whatever it wants
+
 ## Dynamic Content
 
 - Could add functions to our server to generate dynamic content
@@ -123,32 +153,22 @@ app.listen(PORT, () => {console.log('listening...');});
 
 <!-- @src/express/dynamic.js -->
 ```js
-const express = require('express');
-const path = require('path');
-const fs = require('fs');
-
-const PORT = 3418;
-const root = process.argv[2];
-
-// Main server object.
-let app = express();
-
-// Handle all requests.
+…
 app.use((req, res, next) => {
   const actual = path.join(root, req.url);
+
   if (actual.endsWith('.js')) {
     const libName = './'.concat(actual.slice(0, -3));
     dynamic = require(libName);
     const data = dynamic.page();
     res.status(200).send(data);
   }
+
   else {
     const data = fs.readFileSync(actual, 'utf-8');
     res.status(200).send(data);
   }
 });
-
-app.listen(PORT, () => {console.log('listening...');});
 ```
 
 - Require all dynamic plugins to provide a `page` function
@@ -164,48 +184,3 @@ module.exports = {
   page: page
 }
 ```
-
-## Content Types
-
-- Clients expect to know what kind of data we're sending
-  - Images, etc.
-- We're going to serve JSON
-
-<!-- @src/express/data-server.js -->
-```js
-const express = require('express');
-const path = require('path');
-const fs = require('fs');
-
-const PORT = 3418;
-const root = process.argv[2];
-
-// Main server object.
-let app = express();
-
-// Handle all requests.
-app.use((req, res, next) => {
-  const actual = path.join(root, req.url);
-  if (actual.endsWith('.js')) {
-    const libName = './'.concat(actual.slice(0, -3));
-    dynamic = require(libName);
-    const data = dynamic.page();
-    res.status(200).send(data);
-  }
-  else if (actual.endsWith('.json')){
-    const data = fs.readFileSync(actual, 'utf-8');
-    const json = JSON.parse(data);
-    res.setHeader('Content-Type', 'application/json');
-    res.status(200).send(json);
-  }
-  else {
-    const data = fs.readFileSync(actual, 'utf-8');
-    res.status(200).send(data);
-  }
-});
-
-app.listen(PORT, () => {console.log('listening...');});
-```
-
-- The `Content-Type` header tells the client how to handle the bytes we're sending
-  - Though it can still do whatever it wants
