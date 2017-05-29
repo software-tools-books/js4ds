@@ -348,3 +348,57 @@ class App extends React.Component {
 - Safe to pass `this.state.newDate` because we're re-drawing each time there's a change
   - Passing a value for display, not a reference to be modified
 - Note that we are not doing any kind of validation (yet)
+
+- Time to get real data
+- Use `fetch` with a URL
+- It returns a _promise_
+  - JavaScript's newly-standardized way of making callbacks easier to work with
+  - Although it practice it just seems to move the complexity around
+
+<!-- @src/interactive/asteroids/app.js -->
+```js
+  onSubmitNewDate = (text) => {
+    const url = `https://api.nasa.gov/neo/rest/v1/feed?api_key=DEMO_KEY&start_date=${text}`
+    fetch(url).then((response) => {
+      return response.json()
+    }).then((raw) => {
+      const asteroids = this.transform(raw)
+      this.setState({
+        newDate: '',
+        asteroids: asteroids
+      })
+    })
+  }
+```
+
+- Steps are:
+  1. Build the URL for the data
+  2. Start to fetch data from that URL
+  3. Give a callback to execute when the data arrives
+  4. Give another callback to use when the data has been converted from text to JSON
+  5. Transform that data from its raw form into the objects we need
+  6. Set state
+- Transformation is:
+
+<!-- @src/interactive/asteroids/app.js -->
+```js
+  transform = (raw) => {
+    let result = []
+    for (let key in raw.near_earth_objects) {
+      raw.near_earth_objects[key].forEach((asteroid) => {
+        result.push({
+          name: asteroid.name,
+          date: asteroid.close_approach_data[0].close_approach_date,
+          diameter: asteroid.estimated_diameter.meters.estimated_diameter_max,
+          distance: asteroid.close_approach_data[0].miss_distance.kilometers
+        })
+      })
+    }
+    return result
+  }
+```
+
+- Look at the structure of the JSON
+- Figure out how to index the fields we need
+- Unfortunately, top level of `near_earth_objects` is an object with dates as keys
+  - So we have to use `let…in…` rather than purely `map` or `forEach`

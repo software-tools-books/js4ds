@@ -17,8 +17,16 @@ class App extends React.Component {
   }
 
   onSubmitNewDate = (text) => {
-    console.log(`new date ${text}`)
-    this.setState({newDate: ''})
+    const url = `https://api.nasa.gov/neo/rest/v1/feed?api_key=DEMO_KEY&start_date=${text}`
+    fetch(url).then((response) => {
+      return response.json()
+    }).then((raw) => {
+      const asteroids = this.transform(raw)
+      this.setState({
+        newDate: '',
+        asteroids: asteroids
+      })
+    })
   }
 
   render = () => {
@@ -31,8 +39,22 @@ class App extends React.Component {
           onChange={this.onEditNewDate}
           onCommit={this.onSubmitNewDate} />
         <AsteroidList asteroids={this.state.asteroids} />
-        <AsteroidDetails asteroid={this.state.currentAsteroid} />
       </div>
     )
+  }
+
+  transform = (raw) => {
+    let result = []
+    for (let key in raw.near_earth_objects) {
+      raw.near_earth_objects[key].forEach((asteroid) => {
+        result.push({
+          name: asteroid.name,
+          date: asteroid.close_approach_data[0].close_approach_date,
+          diameter: asteroid.estimated_diameter.meters.estimated_diameter_max,
+          distance: asteroid.close_approach_data[0].miss_distance.kilometers
+        })
+      })
+    }
+    return result
   }
 }
