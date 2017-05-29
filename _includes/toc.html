@@ -1,0 +1,5 @@
+<h2>Contents</h2>
+<ul>
+{% for entry in site.toc %}
+<li><a href=".{{entry.permalink}}">{{entry.title}}</a></li>{% endfor %}
+</ul>
