@@ -1,12 +1,12 @@
 ---
 layout: page
-permalink: "/react/"
+permalink: "/interactive/"
 title: "Making Web Pages Interactive"
+questions:
+- FIXME
+keypoints:
+- FIXME
 ---
-
-> **Questions**
->
-> - FIXME
 
 - Browsers allow us to define an _event handler_ to specify what to do in response to a user action
   - A callback function that is (usually) given an _event object_ containing information about what the user did

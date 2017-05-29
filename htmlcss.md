@@ -2,11 +2,11 @@
 layout: page
 permalink: "/htmlcss/"
 title: "HTML and CSS"
+questions:
+- FIXME
+keypoints:
+- FIXME
 ---
-
-> **Questions**
->
-> - FIXME: key questions
 
 - HTML is the standard way to represent documents for presentation in web browsers
 - CSS is the standard way to describe how it should look
@@ -316,10 +316,6 @@ span.keyword {
 FIXME: summarize chapter
 
 FIXME: explain that interactive elements (buttons, forms) are deferred to React chapter
-
-> **Key Points**
->
-> - FIXME
 
 ## Challenges
 

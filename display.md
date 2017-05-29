@@ -2,11 +2,11 @@
 layout: page
 permalink: "/display/"
 title: "Building Static Web Pages with React"
+questions:
+- FIXME
+keypoints:
+- FIXME
 ---
-
-> **Questions**
->
-> - FIXME
 
 - In the beginning, people created HTML pages by typing them in
 - Quickly realized that a lot of pages shared a lot of content

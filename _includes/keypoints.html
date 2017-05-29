@@ -1,0 +1,9 @@
+{% if page.keypoints %}
+<div class="keypoints">
+  <h2>Key Points</h2>
+  <ul>
+    {% for question in page.keypoints %}
+    <li>{{ question|markdownify }}</li>{% endfor %}
+  </ul>
+</div>
+{% endif %}

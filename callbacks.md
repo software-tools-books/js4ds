@@ -2,17 +2,17 @@
 layout: page
 permalink: "/callbacks/"
 title: "Programming with Callbacks"
+questions:
+- "What happens when a function is defined?"
+- "How can I pass a function to another function?"
+- "Why would I want to do that?"
+- "What are higher-order functions?"
+- "What higher-order functions do JavaScript arrays provide?"
+- "What is a closure?"
+- "When and why are closures useful?"
+keypoints:
+- FIXME
 ---
-
-> **Questions**
->
-> - What happens when a function is defined?
-> - How can I pass a function to another function?
-> - Why would I want to do that?
-> - What are higher-order functions?
-> - What higher-order functions do JavaScript arrays provide?
-> - What is a closure?
-> - When and why are closures useful?
 
 - JavaScript relies heavily on _callback functions_
   - Instead of me giving you a result,
@@ -321,10 +321,6 @@ adding 1 and 2 to 100 -> 103
 ## Summary
 
 FIXME: summarize chapter
-
-> **Key Points**
->
-> - FIXME: key points
 
 ## Challenges
 

@@ -2,13 +2,13 @@
 layout: page
 permalink: "/intro/"
 title: "Introduction"
+questions:
+- "What are the main topics of this course?"
+- "Is this an appropriate course for me?"
+- "How do I set up my computer to do the coursework?"
+keypoints:
+- FIXME
 ---
-
-> **Questions**
->
-> - What are the main topics of this course?
-> - Is this an appropriate course for me?
-> - How do I set up my computer to do the coursework?
 
 I was originally going to call this book *JavaScript for Scientists and Engineers*,
 but [David Beazley thought that "versus" would make a better title][beazley-tweet].
@@ -67,10 +67,6 @@ FIXME: setup instructions
 ## Summary
 
 FIXME: summarize chapter
-
-> **Key Points**
->
-> - FIXME
 
 ## Challenges
 

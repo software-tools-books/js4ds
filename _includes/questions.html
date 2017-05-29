@@ -1,0 +1,9 @@
+{% if page.questions %}
+<div class="questions">
+  <h2>Questions</h2>
+  <ul>
+    {% for question in page.questions %}
+    <li>{{ question|markdownify }}</li>{% endfor %}
+  </ul>
+</div>
+{% endif %}

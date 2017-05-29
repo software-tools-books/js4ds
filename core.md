@@ -2,26 +2,26 @@
 layout: page
 permalink: "/core/"
 title: "Core Features of Modern JavaScript"
+questions:
+- "How can I execute short snippets of JavaScript interactively?"
+- "How can I run small JavaScript programs from the command line?"
+- "How can I print text in JavaScript?"
+- "What are JavaScript's basic data types?"
+- "How can I find out what type something is?"
+- "How do I write loops?"
+- "How do I write conditionals?"
+- "What counts as true and false?"
+- "How do I format text?"
+- "How do I format JavaScript code?"
+- "How do I store lists of values?"
+- "How do I store values by name?"
+- "How do I define functions?"
+- "How do I divide source code into multiple files?"
+- "FIXME: regular expressions"
+- "How do I create and use classes?"
+keypoints:
+- FIXME
 ---
-
-> **Questions**
->
-> - How can I execute short snippets of JavaScript interactively?
-> - How can I run small JavaScript programs from the command line?
-> - How can I print text in JavaScript?
-> - What are JavaScript's basic data types?
-> - How can I find out what type something is?
-> - How do I write loops?
-> - How do I write conditionals?
-> - What counts as true and false?
-> - How do I format text?
-> - How do I format JavaScript code?
-> - How do I store lists of values?
-> - How do I store values by name?
-> - How do I define functions?
-> - How do I divide source code into multiple files?
-> - FIXME: regular expressions
-> - How do I create and use classes?
 
 - Introduce enough of JavaScript's core features to get started
 - Experiment with these interactively in the Node REPL
@@ -319,10 +319,6 @@ FIXME: object-oriented programming
 ## Summary
 
 FIXME: summarize chapter
-
-> **Key Points**
->
-> - FIXME
 
 ## Challenges
 
