@@ -28,6 +28,8 @@ toc:
   title: Visualizing Data with D3
 - permalink: /htmlcss/
   title: HTML and CSS
+- permalink: /guide/
+  title: Guide
 - permalink: /legacy/
   title: Legacy JavaScript Issues
 - permalink: /refs/

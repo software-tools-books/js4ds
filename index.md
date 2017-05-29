@@ -4,4 +4,3 @@ permalink: "/"
 ---
 
 {% include toc.html %}
-{% include syllabus.html %}
