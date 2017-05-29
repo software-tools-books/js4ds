@@ -183,3 +183,168 @@ FIXME: diagram
 - But this strategy is widely used to manage large applications
   - Data and event handlers are defined near the top
   - Then passed down for other components to use
+
+## Fetching Data
+
+- NASA provides a web API to get information about near-approach asteroids
+- Build a small display with:
+  - A text box for submitting a starting date (get one week by default)
+  - A list of asteroids in that time period
+
+- First version of `App`
+
+<!-- @src/interactive/asteroids/app.js -->
+```js
+class App extends React.Component {
+
+  constructor (props) {
+    super(props)
+    this.state = {
+      // FIXME
+    }
+  }
+
+  onNewDate = (text) => {
+    // FIXME
+  }
+
+  render = () => {
+    return (
+      <div>
+        <DateSubmit newValue={this.onNewDate} />
+        <AsteroidList asteroids={this.state.asteroids} />
+      </div>
+    )
+  }
+}
+```
+
+- Start by displaying asteroids using fake data
+  - A pure display component
+
+<!-- @src/interactive/asteroids/AsteroidList.js -->
+```js
+const AsteroidList = (props) => {
+  return (
+    <table>
+      <tr><th>Name</th><th>Date</th><th>Diameter (m)</th><th>Approach (km)</th></tr>
+      {props.asteroids.map((a) => {
+        return (
+          <tr>
+            <td>{a.name}</td>
+            <td>{a.date}</td>
+            <td>{a.diameter}</td>
+            <td>{a.distance}</td>
+          </tr>
+        )
+      })}
+    </table>
+  )
+}
+```
+
+- Go back and put fake data in `App` for now
+
+<!-- @src/interactive/asteroids/app.js -->
+```js
+class App extends React.Component {
+
+  constructor (props) {
+    super(props)
+    this.state = {
+      asteroids: [
+        {name: 'a30x1000', date: '2017-03-03', diameter: 30, distance: 1000},
+        {name: 'a5x500', date: '2017-05-05', diameter: 5, distance: 500},
+        {name: 'a2000x200', date: '2017-02-02', diameter: 2000, distance: 200}
+      ]
+    }
+  }
+
+  …
+}
+```
+
+- Create placeholder for `DateSubmit`
+
+<!-- @src/interactive/asteroids/DateSubmit.js -->
+```js
+const DateSubmit = (props) => {
+  return (<p>DateSubmit</p>)
+}
+```
+
+- And run
+
+FIXME: screenshot
+
+- Handle date submission
+  - Make the component reusable
+- Caller will pass in:
+  - Text label
+  - Variable to update with current value of text box
+  - Function to call when text box value changes
+  - Function to call when button clicked to submit
+
+<!-- @src/interactive/asteroids/DateSubmit.js -->
+```js
+const DateSubmit = ({label, value, onChange, onCommit}) => {
+  return (
+    <p>
+      {label}:
+      <input type="text" value={value} onChange={(event) => onChange(event.target.value)} />
+      <button onClick={(event) => onCommit(value)}>new</button>
+    </p>
+  )
+}
+```
+
+- Note the use of unpacking in the parameter list
+  - FIXME: explain
+- Important to understand order of operations
+  - `value={value}` puts a value in the box for display
+  - Binds `onChange` and `onClick` to functions each time
+  - Remember, JSX gets translated into function calls
+  - So yes, this is being re-created every time someone types
+  - But React and the browser work together to minimize recalculation
+- Now go back and re-work application
+
+<!-- @src/interactive/asteroids/app.js -->
+```js
+class App extends React.Component {
+
+  constructor (props) {
+    super(props)
+    this.state = {
+      newDate: '',
+      asteroids: […]
+    }
+  }
+
+  onEditNewDate = (text) => {
+    this.setState({newDate: text})
+  }
+
+  onSubmitNewDate = (text) => {
+    console.log(`new date ${text}`)
+    this.setState({newDate: ''})
+  }
+
+  render = () => {
+    return (
+      <div>
+        <h1>Asteroids</h1>
+        <DateSubmit
+          label='Date'
+          value={this.state.newDate}
+          onChange={this.onEditNewDate}
+          onCommit={this.onSubmitNewDate} />
+        <AsteroidList asteroids={this.state.asteroids} />
+      </div>
+    )
+  }
+}
+```
+
+- Safe to pass `this.state.newDate` because we're re-drawing each time there's a change
+  - Passing a value for display, not a reference to be modified
+- Note that we are not doing any kind of validation (yet)
