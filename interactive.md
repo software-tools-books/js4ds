@@ -85,3 +85,101 @@ title: "Making Web Pages Interactive"
      - displays the current value of the counter
 - React calls components' `render` methods after `setState` is used to update their state
   - It does some thinking behind the scenes to minimize how much redrawing takes place
+
+## Models and Views
+
+- Common practice to separate models (which store data) from views (which display it)
+  - Models are typically classes
+  - Views are typically pure functions
+- Re-implement the counter using
+  - `App`: stores the state and provides methods for altering it
+  - `NumberDisplay`: does nothing except display a number
+  - `UpAndDown`: provides buttons to go up and down
+- Crucial design features: `NumberDisplay` and `UpAndDown` don't know:
+  - What they're displaying
+  - What actions are being taken on their behalf
+  - So they're easier to re-use
+- Again, we're cheating on the component loading
+
+<!-- @src/interactive/multi-component/index.html -->
+```html
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Hello World</title>
+    <meta charset="utf-8">
+    <script src="https://fb.me/react-15.0.1.js"></script>
+    <script src="https://fb.me/react-dom-15.0.1.js"></script>
+    <script src="https://unpkg.com/babel-standalone@6/babel.js"></script>
+    <script src="NumberDisplay.js" type="text/babel"></script>
+    <script src="UpAndDown.js" type="text/babel"></script>
+    <script src="app.js" type="text/babel"></script>
+  </head>
+  <body>
+    <div id="app">
+      <!-- this is filled in -->
+    </div>
+    <script type="text/babel">
+      ReactDOM.render(
+        <App />,
+        document.getElementById("app")
+      )
+    </script>
+  </body>
+</html>
+```
+
+<!-- @src/interactive/multi-component/NumberDisplay.js -->
+```js
+const NumberDisplay = (props) => {
+  return (<p>{props.label}: {props.value}</p>)
+}
+```
+
+<!-- @src/interactive/multi-component/UpAndDown.js -->
+```js
+const UpAndDown = (props) => {
+  return (
+    <p>
+      <button onClick={props.up}> [+] </button>
+      <button onClick={props.down}> [-] </button>
+    </p>
+  )
+}
+```
+
+<!-- @src/interactive/multi-component/app.js -->
+```js
+class App extends React.Component {
+
+  constructor (props) {
+    super(props)
+    this.state = {counter: 0}
+  }
+
+  increment = (event) => {
+    this.setState({counter: this.state.counter + 1})
+  }
+
+  decrement = (event) => {
+    this.setState({counter: this.state.counter - 1})
+  }
+
+  render = () => {
+    return (
+      <div>
+        <UpAndDown up={this.increment} down={this.decrement} />
+        <NumberDisplay label='counter' value={this.state.counter} />
+      </div>
+    )
+  }
+}
+```
+
+FIXME: diagram
+
+- This may seem pretty complicated
+- Because it is, in this small example
+- But this strategy is widely used to manage large applications
+  - Data and event handlers are defined near the top
+  - Then passed down for other components to use
