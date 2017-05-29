@@ -28,19 +28,19 @@ FIXME: diagrams
 
 <!-- @src/express/static-page.js -->
 ```js
-const express = require('express');
+const express = require('express')
 
-const PORT = 3418;
+const PORT = 3418
 
 // Main server object.
-let app = express();
+let app = express()
 
 // Return a static page.
 app.get('/', (req, res, next) => {
-  res.status(200).send('<html><body><h1>Asteroids</h1></body></html>');
-});
+  res.status(200).send('<html><body><h1>Asteroids</h1></body></html>')
+})
 
-app.listen(PORT, () => {console.log('listening...');});
+app.listen(PORT, () => { console.log('listening...') })
 ```
 
 - There is no HTML file on disk
@@ -53,29 +53,29 @@ app.listen(PORT, () => {console.log('listening...');});
 
 <!-- @src/express/multiple-paths.js -->
 ```js
-const express = require('express');
+const express = require('express')
 
-const PORT = 3418;
+const PORT = 3418
 
 // Main server object.
-let app = express();
+let app = express()
 
 // Root page.
 app.get('/', (req, res, next) => {
-  res.status(200).send('<html><body><h1>Home</h1></body></html>');
-});
+  res.status(200).send('<html><body><h1>Home</h1></body></html>')
+})
 
 // Alternative page.
 app.get('/asteroids', (req, res, next) => {
-  res.status(200).send('<html><body><h1>Asteroids</h1></body></html>');
-});
+  res.status(200).send('<html><body><h1>Asteroids</h1></body></html>')
+})
 
 // Nothing else worked.
 app.use((req, res, next) => {
-  res.status(404).send(`<html><body><h1>ERROR</h1><p>URL "${req.url}" not found</p></body></html>`);
-});
+  res.status(404).send(`<html><body><h1>ERROR</h1><p>URL "${req.url}" not found</p></body></html>`)
+})
 
-app.listen(PORT, () => {console.log('listening...');});
+app.listen(PORT, () => { console.log('listening...') })
 ```
 
 - Don't have to send a 404 status code
@@ -88,24 +88,24 @@ app.listen(PORT, () => {console.log('listening...');});
 
 <!-- @src/express/pages.js -->
 ```js
-const express = require('express');
-const path = require('path');
-const fs = require('fs');
+const express = require('express')
+const path = require('path')
+const fs = require('fs')
 
-const PORT = 3418;
-const root = process.argv[2];
+const PORT = 3418
+const root = process.argv[2]
 
 // Main server object.
-let app = express();
+let app = express()
 
 // Handle all requests.
 app.use((req, res, next) => {
-  const actual = path.join(root, req.url);
-  const data = fs.readFileSync(actual, 'utf-8');
-  res.status(200).send(data);
-});
+  const actual = path.join(root, req.url)
+  const data = fs.readFileSync(actual, 'utf-8')
+  res.status(200).send(data)
+})
 
-app.listen(PORT, () => {console.log('listening...');});
+app.listen(PORT, () => { console.log('listening...') })
 ```
 
 - Steps are:
@@ -127,20 +127,17 @@ app.listen(PORT, () => {console.log('listening...');});
 …
 
 app.use((req, res, next) => {
-  const actual = path.join(root, req.url);
-
-  if (actual.endsWith('.json')){
-    const data = fs.readFileSync(actual, 'utf-8');
-    const json = JSON.parse(data);
-    res.setHeader('Content-Type', 'application/json');
-    res.status(200).send(json);
+  const actual = path.join(root, req.url)
+  if (actual.endsWith('.json')) {
+    const data = fs.readFileSync(actual, 'utf-8')
+    const json = JSON.parse(data)
+    res.setHeader('Content-Type', 'application/json')
+    res.status(200).send(json)
+  } else {
+    const data = fs.readFileSync(actual, 'utf-8')
+    res.status(200).send(data)
   }
-
-  else {
-    const data = fs.readFileSync(actual, 'utf-8');
-    res.status(200).send(data);
-  }
-});
+})
 ```
 
 - The `Content-Type` header tells the client how to handle the bytes we're sending
@@ -155,20 +152,17 @@ app.use((req, res, next) => {
 ```js
 …
 app.use((req, res, next) => {
-  const actual = path.join(root, req.url);
-
+  const actual = path.join(root, req.url)
   if (actual.endsWith('.js')) {
-    const libName = './'.concat(actual.slice(0, -3));
-    dynamic = require(libName);
-    const data = dynamic.page();
-    res.status(200).send(data);
+    const libName = './'.concat(actual.slice(0, -3))
+    const dynamic = require(libName)
+    const data = dynamic.page()
+    res.status(200).send(data)
+  } else {
+    const data = fs.readFileSync(actual, 'utf-8')
+    res.status(200).send(data)
   }
-
-  else {
-    const data = fs.readFileSync(actual, 'utf-8');
-    res.status(200).send(data);
-  }
-});
+})
 ```
 
 - Require all dynamic plugins to provide a `page` function
@@ -177,7 +171,7 @@ app.use((req, res, next) => {
 <!-- @src/express/pages/plugin.js -->
 ```js
 function page() {
-  return ('<html><body><h1>Plugin Content</h1></body></html>');
+  return ('<html><body><h1>Plugin Content</h1></body></html>')
 }
 
 module.exports = {
