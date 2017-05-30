@@ -32,6 +32,8 @@
     "node": "0.0.0",
     "react": "^15.5.4",
     "react-dom": "^15.5.4",
-    "react-scripts": "^1.0.7"
+    "react-scripts": "^1.0.7",
+    "supertest": "^3.0.0",
+    "tape": "^4.6.3"
   }
 }
