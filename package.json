@@ -26,6 +26,7 @@
     "url": "https://github.com/gvwilson/js-vs-rc/issues"
   },
   "dependencies": {
+    "cheerio": "^1.0.0-rc.1",
     "eslint": "^3.19.0",
     "http-server": "^0.10.0",
     "marked": "^0.3.6",
