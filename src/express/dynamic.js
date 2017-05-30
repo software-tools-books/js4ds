@@ -11,12 +11,15 @@ let app = express()
 // Handle all requests.
 app.use((req, res, next) => {
   const actual = path.join(root, req.url)
+
   if (actual.endsWith('.js')) {
     const libName = './'.concat(actual.slice(0, -3))
     const dynamic = require(libName)
     const data = dynamic.page()
     res.status(200).send(data)
-  } else {
+  }
+
+  else {
     const data = fs.readFileSync(actual, 'utf-8')
     res.status(200).send(data)
   }

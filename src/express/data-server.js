@@ -11,12 +11,15 @@ let app = express()
 // Handle all requests.
 app.use((req, res, next) => {
   const actual = path.join(root, req.url)
+
   if (actual.endsWith('.json')) {
     const data = fs.readFileSync(actual, 'utf-8')
     const json = JSON.parse(data)
     res.setHeader('Content-Type', 'application/json')
     res.status(200).send(json)
-  } else {
+  }
+
+  else {
     const data = fs.readFileSync(actual, 'utf-8')
     res.status(200).send(data)
   }

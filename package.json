@@ -13,8 +13,8 @@
   "homepage": "http://gvwilson.github.io/js-vs-rc/",
   "scripts": {
     "demo": "./bin/run-server",
+    "lint": "eslint bin/*.js src/**/*.js",
     "start": "react-scripts start",
-    "standard": "standard bin/*.js src/**/*.js",
     "test": "echo \"Error: no test specified\" && exit 1",
     "words": "bin/wc.js *.md _lessons/*.md"
   },
@@ -26,12 +26,12 @@
     "url": "https://github.com/gvwilson/js-vs-rc/issues"
   },
   "dependencies": {
+    "eslint": "^3.19.0",
     "http-server": "^0.10.0",
     "marked": "^0.3.6",
     "node": "0.0.0",
     "react": "^15.5.4",
     "react-dom": "^15.5.4",
-    "react-scripts": "^1.0.7",
-    "standard": "^10.0.2"
+    "react-scripts": "^1.0.7"
   }
 }
