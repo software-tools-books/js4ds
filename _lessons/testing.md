@@ -233,4 +233,7 @@ ok 2 Correct heading text
 - Parse it
 - Look for `h1` elements
 - Get the text of the first one
-  - This *doesn't* check if the title is `<em>H</em>ome`
+  - This *doesn't* check if the title is `<em>H</em>ome`,
+    because `.text()` concatenates all the text of the children
+- Won't explore this approach further because we're going to serve data for rendering
+  rather than generating HTML and sending that
