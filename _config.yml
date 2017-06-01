@@ -26,6 +26,8 @@ toc:
   title: Building Data Services with Express
 - permalink: /testing/
   title: Testing
+- permalink: /database/
+  title: Using a Database
 - permalink: /d3/
   title: Visualizing Data with D3
 - permalink: /guide/
