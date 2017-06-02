@@ -1,6 +1,7 @@
 # Working with Jekyll
 *~
 _site
+*.db
 
 # Logs
 logs

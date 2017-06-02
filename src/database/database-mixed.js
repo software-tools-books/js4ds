@@ -107,8 +107,11 @@ class Database {
 }
 
 function main () {
-  const [mode, path, action, ...args] = process.argv.splice(2)
-  const database = new Database(mode, path)
+  let [mode, setup, action, ...args] = process.argv.splice(2)
+  if (mode === 'direct') {
+    setup = fs.readFileSync(setup, 'utf-8')
+  }
+  const database = new Database(mode, setup)
   if (!(action in database)) {
     database.fail(`No such operation "${action}"`)
   }
