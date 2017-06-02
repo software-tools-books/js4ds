@@ -1,8 +1,5 @@
--- Delete all tables (bottom-up).
-drop table if exists Offering;
 drop table if exists Workshop;
 
--- Workshops that could be offered.
 create table Workshop(
 	ident		integer unique not null primary key,
 	name		text unique not null,
