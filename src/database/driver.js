@@ -12,8 +12,7 @@ const main = () => {
   if (!(action in db)) {
     db.fail(`No such operation "${action}"`)
   }
-  const result = db[action](args)
-  display(result)
+  db[action](display, args)
 }
 
 main()

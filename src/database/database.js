@@ -55,31 +55,31 @@ class Handler {
     }
   }
 
-  getAll (args) {
+  getAll (callback, args) {
     this.db.all(Q_WORKSHOP_GET_ALL, [], (err, rows) => {
       if (err) this.fail(err)
-      return rows
+      callback(rows)
     })
   }
 
-  getOne (args) {
+  getOne (callback, args) {
     this.db.all(Q_WORKSHOP_GET_ONE, args, (err, rows) => {
       if (err) this.fail(err)
-      return rows
+      callback(rows)
     })
   }
 
-  addOne (args) {
+  addOne (callback, args) {
     this.db.run(Q_WORKSHOP_ADD, args, (err, rows) => {
       if (err) this.fail(err)
-      return []
+      callback(rows)
     })
   }
 
-  deleteOne (args) {
+  deleteOne (callback, args) {
     this.db.run(Q_WORKSHOP_DELETE, args, (err, rows) => {
       if (err) this.fail(err)
-      return []
+      callback(rows)
     })
   }
 
