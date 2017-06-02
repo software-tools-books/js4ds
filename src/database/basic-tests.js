@@ -1,5 +1,5 @@
 const test = require('tape')
-const Database = require('./database')
+const Database = require('./callback-database')
 
 const FIXTURE = `
 drop table if exists Workshop;
@@ -15,19 +15,29 @@ insert into Workshop values(2, "ENIAC Programming", 150);
 `
 
 test('Can get all workshops', (t) => {
-  const db = new Database('direct', FIXTURE)
-  t.equal(db.getAll(), [], 'Got expected workshops')
-  t.end()
+  expected = [
+    { workshopDuration: 60, workshopId: 1, workshopName: 'Building Community' },
+    { workshopDuration: 150, workshopId: 2, workshopName: 'ENIAC Programming' }
+  ]
+  new Database('direct', FIXTURE).getAll([], (results) => {
+    t.deepEqual(results, expected, 'Got expected workshops')
+    t.end()
+  })
 })
 
 test('Can get one workshop', (t) => {
-  const db = new Database('direct', FIXTURE)
-  t.equal(db.getOne(1), [], 'Got single expected workshop')
-  t.end()
+  expected = [
+    { workshopDuration: 60, workshopId: 1, workshopName: 'Building Community' }
+  ]
+  new Database('direct', FIXTURE).getOne(1, (results) => {
+    t.deepEqual(results, expected, 'Got single expected workshop')
+    t.end()
+  })
 })
 
 test('Can only get workshops that exist', (t) => {
-  const db = new Database('direct', FIXTURE)
-  t.equal(db.getOne(99), [], 'Got no workshops matching nonexistent key')
-  t.end()
+  new Database('direct', FIXTURE).getOne(99, (results) => {
+    t.deepEqual(results, [], 'Got no workshops matching nonexistent key')
+    t.end()
+  })
 })

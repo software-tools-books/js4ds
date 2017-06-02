@@ -21,14 +21,6 @@ where
   Workshop.ident = ?
 `
 
-const Q_WORKSHOP_ADD = `
-insert into Workshop(name, duration) values(?, ?);
-`
-
-const Q_WORKSHOP_DELETE = `
-delete from Workshop where ident = ?;
-`
-
 class Database {
 
   constructor (mode, arg) {
@@ -64,18 +56,6 @@ class Database {
     this.db.all(Q_WORKSHOP_GET_ONE, args, (err, rows) => {
       if (err) this.fail(err)
       this._display(rows)
-    })
-  }
-
-  addOne (args) {
-    this.db.run(Q_WORKSHOP_ADD, args, (err, rows) => {
-      if (err) this.fail(err)
-    })
-  }
-
-  deleteOne (args) {
-    this.db.run(Q_WORKSHOP_DELETE, args, (err, rows) => {
-      if (err) this.fail(err)
     })
   }
 
