@@ -1,5 +1,5 @@
-const test = require('tape')
-
-test('first test', (t) => {
-  t.end()
+describe('first test', () => {
+  it('should run without errors', (done) => {
+    done()
+  })
 })
