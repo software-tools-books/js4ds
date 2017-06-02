@@ -31,75 +31,83 @@ delete from Workshop where ident = ?;
 
 class Handler {
 
-  constructor (mode, path) {
-    this.path = path
+  constructor (mode, arg) {
     switch (mode) {
+
+    case 'direct' :
+      this._inMemory(arg)
+      break
+
     case 'memory' :
-      const setup = fs.readFileSync(this.path, 'utf-8')
-      this.db = new sqlite3.Database(':memory:', sqlite3.OPEN_READWRITE, (err) => {
-        if (err) this.fail(`IN-MEMORY DATABASE OPEN ERROR "${err}"`)
-      })
-      this.db.exec(setup, (err) => {
-        if (err) this.fail(`UNABLE TO INITIALIZE IN-MEMORY DATABASE FROM "${this.path}"`)
-      })
-      break;
+      const setup = fs.readFileSync(arg, 'utf-8')
+      this._inMemory(setup)
+      break
 
     case 'file' :
-      this.db = new sqlite3.Database(this.path, sqlite3.OPEN_READWRITE, (err) => {
-        if (err) this.fail(`DATABASE OPEN ERROR ${err} for "${path}"`)
+      this.db = new sqlite3.Database(arg, sqlite3.OPEN_READWRITE, (err) => {
+        if (err) this.fail(`Database open error "${err}" for "${arg}"`)
       })
       break
 
     default :
-      this.fail(`UNKNOWN MODE "${mode}"`)
+      this.fail(`Unknown mode "${mode}"`)
       break
     }
   }
 
-  workshop_get_all (args) {
+  getAll (args) {
     this.db.all(Q_WORKSHOP_GET_ALL, [], (err, rows) => {
       if (err) this.fail(err)
-      this.display(rows)
+      this._display(rows)
     })
   }
 
-  workshop_get_one (args) {
+  getOne (args) {
     this.db.all(Q_WORKSHOP_GET_ONE, args, (err, rows) => {
       if (err) this.fail(err)
-      this.display(rows)
+      this._display(rows)
     })
   }
 
-  workshop_add (args) {
+  addOne (args) {
     this.db.run(Q_WORKSHOP_ADD, args, (err, rows) => {
       if (err) this.fail(err)
     })
   }
 
-  workshop_delete (args) {
+  deleteOne (args) {
     this.db.run(Q_WORKSHOP_DELETE, args, (err, rows) => {
       if (err) this.fail(err)
     })
-  }
-
-  display (rows) {
-    for (let r of rows) {
-      console.log(r)
-    }
   }
 
   fail (msg) {
     console.log(msg)
     process.exit(1)
   }
+
+  _inMemory (script) {
+    this.db = new sqlite3.Database(':memory:', sqlite3.OPEN_READWRITE, (err) => {
+      if (err) this.fail(`In-memory database open error "${err}"`)
+    })
+    this.db.exec(script, (err) => {
+      if (err) this.fail(`Unable to initialize in-memory database from "${script}"`)
+    })
+  }
+
+  _display (rows) {
+    for (let r of rows) {
+      console.log(r)
+    }
+  }
 }
 
 function main () {
-  const mode = process.argv[2]
-  const path = process.argv[3]
-  const action = process.argv[4]
-  const args = process.argv.splice(5)
+  let [mode, path, action, ...args] = process.argv.splice(2)
   const handler = new Handler(mode, path)
+  if (!(action in handler)) {
+    handler.fail(`No such operation "${action}"`)
+  }
   handler[action](args)
 }
 
