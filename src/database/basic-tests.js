@@ -16,8 +16,8 @@ insert into Workshop values(2, "ENIAC Programming", 150);
 
 test('Can get all workshops', (t) => {
   expected = [
-    { workshopDuration: 60, workshopId: 1, workshopName: 'Building Community' },
-    { workshopDuration: 150, workshopId: 2, workshopName: 'ENIAC Programming' }
+    { workshopName: 'Building Community', workshopDuration: 60, workshopId: 1 },
+    { workshopName: 'ENIAC Programming', workshopDuration: 150, workshopId: 2 }
   ]
   new Database('direct', FIXTURE).getAll([], (results) => {
     t.deepEqual(results, expected, 'Got expected workshops')
@@ -27,7 +27,7 @@ test('Can get all workshops', (t) => {
 
 test('Can get one workshop', (t) => {
   expected = [
-    { workshopDuration: 60, workshopId: 1, workshopName: 'Building Community' }
+    { workshopName: 'Building Community', workshopDuration: 60, workshopId: 1 }
   ]
   new Database('direct', FIXTURE).getOne(1, (results) => {
     t.deepEqual(results, expected, 'Got single expected workshop')

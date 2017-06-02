@@ -361,3 +361,72 @@ const main = () => {
 
 main()
 ```
+
+## Testing
+
+- And *now* we can write tests
+
+<!-- @src/database/basic-tests.js -->
+```js
+const test = require('tape')
+const Database = require('./callback-database')
+
+const FIXTURE = `
+drop table if exists Workshop;
+
+create table Workshop(
+        ident           integer unique not null primary key,
+        name            text unique not null,
+        duration        integer not null -- duration in minutes
+);
+
+insert into Workshop values(1, "Building Community", 60);
+insert into Workshop values(2, "ENIAC Programming", 150);
+`
+
+test('Can get all workshops', (t) => {
+  expected = [
+    { workshopName: 'Building Community', workshopDuration: 60, workshopId: 1 },
+    { workshopName: 'ENIAC Programming', workshopDuration: 150, workshopId: 2 }
+  ]
+  new Database('direct', FIXTURE).getAll([], (results) => {
+    t.deepEqual(results, expected, 'Got expected workshops')
+    t.end()
+  })
+})
+
+test('Can get one workshop', (t) => {
+  expected = [
+    { workshopName: 'Building Community', workshopDuration: 60, workshopId: 1 }
+  ]
+  new Database('direct', FIXTURE).getOne(1, (results) => {
+    t.deepEqual(results, expected, 'Got single expected workshop')
+    t.end()
+  })
+})
+
+test('Can only get workshops that exist', (t) => {
+  new Database('direct', FIXTURE).getOne(99, (results) => {
+    t.deepEqual(results, [], 'Got no workshops matching nonexistent key')
+    t.end()
+  })
+})
+```
+
+- Walk through the structure of each test
+- Define expected result
+- Create an entirely new database
+- Call the method being tested, passing it:
+  - Parameter needed for operation
+  - Callback that will receives results
+- That callback uses the `t` object passed to the callback given to `test`
+  - Yes, it's mind-bending
+- Use `deepEqual` to check that the data structures are exact matches
+- Call `t.end()` to signal the end of the test
+  - Because otherwise how would `tape` know?
+
+## Extending
+
+- Now that we have something testable, we can develop in very short iterations
+- Add a method, write some tests, make sure nothing broke
+- Doesn't have to be test-first (although that often helps clarify design thinking)
