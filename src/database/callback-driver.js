@@ -1,4 +1,4 @@
-const database = require('./database')
+const Database = require('./callback-database')
 
 const display = (rows) => {
   for (let r of rows) {
@@ -8,7 +8,7 @@ const display = (rows) => {
 
 const main = () => {
   let [mode, path, action, ...args] = process.argv.splice(2)
-  const db = new database(mode, path)
+  const db = new Database(mode, path)
   if (!(action in db)) {
     db.fail(`No such operation "${action}"`)
   }

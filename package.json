@@ -27,7 +27,9 @@
   },
   "dependencies": {
     "cheerio": "^1.0.0-rc.1",
-    "eslint": "^3.19.0",
+    "eslint-plugin-node": "^5.0.0",
+    "eslint-plugin-promise": "^3.5.0",
+    "eslint-plugin-standard": "^3.0.1",
     "http-server": "^0.10.0",
     "marked": "^0.3.6",
     "node": "0.0.0",

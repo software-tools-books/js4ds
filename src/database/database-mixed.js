@@ -29,7 +29,7 @@ const Q_WORKSHOP_DELETE = `
 delete from Workshop where ident = ?;
 `
 
-class Handler {
+class Database {
 
   constructor (mode, arg) {
     switch (mode) {
@@ -44,9 +44,7 @@ class Handler {
       break
 
     case 'file' :
-      this.db = new sqlite3.Database(arg, sqlite3.OPEN_READWRITE, (err) => {
-        if (err) this.fail(`Database open error "${err}" for "${arg}"`)
-      })
+      this._inFile(arg)
       break
 
     default :
@@ -55,31 +53,29 @@ class Handler {
     }
   }
 
-  getAll (callback, args) {
+  getAll (args) {
     this.db.all(Q_WORKSHOP_GET_ALL, [], (err, rows) => {
       if (err) this.fail(err)
-      callback(rows)
+      this._display(rows)
     })
   }
 
-  getOne (callback, args) {
+  getOne (args) {
     this.db.all(Q_WORKSHOP_GET_ONE, args, (err, rows) => {
       if (err) this.fail(err)
-      callback(rows)
+      this._display(rows)
     })
   }
 
-  addOne (callback, args) {
+  addOne (args) {
     this.db.run(Q_WORKSHOP_ADD, args, (err, rows) => {
       if (err) this.fail(err)
-      callback(rows)
     })
   }
 
-  deleteOne (callback, args) {
+  deleteOne (args) {
     this.db.run(Q_WORKSHOP_DELETE, args, (err, rows) => {
       if (err) this.fail(err)
-      callback(rows)
     })
   }
 
@@ -96,6 +92,27 @@ class Handler {
       if (err) this.fail(`Unable to initialize in-memory database from "${script}"`)
     })
   }
+
+  _inFile (path) {
+    this.db = new sqlite3.Database(path, sqlite3.OPEN_READWRITE, (err) => {
+      if (err) this.fail(`Database open error "${err}" for "${path}"`)
+    })
+  }
+
+  _display (rows) {
+    for (let r of rows) {
+      console.log(r)
+    }
+  }
 }
 
-module.exports = Handler
+function main () {
+  const [mode, path, action, ...args] = process.argv.splice(2)
+  const database = new Database(mode, path)
+  if (!(action in database)) {
+    database.fail(`No such operation "${action}"`)
+  }
+  database[action](args)
+}
+
+main()
