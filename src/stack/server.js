@@ -1,11 +1,11 @@
 const express = require('express')
 
 // Main server object.
-let app = express()
+const app = express()
 
 // Get all workshops.
 app.get('/workshop', (req, res, next) => {
-  db.getAll([], (rows) => {
+  this.db.getAll([], (rows, lastId) => {
     res.status(200).json(rows)
   })
 })
@@ -13,7 +13,7 @@ app.get('/workshop', (req, res, next) => {
 // Get a single workshop.
 app.get('/workshop/:workshopId', (req, res, next) => {
   const workshopId = req.params.workshopId
-  db.getOne([workshopId], (rows) => {
+  this.db.getOne([workshopId], (rows, lastId) => {
     res.status(200).json(rows)
   })
 })
@@ -22,10 +22,9 @@ app.get('/workshop/:workshopId', (req, res, next) => {
 app.post('/workshop', (req, res, next) => {
   const workshopName = req.body.workshopName
   const workshopDuration = req.body.workshopDuration
-  db.addOne([workshopName, workshopDuration], (rows) => {
-    const workshopId = db.lastID
+  this.db.addOne([workshopName, workshopDuration], (rows, lastId) => {
     const result = {
-      workshopId,
+      lastId,
       workshopName,
       workshopDuration
     }
@@ -36,7 +35,7 @@ app.post('/workshop', (req, res, next) => {
 // Delete a workshop.
 app.delete('/workshop/:workshopId', (req, res, next) => {
   const workshopId = req.params.workshopId
-  db.deleteOne([workshopId], (rows) => {
+  this.db.deleteOne([workshopId], (rows, lastId) => {
     res.status(200).json(rows)
   })
 })
@@ -47,4 +46,7 @@ app.use((req, res, next) => {
   res.status(404).send(page)
 })
 
-module.exports = app
+module.exports = (db) => {
+  app.db = db
+  return app
+}
