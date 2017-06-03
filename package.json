@@ -15,7 +15,7 @@
     "demo": "./bin/run-server",
     "lint": "eslint bin/*.js src/**/*.js",
     "start": "react-scripts start",
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "mocha",
     "words": "bin/wc.js *.md _lessons/*.md"
   },
   "repository": {
