@@ -1,7 +1,7 @@
 const assert = require('assert')
 const request = require('supertest')
 const Database = require('./database')
-const makeServer = require('./server')
+const server = require('./server')
 
 const FIXTURE = `
 drop table if exists Workshop;
@@ -19,12 +19,17 @@ insert into Workshop values(2, "ENIAC Programming", 150);
 describe('server', () => {
 
   it('should return all workshops', (done) => {
-    db = new Database('direct', FIXTURE)
-    const server = makeServer(db)
-    request(makeServer(db))
+    expected = [
+      { workshopName: 'Building Community', workshopDuration: 60, workshopId: 1 },
+      { workshopName: 'ENIAC Programming', workshopDuration: 150, workshopId: 2 }
+    ]
+    const db = new Database('direct', FIXTURE)
+    request(server(db))
       .get('/workshop')
       .expect(200)
+      .expect('Content-Type', 'application/json')
       .end((err, res) => {
+        assert.deepEqual(res.body, expected, '')
         done()
       })
   })
