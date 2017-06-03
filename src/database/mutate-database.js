@@ -67,17 +67,17 @@ class Database {
     })
   }
 
-  addOne (args) {
+  addOne (args, callback) {
     this.db.run(Q_WORKSHOP_ADD, args, (err, rows) => {
       if (err) this.fail(err)
-      return []
+      callback([])
     })
   }
 
-  deleteOne (args) {
+  deleteOne (args, callback) {
     this.db.run(Q_WORKSHOP_DELETE, args, (err, rows) => {
       if (err) this.fail(err)
-      return []
+      callback([])
     })
   }
 

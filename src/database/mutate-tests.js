@@ -1,4 +1,4 @@
-const test = require('tape')
+const assert = require('assert')
 const Database = require('./mutate-database')
 
 const FIXTURE = `
@@ -14,33 +14,36 @@ insert into Workshop values(1, "Building Community", 60);
 insert into Workshop values(2, "ENIAC Programming", 150);
 `
 
-test('Can add a workshop', (t) => {
-  const duration = 35, name = 'Creating Bugs'
-  const db = new Database('direct', FIXTURE)
-  db.addOne([name, duration], (results) => {
-    t.equal(results, [], 'Got empty list as result when adding')
-    db.getAll([], (results) => {
-      expected = [
-        { workshopDuration: 60, workshopId: 1, workshopName: 'Building Community' },
-        { workshopDuration: 150, workshopId: 2, workshopName: 'ENIAC Programming' },
-        { workshopDutation: duration, workshopId: 3, workshopName: name }
-      ]
-      t.deepEqual(results, expected, 'Got expected workshops after add')
-      t.end()
+describe('mutating database', () => {
+
+  it('can add a workshop', (done) => {
+    const duration = 35, name = 'Creating Bugs'
+    const db = new Database('direct', FIXTURE)
+    db.addOne([name, duration], (results) => {
+      assert.deepEqual(results, [], 'Got empty list as result when adding')
+      db.getAll([], (results) => {
+        expected = [
+          { workshopName: 'Building Community', workshopDuration: 60, workshopId: 1 },
+          { workshopName: 'ENIAC Programming', workshopDuration: 150, workshopId: 2 },
+          { workshopName: name, workshopDuration: duration, workshopId: 3 }
+        ]
+        assert.deepEqual(results, expected, 'Got expected workshops after add')
+        done()
+      })
     })
   })
-})
 
-test('Can delete a workshop', (t) => {
-  const db = new Database('direct', FIXTURE)
-  db.deleteOne([1], (results) => {
-    t.equal(results, [], 'Got empty list as result when deleting')
-    db.getAll([], (results) => {
-      expected = [
-        { workshopDuration: 150, workshopId: 2, workshopName: 'ENIAC Programming' }
-      ]
-      t.deepEqual(results, expected, 'Got expected workshops after delete')
-      t.end()
+  it('can delete a workshop', (done) => {
+    const db = new Database('direct', FIXTURE)
+    db.deleteOne([1], (results) => {
+      assert.deepEqual(results, [], 'Got empty list as result when deleting')
+      db.getAll([], (results) => {
+        expected = [
+          { workshopName: 'ENIAC Programming', workshopDuration: 150, workshopId: 2 }
+        ]
+        assert.deepEqual(results, expected, 'Got expected workshops after delete')
+        done()
+      })
     })
   })
 })
