@@ -1,6 +1,6 @@
 ---
 layout: page
-permalink: "/express/"
+permalink: "/server/"
 title: "Building Data Services with Express"
 questions:
 - FIXME
@@ -26,7 +26,7 @@ FIXME: diagrams
   - What to do next (which we'll ignore)
 - Also provide the path for that function
 
-<!-- @src/express/static-page.js -->
+<!-- @src/server/static-page.js -->
 ```js
 const express = require('express')
 
@@ -51,7 +51,7 @@ app.listen(PORT, () => { console.log('listening...') })
 - Provide handlers for many different paths
 - And handle the case where the path is not known
 
-<!-- @src/express/multiple-paths.js -->
+<!-- @src/server/multiple-paths.js -->
 ```js
 const express = require('express')
 
@@ -86,7 +86,7 @@ app.listen(PORT, () => { console.log('listening...') })
 - Instead of creating HTML in memory, read from file
 - Provide our server with the path to the directory it's allowed to read
 
-<!-- @src/express/pages.js -->
+<!-- @src/server/pages.js -->
 ```js
 const express = require('express')
 const path = require('path')
@@ -122,7 +122,7 @@ app.listen(PORT, () => { console.log('listening...') })
   - Images, etc.
 - We're going to serve JSON
 
-<!-- @src/express/data-server.js -->
+<!-- @src/server/data-server.js -->
 ```js
 …
 
@@ -151,7 +151,7 @@ app.use((req, res, next) => {
 - Could add functions to our server to generate dynamic content
 - Or have it load JavaScript dynamically and run that
 
-<!-- @src/express/dynamic.js -->
+<!-- @src/server/dynamic.js -->
 ```js
 …
 app.use((req, res, next) => {
@@ -174,7 +174,7 @@ app.use((req, res, next) => {
 - Require all dynamic plugins to provide a `page` function
   - We have to know what to call
 
-<!-- @src/express/pages/plugin.js -->
+<!-- @src/server/pages/plugin.js -->
 ```js
 function page() {
   return ('<html><body><h1>Plugin Content</h1></body></html>')

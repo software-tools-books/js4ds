@@ -22,7 +22,7 @@ toc:
   title: Building Static Web Pages with React
 - permalink: /interactive/
   title: Making Web Pages Interactive
-- permalink: /express/
+- permalink: /server/
   title: Building Data Services with Express
 - permalink: /testing/
   title: Testing
