@@ -28,6 +28,8 @@ toc:
   title: Testing
 - permalink: /database/
   title: Using a Database
+- permalink: /stack/
+  title: A Full Application Stack
 - permalink: /d3/
   title: Visualizing Data with D3
 - permalink: /guide/
