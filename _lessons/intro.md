@@ -12,9 +12,10 @@ keypoints:
 
 I was originally going to call this book *JavaScript for Scientists and Engineers*,
 but [David Beazley thought that "versus" would make a better title][beazley-tweet].
-That one-word change sums up how many programmers view the language,
+That one-word change sums up how many people view the language,
 but I hope I can convince you that modern JavaScript is usable as well as useful.
-I also hope that what I've written will help librarians,
+I also changed the second half of the title in the hope that
+this guide will help librarians,
 digital humanists,
 and everyone else who uses computing in their research,
 not just scientists and engineers.
