@@ -48,58 +48,59 @@ class Database {
       break
 
     default :
-      this.fail(`Unknown mode "${mode}"`)
+      fail(`Unknown mode "${mode}"`)
       break
     }
   }
 
   getAll (args, callback) {
     this.db.all(Q_WORKSHOP_GET_ALL, [], (err, rows) => {
-      if (err) this.fail(err)
+      if (err) fail(err)
       callback(rows, undefined)
     })
   }
 
   getOne (args, callback) {
     this.db.all(Q_WORKSHOP_GET_ONE, args, (err, rows) => {
-      if (err) this.fail(err)
+      if (err) fail(err)
       callback(rows, undefined)
     })
   }
 
   addOne (args, callback) {
+    console.log(`addOne ${args}`)
     this.db.run(Q_WORKSHOP_ADD, args, function (err, rows) {
-      if (err) this.fail(err)
+      if (err) fail(err)
       callback([], this.lastID)
     })
   }
 
   deleteOne (args, callback) {
     this.db.run(Q_WORKSHOP_DELETE, args, (err, rows) => {
-      if (err) this.fail(err)
+      if (err) fail(err)
       callback([], undefined)
     })
   }
 
-  fail (msg) {
-    console.log(msg)
-    process.exit(1)
-  }
-
   _inMemory (script) {
     this.db = new sqlite3.Database(':memory:', sqlite3.OPEN_READWRITE, (err) => {
-      if (err) this.fail(`In-memory database open error "${err}"`)
+      if (err) fail(`In-memory database open error "${err}"`)
     })
     this.db.exec(script, (err) => {
-      if (err) this.fail(`Unable to initialize in-memory database from "${script}"`)
+      if (err) fail(`Unable to initialize in-memory database from "${script}"`)
     })
   }
 
   _inFile (path) {
     this.db = new sqlite3.Database(path, sqlite3.OPEN_READWRITE, (err) => {
-      if (err) this.fail(`Database open error "${err}" for "${path}"`)
+      if (err) fail(`Database open error "${err}" for "${path}"`)
     })
   }
+}
+
+const fail = (msg) => {
+  console.log(msg)
+  process.exit(1)
 }
 
 module.exports = Database

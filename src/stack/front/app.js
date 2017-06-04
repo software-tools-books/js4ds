@@ -2,11 +2,24 @@ class App extends React.Component {
 
   constructor (props) {
     super(props)
+    this.url = 'http://localhost:3418/workshop'
     this.state = {
       name: '',
       duration: '',
       workshops: []
     }
+  }
+
+  componentDidMount() {
+    console.log(`componentDidMount...`)
+    fetch(this.url).then((response) => {
+      return response.json()
+    }).then((initialWorkshopList) => {
+      console.log(`...initialWorkshopList ${initialWorkshopList}`)
+      this.setState({
+        workshops: initialWorkshopList
+      })
+    })
   }
 
   onEditName = (text) => {
@@ -18,18 +31,23 @@ class App extends React.Component {
   }
 
   onSubmit = (name, duration) => {
-    const url = 'localhost:3418/workshop'
-    const body = {
-      workshopName: name,
-      workshopDuration: duration
+    console.log(`onSubmit name ${name} duration ${duration}`)
+    const params = {
+      method: 'post',
+      body: JSON.stringify({
+        workshopName: name,
+        workshopDuration: duration
+      })
     }
-    post(url, body).then((response) => {
+    console.log('onSubmit params', params)
+    fetch(this.url, params).then((response) => {
       return response.json()
-    }).then((workshops) => {
+    }).then((newWorkshop) => {
+      const newWorkshopList = this.state.workshops.push(newWorkshop)
       this.setState({
         name: '',
         duration: '',
-        workshops: workshops
+        workshops: newWorkshopList
       })
     })
   }
