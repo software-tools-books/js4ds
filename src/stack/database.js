@@ -68,8 +68,10 @@ class Database {
   }
 
   addOne (args, callback) {
+    console.log(`about to add workshop with ${args}`)
     this.db.run(Q_WORKSHOP_ADD, args, (err, rows) => {
       if (err) this.fail(err)
+      console.log(`about to call callback with ${this.lastId}`)
       callback([], this.lastId)
     })
   }

@@ -33,4 +33,27 @@ describe('server', () => {
         done()
       })
   })
+
+  it('should create one workshop', (done) => {
+    const name = 'Creating Bugs'
+    const duration = 35
+    const db = new Database('direct', FIXTURE)
+    request(server(db))
+      .post('/workshop')
+      .send({
+        workshopName: name,
+        workshopDuration: duration
+      })
+      .expect(201)
+      .expect('Content-Type', 'application/json')
+      .end((err, res) => {
+        console.log(`test received body ${res.body}`)
+        assert.deepEqual(res.body, {
+          workshopId: 3,
+          workshopName: name,
+          workshopDuration: duration
+        })
+        done()
+      })
+  })
 })
