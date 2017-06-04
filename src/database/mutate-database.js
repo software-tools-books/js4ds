@@ -56,28 +56,28 @@ class Database {
   getAll (args, callback) {
     this.db.all(Q_WORKSHOP_GET_ALL, [], (err, rows) => {
       if (err) this.fail(err)
-      callback(rows)
+      callback(rows, undefined)
     })
   }
 
   getOne (args, callback) {
     this.db.all(Q_WORKSHOP_GET_ONE, args, (err, rows) => {
       if (err) this.fail(err)
-      callback(rows)
+      callback(rows, undefined)
     })
   }
 
   addOne (args, callback) {
-    this.db.run(Q_WORKSHOP_ADD, args, (err, rows) => {
+    this.db.run(Q_WORKSHOP_ADD, args, function (err, rows) {
       if (err) this.fail(err)
-      callback([])
+      callback([], this.lastID)
     })
   }
 
   deleteOne (args, callback) {
     this.db.run(Q_WORKSHOP_DELETE, args, (err, rows) => {
       if (err) this.fail(err)
-      callback([])
+      callback([], undefined)
     })
   }
 

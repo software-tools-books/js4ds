@@ -19,8 +19,9 @@ describe('mutating database', () => {
   it('can add a workshop', (done) => {
     const duration = 35, name = 'Creating Bugs'
     const db = new Database('direct', FIXTURE)
-    db.addOne([name, duration], (results) => {
+    db.addOne([name, duration], function (results, lastId) {
       assert.deepEqual(results, [], 'Got empty list as result when adding')
+      assert.equal(lastId, 3, 'Got the correct last ID after adding')
       db.getAll([], (results) => {
         expected = [
           { workshopName: 'Building Community', workshopDuration: 60, workshopId: 1 },
@@ -35,7 +36,8 @@ describe('mutating database', () => {
 
   it('can delete a workshop', (done) => {
     const db = new Database('direct', FIXTURE)
-    db.deleteOne([1], (results) => {
+    db.deleteOne([1], (results, lastId) => {
+      assert.equal(lastId, undefined, 'Expected last ID to be undefined')
       assert.deepEqual(results, [], 'Got empty list as result when deleting')
       db.getAll([], (results) => {
         expected = [
