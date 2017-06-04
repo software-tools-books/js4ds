@@ -53,6 +53,30 @@ class App extends React.Component {
     })
   }
 
+  onDelete = (id) => {
+    const params = {
+      method: 'DELETE',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        workshopId: id
+      })
+    }
+    const url = `${this.url}/${id}`
+    fetch(url, params).then((response) => {
+      return response.json()
+    }).then((empty) => {
+      const workshops = this.state.workshops.filter((w) => {
+        return w.workshopId != id
+      })
+      this.setState({
+        workshops: workshops
+      })
+    })
+  }
+
   render = () => {
     return (
       <div>
@@ -63,7 +87,7 @@ class App extends React.Component {
           duration={this.state.duration}
           onEditDuration={this.onEditDuration}
           onSubmit={this.onSubmit} />
-        <WorkshopList workshops={this.state.workshops} />
+        <WorkshopList workshops={this.state.workshops} onDelete={this.onDelete} />
       </div>
     )
   }
