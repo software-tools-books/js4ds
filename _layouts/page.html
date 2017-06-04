@@ -14,13 +14,14 @@
     <div class="container shadow">
       <div class="row-fluid">
         <div class="span10 offset1">
-          <p align="right"><em>JavaScript versus Research Computing</em></p>
           {% unless page.headtitle %}<h1>{{page.title}}</h1>{% endunless %}
           {% include questions.html %}
           {{content}}
           {% include keypoints.html %}
           <hr/>
-          <p><em>Copyright &copy; 2017 Greg Wilson - see <a href="./license/">the license</a> for terms of use.</em></p>
+          <div align="center">
+            <p><em>JavaScript versus Research Computing &copy; 2017 Greg Wilson - see <a href="./license/">the license</a> for terms of use.</em></p>
+          </div>
         </div>
       </div>
     </div>
