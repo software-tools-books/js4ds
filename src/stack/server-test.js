@@ -47,7 +47,6 @@ describe('server', () => {
       .expect(201)
       .expect('Content-Type', 'application/json')
       .end((err, res) => {
-        console.log(`test received body ${res.body}`)
         assert.deepEqual(res.body, {
           workshopId: 3,
           workshopName: name,

@@ -24,7 +24,6 @@ app.get('/workshop/:workshopId', (req, res, next) => {
 
 // Add a workshop.
 app.post('/workshop', (req, res, next) => {
-  console.log('req.body is', req.body)
   const workshopName = req.body.workshopName
   const workshopDuration = req.body.workshopDuration
   db.addOne([workshopName, workshopDuration], (rows, lastId) => {
@@ -33,7 +32,6 @@ app.post('/workshop', (req, res, next) => {
       workshopName: workshopName,
       workshopDuration: workshopDuration
     }
-    console.log(`server about to reply with ${result}`)
     res.status(201).json(result)
   })
 })
