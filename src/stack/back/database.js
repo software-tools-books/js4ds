@@ -68,7 +68,6 @@ class Database {
   }
 
   addOne (args, callback) {
-    console.log(`addOne ${args}`)
     this.db.run(Q_WORKSHOP_ADD, args, function (err, rows) {
       if (err) fail(err)
       callback([], this.lastID)

@@ -12,7 +12,6 @@ app.use(cors())
 // Get all workshops.
 app.get('/workshop', (req, res, next) => {
   db.getAll([], (rows, lastId) => {
-    console.log(`/workshop GET => ${rows}`)
     res.status(200).json(rows)
   })
 })
@@ -27,17 +26,14 @@ app.get('/workshop/:workshopId', (req, res, next) => {
 
 // Add a workshop.
 app.post('/workshop', (req, res, next) => {
-  console.log('server post req.body is', req.body)
   const workshopName = req.body.workshopName
   const workshopDuration = req.body.workshopDuration
-  console.log(`server name ${workshopName} duration ${workshopDuration}`)
   db.addOne([workshopName, workshopDuration], (rows, lastId) => {
     const result = {
       workshopId: lastId,
       workshopName: workshopName,
       workshopDuration: workshopDuration
     }
-    console.log(`/workshop POST => ${result}`)
     res.status(201).json(result)
   })
 })
