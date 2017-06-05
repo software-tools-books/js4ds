@@ -1,7 +1,8 @@
 const path = require('path')
+const CopyWebpackPlugin = require('copy-webpack-plugin')
 
 const config = {
-  entry: './src/stack/front/app',
+  entry: './app',
   output: {
     path: path.resolve(__dirname, 'dist'),
     filename: 'bundle.js'
@@ -11,10 +12,15 @@ const config = {
       test: /\.js?$/,
       loader: 'babel-loader',
       options: {
-        presets: ["react-app"]
+        presets: ['react-app']
       }
     }]
   },
+  plugins: [
+    new CopyWebpackPlugin([{
+      from: './index.html'
+    }])
+  ],
   devtool: 'source-map'
 }
 
