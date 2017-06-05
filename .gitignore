@@ -3,6 +3,9 @@
 _site
 *.db
 
+# Working with Webpack
+dist/
+
 # Logs
 logs
 *.log
