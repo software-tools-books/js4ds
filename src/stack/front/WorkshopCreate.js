@@ -1,3 +1,4 @@
+import React from 'react'
 import TitledField from './TitledField'
 
 const WorkshopCreate = ({name, onEditName, duration, onEditDuration, onSubmit}) => {
