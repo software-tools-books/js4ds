@@ -1,3 +1,5 @@
+import React from 'react'
+
 const WorkshopList = ({workshops, onDelete}) => {
   return (
     <table>
@@ -17,3 +19,5 @@ const WorkshopList = ({workshops, onDelete}) => {
     </table>
   )
 }
+
+export default WorkshopList

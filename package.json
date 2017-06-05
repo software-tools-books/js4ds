@@ -14,6 +14,7 @@
   "scripts": {
     "demo": "./bin/run-server",
     "lint": "eslint bin/*.js src/**/*.js",
+    "pack": "NODE_ENV=development webpack",
     "start": "react-scripts start",
     "test": "mocha",
     "words": "bin/wc.js *.md _lessons/*.md"
@@ -26,6 +27,11 @@
     "url": "https://github.com/gvwilson/js-vs-rc/issues"
   },
   "dependencies": {
+    "babel-core": "^6.24.1",
+    "babel-loader": "^7.0.0",
+    "babel-preset-es2015": "^6.24.1",
+    "babel-preset-react": "^6.24.1",
+    "babel-preset-react-app": "^3.0.0",
     "body-parser": "^1.17.2",
     "cheerio": "^1.0.0-rc.1",
     "cors": "^2.8.3",
@@ -40,6 +46,7 @@
     "react-dom": "^15.5.4",
     "react-scripts": "^1.0.7",
     "sqlite3": "^3.1.8",
-    "supertest": "^3.0.0"
+    "supertest": "^3.0.0",
+    "webpack": "^2.6.1"
   }
 }

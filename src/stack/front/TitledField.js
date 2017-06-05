@@ -1,3 +1,5 @@
+import React from 'react'
+
 const TitledField = ({label, value, onChange}) => {
   return (
     <span>
@@ -5,3 +7,5 @@ const TitledField = ({label, value, onChange}) => {
     </span>
   )
 }
+
+export default TitledField

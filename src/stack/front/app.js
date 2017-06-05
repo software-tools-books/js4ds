@@ -1,3 +1,8 @@
+import React from 'react'
+import ReactDOM from 'react-dom'
+import WorkshopList from './WorkshopList'
+import WorkshopCreate from './WorkshopCreate'
+
 class App extends React.Component {
 
   constructor (props) {
@@ -92,3 +97,8 @@ class App extends React.Component {
     )
   }
 }
+
+ReactDOM.render(
+  <App />,
+  document.getElementById("app")
+)
