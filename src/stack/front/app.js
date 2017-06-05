@@ -1,3 +1,6 @@
+import WorkshopList from './WorkshopList'
+import WorkshopCreate from './WorkshopCreate'
+
 class App extends React.Component {
 
   constructor (props) {

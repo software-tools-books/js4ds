@@ -17,3 +17,5 @@ const WorkshopList = ({workshops, onDelete}) => {
     </table>
   )
 }
+
+export default WorkshopList

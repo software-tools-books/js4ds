@@ -1,3 +1,5 @@
+import TitledField from './TitledField'
+
 const WorkshopCreate = ({name, onEditName, duration, onEditDuration, onSubmit}) => {
   return (
     <div>
@@ -7,3 +9,5 @@ const WorkshopCreate = ({name, onEditName, duration, onEditDuration, onSubmit}) 
     </div>
   )
 }
+
+export default WorkshopCreate

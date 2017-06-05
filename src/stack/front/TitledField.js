@@ -5,3 +5,5 @@ const TitledField = ({label, value, onChange}) => {
     </span>
   )
 }
+
+export default TitledField
