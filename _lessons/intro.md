@@ -1,5 +1,5 @@
 ---
-layout: page
+layout: lesson
 permalink: "/intro/"
 title: "Introduction"
 questions:

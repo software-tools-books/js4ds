@@ -1,5 +1,5 @@
 ---
-layout: page
+layout: lesson
 permalink: "/core/"
 title: "Core Features of Modern JavaScript"
 questions:

@@ -1,10 +1,8 @@
 ---
-layout: page
+layout: misc
 permalink: "/contributing/"
-headtitle: "Contributing"
+title: "Contributing"
 ---
-# Contributing
-
 We welcome contributions of all kinds
 to both the text and the example code.
 By contributing,

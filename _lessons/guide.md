@@ -1,5 +1,5 @@
 ---
-layout: page
+layout: misc
 permalink: "/guide/"
 title: "Guide"
 ---

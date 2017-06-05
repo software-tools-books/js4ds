@@ -1,5 +1,5 @@
 ---
-layout: page
+layout: lesson
 permalink: "/htmlcss/"
 title: "HTML and CSS"
 questions:

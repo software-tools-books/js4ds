@@ -1,5 +1,5 @@
 ---
-layout: page
+layout: lesson
 permalink: "/server/"
 title: "Building Data Services with Express"
 questions:

@@ -1,5 +1,5 @@
 ---
-layout: page
+layout: lesson
 permalink: "/callbacks/"
 title: "Programming with Callbacks"
 questions:

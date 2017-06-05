@@ -1,5 +1,5 @@
 ---
-layout: page
+layout: misc
 permalink: "/legacy/"
 title: "Legacy JavaScript Issues"
 questions:

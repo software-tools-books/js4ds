@@ -1,5 +1,5 @@
 ---
-layout: page
+layout: lesson
 permalink: "/interactive/"
 title: "Making Web Pages Interactive"
 questions:

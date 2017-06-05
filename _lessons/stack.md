@@ -1,5 +1,5 @@
 ---
-layout: page
+layout: lesson
 permalink: "/stack/"
 title: "A Full Application Stack"
 questions:

@@ -8,20 +8,19 @@
     <link href="{{'/css/syntax.css' | absolute_url}}" rel="stylesheet" />
     <link href="{{'/css/site.css' | absolute_url}}" rel="stylesheet" />
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-    <title>{% if page.title %}{{page.title}}{% elsif page.headtitle %}{{page.headtitle}}{% else %}FIXME: no title for {{page.path}}{% endif %}</title>
+    <title>{{site.title}}{% if page.title %}: {{page.title}}{% endif %}</title>
   </head>
   <body>
     <div class="container shadow">
       <div class="row-fluid">
         <div class="span10 offset1">
-          {% unless page.headtitle %}<h1>{{page.title}}</h1>{% endunless %}
-          {% include questions.html %}
-          {{content}}
-          {% include keypoints.html %}
-          <hr/>
-          <div align="center">
+          <h1>{{site.title}}</h1>
+          <h2>{% if page.title %}{{page.title}}{% endif %}</h2>
+{{content}}
+          <footer align="center">
+            <hr/>
             <p><em>JavaScript versus Research Computing &copy; 2017 Greg Wilson - see <a href="./license/">the license</a> for terms of use.</em></p>
-          </div>
+          </footer>
         </div>
       </div>
     </div>

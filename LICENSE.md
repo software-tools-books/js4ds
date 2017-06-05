@@ -1,10 +1,8 @@
 ---
-layout: page
+layout: misc
 permalink: "/license/"
-headtitle: "License"
+title: "License"
 ---
-# License
-
 ## Instructional Material
 
 The written material on this site is made available under the

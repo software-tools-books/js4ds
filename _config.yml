@@ -1,4 +1,8 @@
+# Display.
 title: "JavaScript versus Research Computing"
+subtitle: "A Brief Guide for Those Who Regret That This Has Become Necessary"
+
+# Code highlighting.
 highlighter: rouge
 
 # Magic to make URLs resolve both locally and on GitHub.

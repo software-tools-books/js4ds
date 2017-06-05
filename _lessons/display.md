@@ -1,5 +1,5 @@
 ---
-layout: page
+layout: lesson
 permalink: "/display/"
 title: "Building Static Web Pages with React"
 questions:
