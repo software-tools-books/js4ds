@@ -11,5 +11,20 @@
   {% endif %}
   {% assign previous_item = item %}
 {% endfor %}
-<p>previous: {{previous_link}}</p>
-<p>next: {{next_link}}</p>
+
+<div>
+  <span>
+    {% if previous_link %}
+    <a class="nav-link" href="{{previous_link|absolute_url}}">Previous</a>
+    {% else %}
+    <a class="nav-link" href="{{'/'|absolute_url}}">Up</a>
+    {% endif %}
+  </span>
+  <span>
+    {% if next_link %}
+    <a class="nav-link" href="{{next_link|absolute_url}}">Next</a>
+    {% else %}
+    <a class="nav-link" href="{{'/'|absolute_url}}">Up</a>
+    {% endif %}
+  </span>
+</div>
