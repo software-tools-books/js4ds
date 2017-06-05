@@ -1,0 +1,15 @@
+{% assign previous_link = null %}
+{% assign next_link = null %}
+{% for item in site.toc  %}
+  {% if item.permalink == page.permalink %}
+    {% unless forloop.first %}
+      {% assign previous_link = previous_item.permalink %}
+    {% endunless %}
+    {% unless forloop.last %}
+      {% assign next_link = site.toc[forloop.index].permalink %}
+    {% endunless %}
+  {% endif %}
+  {% assign previous_item = item %}
+{% endfor %}
+<p>previous: {{previous_link}}</p>
+<p>next: {{next_link}}</p>
