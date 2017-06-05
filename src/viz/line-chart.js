@@ -7,12 +7,12 @@ export default class LineChart extends React.Component {
     super(props)
     this.state = {
       data: [
-        [0, 6.0],
-        [1, 3.0],
-        [2, 1.0],
-        [3, 0.5],
-        [4, 0.25],
-        [5, 0.125]
+        [0,    60],
+        [50,   30],
+        [100,  10],
+        [150,  50],
+        [200, 275],
+        [250, 375]
       ]
     }
   }
@@ -21,14 +21,12 @@ export default class LineChart extends React.Component {
     const line = d3.line()
 
     const chart = d3.select(this.chart)
-      .attr('width', window.innerWidth-100)
-      .attr('height', 500)
-      .append('g')
-        .attr('transform', 'translate(100, 0)')
+      .attr('width', 400)
+      .attr('height', 400)
 
     chart
       .append('path')
-        .attr('d', line(this.state.data))
+      .attr('d', line(this.state.data))
   }
 
   render() {

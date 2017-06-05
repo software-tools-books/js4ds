@@ -13,7 +13,10 @@ const config = {
       loader: 'babel-loader',
       options: {
         presets: ['react-app']
-      }
+      },
+      exclude: [
+          /node_modules/
+      ]
     }]
   },
   plugins: [

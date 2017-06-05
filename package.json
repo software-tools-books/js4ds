@@ -14,7 +14,8 @@
   "scripts": {
     "demo": "./bin/run-server",
     "lint": "eslint bin/*.js src/**/*.js",
-    "pack": "NODE_ENV=development webpack",
+    "build": "NODE_ENV=production webpack",
+    "dev": "NODE_ENV=development webpack-dev-server",
     "start": "react-scripts start",
     "test": "mocha",
     "words": "bin/wc.js *.md _lessons/*.md"
