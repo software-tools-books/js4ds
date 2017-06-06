@@ -2,8 +2,9 @@ const assert = require('assert')
 const request = require('supertest')
 const Database = require('./database')
 const server = require('./server')
+const path = require('path')
 
-TEST_DATA_PATH = './test-data.sql'
+TEST_DATA_PATH = path.resolve(__dirname, 'test-data.sql')
 
 describe('server', () => {
 
@@ -35,7 +36,7 @@ describe('server', () => {
         day: 16,
         sex: 'M',
         hindfoot_length: 32,
-        weight: '',
+        weight: null,
         genus: 'Neotoma',
         species: 'albigula',
         taxa: 'Rodent',

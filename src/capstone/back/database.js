@@ -22,13 +22,13 @@ select
   species.genus,
   species.species,
   species.taxa,
-  plot.plot_type
+  plots.plot_type
 from
   surveys join species join plots
 on
   surveys.species_id=species.species_id
 and
-  surveys.plot_id=plot.plot_id
+  surveys.plot_id=plots.plot_id
 where
   surveys.record_id >= ?
 limit
