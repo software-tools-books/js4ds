@@ -44,7 +44,7 @@ class App extends React.Component {
   }
 
   onNewRange = () => {
-    console.log('onNewRange')
+    console.log(`onNewRange ${this.state.start} ${this.state.count}`)
   }
 
   render = () => {

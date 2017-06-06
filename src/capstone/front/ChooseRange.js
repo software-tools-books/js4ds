@@ -8,7 +8,7 @@ const ChooseRange = ({start, onStart, count, onCount, onNewRange}) => {
       &nbsp;&nbsp;
       <TitledField label='count' value={count} onChange={onCount} />
       &nbsp;&nbsp;
-      <button onClick={onNewRange()}>update</button>
+      <button onClick={(e) => onNewRange()}>update</button>
     </p>
   )
 }
