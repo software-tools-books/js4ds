@@ -53,4 +53,16 @@ describe('server', () => {
         done()
       })
   })
+
+  it('should return as many records as asked to', (done) => {
+    const db = new Database('memory', TEST_DATA_PATH)
+    request(server(db))
+      .get('/survey/16801/10')
+      .expect(200)
+      .expect('Content-Type', 'application/json')
+      .end((err, res) => {
+        assert(res.body.length == 10, 'Got expected number of records')
+        done()
+      })
+  })
 })
