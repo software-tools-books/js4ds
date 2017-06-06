@@ -14,12 +14,17 @@
     <div class="container shadow">
       <div class="row-fluid">
         <div class="span10 offset1">
-          <h1>{{site.title}}</h1>
-          <h2>{% if page.title %}{{page.title}}{% endif %}</h2>
+          {% unless page.nonavbar %}{% include navbar.html %}{% endunless %}
+          {% if page.title %}<h2>{{page.title}}</h2>{% endif %}
 {{content}}
           <footer align="center">
             <hr/>
-            <p><em>JavaScript versus Research Computing &copy; 2017 Greg Wilson - see <a href="./license/">the license</a> for terms of use.</em></p>
+            <p>
+              <em>
+                <a href="{{'/'|absolute_url}}">JavaScript versus Research Computing</a>
+                &copy; 2017 Greg Wilson - see <a href="./license/">the license</a> for terms of use.
+              </em>
+            </p>
           </footer>
         </div>
       </div>

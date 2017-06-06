@@ -12,15 +12,18 @@
   {% assign previous_item = item %}
 {% endfor %}
 
-<div>
-  <span>
+<div class="row">
+  <span class="col-md-2" align="left">
     {% if previous_link %}
     <a class="nav-link" href="{{previous_link|absolute_url}}">Previous</a>
     {% else %}
     <a class="nav-link" href="{{'/'|absolute_url}}">Up</a>
     {% endif %}
   </span>
-  <span>
+  <span class="col-md-8" align="center">
+    <a href="{{'/'|absolute_url}}">{{site.title}}</a>
+  </span>
+  <span class="col-md-2" align="right">
     {% if next_link %}
     <a class="nav-link" href="{{next_link|absolute_url}}">Next</a>
     {% else %}

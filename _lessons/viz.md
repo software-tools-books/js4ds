@@ -1,6 +1,6 @@
 ---
 layout: lesson
-permalink: "/d3/"
+permalink: "/viz/"
 title: "Visualizing Data with D3"
 questions:
 - FIXME
