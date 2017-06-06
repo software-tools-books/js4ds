@@ -1,6 +1,40 @@
 const sqlite3 = require('sqlite3')
 const fs = require('fs')
 
+const Q_WORKSHOP_GET_SURVEY_STATS = `
+select
+  min(record_id) as record_id_low,
+  max(record_id) as record_id_high,
+  count(*) as record_count
+from
+  surveys
+`
+
+const Q_WORKSHOP_GET_SURVEY_DATA = `
+select
+  surveys.record_id,
+  surveys.year,
+  surveys.month,
+  surveys.day,
+  surveys.sex,
+  surveys.hindfoot_length,
+  surveys.weight,
+  species.genus,
+  species.species,
+  species.taxa,
+  plot.plot_type
+from
+  surveys join species join plots
+on
+  surveys.species_id=species.species_id
+and
+  surveys.plot_id=plot.plot_id
+where
+  surveys.record_id >= ?
+limit
+  ?
+`
+
 class Database {
 
   constructor (mode, arg) {
