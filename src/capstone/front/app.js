@@ -2,6 +2,8 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import SurveyStats from './SurveyStats'
 import CreatureList from './CreatureList'
+import ChooseRange from './ChooseRange'
+import DataDisplay from './DataDisplay'
 
 class App extends React.Component {
 
@@ -9,40 +11,52 @@ class App extends React.Component {
     super(props)
     this.baseUrl = 'http://localhost:3418'
     this.state = {
-      display: null,
+      summary: null,
+      start: '',
+      count: '',
       data: null
     }
   }
 
-  componentDidMount() {
+  componentDidMount = () => {
     const url = `${this.baseUrl}/survey/stats`
     fetch(url).then((response) => {
       return response.json()
-    }).then((stats) => {
+    }).then((summary) => {
       this.setState({
-        display: 'stats',
-        data: stats
+        summary: summary
       })
     })
   }
 
+  onStart = (start) => {
+    console.log(`onStart ${start}`)
+    this.setState({
+      start: start
+    })
+  }
+
+  onCount = (count) => {
+    console.log(`onCount ${count}`)
+    this.setState({
+      count: count
+    })
+  }
+
+  onNewRange = () => {
+    console.log('onNewRange')
+  }
+
   render = () => {
-    let body = null
-    switch (this.state.display) {
-    case 'stats' :
-      body = (<SurveyStats data={this.state.data} />)
-      break
-    case 'list' :
-      body = (<CreatureList data={this.state.data} />)
-      break
-    default :
-      body = (<p><em>Unknown display "{this.state.display}"</em></p>)
-      break
-    }
     return (
       <div>
         <h1>Creatures</h1>
-        {body}
+        <SurveyStats data={this.state.summary} />
+        <ChooseRange
+          start={this.state.start} onStart={this.onStart}
+          count={this.state.count} onCount={this.onCount}
+          onNewRange={this.onNewRange} />
+        <DataDisplay data={this.state.data} />
       </div>
     )
   }

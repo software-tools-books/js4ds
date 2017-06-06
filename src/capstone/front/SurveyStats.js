@@ -1,6 +1,9 @@
 import React from 'react'
 
 const SurveyStats = ({data}) => {
+  if (data === null) {
+    return (<p>no data</p>)
+  }
   return (
     <table>
       <tbody>
