@@ -1,11 +1,17 @@
 import React from 'react'
+import ChartistBar from 'react-chartist'
 
 const DataDisplay = ({data}) => {
   if (data === null) {
-    return (<p>---</p>)
+    return (<span>---</span>)
   }
+  const cleaned = data
+    .map((record) => {return {x: record.weight, y: record.hindfoot_length}})
+    .filter((record) => {return (record.x !== null) && (record.y !== null)})
+  const series = [cleaned]
+  console.log('cleaned is', cleaned)
   return (
-    <p>DataDisplay with ${data.length} items</p>
+    <ChartistBar data={{series: cleaned}} type={'Line'} />
   )
 }
 

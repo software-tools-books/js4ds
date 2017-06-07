@@ -34,20 +34,25 @@
     "babel-preset-react": "^6.24.1",
     "babel-preset-react-app": "^3.0.0",
     "body-parser": "^1.17.2",
+    "chartist": "^0.10.1",
     "cheerio": "^1.0.0-rc.1",
+    "copy-webpack-plugin": "^4.0.1",
     "cors": "^2.8.3",
     "d3": "^4.9.1",
     "eslint-plugin-node": "^5.0.0",
     "eslint-plugin-promise": "^3.5.0",
     "eslint-plugin-standard": "^3.0.1",
+    "express-winston": "^2.4.0",
     "http-server": "^0.10.0",
     "mocha": "^3.4.2",
     "node": "0.0.0",
     "react": "^15.5.4",
+    "react-chartist": "^0.13.0",
     "react-dom": "^15.5.4",
     "react-scripts": "^1.0.7",
     "sqlite3": "^3.1.8",
     "supertest": "^3.0.0",
-    "webpack": "^2.6.1"
+    "webpack": "^2.6.1",
+    "winston": "^2.3.1"
   }
 }

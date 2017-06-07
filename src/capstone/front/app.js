@@ -30,14 +30,12 @@ class App extends React.Component {
   }
 
   onStart = (start) => {
-    console.log(`onStart ${start}`)
     this.setState({
       start: start
     })
   }
 
   onCount = (count) => {
-    console.log(`onCount ${count}`)
     this.setState({
       count: count
     })
@@ -45,6 +43,21 @@ class App extends React.Component {
 
   onNewRange = () => {
     console.log(`onNewRange ${this.state.start} ${this.state.count}`)
+    const params = {
+      method: 'GET',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      }
+    }
+    const url = `${this.baseUrl}/survey/${this.state.start}/${this.state.count}`
+    fetch(url, params).then((response) => {
+      return response.json()
+    }).then((data) => {
+      this.setState({
+        data: data
+      })
+    })
   }
 
   render = () => {
