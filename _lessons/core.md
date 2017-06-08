@@ -17,10 +17,28 @@ questions:
 - "How do I store values by name?"
 - "How do I define functions?"
 - "How do I divide source code into multiple files?"
-- "FIXME: regular expressions"
-- "How do I create and use classes?"
 keypoints:
-- FIXME
+- "Use `console.log` to print messages."
+- "Use dotted notation `X.Y` to get part `Y` of object `X`."
+- "Basic data types are Booleans, numbers, and character strings."
+- "Ararys store multiple values in order."
+- "The special values `null` and `undefined` mean 'no value' and 'does not exist'."
+- "Define constants with `const` and variables with `let`."
+- "`typeof` returns the type of a value."
+- "`for (let variable of collection) {…}` iterates through the values in an array."
+- "`if (condition) {…} else {…}` conditionally executes some code."
+- "`false`, 0, the empty string, `null`, and `undefined` are false; everything else is true."
+- "Use back quotes and `${…}` to interpolate values into strings."
+- "An object is a collection of name/value pairs written in `{…}."
+- "`object[key]` or `object.key` gets a value from an object."
+- "Functions are objects that can be assigned to variables, stored in lists, etc."
+- "`function (…parameters…) {…body…}` is the old way to define a function."
+- "`name = (…parameters…) => {…body…}` is the new way to define a function."
+- "Use `return` inside a function body to return a value at any point."
+- "Use modules to divide code between multiple files for re-use."
+- "Assign to `module.exports` to specify what a module exports."
+- "`require(…path…)` imports a module."
+- "Paths beginning with '.' are imported locally, but paths without '.' look in the library."
 ---
 
 - Introduce enough of JavaScript's core features to get started
@@ -76,6 +94,9 @@ the type of null is object
 the type of function () { [native code] } is function
 ```
 
+- `for…of` loops over the values in an array
+  - Note: "of" not "in"
+  - The latter returns the indexes of the collection (e.g., 0, 1, 2)
 - Use `const` to define a _constant_
 - `number`
   - JavaScript doesn't have separate types for integers and floating-point
@@ -92,6 +113,8 @@ the type of function () { [native code] } is function
 - `typeof` returns a string
 
 ## Control Flow
+
+- Have already seen `for` loop
 
 <!-- @src/core/control-flow.js -->
 ```js
@@ -122,8 +145,6 @@ null of type object is falsy
   - Arrays are _heterogeneous_, i.e., can contain values of many different types
   - Including other arrays
 - Use `let` to define a _variable_ (as opposed to `const`)
-- `for…of` loops over the values in an array
-  - See other kinds of loops later
 - `if` and `else` work as they do in other languages
   - It's the _truthiness_ that's different
 - `true` and `false`: as expected
@@ -137,7 +158,21 @@ null of type object is falsy
 
 ## Formatting
 
-FIXME: explain `standard`
+- Use back quotes to create multi-line strings
+- Interpolate values in these strings using `${expression}`
+
+<!-- @src/core/formatting.js -->
+```js
+for (let color of ['red', 'green', 'blue']) {
+  const message = `color is ${color}`
+  console.log(message, `and capitalized is ${color.toUpperCase()}`)
+}
+```
+```output
+color is red and capitalized is RED
+color is green and capitalized is GREEN
+color is blue and capitalized is BLUE
+```
 
 ## Objects
 
@@ -174,9 +209,8 @@ creature[species] is Jacchus
 - If the key has a simple name, can use `object.key` instead
   - The square bracket form can be used with variables for keys
   - The _dotted_ notation cannot
-- Use _string interpolation_ to format output
-  - Back-quotes around string
-  - `${expression}` to insert the value of an expression in the string
+- Can write keys without quotes
+  - In which case they are treated as strings
 
 ## Functions
 
@@ -307,30 +341,26 @@ clip(-1,5,3,0,10) -> 0,1,2,3
   - Then refer to contents as `module.thing`
 - Use a relative path starting with `./` or `../` to import local files
   - Paths that start with names are taken from installed Node libraries
-- FIXME: explain how to install libraries using NPM
 
-## Regular Expressions
-
-FIXME: explain regexp
-
-## Classes
-
-FIXME: object-oriented programming
-
-## Summary
-
-FIXME: summarize chapter
+> FIXME-11: explain how to install libraries using NPM
 
 ## Challenges
 
-1. What is the type of `typeof`?
+### Typeof
 
-1. Fill in the blanks in the program below
-   so that it produces the output shown.
-   1. What does `Array.push` do?
-   1. How does a `while` loop work?
-   1. What does `+=` do?
-   1. What does `Array.reverse` do, and what does it return?
+What kind of thing is `typeof`?
+Is it an expression?
+A function?
+Something else?
+
+### Fill in the Blanks
+
+Fill in the blanks in the program below
+so that it produces the output shown.
+1. What does `Array.push` do?
+1. How does a `while` loop work?
+1. What does `+=` do?
+1. What does `Array.reverse` do, and what does it return?
 
 <!-- @ex/core/table-of-squares.js -->
 ```js
@@ -354,13 +384,18 @@ square of 1 is 1
 square of 0 is 0
 ```
 
-1. Write a function called `isTruthy` that returns `true`
-   for everything that JavaScript considers truthy,
-   and `false` for everything it considers `falsy`,
-   *except* empty arrays:
-   `isTruthy` should return `false` for those.
+### What Is Truth?
 
-1. Explain what is happening in the assignment statement that creates the constant `creature`.
+Write a function called `isTruthy` that returns `true`
+for everything that JavaScript considers truthy,
+and `false` for everything it considers `falsy`,
+*except* empty arrays:
+`isTruthy` should return `false` for those.
+
+### What Does This Do?
+
+Explain what is happening in the assignment statement
+that creates the constant `creature`.
 
 <!-- @ex/core/implied.js -->
 ```js
@@ -373,9 +408,11 @@ console.log(creature)
 { genus: 'Callithrix', species: 'Jacchus' }
 ```
 
-1. Explain what is happening in the assignment statement in this program.
-   Use this technique to rewrite `src/core/import.js`
-   so that `clip` can be called directly as `clip(…)` rather than `utilities.clip(…)`.
+### What Does This Code Do?
+
+Explain what is happening in the assignment statement in this program.
+Use this technique to rewrite `src/core/import.js`
+so that `clip` can be called directly as `clip(…)` rather than `utilities.clip(…)`.
 
 <!-- @ex/core/destructuring.js -->
 ```js
