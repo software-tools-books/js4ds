@@ -3,11 +3,13 @@ layout: lesson
 permalink: "/intro/"
 title: "Introduction"
 questions:
+- "Why is this course called 'versus'?"
 - "What are the main topics of this course?"
-- "Is this an appropriate course for me?"
-- "How do I set up my computer to do the coursework?"
+- "Is this the right course for me?"
+- "How do I set up my computer to do the exercises?"
 keypoints:
-- FIXME
+- "Modern JavaScript is a good tool for building desktop and web-based applications."
+- "This course is for people who know what loops and functions are, but have never used JavaScript or built web applications."
 ---
 
 I was originally going to call this book *JavaScript for Scientists and Engineers*,
@@ -32,7 +34,6 @@ She did a statistics class using R as an undergrad,
 then learned some more R and some Unix shell scripting
 in a [Software Carpentry][swc] workshop,
 but has no other training as a programmer.
-
 Bhadra's team is developing tools
 to detect structural similarities between proteins.
 They would like to build a browser interface to their tools
@@ -43,7 +44,6 @@ This book will show Bhadra how to build, test, and deploy that interface.
 He learned Visual Basic so that he could write Excel macros,
 then mastered C in order to maintain the control software
 for some second-hand remote sensing equipment.
-
 Efraim recently retired,
 and is now an active member of several citizen science projects.
 This book will show him how to create a service
@@ -55,7 +55,6 @@ As part of her research,
 she is transcribing and cataloging the records of several dozen Japanese-American midwives.
 She has been creating and customizing [WordPress][wordpress] sites for several years,
 and has picked up bits and pieces of JavaScript while doing so.
-
 Sumi is about to start looking for a job,
 and wants to create an interactive website to showcase her research.
 This book will fill in some of the gaps in her knowledge
@@ -63,15 +62,19 @@ and show her how to take advantage of JavaScript's more modern features.
 
 ## Setting Up
 
-FIXME: setup instructions
+You can do the exercises in the first part of this course online,
+but will need to install some softwaer on your own computer
+to do the later ones.
 
-## Summary
+FIXME-7: choose an online hosting service
 
-FIXME: summarize chapter
+FIXME-8: Mac instructions
+
+FIXME-9: Windows instructions
 
 ## Challenges
 
-FIXME: challenges
+FIXME-10: challenges for introduction
 
 [beazley-tweet]: https://twitter.com/dabeaz/status/863566969240514560
 [swc]: http://software-carpentry.org
