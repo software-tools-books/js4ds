@@ -11,7 +11,16 @@ questions:
 - "What is a closure?"
 - "When and why are closures useful?"
 keypoints:
-- FIXME
+- "JavaScript stores the instructions making up a function in memory like any other object."
+- "Function objects can be assigned to variables, put in lists, passed as arguments to other functions, etc."
+- "Functions can be defined in place without ever being given a name."
+- "A callback function is one that is passed in to another function for it to execute at a particular moment."
+- "Functional programming uses higher-order functions on immutable data."
+- "`Array.some` is true if any element in an array passes a test, while `Array.every` is true if they all do."
+- "`Array.filter` selects elements of an array that pass a test."
+- "`Array.map` creates a new array by transforming values in an existing one."
+- "`Array.scan` reduces an array to a single value."
+- "A closure is a set of variables captured during the definition of a function."
 ---
 
 - JavaScript relies heavily on _callback functions_
@@ -19,6 +28,8 @@ keypoints:
     you give me a function that tells me what to do next
 - Many other languages use them occasionally,
   but JavaScript is often the first place programmers encounter them
+- In order to understand how they work and how to use them,
+  must first understand what happens when functions are defined and called
 
 ## Functions as Arguments
 
@@ -32,7 +43,7 @@ keypoints:
   and stores a reference to it in the variable `oneMore`
 - Draw a _memory diagram_ to show this
 
-FIXME: diagram
+FIXME-14: diagram
 
 - When we pass a value to a function,
   what we're really giving it is a reference to its block of memory
@@ -56,7 +67,7 @@ hello
 hello
 ```
 
-FIXME: diagram
+FIXME-14: diagram
 
 - More useful when the function passed in takes arguments
 
@@ -110,6 +121,7 @@ console.log(`|${original}| -> |${final}|`)
   - Just as we might pass `x+1` to a function directly
     rather than assigning that value to a variable
     and then passing in the variable
+- Often called an _anonymous function_
 
 <!-- @src/callbacks/transform.js -->
 ```js
@@ -261,24 +273,24 @@ add1(100) is 101 and add2(100) is 102
 - Best way to understand what's going on is to draw a step-by-step memory diagram
 - Step 1: call `adder(1)`
 
-FIXME: diagram
+FIXME-14: diagram
 
 - Step 2: `adder` creates a new function that includes a reference to that 1
 
-FIXME: diagram
+FIXME-14: diagram
 
 - Step 3: `adder` returns that function, which is assigned to `add1`
 
-FIXME: diagram
+FIXME-14: diagram
 
 - Step 4: same sequence to create another function with an embedded reference to 2
 
-FIXME: diagram
+FIXME-14: diagram
 
 - Step 5: call to `add1` inside `console.log`
   - Call to `add2` works the same way
 
-FIXME: diagram
+FIXME-14: diagram
 
 - The combination of a function and some embedded variable bindings is called a _closure_
   - Works because a function "capture" the values of the variables
@@ -318,10 +330,8 @@ console.log(`adding 1 and 2 to 100 -> ${result}`)
 adding 1 and 2 to 100 -> 103
 ```
 
-## Summary
-
-FIXME: summarize chapter
-
 ## Challenges
 
-FIXME: `forEach`
+FIXME-15: `forEach` exercise
+
+FIXME-16: more exercises
