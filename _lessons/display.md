@@ -11,10 +11,10 @@ keypoints:
 - In the beginning, people created HTML pages by typing them in
 - Quickly realized that a lot of pages shared a lot of content
   - Headers, footers, etc.
-- Create a _template_ with some embedded commands to:
+- Create a [template](./gloss/#template) with some embedded commands to:
   - Include other bits of HTML (like headers)
   - Loop over data structures to create lists and tables
-- _Server-side page generation_ because:
+- [Server-side page generation](./gloss/#server-side-page-generation) because:
   - That's where the data was
   - That was the only place code could be run
 

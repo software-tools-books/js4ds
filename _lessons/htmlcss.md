@@ -24,7 +24,7 @@ keypoints:
 - Problem: HTML had a small, fixed set of tags
   - Everyone wanted to add new ones
   - Solution: create a standard way to define a set of tags, and the relationships between them
-- First version of [XML](./glossary/#xml) standardized in 1998
+- First version of [XML](./gloss/#xml) standardized in 1998
   - A set of rules for defining markup languages
   - Much more complex than HTML, but still simpler than SGML
 - HTML5 (finally) standardized in 2014
@@ -32,9 +32,9 @@ keypoints:
 
 ## Formatting
 
-- An HTML [document](./glossary/#document) contains [elements](./glossary/#element) and [text](./glossary/#text)
+- An HTML [document](./gloss/#document) contains [elements](./gloss/#element) and [text](./gloss/#text)
   - Full spec allows for other things that we will ignore for now
-- Elements are shown using [tags](./glossary/#tag-xml)
+- Elements are shown using [tags](./gloss/#tag)
   - Opening tag: `<tagname>`
   - Corresponding closing tag: `</tagname>`
   - If there's nothing between the two: `<tagname/>`
@@ -84,7 +84,7 @@ keypoints:
 
 ## Attributes
 
-- Elements can be customized by giving them [attributes](./glossary/#attribute)
+- Elements can be customized by giving them [attributes](./gloss/#attribute)
   - Enclosed in the opening tag
   - `<h1 align="center">A Centered Heading</h1>`
   - `<p class="disclaimer">This planet provided as-is.</p>`
@@ -180,7 +180,7 @@ FIXME: example
 </html>
 ```
 
-- Many still do, but a better way is to using _Cascading Style Sheets_ (CSS)
+- Many still do, but a better way is to using [Cascading Style Sheets](./gloss/#css) (CSS)
   - Separates content from presentation
   - Easier to maintain consistency
 
@@ -222,7 +222,7 @@ span.keyword {
   - Try `<span class="keyword highlight">…</span>`
 
 - Can label particular elements uniquely within the page using `id="name"` attribute
-- Then refer to those elements using `#name` _selector_
+- Then refer to those elements using `#name` [selector](./gloss/#selector)
 - Can also use `parent > child` to select elements that are within specified other elements
 
 <!-- @src/htmlcss/selectors.html -->
@@ -308,7 +308,7 @@ span.keyword {
   - First column is 4/12 wide
   - Second column is 8/12 wide
   - Bootstrap uses 12 because it has lots of divisors
-- Bootstrap is _responsive_
+- Bootstrap is [responsive](./gloss/#responsive-design)
   - Elements change to stacked layout when screen is small
 
 ## Summary

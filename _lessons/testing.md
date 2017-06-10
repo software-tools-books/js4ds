@@ -188,13 +188,13 @@ ok 4 Has expected error message
   - The exceptions have exceptions
 - Instead, parse it to create a structure in memory and check that
   - If parsing fails because the HTML is badly formatted, that's worth knowing too
-- Structure is called _Document Object Model_ (DOM)
+- Structure is called [Document Object Model](./gloss/#dom) (DOM)
   - Good news: there are lots of libraries that will parse HTML and produce DOM
   - Bad news: there are *lots* of libraries that will do this
 - We use `cheerio`
   - `cheerio.load` turns the text of HTML into DOM
   - Resulting object can be used like a function
-  - Can use _selectors_ to find things in it
+  - Can use [selectors](./gloss/#selector) to find things in it
 
 <!-- @src/testing/check-dom.js -->
 ```js

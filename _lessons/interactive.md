@@ -8,8 +8,8 @@ keypoints:
 - FIXME
 ---
 
-- Browsers allow us to define an _event handler_ to specify what to do in response to a user action
-  - A callback function that is (usually) given an _event object_ containing information about what the user did
+- Browsers allow us to define an [event handler](./gloss/#event-handler) to specify what to do in response to a user action
+  - A callback function that is (usually) given an [event object](./gloss/#event-object) containing information about what the user did
 - Pass the callback function as a specifically-named property of the thing whose behavior we are specifying
 - We'll switch back to single-page examples for a moment
 
@@ -351,7 +351,7 @@ class App extends React.Component {
 
 - Time to get real data
 - Use `fetch` with a URL
-- It returns a _promise_
+- It returns a [promise](./gloss/#promise)
   - JavaScript's newly-standardized way of making callbacks easier to work with
   - Although it practice it just seems to move the complexity around
 

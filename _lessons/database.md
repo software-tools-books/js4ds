@@ -135,7 +135,7 @@ node database-initial.js fixture.db getAll
 ## In-Memory Database
 
 - Previous example always manipulates database on disk
-- Have it use an _in-memory database_ for testing purposes
+- Have it use an [in-memory database](./gloss/#in-memory-database) for testing purposes
 
 <!-- @src/database/database-mode.js -->
 ```js
@@ -165,7 +165,7 @@ node database-initial.js fixture.db getAll
   }
 ```
 
-- And use _destructuring_ to handle command-line arguments in driver
+- And use [destructuring](./gloss/#destructuring) to handle command-line arguments in driver
 
 <!-- @src/database/database-mode.js -->
 ```js

@@ -54,9 +54,9 @@ console.log('hello, world')
 hello, world
 ```
 
-- `console` is a built-in _module_ that provides basic printing services
+- `console` is a built-in [module](./gloss/#module) that provides basic printing services
 - Use `X.Y` to get part `Y` of thing `X`
-- A _string_ can be single-quoted or double-quoted
+- A [string](./gloss/#string) can be single-quoted or double-quoted
 - Semi-colons at the ends of statements are now (mostly) optional
 - Run this program from the command line with:
 
@@ -97,13 +97,13 @@ the type of function () { [native code] } is function
 - `for…of` loops over the values in an array
   - Note: "of" not "in"
   - The latter returns the indexes of the collection (e.g., 0, 1, 2)
-- Use `const` to define a _constant_
+- Use `const` to define a [constant](./gloss/#constant)
 - `number`
   - JavaScript doesn't have separate types for integers and floating-point
   - All numbers are 64-bit floating point
   - Accurate up to 15 digits
 - `string` for text
-  - Which is always _Unicode_
+  - Which is always [Unicode](./gloss/#unicode)
 - `boolean` for `true` and `false`
   - We'll see below that other things can be truthy or falsy
 - `undefined` means "hasn't been given a value"
@@ -141,20 +141,20 @@ null of type object is falsy
 2,3 of type object is truthy
 ```
 
-- An _array_ is a comma-separated list of values inside square brackets
-  - Arrays are _heterogeneous_, i.e., can contain values of many different types
+- An [array](./gloss/#array) is a comma-separated list of values inside square brackets
+  - Arrays are [heterogeneous](./gloss/#heterogeneous), i.e., can contain values of many different types
   - Including other arrays
-- Use `let` to define a _variable_ (as opposed to `const`)
+- Use `let` to define a [variable](./gloss/#variable) (as opposed to `const`)
 - `if` and `else` work as they do in other languages
-  - It's the _truthiness_ that's different
+  - It's the [truthiness](./gloss/#truthiness) that's different
 - `true` and `false`: as expected
-- Numbers: 0 is _falsy_, all others are _truthy_
+- Numbers: 0 is [falsy](./gloss/#falsy), all others are [truthy](./gloss/#truthy)
 - Strings: empty string is falsy, all others are truthy
 - `undefined` and `null` are both falsy
 - But an empty array is truthy
   - Argument is that there's something there, it just happens to be empty
   - Test `Array.length` instead
-  - This is a _property_, not a _method_
+  - This is a [property](./gloss/#property), not a [method](./gloss/#method)
 
 ## Formatting
 
@@ -200,7 +200,7 @@ creature[genus] is Callithrix
 creature[species] is Jacchus
 ```
 
-- An _object_ is a collection of key/value pairs
+- An [object](./gloss/#object) is a collection of key/value pairs
   - Keys do not have to be strings, but almost always are
   - Values can be anything
 - Create an object by putting key/value pairs in curly brackets
@@ -208,7 +208,7 @@ creature[species] is Jacchus
 - Can always get a value using `object[key]`
 - If the key has a simple name, can use `object.key` instead
   - The square bracket form can be used with variables for keys
-  - The _dotted_ notation cannot
+  - The [dotted notation](./gloss/#dotted-notation) cannot
 - Can write keys without quotes
   - In which case they are treated as strings
 
@@ -233,12 +233,12 @@ function limits (values) {
 - Definition is:
   - Keyword `function`
   - Function name
-  - Possibly-empty list of _parameters_ in parentheses
+  - Possibly-empty list of [parameters](./gloss/#parameter) in parentheses
   - Body
 - Use `return` to explicitly return a value at any time
   - If nothing returned, result is `undefined`
-- Every function is a _scope_
-  - Parameters and variables created inside function are _local_
+- Every function is a [scope](./gloss/#scope)
+  - Parameters and variables created inside function are [local](./gloss/#local-variable)
 
 <!-- @src/core/functions-classic.js -->
 ```js
@@ -264,7 +264,7 @@ limits of 3,apple,sub-array are 3,3
 - Generally don't write functions this way any longer
   - Interacts in odd ways with other features of the language
   - [Section on legacy issues](./legacy/) explains why in more detail
-- Instead, use _fat arrow_ functions
+- Instead, use [fat arrow functions](./gloss/#far-arrow-function)
   - Parameter list, `=>`, and body creates a function without a name
   - Assign that to a constant or variable
 
