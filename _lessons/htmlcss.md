@@ -3,9 +3,27 @@ layout: lesson
 permalink: "/htmlcss/"
 title: "HTML and CSS"
 questions:
-- FIXME
+- "Where did HTML come from?"
+- "What kinds of things can HTML pages contain?"
+- "How do I create headings? Lists? Tables? Links?"
+- "How do I include images?"
+- "How can I change the appearance of elements on a page?"
+- "How can I reference specific elements on a page?"
 keypoints:
-- FIXME
+- "HTML is the latest in a long line of markup languages."
+- "HTML documents contain elements (represented by tags in angle brackets) and text."
+- "Elements must be strictly nested."
+- "Elements can contain attributes."
+- "Use escape sequences beginning with ampersand to represent special characters."
+- "Every page should have one `html` element containing a `head` and a `body`."
+- "Use `<!--…-->` to include comments in HTML."
+- "Use `ul` and `ol` for unordered and ordered lists, and `li` for list elements."
+- "Use `table` for tables, `tr` for rows, `th` for headings, and `td` for regular data."
+- "Use `<a href="…">…</a>` for links."
+- "Use `<img src="…" alt="…"/>` for images."
+- "Use CSS to define appearance of elements."
+- "Use `class` and `id` to identify elements."
+- "Use selectors to specify the elements that CSS applies to."
 ---
 
 - HTML is the standard way to represent documents for presentation in web browsers
@@ -51,7 +69,8 @@ keypoints:
 - Text is normal printable text
 - Must use escape sequences to represent `<` and `>`
   - In XML, written `&name;`
-  - FIXME: table of common special characters
+
+FIXME-17: table of common special characters
 
 ## Pages
 
@@ -100,7 +119,7 @@ keypoints:
 - Use `ul` for an unordered (bulleted) list, and `ol` for an ordered (numbered) one
   - Each list item is wrapped in `li`
 
-FIXME: example
+FIXME-18: example of ordered and unordered lists
 
 ## Tables
 
@@ -127,23 +146,6 @@ FIXME: example
 </html>
 ```
 
-## Images
-
-- Store a reference to an external file using the `img` tag
-- The `src` attribute specifies where to find the file
-  - Can be either a URL or a local path
-- The `alt` attribute is text for accessibility and search engines
-
-<!-- @src/htmlcss/images.html -->
-```html
-<html>
-  <body>
-    <img src="./html5.png" alt="HTML5 Logo with local path"/>
-    <img src="https://github.com/gvwilson/js-vs-rc/blob/master/src/htmlcss/html5.png" alt="HTML5 logo online"/>
-  </body>
-</html>
-```
-
 ## Links
 
 - Links to other pages are what makes HTML hypertext
@@ -159,6 +161,23 @@ FIXME: example
     <a href="http://gvwilson.github.io/js-vs-rc/">This course</a>
     <a href="https://nodejs.org/">Node.js</a>
     <a href="https://facebook.github.io/react/">React</a>
+  </body>
+</html>
+```
+
+## Images
+
+- Store a reference to an external file using the `img` tag
+- The `src` attribute specifies where to find the file
+  - Can be either a URL or a local path
+- The `alt` attribute is text for accessibility and search engines
+
+<!-- @src/htmlcss/images.html -->
+```html
+<html>
+  <body>
+    <img src="./html5.png" alt="HTML5 Logo with local path"/>
+    <img src="https://github.com/gvwilson/js-vs-rc/blob/master/src/htmlcss/html5.png" alt="HTML5 logo online"/>
   </body>
 </html>
 ```
@@ -311,12 +330,8 @@ span.keyword {
 - Bootstrap is [responsive](./gloss/#responsive-design)
   - Elements change to stacked layout when screen is small
 
-## Summary
-
-FIXME: summarize chapter
-
-FIXME: explain that interactive elements (buttons, forms) are deferred to React chapter
+- Note: interactive elements (buttons, forms) are deferred to React chapter
 
 ## Challenges
 
-FIXME: write challenges
+FIXME-19: write challenges
