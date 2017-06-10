@@ -19,6 +19,9 @@ title: "Glossary"
 *   **Cascading Style Sheets**:
     <a name="css"></a>
 
+*   **client-side page generation**:
+    <a name="client-side-page-generation"></a>
+
 *   **closure**:
     <a name="closure"></a>
 

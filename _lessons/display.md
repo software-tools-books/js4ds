@@ -3,9 +3,23 @@ layout: lesson
 permalink: "/display/"
 title: "Building Static Web Pages with React"
 questions:
-- FIXME
+- "What JavaScript libraries should I use to create a web pages?"
+- "How can I use them to create basic HTML elements?"
+- "How can I style those pages?"
+- "How can I mix my JavaScript with HTML?"
+- "How can I create reusable components for building web pages?"
+- "How can separate my code into multiple files to make it more manageable?"
 keypoints:
-- FIXME
+- "Older dynamic web sites generated pages on the server."
+- "Newer dynamic web sites generate pages in the client."
+- "React is a JavaScript library for client-side page generation that represents HTML elements as function calls."
+- "React replaces page elements with dynamically-generated content in memory (not on disk)."
+- "React functions can be customized with elements."
+- "JSX translates HTML into React function calls so that HTML and JavaScript can be mixed freely."
+- "Use Babel to translate JSX into JavaScript in the browser."
+- "Define new React components with a pseudo-HTML element and a corresponding function."
+- "Attributes to pseudo-HTML are passed to the JavaScript function as a `props` object."
+- "Use Node's `http-server` to load scripts from files during development."
 ---
 
 - In the beginning, people created HTML pages by typing them in
@@ -18,16 +32,17 @@ keypoints:
   - That's where the data was
   - That was the only place code could be run
 
-FIXME: diagram
+FIXME-18: diagram
 
 - Balance shifted as browsers and JavaScript became more powerful
 - Current standard model is:
   - JavaScript running in the browser fetches data from one or more servers
   - Uses that data to generate HTML in the browser for display
-- Allows the client to decide how best to render data
+- [Client-side page generation](./gloss/client-side-page-generation)
+  - Allows the client to decide how best to render data
   - Increasingly important as mobile devices take over from PCs
 
-FIXME: diagram
+FIXME-18: diagram
 
 - Lots and lots (and lots) of JavaScript frameworks for building views
 - We have chosen React because it is:
@@ -157,10 +172,9 @@ FIXME: diagram
   </body>
 ```
 
-- FIXME: explain why we can't just use a loop
-  - Because it has to return something
-- FIXME: explain need to return one root node
-  - Because one function call
+- Have to use `map` rather than a loop because the function has to return something
+  - Could build up a string through repeated concatenation, but this is cleaner
+- *Must* return exactly one root node, because this is one function call
 
 ## Creating Components
 
@@ -329,3 +343,7 @@ ReactDOM.render(
   - Would make more sense to have a `Name` element that formatted a name
   - And then let the application decide to put those names in a list
   - Exercise for the reader
+
+## Challenges
+
+FIXME-19: write challenges
