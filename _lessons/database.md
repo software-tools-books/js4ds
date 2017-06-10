@@ -165,7 +165,7 @@ node database-initial.js fixture.db getAll
   }
 ```
 
-- And use [destructuring]({{'/gloss/#destructuring'|absolute_url}}) to handle command-line arguments in driver
+- And use destructuring to handle command-line arguments in driver
 
 <!-- @src/database/database-mode.js -->
 ```js

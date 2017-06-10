@@ -3,12 +3,22 @@ layout: lesson
 permalink: "/interactive/"
 title: "Making Web Pages Interactive"
 questions:
-- FIXME
+- "How do I tell the browser what to do when someone clicks a button?"
+- "How should I structure my code to make interactions manageable?"
+- "How can a web application get data from a server?"
+- "How does modern JavaScript handle asynchronous operations?"
 keypoints:
-- FIXME
+- "Define event handlers to specify what actions the browser should take when the user interacts with an application."
+- "The browser passes event objects containing details of events to event handlers."
+- "Use classes to keep state and event handlers together."
+- "React calls a class's `render` to display it."
+- "Separate models (which store data) from views (which display it)."
+- "Use `fetch` to get data from servers."
+- "Use destructuring to get individual members from an object in a single step."
+- "Modern JavaScript uses promises to manage asynchronous activities."
 ---
 
-- Browsers allow us to define an [event handler]({{'/gloss/#event-handler'|absolute_url}}) to specify what to do in response to a user action
+- Browsers allow us to define [event handlers]({{'/gloss/#event-handler'|absolute_url}}) to specify what to do in response to a user action
   - A callback function that is (usually) given an [event object]({{'/gloss/#event-object'|absolute_url}}) containing information about what the user did
 - Pass the callback function as a specifically-named property of the thing whose behavior we are specifying
 - We'll switch back to single-page examples for a moment
@@ -176,13 +186,13 @@ class App extends React.Component {
 }
 ```
 
-FIXME: diagram
+FIXME-22: diagram
 
 - This may seem pretty complicated
 - Because it is, in this small example
 - But this strategy is widely used to manage large applications
   - Data and event handlers are defined near the top
-  - Then passed down for other components to use
+  - Then passed down for display components to use
 
 ## Fetching Data
 
@@ -275,7 +285,7 @@ const DateSubmit = (props) => {
 
 - And run
 
-FIXME: screenshot
+FIXME-23: screenshot
 
 - Handle date submission
   - Make the component reusable
@@ -298,8 +308,8 @@ const DateSubmit = ({label, value, onChange, onCommit}) => {
 }
 ```
 
-- Note the use of unpacking in the parameter list
-  - FIXME: explain
+- Note the use of [destructuring]({{'/gloss/#destructuring'|absolute_url}}) in the parameter list
+  - FIXME-24: explain destructuring
 - Important to understand order of operations
   - `value={value}` puts a value in the box for display
   - Binds `onChange` and `onClick` to functions each time
@@ -402,3 +412,7 @@ class App extends React.Component {
 - Figure out how to index the fields we need
 - Unfortunately, top level of `near_earth_objects` is an object with dates as keys
   - So we have to use `let…in…` rather than purely `map` or `forEach`
+
+## Challenges
+
+FIXME-25: write challenges

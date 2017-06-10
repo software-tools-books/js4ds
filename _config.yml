@@ -24,6 +24,8 @@ toc:
   title: HTML and CSS
 - permalink: /display/
   title: Building Static Web Pages with React
+- permalink: /oop/
+  title: Object-Oriented Programming
 - permalink: /interactive/
   title: Making Web Pages Interactive
 - permalink: /server/
