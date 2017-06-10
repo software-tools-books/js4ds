@@ -1,7 +1,6 @@
 ---
 layout: lesson
 permalink: "/testing/"
-title: "Testing"
 questions:
 - FIXME
 keypoints:

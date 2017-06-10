@@ -1,7 +1,6 @@
 ---
 layout: lesson
 permalink: "/intro/"
-title: "Introduction"
 questions:
 - "Why is this course called 'versus'?"
 - "What are the main topics of this course?"

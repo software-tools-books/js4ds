@@ -1,7 +1,6 @@
 ---
 layout: misc
 permalink: "/license/"
-title: "License"
 ---
 ## Instructional Material
 

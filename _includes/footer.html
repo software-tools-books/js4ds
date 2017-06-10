@@ -16,7 +16,7 @@
   <hr/>
   <div class="row">
     <span class="col-md-2" align="left">
-      {% unless page.nonavbar %}
+      {% unless page.manual %}
         {% if previous_link %}
           <a class="nav-link" href="{{previous_link|absolute_url}}">Previous</a>
         {% else %}
@@ -31,7 +31,7 @@
       </em>
     </span>
     <span class="col-md-2" align="right">
-      {% unless page.nonavbar %}
+      {% unless page.manual %}
         {% if next_link %}
           <a class="nav-link" href="{{next_link|absolute_url}}">Next</a>
         {% else %}

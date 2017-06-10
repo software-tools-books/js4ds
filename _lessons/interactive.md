@@ -1,7 +1,6 @@
 ---
 layout: lesson
 permalink: "/interactive/"
-title: "Making Web Pages Interactive"
 questions:
 - "How do I tell the browser what to do when someone clicks a button?"
 - "How should I structure my code to make interactions manageable?"

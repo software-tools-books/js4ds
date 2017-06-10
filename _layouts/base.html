@@ -1,3 +1,11 @@
+{% unless page.manual %}
+  {% for item in site.toc  %}
+    {% if item.permalink == page.permalink %}
+      {% assign title = item.title %}
+      {% break %}
+    {% endif %}
+  {% endfor %}
+{% endunless %}
 <!DOCTYPE HTML>
 <html>
   <head>
@@ -8,14 +16,14 @@
     <link href="{{'/css/syntax.css' | absolute_url}}" rel="stylesheet" />
     <link href="{{'/css/site.css' | absolute_url}}" rel="stylesheet" />
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-    <title>{{site.title}}{% if page.title %}: {{page.title}}{% endif %}</title>
+    <title>{{site.title}}{% if title %}: {{title}}{% endif %}</title>
   </head>
   <body>
     <div class="container shadow">
       <div class="row-fluid">
         <div class="span10 offset1">
           {% include navbar.html %}
-          {% if page.title %}<h1>{{page.title}}</h1>{% endif %}
+          {% if title %}<h1>{{title}}</h1>{% endif %}
 {{content}}
           {% include footer.html %}
         </div>

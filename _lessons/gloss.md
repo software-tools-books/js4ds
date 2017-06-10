@@ -1,7 +1,6 @@
 ---
 layout: misc
 permalink: "/gloss/"
-title: "Glossary"
 ---
 
 *   **anonymous function**:

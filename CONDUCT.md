@@ -1,7 +1,6 @@
 ---
 layout: misc
 permalink: "/conduct/"
-title: "Code of Conduct"
 ---
 As contributors to and maintainers of this project, we pledge to
 respect all people who contribute through reporting issues, posting

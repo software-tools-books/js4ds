@@ -1,7 +1,6 @@
 ---
 layout: lesson
 permalink: "/capstone/"
-title: "Capstone Project"
 questions:
 - FIXME
 keypoints:

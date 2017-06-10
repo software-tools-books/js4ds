@@ -1,7 +1,6 @@
 ---
 layout: lesson
 permalink: "/callbacks/"
-title: "Programming with Callbacks"
 questions:
 - "What happens when a function is defined?"
 - "How can I pass a function to another function?"

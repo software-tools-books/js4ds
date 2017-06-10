@@ -1,7 +1,6 @@
 ---
 layout: lesson
 permalink: "/oop/"
-title: "Object-Oriented Programming"
 questions:
 - FIXME
 keypoints:

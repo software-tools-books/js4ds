@@ -1,7 +1,6 @@
 ---
 layout: lesson
 permalink: "/htmlcss/"
-title: "HTML and CSS"
 questions:
 - "Where did HTML come from?"
 - "What kinds of things can HTML pages contain?"

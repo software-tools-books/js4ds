@@ -1,7 +1,6 @@
 ---
 layout: misc
 permalink: "/contributing/"
-title: "Contributing"
 ---
 We welcome contributions of all kinds
 to both the text and the example code.

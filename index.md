@@ -1,7 +1,7 @@
 ---
 layout: base
 permalink: "/"
-nonavbar: true
+manual: true
 ---
 <div align="center">
   <h1>{{site.title}}</h1>

@@ -1,7 +1,6 @@
 ---
 layout: lesson
 permalink: "/core/"
-title: "Core Features of Modern JavaScript"
 questions:
 - "How can I execute short snippets of JavaScript interactively?"
 - "How can I run small JavaScript programs from the command line?"

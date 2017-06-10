@@ -1,7 +1,6 @@
 ---
 layout: misc
 permalink: "/guide/"
-title: "Guide"
 ---
 
 {% for toc in site.toc %}
