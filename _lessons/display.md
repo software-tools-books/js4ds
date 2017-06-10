@@ -25,10 +25,10 @@ keypoints:
 - In the beginning, people created HTML pages by typing them in
 - Quickly realized that a lot of pages shared a lot of content
   - Headers, footers, etc.
-- Create a [template](./gloss/#template) with some embedded commands to:
+- Create a [template]({{'/gloss/#template'|absolute_url}}) with some embedded commands to:
   - Include other bits of HTML (like headers)
   - Loop over data structures to create lists and tables
-- [Server-side page generation](./gloss/#server-side-page-generation) because:
+- [Server-side page generation]({{'/gloss/#server-side-page-generation'|absolute_url}}) because:
   - That's where the data was
   - That was the only place code could be run
 
@@ -38,7 +38,7 @@ FIXME-18: diagram
 - Current standard model is:
   - JavaScript running in the browser fetches data from one or more servers
   - Uses that data to generate HTML in the browser for display
-- [Client-side page generation](./gloss/client-side-page-generation)
+- [Client-side page generation]({{'/gloss/#client-side-page-generation'|absolute_url}})
   - Allows the client to decide how best to render data
   - Increasingly important as mobile devices take over from PCs
 

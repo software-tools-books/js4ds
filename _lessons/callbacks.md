@@ -23,7 +23,7 @@ keypoints:
 - "A closure is a set of variables captured during the definition of a function."
 ---
 
-- JavaScript relies heavily on [callback functions](./gloss/#callback-function)
+- JavaScript relies heavily on [callback functions]({{'/gloss/#callback-function'|absolute_url}})
   - Instead of me giving you a result,
     you give me a function that tells me what to do next
 - Many other languages use them occasionally,
@@ -41,7 +41,7 @@ keypoints:
   JavaScript allocates a block of memory big enough to store several instructions,
   copies the instructions into that block,
   and stores a reference to it in the variable `oneMore`
-- Draw a [memory diagram](./gloss/#memory-diagram) to show this
+- Draw a [memory diagram]({{'/gloss/#memory-diagram'|absolute_url}}) to show this
 
 FIXME-14: diagram
 
@@ -121,7 +121,7 @@ console.log(`|${original}| -> |${final}|`)
   - Just as we might pass `x+1` to a function directly
     rather than assigning that value to a variable
     and then passing in the variable
-- Often called an [anonymous function](./gloss/#anonymous-function)
+- Often called an [anonymous function]({{'/gloss/#anonymous-function'|absolute_url}})
 
 <!-- @src/callbacks/transform.js -->
 ```js
@@ -151,8 +151,8 @@ first: o,t,t
 
 ## Functional Programming
 
-- [Functional programming](./gloss/#functional-programming) is a style of programming that:
-  - Relies heavily on [higher-order functions](./gloss/#higher-order-function)
+- [Functional programming]({{'/gloss/#functional-programming'|absolute_url}}) is a style of programming that:
+  - Relies heavily on [higher-order functions]({{'/gloss/#higher-order-function'|absolute_url}})
     (i.e., functions that take functions as arguments)
   - Doesn't modify data structures in place, but instead creates new ones from old
 - JavaScript arrays provide several methods to support functional programming
@@ -292,7 +292,7 @@ FIXME-14: diagram
 
 FIXME-14: diagram
 
-- The combination of a function and some embedded variable bindings is called a [closure](./gloss/#closure)
+- The combination of a function and some embedded variable bindings is called a [closure]({{'/gloss/#closure'|absolute_url}})
   - Works because a function "capture" the values of the variables
     that are in scope when it is defined but it doesn't define itself
 
