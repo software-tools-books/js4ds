@@ -2,9 +2,20 @@
 layout: lesson
 permalink: "/server/"
 questions:
-- FIXME
+- "How do browsers and servers communicate?"
+- "What tools can I use to create a data server in JavaScript?"
+- "How can I tell a server to handle different URLs differently?"
+- "How can I serve files from disk?"
+- "How does a server specify the type of data it's sending?"
+- "How can I add new abilities to a server without rewriting it?"
 keypoints:
-- FIXME
+- "An HTTP request or response consists of a plain-text header and an optional body."
+- "HTTP is a stateless protocol."
+- "Express provides a simple path-based JavaScript server."
+- "Write callback functions to handle requests matching specified paths."
+- "Provide a default handler for unrecognized requests."
+- "Use `Content-Type` to specify the type of data being returned."
+- "Use dynamic loading to support plugin extensions."
 ---
 
 - HTTP request/response cycle
@@ -14,7 +25,7 @@ keypoints:
   - And possibly other data as well
   - Client parses the data and decides what to draw
 
-FIXME: diagrams
+FIXME-28: diagrams
 
 ## Hello, Express
 
@@ -113,7 +124,6 @@ app.listen(PORT, () => { console.log('listening...') })
   3. Combine that with the path to the root directory
   4. Read that file
   5. Return that data
-- Exercise: make this 404 for missing files
 
 ## Content Types
 
@@ -183,3 +193,9 @@ module.exports = {
   page: page
 }
 ```
+
+## Challenges
+
+FIXME-29: challenges
+
+Exercise: make the file handler 404 for missing files
