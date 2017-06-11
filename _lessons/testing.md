@@ -2,15 +2,31 @@
 layout: lesson
 permalink: "/testing/"
 questions:
-- FIXME
+- "How should software components be tested?"
+- "What tools can I use to test JavaScript programs?"
+- "How can I make software easier to test?"
+- "How can testing code drive a web server?"
+- "How can tests check the content of HTML pages?"
+- "How is HTML represented in a JavaScript program?"
 keypoints:
-- FIXME
+- "A unit test checks the behavior of one software component in isolation."
+- "The result of a unit test can be pass, fail, or error."
+- "Use Mocha to write and run unit tests in JavaScript."
+- "Put assertions in unit tests to check results."
+- "Combine tests in suites for easier management."
+- "Divide modules into interactive and non-interactive parts for easier testing."
+- "Use `supertest` to simulate interaction with a server for testing."
+- "HTML is represented in memory using the Document Object Model (DOM)."
+- "Check the structure of the DOM rather than the textual representation of the HTML when testing."
 ---
 
 ## Unit Testing
 
 - Build some test infrastructure
-- FIXME: summary of unit testing
+- FIXME-32: summary of unit testing
+
+FIXME-33: rewrite this whole section using Mocha
+
 - We will use a library called `tape`
 
 <!-- @src/testing/does-it-run.js -->
@@ -190,6 +206,7 @@ ok 4 Has expected error message
 - Structure is called [Document Object Model]({{'/gloss/#dom'|absolute_url}}) (DOM)
   - Good news: there are lots of libraries that will parse HTML and produce DOM
   - Bad news: there are *lots* of libraries that will do this
+  - FIXME-34: explain differences between JSX and DOM
 - We use `cheerio`
   - `cheerio.load` turns the text of HTML into DOM
   - Resulting object can be used like a function
@@ -236,3 +253,7 @@ ok 2 Correct heading text
     because `.text()` concatenates all the text of the children
 - Won't explore this approach further because we're going to serve data for rendering
   rather than generating HTML and sending that
+
+## Challenges
+
+FIXME-35: write challenges for testing
