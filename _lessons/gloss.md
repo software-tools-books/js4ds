@@ -87,7 +87,10 @@ permalink: "/gloss/"
 *   **property**:
     <a name="property"></a>
 
-*   **responsive**:
+*   **regular expression**:
+    <a name="regular-expression"></a>
+
+*   **responsive design**:
     <a name="responsive-design"></a>
 
 *   **scope**:

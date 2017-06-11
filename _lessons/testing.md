@@ -24,36 +24,53 @@ keypoints:
 
 - Build some test infrastructure
 - FIXME-32: summary of unit testing
+- We will use a library called Mocha
+  - Don't need to import anything: it imports our code and calls our functions
+- Use `describe` to create a group of tests and `it` for individual tests
 
-FIXME-33: rewrite this whole section using Mocha
-
-- We will use a library called `tape`
-
-<!-- @src/testing/does-it-run.js -->
+<!-- @src/testing/hello-test.js -->
 ```js
-const test = require('tape')
-
-test('first test', (t) => {
-  t.end()
+describe('first test', () => {
+  it('should run without errors', (done) => {
+    done()
+  })
 })
 ```
 
-- `test` takes:
+- `describe` takes an explanatory string and a callback function
+- Callback makes calls to `it`, which takes:
   - An explanatory string
-  - A callback function whose single parameter is a test object
-  - Must call `t.end()` to signal the end of the test,
-    since some of the test code might involve callbacks
-- Run with `node does-it-run.js`
+  - A callback that receives a function (called `done` by convention)
+  - Call `done` to signal the end of the test
+- Run with `./node_modules/.bin/mocha path/to/test.js`
 
 ```output
-TAP version 13
-# first test
+  first test
+    ✓ should run without errors
 
-1..0
-# tests 0
-# pass  0
 
-# ok
+  1 passing (12ms)
+```
+
+- Normally put the command in `package.json`
+  - Which automatically puts `./node_modules/.bin` in the path
+
+<!-- @package.json -->
+```js
+{
+  …
+  "scripts": {
+    …
+    "test": "mocha",
+    …
+  }
+}
+```
+
+- and then:
+
+```sh
+npm test -- path/to/test.js
 ```
 
 ## Refactoring
@@ -95,29 +112,32 @@ module.exports = app
 - Now add a test for our server
 - Use `supertest` to interact with the server
 
-<!-- @src/testing/make-request.js -->
+<!-- @src/testing/request-test.js -->
 ```js
-const test = require('tape')
+const assert = require('assert')
 const request = require('supertest')
 const server = require('./server')
 
-test('Home page is HTML with expected title', (t) => {
-  request(server)
-    .get('/')
-    .expect('Content-Type', /html/)
-    .expect(200)
-    .end((err, res) => {
-      t.ok(res.text.includes('Home'), 'Has expected title')
-      t.ok(res.text.includes('Should not contain this'), 'Has unexpected text')
-      t.end()
-    })
+describe('server', () => {
+
+  it('should return HTML with expected title', (done) => {
+    request(server)
+      .get('/')
+      .expect('Content-Type', /html/)
+      .expect(200)
+      .end((err, res) => {
+        assert(res.text.includes('Home'), 'Has expected title')
+        assert(!res.text.includes('Should not contain this'), 'Has unexpected text')
+        done()
+      })
+  })
 })
 ```
 
 - `server` is our server code
 - `request(server)` starts building up a request to send
 - `.get('/')` specifies the path
-- `.expect('Content-Type', /html/)` checks the content type against a regular expression
+- `.expect('Content-Type', /html/)` checks the content type against a [regular expression]({{'/gloss/#regular-expression'|absolute_url}})
 - `.expect(200)` checks that the return code is 200 (OK)
 - `.end` is called when the whole response has been received
   - We really should check `err`
@@ -126,79 +146,64 @@ test('Home page is HTML with expected title', (t) => {
   - And just to prove that tests don't automatically pass,
     check for something it *shouldn't* contain
   - Always make sure the equipment is switched on…
-- Then call `t.end()` to signal the end of the test
+- Then call `done()` to signal the end of the test
   - Because there's no telling when the outer `.end(…)` will be called
 - Run it
 
 ```output
-TAP version 13
-# Home page is HTML with expected title
-ok 1 Has expected title
-not ok 2 Has unexpected text
-  ---
-    operator: ok
-    expected: true
-    actual:   false
-    at: Test.request.get.expect.expect.end (/project/src/testing/make-request.js:12:9)
-  ...
+  server
+    ✓ should return HTML with expected title (48ms)
 
-1..2
-# tests 2
-# pass  1
-# fail  1
+
+  1 passing (58ms)
 ```
 
 - Add more tests
 
-<!-- @src/testing/make-request.js -->
+<!-- @src/testing/request-test.js -->
 ```js
-test('Asteroids page is HTML with expected title', (t) => {
-  request(server)
-    .get('/asteroids')
-    .expect('Content-Type', /html/)
-    .expect(200)
-    .end((err, res) => {
-      t.ok(res.text.includes('Asteroids'), 'Has expected title')
-      t.end()
-    })
-})
+describe('server', () => {
 
-test('Other page is missing', (t) => {
-  request(server)
-    .get('/other')
-    .expect(404)
-    .end((err, res) => {
-      t.ok(res.text.includes('ERROR'), 'Has expected error message')
-      t.end()
-    })
+  it('should return HTML with expected title', (done) => {
+    …
+  })
+
+  it('should return asteroids page as HTML with expected title', (done) => {
+    request(server)
+      .get('/asteroids')
+      .expect('Content-Type', /html/)
+      .expect(200)
+      .end((err, res) => {
+        assert(res.text.includes('Asteroids'), 'Has expected title')
+        done()
+      })
+  })
+
+  it('should 404 for other pages', (done) => {
+    request(server)
+      .get('/other')
+      .expect(404)
+      .end((err, res) => {
+        assert(res.text.includes('ERROR'), 'Has expected error message')
+        done()
+      })
+  })
 })
 ```
 ```output
-TAP version 13
-# Home page is HTML with expected title
-ok 1 Has expected title
-not ok 2 Has unexpected text
-  ---
-    operator: ok
-    expected: true
-    actual:   false
-    at: Test.request.get.expect.expect.end (/project/src/testing/make-request.js:12:9)
-  ...
-# Asteroids page is HTML with expected title
-ok 3 Has expected title
-# Other page is missing
-ok 4 Has expected error message
+  server
+    ✓ should return HTML with expected title (42ms)
+    ✓ should return asteroids page as HTML with expected title
+    ✓ should 404 for other pages
 
-1..4
-# tests 4
-# pass  3
-# fail  1
+
+  3 passing (62ms)
 ```
 
 ## Checking the HTML
 
-- More and more common to serve data for rendering by the client
-- But still sometimes have servers generate HTML
+- Increasingly common to serve data for rendering by the client
+- But some servers still generate HTML
 - Do *not* try to check this with substrings or regular expressions
   - The exceptions have exceptions
 - Instead, parse it to create a structure in memory and check that
@@ -212,37 +217,34 @@ ok 4 Has expected error message
   - Resulting object can be used like a function
   - Can use [selectors]({{'/gloss/#selector'|absolute_url}}) to find things in it
 
-<!-- @src/testing/check-dom.js -->
+<!-- @src/testing/dom-test.js -->
 ```js
-const test = require('tape')
+const assert = require('assert')
 const request = require('supertest')
 const cheerio = require('cheerio')
 const server = require('./server')
 
-test('Home page is HTML with expected title', (t) => {
-  request(server)
-    .get('/')
-    .expect('Content-Type', /html/)
-    .expect(200)
-    .end((err, res) => {
-      const tree = cheerio.load(res.text)
-      t.ok(tree('h1').length === 1, 'Correct number of headings')
-      t.ok(tree('h1').text() === 'Home', 'Correct heading text')
-      t.end()
-    })
+describe('server', () => {
+  it('should have the correct headings', (done) => {
+    request(server)
+      .get('/')
+      .expect('Content-Type', /html/)
+      .expect(200)
+      .end((err, res) => {
+        const tree = cheerio.load(res.text)
+        assert.equal(tree('h1').length, 1, 'Correct number of headings')
+        assert.equal(tree('h1').text(), 'Home', 'Correct heading text')
+        done()
+      })
+  })
 })
 ```
 ```output
-TAP version 13
-# Home page is HTML with expected title
-ok 1 Correct number of headings
-ok 2 Correct heading text
+  server
+    ✓ should have the correct headings (67ms)
 
-1..2
-# tests 2
-# pass  2
 
-# ok
+  1 passing (77ms)
 ```
 
 - Get the page as before
