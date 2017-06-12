@@ -1,6 +1,6 @@
 ---
 layout: base
 ---
-{% include questions.html %}
+{% include listblock.html title="Questions" items=page.questions class="questions" %}
 {{content}}
-{% include keypoints.html %}
+{% include listblock.html title="Key Points" items=page.keypoints class="keypoints" %}
