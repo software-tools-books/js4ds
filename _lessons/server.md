@@ -1,21 +1,6 @@
 ---
 layout: page
 permalink: "/server/"
-questions:
-- "How do browsers and servers communicate?"
-- "What tools can I use to create a data server in JavaScript?"
-- "How can I tell a server to handle different URLs differently?"
-- "How can I serve files from disk?"
-- "How does a server specify the type of data it's sending?"
-- "How can I add new abilities to a server without rewriting it?"
-keypoints:
-- "An HTTP request or response consists of a plain-text header and an optional body."
-- "HTTP is a stateless protocol."
-- "Express provides a simple path-based JavaScript server."
-- "Write callback functions to handle requests matching specified paths."
-- "Provide a default handler for unrecognized requests."
-- "Use `Content-Type` to specify the type of data being returned."
-- "Use dynamic loading to support plugin extensions."
 ---
 
 - HTTP request/response cycle

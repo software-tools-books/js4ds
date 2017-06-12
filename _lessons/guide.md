@@ -2,16 +2,9 @@
 layout: page
 permalink: "/guide/"
 ---
-
-{% for toc in site.toc %}
-{% for lesson in site.lessons %}
-{% if toc.permalink == lesson.permalink %}
-<h2><a href="{{toc.permalink | absolute_url}}">{{toc.title}}</a></h2>
-<ul>
-  {% for item in lesson.questions %}
-  <li>{{item}}</li>{% endfor %}
-</ul>
-{% break %}
+{% for item in site.toc %}
+{% if item.lesson %}
+{% capture heading %}<a href="{{item.permalink | absolute_url}}">{{item.title}}</a>{% endcapture %}
+{% include listblock.html title=heading items=item.keypoints class="guide" %}
 {% endif %}
-{% endfor %}
 {% endfor %}

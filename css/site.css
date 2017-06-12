@@ -1,7 +1,10 @@
-div.questions {
-  background-color: #F0F0F0
+div.guide {
 }
 
 div.keypoints {
+  background-color: #F0F0F0
+}
+
+div.questions {
   background-color: #F0F0F0
 }

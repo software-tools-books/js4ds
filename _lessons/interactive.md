@@ -1,20 +1,6 @@
 ---
 layout: page
 permalink: "/interactive/"
-questions:
-- "How do I tell the browser what to do when someone clicks a button?"
-- "How should I structure my code to make interactions manageable?"
-- "How can a web application get data from a server?"
-- "How does modern JavaScript handle asynchronous operations?"
-keypoints:
-- "Define event handlers to specify what actions the browser should take when the user interacts with an application."
-- "The browser passes event objects containing details of events to event handlers."
-- "Use classes to keep state and event handlers together."
-- "React calls a class's `render` to display it."
-- "Separate models (which store data) from views (which display it)."
-- "Use `fetch` to get data from servers."
-- "Use destructuring to get individual members from an object in a single step."
-- "Modern JavaScript uses promises to manage asynchronous activities."
 ---
 
 - Browsers allow us to define [event handlers]({{'/gloss/#event-handler'|absolute_url}}) to specify what to do in response to a user action

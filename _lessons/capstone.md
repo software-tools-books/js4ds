@@ -1,10 +1,6 @@
 ---
 layout: page
 permalink: "/capstone/"
-questions:
-- FIXME
-keypoints:
-- FIXME
 ---
 
 FIXME
