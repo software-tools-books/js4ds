@@ -1,5 +1,5 @@
 ---
-layout: lesson
+layout: page
 permalink: "/server/"
 questions:
 - "How do browsers and servers communicate?"

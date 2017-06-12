@@ -1,5 +1,5 @@
 ---
-layout: lesson
+layout: page
 permalink: "/display/"
 questions:
 - "What JavaScript libraries should I use to create a web pages?"

@@ -1,5 +1,5 @@
 ---
-layout: lesson
+layout: page
 permalink: "/callbacks/"
 questions:
 - "What happens when a function is defined?"

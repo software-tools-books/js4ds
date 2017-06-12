@@ -1,5 +1,5 @@
 ---
-layout: lesson
+layout: page
 permalink: "/interactive/"
 questions:
 - "How do I tell the browser what to do when someone clicks a button?"

@@ -1,5 +1,5 @@
 ---
-layout: lesson
+layout: page
 permalink: "/database/"
 questions:
 - "What options do modern applications have for storing data?"

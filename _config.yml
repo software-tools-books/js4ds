@@ -40,10 +40,10 @@ toc:
   title: Visualizing Data with D3
 - permalink: /capstone/
   title: Capstone Project
-- permalink: /guide/
-  title: Guide
 - permalink: /legacy/
   title: Legacy JavaScript Issues
+- permalink: /guide/
+  title: Guide
 - permalink: /gloss/
   title: Glossary
 - permalink: /refs/

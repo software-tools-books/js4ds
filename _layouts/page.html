@@ -36,7 +36,9 @@
         <div class="span10 offset1">
           {% include nav.html copyright=false previous=previous.permalink next=next.permalink %}
           {% if this %}<h1>{{this.title}}</h1>{% endif %}
+          {% unless page.manual %}{% include listblock.html title="Questions" items=page.questions class="questions" %}{% endunless %}
 {{content}}
+          {% unless page.manual %}{% include listblock.html title="Key Points" items=page.keypoints class="keypoints" %}{% endunless %}
           {% include nav.html copyright=true previous=previous.permalink next=next.permalink %}
         </div>
       </div>

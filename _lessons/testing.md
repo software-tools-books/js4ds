@@ -1,5 +1,5 @@
 ---
-layout: lesson
+layout: page
 permalink: "/testing/"
 questions:
 - "How should software components be tested?"

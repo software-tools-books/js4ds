@@ -1,5 +1,5 @@
 ---
-layout: misc
+layout: page
 permalink: "/conduct/"
 ---
 As contributors to and maintainers of this project, we pledge to

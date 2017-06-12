@@ -1,5 +1,5 @@
 ---
-layout: lesson
+layout: page
 permalink: "/htmlcss/"
 questions:
 - "Where did HTML come from?"

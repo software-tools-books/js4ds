@@ -1,5 +1,5 @@
 ---
-layout: lesson
+layout: page
 permalink: "/intro/"
 questions:
 - "Why is this course called 'versus'?"

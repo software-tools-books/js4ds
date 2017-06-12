@@ -1,5 +1,5 @@
 ---
-layout: lesson
+layout: page
 permalink: "/oop/"
 questions:
 - FIXME

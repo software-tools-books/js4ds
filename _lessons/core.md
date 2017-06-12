@@ -1,5 +1,5 @@
 ---
-layout: lesson
+layout: page
 permalink: "/core/"
 questions:
 - "How can I execute short snippets of JavaScript interactively?"
