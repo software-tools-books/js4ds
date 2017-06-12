@@ -2,15 +2,25 @@
 layout: lesson
 permalink: "/database/"
 questions:
-- FIXME
+- "What options do modern applications have for storing data?"
+- "Where can I find a quick introduction to relational databases?"
+- "How can a JavaScript program get information out of a relational database?"
+- "How is the data returned by the database formatted?"
+- "How can I make database-backed applications testable?"
 keypoints:
-- FIXME
+- "Relational databases store data in tables made up of fields (columns) and records (rows)."
+- "Programs interact with relational databases using SQL queries."
+- "Non-relational databases store data as JSON-like data structures."
+- "Basic SQL queries select and filter data."
+- "JavaScript programs send SQL queries to a database and get the results as a list of lists."
+- "Using an in-memory database to make tests faster and ensure that they are isolated."
+- "Use callbacks to handle the results of queries."
 ---
 
 - Put a database under our web service
 - Many options these days
-  - FIXME: quick explanation of differences between SQL and NoSQL
-  - FIXME: pointer to SQL tutorial
+  - FIXME-37: quick explanation of differences between SQL and NoSQL
+  - FIXME-38: pointer to SQL tutorial
 
 <!-- @src/database/fixture.sql -->
 ```sql
@@ -429,3 +439,7 @@ test('Can only get workshops that exist', (t) => {
 - Now that we have something testable, we can develop in very short iterations
 - Add a method, write some tests, make sure nothing broke
 - Doesn't have to be test-first (although that often helps clarify design thinking)
+
+## Challenges
+
+FIXME-39: write challenges for database lesson.
