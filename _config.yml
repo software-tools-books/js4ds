@@ -212,13 +212,6 @@ toc:
   - "JavaScript programs send SQL queries to a database and get the results as a list of lists."
   - "Using an in-memory database to make tests faster and ensure that they are isolated."
   - "Use callbacks to handle the results of queries."
-- permalink: /stack/
-  title: A Full Application Stack
-  lesson: true
-  questions:
-  - FIXME
-  keypoints:
-  - FIXME
 - permalink: /viz/
   title: Visualizing Data with D3
   lesson: true
