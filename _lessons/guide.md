@@ -5,6 +5,6 @@ permalink: "/guide/"
 {% for item in site.toc %}
 {% if item.lesson %}
 {% capture heading %}<a href="{{item.permalink | absolute_url}}">{{item.title}}</a>{% endcapture %}
-{% include listblock.html title=heading items=item.keypoints class="guide" %}
+{% include inc/listblock.html title=heading items=item.keypoints class="guide" %}
 {% endif %}
 {% endfor %}

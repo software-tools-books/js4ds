@@ -7,4 +7,4 @@ manual: true
   <h1>{{site.title}}</h1>
   <p>{{site.subtitle}}</p>
 </div>
-{% include toc.html %}
+{% include inc/toc.html %}
