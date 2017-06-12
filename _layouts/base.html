@@ -1,9 +1,21 @@
+{% assign previous = null %}
+{% assign next = null %}
+{% assign this = null %}
+{% assign title = null %}
 {% unless page.manual %}
   {% for item in site.toc  %}
     {% if item.permalink == page.permalink %}
+      {% assign this = item %}
       {% assign title = item.title %}
+      {% unless forloop.first %}
+        {% assign previous = previous_item %}
+      {% endunless %}
+      {% unless forloop.last %}
+        {% assign next = site.toc[forloop.index] %}
+      {% endunless %}
       {% break %}
     {% endif %}
+    {% assign previous_item = item %}
   {% endfor %}
 {% endunless %}
 <!DOCTYPE HTML>
@@ -16,16 +28,16 @@
     <link href="{{'/css/syntax.css' | absolute_url}}" rel="stylesheet" />
     <link href="{{'/css/site.css' | absolute_url}}" rel="stylesheet" />
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-    <title>{{site.title}}{% if title %}: {{title}}{% endif %}</title>
+    <title>{{site.title}}{% if this %}: {{this.title}}{% endif %}</title>
   </head>
   <body>
     <div class="container shadow">
       <div class="row-fluid">
         <div class="span10 offset1">
-          {% include navbar.html %}
-          {% if title %}<h1>{{title}}</h1>{% endif %}
+          {% include nav.html copyright=false previous=previous.permalink next=next.permalink %}
+          {% if this %}<h1>{{this.title}}</h1>{% endif %}
 {{content}}
-          {% include footer.html %}
+          {% include nav.html copyright=true previous=previous.permalink next=next.permalink %}
         </div>
       </div>
     </div>

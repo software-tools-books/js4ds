@@ -1,0 +1,39 @@
+<div align="center">
+  {% if include.copyright %}<hr/>{% endif %}
+  {% unless page.manual %}
+    <div class="row">
+      <span class="col-md-2" align="left">
+        {% if include.previous %}
+          <a class="nav-link" href="{{include.previous|absolute_url}}">Previous</a>
+        {% else %}
+          <a class="nav-link" href="{{'/'|absolute_url}}">Up</a>
+        {% endif %}
+      </span>
+      <span class="col-md-8" align="center">
+        <em>
+          <a href="{{'/'|absolute_url}}">JavaScript versus Research Computing</a>
+        </em>
+      </span>
+      <span class="col-md-2" align="right">
+        {% if include.next %}
+          <a class="nav-link" href="{{include.next|absolute_url}}">Next</a>
+        {% else %}
+          <a class="nav-link" href="{{'/'|absolute_url}}">Up</a>
+        {% endif %}
+      </span>
+    </div>
+  {% endunless %}
+  {% if include.copyright %}
+  <div class="row">
+    <span class="col-md-2" align="left">
+    </span>
+    <span class="col-md-8" align="center">
+      <em>
+        &copy; 2017 Greg Wilson - see <a href="{{'/license/'|absolute_url}}">the license</a> for terms of use.
+      </em>
+    </span>
+    <span class="col-md-2" align="right">
+    </span>
+  </div>
+  {% endif %}
+</div>
