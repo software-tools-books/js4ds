@@ -16,7 +16,7 @@ collections:
 toc:
 - permalink: /intro/
   title: Introduction
-  lesson: true
+  type: lesson
   questions:
   - "Why is this course called 'versus'?"
   - "What are the main topics of this course?"
@@ -27,7 +27,7 @@ toc:
   - "This course is for people who know what loops and functions are, but have never used JavaScript or built web applications."
 - permalink: /core/
   title: Core Features of Modern JavaScript
-  lesson: true
+  type: lesson
   questions:
   - "How can I execute short snippets of JavaScript interactively?"
   - "How can I run small JavaScript programs from the command line?"
@@ -67,7 +67,7 @@ toc:
   - "Paths beginning with '.' are imported locally, but paths without '.' look in the library."
 - permalink: /callbacks/
   title: Programming with Callbacks
-  lesson: true
+  type: lesson
   questions:
   - "What happens when a function is defined?"
   - "How can I pass a function to another function?"
@@ -89,7 +89,7 @@ toc:
   - "A closure is a set of variables captured during the definition of a function."
 - permalink: /htmlcss/
   title: HTML and CSS
-  lesson: true
+  type: lesson
   questions:
   - "Where did HTML come from?"
   - "What kinds of things can HTML pages contain?"
@@ -114,7 +114,7 @@ toc:
   - "Use selectors to specify the elements that CSS applies to."
 - permalink: /display/
   title: Building Static Web Pages with React
-  lesson: true
+  type: lesson
   questions:
   - "What JavaScript libraries should I use to create a web pages?"
   - "How can I use them to create basic HTML elements?"
@@ -135,14 +135,14 @@ toc:
   - "Use Node's `http-server` to load scripts from files during development."
 - permalink: /oop/
   title: Object-Oriented Programming
-  lesson: true
+  type: lesson
   questions:
   - FIXME
   keypoints:
   - FIXME
 - permalink: /interactive/
   title: Making Web Pages Interactive
-  lesson: true
+  type: lesson
   questions:
   - "How do I tell the browser what to do when someone clicks a button?"
   - "How should I structure my code to make interactions manageable?"
@@ -159,7 +159,7 @@ toc:
   - "Modern JavaScript uses promises to manage asynchronous activities."
 - permalink: /server/
   title: Building Data Services with Express
-  lesson: true
+  type: lesson
   questions:
   - "How do browsers and servers communicate?"
   - "What tools can I use to create a data server in JavaScript?"
@@ -177,7 +177,7 @@ toc:
   - "Use dynamic loading to support plugin extensions."
 - permalink: /testing/
   title: Testing
-  lesson: true
+  type: lesson
   questions:
   - "How should software components be tested?"
   - "What tools can I use to test JavaScript programs?"
@@ -197,7 +197,7 @@ toc:
   - "Check the structure of the DOM rather than the textual representation of the HTML when testing."
 - permalink: /database/
   title: Using a Database
-  lesson: true
+  type: lesson
   questions:
   - "What options do modern applications have for storing data?"
   - "Where can I find a quick introduction to relational databases?"
@@ -214,40 +214,40 @@ toc:
   - "Use callbacks to handle the results of queries."
 - permalink: /viz/
   title: Visualizing Data with D3
-  lesson: true
+  type: lesson
   questions:
   - FIXME
   keypoints:
   - FIXME
 - permalink: /capstone/
   title: Capstone Project
-  lesson: true
+  type: lesson
   questions:
   - FIXME
   keypoints:
   - FIXME
 - permalink: /legacy/
   title: Legacy JavaScript Issues
-  lesson: true
+  type: lesson
   questions:
   - FIXME
   keypoints:
   - FIXME
 - permalink: /guide/
   title: Guide
-  lesson: false
+  type: misc
 - permalink: /gloss/
   title: Glossary
-  lesson: false
+  type: misc
 - permalink: /refs/
   title: References
-  lesson: false
+  type: misc
 - permalink: /license/
   title: License
-  lesson: false
+  type: misc
 - permalink: /conduct/
   title: Code of Conduct
-  lesson: false
+  type: misc
 - permalink: /contributing/
   title: Contributing
-  lesson: false
+  type: misc

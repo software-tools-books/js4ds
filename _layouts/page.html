@@ -36,9 +36,9 @@
         <div class="span10 offset1">
           {% include inc/nav.html copyright=false previous=previous.permalink next=next.permalink %}
           {% if this %}<h1>{{this.title}}</h1>{% endif %}
-          {% if this.lesson %}{% include inc/listblock.html title="Questions" items=this.questions class="questions" %}{% endif %}
+          {% if this.type == "lesson" %}{% include inc/listblock.html title="Questions" items=this.questions class="questions" %}{% endif %}
 {{content}}
-          {% if this.lesson %}{% include inc/listblock.html title="Key Points" items=this.keypoints class="keypoints" %}{% endif %}
+          {% if this.type == "lesson" %}{% include inc/listblock.html title="Key Points" items=this.keypoints class="keypoints" %}{% endif %}
           {% include inc/nav.html copyright=true previous=previous.permalink next=next.permalink %}
         </div>
       </div>
