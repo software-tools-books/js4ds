@@ -14,44 +14,36 @@ div.questions {
   color: #FFFFFF;
   position: absolute;
   right: -250px;
-  top:0;
+  top: 0;
   width: 250px;
-  height:100%;
-  min-height:100%;
+  height: 100%;
+  min-height: 100%;
   padding-top: 10px;
   transition: right 300ms;
   overflow: hidden;
   box-sizing: border-box;
-  z-index:3;
+  z-index: 3;
 }
 
 #toggle {
-  position:absolute;
-  appearance:none;
-  cursor:pointer;
-  left:-100%;
-  top:-100%;
+  position: absolute;
+  appearance: none;
+  cursor: pointer;
+  left: -100%;
+  top: -100%;
 }
 
 #toggle + label {
-  position:absolute;
-  cursor:pointer;
-  padding:10px;
-  width: 30px;
-  border-radius: 3px;
-  padding:10px 0 0 0;
-  color: #333;
-  line-height:20px;
-  font-size:12px;
-  text-align:center;
-  -webkit-font-smoothing: antialiased;
+  position: absolute;
   cursor: pointer;
-  margin:20px 50px;
+  padding-left: 5px;
+  text-align: center;
+  cursor: pointer;
 }
 
 #toggle + label:after {
-  content:'\233D';
-  font-size:32px;
+  content: '\2261';
+  font-size: 1.5em;
 }
 
 .container {
@@ -60,10 +52,9 @@ div.questions {
 
 #toggle:checked ~ .message {
   right: 0;
-  box-shadow: 0 0 50px #666;
 }
 
 #toggle:checked + label:after {
-  content:'\2A01';
-  font-size:32px;
+  content: '\2262';
+  font-size: 1.5em;
 }
