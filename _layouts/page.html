@@ -31,6 +31,8 @@
     <title>{{site.title}}{% if this %}: {{this.title}}{% endif %}</title>
   </head>
   <body>
+    <input type="checkbox" name="toggle" id="toggle" />
+    <label for="toggle"></label>
     <div class="container">
       {% include inc/nav.html copyright=false previous=previous.permalink next=next.permalink %}
       {% if this %}<h1>{{this.title}}</h1>{% endif %}
@@ -38,6 +40,14 @@
 {{content}}
       {% if this.type == "lesson" %}{% include inc/listblock.html title="Key Points" items=this.keypoints class="keypoints" %}{% endif %}
       {% include inc/nav.html copyright=true previous=previous.permalink next=next.permalink %}
+    </div>
+    <div class="message">
+      <ul>
+        <li>first</li>
+        <li>first</li>
+        <li>first</li>
+        <li>first</li>
+      </ul>
     </div>
   </body>
 </html>
