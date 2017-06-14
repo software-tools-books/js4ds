@@ -52,7 +52,7 @@ rectangle: area 6 perimeter 10
   - Building every object by hand is painful
   - Calling `it.function(it)` is clumsy
 - JavaScript solved these problems using [prototypes]({{'/gloss/#prototype'|absolute_url}})
-  - Which turned out to be [clumsy and confusing]('/legacy/#prototypes'|absolute_url)
+  - Which turned out to be [clumsy and confusing]({{'/legacy/#prototypes'|absolute_url}})
 - Most object-oriented languages use [classes]({{'/gloss/#class'|absolute_url}})
   - These have been added to JavaScript ES6
   - We will only use them

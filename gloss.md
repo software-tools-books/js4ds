@@ -18,6 +18,9 @@ permalink: "/gloss/"
 *   **Cascading Style Sheets**:
     <a name="css"></a>
 
+*   **class**:
+    <a name="class"></a>
+
 *   **client-side page generation**:
     <a name="client-side-page-generation"></a>
 
@@ -78,11 +81,17 @@ permalink: "/gloss/"
 *   **object**:
     <a name="object"></a>
 
-*   **parameters**:
+*   **parameter**:
     <a name="parameter"></a>
+
+*   **polymorphism**:
+    <a name="polymoprhism"></a>
 
 *   **promise**:
     <a name="promise"></a>
+
+*   **prototype**:
+    <a name="prototype"></a>
 
 *   **property**:
     <a name="property"></a>
