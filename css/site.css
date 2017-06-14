@@ -50,8 +50,8 @@ div.questions {
 }
 
 #toggle + label:after {
-  content: "<<";
-  font-size:20px;
+  content:'\233D';
+  font-size:32px;
 }
 
 .container {
@@ -64,6 +64,6 @@ div.questions {
 }
 
 #toggle:checked + label:after {
-  content:">>";
-  font-size:20px;
+  content:'\2A01';
+  font-size:32px;
 }
