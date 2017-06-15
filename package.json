@@ -18,7 +18,7 @@
     "dev": "NODE_ENV=development webpack-dev-server",
     "start": "react-scripts start",
     "test": "mocha",
-    "words": "bin/wc.js *.md _lessons/*.md"
+    "words": "bin/wc.js *.md"
   },
   "repository": {
     "type": "git",
@@ -51,6 +51,7 @@
     "eslint-plugin-standard": "^3.0.1",
     "express-winston": "^2.4.0",
     "http-server": "^0.10.0",
+    "marked": "^0.3.6",
     "mocha": "^3.4.2",
     "node": "0.0.0",
     "react": "^15.5.4",
