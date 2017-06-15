@@ -34,15 +34,15 @@
     <input type="checkbox" name="toggle" id="toggle" />
     <label for="toggle"></label>
     <div class="container">
-      {% include inc/nav.html copyright=false previous=previous.permalink next=next.permalink %}
+      {% include nav.html copyright=false previous=previous.permalink next=next.permalink %}
       {% if this %}<h1>{{this.title}}</h1>{% endif %}
-      {% if this.type == "lesson" %}{% include inc/listblock.html title="Questions" items=this.questions class="questions" %}{% endif %}
+      {% if this.type == "lesson" %}{% include listblock.html title="Questions" items=this.questions class="questions" %}{% endif %}
 {{content}}
-      {% if this.type == "lesson" %}{% include inc/listblock.html title="Key Points" items=this.keypoints class="keypoints" %}{% endif %}
-      {% include inc/nav.html copyright=true previous=previous.permalink next=next.permalink %}
+      {% if this.type == "lesson" %}{% include listblock.html title="Key Points" items=this.keypoints class="keypoints" %}{% endif %}
+      {% include nav.html copyright=true previous=previous.permalink next=next.permalink %}
     </div>
     <div class="message">
-{% include inc/toc.html %}
+{% include toc.html %}
     </div>
   </body>
 </html>
