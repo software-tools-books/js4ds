@@ -3,140 +3,140 @@ layout: page
 permalink: "/gloss/"
 ---
 
-*   **anonymous function**:
-    <a name="anonymous-function"></a>
+* **anonymous function**:
+  <a id="anonymous-function"></a>
 
-*   **array**:
-    <a name="array"></a>
+* **array**:
+  <a id="array"></a>
 
-*   **attribute**:
-    <a name="attribute"></a>
+* **attribute**:
+  <a id="attribute"></a>
 
-*   **callback function**:
-    <a name="callback-function"></a>
+* **callback function**:
+  <a id="callback-function"></a>
 
-*   **Cascading Style Sheets**:
-    <a name="css"></a>
+* **Cascading Style Sheets**:
+  <a id="css"></a>
 
-*   **class**:
-    <a name="class"></a>
+* **class**:
+  <a id="class"></a>
 
-*   **client-side page generation**:
-    <a name="client-side-page-generation"></a>
+* **client-side page generation**:
+  <a id="client-side-page-generation"></a>
 
-*   **closure**:
-    <a name="closure"></a>
+* **closure**:
+  <a id="closure"></a>
 
-*   **constant**:
-    <a name="constant"></a>
+* **constant**:
+  <a id="constant"></a>
 
-*   **destructuring**:
-    <a name="destructuring"></a>
+* **destructuring**:
+  <a id="destructuring"></a>
 
-*   **document**:
-    <a name="document"></a>
+* **document**:
+  <a id="document"></a>
 
-*   **Document Object Model**:
-    <a name="dom"></a>
+* **Document Object Model**:
+  <a id="dom"></a>
 
-*   **dotted notation**:
-    <a name="dotted-notation"></a>
+* **dotted notation**:
+  <a id="dotted-notation"></a>
 
-*   **event handler**:
-    <a name="event-handler"></a>
+* **event handler**:
+  <a id="event-handler"></a>
 
-*   **event object**:
-    <a name="event-object"></a>
+* **event object**:
+  <a id="event-object"></a>
 
-*   **extend**:
-    <a name="extend"></a>
+* **extend**:
+  <a id="extend"></a>
 
-*   **falsy**:
-    <a name="falsy"></a>
+* **falsy**:
+  <a id="falsy"></a>
 
-*   **fat arrow functions**:
-    <a name="far-arrow-function"></a>
+* **fat arrow functions**:
+  <a id="far-arrow-function"></a>
 
-*   **functional programming**:
-    <a name="functional-programming"></a>
+* **functional programming**:
+  <a id="functional-programming"></a>
 
-*   **global variable**:
-    <a name="global-variable"></a>
+* **global variable**:
+  <a id="global-variable"></a>
 
-*   **heterogeneous**:
-    <a name="heterogeneous"></a>
+* **heterogeneous**:
+  <a id="heterogeneous"></a>
 
-*   **higher-order function**:
-    <a name="higher-order-function"></a>
+* **higher-order function**:
+  <a id="higher-order-function"></a>
 
-*   **in-memory database**:
-    <a name="in-memory-database"></a>
+* **in-memory database**:
+  <a id="in-memory-database"></a>
 
-*   **inherit**:
-    <a name="inherit"></a>
+* **inherit**:
+  <a id="inherit"></a>
 
-*   **local variable**:
-    <a name="local-variable"></a>
+* **local variable**:
+  <a id="local-variable"></a>
 
-*   **memory diagram**:
-    <a name="memory-diagram"></a>
+* **memory diagram**:
+  <a id="memory-diagram"></a>
 
-*   **method**:
-    <a name="method"></a>
+* **method**:
+  <a id="method"></a>
 
-*   **module**:
-    <a name="module"></a>
+* **module**:
+  <a id="module"></a>
 
-*   **object**:
-    <a name="object"></a>
+* **object**:
+  <a id="object"></a>
 
-*   **parameter**:
-    <a name="parameter"></a>
+* **parameter**:
+  <a id="parameter"></a>
 
-*   **polymorphism**:
-    <a name="polymoprhism"></a>
+* **polymorphism**:
+  <a id="polymoprhism"></a>
 
-*   **promise**:
-    <a name="promise"></a>
+* **promise**:
+  <a id="promise"></a>
 
-*   **prototype**:
-    <a name="prototype"></a>
+* **prototype**:
+  <a id="prototype"></a>
 
-*   **property**:
-    <a name="property"></a>
+* **property**:
+  <a id="property"></a>
 
-*   **regular expression**:
-    <a name="regular-expression"></a>
+* **regular expression**:
+  <a id="regular-expression"></a>
 
-*   **responsive design**:
-    <a name="responsive-design"></a>
+* **responsive design**:
+  <a id="responsive-design"></a>
 
-*   **scope**:
-    <a name="scope"></a>
+* **scope**:
+  <a id="scope"></a>
 
-*   **selector**:
-    <a name="selector"></a>
+* **selector**:
+  <a id="selector"></a>
 
-*   **server-side page generation**:
-    <a name="server-side-page-generation"></a>
+* **server-side page generation**:
+  <a id="server-side-page-generation"></a>
 
-*   **string**:
-    <a name="string"></a>
+* **string**:
+  <a id="string"></a>
 
-*   **tag**:
-    <a name="tag"></a>
+* **tag**:
+  <a id="tag"></a>
 
-*   **template**:
-    <a name="template"></a>
+* **template**:
+  <a id="template"></a>
 
-*   **truthiness**:
-    <a name="truthiness"></a>
+* **truthiness**:
+  <a id="truthiness"></a>
 
-*   **Unicode**:
-    <a name="unicode"></a>
+* **Unicode**:
+  <a id="unicode"></a>
 
-*   **variable**:
-    <a name="variable"></a>
+* **variable**:
+  <a id="variable"></a>
 
-*   **XML**:
-    <a name="xml"></a>
+* **XML**:
+  <a id="xml"></a>

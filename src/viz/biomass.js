@@ -29,6 +29,5 @@ export default [
   {"day": 27, "biomass": 5.762891181649816},
   {"day": 28, "biomass": 3.685707131049541},
   {"day": 29, "biomass": 2.074051671494164},
-  {"day": 30, "biomass": 0},
-  {"day": 31, "biomass": 0}
+  {"day": 30, "biomass": 0}
 ]
