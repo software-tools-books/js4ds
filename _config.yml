@@ -144,6 +144,7 @@ toc:
   - "How can I create new classes from old?"
   - "How does JavaScript decide what to do when two classes define the same thing?"
   - "When should I create new classes and when should I combine existing ones?"
+  - "How can old code use new code?"
   keypoints:
   - "Create classes to define combinations of data and behavior."
   - "Use the class's constructor to initialize objects."
@@ -151,6 +152,7 @@ toc:
   - "Use polymorphism to express common behavior patterns."
   - "Extend existing classes to create new ones-sometimes."
   - "Override methods to change or extend their behavior."
+  - "Creating extensible systems by defining interfaces and protocols."
 - permalink: /interactive/
   title: Making Web Pages Interactive
   type: lesson

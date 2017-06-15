@@ -212,6 +212,112 @@ parent: Hello, my name is Hakim
 child: Hi, I'm Bhadra. Let me tell you about microbiology...
 ```
 
+## Protocols
+
+- Common use of object-oriented programming is to define a [protocol]({{'/guide/#protocol'|absolute_url}})
+  - Actions that objects might take are defined in methods
+  - Parent defines a method that invokes them at specific times or in a specific order
+  - "You will all follow this procedure, but you may follow it in different ways"
+
+- How does a generic bird behave throughout the year?
+
+<!-- @src/oop/protocol.js -->
+```js
+class Bird {
+  constructor (species) {
+    this.species = species
+  }
+
+  daily (season) {
+    return [
+      this.foraging(season),
+      this.mating(season),
+      this.nesting(season)
+    ]
+  }
+
+  foraging (season) {
+    return `${this.species} looks for food`
+  }
+
+  mating (season) {
+    let result = ''
+    if (season === 'fall') {
+      result = `${this.species} looks for a mate`
+    }
+    return result
+  }
+
+  nesting (season) {
+    // do nothing
+  }
+}
+```
+
+- `daily` defines the bird's overall behavior
+- `foraging`, `mating`, and `nesting` define default behaviors
+
+- How does a specific kind of bird behave?
+
+<!-- @src/oop/protocol.js -->
+```js
+class Penguin extends Bird {
+  constructor () {
+    super('penguin')
+    this.hasEgg = false
+  }
+
+  mating (season) {
+    if (season === 'fall') {
+      this.hasEgg = Math.random() < 0.5
+    }
+    return super.mating(season)
+  }
+
+  nesting (season) {
+    let result = ''
+    if (this.hasEgg && ((season === 'winter') || (season === 'spring'))) {
+      result = `${this.species} is nesting`
+      if (season === 'spring') {
+        this.hasEgg = false
+      }
+    }
+    return result
+  }
+}
+```
+
+- Has extra state (`this.hasEgg`)
+  - Calls parent constructor before setting this up
+- Doesn't override the default behavior for `foraging`
+- Extends the default behavior for `mating`
+- Replaces the default behavior for `nesting`
+
+- Result of some runs:
+
+```output
+in summer: penguin looks for food,,
+in fall: penguin looks for food,penguin looks for a mate,
+in winter: penguin looks for food,,
+in spring: penguin looks for food,,
+```
+
+- Result of other runs:
+
+```output
+in summer: penguin looks for food,,
+in fall: penguin looks for food,penguin looks for a mate,
+in winter: penguin looks for food,,penguin is nesting
+in spring: penguin looks for food,,penguin is nesting
+```
+
+- Different random numbers produce different behaviors
+  - Makes testing hard
+  - Look at how to address this in challenges
+- But main idea is how old code can use new code
+  - Old code defines expectations as an interface and a protocol
+  - New code implements that interface and respects that protocol
+
 ## Challenges
 
 FIXME-27: write challenges
