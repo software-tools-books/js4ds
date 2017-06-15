@@ -137,7 +137,13 @@ toc:
   title: Object-Oriented Programming
   type: lesson
   questions:
-  - FIXME
+  - "How can I use classes to keep code and data together?"
+  - "What are the benefits of doing this?"
+  - "How can I create an object from a class?"
+  - "How can I initialize that object?"
+  - "How can I create new classes from old?"
+  - "How does JavaScript decide what to do when two classes define the same thing?"
+  - "When should I create new classes and when should I combine existing ones?"
   keypoints:
   - FIXME
 - permalink: /interactive/
