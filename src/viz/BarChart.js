@@ -19,15 +19,15 @@ class BarChart extends Component {
   }
 
   createBarChart = () => {
-    const node = this.node
-    const dataMax = max(this.props.data.map(d => sum(d.data)))
-    const barWidth = this.props.size[0] / this.props.data.length
+    const dataMax = max(this.props.data.map(d => d.biomass))
+    const [xSize, ySize] = this.props.size
+    const barWidth = xSize / this.props.data.length
 
     const legend = legendColor()
       .scale(this.props.colorScale)
-      .labels(["Wave 1", "Wave 2", "Wave 3", "Wave 4"])
+      .labels(["Moult 1", "Moult 2", "Moult 3", "Moult 4"])
 
-    select(node)
+    select(this.node)
       .selectAll("g.legend")
       .data([0])
       .enter()
@@ -35,42 +35,42 @@ class BarChart extends Component {
       .attr("class", "legend")
       .call(legend)
 
-    select(node)
+    select(this.node)
       .select("g.legend")
-      .attr("transform", "translate(" + (this.props.size[0] - 100) + ", 20)")
+      .attr("transform", "translate(" + (xSize - 100) + ", 20)")
 
     const yScale = scaleLinear()
       .domain([0, dataMax])
-      .range([0, this.props.size[1]])
+      .range([0, ySize])
 
-    select(node)
+    select(this.node)
       .selectAll("rect.bar")
       .data(this.props.data)
       .enter()
       .append("rect")
       .attr("class", "bar")
 
-    select(node)
+    select(this.node)
       .selectAll("rect.bar")
       .data(this.props.data)
       .exit()
       .remove()
 
-    select(node)
+    select(this.node)
       .selectAll("rect.bar")
       .data(this.props.data)
-      .attr("x", (d,i) => i * barWidth)
-      .attr("y", d => this.props.size[1] - yScale(sum(d.data)))
-      .attr("height", d => yScale(sum(d.data)))
+      .attr("x", (d, i) => i * barWidth)
+      .attr("y", d => ySize - yScale(d.biomass))
+      .attr("height", d => yScale(d.biomass))
       .attr("width", barWidth)
-      .style("fill", (d,i) => this.props.colorScale(d.launchday))
+      .style("fill", (d, i) => this.props.colorScale(d.day))
       .style("stroke", "black")
       .style("stroke-opacity", 0.25)
   }
 
   render() {
-    return <svg ref={node => this.node = node} width={this.props.size[0]} height={this.props.size[1]}>
-    </svg>
+    const [xSize, ySize] = this.props.size
+    return <svg ref={(node) => {this.node = node}} width={xSize} height={ySize}></svg>
   }
 }
 
