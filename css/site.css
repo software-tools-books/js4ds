@@ -50,7 +50,7 @@ div.questions {
 }
 
 #toggle + label:after {
-  content:'\233D';
+  content:'\2630';
   font-size:32px;
 }
 
@@ -64,6 +64,6 @@ div.questions {
 }
 
 #toggle:checked + label:after {
-  content:'\2A01';
+  content:'\2630';
   font-size:32px;
 }
