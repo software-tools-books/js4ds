@@ -59,6 +59,7 @@ the type of function () { [native code] } is function
 - `for…of` loops over the values in an array
   - Note: "of" not "in"
   - The latter returns the indexes of the collection (e.g., 0, 1, 2)
+  - Which has some [traps]({{'/legacy/#iteration'|absolute_url}})
 - Use `const` to define a [constant]({{'/gloss/#constant'|absolute_url}})
 - `number`
   - JavaScript doesn't have separate types for integers and floating-point

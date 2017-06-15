@@ -18,6 +18,9 @@ permalink: "/gloss/"
 *   **Cascading Style Sheets**:
     <a name="css"></a>
 
+*   **class**:
+    <a name="class"></a>
+
 *   **client-side page generation**:
     <a name="client-side-page-generation"></a>
 
@@ -45,6 +48,9 @@ permalink: "/gloss/"
 *   **event object**:
     <a name="event-object"></a>
 
+*   **extend**:
+    <a name="extend"></a>
+
 *   **falsy**:
     <a name="falsy"></a>
 
@@ -66,11 +72,17 @@ permalink: "/gloss/"
 *   **in-memory database**:
     <a name="in-memory-database"></a>
 
+*   **inherit**:
+    <a name="inherit"></a>
+
 *   **local variable**:
     <a name="local-variable"></a>
 
 *   **memory diagram**:
     <a name="memory-diagram"></a>
+
+*   **method**:
+    <a name="method"></a>
 
 *   **module**:
     <a name="module"></a>
@@ -78,11 +90,17 @@ permalink: "/gloss/"
 *   **object**:
     <a name="object"></a>
 
-*   **parameters**:
+*   **parameter**:
     <a name="parameter"></a>
+
+*   **polymorphism**:
+    <a name="polymoprhism"></a>
 
 *   **promise**:
     <a name="promise"></a>
+
+*   **prototype**:
+    <a name="prototype"></a>
 
 *   **property**:
     <a name="property"></a>
