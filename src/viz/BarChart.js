@@ -1,3 +1,4 @@
+// Imports
 import React, { Component } from 'react'
 import { scaleLinear } from 'd3-scale'
 import { max, sum } from 'd3-array'
@@ -6,6 +7,8 @@ import { legendColor } from 'd3-svg-legend'
 import { transition } from 'd3-transition'
 
 class BarChart extends Component {
+
+  // Constructor and lifecycle methods
   constructor(props){
     super(props)
   }
@@ -19,10 +22,13 @@ class BarChart extends Component {
   }
 
   createBarChart = () => {
+
+    // Useful variables
     const dataMax = max(this.props.data.map(d => d.biomass))
     const [xSize, ySize] = this.props.size
     const barWidth = xSize / this.props.data.length
 
+    // Legend
     const legend = legendColor()
       .scale(this.props.colorScale)
       .labels(["Moult 1", "Moult 2", "Moult 3", "Moult 4"])
@@ -39,10 +45,12 @@ class BarChart extends Component {
       .select("g.legend")
       .attr("transform", "translate(" + (xSize - 100) + ", 20)")
 
+    // Y-axis scale
     const yScale = scaleLinear()
       .domain([0, dataMax])
       .range([0, ySize])
 
+    // Data entry and exit
     select(this.node)
       .selectAll("rect.bar")
       .data(this.props.data)
@@ -56,6 +64,7 @@ class BarChart extends Component {
       .exit()
       .remove()
 
+    // Creating the chart
     select(this.node)
       .selectAll("rect.bar")
       .data(this.props.data)
@@ -68,6 +77,7 @@ class BarChart extends Component {
       .style("stroke-opacity", 0.25)
   }
 
+  // Rendering
   render() {
     const [xSize, ySize] = this.props.size
     return <svg ref={(node) => {this.node = node}} width={xSize} height={ySize}></svg>

@@ -162,3 +162,177 @@ ReactDOM.render(
 ### Connecting the Wires
 
 - We've seen this before…
+
+## Bar Chart
+
+- Again, read end-to-end and take notes, then come back and answer questions
+
+<!-- @src/viz/BarChart.js -->
+```js
+// Imports
+import React, { Component } from 'react'
+import { scaleLinear } from 'd3-scale'
+import { max, sum } from 'd3-array'
+import { select } from 'd3-selection'
+import { legendColor } from 'd3-svg-legend'
+import { transition } from 'd3-transition'
+
+class BarChart extends Component {
+
+  // Constructor and lifecycle methods
+  constructor(props){
+    super(props)
+  }
+
+  componentDidMount = () => {
+    this.createBarChart()
+  }
+
+  componentDidUpdate = () => {
+    this.createBarChart()
+  }
+
+  createBarChart = () => {
+
+    // Useful variables
+    const dataMax = max(this.props.data.map(d => d.biomass))
+    const [xSize, ySize] = this.props.size
+    const barWidth = xSize / this.props.data.length
+
+    const legend = legendColor()
+      .scale(this.props.colorScale)
+      .labels(["Moult 1", "Moult 2", "Moult 3", "Moult 4"])
+
+    // Legend
+    select(this.node)
+      .selectAll("g.legend")
+      .data([0])
+      .enter()
+      .append("g")
+      .attr("class", "legend")
+      .call(legend)
+
+    select(this.node)
+      .select("g.legend")
+      .attr("transform", "translate(" + (xSize - 100) + ", 20)")
+
+    // Y-axis scale
+    const yScale = scaleLinear()
+      .domain([0, dataMax])
+      .range([0, ySize])
+
+    // Data entry
+    select(this.node)
+      .selectAll("rect.bar")
+      .data(this.props.data)
+      .enter()
+      .append("rect")
+      .attr("class", "bar")
+
+    // Data exit
+    select(this.node)
+      .selectAll("rect.bar")
+      .data(this.props.data)
+      .exit()
+      .remove()
+
+    // Creating the chart
+    select(this.node)
+      .selectAll("rect.bar")
+      .data(this.props.data)
+      .attr("x", (d, i) => i * barWidth)
+      .attr("y", d => ySize - yScale(d.biomass))
+      .attr("height", d => yScale(d.biomass))
+      .attr("width", barWidth)
+      .style("fill", (d, i) => this.props.colorScale(d.day))
+      .style("stroke", "black")
+      .style("stroke-opacity", 0.25)
+  }
+
+  // Rendering
+  render() {
+    const [xSize, ySize] = this.props.size
+    return <svg ref={(node) => {this.node = node}} width={xSize} height={ySize}></svg>
+  }
+}
+
+export default BarChart
+```
+
+### Imports
+
+- Some React and then a bunch of D3 stuff
+
+### Constructor and Lifecycle Methods
+
+- Constructor doesn't do anything special
+- Re-draw the bar chart when the component is mounted and every time it's updated
+- Why are these fat arrow functions? (!)
+
+### Useful Variables
+
+- `createBarChart` is clearly where most of the work is done
+- Finds the largest value that's going to be plotted
+- Creates temporary local variables for the rendering area size
+- Calculates the width of the bars
+
+### Legend
+
+- Then creates a legend
+  - `legendColor` comes from D3
+  - Uses the color scale defined in `App.js`
+  - And sets the labels
+  - So take a look at `legendColor` when we look at `scaleThreshold` (!)
+- Setting the labels here makes it single-purpose
+  - Should pass in the labels from the outside as a property
+- What does `select(this.node)` do?
+  - And where did `this.node` come from? (!)
+  - Not created in constructor
+- What are `.data([0])` and `.enter()` and `.append("g")`? (!)
+- Definitely need to read up on this
+
+### Y-axis Scale
+
+- Seems much simpler
+- Create a linear scale…
+- …then set its domain and range based on the data
+- Domain is the spread of data values, while range is the screen size
+- Search down, see it's used in displaying the data
+
+### Data Entry
+
+- This is confusing
+- Again, `select(this.node)`
+- What is `"rect.bar"` and why are we selecting all of it (or them)?
+- We seem to provide or connect to data with `.data(this.props.data)`
+- But `.enter()` and the rest don't make a lot of sense
+- On the other hand, `.append("rect") and `.attr("class", "bar")` might explain `"rect.bar"`
+
+### Creating the Chart
+
+- This is the least confusing section, since it does the things we thought we needed to do
+- Set the X and Y attributes using functions that map entries to values
+- Note that the functions for the X attribute and the fill style have two parameters `d` (the data) and `i`
+  - Presumably `i` is the index
+  - Because the callback taken by `map` passes in the index as well as the value
+
+### Rendering
+
+- Creates an SVG element
+  - FIXME: explain SVG
+- The `ref` property is a React-ism
+  - Is given the actual DOM node
+  - It sets `this.node`, so that's one mystery cleared up
+
+## Mysteries
+
+- The variable `window` is automatically provided by JavaScript
+  - That was easy
+- The extra `false` parameter to the event listener specifies whether the event should be handled in the capture or bubbling phase
+  - "Capturing" means "on the way down the DOM tree"
+  - "Bubbling" means "on the way up"
+  - According to [this tutorial](https://javascript.info/bubbling-and-capturing), almost all events are handled during bubbling
+- This leaves:
+  - `scaleThreshold` and `legendColor`
+  - Why the lifecycle methods are fat arrow functions
+  - The chart-drawing stuff: `.data([0])`, `.enter()`, and so on
