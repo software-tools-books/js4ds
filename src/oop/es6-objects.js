@@ -7,6 +7,9 @@ class Square {
   perimeter() { return 4 * this.size }
 }
 
+const sq = new Square(3)
+console.log(`sq name ${sq.name} and area ${sq.area()}`)
+
 class Circle {
   constructor (radius) {
     this.name = 'circle'

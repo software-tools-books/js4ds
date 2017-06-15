@@ -5,6 +5,9 @@ const square = {
   perimeter: (it) => {return 4 * it.size}
 }
 
+const a = square.area(square)
+console.log(`area of square is ${a}`)
+
 const circle = {
   name: 'circle',
   radius: 3,

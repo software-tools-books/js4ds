@@ -3,6 +3,12 @@ layout: page
 permalink: "/oop/"
 ---
 
+- Making new code use old code is easy
+- How can we make old code use new code without rewriting?
+- Objects!
+
+## Doing It By Hand
+
 - An object is a set of key/value pairs
 - Values can be functions
 - So have data carry around functions that work on it
@@ -15,7 +21,24 @@ const square = {
   area: (it) => {return it.size * it.size},
   perimeter: (it) => {return 4 * it.size}
 }
+```
 
+- Pass the object itself into the function
+
+<!-- @src/oop/clumsy-objects.js -->
+```js
+const a = square.area(square)
+console.log(`area of square is ${a}`)
+```
+```output
+area of square is 25
+```
+
+- This seems like a lot of work
+- But it allows us to handle many different kinds of things in the same way
+
+<!-- @src/oop/clumsy-objects.js -->
+```js
 const circle = {
   name: 'circle',
   radius: 3,
@@ -51,6 +74,9 @@ rectangle: area 6 perimeter 10
 - But:
   - Building every object by hand is painful
   - Calling `it.function(it)` is clumsy
+
+## Classes
+
 - JavaScript solved these problems using [prototypes]({{'/gloss/#prototype'|absolute_url}})
   - Which turned out to be [clumsy and confusing]({{'/legacy/#prototypes'|absolute_url}})
 - Most object-oriented languages use [classes]({{'/gloss/#class'|absolute_url}})
@@ -68,6 +94,24 @@ class Square {
   perimeter() { return 4 * this.size }
 }
 
+const sq = Square(3)
+console.log(`sq name ${sq.name} and area ${sq.area()}`)
+```
+```output
+sq name square and area 9
+```
+
+- `new ClassName(…)`:
+  - Creates a new blank object
+  - Inserts a (hidden) reference to the class, so that the object can find its [methods]({{'/gloss/#method'|absolute_url}})
+  - Calls `constructor` to initialize the object's state
+  - Class names are written in CamelCase by convention
+- `this` is a pronoun that refers to a single specific object
+- Methods are defined with a slightly different syntax than the fat arrows we have been using
+- Again, supports polymorphism
+
+<!-- @src/oop/es6-objects.js -->
+```js
 class Circle {
   constructor (radius) {
     this.name = 'circle'
@@ -104,12 +148,69 @@ circle: area 19.634954084936208 perimeter 15.707963267948966
 rectangle: area 0.75 perimeter 4
 ```
 
-- `constructor` is used to initialize the object's state when `new ClassName` is called
-  - Class names are written in CamelCase by convention
-- `this` is a pronoun that refers to a single specific object
-- Methods are defined with a slightly different syntax than the fat arrows we have been using
+## Inheritance
 
-FIXME-26: explain object-oriented programming in JavaScript
+- Build new classes from old by:
+  - Adding methods
+  - [Overriding methods]({{'/gloss/#override-method'|absolute_url}})
+- Start by defining a person
+
+<!-- @src/oop/override.js -->
+```js
+class Person {
+  constructor (name) {
+    this.name = name
+  }
+
+  greeting (formal) {
+    if (formal) {
+      return `Hello, my name is ${this.name}`
+    }
+    else {
+      return `Hi, I'm ${this.name}`
+    }
+  }
+}
+```
+
+- Then [extend]({{'/gloss/#extend'|absolue_url}}) to create a scientist
+  - Say that `Scientist` [inherits]({{'/gloss/#inherit'|absolute_url}}) from `Person`
+
+<!-- @src/oop/override.js -->
+```js
+class Scientist extends Person {
+  constructor (name, area) {
+    super(name)
+    this.area = area
+  }
+
+  greeting (formal) {
+    return `${super.greeting(formal)}. Let me tell you about ${this.area}...`
+  }
+}
+```
+
+- Use `super(…)` in `constructor` to call up to parent's constructor
+  - Do *not* duplicate the steps it takes
+- An instance of `Scientist` will use `Scientist.greeting`,
+  while instances of `Person` will use `Person.greeting`
+
+FIXME-40: memory diagram
+
+- Result
+
+<!-- @src/oop/override.js -->
+```js
+parent = new Person('Hakim')
+console.log(`parent: ${parent.greeting(true)}`)
+
+child = new Scientist('Bhadra', 'microbiology')
+console.log(`child: ${child.greeting(false)}`)
+```
+```output
+parent: Hello, my name is Hakim
+child: Hi, I'm Bhadra. Let me tell you about microbiology...
+```
 
 ## Challenges
 

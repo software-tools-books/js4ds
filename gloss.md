@@ -48,6 +48,9 @@ permalink: "/gloss/"
 *   **event object**:
     <a name="event-object"></a>
 
+*   **extend**:
+    <a name="extend"></a>
+
 *   **falsy**:
     <a name="falsy"></a>
 
@@ -69,11 +72,17 @@ permalink: "/gloss/"
 *   **in-memory database**:
     <a name="in-memory-database"></a>
 
+*   **inherit**:
+    <a name="inherit"></a>
+
 *   **local variable**:
     <a name="local-variable"></a>
 
 *   **memory diagram**:
     <a name="memory-diagram"></a>
+
+*   **method**:
+    <a name="method"></a>
 
 *   **module**:
     <a name="module"></a>
