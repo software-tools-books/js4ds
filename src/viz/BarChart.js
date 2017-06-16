@@ -13,15 +13,15 @@ class BarChart extends Component {
     super(props)
   }
 
-  componentDidMount = () => {
+  componentDidMount() {
     this.createBarChart()
   }
 
-  componentDidUpdate = () => {
+  componentDidUpdate() {
     this.createBarChart()
   }
 
-  createBarChart = () => {
+  createBarChart() {
 
     // Useful variables
     const dataMax = max(this.props.data.map(d => d.biomass))

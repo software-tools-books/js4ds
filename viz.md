@@ -332,7 +332,10 @@ export default BarChart
   - "Capturing" means "on the way down the DOM tree"
   - "Bubbling" means "on the way up"
   - According to [this tutorial](https://javascript.info/bubbling-and-capturing), almost all events are handled during bubbling
+- Why the lifecycle methods are fat arrow functions
+  - Switch them and run it
+  - Works just fine
+  - So leave them as old-style functions
 - This leaves:
   - `scaleThreshold` and `legendColor`
-  - Why the lifecycle methods are fat arrow functions
   - The chart-drawing stuff: `.data([0])`, `.enter()`, and so on
