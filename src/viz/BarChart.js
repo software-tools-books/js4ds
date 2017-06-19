@@ -58,12 +58,6 @@ class BarChart extends Component {
       .append("rect")
       .attr("class", "bar")
 
-    select(this.node)
-      .selectAll("rect.bar")
-      .data(this.props.data)
-      .exit()
-      .remove()
-
     // Creating the chart
     select(this.node)
       .selectAll("rect.bar")
@@ -75,6 +69,13 @@ class BarChart extends Component {
       .style("fill", (d, i) => this.props.colorScale(d.day))
       .style("stroke", "black")
       .style("stroke-opacity", 0.25)
+
+    // Clean up nodes that aren't needed any more.
+    select(this.node)
+      .selectAll("rect.bar")
+      .data(this.props.data)
+      .exit()
+      .remove()
   }
 
   // Rendering
