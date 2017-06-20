@@ -16,7 +16,7 @@ not just scientists and engineers.
 ## Who You Are
 
 Every lesson should aim to meet the needs of specific learners
-[[Wilson2017](./refs/#wilson-teaching)].
+[[Wilson2017](../refs/#wilson-teaching)].
 The three people described below define the intended audience for this one.
 
 **Bhadra** received a BSc in microbiology five years ago,

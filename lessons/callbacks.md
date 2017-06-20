@@ -312,6 +312,74 @@ adding 1 and 2 to 100 -> 103
 
 ## Challenges
 
-FIXME-15: `forEach` exercise
+### Side Effects With `forEach`
 
-FIXME-16: more exercises
+JavaScript arrays have a method called `forEach`,
+which calls a callback function once for each element of the array.
+Unlike `map`,
+`forEach` does *not* save the values returned by these calls
+or return an array of results.
+The full syntax is:
+
+```js
+someArray.forEach((value, location, container) => {
+  // 'value' is the value in 'someArray'
+  // 'location' is the index of that value
+  // 'container' is the containing array (in this case, 'someArray')
+}
+```
+
+If you only need the value,
+you can provide a callback that only takes one parameter;
+if you only need the value and its location,
+you can provide a callback that takes two.
+Use this to write a function `doubleInPlace`
+that doubles all the values in an array in place:
+
+```js
+const vals = [1, 2, 3]
+doubleInPlace(vals)
+console.log(`vals after change: ${vals}`)
+```
+```output
+vals after change: 2,4,6
+```
+
+### Annotating Data
+
+Given an array of objects representing observations of wild animals:
+
+```js
+data = [
+  {'date': '1977-7-16', 'sex': 'M', 'species': 'NL'},
+  {'date': '1977-7-16', 'sex': 'M', 'species': 'NL'},
+  {'date': '1977-7-16', 'sex': 'F', 'species': 'DM'},
+  {'date': '1977-7-16', 'sex': 'M', 'species': 'DM'},
+  {'date': '1977-7-16', 'sex': 'M', 'species': 'DM'},
+  {'date': '1977-7-16', 'sex': 'M', 'species': 'PF'},
+  {'date': '1977-7-16', 'sex': 'F', 'species': 'PE'},
+  {'date': '1977-7-16', 'sex': 'M', 'species': 'DM'}
+]
+```
+
+write a function that returns a new array of objects like this:
+
+```js
+newData = [
+  {'seq': 3, 'year': '1977', 'sex': 'F', 'species': 'DM'},
+  {'seq': 7, 'year': '1977', 'sex': 'F', 'species': 'PE'}
+]
+```
+
+*without* using any loops.
+The changes are:
+
+- The `date` field is replaced with just the `year.
+- Only observations of female animals are retained.
+- The retained records are given sequence numbers to relate them back to the original data.
+  (These sequence numbers are 1-based rather than 0-based.)
+
+You may want to use `Array.reduce`
+to generate the sequence numbers.
+Use the web to find a description of it,
+and work with a partner to ensure that you understand how it works.
