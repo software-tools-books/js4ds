@@ -293,8 +293,16 @@ const DateSubmit = ({label, value, onChange, onCommit}) => {
 }
 ```
 
-- Note the use of [destructuring](../gloss/#destructuring) in the parameter list
-  - FIXME-24: explain destructuring
+> **Destructuring**
+>
+> - Note the use of [destructuring](../gloss/#destructuring) in the parameter list
+>   - Suppose an object `directions` has the value `{left: 1, right: 2}`
+>   - The expression `{left, right} = directions` will create new variables `left` and `right` and assign them 1 and 2 respectively
+>     - The names of the new variables must match the names of the fields in the object
+> - Can use this when passing an object full of parameters to a function
+>   - Any "extra" names in the passed-in object are ignored
+>   - Any missing names are assigned `undefined`
+
 - Important to understand order of operations
   - `value={value}` puts a value in the box for display
   - Binds `onChange` and `onClick` to functions each time

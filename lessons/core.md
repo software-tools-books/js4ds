@@ -249,6 +249,8 @@ const limits = (values) => {
 
 - Same output as previous example
 
+> **Stuck in the Past**
+>
 > - Why not stick to `function` and fix behavior?
 > - Would break legacy programs that rely on old behavior
 > - Want to make it really easy to define little functions
