@@ -57,9 +57,8 @@ You can do the exercises in the first part of this course online,
 but will need to install some software on your own computer
 to do the later ones.
 
-FIXME-7: choose an online hosting service
-
-- Install the latest Long-term Support (LTS) versions of Node and NPM from <https://nodejs.org/en/download/>
+- For small exercises, use an online service like [RunKit][runkit]
+- For larger things, install the latest Long-term Support (LTS) versions of Node and NPM from <https://nodejs.org/en/download/>
 - `node` is a command-line interpreter for JavaScript
   - The command `node` on its own starts a [read-evaluate-print loop](../gloss/#repl)
     - Executes commands as they are typed in
@@ -83,5 +82,6 @@ then run the commands `node --version` and `npm --version`
 to see which versions you have.
 
 [beazley-tweet]: https://twitter.com/dabeaz/status/863566969240514560
+[runkit]: https://runkit.com/
 [swc]: http://software-carpentry.org
 [wordpress]: https://wordpress.org/
