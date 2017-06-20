@@ -4,9 +4,9 @@
     <div class="row">
       <span class="col-md-2" align="left">
         {% if include.previous %}
-          <a class="nav-link" href="{{include.previous|absolute_url}}">Previous</a>
+          <a class="nav-link" href="{{include.previous|absolute_url}}"><span class="fa fa-chevron-left"></span></a>
         {% else %}
-          <a class="nav-link" href="{{'/'|absolute_url}}">Up</a>
+          <a class="nav-link" href="{{'/'|absolute_url}}"><span class="fa fa-chevron-up"></span></a>
         {% endif %}
       </span>
       <span class="col-md-8" align="center">
@@ -16,9 +16,9 @@
       </span>
       <span class="col-md-2" align="right">
         {% if include.next %}
-          <a class="nav-link" href="{{include.next|absolute_url}}">Next</a>
+          <a class="nav-link" href="{{include.next|absolute_url}}"><span class="fa fa-chevron-right"></span></a>
         {% else %}
-          <a class="nav-link" href="{{'/'|absolute_url}}">Up</a>
+          <a class="nav-link" href="{{'/'|absolute_url}}"><span class="fa fa-chevron-up"></span></a>
         {% endif %}
       </span>
     </div>
