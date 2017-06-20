@@ -8,7 +8,7 @@ permalink: "/viz/"
   - …and your audience is sighted
 - Instead of teaching a visualization package from the ground up, we will explore an example from the outside in
   - Because that's often how people learn their way around actual software
-- Example is a cut-down version of one presented in *[Meeks2017]('/refs/#meeks2017'|absolute_url)*
+- Example is a cut-down version of one presented in *[Meeks2017](../refs/#meeks2017)*
   - Full code of original can be found in chapter 9 of [this GitHub repository](https://github.com/emeeks/d3_in_action_2/)
 
 ## The Host HTML Page
@@ -141,7 +141,7 @@ ReactDOM.render(
 - Name `onResize` suggests that it takes care of re-drawing when the window size changes
 - It's an arrow function
   - Because we need `this` to refer to the component
-  - See the discussion of [legacy function definitions]({{'/legacy/#prototypes'|absolute_url}})
+  - See the discussion of [legacy function definitions](../legacy/#prototypes)
 - The variable `window` seems to appear out of nowhere (!)
   - But presumably refers to the window the application is running in
 - That magic number 120 should worry us…

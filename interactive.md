@@ -3,8 +3,8 @@ layout: page
 permalink: "/interactive/"
 ---
 
-- Browsers allow us to define [event handlers]({{'/gloss/#event-handler'|absolute_url}}) to specify what to do in response to a user action
-  - A callback function that is (usually) given an [event object]({{'/gloss/#event-object'|absolute_url}}) containing information about what the user did
+- Browsers allow us to define [event handlers](../gloss/#event-handler) to specify what to do in response to a user action
+  - A callback function that is (usually) given an [event object](../gloss/#event-object) containing information about what the user did
 - Pass the callback function as a specifically-named property of the thing whose behavior we are specifying
 - We'll switch back to single-page examples for a moment
 
@@ -293,7 +293,7 @@ const DateSubmit = ({label, value, onChange, onCommit}) => {
 }
 ```
 
-- Note the use of [destructuring]({{'/gloss/#destructuring'|absolute_url}}) in the parameter list
+- Note the use of [destructuring](../gloss/#destructuring) in the parameter list
   - FIXME-24: explain destructuring
 - Important to understand order of operations
   - `value={value}` puts a value in the box for display
@@ -346,7 +346,7 @@ class App extends React.Component {
 
 - Time to get real data
 - Use `fetch` with a URL
-- It returns a [promise]({{'/gloss/#promise'|absolute_url}})
+- It returns a [promise](../gloss/#promise)
   - JavaScript's newly-standardized way of making callbacks easier to work with
   - Although it practice it just seems to move the complexity around
 

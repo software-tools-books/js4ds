@@ -130,7 +130,7 @@ node database-initial.js fixture.db getAll
 ## In-Memory Database
 
 - Previous example always manipulates database on disk
-- Have it use an [in-memory database]({{'/gloss/#in-memory-database'|absolute_url}}) for testing purposes
+- Have it use an [in-memory database](../gloss/#in-memory-database) for testing purposes
 
 <!-- @src/database/database-mode.js -->
 ```js

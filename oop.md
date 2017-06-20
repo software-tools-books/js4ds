@@ -69,7 +69,7 @@ rectangle: area 6 perimeter 10
 
 - As long as we only use the value `name` and the functions `area` and `perimeter`
   we don't need to know what kind of thing we're actually working with
-- [Polymorphism]({{'/gloss/#polymoprhism'|absolute_url}})
+- [Polymorphism](../gloss/#polymoprhism)
 
 - But:
   - Building every object by hand is painful
@@ -77,9 +77,9 @@ rectangle: area 6 perimeter 10
 
 ## Classes
 
-- JavaScript solved these problems using [prototypes]({{'/gloss/#prototype'|absolute_url}})
-  - Which turned out to be [clumsy and confusing]({{'/legacy/#prototypes'|absolute_url}})
-- Most object-oriented languages use [classes]({{'/gloss/#class'|absolute_url}})
+- JavaScript solved these problems using [prototypes](../gloss/#prototype)
+  - Which turned out to be [clumsy and confusing](../legacy/#prototypes)
+- Most object-oriented languages use [classes](../gloss/#class)
   - These have been added to JavaScript ES6
   - We will only use them
 
@@ -103,7 +103,7 @@ sq name square and area 9
 
 - `new ClassName(…)`:
   - Creates a new blank object
-  - Inserts a (hidden) reference to the class, so that the object can find its [methods]({{'/gloss/#method'|absolute_url}})
+  - Inserts a (hidden) reference to the class, so that the object can find its [methods](../gloss/#method)
   - Calls `constructor` to initialize the object's state
   - Class names are written in CamelCase by convention
 - `this` is a pronoun that refers to a single specific object
@@ -152,7 +152,7 @@ rectangle: area 0.75 perimeter 4
 
 - Build new classes from old by:
   - Adding methods
-  - [Overriding methods]({{'/gloss/#override-method'|absolute_url}})
+  - [Overriding methods](../gloss/#override-method)
 - Start by defining a person
 
 <!-- @src/oop/override.js -->
@@ -173,8 +173,8 @@ class Person {
 }
 ```
 
-- Then [extend]({{'/gloss/#extend'|absolue_url}}) to create a scientist
-  - Say that `Scientist` [inherits]({{'/gloss/#inherit'|absolute_url}}) from `Person`
+- Then [extend](../gloss/#extend'|absolue_url}}) to create a scientist
+  - Say that `Scientist` [inherits](../gloss/#inherit) from `Person`
 
 <!-- @src/oop/override.js -->
 ```js
@@ -214,7 +214,7 @@ child: Hi, I'm Bhadra. Let me tell you about microbiology...
 
 ## Protocols
 
-- Common use of object-oriented programming is to define a [protocol]({{'/guide/#protocol'|absolute_url}})
+- Common use of object-oriented programming is to define a [protocol](../guide/#protocol)
   - Actions that objects might take are defined in methods
   - Parent defines a method that invokes them at specific times or in a specific order
   - "You will all follow this procedure, but you may follow it in different ways"

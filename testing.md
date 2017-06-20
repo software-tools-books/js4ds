@@ -120,7 +120,7 @@ describe('server', () => {
 - `server` is our server code
 - `request(server)` starts building up a request to send
 - `.get('/')` specifies the path
-- `.expect('Content-Type', /html/)` checks the content type against a [regular expression]({{'/gloss/#regular-expression'|absolute_url}})
+- `.expect('Content-Type', /html/)` checks the content type against a [regular expression](../gloss/#regular-expression)
 - `.expect(200)` checks that the return code is 200 (OK)
 - `.end` is called when the whole response has been received
   - We really should check `err`
@@ -191,14 +191,14 @@ describe('server', () => {
   - The exceptions have exceptions
 - Instead, parse it to create a structure in memory and check that
   - If parsing fails because the HTML is badly formatted, that's worth knowing too
-- Structure is called [Document Object Model]({{'/gloss/#dom'|absolute_url}}) (DOM)
+- Structure is called [Document Object Model](../gloss/#dom) (DOM)
   - Good news: there are lots of libraries that will parse HTML and produce DOM
   - Bad news: there are *lots* of libraries that will do this
   - FIXME-34: explain differences between JSX and DOM
 - We use `cheerio`
   - `cheerio.load` turns the text of HTML into DOM
   - Resulting object can be used like a function
-  - Can use [selectors]({{'/gloss/#selector'|absolute_url}}) to find things in it
+  - Can use [selectors](../gloss/#selector) to find things in it
 
 <!-- @src/testing/dom-test.js -->
 ```js
