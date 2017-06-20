@@ -305,8 +305,6 @@ clip(-1,5,3,0,10) -> 0,1,2,3
 - Use a relative path starting with `./` or `../` to import local files
   - Paths that start with names are taken from installed Node libraries
 
-> FIXME-11: explain how to install libraries using NPM
-
 ## Challenges
 
 ### Typeof

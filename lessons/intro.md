@@ -54,18 +54,33 @@ and show her how to take advantage of JavaScript's more modern features.
 ## Setting Up
 
 You can do the exercises in the first part of this course online,
-but will need to install some softwaer on your own computer
+but will need to install some software on your own computer
 to do the later ones.
 
 FIXME-7: choose an online hosting service
 
-FIXME-8: Mac instructions
-
-FIXME-9: Windows instructions
+- Install the latest Long-term Support (LTS) versions of Node and NPM from <https://nodejs.org/en/download/>
+- `node` is a command-line interpreter for JavaScript
+  - The command `node` on its own starts a [read-evaluate-print loop](../gloss/#repl)
+    - Executes commands as they are typed in
+    - Displays their output
+  - The command `node filename.js` runs the commands in `filename.js`
+    - We will see [later](../display/) how to run JavaScript in a browser
+- `npm` is Node's [package manager](../gloss/#package-manager)
+  - A command-line tool for finding, installing, and updating libraries that your program depends on
+  - Use <code>npm install --global <em>library-name</em></code> (without `.js` extension) to install a library globally
+    (i.e., so that all projects can load it)
+  - Use <code>npm install --save <em>library-name</em></code> to install in the current project
+    - A better idea, since it isolates projects from one another
+    - We will see [later](../display/) how to create projects
 
 ## Challenges
 
-FIXME-10: challenges for introduction
+### Setting Up
+
+Install Node and NPM on your computer,
+then run the commands `node --version` and `npm --version`
+to see which versions you have.
 
 [beazley-tweet]: https://twitter.com/dabeaz/status/863566969240514560
 [swc]: http://software-carpentry.org
