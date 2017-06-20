@@ -101,7 +101,29 @@ permalink: "/htmlcss/"
 - Use `ul` for an unordered (bulleted) list, and `ol` for an ordered (numbered) one
   - Each list item is wrapped in `li`
 
-FIXME-18: example of ordered and unordered lists
+```html
+<ul>
+  <li>first</li>
+  <li>second</li>
+  <li>third</li>
+</ul>
+```
+
+- first
+- second
+- third
+
+```js
+<ol>
+  <li>first</li>
+  <li>second</li>
+  <li>third</li>
+</ol>
+```
+
+1. first
+2. second
+3. third
 
 ## Tables
 
@@ -128,6 +150,20 @@ FIXME-18: example of ordered and unordered lists
 </html>
 ```
 
+<html>
+  <head>
+    <title>Lists and Tables</title>
+  </head>
+  <body>
+    <table>
+      <tr> <th>Alkali</th>   <th>Noble Gas</th> </tr>
+      <tr> <td>Hydrogen</td> <td>Helium</td>    </tr>
+      <tr> <td>Lithium</td>  <td>Neon</td>      </tr>
+      <tr> <td>Sodium</td>   <td>Argon</td>     </tr>
+    </table>
+  </body>
+</html>
+
 ## Links
 
 - Links to other pages are what makes HTML hypertext
@@ -138,13 +174,9 @@ FIXME-18: example of ordered and unordered lists
 
 <!-- @src/htmlcss/links.html -->
 ```html
-<html>
-  <body>
-    <a href="http://gvwilson.github.io/js-vs-rc/">This course</a>
-    <a href="https://nodejs.org/">Node.js</a>
-    <a href="https://facebook.github.io/react/">React</a>
-  </body>
-</html>
+<a href="http://gvwilson.github.io/js-vs-rc/">This course</a>
+<a href="https://nodejs.org/">Node.js</a>
+<a href="https://facebook.github.io/react/">React</a>
 ```
 
 ## Images
@@ -156,12 +188,8 @@ FIXME-18: example of ordered and unordered lists
 
 <!-- @src/htmlcss/images.html -->
 ```html
-<html>
-  <body>
-    <img src="./html5.png" alt="HTML5 Logo with local path"/>
-    <img src="https://github.com/gvwilson/js-vs-rc/blob/master/src/htmlcss/html5.png" alt="HTML5 logo online"/>
-  </body>
-</html>
+<img src="./html5.png" alt="HTML5 Logo with local path"/>
+<img src="https://github.com/gvwilson/js-vs-rc/blob/master/src/htmlcss/html5.png" alt="HTML5 logo online"/>
 ```
 
 ## Cascading Style Sheets
