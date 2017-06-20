@@ -47,7 +47,12 @@ permalink: "/htmlcss/"
 - Must use escape sequences to represent `<` and `>`
   - In XML, written `&name;`
 
-FIXME-17: table of common special characters
+| Escape Sequence | Character |
+| --------------- | --------- |
+| `&lt;`          | `<`       |
+| `&gt;`          | `>`       |
+| `&amp;`         | `&`       |
+| `&copy;`        | `©`       |
 
 ## Pages
 
