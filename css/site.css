@@ -1,6 +1,3 @@
-div.guide {
-}
-
 blockquote {
   font-size: 100%;
 }
@@ -13,8 +10,12 @@ div.keypoints, div.questions {
   border: 3px solid #C0C0C0;
 }
 
+.copyright {
+  font-size: 90%;
+}
+
 .message {
-  font-size: 80%;
+  font-size: 90%;
   background: #F0F0F0;
   position: fixed;
   right: -250px;

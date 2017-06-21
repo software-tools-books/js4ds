@@ -6,7 +6,7 @@
           {% if include.previous %}
             <li class="previous"><a href="{{include.previous|absolute_url}}"><span aria-hidden="true">&larr;</span> Prev</a></li>
           {% else %}
-            <li class="previous"><a href="{{'/'|absolute_url}}"><span aria-hidden="true">&larr;</span>Main</a></li>
+            <li class="previous"><a href="{{'/'|absolute_url}}"><span aria-hidden="true">&larr;</span> Main</a></li>
           {% endif %}
           {% if include.next %}
             <li class="next"><a href="{{include.next|absolute_url}}">Next <span aria-hidden="true">&rarr;</span></a></li>
@@ -18,10 +18,10 @@
     </div>
   {% endunless %}
   {% if include.copyright %}
-  <div class="row">
+  <div class="row" style="padding-bottom: 10px;">
     <span class="col-md-2" align="left">
     </span>
-    <span class="col-md-8" align="center">
+    <span class="col-md-8 copyright" align="center">
       <em>
         <a href="{{'/'|absolute_url}}">{{site.title}}</a> &copy; {{site.author}} {{site.copyrightyear}}
         <br/>

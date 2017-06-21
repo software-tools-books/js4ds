@@ -28,7 +28,7 @@ toc:
   - "Modern JavaScript is a good tool for building desktop and web-based applications."
   - "This course is for people who know what loops and functions are, but have never used JavaScript or built web applications."
 - permalink: /core/
-  title: Core Features of Modern JavaScript
+  title: Core Features
   type: lesson
   questions:
   - "How can I execute short snippets of JavaScript interactively?"
@@ -115,7 +115,7 @@ toc:
   - "Use `class` and `id` to identify elements."
   - "Use selectors to specify the elements that CSS applies to."
 - permalink: /display/
-  title: Building Static Web Pages with React
+  title: Building Static Web Pages
   type: lesson
   questions:
   - "What JavaScript libraries should I use to create a web pages?"
@@ -173,7 +173,7 @@ toc:
   - "Use destructuring to get individual members from an object in a single step."
   - "Modern JavaScript uses promises to manage asynchronous activities."
 - permalink: /server/
-  title: Building Data Services with Express
+  title: Building Data Services
   type: lesson
   questions:
   - "How do browsers and servers communicate?"
