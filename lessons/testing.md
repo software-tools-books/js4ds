@@ -27,7 +27,7 @@ describe('first test', () => {
   - Call `done` to signal the end of the test
 - Run with `./node_modules/.bin/mocha path/to/test.js`
 
-```output
+```text
   first test
     ✓ should run without errors
 
@@ -133,7 +133,7 @@ describe('server', () => {
   - Because there's no telling when the outer `.end(…)` will be called
 - Run it
 
-```output
+```text
   server
     ✓ should return HTML with expected title (48ms)
 
@@ -173,7 +173,7 @@ describe('server', () => {
   })
 })
 ```
-```output
+```text
   server
     ✓ should return HTML with expected title (42ms)
     ✓ should return asteroids page as HTML with expected title
@@ -236,7 +236,7 @@ describe('server', () => {
   })
 })
 ```
-```output
+```text
   server
     ✓ should have the correct headings (67ms)
 

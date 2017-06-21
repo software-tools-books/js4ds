@@ -12,7 +12,7 @@ permalink: "/core/"
 ```js
 console.log('hello, world')
 ```
-```output
+```text
 hello, world
 ```
 
@@ -46,7 +46,7 @@ for (let value of otherValues) {
 
 console.log('the type of', console.log, 'is', typeof console.log)
 ```
-```output
+```text
 the type of 123.45 is number
 the type of 123 is number
 the type of some text is string
@@ -91,7 +91,7 @@ for (let v of values) {
   }
 }
 ```
-```output
+```text
 false of type boolean is falsy
 true of type boolean is truthy
 0 of type number is falsy
@@ -131,7 +131,7 @@ for (let color of ['red', 'green', 'blue']) {
   console.log(message, `and capitalized is ${color.toUpperCase()}`)
 }
 ```
-```output
+```text
 color is red and capitalized is RED
 color is green and capitalized is GREEN
 color is blue and capitalized is BLUE
@@ -154,7 +154,7 @@ for (let key in creature) {
   console.log(`creature[${key}] is ${creature[key]}`)
 }
 ```
-```output
+```text
 creature is [object Object]
 creature.genus is Callithrix
 creature[order] is Primates
@@ -216,7 +216,7 @@ for (let test of allTests) {
   console.log(`limits of ${test} are ${limits(test)}`)
 }
 ```
-```output
+```text
 limits of  are ,
 limits of 9 are 9,9
 limits of 3,30,300 are 3,300
@@ -295,7 +295,7 @@ const data = [-1, 5, 3, 0, 10]
 const result = utilities.clip(data)
 console.log(`clip(${data}) -> ${result}`)
 ```
-```output
+```text
 clip(-1,5,3,0,10) -> 0,1,2,3
 ```
 
@@ -339,7 +339,7 @@ for (let line of table) {
   console.log(line)
 }
 ```
-```output
+```text
 square of 4 is 16
 square of 3 is 9
 square of 2 is 4
@@ -367,7 +367,7 @@ const species = 'Jacchus'
 const creature = {genus, species}
 console.log(creature)
 ```
-```output
+```text
 { genus: 'Callithrix', species: 'Jacchus' }
 ```
 

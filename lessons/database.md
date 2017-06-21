@@ -118,7 +118,7 @@ main()
 sqlite3 fixture.db < fixture.sql
 node database-initial.js fixture.db getAll
 ```
-```output
+```text
 { workshopId: 1,
   workshopName: 'Building Community',
   workshopDuration: 60 }
@@ -174,7 +174,7 @@ function main () {
 ```sh
 node database-mode.js memory fixture.sql getOne 2
 ```
-```output
+```text
 { workshopId: 2,
   workshopName: 'ENIAC Programming',
   workshopDuration: 150 }
@@ -301,7 +301,7 @@ main()
 ```sh
 node separate-driver.js file fixture.db getAll
 ```
-```output
+```text
   for (let r of rows) {
               ^
 

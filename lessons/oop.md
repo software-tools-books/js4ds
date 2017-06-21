@@ -30,7 +30,7 @@ const square = {
 const a = square.area(square)
 console.log(`area of square is ${a}`)
 ```
-```output
+```text
 area of square is 25
 ```
 
@@ -61,7 +61,7 @@ for (let thing of everything) {
   console.log(`${thing.name}: area ${a} perimeter ${p}`)
 }
 ```
-```output
+```text
 square: area 25 perimeter 20
 circle: area 28.274333882308138 perimeter 18.84955592153876
 rectangle: area 6 perimeter 10
@@ -97,7 +97,7 @@ class Square {
 const sq = Square(3)
 console.log(`sq name ${sq.name} and area ${sq.area()}`)
 ```
-```output
+```text
 sq name square and area 9
 ```
 
@@ -142,7 +142,7 @@ for (let thing of everything) {
   console.log(`${thing.name}: area ${a} perimeter ${p}`)
 }
 ```
-```output
+```text
 square: area 12.25 perimeter 14
 circle: area 19.634954084936208 perimeter 15.707963267948966
 rectangle: area 0.75 perimeter 4
@@ -207,7 +207,7 @@ console.log(`parent: ${parent.greeting(true)}`)
 child = new Scientist('Bhadra', 'microbiology')
 console.log(`child: ${child.greeting(false)}`)
 ```
-```output
+```text
 parent: Hello, my name is Hakim
 child: Hi, I'm Bhadra. Let me tell you about microbiology...
 ```
@@ -295,7 +295,7 @@ class Penguin extends Bird {
 
 - Result of some runs:
 
-```output
+```text
 in summer: penguin looks for food,,
 in fall: penguin looks for food,penguin looks for a mate,
 in winter: penguin looks for food,,
@@ -304,7 +304,7 @@ in spring: penguin looks for food,,
 
 - Result of other runs:
 
-```output
+```text
 in summer: penguin looks for food,,
 in fall: penguin looks for food,penguin looks for a mate,
 in winter: penguin looks for food,,penguin is nesting
