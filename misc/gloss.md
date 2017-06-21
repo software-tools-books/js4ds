@@ -3,140 +3,94 @@ layout: page
 permalink: "/gloss/"
 ---
 
-* **anonymous function**:
-  <a id="anonymous-function"></a>
+**anonymous function**{:#anonymous-function}: FIXME
 
-* **array**:
-  <a id="array"></a>
+**array**{:#array}: FIXME
 
-* **attribute**:
-  <a id="attribute"></a>
+**attribute**{:#attribute}: FIXME
 
-* **callback function**:
-  <a id="callback-function"></a>
+**callback function**{:#callback-function}: FIXME
 
-* **Cascading Style Sheets**:
-  <a id="css"></a>
+**Cascading Style Sheets**{:#css}: FIXME
 
-* **class**:
-  <a id="class"></a>
+**class**{:#class}: FIXME
 
-* **client-side page generation**:
-  <a id="client-side-page-generation"></a>
+**client-side page generation**{:#client-side-page-generation}: FIXME
 
-* **closure**:
-  <a id="closure"></a>
+**closure**{:#closure}: FIXME
 
-* **constant**:
-  <a id="constant"></a>
+**constant**{:#constant}: FIXME
 
-* **destructuring**:
-  <a id="destructuring"></a>
+**destructuring**{:#destructuring}: FIXME
 
-* **document**:
-  <a id="document"></a>
+**document**{:#document}: FIXME
 
-* **Document Object Model**:
-  <a id="dom"></a>
+**Document Object Model**{:#dom}: FIXME
 
-* **dotted notation**:
-  <a id="dotted-notation"></a>
+**dotted notation**{:#dotted-notation}: FIXME
 
-* **event handler**:
-  <a id="event-handler"></a>
+**event handler**{:#event-handler}: FIXME
 
-* **event object**:
-  <a id="event-object"></a>
+**event object**{:#event-object}: FIXME
 
-* **extend**:
-  <a id="extend"></a>
+**extend**{:#extend}: FIXME
 
-* **falsy**:
-  <a id="falsy"></a>
+**falsy**{:#falsy}: FIXME
 
-* **fat arrow functions**:
-  <a id="far-arrow-function"></a>
+**fat arrow functions**{:#far-arrow-function}: FIXME
 
-* **functional programming**:
-  <a id="functional-programming"></a>
+**functional programming**{:#functional-programming}: FIXME
 
-* **global variable**:
-  <a id="global-variable"></a>
+**global variable**{:#global-variable}: FIXME
 
-* **heterogeneous**:
-  <a id="heterogeneous"></a>
+**heterogeneous**{:#heterogeneous}: FIXME
 
-* **higher-order function**:
-  <a id="higher-order-function"></a>
+**higher-order function**{:#higher-order-function}: FIXME
 
-* **in-memory database**:
-  <a id="in-memory-database"></a>
+**in-memory database**{:#in-memory-database}: FIXME
 
-* **inherit**:
-  <a id="inherit"></a>
+**inherit**{:#inherit}: FIXME
 
-* **local variable**:
-  <a id="local-variable"></a>
+**local variable**{:#local-variable}: FIXME
 
-* **memory diagram**:
-  <a id="memory-diagram"></a>
+**memory diagram**{:#memory-diagram}: FIXME
 
-* **method**:
-  <a id="method"></a>
+**method**{:#method}: FIXME
 
-* **module**:
-  <a id="module"></a>
+**module**{:#module}: FIXME
 
-* **object**:
-  <a id="object"></a>
+**object**{:#object}: FIXME
 
-* **parameter**:
-  <a id="parameter"></a>
+**parameter**{:#parameter}: FIXME
 
-* **polymorphism**:
-  <a id="polymoprhism"></a>
+**polymorphism**{:#polymoprhism}: FIXME
 
-* **promise**:
-  <a id="promise"></a>
+**promise**{:#promise}: FIXME
 
-* **prototype**:
-  <a id="prototype"></a>
+**prototype**{:#prototype}: FIXME
 
-* **property**:
-  <a id="property"></a>
+**property**{:#property}: FIXME
 
-* **regular expression**:
-  <a id="regular-expression"></a>
+**regular expression**{:#regular-expression}: FIXME
 
-* **responsive design**:
-  <a id="responsive-design"></a>
+**responsive design**{:#responsive-design}: FIXME
 
-* **scope**:
-  <a id="scope"></a>
+**scope**{:#scope}: FIXME
 
-* **selector**:
-  <a id="selector"></a>
+**selector**{:#selector}: FIXME
 
-* **server-side page generation**:
-  <a id="server-side-page-generation"></a>
+**server-side page generation**{:#server-side-page-generation}: FIXME
 
-* **string**:
-  <a id="string"></a>
+**string**{:#string}: FIXME
 
-* **tag**:
-  <a id="tag"></a>
+**tag**{:#tag}: FIXME
 
-* **template**:
-  <a id="template"></a>
+**template**{:#template}: FIXME
 
-* **truthiness**:
-  <a id="truthiness"></a>
+**truthiness**{:#truthiness}: FIXME
 
-* **Unicode**:
-  <a id="unicode"></a>
+**Unicode**{:#unicode}: FIXME
 
-* **variable**:
-  <a id="variable"></a>
+**variable**{:#variable}: FIXME
 
-* **XML**:
-  <a id="xml"></a>
+**XML**{:#xml}: FIXME
