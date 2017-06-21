@@ -1,6 +1,10 @@
 div.guide {
 }
 
+blockquote {
+  font-size: 100%;
+}
+
 div.keypoints, div.questions {
   padding-top: 0.5em;
   padding-left: 0.5em;
