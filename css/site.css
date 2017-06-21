@@ -23,8 +23,7 @@ div.keypoints, div.questions {
   width: 250px;
   height: 100vh;
   min-height: 100vh;
-  padding-top: 10px;
-  padding-right: 10px;
+  padding: 10px;
   transition: right 300ms;
   overflow: hidden;
   box-sizing: border-box;
