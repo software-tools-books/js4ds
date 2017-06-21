@@ -1,6 +1,8 @@
 # Display.
 title: "JavaScript versus Research Computing"
 subtitle: "A Brief Guide for Those Who Regret That This Has Become Necessary"
+author: "Greg Wilson"
+copyrightyear: "2017"
 
 # Code highlighting.
 highlighter: rouge

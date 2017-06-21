@@ -1,26 +1,20 @@
 <div align="center">
-  {% if include.copyright %}<hr/>{% endif %}
   {% unless page.manual %}
     <div class="row">
-      <span class="col-md-2" align="left">
-        {% if include.previous %}
-          <a class="nav-link" href="{{include.previous|absolute_url}}"><span class="fa fa-chevron-left"></span></a>
-        {% else %}
-          <a class="nav-link" href="{{'/'|absolute_url}}"><span class="fa fa-chevron-up"></span></a>
-        {% endif %}
-      </span>
-      <span class="col-md-8" align="center">
-        <em>
-          <a href="{{'/'|absolute_url}}">JavaScript versus Research Computing</a>
-        </em>
-      </span>
-      <span class="col-md-2" align="right">
-        {% if include.next %}
-          <a class="nav-link" href="{{include.next|absolute_url}}"><span class="fa fa-chevron-right"></span></a>
-        {% else %}
-          <a class="nav-link" href="{{'/'|absolute_url}}"><span class="fa fa-chevron-up"></span></a>
-        {% endif %}
-      </span>
+      <nav aria-label="...">
+        <ul class="pager">
+          {% if include.previous %}
+            <li class="previous"><a href="{{include.previous|absolute_url}}"><span aria-hidden="true">&larr;</span> Prev</a></li>
+          {% else %}
+            <li class="previous"><a href="{{'/'|absolute_url}}"><span aria-hidden="true">&larr;</span>Main</a></li>
+          {% endif %}
+          {% if include.next %}
+            <li class="next"><a href="{{include.next|absolute_url}}">Next <span aria-hidden="true">&rarr;</span></a></li>
+          {% else %}
+            <li class="next"><a href="{{'/'|absolute_url}}">Main <span aria-hidden="true">&rarr;</span></a></li>
+          {% endif %}
+        </ul>
+      </nav>
     </div>
   {% endunless %}
   {% if include.copyright %}
@@ -29,7 +23,9 @@
     </span>
     <span class="col-md-8" align="center">
       <em>
-        &copy; 2017 Greg Wilson - see <a href="{{'/license/'|absolute_url}}">the license</a> for terms of use.
+        <a href="{{'/'|absolute_url}}">{{site.title}}</a> &copy; {{site.author}} {{site.copyrightyear}}
+        <br/>
+        See <a href="{{'/license/'|absolute_url}}">the license</a> for terms of use
       </em>
     </span>
     <span class="col-md-2" align="right">
