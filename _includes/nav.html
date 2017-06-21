@@ -17,19 +17,4 @@
       </nav>
     </div>
   {% endunless %}
-  {% if include.copyright %}
-  <div class="row" style="padding-bottom: 10px;">
-    <span class="col-md-2" align="left">
-    </span>
-    <span class="col-md-8 copyright" align="center">
-      <em>
-        <a href="{{'/'|absolute_url}}">{{site.title}}</a> &copy; {{site.author}} {{site.copyrightyear}}
-        <br/>
-        See <a href="{{'/license/'|absolute_url}}">the license</a> for terms of use
-      </em>
-    </span>
-    <span class="col-md-2" align="right">
-    </span>
-  </div>
-  {% endif %}
 </div>

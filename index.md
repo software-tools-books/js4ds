@@ -18,7 +18,7 @@ please [file an issue][issues]
 in the book's [GitHub repository][repo]
 or [email the author][email] directly.
 
-{% include toc.html %}
+{% include toc.html copyright=false %}
 
 [email]: mailto:gvwilson@third-bit.com?subject=JavaScript%20versus%20Research%20Computing
 [issues]: https://github.com/gvwilson/js-vs-rc/issues

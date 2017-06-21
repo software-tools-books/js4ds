@@ -2,3 +2,8 @@
 {% for entry in site.toc %}
 <li><a href="{{entry.permalink | absolute_url}}">{{entry.title}}</a></li>{% endfor %}
 </ul>
+{% if include.copyright %}
+<a href="{{'/'|absolute_url}}">{{site.title}}</a> &copy; {{site.author}} {{site.copyrightyear}}
+<br/>
+See <a href="{{'/license/'|absolute_url}}">the license</a> for terms of use
+{% endif %}
