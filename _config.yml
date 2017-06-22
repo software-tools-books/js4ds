@@ -243,11 +243,7 @@ toc:
   - FIXME
 - permalink: /legacy/
   title: Legacy JavaScript Issues
-  type: lesson
-  questions:
-  - FIXME
-  keypoints:
-  - FIXME
+  type: misc
 - permalink: /guide/
   title: Guide
   type: misc
