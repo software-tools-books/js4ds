@@ -341,3 +341,5 @@ export default BarChart
 - This leaves:
   - `scaleThreshold` and `legendColor`
   - The chart-drawing stuff: `.data([0])`, `.enter()`, and so on
+
+{% include links.md %}

@@ -256,3 +256,5 @@ describe('server', () => {
 ## Challenges
 
 FIXME-35: write challenges for testing
+
+{% include links.md %}

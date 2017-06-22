@@ -330,3 +330,5 @@ ReactDOM.render(
 ## Challenges
 
 FIXME-19: write challenges
+
+{% include links.md %}

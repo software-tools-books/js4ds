@@ -8,3 +8,5 @@ permalink: "/guide/"
 {% include listblock.html title=heading items=item.keypoints class="guide" section=true %}
 {% endif %}
 {% endfor %}
+
+{% include links.md %}

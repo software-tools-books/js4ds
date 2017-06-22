@@ -1,0 +1,15 @@
+[beazley-tweet]: https://twitter.com/dabeaz/status/863566969240514560
+[cc-by-human]: https://creativecommons.org/licenses/by/4.0/
+[cc-by-legal]: https://creativecommons.org/licenses/by/4.0/legalcode
+[contrib-covenant]: http://contributor-covenant.org/
+[email]: mailto:gvwilson@third-bit.com?subject=JavaScript%20versus%20Research%20Computing
+[issues]: https://github.com/gvwilson/js-vs-rc/issues
+[license]: https://gvwilson.github.io/js-vs-rc/license/
+[mit-license]: http://opensource.org/licenses/mit-license.html
+[osi]: http://opensource.org
+[repo]: https://github.com/gvwilson/js-vs-rc/
+[runkit]: https://runkit.com/
+[site]: https://gvwilson.github.io/js-vs-rc/
+[sql-tutorial]: http://swcarpentry.github.io/sql-novice-survey/
+[swc]: http://software-carpentry.org
+[wordpress]: https://wordpress.org/

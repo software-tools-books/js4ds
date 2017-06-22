@@ -12,3 +12,5 @@ as promptly as we can.
 
 *Please note that all participants in this project
 are required to abide by our [Code of Conduct](../conduct/).*
+
+{% include links.md %}

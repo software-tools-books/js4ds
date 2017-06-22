@@ -385,3 +385,5 @@ You may want to use `Array.reduce`
 to generate the sequence numbers.
 Use the web to find a description of it,
 and work with a partner to ensure that you understand how it works.
+
+{% include links.md %}

@@ -411,3 +411,5 @@ class App extends React.Component {
 ## Challenges
 
 FIXME-25: write challenges
+
+{% include links.md %}

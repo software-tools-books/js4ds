@@ -389,3 +389,5 @@ const {genus, species} = creature
 console.log(`genus is ${genus}`)
 console.log(`species is ${species}`)
 ```
+
+{% include links.md %}

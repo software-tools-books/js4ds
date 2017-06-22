@@ -323,3 +323,5 @@ in spring: penguin looks for food,,penguin is nesting
 ## Challenges
 
 FIXME-27: write challenges
+
+{% include links.md %}

@@ -81,7 +81,4 @@ Install Node and NPM on your computer,
 then run the commands `node --version` and `npm --version`
 to see which versions you have.
 
-[beazley-tweet]: https://twitter.com/dabeaz/status/863566969240514560
-[runkit]: https://runkit.com/
-[swc]: http://software-carpentry.org
-[wordpress]: https://wordpress.org/
+{% include links.md %}

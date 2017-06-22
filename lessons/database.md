@@ -445,4 +445,4 @@ test('Can only get workshops that exist', (t) => {
 
 FIXME-39: write challenges for database lesson.
 
-[sql-tutorial]: http://swcarpentry.github.io/sql-novice-survey/
+{% include links.md %}

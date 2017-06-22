@@ -32,4 +32,4 @@ project maintainers at
 This Code of Conduct is adapted from the
 [Contributor Covenant][contrib-covenant] Version 1.0.0.
 
-[contrib-covenant]: http://contributor-covenant.org/
+{% include links.md %}

@@ -20,8 +20,4 @@ or [email the author][email] directly.
 
 {% include toc.html copyright=false %}
 
-[email]: mailto:gvwilson@third-bit.com?subject=JavaScript%20versus%20Research%20Computing
-[issues]: https://github.com/gvwilson/js-vs-rc/issues
-[license]: https://gvwilson.github.io/js-vs-rc/license/
-[repo]: https://github.com/gvwilson/js-vs-rc/
-[site]: https://gvwilson.github.io/js-vs-rc/
+{% include links.md %}
