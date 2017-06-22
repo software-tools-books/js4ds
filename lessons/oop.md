@@ -3,6 +3,8 @@ layout: page
 permalink: "/oop/"
 ---
 
+## Introduction
+
 - Making new code use old code is easy
 - How can we make old code use new code without rewriting?
 - Objects!

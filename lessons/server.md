@@ -3,6 +3,8 @@ layout: page
 permalink: "/server/"
 ---
 
+## Introduction
+
 - HTTP request/response cycle
   - Client (browser or other program) makes a connection
   - Sends a blob of text specifying what it's asking for

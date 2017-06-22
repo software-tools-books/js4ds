@@ -3,6 +3,8 @@ layout: page
 permalink: "/callbacks/"
 ---
 
+## Introduction
+
 - JavaScript relies heavily on [callback functions](../gloss/#callback-function)
   - Instead of me giving you a result,
     you give me a function that tells me what to do next

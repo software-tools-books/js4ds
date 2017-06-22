@@ -3,6 +3,8 @@ layout: page
 permalink: "/viz/"
 ---
 
+## Introduction
+
 - Tables are great, but visualizations are often more effective
   - At least if they're well designed…
   - …and your audience is sighted

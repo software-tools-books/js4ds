@@ -3,6 +3,8 @@ layout: page
 permalink: "/interactive/"
 ---
 
+## Introduction
+
 - Browsers allow us to define [event handlers](../gloss/#event-handler) to specify what to do in response to a user action
   - A callback function that is (usually) given an [event object](../gloss/#event-object) containing information about what the user did
 - Pass the callback function as a specifically-named property of the thing whose behavior we are specifying

@@ -3,6 +3,8 @@ layout: page
 permalink: "/display/"
 ---
 
+## Introduction
+
 - In the beginning, people created HTML pages by typing them in
 - Quickly realized that a lot of pages shared a lot of content
   - Headers, footers, etc.

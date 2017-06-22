@@ -3,6 +3,8 @@ layout: page
 permalink: "/core/"
 ---
 
+## Introduction
+
 - Introduce enough of JavaScript's core features to get started
 - Experiment with these interactively in the Node REPL
 

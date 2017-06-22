@@ -3,6 +3,8 @@ layout: page
 permalink: "/htmlcss/"
 ---
 
+## Introduction
+
 - HTML is the standard way to represent documents for presentation in web browsers
 - CSS is the standard way to describe how it should look
 - Both are more complicated than they should have been

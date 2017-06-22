@@ -3,6 +3,8 @@ layout: page
 permalink: "/database/"
 ---
 
+## Introduction
+
 - Put a database under our web service
 - Many more storage options today than there were ten years ago
 - [Relational database](../gloss/#relational-database)
