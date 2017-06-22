@@ -3,94 +3,96 @@ layout: page
 permalink: "/gloss/"
 ---
 
-**anonymous function**{:#anonymous-function}: FIXME
+FIXME: write glossary entries
 
-**array**{:#array}: FIXME
+**anonymous function**{:#anonymous-function}:
 
-**attribute**{:#attribute}: FIXME
+**array**{:#array}:
 
-**callback function**{:#callback-function}: FIXME
+**attribute**{:#attribute}:
 
-**Cascading Style Sheets**{:#css}: FIXME
+**callback function**{:#callback-function}:
 
-**class**{:#class}: FIXME
+**Cascading Style Sheets**{:#css}:
 
-**client-side page generation**{:#client-side-page-generation}: FIXME
+**class**{:#class}:
 
-**closure**{:#closure}: FIXME
+**client-side page generation**{:#client-side-page-generation}:
 
-**constant**{:#constant}: FIXME
+**closure**{:#closure}:
 
-**destructuring**{:#destructuring}: FIXME
+**constant**{:#constant}:
 
-**document**{:#document}: FIXME
+**destructuring**{:#destructuring}:
 
-**Document Object Model**{:#dom}: FIXME
+**document**{:#document}:
 
-**dotted notation**{:#dotted-notation}: FIXME
+**Document Object Model**{:#dom}:
 
-**event handler**{:#event-handler}: FIXME
+**dotted notation**{:#dotted-notation}:
 
-**event object**{:#event-object}: FIXME
+**event handler**{:#event-handler}:
 
-**extend**{:#extend}: FIXME
+**event object**{:#event-object}:
 
-**falsy**{:#falsy}: FIXME
+**extend**{:#extend}:
 
-**fat arrow functions**{:#far-arrow-function}: FIXME
+**falsy**{:#falsy}:
 
-**functional programming**{:#functional-programming}: FIXME
+**fat arrow functions**{:#far-arrow-function}:
 
-**global variable**{:#global-variable}: FIXME
+**functional programming**{:#functional-programming}:
 
-**heterogeneous**{:#heterogeneous}: FIXME
+**global variable**{:#global-variable}:
 
-**higher-order function**{:#higher-order-function}: FIXME
+**heterogeneous**{:#heterogeneous}:
 
-**in-memory database**{:#in-memory-database}: FIXME
+**higher-order function**{:#higher-order-function}:
 
-**inherit**{:#inherit}: FIXME
+**in-memory database**{:#in-memory-database}:
 
-**local variable**{:#local-variable}: FIXME
+**inherit**{:#inherit}:
 
-**memory diagram**{:#memory-diagram}: FIXME
+**local variable**{:#local-variable}:
 
-**method**{:#method}: FIXME
+**memory diagram**{:#memory-diagram}:
 
-**module**{:#module}: FIXME
+**method**{:#method}:
 
-**object**{:#object}: FIXME
+**module**{:#module}:
 
-**parameter**{:#parameter}: FIXME
+**object**{:#object}:
 
-**polymorphism**{:#polymoprhism}: FIXME
+**parameter**{:#parameter}:
 
-**promise**{:#promise}: FIXME
+**polymorphism**{:#polymoprhism}:
 
-**prototype**{:#prototype}: FIXME
+**promise**{:#promise}:
 
-**property**{:#property}: FIXME
+**prototype**{:#prototype}:
 
-**regular expression**{:#regular-expression}: FIXME
+**property**{:#property}:
 
-**responsive design**{:#responsive-design}: FIXME
+**regular expression**{:#regular-expression}:
 
-**scope**{:#scope}: FIXME
+**responsive design**{:#responsive-design}:
 
-**selector**{:#selector}: FIXME
+**scope**{:#scope}:
 
-**server-side page generation**{:#server-side-page-generation}: FIXME
+**selector**{:#selector}:
 
-**string**{:#string}: FIXME
+**server-side page generation**{:#server-side-page-generation}:
 
-**tag**{:#tag}: FIXME
+**string**{:#string}:
 
-**template**{:#template}: FIXME
+**tag**{:#tag}:
 
-**truthiness**{:#truthiness}: FIXME
+**template**{:#template}:
 
-**Unicode**{:#unicode}: FIXME
+**truthiness**{:#truthiness}:
 
-**variable**{:#variable}: FIXME
+**Unicode**{:#unicode}:
 
-**XML**{:#xml}: FIXME
+**variable**{:#variable}:
+
+**XML**{:#xml}:
