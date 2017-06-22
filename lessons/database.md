@@ -4,9 +4,22 @@ permalink: "/database/"
 ---
 
 - Put a database under our web service
-- Many options these days
-  - FIXME-37: quick explanation of differences between SQL and NoSQL
-  - FIXME-38: pointer to SQL tutorial
+- Many more storage options today than there were ten years ago
+- [Relational database](../gloss/#relational-database)
+  - Databases consists of zero or more [tables](../gloss/#table)
+  - Each table has a fixed set of [fields](../gloss/#field)
+    - Usually drawn as columns
+  - And zero or more [records](../gloss/#record)
+    - Usually drawn as rows
+  - Each record has a value for each field
+    - Which may be `null` (meaning "no data" or "unknown")
+- Relational databases are manipulated using [SQL](../gloss/#sql)
+- Which is why alternatives are often called [NoSQL databases](../gloss/#nosql-database)
+  - Many different storage models
+  - Most popular stores [JSON](../gloss/#json)
+  - Treat data as a document rather than as a collection of tables
+- We will use a SQL database because it's still the most common choice
+- See [this short SQL tutorial][sql-tutorial] for an introduction
 
 <!-- @src/database/fixture.sql -->
 ```sql
@@ -429,3 +442,5 @@ test('Can only get workshops that exist', (t) => {
 ## Challenges
 
 FIXME-39: write challenges for database lesson.
+
+[sql-tutorial]: http://swcarpentry.github.io/sql-novice-survey/

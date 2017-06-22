@@ -41,6 +41,8 @@ FIXME: write glossary entries
 
 **fat arrow functions**{:#far-arrow-function}:
 
+**field**{:#field}:
+
 **functional programming**{:#functional-programming}:
 
 **global variable**{:#global-variable}:
@@ -53,6 +55,8 @@ FIXME: write glossary entries
 
 **inherit**{:#inherit}:
 
+**JSON**{:#json}:
+
 **local variable**{:#local-variable}:
 
 **memory diagram**{:#memory-diagram}:
@@ -60,6 +64,8 @@ FIXME: write glossary entries
 **method**{:#method}:
 
 **module**{:#module}:
+
+**NoSQL database**{:#nosql-database}:
 
 **object**{:#object}:
 
@@ -75,6 +81,8 @@ FIXME: write glossary entries
 
 **regular expression**{:#regular-expression}:
 
+**relational database**{:#relational-database}:
+
 **responsive design**{:#responsive-design}:
 
 **scope**{:#scope}:
@@ -82,6 +90,8 @@ FIXME: write glossary entries
 **selector**{:#selector}:
 
 **server-side page generation**{:#server-side-page-generation}:
+
+**SQL**{:#sql}:
 
 **string**{:#string}:
 
