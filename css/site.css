@@ -67,17 +67,6 @@ div.keypoints, div.questions {
   font-size: 1.5em;
 }
 
-/*
-.main-background {
-  background: url('../img/title-slide.jpg') no-repeat;
-  background-size: cover;
-}
-*/
-
 a {
   color: #7070C0;
-}
-
-a:hover {
-  color: #7070F0;
 }
