@@ -29,7 +29,7 @@ permalink: "/interactive/"
     </script>
   </body>
 ```
-{: source="src/interactive/hello-button.html"}
+{: data-toggle="tooltip" title="src/interactive/hello-button.html"}
 
 - Global variables and functions are a poor way to structure code
 - Better to define the component as a class
@@ -63,7 +63,7 @@ permalink: "/interactive/"
         document.getElementById("app")
       )
 ```
-{: source="src/interactive/display-counter.html"}
+{: data-toggle="tooltip" title="src/interactive/display-counter.html"}
 
 - `ReactDOM.render` call at the end does what it always has
 - Class has three parts
@@ -124,14 +124,14 @@ permalink: "/interactive/"
   </body>
 </html>
 ```
-{: source="src/interactive/multi-component/index.html"}
+{: data-toggle="tooltip" title="src/interactive/multi-component/index.html"}
 
 ```js
 const NumberDisplay = (props) => {
   return (<p>{props.label}: {props.value}</p>)
 }
 ```
-{: source="src/interactive/multi-component/NumberDisplay.js"}
+{: data-toggle="tooltip" title="src/interactive/multi-component/NumberDisplay.js"}
 
 ```js
 const UpAndDown = (props) => {
@@ -143,7 +143,7 @@ const UpAndDown = (props) => {
   )
 }
 ```
-{: source="src/interactive/multi-component/UpAndDown.js"}
+{: data-toggle="tooltip" title="src/interactive/multi-component/UpAndDown.js"}
 
 ```js
 class App extends React.Component {
@@ -171,7 +171,7 @@ class App extends React.Component {
   }
 }
 ```
-{: source="src/interactive/multi-component/app.js"}
+{: data-toggle="tooltip" title="src/interactive/multi-component/app.js"}
 
 FIXME-22: diagram
 
@@ -214,7 +214,7 @@ class App extends React.Component {
   }
 }
 ```
-{: source="src/interactive/asteroids/app.js"}
+{: data-toggle="tooltip" title="src/interactive/asteroids/app.js"}
 
 - Start by displaying asteroids using fake data
   - A pure display component
@@ -238,7 +238,7 @@ const AsteroidList = (props) => {
   )
 }
 ```
-{: source="src/interactive/asteroids/AsteroidList.js"}
+{: data-toggle="tooltip" title="src/interactive/asteroids/AsteroidList.js"}
 
 - Go back and put fake data in `App` for now
 
@@ -259,7 +259,7 @@ class App extends React.Component {
   …
 }
 ```
-{: source="src/interactive/asteroids/app.js"}
+{: data-toggle="tooltip" title="src/interactive/asteroids/app.js"}
 
 - Create placeholder for `DateSubmit`
 
@@ -268,7 +268,7 @@ const DateSubmit = (props) => {
   return (<p>DateSubmit</p>)
 }
 ```
-{: source="src/interactive/asteroids/DateSubmit.js"}
+{: data-toggle="tooltip" title="src/interactive/asteroids/DateSubmit.js"}
 
 - And run
 
@@ -293,7 +293,7 @@ const DateSubmit = ({label, value, onChange, onCommit}) => {
   )
 }
 ```
-{: source="src/interactive/asteroids/DateSubmit.js"}
+{: data-toggle="tooltip" title="src/interactive/asteroids/DateSubmit.js"}
 
 > **Destructuring**
 >
@@ -348,7 +348,7 @@ class App extends React.Component {
   }
 }
 ```
-{: source="src/interactive/asteroids/app.js"}
+{: data-toggle="tooltip" title="src/interactive/asteroids/app.js"}
 
 - Safe to pass `this.state.newDate` because we're re-drawing each time there's a change
   - Passing a value for display, not a reference to be modified
@@ -374,7 +374,7 @@ class App extends React.Component {
     })
   }
 ```
-{: source="src/interactive/asteroids/app.js"}
+{: data-toggle="tooltip" title="src/interactive/asteroids/app.js"}
 
 - Steps are:
   1. Build the URL for the data
@@ -401,7 +401,7 @@ class App extends React.Component {
     return result
   }
 ```
-{: source="src/interactive/asteroids/app.js"}
+{: data-toggle="tooltip" title="src/interactive/asteroids/app.js"}
 
 - Look at the structure of the JSON
 - Figure out how to index the fields we need

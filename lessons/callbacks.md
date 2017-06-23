@@ -43,7 +43,7 @@ const hello = () => {
 
 doTwice(hello)
 ```
-{: source="src/callbacks/do-twice.js"}
+{: data-toggle="tooltip" title="src/callbacks/do-twice.js"}
 ```text
 hello
 hello
@@ -69,7 +69,7 @@ console.log(`trim then dot: |${trimThenDot}|`)
 const dotThenTrim = pipeline(original, dot, trim)
 console.log(`dot then trim: |${dotThenTrim}|`)
 ```
-{: source="src/callbacks/two-functions.js"}
+{: data-toggle="tooltip" title="src/callbacks/two-functions.js"}
 ```text
 trim then dot: |this.example.uses.text|
 dot then trim: |..this.example.uses.text..|
@@ -94,7 +94,7 @@ const original = ' some text '
 const final = pipeline(original, [double, trim, dot])
 console.log(`|${original}| -> |${final}|`)
 ```
-{: source="src/callbacks/general-pipeline.js"}
+{: data-toggle="tooltip" title="src/callbacks/general-pipeline.js"}
 ```text
 | some text | -> |some.text..some.text|
 ```
@@ -122,7 +122,7 @@ console.log(`upper: ${upper}`)
 const first = transform(data, (x) => { return x[0] })
 console.log(`first: ${first}`)
 ```
-{: source="src/callbacks/transform.js"}
+{: data-toggle="tooltip" title="src/callbacks/transform.js"}
 ```text
 upper: ONE,TWO,THREE
 first: o,t,t
@@ -147,7 +147,7 @@ const data = ['this', 'is', 'a', 'test']
 console.log('some longer than 3:', data.some((x) => { return x.length > 3 }))
 console.log('all greater than 3:', data.every((x) => { return x.length > 3 }))
 ```
-{: source="src/callbacks/some-every.js"}
+{: data-toggle="tooltip" title="src/callbacks/some-every.js"}
 ```text
 some longer than 3: true
 all greater than 3: false
@@ -159,7 +159,7 @@ all greater than 3: false
 const data = ['this', 'is', 'a', 'test']
 console.log('those greater than 3:', data.filter((x) => { return x.length > 3 }))
 ```
-{: source="src/callbacks/filter.js"}
+{: data-toggle="tooltip" title="src/callbacks/filter.js"}
 ```text
 those greater than 3: [ 'this', 'test' ]
 ```
@@ -173,7 +173,7 @@ console.log('all longer than 3 start with t',
             .filter((x) => { return x.length > 3 })
             .every((x) => { return x[0] === 't' }))
 ```
-{: source="src/callbacks/filter-every.js"}
+{: data-toggle="tooltip" title="src/callbacks/filter-every.js"}
 ```text
 all longer than 3 start with t true
 ```
@@ -185,7 +185,7 @@ all longer than 3 start with t true
 const data = ['this', 'is', 'a', 'test']
 console.log('shortened', data.map((x) => { return x.slice(0, 2) }))
 ```
-{: source="src/callbacks/map.js"}
+{: data-toggle="tooltip" title="src/callbacks/map.js"}
 ```text
 shortened [ 'th', 'is', 'a', 'te' ]
 ```
@@ -208,7 +208,7 @@ console.log('in one step', data.reduce((accum, next) => {
   return accum + next[0]
 }, ''))
 ```
-{: source="src/callback/reduce.js"}
+{: data-toggle="tooltip" title="src/callback/reduce.js"}
 ```text
 acronym of this,is,a,test is tiat
 in one step tiat
@@ -229,7 +229,7 @@ const pipeline = (initial, operations) => {
   return current
 }
 ```
-{: source="src/callbacks/general-pipeline.js"}
+{: data-toggle="tooltip" title="src/callbacks/general-pipeline.js"}
 
 - But this only works if each function in `operations` has a single parameter
 - If we want to be able to add 1, add 2, and so on, we have to write separate functions
@@ -247,7 +247,7 @@ const add1 = adder(1)
 const add2 = adder(2)
 console.log(`add1(100) is ${add1(100)} and add2(100) is ${add2(100)}`)
 ```
-{: source="src/callbacks/adder.js"}
+{: data-toggle="tooltip" title="src/callbacks/adder.js"}
 ```text
 add1(100) is 101 and add2(100) is 102
 ```
@@ -286,7 +286,7 @@ const adder = …as before…
 const result = pipeline(100, [adder(1), adder(2)])
 console.log(`adding 1 and 2 to 100 -> ${result}`)
 ```
-{: source="src/callbacks/closure.js"}
+{: data-toggle="tooltip" title="src/callbacks/closure.js"}
 ```text
 adding 1 and 2 to 100 -> 103
 ```
@@ -307,7 +307,7 @@ const pipeline = (initial, operations) => {
 const result = pipeline(100, [(x) => x + 1, (x) => x + 2])
 console.log(`adding 1 and 2 to 100 -> ${result}`)
 ```
-{: source="src/callbacks/closure-inline.js"}
+{: data-toggle="tooltip" title="src/callbacks/closure-inline.js"}
 ```text
 adding 1 and 2 to 100 -> 103
 ```

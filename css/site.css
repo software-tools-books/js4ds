@@ -1,12 +1,3 @@
-div.highlighter-rouge[source]:before {
-    content: attr(source);
-    display: none;
-}
-
-div.highlighter-rouge[source]:hover:before {
-    display: inline-block;
-}
-
 blockquote {
   font-size: 100%;
 }

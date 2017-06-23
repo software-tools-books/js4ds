@@ -32,7 +32,7 @@ permalink: "/viz/"
   </body>
 </html>
 ```
-{: source="src/viz/index.html"}
+{: data-toggle="tooltip" title="src/viz/index.html"}
 
 ## The Data
 
@@ -49,7 +49,7 @@ export default [
   {"day": 30, "biomass": 0}
 ]
 ```
-{: source="src/viz/biomass.js"}
+{: data-toggle="tooltip" title="src/viz/biomass.js"}
 
 ## The Main Application
 
@@ -116,7 +116,7 @@ ReactDOM.render(
   document.getElementById('root')
 );
 ```
-{: source="src/viz/app.js"}
+{: data-toggle="tooltip" title="src/viz/app.js"}
 
 ### Imports
 
@@ -259,7 +259,7 @@ class BarChart extends Component {
 
 export default BarChart
 ```
-{: source="src/viz/BarChart.js"}
+{: data-toggle="tooltip" title="src/viz/BarChart.js"}
 
 ### Imports
 

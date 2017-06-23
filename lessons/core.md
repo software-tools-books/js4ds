@@ -13,7 +13,7 @@ permalink: "/core/"
 ```js
 console.log('hello, world')
 ```
-{: source="src/core/hello.js"}
+{: data-toggle="tooltip" title="src/core/hello.js"}
 ```text
 hello, world
 ```
@@ -47,7 +47,7 @@ for (let value of otherValues) {
 
 console.log('the type of', console.log, 'is', typeof console.log)
 ```
-{: source="src/core/types.js"}
+{: data-toggle="tooltip" title="src/core/types.js"}
 ```text
 the type of 123.45 is number
 the type of 123 is number
@@ -92,7 +92,7 @@ for (let v of values) {
   }
 }
 ```
-{: source="src/core/control-flow.js"}
+{: data-toggle="tooltip" title="src/core/control-flow.js"}
 ```text
 false of type boolean is falsy
 true of type boolean is truthy
@@ -132,7 +132,7 @@ for (let color of ['red', 'green', 'blue']) {
   console.log(message, `and capitalized is ${color.toUpperCase()}`)
 }
 ```
-{: source="src/core/formatting.js"}
+{: data-toggle="tooltip" title="src/core/formatting.js"}
 ```text
 color is red and capitalized is RED
 color is green and capitalized is GREEN
@@ -155,7 +155,7 @@ for (let key in creature) {
   console.log(`creature[${key}] is ${creature[key]}`)
 }
 ```
-{: source="src/core/objects.js"}
+{: data-toggle="tooltip" title="src/core/objects.js"}
 ```text
 creature is [object Object]
 creature.genus is Callithrix
@@ -193,7 +193,7 @@ function limits (values) {
   return [low, high]
 }
 ```
-{: source="src/core/functions-classic.js"}
+{: data-toggle="tooltip" title="src/core/functions-classic.js"}
 
 - Definition is:
   - Keyword `function`
@@ -217,7 +217,7 @@ for (let test of allTests) {
   console.log(`limits of ${test} are ${limits(test)}`)
 }
 ```
-{: source="src/core/functions-classic.js"}
+{: data-toggle="tooltip" title="src/core/functions-classic.js"}
 ```text
 limits of  are ,
 limits of 9 are 9,9
@@ -247,7 +247,7 @@ const limits = (values) => {
   return [low, high]
 }
 ```
-{: source="src/core/functions-modern.js"}
+{: data-toggle="tooltip" title="src/core/functions-modern.js"}
 
 - Same output as previous example
 
@@ -283,7 +283,7 @@ module.exports = {
   clip: clip
 }
 ```
-{: source="src/core/utilities.js"}
+{: data-toggle="tooltip" title="src/core/utilities.js"}
 
 - Notes
   - Don't have to quote the keys of objects when they are simple names
@@ -296,7 +296,7 @@ const data = [-1, 5, 3, 0, 10]
 const result = utilities.clip(data)
 console.log(`clip(${data}) -> ${result}`)
 ```
-{: source="src/core/import.js"}
+{: data-toggle="tooltip" title="src/core/import.js"}
 ```text
 clip(-1,5,3,0,10) -> 0,1,2,3
 ```
@@ -340,7 +340,7 @@ for (let line of table) {
   console.log(line)
 }
 ```
-{: source="ex/core/table-of-squares.js"}
+{: data-toggle="tooltip" title="ex/core/table-of-squares.js"}
 ```text
 square of 4 is 16
 square of 3 is 9
@@ -368,7 +368,7 @@ const species = 'Jacchus'
 const creature = {genus, species}
 console.log(creature)
 ```
-{: source="ex/core/implied.js"}
+{: data-toggle="tooltip" title="ex/core/implied.js"}
 ```text
 { genus: 'Callithrix', species: 'Jacchus' }
 ```
@@ -388,6 +388,6 @@ const {genus, species} = creature
 console.log(`genus is ${genus}`)
 console.log(`species is ${species}`)
 ```
-{: source="ex/core/destructuring.js"}
+{: data-toggle="tooltip" title="ex/core/destructuring.js"}
 
 {% include links.md %}

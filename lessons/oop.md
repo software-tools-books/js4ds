@@ -23,7 +23,7 @@ const square = {
   perimeter: (it) => {return 4 * it.size}
 }
 ```
-{: source="src/oop/clumsy-objects.js"}
+{: data-toggle="tooltip" title="src/oop/clumsy-objects.js"}
 
 - Pass the object itself into the function
 
@@ -31,7 +31,7 @@ const square = {
 const a = square.area(square)
 console.log(`area of square is ${a}`)
 ```
-{: source="src/oop/clumsy-objects.js"}
+{: data-toggle="tooltip" title="src/oop/clumsy-objects.js"}
 ```text
 area of square is 25
 ```
@@ -62,7 +62,7 @@ for (let thing of everything) {
   console.log(`${thing.name}: area ${a} perimeter ${p}`)
 }
 ```
-{: source="src/oop/clumsy-objects.js"}
+{: data-toggle="tooltip" title="src/oop/clumsy-objects.js"}
 ```text
 square: area 25 perimeter 20
 circle: area 28.274333882308138 perimeter 18.84955592153876
@@ -98,7 +98,7 @@ class Square {
 const sq = Square(3)
 console.log(`sq name ${sq.name} and area ${sq.area()}`)
 ```
-{: source="src/oop/es6-objects.js"}
+{: data-toggle="tooltip" title="src/oop/es6-objects.js"}
 ```text
 sq name square and area 9
 ```
@@ -143,7 +143,7 @@ for (let thing of everything) {
   console.log(`${thing.name}: area ${a} perimeter ${p}`)
 }
 ```
-{: source="src/oop/es6-objects.js"}
+{: data-toggle="tooltip" title="src/oop/es6-objects.js"}
 ```text
 square: area 12.25 perimeter 14
 circle: area 19.634954084936208 perimeter 15.707963267948966
@@ -173,7 +173,7 @@ class Person {
   }
 }
 ```
-{: source="src/oop/override.js"}
+{: data-toggle="tooltip" title="src/oop/override.js"}
 
 - Then [extend](../gloss/#extend'|absolue_url}}) to create a scientist
   - Say that `Scientist` [inherits](../gloss/#inherit) from `Person`
@@ -190,7 +190,7 @@ class Scientist extends Person {
   }
 }
 ```
-{: source="src/oop/override.js"}
+{: data-toggle="tooltip" title="src/oop/override.js"}
 
 - Use `super(…)` in `constructor` to call up to parent's constructor
   - Do *not* duplicate the steps it takes
@@ -208,7 +208,7 @@ console.log(`parent: ${parent.greeting(true)}`)
 child = new Scientist('Bhadra', 'microbiology')
 console.log(`child: ${child.greeting(false)}`)
 ```
-{: source="src/oop/override.js"}
+{: data-toggle="tooltip" title="src/oop/override.js"}
 ```text
 parent: Hello, my name is Hakim
 child: Hi, I'm Bhadra. Let me tell you about microbiology...
@@ -254,7 +254,7 @@ class Bird {
   }
 }
 ```
-{: source="src/oop/protocol.js"}
+{: data-toggle="tooltip" title="src/oop/protocol.js"}
 
 - `daily` defines the bird's overall behavior
 - `foraging`, `mating`, and `nesting` define default behaviors
@@ -287,7 +287,7 @@ class Penguin extends Bird {
   }
 }
 ```
-{: source="src/oop/protocol.js"}
+{: data-toggle="tooltip" title="src/oop/protocol.js"}
 
 - Has extra state (`this.hasEgg`)
   - Calls parent constructor before setting this up
