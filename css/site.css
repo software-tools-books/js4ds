@@ -7,9 +7,11 @@ div.keypoints, div.questions {
   padding-right: 0.5em;
   margin-bottom: 1em;
   border: 3px solid #C0C0C0;
+  border-radius: 10px;
 }
 
 .copyright {
+  text-align: center;
   font-size: 90%;
 }
 
