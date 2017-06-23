@@ -68,7 +68,6 @@ permalink: "/htmlcss/"
   - Introduce with `<!--`, and end with `-->`
   - Unfortunately, comments cannot be nested
 
-<!-- @src/htmlcss/first-page.html -->
 ```html
 <html>
   <head>
@@ -84,6 +83,7 @@ permalink: "/htmlcss/"
   </body>
 </html>
 ```
+{: source="src/htmlcss/first-page.html"}
 
 ## Attributes
 
@@ -135,7 +135,6 @@ permalink: "/htmlcss/"
   - Or `th` for headings
   - Do *not* use tables for multi-column layout: there's a better way
 
-<!-- @src/htmlcss/table.html -->
 ```html
 <html>
   <head>
@@ -151,6 +150,7 @@ permalink: "/htmlcss/"
   </body>
 </html>
 ```
+{: source="src/htmlcss/table.html"}
 
 <html>
   <head>
@@ -174,12 +174,12 @@ permalink: "/htmlcss/"
   - The `href` attribute specifies what the link is pointing at
   - Both local filenames and URLs are supported
 
-<!-- @src/htmlcss/links.html -->
 ```html
 <a href="http://gvwilson.github.io/js-vs-rc/">This course</a>
 <a href="https://nodejs.org/">Node.js</a>
 <a href="https://facebook.github.io/react/">React</a>
 ```
+{: source="src/htmlcss/links.html"}
 
 ## Images
 
@@ -188,17 +188,16 @@ permalink: "/htmlcss/"
   - Can be either a URL or a local path
 - The `alt` attribute is text for accessibility and search engines
 
-<!-- @src/htmlcss/images.html -->
 ```html
 <img src="./html5.png" alt="HTML5 Logo with local path"/>
 <img src="https://github.com/gvwilson/js-vs-rc/blob/master/src/htmlcss/html5.png" alt="HTML5 logo online"/>
 ```
+{: source="src/htmlcss/images.html"}
 
 ## Cascading Style Sheets
 
 - When HTML first appeared, people styled it using attributes
 
-<!-- @src/htmlcss/style-with-attributes.html -->
 ```html
 <html>
   <body>
@@ -210,12 +209,12 @@ permalink: "/htmlcss/"
   </body>
 </html>
 ```
+{: source="src/htmlcss/style-with-attributes.html"}
 
 - Many still do, but a better way is to using [Cascading Style Sheets](../gloss/#css) (CSS)
   - Separates content from presentation
   - Easier to maintain consistency
 
-<!-- @src/htmlcss/style-with-css.html -->
 ```html
 <html>
   <head>
@@ -230,8 +229,8 @@ permalink: "/htmlcss/"
   </body>
 </html>
 ```
+{: source="src/htmlcss/style-with-css.html"}
 
-<!-- @src/htmlcss/simple-style.css -->
 ```css
 h1.title {
   text-align: center;
@@ -243,6 +242,7 @@ span.keyword {
   color: coral;
 }
 ```
+{: source="src/htmlcss/simple-style.css"}
 
 - Usual form is `tag.class` followed by a group of properties
   - Each property is a key/value pair
@@ -256,7 +256,6 @@ span.keyword {
 - Then refer to those elements using `#name` [selector](../gloss/#selector)
 - Can also use `parent > child` to select elements that are within specified other elements
 
-<!-- @src/htmlcss/selectors.html -->
 ```html
 <html>
   <head>
@@ -272,8 +271,8 @@ span.keyword {
   </body>
 </html>
 ```
+{: source="src/htmlcss/selectors.html"}
 
-<!-- @src/htmlcss/selector-style.css -->
 ```css
 #major {
   text-decoration: underline red;
@@ -285,6 +284,7 @@ span.keyword {
   font-style: italic;
 }
 ```
+{: source="src/htmlcss/selector-style.css"}
 
 ## Bootstrap
 
@@ -292,7 +292,6 @@ span.keyword {
 - Most people rely on a framework to take care of the details
 - One of the most widely used is Bootstrap
 
-<!-- @src/htmlcss/bootstrap.html -->
 ```html
 <html>
   <head>
@@ -328,6 +327,7 @@ span.keyword {
   </body>
 </html>
 ```
+{: source="src/htmlcss/bootstrap.html"}
 
 - Page opens by loading Bootstrap from the web
   - Can also download and use locally

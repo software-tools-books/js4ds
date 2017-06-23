@@ -10,10 +10,10 @@ permalink: "/core/"
 
 ## Hello, World
 
-<!-- @src/core/hello.js -->
 ```js
 console.log('hello, world')
 ```
+{: source="src/core/hello.js"}
 ```text
 hello, world
 ```
@@ -30,7 +30,6 @@ node src/core/hello.js
 
 ## Basic Data Types
 
-<!-- @src/core/types.js -->
 ```js
 const aNumber = 123.45
 console.log('the type of', aNumber, 'is', typeof aNumber)
@@ -48,6 +47,7 @@ for (let value of otherValues) {
 
 console.log('the type of', console.log, 'is', typeof console.log)
 ```
+{: source="src/core/types.js"}
 ```text
 the type of 123.45 is number
 the type of 123 is number
@@ -81,7 +81,6 @@ the type of function () { [native code] } is function
 
 - Have already seen `for` loop
 
-<!-- @src/core/control-flow.js -->
 ```js
 const values = [false, true, 0, 1, '', 'text', undefined, null, [], [2, 3]]
 for (let v of values) {
@@ -93,6 +92,7 @@ for (let v of values) {
   }
 }
 ```
+{: source="src/core/control-flow.js"}
 ```text
 false of type boolean is falsy
 true of type boolean is truthy
@@ -126,13 +126,13 @@ null of type object is falsy
 - Use back quotes to create multi-line strings
 - Interpolate values in these strings using `${expression}`
 
-<!-- @src/core/formatting.js -->
 ```js
 for (let color of ['red', 'green', 'blue']) {
   const message = `color is ${color}`
   console.log(message, `and capitalized is ${color.toUpperCase()}`)
 }
 ```
+{: source="src/core/formatting.js"}
 ```text
 color is red and capitalized is RED
 color is green and capitalized is GREEN
@@ -141,7 +141,6 @@ color is blue and capitalized is BLUE
 
 ## Objects
 
-<!-- @src/core/objects.js -->
 ```js
 const creature = {
   'order': 'Primates',
@@ -156,6 +155,7 @@ for (let key in creature) {
   console.log(`creature[${key}] is ${creature[key]}`)
 }
 ```
+{: source="src/core/objects.js"}
 ```text
 creature is [object Object]
 creature.genus is Callithrix
@@ -179,7 +179,6 @@ creature[species] is Jacchus
 
 ## Functions
 
-<!-- @src/core/functions-classic.js -->
 ```js
 function limits (values) {
   if (!values.length) {
@@ -194,6 +193,7 @@ function limits (values) {
   return [low, high]
 }
 ```
+{: source="src/core/functions-classic.js"}
 
 - Definition is:
   - Keyword `function`
@@ -205,7 +205,6 @@ function limits (values) {
 - Every function is a [scope](../gloss/#scope)
   - Parameters and variables created inside function are [local](../gloss/#local-variable)
 
-<!-- @src/core/functions-classic.js -->
 ```js
 const allTests = [
   [],
@@ -218,6 +217,7 @@ for (let test of allTests) {
   console.log(`limits of ${test} are ${limits(test)}`)
 }
 ```
+{: source="src/core/functions-classic.js"}
 ```text
 limits of  are ,
 limits of 9 are 9,9
@@ -233,7 +233,6 @@ limits of 3,apple,sub-array are 3,3
   - Parameter list, `=>`, and body creates a function without a name
   - Assign that to a constant or variable
 
-<!-- @src/core/functions-modern.js -->
 ```js
 const limits = (values) => {
   if (!values.length) {
@@ -248,6 +247,7 @@ const limits = (values) => {
   return [low, high]
 }
 ```
+{: source="src/core/functions-modern.js"}
 
 - Same output as previous example
 
@@ -266,7 +266,6 @@ const limits = (values) => {
   - But is converting to modern ES6
   - So what we use on the command line is different from what we use in the browser
 
-<!-- @src/core/utilities.js -->
 ```js
 const bound = 3
 
@@ -284,12 +283,12 @@ module.exports = {
   clip: clip
 }
 ```
+{: source="src/core/utilities.js"}
 
 - Notes
   - Don't have to quote the keys of objects when they are simple names
   - `bound` isn't exported
 
-<!-- @src/core/import.js -->
 ```js
 const utilities = require('./utilities')
 
@@ -297,6 +296,7 @@ const data = [-1, 5, 3, 0, 10]
 const result = utilities.clip(data)
 console.log(`clip(${data}) -> ${result}`)
 ```
+{: source="src/core/import.js"}
 ```text
 clip(-1,5,3,0,10) -> 0,1,2,3
 ```
@@ -327,7 +327,6 @@ so that it produces the output shown.
 1. What does `+=` do?
 1. What does `Array.reverse` do, and what does it return?
 
-<!-- @ex/core/table-of-squares.js -->
 ```js
 let current = 0
 let table = []
@@ -341,6 +340,7 @@ for (let line of table) {
   console.log(line)
 }
 ```
+{: source="ex/core/table-of-squares.js"}
 ```text
 square of 4 is 16
 square of 3 is 9
@@ -362,13 +362,13 @@ and `false` for everything it considers `falsy`,
 Explain what is happening in the assignment statement
 that creates the constant `creature`.
 
-<!-- @ex/core/implied.js -->
 ```js
 const genus = 'Callithrix'
 const species = 'Jacchus'
 const creature = {genus, species}
 console.log(creature)
 ```
+{: source="ex/core/implied.js"}
 ```text
 { genus: 'Callithrix', species: 'Jacchus' }
 ```
@@ -379,7 +379,6 @@ Explain what is happening in the assignment statement in this program.
 Use this technique to rewrite `src/core/import.js`
 so that `clip` can be called directly as `clip(…)` rather than `utilities.clip(…)`.
 
-<!-- @ex/core/destructuring.js -->
 ```js
 const creature = {
   genus: 'Callithrix',
@@ -389,5 +388,6 @@ const {genus, species} = creature
 console.log(`genus is ${genus}`)
 console.log(`species is ${species}`)
 ```
+{: source="ex/core/destructuring.js"}
 
 {% include links.md %}

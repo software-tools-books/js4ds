@@ -15,7 +15,6 @@ permalink: "/oop/"
 - Values can be functions
 - So have data carry around functions that work on it
 
-<!-- @src/oop/clumsy-objects.js -->
 ```js
 const square = {
   name: 'square',
@@ -24,14 +23,15 @@ const square = {
   perimeter: (it) => {return 4 * it.size}
 }
 ```
+{: source="src/oop/clumsy-objects.js"}
 
 - Pass the object itself into the function
 
-<!-- @src/oop/clumsy-objects.js -->
 ```js
 const a = square.area(square)
 console.log(`area of square is ${a}`)
 ```
+{: source="src/oop/clumsy-objects.js"}
 ```text
 area of square is 25
 ```
@@ -39,7 +39,6 @@ area of square is 25
 - This seems like a lot of work
 - But it allows us to handle many different kinds of things in the same way
 
-<!-- @src/oop/clumsy-objects.js -->
 ```js
 const circle = {
   name: 'circle',
@@ -63,6 +62,7 @@ for (let thing of everything) {
   console.log(`${thing.name}: area ${a} perimeter ${p}`)
 }
 ```
+{: source="src/oop/clumsy-objects.js"}
 ```text
 square: area 25 perimeter 20
 circle: area 28.274333882308138 perimeter 18.84955592153876
@@ -85,7 +85,6 @@ rectangle: area 6 perimeter 10
   - These have been added to JavaScript ES6
   - We will only use them
 
-<!-- @src/oop/es6-objects.js -->
 ```js
 class Square {
   constructor (size) {
@@ -99,6 +98,7 @@ class Square {
 const sq = Square(3)
 console.log(`sq name ${sq.name} and area ${sq.area()}`)
 ```
+{: source="src/oop/es6-objects.js"}
 ```text
 sq name square and area 9
 ```
@@ -112,7 +112,6 @@ sq name square and area 9
 - Methods are defined with a slightly different syntax than the fat arrows we have been using
 - Again, supports polymorphism
 
-<!-- @src/oop/es6-objects.js -->
 ```js
 class Circle {
   constructor (radius) {
@@ -144,6 +143,7 @@ for (let thing of everything) {
   console.log(`${thing.name}: area ${a} perimeter ${p}`)
 }
 ```
+{: source="src/oop/es6-objects.js"}
 ```text
 square: area 12.25 perimeter 14
 circle: area 19.634954084936208 perimeter 15.707963267948966
@@ -157,7 +157,6 @@ rectangle: area 0.75 perimeter 4
   - [Overriding methods](../gloss/#override-method)
 - Start by defining a person
 
-<!-- @src/oop/override.js -->
 ```js
 class Person {
   constructor (name) {
@@ -174,11 +173,11 @@ class Person {
   }
 }
 ```
+{: source="src/oop/override.js"}
 
 - Then [extend](../gloss/#extend'|absolue_url}}) to create a scientist
   - Say that `Scientist` [inherits](../gloss/#inherit) from `Person`
 
-<!-- @src/oop/override.js -->
 ```js
 class Scientist extends Person {
   constructor (name, area) {
@@ -191,6 +190,7 @@ class Scientist extends Person {
   }
 }
 ```
+{: source="src/oop/override.js"}
 
 - Use `super(…)` in `constructor` to call up to parent's constructor
   - Do *not* duplicate the steps it takes
@@ -201,7 +201,6 @@ FIXME-40: memory diagram
 
 - Result
 
-<!-- @src/oop/override.js -->
 ```js
 parent = new Person('Hakim')
 console.log(`parent: ${parent.greeting(true)}`)
@@ -209,6 +208,7 @@ console.log(`parent: ${parent.greeting(true)}`)
 child = new Scientist('Bhadra', 'microbiology')
 console.log(`child: ${child.greeting(false)}`)
 ```
+{: source="src/oop/override.js"}
 ```text
 parent: Hello, my name is Hakim
 child: Hi, I'm Bhadra. Let me tell you about microbiology...
@@ -223,7 +223,6 @@ child: Hi, I'm Bhadra. Let me tell you about microbiology...
 
 - How does a generic bird behave throughout the year?
 
-<!-- @src/oop/protocol.js -->
 ```js
 class Bird {
   constructor (species) {
@@ -255,13 +254,13 @@ class Bird {
   }
 }
 ```
+{: source="src/oop/protocol.js"}
 
 - `daily` defines the bird's overall behavior
 - `foraging`, `mating`, and `nesting` define default behaviors
 
 - How does a specific kind of bird behave?
 
-<!-- @src/oop/protocol.js -->
 ```js
 class Penguin extends Bird {
   constructor () {
@@ -288,6 +287,7 @@ class Penguin extends Bird {
   }
 }
 ```
+{: source="src/oop/protocol.js"}
 
 - Has extra state (`this.hasEgg`)
   - Calls parent constructor before setting this up

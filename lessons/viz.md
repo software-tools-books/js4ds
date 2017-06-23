@@ -17,7 +17,6 @@ permalink: "/viz/"
 
 - `index.html` creates a placeholder `div` to hold the visualization and loads `bundle.js`
 
-<!-- @src/viz/index.html -->
 ```html
 <!doctype html>
 <html lang="en">
@@ -33,13 +32,13 @@ permalink: "/viz/"
   </body>
 </html>
 ```
+{: source="src/viz/index.html"}
 
 ## The Data
 
 - Load a static data set from a file
 - The data is JSON, which is JavaScript, so we will be able to `import` it directly into our application
 
-<!-- @src/viz/biomass.js -->
 ```js
 export default [
   {"day": 0, "biomass": 42.97795129978744},
@@ -50,6 +49,7 @@ export default [
   {"day": 30, "biomass": 0}
 ]
 ```
+{: source="src/viz/biomass.js"}
 
 ## The Main Application
 
@@ -58,7 +58,6 @@ export default [
   - Take note of things that don't make sense
   - Cross them off if something seen later clarifies what's happening
 
-<!-- @src/viz/app.js -->
 ```js
 // Imports
 import React, { Component } from 'react'
@@ -117,6 +116,7 @@ ReactDOM.render(
   document.getElementById('root')
 );
 ```
+{: source="src/viz/app.js"}
 
 ### Imports
 
@@ -169,7 +169,6 @@ ReactDOM.render(
 
 - Again, read end-to-end and take notes, then come back and answer questions
 
-<!-- @src/viz/BarChart.js -->
 ```js
 // Imports
 import React, { Component } from 'react'
@@ -260,6 +259,7 @@ class BarChart extends Component {
 
 export default BarChart
 ```
+{: source="src/viz/BarChart.js"}
 
 ### Imports
 

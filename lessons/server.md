@@ -23,7 +23,6 @@ FIXME-28: diagrams
   - What to do next (which we'll ignore)
 - Also provide the path for that function
 
-<!-- @src/server/static-page.js -->
 ```js
 const express = require('express')
 
@@ -39,6 +38,7 @@ app.get('/', (req, res, next) => {
 
 app.listen(PORT, () => { console.log('listening...') })
 ```
+{: source="src/server/static-page.js"}
 
 - There is no HTML file on disk
 - And there is no way for the browser to know if there was one or not
@@ -48,7 +48,6 @@ app.listen(PORT, () => { console.log('listening...') })
 - Provide handlers for many different paths
 - And handle the case where the path is not known
 
-<!-- @src/server/multiple-paths.js -->
 ```js
 const express = require('express')
 
@@ -74,6 +73,7 @@ app.use((req, res, next) => {
 
 app.listen(PORT, () => { console.log('listening...') })
 ```
+{: source="src/server/multiple-paths.js"}
 
 - Don't have to send a 404 status code
 - But many parts of web infrastructure depend on correct codes
@@ -83,7 +83,6 @@ app.listen(PORT, () => { console.log('listening...') })
 - Instead of creating HTML in memory, read from file
 - Provide our server with the path to the directory it's allowed to read
 
-<!-- @src/server/pages.js -->
 ```js
 const express = require('express')
 const path = require('path')
@@ -104,6 +103,7 @@ app.use((req, res, next) => {
 
 app.listen(PORT, () => { console.log('listening...') })
 ```
+{: source="src/server/pages.js"}
 
 - Steps are:
   1. Get the request
@@ -118,7 +118,6 @@ app.listen(PORT, () => { console.log('listening...') })
   - Images, etc.
 - We're going to serve JSON
 
-<!-- @src/server/data-server.js -->
 ```js
 …
 
@@ -138,6 +137,7 @@ app.use((req, res, next) => {
   }
 })
 ```
+{: source="src/server/data-server.js"}
 
 - The `Content-Type` header tells the client how to handle the bytes we're sending
   - Though it can still do whatever it wants
@@ -147,7 +147,6 @@ app.use((req, res, next) => {
 - Could add functions to our server to generate dynamic content
 - Or have it load JavaScript dynamically and run that
 
-<!-- @src/server/dynamic.js -->
 ```js
 …
 app.use((req, res, next) => {
@@ -166,11 +165,11 @@ app.use((req, res, next) => {
   }
 })
 ```
+{: source="src/server/dynamic.js"}
 
 - Require all dynamic plugins to provide a `page` function
   - We have to know what to call
 
-<!-- @src/server/pages/plugin.js -->
 ```js
 function page() {
   return ('<html><body><h1>Plugin Content</h1></body></html>')
@@ -180,6 +179,7 @@ module.exports = {
   page: page
 }
 ```
+{: source="src/server/pages/plugin.js"}
 
 ## Challenges
 

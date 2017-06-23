@@ -11,7 +11,6 @@ permalink: "/testing/"
   - Don't need to import anything: it imports our code and calls our functions
 - Use `describe` to create a group of tests and `it` for individual tests
 
-<!-- @src/testing/hello-test.js -->
 ```js
 describe('first test', () => {
   it('should run without errors', (done) => {
@@ -19,6 +18,7 @@ describe('first test', () => {
   })
 })
 ```
+{: source="src/testing/hello-test.js"}
 
 - `describe` takes an explanatory string and a callback function
 - Callback makes calls to `it`, which takes:
@@ -38,7 +38,6 @@ describe('first test', () => {
 - Normally put the command in `package.json`
   - Which automatically puts `./node_modules/.bin` in the path
 
-<!-- @package.json -->
 ```js
 {
   …
@@ -49,6 +48,7 @@ describe('first test', () => {
   }
 }
 ```
+{: source="package.json"}
 
 - and then:
 
@@ -64,16 +64,15 @@ npm test -- path/to/test.js
   - Have it import everything else
   - So that we can run the server code in other contexts
 
-<!-- @src/testing/standalone.js -->
 ```js
 const server = require('./server')
 const PORT = 3418
 server.listen(PORT, () => { console.log(`listening on port ${PORT}...`) })
 ```
+{: source="src/testing/standalone.js"}
 
 - and
 
-<!-- @src/testing/server.js -->
 ```js
 const express = require('express')
 
@@ -89,13 +88,13 @@ app.get('/', (req, res, next) => {
 
 module.exports = app
 ```
+{: source="src/testing/server.js"}
 
 ## Testing the Server
 
 - Now add a test for our server
 - Use `supertest` to interact with the server
 
-<!-- @src/testing/request-test.js -->
 ```js
 const assert = require('assert')
 const request = require('supertest')
@@ -116,6 +115,7 @@ describe('server', () => {
   })
 })
 ```
+{: source="src/testing/request-test.js"}
 
 - `server` is our server code
 - `request(server)` starts building up a request to send
@@ -143,7 +143,6 @@ describe('server', () => {
 
 - Add more tests
 
-<!-- @src/testing/request-test.js -->
 ```js
 describe('server', () => {
 
@@ -173,6 +172,7 @@ describe('server', () => {
   })
 })
 ```
+{: source="src/testing/request-test.js"}
 ```text
   server
     ✓ should return HTML with expected title (42ms)
@@ -214,7 +214,6 @@ describe('server', () => {
   - Resulting object can be used like a function
   - Can use [selectors](../gloss/#selector) to find things in it
 
-<!-- @src/testing/dom-test.js -->
 ```js
 const assert = require('assert')
 const request = require('supertest')
@@ -236,6 +235,7 @@ describe('server', () => {
   })
 })
 ```
+{: source="src/testing/dom-test.js"}
 ```text
   server
     ✓ should have the correct headings (67ms)

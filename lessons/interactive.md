@@ -10,7 +10,6 @@ permalink: "/interactive/"
 - Pass the callback function as a specifically-named property of the thing whose behavior we are specifying
 - We'll switch back to single-page examples for a moment
 
-<!-- @src/interactive/hello-button.html -->
 ```js
   <body>
     <div id="app">
@@ -30,12 +29,12 @@ permalink: "/interactive/"
     </script>
   </body>
 ```
+{: source="src/interactive/hello-button.html"}
 
 - Global variables and functions are a poor way to structure code
 - Better to define the component as a class
   - And then use a method as the event handler
 
-<!-- @src/interactive/display-counter.html -->
 ```js
       class Counter extends React.Component {
 
@@ -64,6 +63,7 @@ permalink: "/interactive/"
         document.getElementById("app")
       )
 ```
+{: source="src/interactive/display-counter.html"}
 
 - `ReactDOM.render` call at the end does what it always has
 - Class has three parts
@@ -98,7 +98,6 @@ permalink: "/interactive/"
   - So they're easier to re-use
 - Again, we're cheating on the component loading
 
-<!-- @src/interactive/multi-component/index.html -->
 ```html
 <!DOCTYPE html>
 <html>
@@ -125,15 +124,15 @@ permalink: "/interactive/"
   </body>
 </html>
 ```
+{: source="src/interactive/multi-component/index.html"}
 
-<!-- @src/interactive/multi-component/NumberDisplay.js -->
 ```js
 const NumberDisplay = (props) => {
   return (<p>{props.label}: {props.value}</p>)
 }
 ```
+{: source="src/interactive/multi-component/NumberDisplay.js"}
 
-<!-- @src/interactive/multi-component/UpAndDown.js -->
 ```js
 const UpAndDown = (props) => {
   return (
@@ -144,8 +143,8 @@ const UpAndDown = (props) => {
   )
 }
 ```
+{: source="src/interactive/multi-component/UpAndDown.js"}
 
-<!-- @src/interactive/multi-component/app.js -->
 ```js
 class App extends React.Component {
 
@@ -172,6 +171,7 @@ class App extends React.Component {
   }
 }
 ```
+{: source="src/interactive/multi-component/app.js"}
 
 FIXME-22: diagram
 
@@ -190,7 +190,6 @@ FIXME-22: diagram
 
 - First version of `App`
 
-<!-- @src/interactive/asteroids/app.js -->
 ```js
 class App extends React.Component {
 
@@ -215,11 +214,11 @@ class App extends React.Component {
   }
 }
 ```
+{: source="src/interactive/asteroids/app.js"}
 
 - Start by displaying asteroids using fake data
   - A pure display component
 
-<!-- @src/interactive/asteroids/AsteroidList.js -->
 ```js
 const AsteroidList = (props) => {
   return (
@@ -239,10 +238,10 @@ const AsteroidList = (props) => {
   )
 }
 ```
+{: source="src/interactive/asteroids/AsteroidList.js"}
 
 - Go back and put fake data in `App` for now
 
-<!-- @src/interactive/asteroids/app.js -->
 ```js
 class App extends React.Component {
 
@@ -260,15 +259,16 @@ class App extends React.Component {
   …
 }
 ```
+{: source="src/interactive/asteroids/app.js"}
 
 - Create placeholder for `DateSubmit`
 
-<!-- @src/interactive/asteroids/DateSubmit.js -->
 ```js
 const DateSubmit = (props) => {
   return (<p>DateSubmit</p>)
 }
 ```
+{: source="src/interactive/asteroids/DateSubmit.js"}
 
 - And run
 
@@ -282,7 +282,6 @@ FIXME-23: screenshot
   - Function to call when text box value changes
   - Function to call when button clicked to submit
 
-<!-- @src/interactive/asteroids/DateSubmit.js -->
 ```js
 const DateSubmit = ({label, value, onChange, onCommit}) => {
   return (
@@ -294,6 +293,7 @@ const DateSubmit = ({label, value, onChange, onCommit}) => {
   )
 }
 ```
+{: source="src/interactive/asteroids/DateSubmit.js"}
 
 > **Destructuring**
 >
@@ -313,7 +313,6 @@ const DateSubmit = ({label, value, onChange, onCommit}) => {
   - But React and the browser work together to minimize recalculation
 - Now go back and re-work application
 
-<!-- @src/interactive/asteroids/app.js -->
 ```js
 class App extends React.Component {
 
@@ -349,6 +348,7 @@ class App extends React.Component {
   }
 }
 ```
+{: source="src/interactive/asteroids/app.js"}
 
 - Safe to pass `this.state.newDate` because we're re-drawing each time there's a change
   - Passing a value for display, not a reference to be modified
@@ -360,7 +360,6 @@ class App extends React.Component {
   - JavaScript's newly-standardized way of making callbacks easier to work with
   - Although it practice it just seems to move the complexity around
 
-<!-- @src/interactive/asteroids/app.js -->
 ```js
   onSubmitNewDate = (text) => {
     const url = `https://api.nasa.gov/neo/rest/v1/feed?api_key=DEMO_KEY&start_date=${text}`
@@ -375,6 +374,7 @@ class App extends React.Component {
     })
   }
 ```
+{: source="src/interactive/asteroids/app.js"}
 
 - Steps are:
   1. Build the URL for the data
@@ -385,7 +385,6 @@ class App extends React.Component {
   6. Set state
 - Transformation is:
 
-<!-- @src/interactive/asteroids/app.js -->
 ```js
   transform = (raw) => {
     let result = []
@@ -402,6 +401,7 @@ class App extends React.Component {
     return result
   }
 ```
+{: source="src/interactive/asteroids/app.js"}
 
 - Look at the structure of the JSON
 - Figure out how to index the fields we need

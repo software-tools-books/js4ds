@@ -31,7 +31,6 @@ FIXME-14: diagram
   what we're really giving it is a reference to its block of memory
 - So we can pass a function just as easily as we can pass a string or a number
 
-<!-- @src/callbacks/do-twice.js -->
 ```js
 const doTwice = (action) => {
   action()
@@ -44,6 +43,7 @@ const hello = () => {
 
 doTwice(hello)
 ```
+{: source="src/callbacks/do-twice.js"}
 ```text
 hello
 hello
@@ -53,7 +53,6 @@ FIXME-14: diagram
 
 - More useful when the function passed in takes arguments
 
-<!-- @src/callbacks/two-functions.js -->
 ```js
 const pipeline = (initial, first, second) => {
   return second(first(initial))
@@ -70,6 +69,7 @@ console.log(`trim then dot: |${trimThenDot}|`)
 const dotThenTrim = pipeline(original, dot, trim)
 console.log(`dot then trim: |${dotThenTrim}|`)
 ```
+{: source="src/callbacks/two-functions.js"}
 ```text
 trim then dot: |this.example.uses.text|
 dot then trim: |..this.example.uses.text..|
@@ -77,7 +77,6 @@ dot then trim: |..this.example.uses.text..|
 
 - Make a general pipeline by passing an array of functions
 
-<!-- @src/callbacks/general-pipeline.js -->
 ```js
 const pipeline = (initial, operations) => {
   let current = initial
@@ -95,6 +94,7 @@ const original = ' some text '
 const final = pipeline(original, [double, trim, dot])
 console.log(`|${original}| -> |${final}|`)
 ```
+{: source="src/callbacks/general-pipeline.js"}
 ```text
 | some text | -> |some.text..some.text|
 ```
@@ -105,7 +105,6 @@ console.log(`|${original}| -> |${final}|`)
     and then passing in the variable
 - Often called an [anonymous function](../gloss/#anonymous-function)
 
-<!-- @src/callbacks/transform.js -->
 ```js
 const transform = (values, operation) => {
   let result = []
@@ -123,6 +122,7 @@ console.log(`upper: ${upper}`)
 const first = transform(data, (x) => { return x[0] })
 console.log(`first: ${first}`)
 ```
+{: source="src/callbacks/transform.js"}
 ```text
 upper: ONE,TWO,THREE
 first: o,t,t
@@ -142,12 +142,12 @@ first: o,t,t
 - `Array.some` returns `true` if *any* element in an array passes a test
 - `Array.every` returns `true` if *all* elements in an array pass a test
 
-<!-- @src/callbacks/some-every.js -->
 ```js
 const data = ['this', 'is', 'a', 'test']
 console.log('some longer than 3:', data.some((x) => { return x.length > 3 }))
 console.log('all greater than 3:', data.every((x) => { return x.length > 3 }))
 ```
+{: source="src/callbacks/some-every.js"}
 ```text
 some longer than 3: true
 all greater than 3: false
@@ -155,18 +155,17 @@ all greater than 3: false
 
 - `Array.filter` creates a new array containing only values that pass a test
 
-<!-- @src/callbacks/filter.js -->
 ```js
 const data = ['this', 'is', 'a', 'test']
 console.log('those greater than 3:', data.filter((x) => { return x.length > 3 }))
 ```
+{: source="src/callbacks/filter.js"}
 ```text
 those greater than 3: [ 'this', 'test' ]
 ```
 
 - So do all of the element with more than 3 characters start with a 't'?
 
-<!-- @src/callbacks/filter-every.js -->
 ```js
 const data = ['this', 'is', 'a', 'test']
 console.log('all longer than 3 start with t',
@@ -174,6 +173,7 @@ console.log('all longer than 3 start with t',
             .filter((x) => { return x.length > 3 })
             .every((x) => { return x[0] === 't' }))
 ```
+{: source="src/callbacks/filter-every.js"}
 ```text
 all longer than 3 start with t true
 ```
@@ -181,11 +181,11 @@ all longer than 3 start with t true
 - `Array.map` creates a new array
   by calling a function for each element of an existing array
 
-<!-- @src/callbacks/map.js -->
 ```js
 const data = ['this', 'is', 'a', 'test']
 console.log('shortened', data.map((x) => { return x.slice(0, 2) }))
 ```
+{: source="src/callbacks/map.js"}
 ```text
 shortened [ 'th', 'is', 'a', 'te' ]
 ```
@@ -195,7 +195,6 @@ shortened [ 'th', 'is', 'a', 'te' ]
   - Need the starting value because the combiner function must take two values
     (next in sequence and running total)
 
-<!-- @src/callback/reduce.js -->
 ```js
 const data = ['this', 'is', 'a', 'test']
 
@@ -209,6 +208,7 @@ console.log('in one step', data.reduce((accum, next) => {
   return accum + next[0]
 }, ''))
 ```
+{: source="src/callback/reduce.js"}
 ```text
 acronym of this,is,a,test is tiat
 in one step tiat
@@ -220,7 +220,6 @@ in one step tiat
   - Explain by example
 - Have already created a function `pipeline` that combines any set of functions we want
 
-<!-- @src/callbacks/general-pipeline.js -->
 ```js
 const pipeline = (initial, operations) => {
   let current = initial
@@ -230,12 +229,12 @@ const pipeline = (initial, operations) => {
   return current
 }
 ```
+{: source="src/callbacks/general-pipeline.js"}
 
 - But this only works if each function in `operations` has a single parameter
 - If we want to be able to add 1, add 2, and so on, we have to write separate functions
 - Better choice: write a function that creates the function we want
 
-<!-- @src/callbacks/adder.js -->
 ```js
 const adder = (increment) => {
   const f = (value) => {
@@ -248,6 +247,7 @@ const add1 = adder(1)
 const add2 = adder(2)
 console.log(`add1(100) is ${add1(100)} and add2(100) is ${add2(100)}`)
 ```
+{: source="src/callbacks/adder.js"}
 ```text
 add1(100) is 101 and add2(100) is 102
 ```
@@ -278,7 +278,6 @@ FIXME-14: diagram
   - Works because a function "capture" the values of the variables
     that are in scope when it is defined but it doesn't define itself
 
-<!-- @src/callbacks/closure.js -->
 ```js
 const pipeline = …as before…
 
@@ -287,6 +286,7 @@ const adder = …as before…
 const result = pipeline(100, [adder(1), adder(2)])
 console.log(`adding 1 and 2 to 100 -> ${result}`)
 ```
+{: source="src/callbacks/closure.js"}
 ```text
 adding 1 and 2 to 100 -> 103
 ```
@@ -295,7 +295,6 @@ adding 1 and 2 to 100 -> 103
   - They define new (unnamed) functions that will add 1 and 2 when called
 - Often go one step further and define the function inline
 
-<!-- @src/callbacks/closure-inline.js -->
 ```js
 const pipeline = (initial, operations) => {
   let current = initial
@@ -308,6 +307,7 @@ const pipeline = (initial, operations) => {
 const result = pipeline(100, [(x) => x + 1, (x) => x + 2])
 console.log(`adding 1 and 2 to 100 -> ${result}`)
 ```
+{: source="src/callbacks/closure-inline.js"}
 ```text
 adding 1 and 2 to 100 -> 103
 ```

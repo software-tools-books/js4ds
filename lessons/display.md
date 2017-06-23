@@ -41,7 +41,6 @@ FIXME-18: diagram
 
 ## Hello, World
 
-<!-- @src/react/hello-react.html -->
 ```html
 <!DOCTYPE html>
 <html>
@@ -64,6 +63,7 @@ FIXME-18: diagram
   </body>
 </html>
 ```
+{: source="src/react/hello-react.html"}
 
 - Head of the page loads two React libraries from the web
   - Use locally-installed libraries later
@@ -80,7 +80,6 @@ FIXME-18: diagram
 
 - The first parameter to `React.DOM.h1` can be an object of attributes
 
-<!-- @src/react/stylish.html -->
 ```html
   <body>
     <div id="app">
@@ -100,13 +99,13 @@ FIXME-18: diagram
     </script>
   </body>
 ```
+{: source="src/react/stylish.html"}
 
 ## JSX
 
 - Writing nested functions is a clumsy way to write HTML
 - So add a tool called JSX that translates HTML into JavaScript function calls
 
-<!-- @src/react/hello-jsx.html -->
 ```html
 <!DOCTYPE html>
 <html>
@@ -130,6 +129,7 @@ FIXME-18: diagram
   </body>
 </html>
 ```
+{: source="src/react/hello-jsx.html"}
 
 - Include Babel to translate mixed content into pure JavaScript
 - Add `type="text/babel"` to the `script` tag to tell Babel where to do its work
@@ -139,7 +139,6 @@ FIXME-18: diagram
 - Because we can put JavaScript inside our HTML (inside our JavaScript)
 - E.g., use `map` to turn a list of strings into an HTML list
 
-<!-- @src/react/jsx-list.html -->
 ```html
   <body>
     <div id="app">
@@ -154,6 +153,7 @@ FIXME-18: diagram
     </script>
   </body>
 ```
+{: source="src/react/jsx-list.html"}
 
 - Have to use `map` rather than a loop because the function has to return something
   - Could build up a string through repeated concatenation, but this is cleaner
@@ -163,7 +163,6 @@ FIXME-18: diagram
 
 - If we're defining functions, we can write new ones
 
-<!-- @src/react/create-components.html -->
 ```html
   <body>
     <div id="app">
@@ -185,12 +184,12 @@ FIXME-18: diagram
     </script>
   </body>
 ```
+{: source="src/react/create-components.html"}
 
 - What we really want to do is parameterize
   - After all, the JSX is being turned into a function
 - All the attributes are passed to our function in a single `props` object
 
-<!-- @src/react/pass-parameters.html -->
 ```html
   <body>
     <div id="app">
@@ -212,6 +211,7 @@ FIXME-18: diagram
     </script>
   </body>
 ```
+{: source="src/react/pass-parameters.html"}
 
 - Gives us exactly one logical place to do calculations, set style, etc.
 
@@ -226,12 +226,12 @@ FIXME-18: diagram
 - `npm install --save http-server` to get a little HTTP server
 - Write a little shell script to change directories and run the server:
 
-<!-- @bin/run-server -->
 ```sh
 #!/usr/bin/env bash
 server_path=${PWD}/node_modules/.bin/http-server
 cd $1 && ${server_path}
 ```
+{: source="bin/run-server"}
 
 - Add a line to `package.json` to run this
 
@@ -246,7 +246,6 @@ cd $1 && ${server_path}
   - So `npm run demo -- src/react/hello-separate` will serve what's in that directory
 - Now include the JavaScript like any other script
 
-<!-- @src/react/hello-separate/index.html -->
 ```html
 <!DOCTYPE html>
 <html>
@@ -265,23 +264,23 @@ cd $1 && ${server_path}
   </body>
 </html>
 ```
+{: source="src/react/hello-separate/index.html"}
 
 - And put the JavaScript in the file
 
-<!-- @src/react/hello-separate/app.js -->
 ```js
 ReactDOM.render(
   <h1>Hello, separate</h1>,
   document.getElementById("app")
 )
 ```
+{: source="src/react/hello-separate/app.js"}
 
 - Can now load many separate files
   - Warning: do this in the HTML with multiple script tags
   - This is *not* how we will do production applications (which will have a compilation step)
 - HTML page:
 
-<!-- @src/react/multiple-files/index.html -->
 ```html
 <!DOCTYPE html>
 <html>
@@ -300,20 +299,20 @@ ReactDOM.render(
     </div>
   </body>
 ```
+{: source="src/react/multiple-files/index.html"}
 
 - React code to format a list element
 
-<!-- @src/react/multiple-files/ListElement.js -->
 ```js
 const ListElement = (props) => {
   return (<li id="{props.name}"><em>{props.name}</em></li>)
 }
 ```
+{: source="src/react/multiple-files/ListElement.js"}
 
 - Main application
 - Note that this JavaScript *doesn't* have an `import` or `require` statement
 
-<!-- @src/react/multiple-files/app.js -->
 ```js
 const allNames = ['McNulty', 'Jennings', 'Snyder', 'Meltzer', 'Bilas', 'Lichterman']
 ReactDOM.render(
@@ -321,6 +320,7 @@ ReactDOM.render(
   document.getElementById("app")
 )
 ```
+{: source="src/react/multiple-files/app.js"}
 
 - But this is probably a bad layout
   - Would make more sense to have a `Name` element that formatted a name

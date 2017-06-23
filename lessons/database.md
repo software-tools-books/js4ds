@@ -23,7 +23,6 @@ permalink: "/database/"
 - We will use a SQL database because it's still the most common choice
 - See [this short SQL tutorial][sql-tutorial] for an introduction
 
-<!-- @src/database/fixture.sql -->
 ```sql
 drop table if exists Workshop;
 
@@ -36,6 +35,7 @@ create table Workshop(
 insert into Workshop values(1, "Building Community", 60);
 insert into Workshop values(2, "ENIAC Programming", 150);
 ```
+{: source="src/database/fixture.sql"}
 
 - Build a class to handle interactions with database
 - Test it
@@ -50,7 +50,6 @@ insert into Workshop values(2, "ENIAC Programming", 150);
 - Displays results
 - Query methods all have the same signature so that can be handled interchangeably
 
-<!-- @src/database/database-initial.js -->
 ```js
 class Database {
 
@@ -86,10 +85,10 @@ class Database {
   }
 }
 ```
+{: source="src/database/database-initial.js"}
 
 - What do the queries look like?
 
-<!-- @src/database/database-initial.js -->
 ```js
 const Q_WORKSHOP_GET_ALL = `
 select
@@ -111,10 +110,10 @@ where
   Workshop.ident = ?
 `
 ```
+{: source="src/database/database-initial.js"}
 
 - What does the driver look like?
 
-<!-- @src/database/database-initial.js -->
 ```js
 function main () {
   const path = process.argv[2]
@@ -126,6 +125,7 @@ function main () {
 
 main()
 ```
+{: source="src/database/database-initial.js"}
 
 - Try running it
 
@@ -147,7 +147,6 @@ node database-initial.js fixture.db getAll
 - Previous example always manipulates database on disk
 - Have it use an [in-memory database](../gloss/#in-memory-database) for testing purposes
 
-<!-- @src/database/database-mode.js -->
 ```js
   constructor (mode, path) {
     this.path = path
@@ -174,10 +173,10 @@ node database-initial.js fixture.db getAll
     }
   }
 ```
+{: source="src/database/database-mode.js"}
 
 - And use destructuring to handle command-line arguments in driver
 
-<!-- @src/database/database-mode.js -->
 ```js
 function main () {
   const [mode, path, action, ...args] = process.argv.splice(2)
@@ -185,6 +184,7 @@ function main () {
   database[action](args)
 }
 ```
+{: source="src/database/database-mode.js"}
 
 ```sh
 node database-mode.js memory fixture.sql getOne 2
@@ -200,7 +200,6 @@ node database-mode.js memory fixture.sql getOne 2
   - So that we can do the file I/O once and then repeatedly build a database in memory and run tests on it
   - A test fixture
 
-<!-- @src/database/database-mixed.js -->
 ```js
   constructor (mode, arg) {
     switch (mode) {
@@ -241,10 +240,10 @@ node database-mode.js memory fixture.sql getOne 2
     })
   }
 ```
+{: source="src/database/database-mixed.js"}
 
 - And:
 
-<!-- @src/database/database-mixed.js -->
 ```js
 function main () {
   let [mode, setup, action, ...args] = process.argv.splice(2)
@@ -258,6 +257,7 @@ function main () {
   database[action](args)
 }
 ```
+{: source="src/database/database-mixed.js"}
 
 - Some duplication of functionality (the `fs.readFileSync`)
 - And the control flow is a bit awkward
@@ -269,7 +269,6 @@ function main () {
 - Have database query methods return results for display
   - Since we will eventually want to compare them or return them to a server rather than printing them
 
-<!-- @src/database/separate-database.js -->
 ```js
 class Database {
 
@@ -287,8 +286,8 @@ class Database {
 
 module.exports = Database
 ```
+{: source="src/database/separate-database.js"}
 
-<!-- @src/database/separate-driver.js -->
 ```js
 const Database = require('./separate-database')
 
@@ -310,6 +309,7 @@ const main = () => {
 
 main()
 ```
+{: source="src/database/separate-driver.js"}
 
 - Try running it
 
@@ -331,7 +331,6 @@ TypeError: Cannot read property 'Symbol(Symbol.iterator)' of undefined
 
 - Solution: give the `get` methods a callback
 
-<!-- @src/database/callback-database.js -->
 ```js
 class Database {
 
@@ -347,10 +346,10 @@ class Database {
   …
 }
 ```
+{: source="src/database/callback-database.js"}
 
 - And then in the driver:
 
-<!-- @src/database/callback-driver.js -->
 ```js
 const Database = require('./callback-database')
 
@@ -371,12 +370,12 @@ const main = () => {
 
 main()
 ```
+{: source="src/database/callback-driver.js"}
 
 ## Testing
 
 - And *now* we can write tests
 
-<!-- @src/database/basic-tests.js -->
 ```js
 const test = require('tape')
 const Database = require('./callback-database')
@@ -422,6 +421,7 @@ test('Can only get workshops that exist', (t) => {
   })
 })
 ```
+{: source="src/database/basic-tests.js"}
 
 - Walk through the structure of each test
 - Define expected result

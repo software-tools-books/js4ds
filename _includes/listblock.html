@@ -9,9 +9,9 @@ and end of lines.
 
 {% if include.items %}
 <div class="{{include.class}}">
-  {% if include.section %}<h2>{% else %}<p><strong>{% endif %}
+  {% if include.section %}<h2>{% else %}<h4>{% endif %}
         {{include.title}}
-  {% if include.section %}</h2>{% else %}</strong></p>{% endif %}
+  {% if include.section %}</h2>{% else %}</h4>{% endif %}
   <ul>
     {% for item in include.items %}
     <li>{{ item|markdownify|replace: '<p>', ''|replace: '</p>', ''}}</li>{% endfor %}
