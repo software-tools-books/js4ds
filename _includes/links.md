@@ -2,6 +2,7 @@
 [cc-by-human]: https://creativecommons.org/licenses/by/4.0/
 [cc-by-legal]: https://creativecommons.org/licenses/by/4.0/legalcode
 [contrib-covenant]: http://contributor-covenant.org/
+[d3]: https://d3js.org/
 [email]: mailto:gvwilson@third-bit.com?subject=JavaScript%20versus%20Research%20Computing
 [issues]: https://github.com/gvwilson/js-vs-rc/issues
 [license]: https://gvwilson.github.io/js-vs-rc/license/

@@ -1,6 +1,8 @@
 ---
 layout: page
 permalink: "/viz/"
+scripts:
+- "https://cdnjs.cloudflare.com/ajax/libs/d3/4.9.1/d3.min.js"
 ---
 
 ## Introduction
@@ -8,13 +10,253 @@ permalink: "/viz/"
 - Tables are great, but visualizations are often more effective
   - At least if they're well designed…
   - …and your audience is sighted
-- Instead of teaching a visualization package from the ground up, we will explore an example from the outside in
+- Instead of teaching a visualization package from the ground up, we will:
+  - Go through a short tutorial on basic features of D3 visualization
+  - Explore an example, making a list of questions
+  - Go and find answers to those questions
   - Because that's often how people learn their way around actual software
-- Example is a cut-down version of one presented in *[Meeks2017](../refs/#meeks2017)*
-  - Full code of original can be found in chapter 9 of [this GitHub repository](https://github.com/emeeks/d3_in_action_2/)
+- Example will be a cut-down version of one presented in *[Meeks2017](../refs/#meeks2017)*
+  - Full code of original can be found in chapter 9 of [that book's GitHub repository](https://github.com/emeeks/d3_in_action_2/)
+
+## SVG
+
+- [Scalable Vector Graphics](../gloss/#svg) (SVG) is:
+  - A way to represent stroke-based (vs. pixel-based) graphics
+  - That uses the same kinds of tags as HTML
+  - And can be rendered directly by modern browsers
+- Create a root `svg` element as a drawing area
+- Fill it with circles, rectangles, lines, text, etc.
+
+```html
+<svg width="400" height="300">
+      
+  <circle cx="100" cy="100" r="30" 
+    fill="pink" stroke="red" stroke-width="2"/>
+      
+  <rect x="200" y="20" width="100" height="60"
+    fill="lightblue"/>
+      
+  <line x1="300" y1="200" x2="400" y2="300"
+    stroke="plum" stroke-width="5"/>
+      
+  <text x="50" y="200"
+    font-family="serif" font-size="16">
+    Hello World
+  </text>
+
+</svg>
+```
+{: data-toggle="tooltip" title="src/viz/svg.html"}
+
+- Don't have to break elements across lines as shown
+  - But it makes the source easier to read
+- Note that SVG's coordinate system starts in the upper left
+  - There is a special corner in Hell reserved for people who do this…
+
+<svg width="400" height="300" style="border: 1px solid black;">
+      
+  <circle cx="100" cy="100" r="30" 
+    fill="pink" stroke="red" stroke-width="2"/>
+      
+  <rect x="200" y="20" width="100" height="60"
+    fill="lightblue"/>
+      
+  <line x1="300" y1="200" x2="400" y2="300"
+    stroke="plum" stroke-width="5"/>
+      
+  <text x="50" y="200"
+    font-family="serif" font-size="16">
+    Hello World
+  </text>
+
+</svg>
+
+## Introducing D3
+
+- [D3][d3] stands for "data-driven documents"
+  - A toolkit for building visualizations, rather than a plotting library per se
+- Start with a simple display of three circles
+
+```html
+<svg id="d3-svg" width="720" height="100" style="background-color: #00F0F0">
+  <circle cx="40" cy="50" r="10"></circle>
+  <circle cx="100" cy="50" r="10"></circle>
+  <circle cx="160" cy="50" r="10"></circle>
+</svg>
+```
+{: data-toggle="tooltip" title="src/viz/d3-svg.html"}
+
+<svg id="d3-svg" width="720" height="100" style="background-color: #00F0F0">
+  <circle cx="40" cy="50" r="10"></circle>
+  <circle cx="100" cy="50" r="10"></circle>
+  <circle cx="160" cy="50" r="10"></circle>
+</svg>
+
+- Use `d3.select` to select
+  - `.select('#d3-svg')` finds the element whose ID is `"d3-svg"`
+    - Would normally use a name like `"graph"`
+    - But we have several on this page that we need to distinguish
+  - `.selectAll("circle")` finds all the elements of type `circle` within i
+- Use `.style` and `.attr` to set the style and radius
+  - Automatically works on every item of a collection
+
+```html
+<svg id="d3-function" width="720" height="100" style="background-color: #40F0F0">
+  <circle cx="40" cy="50" r="10"></circle>
+  <circle cx="100" cy="50" r="10"></circle>
+  <circle cx="160" cy="50" r="10"></circle>
+</svg>
+<script type="text/javascript">
+  circles = d3.select("#d3-function").selectAll("circle")
+  circles.attr("cx", (d, i) => { return Math.random() * 720 })
+</script>
+```
+{: data-toggle="tooltip" title="src/viz/d3-function.html"}
+
+<svg id="d3-function" width="720" height="100" style="background-color: #40F0F0">
+  <circle cx="40" cy="50" r="10"></circle>
+  <circle cx="100" cy="50" r="10"></circle>
+  <circle cx="160" cy="50" r="10"></circle>
+</svg>
+<script type="text/javascript">
+  circles = d3.select("#d3-function").selectAll("circle")
+  circles.attr("cx", (d, i) => { return Math.random() * 720 })
+</script>
+
+- Methods like `.attr` take a callback of two parameters:
+  - The data value associated with the item (which we haven't seen yet)
+  - Its index in the collection
+- Here, we set the center-x of each circle to a random value
+  - Reload the page repeatedly to see them jump around
+
+```html
+<svg id="d3-data" width="720" height="100" style="background-color: #60F0F0">
+  <circle></circle>
+  <circle></circle>
+  <circle></circle>
+</svg>
+<script type="text/javascript">
+  circles = d3.select("#d3-data").selectAll("circle")
+  circles.data([10, 20, 40])
+  circles.attr("r", function(d, i) { return d })
+  circles.attr("cx", function(d, i) { return 50 + i * 80 })
+  circles.attr("cy", function(d, i) { return 50 })
+</script>
+```
+{: data-toggle="tooltip" title="src/viz/d3-data.html"}
+
+<svg id="d3-data" width="720" height="100" style="background-color: #60F0F0">
+  <circle></circle>
+  <circle></circle>
+  <circle></circle>
+</svg>
+<script type="text/javascript">
+  circles = d3.select("#d3-data").selectAll("circle")
+  circles.data([10, 20, 40])
+  circles.attr("r", function(d, i) { return d })
+  circles.attr("cx", function(d, i) { return 50 + i * 80 })
+  circles.attr("cy", function(d, i) { return 50 })
+</script>
+
+- Bind the `circles` collection to a vector of data values
+  - Data values and display items are zipped together in order
+- Each display item's data value is passed into callbacks as first parameter
+- Index comes in as second parameter
+- So this code maps data to radius and index to X location
+
+- And now some confusing terminology…
+- When we bind data to display elements, D3 creates three sets:
+  - The [update selection](../gloss/#update-selection) is the data that matches up with view elements
+  - The [entry selection](../gloss/#entry-selection) is the "extra" data that does have view elements
+  - The [exit selection](../gloss/#exit-selection) is the (redundant) view elements that don't have data
+- We can add new view elements to match data in the entry selection
+- And remove view elements in the exit selection
+
+```js
+<svg id="d3-entry" width="720" height="100" style="background-color: #80F0F0">
+  <circle></circle>
+  <circle></circle>
+  <circle></circle>
+</svg>
+<script type="text/javascript">
+  circles = d3.select("#d3-entry").selectAll("circle").data([10, 20, 40, 30, 25])
+  circles.attr("r", function(d, i) { return d })
+  circles.attr("cx", function(d, i) { return 50 + i * 80 })
+  circles.attr("cy", function(d, i) { return 50 })
+
+  let newEntries = circles.enter().append("circle")
+  newEntries.attr("r", function(d, i) { return d })
+  newEntries.attr("cx", function(d, i) { return 50 + (i * 80) })
+  newEntries.attr("cy", function(d, i) { return 50 })
+</script>
+```
+{: data-toggle="tooltip" title="src/viz/d3-entry.html"}
+
+<svg id="d3-entry" width="720" height="100" style="background-color: #80F0F0">
+  <circle></circle>
+  <circle></circle>
+  <circle></circle>
+</svg>
+<script type="text/javascript">
+  circles = d3.select("#d3-entry").selectAll("circle").data([10, 20, 40, 30, 25])
+  circles.attr("r", function(d, i) { return d })
+  circles.attr("cx", function(d, i) { return 50 + i * 80 })
+  circles.attr("cy", function(d, i) { return 50 })
+
+  let newEntries = circles.enter().append("circle")
+  newEntries.attr("r", function(d, i) { return d })
+  newEntries.attr("cx", function(d, i) { return 50 + (i * 80) })
+  newEntries.attr("cy", function(d, i) { return 50 })
+</script>
+
+- First line of JavaScript:
+  - Find the SVG element
+  - Gather its circles
+  - Bind data to that set
+- Next three lines:
+  - Set radius to data value
+  - Space along X axis
+- Next line:
+  - Get the entry selection
+  - Create new `circle` SVG elements for each of those values
+  - These are appended to the parent of the selection set, because that's what's usually useful
+- Then set properties of those circles
+  - Exactly the same operations as the previous block of three lines
+  - Should be refactored into a utility function of some sort
+
+- Final form
+
+```js
+<svg id="d3-final" width="720" height="100" style="background-color: #80F0F0">
+</svg>
+<script type="text/javascript">
+  const r = (d, i) => d
+  const cx = (d, i) => 50 + (i * 80)
+  const cy = (d, y) => 50
+  const circles = d3.select("#d3-final").selectAll("circle").data([10, 20, 40, 30, 25])
+  circles.attr("r", r).attr("cx", cx).attr("cy", cy)
+  circles.enter().append("circle").attr("r", r).attr("cx", cx).attr("cy", cy)
+</script>
+```
+{: data-toggle="tooltip" title="src/viz/d3-final.html"}
+
+<svg id="d3-final" width="720" height="100" style="background-color: #80F0F0">
+</svg>
+<script type="text/javascript">
+  const r = (d, i) => d
+  const cx = (d, i) => 50 + (i * 80)
+  const cy = (d, y) => 50
+  const circles = d3.select("#d3-final").selectAll("circle").data([10, 20, 40, 30, 25])
+  circles.attr("r", r).attr("cx", cx).attr("cy", cy)
+  circles.enter().append("circle").attr("r", r).attr("cx", cx).attr("cy", cy)
+</script>
+
+- Don't bother to create any circles to start with
+  - But allow for their presence in case we're doing something interactive with changing data
 
 ## The Host HTML Page
 
+- Knowing this much, take a look at the application
 - `index.html` creates a placeholder `div` to hold the visualization and loads `bundle.js`
 
 ```html
@@ -321,7 +563,6 @@ export default BarChart
 ### Rendering
 
 - Creates an SVG element
-  - FIXME: explain SVG
 - The `ref` property is a React-ism
   - Is given the actual DOM node
   - It sets `this.node`, so that's one mystery cleared up
@@ -338,8 +579,6 @@ export default BarChart
   - Switch them and run it
   - Works just fine
   - So leave them as old-style functions
-- This leaves:
-  - `scaleThreshold` and `legendColor`
-  - The chart-drawing stuff: `.data([0])`, `.enter()`, and so on
+- This leaves `scaleThreshold` and `legendColor`
 
 {% include links.md %}

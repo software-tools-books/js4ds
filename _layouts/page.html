@@ -30,6 +30,9 @@
     <link href="{{'/css/site.css' | absolute_url}}" rel="stylesheet" />
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <title>{{site.title}}{% if this %}: {{this.title}}{% endif %}</title>
+    {% for script in page.scripts %}
+    <script src="{{script}}"></script>
+    {% endfor %}
   </head>
   <body>
     <input type="checkbox" name="toggle" id="toggle" />
@@ -42,7 +45,7 @@
       {% if this.type == "lesson" %}{% include listblock.html title="Key Points" items=this.keypoints class="keypoints" section=false %}{% endif %}
       <footer>
         {% include nav.html previous=previous.permalink next=next.permalink %}
-        <div align="center">
+        <div class="copyright">
           <a href="{{'/'|absolute_url}}"><strong><em>{{ site.title }}</em></strong></a>
           <br/>
           Copyright &copy; {{site.author}} {{site.copyrightyear}} &ndash; see <a href="{{'/license/'|absolute_url}}">the license</a> for terms of use.
