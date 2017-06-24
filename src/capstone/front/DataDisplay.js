@@ -1,46 +1,48 @@
 import React from 'react'
-import {ScatterChart, Scatter, XAxis, YAxis, CartesianGrid, Tooltip, Legend} from 'Recharts'
+import { max, sum } from 'd3-array'
+import { select } from 'd3-selection'
 
-const orderPoints = (a, b) => {
-  if (a.x < b.x) {
-    return -1
-  }
-  else if (a.x > b.x) {
-    return 1
-  }
-  else if (a.y < b.y) {
-    return -1
-  }
-  else if (a.y > b.y) {
-    return 1
-  }
-  else {
-    return 0
-  }
-}
+class DataDisplay extends Component {
 
-const DataDisplay = ({data}) => {
-  if (data === null) {
-    return (<span>---</span>)
+  constructor(props){
+    super(props)
   }
-  const display = data
-        .map((rec) => {
-          return {x: rec.hindfoot_length, y: rec.weight}
-        })
-        .filter((rec) => {
-          return (rec.x !== null) && (rec.y !== null)
-        })
-        .sort(orderPoints)
-  console.log('min x', Math.min.apply(null, display.map((rec) => {return rec.x})),
-              'max x', Math.max.apply(null, display.map((rec) => {return rec.x})))
-  return (
-    <ScatterChart width={600} height={600} margin={{top: 20, right: 20, bottom: 20, left: 20}}>
-      <XAxis dataKey={'x'} name='hindfoot length' unit='cm'/>
-      <YAxis dataKey={'y'} name='weight' unit='kg'/>
-      <Scatter name='Creatures' data={display} fill='#8884d8'/>
-      <CartesianGrid />
-      <Tooltip cursor={{strokeDasharray: '3 3'}}/>
-    </ScatterChart>)
+
+  componentDidMount() {
+    this.createChart()
+  }
+
+  componentDidUpdate() {
+    this.createChart()
+  }
+
+  render() {
+    const [xSize, ySize] = this.props.size
+    return <svg ref={(node) => {this.node = node}} width={xSize} height={ySize}></svg>
+  }
+
+  createChart() {
+    const [xSize, ySize] = this.props.size
+
+    const xMax = max(this.props.data.map(d => d.hindfoot_length))
+    const yMax = max(this.props.data.map(d => d.weight))
+
+    const xScale = scaleLinear().domain([0, xMax]).range([0, xSize])
+    const yScale = scaleLinear().domain([0, yMax]).range([0, ySize])
+
+    const r = (d, i) => 10
+    const cx = (d, i) => xScale(d.hindfoot_length)
+    const cy = (d, i) => yScale(d.weight)
+
+    d3.select(this.node)
+      .selectAll('circle')
+      .data(data)
+      .enter()
+      .append('circle')
+      .attr('r', r)
+      .attr('cx', cx)
+      .attr('cy', cy)
+  }
 }
 
 export default DataDisplay

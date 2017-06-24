@@ -9,13 +9,11 @@ TEST_DATA_PATH = path.resolve(__dirname, 'test-data.sql')
 describe('server', () => {
 
   it('should return statistics about survey data', (done) => {
-    expected = [
-      {
-        record_id_low: 1,
-        record_id_high: 35501,
-        record_count: 356
-      }
-    ]
+    expected = {
+      year_low: 1977,
+      year_high: 2002,
+      record_count: 1000
+    }
     const db = new Database('memory', TEST_DATA_PATH)
     request(server(db))
       .get('/survey/stats')
@@ -27,25 +25,32 @@ describe('server', () => {
       })
   })
 
-  it('should return the first record when asked to slice', (done) => {
-    expected = [
-      {
-        record_id: 1,
-        year: 1977,
-        month: 7,
-        day: 16,
-        sex: 'M',
-        hindfoot_length: 32,
-        weight: null,
-        genus: 'Neotoma',
-        species: 'albigula',
-        taxa: 'Rodent',
-        plot_type: 'Control'
-      }
-    ]
+  it('should return nothing when asked for records before 1977', (done) => {
+    expected = []
     const db = new Database('memory', TEST_DATA_PATH)
     request(server(db))
-      .get('/survey/1/1')
+      .get('/survey/0/0')
+      .expect(200)
+      .expect('Content-Type', 'application/json')
+      .end((err, res) => {
+        assert.deepEqual(res.body, expected, '')
+        done()
+      })
+  })
+  
+  it('should return the records for 1977 when asked to slice', (done) => {
+    expected = [{
+      year: 1977,
+      hindfoot_min: 21,
+      hindfoot_avg: 30.25,
+      hindfoot_max: 36,
+      weight_min: 39,
+      weight_avg: 41,
+      weight_max: 43
+    }]
+    const db = new Database('memory', TEST_DATA_PATH)
+    request(server(db))
+      .get('/survey/1977/1977')
       .expect(200)
       .expect('Content-Type', 'application/json')
       .end((err, res) => {
@@ -54,14 +59,16 @@ describe('server', () => {
       })
   })
 
-  it('should return as many records as asked to', (done) => {
+  it('should return one record for each year when given the whole date range', (done) => {
     const db = new Database('memory', TEST_DATA_PATH)
+    yearLow = 1977
+    yearHigh = 2002
     request(server(db))
-      .get('/survey/16801/10')
+      .get(`/survey/${yearLow}/${yearHigh}`)
       .expect(200)
       .expect('Content-Type', 'application/json')
       .end((err, res) => {
-        assert(res.body.length == 10, 'Got expected number of records')
+        assert.equal(res.body.length, (yearHigh - yearLow) + 1, 'Got expected number of records')
         done()
       })
   })

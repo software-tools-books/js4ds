@@ -3,8 +3,8 @@ const fs = require('fs')
 
 const Q_WORKSHOP_GET_SURVEY_STATS = `
 select
-  min(record_id) as record_id_low,
-  max(record_id) as record_id_high,
+  min(year) as year_low,
+  max(year) as year_high,
   count(*) as record_count
 from
   surveys
@@ -12,27 +12,19 @@ from
 
 const Q_WORKSHOP_GET_SURVEY_DATA = `
 select
-  surveys.record_id,
-  surveys.year,
-  surveys.month,
-  surveys.day,
-  surveys.sex,
-  surveys.hindfoot_length,
-  surveys.weight,
-  species.genus,
-  species.species,
-  species.taxa,
-  plots.plot_type
+  surveys.year as year,
+  min(surveys.hindfoot_length) as hindfoot_min,
+  avg(surveys.hindfoot_length) as hindfoot_avg,
+  max(surveys.hindfoot_length) as hindfoot_max,
+  min(surveys.weight) as weight_min,
+  avg(surveys.weight) as weight_avg,
+  max(surveys.weight) as weight_max
 from
-  surveys join species join plots
-on
-  surveys.species_id=species.species_id
-and
-  surveys.plot_id=plots.plot_id
+  surveys
 where
-  surveys.record_id >= ?
-limit
-  ?
+  (surveys.year >= ?) and (surveys.year <= ?)
+group by
+  year
 `
 
 class Database {

@@ -31,10 +31,10 @@ app.get('/survey/stats', (req, res, next) => {
 })
 
 // Get a slice of the survey data.
-app.get('/survey/:start/:count', (req, res, next) => {
+app.get('/survey/:start/:end', (req, res, next) => {
   const start = req.params.start
-  const count = req.params.count
-  db.getSurveyData([start, count], (rows, lastId) => {
+  const end = req.params.end
+  db.getSurveyData([start, end], (rows, lastId) => {
     res.status(200).json(rows)
   })
 })

@@ -13,7 +13,7 @@ class App extends React.Component {
     this.state = {
       summary: null,
       start: '',
-      count: '',
+      end: '',
       data: null
     }
   }
@@ -35,14 +35,13 @@ class App extends React.Component {
     })
   }
 
-  onCount = (count) => {
+  onEnd = (end) => {
     this.setState({
-      count: count
+      end: end
     })
   }
 
   onNewRange = () => {
-    console.log(`onNewRange ${this.state.start} ${this.state.count}`)
     const params = {
       method: 'GET',
       headers: {
@@ -50,7 +49,7 @@ class App extends React.Component {
         'Content-Type': 'application/json'
       }
     }
-    const url = `${this.baseUrl}/survey/${this.state.start}/${this.state.count}`
+    const url = `${this.baseUrl}/survey/${this.state.start}/${this.state.end}`
     fetch(url, params).then((response) => {
       return response.json()
     }).then((data) => {
@@ -67,7 +66,7 @@ class App extends React.Component {
         <SurveyStats data={this.state.summary} />
         <ChooseRange
           start={this.state.start} onStart={this.onStart}
-          count={this.state.count} onCount={this.onCount}
+          end={this.state.end} onEnd={this.onEnd}
           onNewRange={this.onNewRange} />
         <DataDisplay data={this.state.data} />
       </div>
