@@ -21,6 +21,7 @@
 <!DOCTYPE HTML>
 <html>
   <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="search-domain" content="http://gvwilson.github.io/js-vs-rc" />
     <link href="{{'/css/bootstrap.min.css' | absolute_url}}" rel="stylesheet" />
@@ -28,11 +29,11 @@
     <link href="{{'/css/font-awesome.min.css' | absolute_url}}" rel="stylesheet" />
     <link href="{{'/css/syntax.css' | absolute_url}}" rel="stylesheet" />
     <link href="{{'/css/site.css' | absolute_url}}" rel="stylesheet" />
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-    <title>{{site.title}}{% if this %}: {{this.title}}{% endif %}</title>
+    <script src="{{'/js/site.js' | absolute_url}}"></script>
     {% for script in page.scripts %}
     <script src="{{script}}"></script>
     {% endfor %}
+    <title>{{site.title}}{% if this %}: {{this.title}}{% endif %}</title>
   </head>
   <body>
     <input type="checkbox" name="toggle" id="toggle" />
@@ -53,8 +54,8 @@
       </footer>
     </div>
     <div class="message">
-<a href="{{'/'|absolute_url}}"><strong><em>Home</em></strong></a>
-{% include toc.html %}
+      <a href="{{'/'|absolute_url}}"><strong><em>Home</em></strong></a>
+      {% include toc.html %}
     </div>
   </body>
 </html>

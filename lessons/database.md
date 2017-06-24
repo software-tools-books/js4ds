@@ -35,7 +35,7 @@ create table Workshop(
 insert into Workshop values(1, "Building Community", 60);
 insert into Workshop values(2, "ENIAC Programming", 150);
 ```
-{: data-toggle="tooltip" title="src/database/fixture.sql"}
+{: title="src/database/fixture.sql"}
 
 - Build a class to handle interactions with database
 - Test it
@@ -85,7 +85,7 @@ class Database {
   }
 }
 ```
-{: data-toggle="tooltip" title="src/database/database-initial.js"}
+{: title="src/database/database-initial.js"}
 
 - What do the queries look like?
 
@@ -110,7 +110,7 @@ where
   Workshop.ident = ?
 `
 ```
-{: data-toggle="tooltip" title="src/database/database-initial.js"}
+{: title="src/database/database-initial.js"}
 
 - What does the driver look like?
 
@@ -125,7 +125,7 @@ function main () {
 
 main()
 ```
-{: data-toggle="tooltip" title="src/database/database-initial.js"}
+{: title="src/database/database-initial.js"}
 
 - Try running it
 
@@ -173,7 +173,7 @@ node database-initial.js fixture.db getAll
     }
   }
 ```
-{: data-toggle="tooltip" title="src/database/database-mode.js"}
+{: title="src/database/database-mode.js"}
 
 - And use destructuring to handle command-line arguments in driver
 
@@ -184,7 +184,7 @@ function main () {
   database[action](args)
 }
 ```
-{: data-toggle="tooltip" title="src/database/database-mode.js"}
+{: title="src/database/database-mode.js"}
 
 ```sh
 node database-mode.js memory fixture.sql getOne 2
@@ -240,7 +240,7 @@ node database-mode.js memory fixture.sql getOne 2
     })
   }
 ```
-{: data-toggle="tooltip" title="src/database/database-mixed.js"}
+{: title="src/database/database-mixed.js"}
 
 - And:
 
@@ -257,7 +257,7 @@ function main () {
   database[action](args)
 }
 ```
-{: data-toggle="tooltip" title="src/database/database-mixed.js"}
+{: title="src/database/database-mixed.js"}
 
 - Some duplication of functionality (the `fs.readFileSync`)
 - And the control flow is a bit awkward
@@ -286,7 +286,7 @@ class Database {
 
 module.exports = Database
 ```
-{: data-toggle="tooltip" title="src/database/separate-database.js"}
+{: title="src/database/separate-database.js"}
 
 ```js
 const Database = require('./separate-database')
@@ -309,7 +309,7 @@ const main = () => {
 
 main()
 ```
-{: data-toggle="tooltip" title="src/database/separate-driver.js"}
+{: title="src/database/separate-driver.js"}
 
 - Try running it
 
@@ -346,7 +346,7 @@ class Database {
   …
 }
 ```
-{: data-toggle="tooltip" title="src/database/callback-database.js"}
+{: title="src/database/callback-database.js"}
 
 - And then in the driver:
 
@@ -370,7 +370,7 @@ const main = () => {
 
 main()
 ```
-{: data-toggle="tooltip" title="src/database/callback-driver.js"}
+{: title="src/database/callback-driver.js"}
 
 ## Testing
 
@@ -421,7 +421,7 @@ test('Can only get workshops that exist', (t) => {
   })
 })
 ```
-{: data-toggle="tooltip" title="src/database/basic-tests.js"}
+{: title="src/database/basic-tests.js"}
 
 - Walk through the structure of each test
 - Define expected result

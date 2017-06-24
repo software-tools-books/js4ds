@@ -18,7 +18,7 @@ describe('first test', () => {
   })
 })
 ```
-{: data-toggle="tooltip" title="src/testing/hello-test.js"}
+{: title="src/testing/hello-test.js"}
 
 - `describe` takes an explanatory string and a callback function
 - Callback makes calls to `it`, which takes:
@@ -48,7 +48,7 @@ describe('first test', () => {
   }
 }
 ```
-{: data-toggle="tooltip" title="package.json"}
+{: title="package.json"}
 
 - and then:
 
@@ -69,7 +69,7 @@ const server = require('./server')
 const PORT = 3418
 server.listen(PORT, () => { console.log(`listening on port ${PORT}...`) })
 ```
-{: data-toggle="tooltip" title="src/testing/standalone.js"}
+{: title="src/testing/standalone.js"}
 
 - and
 
@@ -88,7 +88,7 @@ app.get('/', (req, res, next) => {
 
 module.exports = app
 ```
-{: data-toggle="tooltip" title="src/testing/server.js"}
+{: title="src/testing/server.js"}
 
 ## Testing the Server
 
@@ -115,7 +115,7 @@ describe('server', () => {
   })
 })
 ```
-{: data-toggle="tooltip" title="src/testing/request-test.js"}
+{: title="src/testing/request-test.js"}
 
 - `server` is our server code
 - `request(server)` starts building up a request to send
@@ -172,7 +172,7 @@ describe('server', () => {
   })
 })
 ```
-{: data-toggle="tooltip" title="src/testing/request-test.js"}
+{: title="src/testing/request-test.js"}
 ```text
   server
     ✓ should return HTML with expected title (42ms)
@@ -235,7 +235,7 @@ describe('server', () => {
   })
 })
 ```
-{: data-toggle="tooltip" title="src/testing/dom-test.js"}
+{: title="src/testing/dom-test.js"}
 ```text
   server
     ✓ should have the correct headings (67ms)

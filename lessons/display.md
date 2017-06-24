@@ -63,7 +63,7 @@ FIXME-18: diagram
   </body>
 </html>
 ```
-{: data-toggle="tooltip" title="src/react/hello-react.html"}
+{: title="src/react/hello-react.html"}
 
 - Head of the page loads two React libraries from the web
   - Use locally-installed libraries later
@@ -99,7 +99,7 @@ FIXME-18: diagram
     </script>
   </body>
 ```
-{: data-toggle="tooltip" title="src/react/stylish.html"}
+{: title="src/react/stylish.html"}
 
 ## JSX
 
@@ -129,7 +129,7 @@ FIXME-18: diagram
   </body>
 </html>
 ```
-{: data-toggle="tooltip" title="src/react/hello-jsx.html"}
+{: title="src/react/hello-jsx.html"}
 
 - Include Babel to translate mixed content into pure JavaScript
 - Add `type="text/babel"` to the `script` tag to tell Babel where to do its work
@@ -153,7 +153,7 @@ FIXME-18: diagram
     </script>
   </body>
 ```
-{: data-toggle="tooltip" title="src/react/jsx-list.html"}
+{: title="src/react/jsx-list.html"}
 
 - Have to use `map` rather than a loop because the function has to return something
   - Could build up a string through repeated concatenation, but this is cleaner
@@ -184,7 +184,7 @@ FIXME-18: diagram
     </script>
   </body>
 ```
-{: data-toggle="tooltip" title="src/react/create-components.html"}
+{: title="src/react/create-components.html"}
 
 - What we really want to do is parameterize
   - After all, the JSX is being turned into a function
@@ -211,7 +211,7 @@ FIXME-18: diagram
     </script>
   </body>
 ```
-{: data-toggle="tooltip" title="src/react/pass-parameters.html"}
+{: title="src/react/pass-parameters.html"}
 
 - Gives us exactly one logical place to do calculations, set style, etc.
 
@@ -231,7 +231,7 @@ FIXME-18: diagram
 server_path=${PWD}/node_modules/.bin/http-server
 cd $1 && ${server_path}
 ```
-{: data-toggle="tooltip" title="bin/run-server"}
+{: title="bin/run-server"}
 
 - Add a line to `package.json` to run this
 
@@ -264,7 +264,7 @@ cd $1 && ${server_path}
   </body>
 </html>
 ```
-{: data-toggle="tooltip" title="src/react/hello-separate/index.html"}
+{: title="src/react/hello-separate/index.html"}
 
 - And put the JavaScript in the file
 
@@ -274,7 +274,7 @@ ReactDOM.render(
   document.getElementById("app")
 )
 ```
-{: data-toggle="tooltip" title="src/react/hello-separate/app.js"}
+{: title="src/react/hello-separate/app.js"}
 
 - Can now load many separate files
   - Warning: do this in the HTML with multiple script tags
@@ -299,7 +299,7 @@ ReactDOM.render(
     </div>
   </body>
 ```
-{: data-toggle="tooltip" title="src/react/multiple-files/index.html"}
+{: title="src/react/multiple-files/index.html"}
 
 - React code to format a list element
 
@@ -308,7 +308,7 @@ const ListElement = (props) => {
   return (<li id="{props.name}"><em>{props.name}</em></li>)
 }
 ```
-{: data-toggle="tooltip" title="src/react/multiple-files/ListElement.js"}
+{: title="src/react/multiple-files/ListElement.js"}
 
 - Main application
 - Note that this JavaScript *doesn't* have an `import` or `require` statement
@@ -320,7 +320,7 @@ ReactDOM.render(
   document.getElementById("app")
 )
 ```
-{: data-toggle="tooltip" title="src/react/multiple-files/app.js"}
+{: title="src/react/multiple-files/app.js"}
 
 - But this is probably a bad layout
   - Would make more sense to have a `Name` element that formatted a name

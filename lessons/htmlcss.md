@@ -83,7 +83,7 @@ permalink: "/htmlcss/"
   </body>
 </html>
 ```
-{: data-toggle="tooltip" title="src/htmlcss/first-page.html"}
+{: title="src/htmlcss/first-page.html"}
 
 ## Attributes
 
@@ -150,7 +150,7 @@ permalink: "/htmlcss/"
   </body>
 </html>
 ```
-{: data-toggle="tooltip" title="src/htmlcss/table.html"}
+{: title="src/htmlcss/table.html"}
 
 <html>
   <head>
@@ -179,7 +179,7 @@ permalink: "/htmlcss/"
 <a href="https://nodejs.org/">Node.js</a>
 <a href="https://facebook.github.io/react/">React</a>
 ```
-{: data-toggle="tooltip" title="src/htmlcss/links.html"}
+{: title="src/htmlcss/links.html"}
 
 ## Images
 
@@ -192,7 +192,7 @@ permalink: "/htmlcss/"
 <img src="./html5.png" alt="HTML5 Logo with local path"/>
 <img src="https://github.com/gvwilson/js-vs-rc/blob/master/src/htmlcss/html5.png" alt="HTML5 logo online"/>
 ```
-{: data-toggle="tooltip" title="src/htmlcss/images.html"}
+{: title="src/htmlcss/images.html"}
 
 ## Cascading Style Sheets
 
@@ -209,7 +209,7 @@ permalink: "/htmlcss/"
   </body>
 </html>
 ```
-{: data-toggle="tooltip" title="src/htmlcss/style-with-attributes.html"}
+{: title="src/htmlcss/style-with-attributes.html"}
 
 - Many still do, but a better way is to using [Cascading Style Sheets](../gloss/#css) (CSS)
   - Separates content from presentation
@@ -229,7 +229,7 @@ permalink: "/htmlcss/"
   </body>
 </html>
 ```
-{: data-toggle="tooltip" title="src/htmlcss/style-with-css.html"}
+{: title="src/htmlcss/style-with-css.html"}
 
 ```css
 h1.title {
@@ -242,7 +242,7 @@ span.keyword {
   color: coral;
 }
 ```
-{: data-toggle="tooltip" title="src/htmlcss/simple-style.css"}
+{: title="src/htmlcss/simple-style.css"}
 
 - Usual form is `tag.class` followed by a group of properties
   - Each property is a key/value pair
@@ -271,7 +271,7 @@ span.keyword {
   </body>
 </html>
 ```
-{: data-toggle="tooltip" title="src/htmlcss/selectors.html"}
+{: title="src/htmlcss/selectors.html"}
 
 ```css
 #major {
@@ -284,7 +284,7 @@ span.keyword {
   font-style: italic;
 }
 ```
-{: data-toggle="tooltip" title="src/htmlcss/selector-style.css"}
+{: title="src/htmlcss/selector-style.css"}
 
 ## Bootstrap
 
@@ -327,7 +327,7 @@ span.keyword {
   </body>
 </html>
 ```
-{: data-toggle="tooltip" title="src/htmlcss/bootstrap.html"}
+{: title="src/htmlcss/bootstrap.html"}
 
 - Page opens by loading Bootstrap from the web
   - Can also download and use locally

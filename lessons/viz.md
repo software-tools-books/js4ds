@@ -46,7 +46,7 @@ scripts:
 
 </svg>
 ```
-{: data-toggle="tooltip" title="src/viz/svg.html"}
+{: title="src/viz/svg.html"}
 
 - Don't have to break elements across lines as shown
   - But it makes the source easier to read
@@ -84,7 +84,7 @@ scripts:
   <circle cx="160" cy="50" r="10"></circle>
 </svg>
 ```
-{: data-toggle="tooltip" title="src/viz/d3-svg.html"}
+{: title="src/viz/d3-svg.html"}
 
 <svg id="d3-svg" width="720" height="100" style="background-color: #00F0F0">
   <circle cx="40" cy="50" r="10"></circle>
@@ -111,7 +111,7 @@ scripts:
   circles.attr("cx", (d, i) => { return Math.random() * 720 })
 </script>
 ```
-{: data-toggle="tooltip" title="src/viz/d3-function.html"}
+{: title="src/viz/d3-function.html"}
 
 <svg id="d3-function" width="720" height="100" style="background-color: #40F0F0">
   <circle cx="40" cy="50" r="10"></circle>
@@ -143,7 +143,7 @@ scripts:
   circles.attr("cy", function(d, i) { return 50 })
 </script>
 ```
-{: data-toggle="tooltip" title="src/viz/d3-data.html"}
+{: title="src/viz/d3-data.html"}
 
 <svg id="d3-data" width="720" height="100" style="background-color: #60F0F0">
   <circle></circle>
@@ -190,7 +190,7 @@ scripts:
   newEntries.attr("cy", function(d, i) { return 50 })
 </script>
 ```
-{: data-toggle="tooltip" title="src/viz/d3-entry.html"}
+{: title="src/viz/d3-entry.html"}
 
 <svg id="d3-entry" width="720" height="100" style="background-color: #80F0F0">
   <circle></circle>
@@ -238,7 +238,7 @@ scripts:
   circles.enter().append("circle").attr("r", r).attr("cx", cx).attr("cy", cy)
 </script>
 ```
-{: data-toggle="tooltip" title="src/viz/d3-final.html"}
+{: title="src/viz/d3-final.html"}
 
 <svg id="d3-final" width="720" height="100" style="background-color: #80F0F0">
 </svg>
@@ -274,7 +274,7 @@ scripts:
   </body>
 </html>
 ```
-{: data-toggle="tooltip" title="src/viz/index.html"}
+{: title="src/viz/index.html"}
 
 ## The Data
 
@@ -291,7 +291,7 @@ export default [
   {"day": 30, "biomass": 0}
 ]
 ```
-{: data-toggle="tooltip" title="src/viz/biomass.js"}
+{: title="src/viz/biomass.js"}
 
 ## The Main Application
 
@@ -358,7 +358,7 @@ ReactDOM.render(
   document.getElementById('root')
 );
 ```
-{: data-toggle="tooltip" title="src/viz/app.js"}
+{: title="src/viz/app.js"}
 
 ### Imports
 
@@ -501,7 +501,7 @@ class BarChart extends Component {
 
 export default BarChart
 ```
-{: data-toggle="tooltip" title="src/viz/BarChart.js"}
+{: title="src/viz/BarChart.js"}
 
 ### Imports
 

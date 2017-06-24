@@ -38,7 +38,7 @@ app.get('/', (req, res, next) => {
 
 app.listen(PORT, () => { console.log('listening...') })
 ```
-{: data-toggle="tooltip" title="src/server/static-page.js"}
+{: title="src/server/static-page.js"}
 
 - There is no HTML file on disk
 - And there is no way for the browser to know if there was one or not
@@ -73,7 +73,7 @@ app.use((req, res, next) => {
 
 app.listen(PORT, () => { console.log('listening...') })
 ```
-{: data-toggle="tooltip" title="src/server/multiple-paths.js"}
+{: title="src/server/multiple-paths.js"}
 
 - Don't have to send a 404 status code
 - But many parts of web infrastructure depend on correct codes
@@ -103,7 +103,7 @@ app.use((req, res, next) => {
 
 app.listen(PORT, () => { console.log('listening...') })
 ```
-{: data-toggle="tooltip" title="src/server/pages.js"}
+{: title="src/server/pages.js"}
 
 - Steps are:
   1. Get the request
@@ -137,7 +137,7 @@ app.use((req, res, next) => {
   }
 })
 ```
-{: data-toggle="tooltip" title="src/server/data-server.js"}
+{: title="src/server/data-server.js"}
 
 - The `Content-Type` header tells the client how to handle the bytes we're sending
   - Though it can still do whatever it wants
@@ -165,7 +165,7 @@ app.use((req, res, next) => {
   }
 })
 ```
-{: data-toggle="tooltip" title="src/server/dynamic.js"}
+{: title="src/server/dynamic.js"}
 
 - Require all dynamic plugins to provide a `page` function
   - We have to know what to call
@@ -179,7 +179,7 @@ module.exports = {
   page: page
 }
 ```
-{: data-toggle="tooltip" title="src/server/pages/plugin.js"}
+{: title="src/server/pages/plugin.js"}
 
 ## Challenges
 
