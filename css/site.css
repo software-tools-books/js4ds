@@ -3,22 +3,31 @@ blockquote {
 }
 
 div.keypoints, div.questions {
-  padding-left: 0.5em;
-  padding-right: 0.5em;
-  margin-bottom: 1em;
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
+  margin-bottom: 1rem;
   border: 3px solid #C0C0C0;
   border-radius: 10px;
 }
 
 div.challenge {
-  padding-left: 0.5em;
-  padding-bottom: 1px;
-  margin-bottom: 1em;
+  padding-left: 0.5rem;
+  padding-bottom: 0.5rem;
+  margin-bottom: 0.5rem;
   border-left: 3px solid #C0C0C0;
 }
 
 div.challenge h3 {
   font-style: italic;
+}
+
+div.callout {
+  padding-left: 0.5rem;
+  background-color: #F8F8F8;
+}
+
+div.callout h3 {
+  padding-top: 0.5rem;
 }
 
 .copyright {
