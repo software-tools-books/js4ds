@@ -10,6 +10,17 @@ div.keypoints, div.questions {
   border-radius: 10px;
 }
 
+div.challenge {
+  padding-left: 0.5em;
+  padding-bottom: 1px;
+  margin-bottom: 1em;
+  border-left: 3px solid #C0C0C0;
+}
+
+div.challenge h3 {
+  font-style: italic;
+}
+
 .copyright {
   text-align: center;
   font-size: 90%;
@@ -51,7 +62,7 @@ div.keypoints, div.questions {
 
 #toggle + label:after {
   content: '\2630';
-  color: #707070;
+  color: #808080;
   font-size: 1.5em;
 }
 
@@ -69,5 +80,5 @@ div.keypoints, div.questions {
 }
 
 a {
-  color: #7070C0;
+  color: #8080C0;
 }
