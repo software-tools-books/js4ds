@@ -581,4 +581,12 @@ export default BarChart
   - So leave them as old-style functions
 - This leaves `scaleThreshold` and `legendColor`
 
+<div class="challenges" markdown="1">
+
+## Challenges
+
+FIXME: write challenges
+
+</div>
+
 {% include links.md %}

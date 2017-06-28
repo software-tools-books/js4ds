@@ -181,10 +181,14 @@ module.exports = {
 ```
 {: title="src/server/pages/plugin.js"}
 
+<div class="challenges" markdown="1">
+
 ## Challenges
 
 FIXME-29: challenges
 
 Exercise: make the file handler 404 for missing files
+
+</div>
 
 {% include links.md %}

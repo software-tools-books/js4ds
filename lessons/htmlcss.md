@@ -344,8 +344,12 @@ span.keyword {
 
 - Note: interactive elements (buttons, forms) are deferred to React chapter
 
+<div class="challenges" markdown="1">
+
 ## Challenges
 
 FIXME-19: write challenges
+
+</div>
 
 {% include links.md %}

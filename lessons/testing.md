@@ -257,8 +257,12 @@ describe('server', () => {
 - Won't explore this approach further because we're going to serve data for rendering
   rather than generating HTML and sending that
 
+<div class="challenges" markdown="1">
+
 ## Challenges
 
 FIXME-35: write challenges for testing
+
+</div>
 
 {% include links.md %}

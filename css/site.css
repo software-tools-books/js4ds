@@ -10,14 +10,20 @@ div.keypoints, div.questions {
   border-radius: 10px;
 }
 
-div.challenge {
-  padding-left: 0.5rem;
-  padding-bottom: 0.5rem;
-  margin-bottom: 0.5rem;
-  border-left: 3px solid #C0C0C0;
+div.challenges {
+  counter-reset: challenge;
 }
 
-div.challenge h3 {
+div.challenges h3::before {
+  counter-increment: challenge;
+  content: counter(challenge) ") ";
+}
+
+div.challenges h2 {
+  font-style: italic;
+}
+
+div.challenges h3 {
   font-style: italic;
 }
 

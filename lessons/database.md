@@ -441,8 +441,12 @@ test('Can only get workshops that exist', (t) => {
 - Add a method, write some tests, make sure nothing broke
 - Doesn't have to be test-first (although that often helps clarify design thinking)
 
+<div class="challenges" markdown="1">
+
 ## Challenges
 
 FIXME-39: write challenges for database lesson.
+
+</div>
 
 {% include links.md %}

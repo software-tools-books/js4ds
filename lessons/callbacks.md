@@ -312,6 +312,8 @@ console.log(`adding 1 and 2 to 100 -> ${result}`)
 adding 1 and 2 to 100 -> 103
 ```
 
+<div class="challenges" markdown="1">
+
 ## Challenges
 
 ### Side Effects With `forEach`
@@ -385,5 +387,7 @@ You may want to use `Array.reduce`
 to generate the sequence numbers.
 Use the web to find a description of it,
 and work with a partner to ensure that you understand how it works.
+
+</div>
 
 {% include links.md %}

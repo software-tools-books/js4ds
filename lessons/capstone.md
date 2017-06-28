@@ -94,4 +94,12 @@ select * from test_surveys;
   - Could store the test data in a different table
   - But SQL doesn't allow parameterization of table names
 
+<div class="challenges" markdown="1">
+
+## Challenges
+
+FIXME: write challenges
+
+</div>
+
 {% include links.md %}

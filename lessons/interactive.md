@@ -412,8 +412,12 @@ class App extends React.Component {
 - Unfortunately, top level of `near_earth_objects` is an object with dates as keys
   - So we have to use `let…in…` rather than purely `map` or `forEach`
 
+<div class="challenges" markdown="1">
+
 ## Challenges
 
 FIXME-25: write challenges
+
+</div>
 
 {% include links.md %}

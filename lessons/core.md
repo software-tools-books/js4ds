@@ -313,9 +313,9 @@ clip(-1,5,3,0,10) -> 0,1,2,3
 - Use a relative path starting with `./` or `../` to import local files
   - Paths that start with names are taken from installed Node libraries
 
-## Challenges
+<div class="challenges" markdown="1">
 
-<div class="challenge" markdown="1">
+## Challenges
 
 ### Typeof
 
@@ -323,10 +323,6 @@ What kind of thing is `typeof`?
 Is it an expression?
 A function?
 Something else?
-
-</div>
-
-<div class="challenge" markdown="1">
 
 ### Fill in the Blanks
 
@@ -359,10 +355,6 @@ square of 1 is 1
 square of 0 is 0
 ```
 
-</div>
-
-<div class="challenge" markdown="1">
-
 ### What Is Truth?
 
 Write a function called `isTruthy` that returns `true`
@@ -370,10 +362,6 @@ for everything that JavaScript considers truthy,
 and `false` for everything it considers `falsy`,
 *except* empty arrays:
 `isTruthy` should return `false` for those.
-
-</div>
-
-<div class="challenge" markdown="1">
 
 ### What Does This Do?
 
@@ -390,10 +378,6 @@ console.log(creature)
 ```text
 { genus: 'Callithrix', species: 'Jacchus' }
 ```
-
-</div>
-
-<div class="challenge" markdown="1">
 
 ### What Does This Code Do?
 

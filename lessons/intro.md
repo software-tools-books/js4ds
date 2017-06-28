@@ -73,6 +73,8 @@ to do the later ones.
     - A better idea, since it isolates projects from one another
     - We will see [later](../display/) how to create projects
 
+<div class="challenges" markdown="1">
+
 ## Challenges
 
 ### Setting Up
@@ -80,5 +82,7 @@ to do the later ones.
 Install Node and NPM on your computer,
 then run the commands `node --version` and `npm --version`
 to see which versions you have.
+
+</div>
 
 {% include links.md %}

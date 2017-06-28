@@ -320,8 +320,12 @@ in spring: penguin looks for food,,penguin is nesting
   - Old code defines expectations as an interface and a protocol
   - New code implements that interface and respects that protocol
 
+<div class="challenges" markdown="1">
+
 ## Challenges
 
 FIXME-27: write challenges
+
+</div>
 
 {% include links.md %}

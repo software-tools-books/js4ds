@@ -3,12 +3,14 @@ layout: page
 permalink: "/legacy/"
 ---
 
-FIXME
-
 ## Iteration
 <a name="iteration"></a>
 
+FIXME
+
 ## Prototypes
 <a name="prototypes"></a>
+
+FIXME
 
 {% include links.md %}

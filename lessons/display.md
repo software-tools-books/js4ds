@@ -327,8 +327,12 @@ ReactDOM.render(
   - And then let the application decide to put those names in a list
   - Exercise for the reader
 
+<div class="challenges" markdown="1">
+
 ## Challenges
 
 FIXME-19: write challenges
+
+</div>
 
 {% include links.md %}
