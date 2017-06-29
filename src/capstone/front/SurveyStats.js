@@ -8,8 +8,8 @@ const SurveyStats = ({data}) => {
     <table>
       <tbody>
         <tr><th>record count</th><td>{data.record_count}</td></tr>
-        <tr><th>record low</th><td>{data.record_id_low}</td></tr>
-        <tr><th>record high</th><td>{data.record_id_high}</td></tr>
+        <tr><th>year low</th><td>{data.year_low}</td></tr>
+        <tr><th>year high</th><td>{data.year_high}</td></tr>
       </tbody>
     </table>
   )

@@ -1,7 +1,6 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 import SurveyStats from './SurveyStats'
-import CreatureList from './CreatureList'
 import ChooseRange from './ChooseRange'
 import DataDisplay from './DataDisplay'
 

@@ -1,48 +1,30 @@
 import React from 'react'
-import { max, sum } from 'd3-array'
-import { select } from 'd3-selection'
 
-class DataDisplay extends Component {
+const DataDisplay = ({data}) => {
 
-  constructor(props){
-    super(props)
+  if (! data) {
+    return (<p>no data</p>)
   }
 
-  componentDidMount() {
-    this.createChart()
-  }
-
-  componentDidUpdate() {
-    this.createChart()
-  }
-
-  render() {
-    const [xSize, ySize] = this.props.size
-    return <svg ref={(node) => {this.node = node}} width={xSize} height={ySize}></svg>
-  }
-
-  createChart() {
-    const [xSize, ySize] = this.props.size
-
-    const xMax = max(this.props.data.map(d => d.hindfoot_length))
-    const yMax = max(this.props.data.map(d => d.weight))
-
-    const xScale = scaleLinear().domain([0, xMax]).range([0, xSize])
-    const yScale = scaleLinear().domain([0, yMax]).range([0, ySize])
-
-    const r = (d, i) => 10
-    const cx = (d, i) => xScale(d.hindfoot_length)
-    const cy = (d, i) => yScale(d.weight)
-
-    d3.select(this.node)
-      .selectAll('circle')
-      .data(data)
-      .enter()
-      .append('circle')
-      .attr('r', r)
-      .attr('cx', cx)
-      .attr('cy', cy)
-  }
+  const columns = [
+    'year',
+    'hindfoot_min',
+    'hindfoot_avg',
+    'hindfoot_max',
+    'weight_min',
+    'weight_avg',
+    'weight_max'
+  ]
+  return (
+    <table>
+      <tbody>
+        <tr>{columns.map((c) => (<th>{c}</th>))}</tr>
+        {data.map((record) => {
+          return (<tr>{columns.map((c) => (<td>{record[c]}</td>))}</tr>)
+        })}
+      </tbody>
+    </table>
+  )
 }
 
 export default DataDisplay

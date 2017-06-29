@@ -8,9 +8,12 @@
 [license]: https://gvwilson.github.io/js-vs-rc/license/
 [mit-license]: http://opensource.org/licenses/mit-license.html
 [osi]: http://opensource.org
+[reactd3]: http://www.reactd3.org/
+[recharts]: http://recharts.org/
 [repo]: https://github.com/gvwilson/js-vs-rc/
 [runkit]: https://runkit.com/
 [site]: https://gvwilson.github.io/js-vs-rc/
 [sql-tutorial]: http://swcarpentry.github.io/sql-novice-survey/
 [swc]: http://software-carpentry.org
+[vx]: https://vx-demo.now.sh/
 [wordpress]: https://wordpress.org/

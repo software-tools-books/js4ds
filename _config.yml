@@ -228,26 +228,14 @@ toc:
   - "Using an in-memory database to make tests faster and ensure that they are isolated."
   - "Use callbacks to handle the results of queries."
 - permalink: /viz/
-  title: Visualizing Data with D3
+  title: Visualizing Data
   type: lesson
   questions:
-  - "How can I visualize data in a web page?"
-  - "How does SVG represent visual elements?"
-  - "What is D3 and why should I use it?"
-  - "How does D3 adjust elements' visual properties to display data?"
-  - "How does D3 handle extra or missing data?"
-  - "How can I use D3 in a React application?"
-  - "How can applications handle changes in window size?"
+  - "How can I visualize data on the web?"
+  - "Why is this so hard?"
   keypoints:
-  - "SVG is a standard for displaying vector graphics in web pages."
-  - "SVG's coordinate system has its origin in the upper left."
   - "D3 is a toolkit for building data visualizations."
-  - "Use `d3.select` and `d3.selectAll` to select elements."
-  - "Use `d3.style` and `d3.attr` to change elements' properties."
-  - "Use `d3.data` to bind data to a set of display elements."
-  - "Data binding creates an entry selection of 'extra' values, an update selection of element/value pairs, and an 'exit' selection of unused view elements."
-  - "Use `.append` to add more view elements and `.remove` to remove view elements."
-  - "Use `window.addEventListener` to set up low-level event handlers."
+  - "None of the libraries that combine D3 with React are ready for use by beginners yet."
 - permalink: /capstone/
   title: Capstone Project
   type: lesson
