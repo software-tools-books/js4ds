@@ -227,6 +227,17 @@ toc:
   - "JavaScript programs send SQL queries to a database and get the results as a list of lists."
   - "Using an in-memory database to make tests faster and ensure that they are isolated."
   - "Use callbacks to handle the results of queries."
+- permalink: /capstone/
+  title: Capstone Project
+  type: lesson
+  questions:
+  - "How can I set up test data to use during development?"
+  - "What tests are most cost-effective when testing this kind of application?"
+  - "How should I present data to users?"
+  keypoints:
+  - "Use slices of actual data to test applications."
+  - "Test summaries and small cases so that results can be checked by hand."
+  - "Store state in a class, use pure functions to display it."
 - permalink: /viz/
   title: Visualizing Data
   type: lesson
@@ -236,13 +247,6 @@ toc:
   keypoints:
   - "D3 is a toolkit for building data visualizations."
   - "None of the libraries that combine D3 with React are ready for use by beginners yet."
-- permalink: /capstone/
-  title: Capstone Project
-  type: lesson
-  questions:
-  - FIXME
-  keypoints:
-  - FIXME
 - permalink: /legacy/
   title: Legacy JavaScript Issues
   type: misc

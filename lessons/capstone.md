@@ -175,50 +175,11 @@ group by
 
 - Second test: shouldn't get anything for years before 1970
   - When better error handling introduced as exercise, this test will need to be updated
-
-```js
-  it('should return nothing when asked for records before 1977', (done) => {
-    expected = []
-    const db = new Database('memory', TEST_DATA_PATH)
-    request(server(db))
-      .get('/survey/0/0')
-      .expect(200)
-      .expect('Content-Type', 'application/json')
-      .end((err, res) => {
-        assert.deepEqual(res.body, expected, '')
-        done()
-      })
-  })
-```
-{: title="src/capstone/back/test-server.js"}
-
+  - See the source
 - Third test: gets the right data for one year
   - Have to inspect the data and do some calculations
   - Again, a smaller data set would probably have been just as useful
-
-```js
-  it('should return the records for 1977 when asked to slice', (done) => {
-    expected = [{
-      year: 1977,
-      hindfoot_min: 21,
-      hindfoot_avg: 30.25,
-      hindfoot_max: 36,
-      weight_min: 39,
-      weight_avg: 41,
-      weight_max: 43
-    }]
-    const db = new Database('memory', TEST_DATA_PATH)
-    request(server(db))
-      .get('/survey/1977/1977')
-      .expect(200)
-      .expect('Content-Type', 'application/json')
-      .end((err, res) => {
-        assert.deepEqual(res.body, expected, '')
-        done()
-      })
-  })
-```
-{: title="src/capstone/back/test-server.js"}
+  - See the source
 
 - Fourth test: get as many records as expected
 
@@ -243,6 +204,210 @@ group by
 - Note also the use of `assert.equal`
   - Could use `assert(res.body.length == expectedValue, …)`
   - But then error message would just be `false != true`
+
+## The Display
+
+- Front end is a straightforward recapitulation of what we've done before
+- A single HTML page `index.html`
+
+```html
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Creatures</title>
+    <meta charset="utf-8">
+  </head>
+  <body>
+    <div id="app"></div>
+    <script src="bundle.js"></script>
+  </body>
+</html>
+```
+{: title="src/capstone/front/index.html"}
+
+- A main application in `app.js`
+- Imports components to:
+  - Display summary statistics
+  - Choose a range of years
+  - Display annual data
+- Not always such a close coupling between API calls and components…
+- …but not a bad place to start
+
+```
+import React from 'react'
+import ReactDOM from 'react-dom'
+import SurveyStats from './SurveyStats'
+import ChooseRange from './ChooseRange'
+import DataDisplay from './DataDisplay'
+
+class App extends React.Component {
+
+  constructor (props) {
+    // ...constructor...
+  }
+
+  componentDidMount = () => {
+    // ...initialize...
+  }
+
+  onStart = (start) => {
+    // ...update start year...
+  }
+
+  onEnd = (end) => {
+    // ...update end year...
+  }
+
+  onNewRange = () => {
+    // ...handle submission of year range...
+  }
+
+  render = () => {
+    // ...render current application state...
+  }
+}
+
+ReactDOM.render(
+  <App />,
+  document.getElementById("app")
+)
+```
+{: title="src/capstone/back/app.js"}
+
+- Constructor defines URL for data source and sets up initial state
+  - Summary data
+  - Start and end years
+  - Data for those years
+
+```js
+  constructor (props) {
+    super(props)
+    this.baseUrl = 'http://localhost:3418'
+    this.state = {
+      summary: null,
+      start: '',
+      end: '',
+      data: null
+    }
+  }
+```
+{: title="src/capstone/back/app.js"}
+
+- Fetch summary data when the component has mounted
+  - Can't do this in constructor because we have no control over the order in which bits of display are initialized
+- `response.json()` works because we know the source is returning JSON data
+- This is the only place where the summary is updated
+
+```js
+  componentDidMount = () => {
+    const url = `${this.baseUrl}/survey/stats`
+    fetch(url).then((response) => {
+      return response.json()
+    }).then((summary) => {
+      this.setState({
+        summary: summary
+      })
+    })
+  }
+```
+{: title="src/capstone/back/app.js"}
+
+- Handle typing in the "start" and "end" boxes
+  - HTML controls will capture the characters without our help
+  - But we need those values in our state variables
+
+```js
+  onStart = (start) => {
+    this.setState({
+      start: start
+    })
+  }
+
+  onEnd = (end) => {
+    this.setState({
+      end: end
+    })
+  }
+```
+{: title="src/capstone/back/app.js"}
+
+- When the button clicked:
+  - Send a request for JSON data to the appropriate URL
+  - Record the result in the application's state
+- React will notice the state change and call `render` for us
+  - More precisely, the browser will call the first `then` callback when the response arrives…
+  - …and the second `then` callback when the data has been converted to JSON
+
+```js
+  onNewRange = () => {
+    const params = {
+      method: 'GET',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      }
+    }
+    const url = `${this.baseUrl}/survey/${this.state.start}/${this.state.end}`
+    fetch(url, params).then((response) => {
+      return response.json()
+    }).then((data) => {
+      this.setState({
+        data: data
+      })
+    })
+  }
+```
+{: title="src/capstone/back/app.js"}
+
+- Update the display
+  - `SurveyStats`, `ChooseRange`, and `DataDisplay` are all stateless (display) components
+
+```js
+```
+{: title="src/capstone/back/app.js"}
+
+```js
+  render = () => {
+    return (
+      <div>
+        <h1>Creatures</h1>
+        <SurveyStats data={this.state.summary} />
+        <ChooseRange
+          start={this.state.start} onStart={this.onStart}
+          end={this.state.end} onEnd={this.onEnd}
+          onNewRange={this.onNewRange} />
+        <DataDisplay data={this.state.data} />
+      </div>
+    )
+  }
+```
+{: title="src/capstone/back/app.js"}
+
+- Display survey stats:
+
+```js
+import React from 'react'
+
+const SurveyStats = ({data}) => {
+  if (data === null) {
+    return (<p>no data</p>)
+  }
+  return (
+    <table>
+      <tbody>
+        <tr><th>record count</th><td>{data.record_count}</td></tr>
+        <tr><th>year low</th><td>{data.year_low}</td></tr>
+        <tr><th>year high</th><td>{data.year_high}</td></tr>
+      </tbody>
+    </table>
+  )
+}
+
+export default SurveyStats
+```
+{: title="src/capstone/front/SurveyStats.js"}
+
+- Other components similar to those seen before
 
 <div class="challenges" markdown="1">
 
@@ -277,6 +442,11 @@ that servers should return to tell clients what went wrong.
 2. Compare your implementation to someone else's.
    Did you define "invalid" in the same way?
    I.e., will your programs always return the same status codes for every query?
+
+### Use All the Data
+
+Create a database using all of the survey data and test the display.
+What bugs or shortcomings do you notice compared to displaying test data?
 
 ### Merging Displays
 
