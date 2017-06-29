@@ -348,7 +348,57 @@ span.keyword {
 
 ## Challenges
 
-FIXME-19: write challenges
+### Cutting Corners
+
+What does your browser display if you forget to close a paragraph or list item tag
+like this:
+
+```html
+<p>This paragraph starts but doesn't officially end.
+
+<p>Another paragraph starts here but also doesn't end.
+
+<ul>
+  <li>First item in the list isn't closed.
+  <li>Neither is the second.
+</ul>
+```
+
+1. What happens if you don't close a `ul` or `ol` list?
+2. Is that behavior consistent with what happens when you omit `</p>` or `</li>`?
+
+### Mix and Match
+
+1. Create a page that contains a 2×2 table,
+   each cell of which has a three-item bullet-point list.
+   How can you reduce the indentation of the list items within their cells using CSS?
+2. Open your page in a different browser (e.g., Firefox or Edge).
+   Do they display your indented lists consistently?
+3. Why do programs behave inconsistently?
+   Why do programmers do this to us?
+   Why?
+   Why why why why why?
+
+### Naming
+
+What does the `sm` in Bootstrap's `col-sm-4` and `col-sm-8` stand for?
+What other options could you use instead?
+Why do web developers still use FORTRAN-style names in the 21st Century?
+
+### Color
+
+HTML and CSS define names for a small number of colors.
+All other colors must be specified using [RGB](../gloss/#rgb) values.
+Write a small JavaScript program that creates an HTML page
+that displays the word `color` in 100 different randomly-generated colors.
+Compare this to the color scheme used in your departmental website.
+Which one hurts your eyes less?
+
+### Units
+
+What different units can you use to specify text size in CSS?
+What do they mean?
+What does *anything* mean, when you get right down to it?
 
 </div>
 
