@@ -278,6 +278,18 @@ that servers should return to tell clients what went wrong.
    Did you define "invalid" in the same way?
    I.e., will your programs always return the same status codes for every query?
 
+### Merging Displays
+
+The `SurveyStats` and `DataDisplay` components in the front end both display tables.
+
+1. Write a new component `TableDisplay` that will display an arbitrary table
+   given a list of column names
+   and a list of objects which all have (at least) those fields.
+2. Replace `SurveyStats` and `DataDisplay` with your new component.
+3. Modify your component so that it generates a unique ID for each value in the table.
+   (Hint: you may need to pass in a third parameter to each call
+   to serve as the root or stem of those unique IDs.)
+
 </div>
 
 {% include links.md %}
