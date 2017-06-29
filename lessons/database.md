@@ -445,7 +445,41 @@ test('Can only get workshops that exist', (t) => {
 
 ## Challenges
 
-FIXME-39: write challenges for database lesson.
+### Copying Records
+
+Write a program that copies all the rows
+from the table `Workshop` in a database `source.db`
+to a table with the same name in a new database `backup.db`.
+
+### Filtering Records
+
+Add a new method to the `Database` class
+to get all workshops that are longer than a specified time:
+
+```js
+const db = new Database(path)
+const rows = db.getLongerThan(100)
+assert.deepEqual(rows, [
+  {workshopName: 'ENIAC Programming', workshopDuration: 150, workshopId: 2}
+])
+```
+
+Your `Database.getLongerThan` method's SQL query
+will need to use a `where` clause
+that selects specific records.
+
+### Handling Errors
+
+The `Database` class prints a message and exits when it detects an error.
+This is bad practice,
+and I should be ashamed of having done it.
+The right thing to do is to [throw](../gloss/#throw)
+an [exception](../gloss/#exception)
+that main program can [catch](../gloss/#catch)
+and handle however it wants.
+
+1. Modify the code to do this.
+2. Modify the tests to check that the right exceptions are thrown when they should be.
 
 </div>
 
