@@ -3,7 +3,7 @@
 {% assign this = null %}
 {% assign title = null %}
 {% unless page.manual %}
-  {% for item in site.toc  %}
+  {% for item in site.data.toc  %}
     {% if item.permalink == page.permalink %}
       {% assign this = item %}
       {% assign title = item.title %}
@@ -11,7 +11,7 @@
         {% assign previous = previous_item %}
       {% endunless %}
       {% unless forloop.last %}
-        {% assign next = site.toc[forloop.index] %}
+        {% assign next = site.data.toc[forloop.index] %}
       {% endunless %}
       {% break %}
     {% endif %}

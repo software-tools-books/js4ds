@@ -1,0 +1,252 @@
+- permalink: /intro/
+  title: Introduction
+  type: lesson
+  questions:
+  - "Why is this course called 'versus'?"
+  - "What are the main topics of this course?"
+  - "Is this the right course for me?"
+  - "How do I set up my computer to do the exercises?"
+  keypoints:
+  - "Modern JavaScript is a good tool for building desktop and web-based applications."
+  - "This course is for people who know what loops and functions are, but have never used JavaScript or built web applications."
+- permalink: /core/
+  title: Core Features
+  type: lesson
+  questions:
+  - "How can I execute short snippets of JavaScript interactively?"
+  - "How can I run small JavaScript programs from the command line?"
+  - "How can I print text in JavaScript?"
+  - "What are JavaScript's basic data types?"
+  - "How can I find out what type something is?"
+  - "How do I write loops?"
+  - "How do I write conditionals?"
+  - "What counts as true and false?"
+  - "How do I format text?"
+  - "How do I format JavaScript code?"
+  - "How do I store lists of values?"
+  - "How do I store values by name?"
+  - "How do I define functions?"
+  - "How do I divide source code into multiple files?"
+  keypoints:
+  - "Use `console.log` to print messages."
+  - "Use dotted notation `X.Y` to get part `Y` of object `X`."
+  - "Basic data types are Booleans, numbers, and character strings."
+  - "Ararys store multiple values in order."
+  - "The special values `null` and `undefined` mean 'no value' and 'does not exist'."
+  - "Define constants with `const` and variables with `let`."
+  - "`typeof` returns the type of a value."
+  - "`for (let variable of collection) {…}` iterates through the values in an array."
+  - "`if (condition) {…} else {…}` conditionally executes some code."
+  - "`false`, 0, the empty string, `null`, and `undefined` are false; everything else is true."
+  - "Use back quotes and `${…}` to interpolate values into strings."
+  - "An object is a collection of name/value pairs written in `{…}."
+  - "`object[key]` or `object.key` gets a value from an object."
+  - "Functions are objects that can be assigned to variables, stored in lists, etc."
+  - "`function (…parameters…) {…body…}` is the old way to define a function."
+  - "`name = (…parameters…) => {…body…}` is the new way to define a function."
+  - "Use `return` inside a function body to return a value at any point."
+  - "Use modules to divide code between multiple files for re-use."
+  - "Assign to `module.exports` to specify what a module exports."
+  - "`require(…path…)` imports a module."
+  - "Paths beginning with '.' are imported locally, but paths without '.' look in the library."
+- permalink: /callbacks/
+  title: Programming with Callbacks
+  type: lesson
+  questions:
+  - "What happens when a function is defined?"
+  - "How can I pass a function to another function?"
+  - "Why would I want to do that?"
+  - "What are higher-order functions?"
+  - "What higher-order functions do JavaScript arrays provide?"
+  - "What is a closure?"
+  - "When and why are closures useful?"
+  keypoints:
+  - "JavaScript stores the instructions making up a function in memory like any other object."
+  - "Function objects can be assigned to variables, put in lists, passed as arguments to other functions, etc."
+  - "Functions can be defined in place without ever being given a name."
+  - "A callback function is one that is passed in to another function for it to execute at a particular moment."
+  - "Functional programming uses higher-order functions on immutable data."
+  - "`Array.some` is true if any element in an array passes a test, while `Array.every` is true if they all do."
+  - "`Array.filter` selects elements of an array that pass a test."
+  - "`Array.map` creates a new array by transforming values in an existing one."
+  - "`Array.scan` reduces an array to a single value."
+  - "A closure is a set of variables captured during the definition of a function."
+- permalink: /htmlcss/
+  title: HTML and CSS
+  type: lesson
+  questions:
+  - "Where did HTML come from?"
+  - "What kinds of things can HTML pages contain?"
+  - "How do I create headings? Lists? Tables? Links?"
+  - "How do I include images?"
+  - "How can I change the appearance of elements on a page?"
+  - "How can I reference specific elements on a page?"
+  keypoints:
+  - "HTML is the latest in a long line of markup languages."
+  - "HTML documents contain elements (represented by tags in angle brackets) and text."
+  - "Elements must be strictly nested."
+  - "Elements can contain attributes."
+  - "Use escape sequences beginning with ampersand to represent special characters."
+  - "Every page should have one `html` element containing a `head` and a `body`."
+  - "Use `<!--…-->` to include comments in HTML."
+  - "Use `ul` and `ol` for unordered and ordered lists, and `li` for list elements."
+  - "Use `table` for tables, `tr` for rows, `th` for headings, and `td` for regular data."
+  - "Use `<a href=\"…\">…</a>` to create links."
+  - "Use `<img src=\"…\" alt=\"…\" />` to include images."
+  - "Use CSS to define appearance of elements."
+  - "Use `class` and `id` to identify elements."
+  - "Use selectors to specify the elements that CSS applies to."
+- permalink: /display/
+  title: Building Static Web Pages
+  type: lesson
+  questions:
+  - "What JavaScript libraries should I use to create a web pages?"
+  - "How can I use them to create basic HTML elements?"
+  - "How can I style those pages?"
+  - "How can I mix my JavaScript with HTML?"
+  - "How can I create reusable components for building web pages?"
+  - "How can separate my code into multiple files to make it more manageable?"
+  keypoints:
+  - "Older dynamic web sites generated pages on the server."
+  - "Newer dynamic web sites generate pages in the client."
+  - "React is a JavaScript library for client-side page generation that represents HTML elements as function calls."
+  - "React replaces page elements with dynamically-generated content in memory (not on disk)."
+  - "React functions can be customized with elements."
+  - "JSX translates HTML into React function calls so that HTML and JavaScript can be mixed freely."
+  - "Use Babel to translate JSX into JavaScript in the browser."
+  - "Define new React components with a pseudo-HTML element and a corresponding function."
+  - "Attributes to pseudo-HTML are passed to the JavaScript function as a `props` object."
+  - "Use Node's `http-server` to load scripts from files during development."
+- permalink: /oop/
+  title: Object-Oriented Programming
+  type: lesson
+  questions:
+  - "How can I use classes to keep code and data together?"
+  - "What are the benefits of doing this?"
+  - "How can I create an object from a class?"
+  - "How can I initialize that object?"
+  - "How can I create new classes from old?"
+  - "How does JavaScript decide what to do when two classes define the same thing?"
+  - "When should I create new classes and when should I combine existing ones?"
+  - "How can old code use new code?"
+  keypoints:
+  - "Create classes to define combinations of data and behavior."
+  - "Use the class's constructor to initialize objects."
+  - "`this` refers to the current object."
+  - "Use polymorphism to express common behavior patterns."
+  - "Extend existing classes to create new ones-sometimes."
+  - "Override methods to change or extend their behavior."
+  - "Creating extensible systems by defining interfaces and protocols."
+- permalink: /interactive/
+  title: Making Web Pages Interactive
+  type: lesson
+  questions:
+  - "How do I tell the browser what to do when someone clicks a button?"
+  - "How should I structure my code to make interactions manageable?"
+  - "How can a web application get data from a server?"
+  - "How does modern JavaScript handle asynchronous operations?"
+  keypoints:
+  - "Define event handlers to specify what actions the browser should take when the user interacts with an application."
+  - "The browser passes event objects containing details of events to event handlers."
+  - "Use classes to keep state and event handlers together."
+  - "React calls a class's `render` to display it."
+  - "Separate models (which store data) from views (which display it)."
+  - "Use `fetch` to get data from servers."
+  - "Use destructuring to get individual members from an object in a single step."
+  - "Modern JavaScript uses promises to manage asynchronous activities."
+- permalink: /server/
+  title: Building Data Services
+  type: lesson
+  questions:
+  - "How do browsers and servers communicate?"
+  - "What tools can I use to create a data server in JavaScript?"
+  - "How can I tell a server to handle different URLs differently?"
+  - "How can I serve files from disk?"
+  - "How does a server specify the type of data it's sending?"
+  - "How can I add new abilities to a server without rewriting it?"
+  keypoints:
+  - "An HTTP request or response consists of a plain-text header and an optional body."
+  - "HTTP is a stateless protocol."
+  - "Express provides a simple path-based JavaScript server."
+  - "Write callback functions to handle requests matching specified paths."
+  - "Provide a default handler for unrecognized requests."
+  - "Use `Content-Type` to specify the type of data being returned."
+  - "Use dynamic loading to support plugin extensions."
+- permalink: /testing/
+  title: Testing
+  type: lesson
+  questions:
+  - "How should software components be tested?"
+  - "What tools can I use to test JavaScript programs?"
+  - "How can I make software easier to test?"
+  - "How can testing code drive a web server?"
+  - "How can tests check the content of HTML pages?"
+  - "How is HTML represented in a JavaScript program?"
+  keypoints:
+  - "A unit test checks the behavior of one software component in isolation."
+  - "The result of a unit test can be pass, fail, or error."
+  - "Use Mocha to write and run unit tests in JavaScript."
+  - "Put assertions in unit tests to check results."
+  - "Combine tests in suites for easier management."
+  - "Divide modules into interactive and non-interactive parts for easier testing."
+  - "Use `supertest` to simulate interaction with a server for testing."
+  - "HTML is represented in memory using the Document Object Model (DOM)."
+  - "Check the structure of the DOM rather than the textual representation of the HTML when testing."
+- permalink: /database/
+  title: Using a Database
+  type: lesson
+  questions:
+  - "What options do modern applications have for storing data?"
+  - "Where can I find a quick introduction to relational databases?"
+  - "How can a JavaScript program get information out of a relational database?"
+  - "How is the data returned by the database formatted?"
+  - "How can I make database-backed applications testable?"
+  keypoints:
+  - "Relational databases store data in tables made up of fields (columns) and records (rows)."
+  - "Programs interact with relational databases using SQL queries."
+  - "Non-relational databases store data as JSON-like data structures."
+  - "Basic SQL queries select and filter data."
+  - "JavaScript programs send SQL queries to a database and get the results as a list of lists."
+  - "Using an in-memory database to make tests faster and ensure that they are isolated."
+  - "Use callbacks to handle the results of queries."
+- permalink: /capstone/
+  title: Capstone Project
+  type: lesson
+  questions:
+  - "How can I set up test data to use during development?"
+  - "What tests are most cost-effective when testing this kind of application?"
+  - "How should I present data to users?"
+  keypoints:
+  - "Use slices of actual data to test applications."
+  - "Test summaries and small cases so that results can be checked by hand."
+  - "Store state in a class, use pure functions to display it."
+- permalink: /viz/
+  title: Visualizing Data
+  type: lesson
+  questions:
+  - "How can I visualize data on the web?"
+  - "Why is this so hard?"
+  keypoints:
+  - "D3 is a toolkit for building data visualizations."
+  - "None of the libraries that combine D3 with React are ready for use by beginners yet."
+- permalink: /legacy/
+  title: Legacy JavaScript Issues
+  type: misc
+- permalink: /guide/
+  title: Guide
+  type: misc
+- permalink: /gloss/
+  title: Glossary
+  type: misc
+- permalink: /refs/
+  title: References
+  type: misc
+- permalink: /license/
+  title: License
+  type: misc
+- permalink: /conduct/
+  title: Code of Conduct
+  type: misc
+- permalink: /contributing/
+  title: Contributing
+  type: misc
