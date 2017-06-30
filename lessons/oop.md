@@ -19,8 +19,8 @@ permalink: "/oop/"
 const square = {
   name: 'square',
   size: 5,
-  area: (it) => {return it.size * it.size},
-  perimeter: (it) => {return 4 * it.size}
+  area: (it) => { return it.size * it.size },
+  perimeter: (it) => { return 4 * it.size }
 }
 ```
 {: title="src/oop/clumsy-objects.js"}
@@ -43,16 +43,16 @@ area of square is 25
 const circle = {
   name: 'circle',
   radius: 3,
-  area: (it) => {return Math.PI * it.radius * it.radius},
-  perimeter: (it) => {return 2 * Math.PI * it.radius}
+  area: (it) => { return Math.PI * it.radius * it.radius },
+  perimeter: (it) => { return 2 * Math.PI * it.radius }
 }
 
 const rectangle = {
   name: 'rectangle',
   width: 2,
   height: 3,
-  area: (it) => {return it.width * it.height},
-  perimeter: (it) => {return 2 * (it.width + it.height)}
+  area: (it) => { return it.width * it.height },
+  perimeter: (it) => { return 2 * (it.width + it.height) }
 }
 
 const everything = [square, circle, rectangle]
@@ -91,8 +91,8 @@ class Square {
     this.name = 'square'
     this.size = size
   }
-  area() { return this.size * this.size }
-  perimeter() { return 4 * this.size }
+  area () { return this.size * this.size }
+  perimeter () { return 4 * this.size }
 }
 
 const sq = Square(3)
@@ -118,8 +118,8 @@ class Circle {
     this.name = 'circle'
     this.radius = radius
   }
-  area() { return Math.PI * this.radius * this.radius }
-  perimeter() { return 2 * Math.PI * this.radius }
+  area () { return Math.PI * this.radius * this.radius }
+  perimeter () { return 2 * Math.PI * this.radius }
 }
 
 class Rectangle {
@@ -128,8 +128,8 @@ class Rectangle {
     this.width = width
     this.height = height
   }
-  area() { return this.width * this.height }
-  perimeter() { return 2 * (this.width + this.height) }
+  area () { return this.width * this.height }
+  perimeter () { return 2 * (this.width + this.height) }
 }
 
 const everything = [
@@ -202,10 +202,10 @@ FIXME-40: memory diagram
 - Result
 
 ```js
-parent = new Person('Hakim')
+const parent = new Person('Hakim')
 console.log(`parent: ${parent.greeting(true)}`)
 
-child = new Scientist('Bhadra', 'microbiology')
+const child = new Scientist('Bhadra', 'microbiology')
 console.log(`child: ${child.greeting(false)}`)
 ```
 {: title="src/oop/override.js"}
@@ -297,6 +297,14 @@ class Penguin extends Bird {
 
 - Result of some runs:
 
+```js
+const bird = new Penguin()
+const seasons = ['summer', 'fall', 'winter', 'spring']
+for (let season of seasons) {
+  console.log(`in ${season}: ${bird.daily(season)}`)
+}
+```
+{: title="src/oop/protocol.js"}
 ```text
 in summer: penguin looks for food,,
 in fall: penguin looks for food,penguin looks for a mate,

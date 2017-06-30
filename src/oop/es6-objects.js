@@ -3,8 +3,8 @@ class Square {
     this.name = 'square'
     this.size = size
   }
-  area() { return this.size * this.size }
-  perimeter() { return 4 * this.size }
+  area () { return this.size * this.size }
+  perimeter () { return 4 * this.size }
 }
 
 const sq = new Square(3)
@@ -15,8 +15,8 @@ class Circle {
     this.name = 'circle'
     this.radius = radius
   }
-  area() { return Math.PI * this.radius * this.radius }
-  perimeter() { return 2 * Math.PI * this.radius }
+  area () { return Math.PI * this.radius * this.radius }
+  perimeter () { return 2 * Math.PI * this.radius }
 }
 
 class Rectangle {
@@ -25,8 +25,8 @@ class Rectangle {
     this.width = width
     this.height = height
   }
-  area() { return this.width * this.height }
-  perimeter() { return 2 * (this.width + this.height) }
+  area () { return this.width * this.height }
+  perimeter () { return 2 * (this.width + this.height) }
 }
 
 const everything = [

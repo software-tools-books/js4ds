@@ -53,8 +53,8 @@ class Penguin extends Bird {
   }
 }
 
-bird = new Penguin()
-seasons = ['summer', 'fall', 'winter', 'spring']
-for (season of seasons) {
+const bird = new Penguin()
+const seasons = ['summer', 'fall', 'winter', 'spring']
+for (let season of seasons) {
   console.log(`in ${season}: ${bird.daily(season)}`)
 }

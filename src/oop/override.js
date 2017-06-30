@@ -24,8 +24,8 @@ class Scientist extends Person {
   }
 }
 
-parent = new Person('Hakim')
+const parent = new Person('Hakim')
 console.log(`parent: ${parent.greeting(true)}`)
 
-child = new Scientist('Bhadra', 'microbiology')
+const child = new Scientist('Bhadra', 'microbiology')
 console.log(`child: ${child.greeting(false)}`)
