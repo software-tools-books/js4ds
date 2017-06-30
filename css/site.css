@@ -36,6 +36,13 @@ div.callout h3 {
   padding-top: 0.5rem;
 }
 
+li.lesson {
+}
+
+li.misc {
+  font-style: italic;
+}
+
 .copyright {
   text-align: center;
   font-size: 90%;
