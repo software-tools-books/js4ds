@@ -1,8 +1,7 @@
 # JavaScript versus Research Computing
 
 This short book is an introduction to modern JavaScript
-for scientists, engineers, librarians, digital humanists,
-and anyone else who uses computing in their research.
+for anyone who uses computing in their research.
 The book and related software freely available under [open licences][license],
 and can be viewed on [the book's website][site].
 Questions, suggestions, and corrections are very welcome:
