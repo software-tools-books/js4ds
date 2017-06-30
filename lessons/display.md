@@ -325,13 +325,51 @@ ReactDOM.render(
 - But this is probably a bad layout
   - Would make more sense to have a `Name` element that formatted a name
   - And then let the application decide to put those names in a list
-  - Exercise for the reader
 
 <div class="challenges" markdown="1">
 
 ## Challenges
 
-FIXME-19: write challenges
+### Real Data
+
+1. Create a file called `programmers.js` that defines
+   a list of JSON objects called `programmers`
+   with `firstName` and `lastName` fields for our programmers.
+   (You can search the Internet to find their names.)
+2. Load that file in your page like any other JavaScript file.
+3. Delete the list `allNames` from the application
+   and modify it to use data from the list `programmers` instead.
+
+Loading constant data like this is a common practice during testing.
+
+### Ordering
+
+What happens if you change the order in which the JavaScript files
+are loaded in your web page?
+For example,
+what happens if you load `app.js` *before* you load `ListElement.js`?
+
+### Multiple Targets
+
+What happens if your HTML page contains two `div` elements with `id="app"`?
+
+### Creating a Component for Names
+
+Create a new React component that renders a name,
+and modify the example to use it instead of always displaying names in `<li>` elements.
+
+### Striping
+
+Suppose we want to render every second list element in italics.
+(This would be a horrible design,
+but once we start creating tables,
+we might want to highlight alternate rows in different background colors
+to make it easier to read.)
+Modify the application so that
+even-numbered list elements are `<li>{name}</li>`
+and odd-numbered list elements are `<li><em>{name}</em></li>`.
+(You may want to use the fact that a `map` callback can have two parameters
+instead of one.)
 
 </div>
 
