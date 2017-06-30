@@ -196,12 +196,12 @@ class App extends React.Component {
   constructor (props) {
     super(props)
     this.state = {
-      // FIXME
+      // …fill in…
     }
   }
 
   onNewDate = (text) => {
-    // FIXME
+    // …fill in…
   }
 
   render = () => {
