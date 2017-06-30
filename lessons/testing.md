@@ -6,7 +6,18 @@ permalink: "/testing/"
 ## Unit Testing
 
 - Build some test infrastructure
-- FIXME-32: summary of unit testing
+- Each test is a function, and each function is one test
+- Put repeated setup and teardown into functions that are automatically invoked before and after each test
+- Each test can have one of three results:
+  - Pass: everything worked
+  - Fail: the system being tested didn't do what was expected
+  - Error: something went wrong with the test itself
+- Combine tests into test suites (and test suites into larger suites)
+- Write the tests themselves using [assertions](../gloss/#assertion)
+  - Node provides an `assert` library with some useful functions
+
+## Introducing Mocha
+
 - We will use a library called Mocha
   - Don't need to import anything: it imports our code and calls our functions
 - Use `describe` to create a group of tests and `it` for individual tests
@@ -212,7 +223,6 @@ but are outside the scope of this tutorial.
 - Structure is called [Document Object Model](../gloss/#dom) (DOM)
   - Good news: there are lots of libraries that will parse HTML and produce DOM
   - Bad news: there are *lots* of libraries that will do this
-  - FIXME-34: explain differences between JSX and DOM
 - We use `cheerio`
   - `cheerio.load` turns the text of HTML into DOM
   - Resulting object can be used like a function
@@ -257,11 +267,43 @@ describe('server', () => {
 - Won't explore this approach further because we're going to serve data for rendering
   rather than generating HTML and sending that
 
+<div class="callout" markdown="1">
+
+### JSX vs. DOM
+
+- JSX is an extension to JavaScript that allows us to embed HTML in programs
+  - That HTML is translated into function calls that create text
+- DOM is a data structure that a browser uses to store pages in memory
+  - Parses HTML to create a tree of nodes that are either elements with children and attributes or plain old text
+  - Or other things that we won't get into
+
+</div>
+
 <div class="challenges" markdown="1">
 
 ## Challenges
 
-FIXME-35: write challenges for testing
+### Not Done
+
+What happens if we forget to call `done()` in a test?
+
+### Adding Tests
+
+1. What is the most useful test you could add for the asteroids application?
+   Why?
+2. Implement it.
+3. Ask yourself why tutorials like this one don't say "*please* implement it".
+   Reflect on the fact that this question didn't say "please" either.
+   Are you comfortable with the paternalistic power relationship embodied in the absence of that one little word,
+   and with the somewhat uncomfortable attempt at ironic humor embodied in this question?
+
+### Lifecycle
+
+Suppose a JavaScript program contains some JSX expressions
+that produce HTML
+which is then read and displayed by a browser.
+Draw a diagram to show the form taken by an H1 heading containing the word "data"
+from start to finish.
 
 </div>
 

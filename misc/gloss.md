@@ -11,6 +11,8 @@ FIXME: write glossary entries
 
 **array**{:#array}:
 
+**assertion**{:#assertion}:
+
 **attribute**{:#attribute}:
 
 **callback function**{:#callback-function}:
