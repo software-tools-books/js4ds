@@ -21,7 +21,7 @@ permalink: "/database/"
   - Most popular stores [JSON](../gloss/#json)
   - Treat data as a document rather than as a collection of tables
 - We will use a SQL database because it's still the most common choice
-- See [this short SQL tutorial][sql-tutorial] for an introduction
+- See [this short SQL tutorial]({{site.data.links.sql_tutorial}}) for an introduction
 
 ```sql
 drop table if exists Workshop;
@@ -482,5 +482,3 @@ and handle however it wants.
 2. Modify the tests to check that the right exceptions are thrown when they should be.
 
 </div>
-
-{% include links.md %}

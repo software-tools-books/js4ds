@@ -12,5 +12,3 @@ FIXME: explain iteration
 <a name="prototypes"></a>
 
 FIXME: explain prototypes
-
-{% include links.md %}

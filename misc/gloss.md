@@ -134,5 +134,3 @@ FIXME: write glossary entries
 **variable**{:#variable}:
 
 **XML**{:#xml}:
-
-{% include links.md %}

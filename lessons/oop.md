@@ -335,5 +335,3 @@ in spring: penguin looks for food,,penguin is nesting
 FIXME-27: write challenges
 
 </div>
-
-{% include links.md %}

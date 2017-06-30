@@ -461,5 +461,3 @@ The `SurveyStats` and `DataDisplay` components in the front end both display tab
    to serve as the root or stem of those unique IDs.)
 
 </div>
-
-{% include links.md %}

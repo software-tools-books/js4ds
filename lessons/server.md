@@ -190,5 +190,3 @@ FIXME-29: challenges
 Exercise: make the file handler 404 for missing files
 
 </div>
-
-{% include links.md %}

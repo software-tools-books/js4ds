@@ -65,15 +65,13 @@ permalink: "/viz/"
 
 ## Data Visualization Options
 
-- [D3][d3] is a toolkit for building visualizations, rather than a plotting library per se
+- [D3]({{site.data.links.d3}}) is a toolkit for building visualizations, rather than a plotting library per se
 - A powerful but complicated model for reflecting data updates in graphical elements
 - Many efforts to build React libraries on top of it
-  - [React-d3][reactd3]
-  - [Recharts][recharts]
-  - [Vx][vx]
+  - [React-d3]({{site.data.links.reactd3}})
+  - [Recharts]({{site.data.links.recharts}})
+  - [Vx]({{site.data.links.vx}})
 - As of July 2017, none of them finished enough for novice use
   - Documentation lacking
   - Missing features
 - Hope that will change in time for the next version of this tutorial
-
-{% include links.md %}

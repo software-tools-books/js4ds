@@ -372,5 +372,3 @@ and odd-numbered list elements are `<li><em>{name}</em></li>`.
 instead of one.)
 
 </div>
-
-{% include links.md %}

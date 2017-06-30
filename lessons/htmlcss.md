@@ -401,5 +401,3 @@ What do they mean?
 What does *anything* mean, when you get right down to it?
 
 </div>
-
-{% include links.md %}

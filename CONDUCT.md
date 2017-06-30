@@ -30,6 +30,4 @@ project maintainers at
 [gvwilson@third-bit.com](mailto:gvwilson@third-bit.com).
 
 This Code of Conduct is adapted from the
-[Contributor Covenant][contrib-covenant] Version 1.0.0.
-
-{% include links.md %}
+[Contributor Covenant]({{site.data.links.contrib}}) Version 1.0.0.

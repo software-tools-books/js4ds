@@ -389,5 +389,3 @@ Use the web to find a description of it,
 and work with a partner to ensure that you understand how it works.
 
 </div>
-
-{% include links.md %}

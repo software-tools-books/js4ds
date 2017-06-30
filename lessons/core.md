@@ -397,5 +397,3 @@ console.log(`species is ${species}`)
 {: title="ex/core/destructuring.js"}
 
 </div>
-
-{% include links.md %}

@@ -5,9 +5,10 @@ permalink: "/license/"
 ## Instructional Material
 
 The written material on this site is made available under the
-[Creative Commons Attribution license][cc-by-human]. The following is
-a human-readable summary of (and not a substitute for) the [full legal
-text of the CC BY 4.0 license][cc-by-legal].
+[Creative Commons Attribution license]({{site.data.links.cc_by_human}}).
+The following is a human-readable summary of (and not a substitute
+for) the [full legal text of the CC BY 4.0
+license]({{site.data.links.cc_by_legal}}).
 
 You are free:
 
@@ -24,9 +25,9 @@ Under the following terms:
 *   **Attribution**–You must give appropriate credit (mentioning that
     your work is derived from work that is Copyright © Greg Wilson
     and, where practical, linking to this site), provide a [link to
-    the license][cc-by-human], and indicate if changes were made. You
-    may do so in any reasonable manner, but not in any way that
-    suggests the licensor endorses you or your use.
+    the license]({{site.data.links.cc_by_human}}), and indicate if
+    changes were made. You may do so in any reasonable manner, but not
+    in any way that suggests the licensor endorses you or your use.
 
 **No additional restrictions**–You may not apply legal terms or
 technological measures that legally restrict others from doing
@@ -44,7 +45,8 @@ anything the license permits.  With the understanding that:
 ## Software
 
 The example programs and other software provided here are made
-available under the [OSI][osi]-approved [MIT license][mit-license].
+available under the [OSI]({{site.data.links.osi}})-approved [MIT
+license]({{site.data.links.mit-license}}).
 
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the
@@ -64,5 +66,3 @@ IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY
 CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,
 TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
 SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
-
-{% include links.md %}

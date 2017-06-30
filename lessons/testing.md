@@ -306,5 +306,3 @@ Draw a diagram to show the form taken by an H1 heading containing the word "data
 from start to finish.
 
 </div>
-
-{% include links.md %}

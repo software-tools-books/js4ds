@@ -437,5 +437,3 @@ search the Internet for React validation and error messages
 and explore other tools you could use to do this.
 
 </div>
-
-{% include links.md %}
