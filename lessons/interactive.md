@@ -416,7 +416,25 @@ class App extends React.Component {
 
 ## Challenges
 
-FIXME-25: write challenges
+### Reset
+
+Add a "reset" button to the counter application that always sets the counter's value to zero.
+Does using it to wipe out every change you've made to the counter
+feel like a metaphor for programming in general?
+
+### Validation
+
+Modify the application so that if the starting date isn't valid when the button is clicked,
+the application displays a warning message instead of fetching data.
+
+1. Add a field called `validDate` to the state and initialize it to `true`.
+2. Add an `ErrorMessage` component that displays a paragraph containing either "date OK" or "date invalid"
+   depending on the value of `validDate`.
+3. Modify `onSubmitNewDate` so that it *either* fetches new data *or* modifies `validDate`.
+
+Once you are done,
+search the Internet for React validation and error messages
+and explore other tools you could use to do this.
 
 </div>
 
