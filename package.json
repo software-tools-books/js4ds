@@ -18,7 +18,7 @@
     "dev": "NODE_ENV=development webpack-dev-server",
     "start": "react-scripts start",
     "test": "mocha",
-    "words": "bin/wc.js *.md"
+    "words": "bin/wc.js *.md lessons/*.md misc/*.md"
   },
   "repository": {
     "type": "git",
