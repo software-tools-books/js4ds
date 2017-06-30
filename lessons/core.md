@@ -111,7 +111,7 @@ null of type object is falsy
   - Including other arrays
 - Use `let` to define a [variable](../gloss/#variable) (as opposed to `const`)
 - `if` and `else` work as they do in other languages
-  - It's the [truthiness](../gloss/#truthiness) that's different
+  - It's the [truthiness](../gloss/#truthy) that's different
 - `true` and `false`: as expected
 - Numbers: 0 is [falsy](../gloss/#falsy), all others are [truthy](../gloss/#truthy)
 - Strings: empty string is falsy, all others are truthy

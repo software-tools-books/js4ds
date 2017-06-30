@@ -175,7 +175,7 @@ class Person {
 ```
 {: title="src/oop/override.js"}
 
-- Then [extend](../gloss/#extend'|absolue_url}}) to create a scientist
+- Then [extend](../gloss/#extend) to create a scientist
   - Say that `Scientist` [inherits](../gloss/#inherit) from `Person`
 
 ```js

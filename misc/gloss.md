@@ -5,6 +5,8 @@ permalink: "/gloss/"
 
 FIXME: write glossary entries
 
+**aggregation function**{:#aggregation-function}:
+
 **anonymous function**{:#anonymous-function}:
 
 **array**{:#array}:
@@ -14,6 +16,8 @@ FIXME: write glossary entries
 **callback function**{:#callback-function}:
 
 **Cascading Style Sheets**{:#css}:
+
+**catch**{:#catch}:
 
 **class**{:#class}:
 
@@ -35,6 +39,8 @@ FIXME: write glossary entries
 
 **event object**{:#event-object}:
 
+**exception**{:#exception}:
+
 **extend**{:#extend}:
 
 **falsy**{:#falsy}:
@@ -50,6 +56,8 @@ FIXME: write glossary entries
 **heterogeneous**{:#heterogeneous}:
 
 **higher-order function**{:#higher-order-function}:
+
+**HTTP status code**{:#http-status-code}:
 
 **in-memory database**{:#in-memory-database}:
 
@@ -69,6 +77,10 @@ FIXME: write glossary entries
 
 **object**{:#object}:
 
+**override method**{:#override-method}:
+
+**package manager**{:#package-manager}:
+
 **parameter**{:#parameter}:
 
 **polymorphism**{:#polymoprhism}:
@@ -79,11 +91,19 @@ FIXME: write glossary entries
 
 **property**{:#property}:
 
+**read-evaluate-print loop**{:#repl}:
+
+**record**{:#record}:
+
 **regular expression**{:#regular-expression}:
 
 **relational database**{:#relational-database}:
 
 **responsive design**{:#responsive-design}:
+
+**RGB**{:#rgb}:
+
+**Scalable Vector Graphics**{:#svg}:
 
 **scope**{:#scope}:
 
@@ -95,11 +115,17 @@ FIXME: write glossary entries
 
 **string**{:#string}:
 
+**tables**{:#table}:
+
 **tag**{:#tag}:
 
 **template**{:#template}:
 
-**truthiness**{:#truthiness}:
+**text**{:#text}:
+
+**throw**{:#throw}:
+
+**truthy**{:#truthy}:
 
 **Unicode**{:#unicode}:
 
