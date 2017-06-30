@@ -6,11 +6,11 @@ permalink: "/legacy/"
 ## Iteration
 <a name="iteration"></a>
 
-FIXME
+FIXME: explain iteration
 
 ## Prototypes
 <a name="prototypes"></a>
 
-FIXME
+FIXME: explain prototypes
 
 {% include links.md %}
