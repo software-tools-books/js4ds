@@ -332,6 +332,69 @@ in spring: penguin looks for food,,penguin is nesting
 
 ## Challenges
 
-FIXME-27: write challenges
+### Delays
+
+Define a class called `Delay` whose `call` method always returns
+the value given in the *previous* call:
+
+```js
+const example = new Delay('a')
+for (let value of ['b', 'c', 'd']) {
+  console.log(value, '->', example.call(value))
+}
+```
+```text
+b -> a
+c -> b
+d -> c
+```
+
+A class like `Delay` is sometimes called [stateful](../gloss/#stateful),
+since it remembers its state from call to call.
+
+### Filtering
+
+Define a class called `Filter` whose `call` method returns an empty string
+if its argument matches one of the value given to its constructor,
+or `null` otherwise:
+
+```js
+const example = new Filter('a', 'e', 'i', 'o', 'u')
+for (let value of ['a', 'b', 'c', 'd', 'e']) {
+  console.log(value, '->', example.call(value))
+}
+```
+```text
+a -> null
+b -> b
+c -> c
+d -> d
+e -> null
+```
+
+A class like `Filter` is sometimes called [stateless](../gloss/#stateless),
+since it does not remember its state from call to call.
+
+### Pipelines
+
+Define a class called `Pipeline`
+whose constructor takes one or more objects with a single-parameter `call` method,
+and whose own `call` method passes a value through each of them in turn.
+If any of the components' `call` methods returns `null`,
+`Pipeline` stops immediately and returns `null`.
+
+```js
+const example = new Pipeline(new Filter('a', 'e', 'i', 'o', 'u'), new Delay('a'))
+for (let value of ['a' ,'b', 'c', 'd', 'e']) {
+  console.log(value, '->', example.call(value)
+}
+```
+```text
+a -> null
+b -> a
+c -> b
+d -> c
+e -> null
+```
 
 </div>

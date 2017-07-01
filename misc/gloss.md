@@ -115,6 +115,10 @@ FIXME: write glossary entries
 
 **SQL**{:#sql}:
 
+**stateful**{:#stateful}:
+
+**stateless**{:#stateless}:
+
 **string**{:#string}:
 
 **tables**{:#table}:
