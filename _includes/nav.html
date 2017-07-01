@@ -1,20 +1,37 @@
-<div align="center">
-  {% unless page.manual %}
-    <div class="row">
-      <nav aria-label="...">
-        <ul class="pager">
-          {% if include.previous %}
-            <li class="previous"><a href="{{include.previous|absolute_url}}"><span aria-hidden="true">&larr;</span> Prev</a></li>
-          {% else %}
-            <li class="previous"><a href="{{'/'|absolute_url}}"><span aria-hidden="true">&larr;</span> Main</a></li>
-          {% endif %}
-          {% if include.next %}
-            <li class="next"><a href="{{include.next|absolute_url}}">Next <span aria-hidden="true">&rarr;</span></a></li>
-          {% else %}
-            <li class="next"><a href="{{'/'|absolute_url}}">Main <span aria-hidden="true">&rarr;</span></a></li>
-          {% endif %}
-        </ul>
-      </nav>
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="{{'/'|absolute_url}}"><img src="{{'/favicon.ico'|absolute_url}}" alt="logo" height="30px" /></a>
     </div>
-  {% endunless %}
-</div>
+    <div class="collapse navbar-collapse">
+      <ul class="nav navbar-nav">
+        <li class="dropdown">
+          <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Lessons</a>
+          <ul class="dropdown-menu">
+            {% for entry in site.data.toc %}
+              {% if entry.type == 'lesson' %}
+                <li><a href="{{entry.permalink | absolute_url}}">{{entry.title}}</a></li>
+              {% endif %}
+            {% endfor %}
+          </ul>
+        </li>
+        <li class="dropdown">
+          <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Extras</a>
+          <ul class="dropdown-menu">
+            {% for entry in site.data.toc %}
+              {% if entry.type == 'misc' %}
+                <li><a href="{{entry.permalink | absolute_url}}">{{entry.title}}</a></li>
+              {% endif %}
+            {% endfor %}
+          </ul>
+        </li>
+        <li>
+          {% if include.previous %}<a href="{{include.previous}}">&lt;&lt;</a>{% else %}<a>&nbsp;</a>{% endif %}
+        </li>
+        <li>
+          {% if include.next %}<a href="{{include.next}}">&gt;&gt;</a>{% else %}<a>&nbsp;</a>{% endif %}
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>

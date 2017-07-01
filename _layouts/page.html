@@ -29,6 +29,8 @@
     <link href="{{'/css/font-awesome.min.css' | absolute_url}}" rel="stylesheet" />
     <link href="{{'/css/syntax.css' | absolute_url}}" rel="stylesheet" />
     <link href="{{'/css/site.css' | absolute_url}}" rel="stylesheet" />
+    <script src="{{'/js/jquery-1.9.1.min.js' | absolute_url}}"></script>
+    <script src="{{'/js/bootstrap.min.js' | absolute_url}}"></script>
     <script src="{{'/js/site.js' | absolute_url}}"></script>
     {% for script in page.scripts %}
     <script src="{{script}}"></script>
@@ -36,26 +38,21 @@
     <title>{{site.title}}{% if this %}: {{this.title}}{% endif %}</title>
   </head>
   <body>
-    <input type="checkbox" name="toggle" id="toggle" />
-    <label for="toggle"></label>
     <div class="container">
-      {% include nav.html previous=previous.permalink next=next.permalink %}
+      <header>
+        {% include nav.html previous=previous.permalink next=next.permalink %}
+      </header>
       {% if this %}<h1>{{this.title}}</h1>{% endif %}
       {% if this.type == "lesson" %}{% include listblock.html title="Questions" items=this.questions class="questions" section=false %}{% endif %}
 {{content}}
       {% if this.type == "lesson" %}{% include listblock.html title="Key Points" items=this.keypoints class="keypoints" section=false %}{% endif %}
       <footer>
-        {% include nav.html previous=previous.permalink next=next.permalink %}
         <div class="copyright">
           <a href="{{'/'|absolute_url}}"><strong><em>{{ site.title }}</em></strong></a>
           <br/>
           Copyright &copy; {{site.author}} {{site.copyrightyear}} &ndash; see <a href="{{'/license/'|absolute_url}}">the license</a> for terms of use.
         </div>
       </footer>
-    </div>
-    <div class="message">
-      <a href="{{'/'|absolute_url}}"><strong><em>Home</em></strong></a>
-      {% include toc.html %}
     </div>
   </body>
 </html>
