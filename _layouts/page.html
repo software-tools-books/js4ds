@@ -39,20 +39,12 @@
   </head>
   <body>
     <div class="container">
-      <header>
-        {% include nav.html previous=previous.permalink next=next.permalink %}
-      </header>
+      {% include header.html previous=previous.permalink next=next.permalink %}
       {% if this %}<h1>{{this.title}}</h1>{% endif %}
       {% if this.type == "lesson" %}{% include listblock.html title="Questions" items=this.questions class="questions" section=false %}{% endif %}
 {{content}}
       {% if this.type == "lesson" %}{% include listblock.html title="Key Points" items=this.keypoints class="keypoints" section=false %}{% endif %}
-      <footer>
-        <div class="copyright">
-          <a href="{{'/'|absolute_url}}"><strong><em>{{ site.title }}</em></strong></a>
-          <br/>
-          Copyright &copy; {{site.author}} {{site.copyrightyear}} &ndash; see <a href="{{'/license/'|absolute_url}}">the license</a> for terms of use.
-        </div>
-      </footer>
+      {% include footer.html previous=previous.permalink next=next.permalink %}
     </div>
   </body>
 </html>
