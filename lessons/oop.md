@@ -397,4 +397,55 @@ d -> c
 e -> null
 ```
 
+### Active Expressions
+
+Consider this class:
+
+```js
+class Active {
+  constructor (name, transform) {
+    this.name = name
+    this.transform = transform
+    this.subscribers = []
+  }
+
+  subscribe (someone) {
+    this.subscribers.push(someone)
+  }
+
+  update (input) {
+    console.log(this.name, 'got', input)
+    const output = this.transform(input)
+    for (let s of this.subscribers) {
+      s.update(output)
+    }
+  }
+}
+```
+{: title="ex/oop/observe.js"}
+
+and this program that uses it:
+
+```js
+const start = new Active('start', (x) => Math.min(x, 10))
+const left = new Active('left', (x) => 2 * x)
+const right = new Active('right', (x) => x + 1)
+const final = new Active('final', (x) => x)
+start.subscribe(left)
+start.subscribe(right)
+left.subscribe(final)
+right.subscribe(final)
+
+start.update(123)
+```
+{: title="ex/oop/observe.js"}
+
+1. Trace what happens when the last line of the program is called.
+2. Modify `Active` so that it calls `transform` *if* that function was provided,
+   or a method `Active.transform` if a transformation function wasn't provided.
+3. Create a new class `Delay` whose `transform` method always returns the previous value.
+   (Its constructor will need to take an initial value as a parameter.)
+
+This pattern is called [observer/observable](../gloss/#observer-observable).
+
 </div>

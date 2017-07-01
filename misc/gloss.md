@@ -79,6 +79,8 @@ FIXME: write glossary entries
 
 **object**{:#object}:
 
+**observer-observable**{:#observer-observable}:
+
 **override method**{:#override-method}:
 
 **package manager**{:#package-manager}:
