@@ -185,8 +185,27 @@ module.exports = {
 
 ## Challenges
 
-FIXME-29: challenges
+### Report Missing Files
 
-Exercise: make the file handler 404 for missing files
+Modify the version of the server that returns files from disk
+to report a 404 error if a file cannot be found.
+What should it return if the file exists but cannot be read
+(e.g., if the server does not have permissions)?
+
+### Serving Images
+
+Modify the version of the server that returns files from disk
+so that if the file it is asked for has a name ending in `.png` or `.jpg`,
+it is returned with the right `Content-Type` header.
+
+### Using Query Parameters
+
+URLs may contain [query parameters](../gloss/#query-parameter)
+in the form `http://site.edu?first=1&second=b`.
+Read the [online documentation for Express][express-docs] to find out
+how to access them in a server,
+and then write a server to do simple arithmetic:
+the URL `http://localhost:3654/add?left=1&right=2` should return `3`,
+while the URL `http://localhost:3654/subtract?left=1&right=2` should return `-1`.
 
 </div>

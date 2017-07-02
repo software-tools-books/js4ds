@@ -83,6 +83,8 @@ FIXME: write glossary entries
 
 **override method**{:#override-method}:
 
+**query parameter**:{#query-parameter}:
+
 **package manager**{:#package-manager}:
 
 **parameter**{:#parameter}:
