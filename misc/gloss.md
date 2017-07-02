@@ -99,20 +99,51 @@ to signal that something unexpected has happened;
 another part will [catch](#catch) it.
 
 **extend**{:#extend}:
+to create a new class from an existing class.
+We say that the new class [inherits](#inherit) from the old one.
 
 **falsy**{:#falsy}:
+a horrible neologism meaning "equivalent to false".
+See also the equally horrible [truthy](#truthy).
 
-**fat arrow functions**{:#far-arrow-function}:
+**fat arrow function**{:#far-arrow-function}:
+a JavaScript function defined using the syntax `(…parameters…) => {…body…}`.
+Fat arrow functions treat the special value `this` in a less inconsistent way
+than their older equivalents.
 
 **field**{:#field}:
+a named part of a [record](#record) in a database.
+Fields are typically shown as table columns.
 
 **functional programming**{:#functional-programming}:
+a style of programming in which data is transformed through successive application of functions,
+rather than by using control structures such as loops.
+Functional programming in JavaScript relies heavily on [callbacks](#callback)
+and [higher-order functions](#higher-order-function).
 
 **global variable**{:#global-variable}:
+a variable defined outside any particular function,
+which is therefore visible to all functions.
 
 **heterogeneous**{:#heterogeneous}:
+having mixed type.
+For example,
+an [array](#array) is said to be heterogeneous
+if it contains a mix of numbers, character strings, and values of other types.
+See also [homogeneous](#homogeneous).
 
 **higher-order function**{:#higher-order-function}:
+a function that operates on other functions.
+For example, the higher-order function `forEach` executes a given function once
+on each value in an [array](#array).
+Higher-order functions are heavily used in [functional programming](#functional-programming).
+
+**homogeneous**{:#homogeneous}:
+having a single type.
+For example,
+an [array](#array) is said to be homogeneous
+if it contains only numbers or only character strings,
+but not a mix of the two.
 
 **HTTP status code**{:#http-status-code}:
 
