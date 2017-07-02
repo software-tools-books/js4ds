@@ -2,7 +2,7 @@
   <div class="container-fluid copyright">
     <div class="row-fluid">
       <div class="col-sm-1">
-        {% if include.previous %}<a href="{{include.previous}}">&#9668;</a>{% endif %}
+        {% if include.previous %}<a href="{{include.previous|absolute_url}}">&#9668;</a>{% endif %}
       </div>
       <div class="col-sm-10">
         <a href="{{'/'|absolute_url}}"><strong><em>{{ site.title }}</em></strong></a>
@@ -10,7 +10,7 @@
         Copyright &copy; {{site.author}} {{site.copyrightyear}} &ndash; see <a href="{{'/license/'|absolute_url}}">the license</a> for terms of use.
       </div>
       <div class="col-sm-1">
-        {% if include.next %}<a href="{{include.next}}">&#9658;</a>{% endif %}
+        {% if include.next %}<a href="{{include.next|absolute_url}}">&#9658;</a>{% endif %}
       </div>
     </div>
   </div>
