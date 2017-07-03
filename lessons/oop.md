@@ -355,7 +355,7 @@ since it remembers its state from call to call.
 ### Filtering
 
 Define a class called `Filter` whose `call` method returns an empty string
-if its argument matches one of the value given to its constructor,
+if its input matches one of the values given to its constructor,
 or `null` otherwise:
 
 ```js

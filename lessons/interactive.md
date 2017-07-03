@@ -68,7 +68,7 @@ permalink: "/interactive/"
 - `ReactDOM.render` call at the end does what it always has
 - Class has three parts
   1. Constructor passes the properties up to `React.Component`'s constructor
-     and then creates a member variable called `state`
+     and then creates a property called `state`
      that holds this component's state.
   2. The `increment` method uses `setState` (inherited from `React.Component`)
      to change the value of the counter.

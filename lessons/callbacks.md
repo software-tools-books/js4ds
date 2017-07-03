@@ -13,7 +13,7 @@ permalink: "/callbacks/"
 - In order to understand how they work and how to use them,
   must first understand what happens when functions are defined and called
 
-## Functions as Arguments
+## Functions as Parameters
 
 - When we write `name = "text"`,
   JavaScript allocates a block of memory big enough for four characters,
@@ -51,7 +51,7 @@ hello
 
 FIXME-14: diagram
 
-- More useful when the function passed in takes arguments
+- More useful when the function passed in takes parameters
 
 ```js
 const pipeline = (initial, first, second) => {
@@ -135,7 +135,7 @@ first: o,t,t
 
 - [Functional programming](../gloss/#functional-programming) is a style of programming that:
   - Relies heavily on [higher-order functions](../gloss/#higher-order-function)
-    (i.e., functions that take functions as arguments)
+    (i.e., functions that take functions as parameters)
   - Doesn't modify data structures in place, but instead creates new ones from old
 - JavaScript arrays provide several methods to support functional programming
 
