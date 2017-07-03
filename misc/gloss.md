@@ -47,6 +47,9 @@ the properties and behavior of a family of related [objects](#object).
 Classes can [inherit](#inherit) from other classes
 to specify or change behavior incrementally.
 
+**client**{:#client}:
+FIXME
+
 **client-side page generation**{:#client-side-page-generation}:
 to create an HTML page on a server.
 That HTML is then delivered as-is to a browser for display.
@@ -145,7 +148,21 @@ an [array](#array) is said to be homogeneous
 if it contains only numbers or only character strings,
 but not a mix of the two.
 
+**HTTP request**{:#http-request}:
+a precisely-formatted block of text sent from a [client](#client) (such as a browser)
+to a [server](#server)
+that specifies what resource is being requested,
+what data formats the client will accept,
+and so on.
+
 **HTTP status code**{:#http-status-code}:
+a numerical code that indicates what happened when an [HTTP request]{#http-request} was processed,
+such as 200 (OK),
+404 (not found),
+or 500 (internal server error).
+Four-digit codes are reserved for reporting the actions of ancient malevolent entities
+bent on the destruction of all that is good in the universe,
+and will be phased in from 2026 onward.
 
 **in-memory database**{:#in-memory-database}:
 
@@ -174,7 +191,7 @@ see [array](#array).
 
 **override method**{:#override-method}:
 
-**query parameter**:{#query-parameter}:
+**query parameter**{:#query-parameter}:
 
 **package manager**{:#package-manager}:
 
@@ -214,6 +231,9 @@ see [throw](#throw).
 **scope**{:#scope}:
 
 **selector**{:#selector}:
+
+**server**{:#server}:
+FIXME
 
 **server-side page generation**{:#server-side-page-generation}:
 
