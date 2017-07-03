@@ -351,7 +351,7 @@ for different sizes of screens.
 a way to represent colors as triples of red, green, and blue intensities,
 each of which ranges from 0 to 255.
 RGB is often augmented in modern systems to create RGBA,
-where the fourth component is the pixels' transparency.
+where the fourth component is the pixel's transparency.
 
 **Scalable Vector Graphics**{:#svg}:
 a standard way to represent line-based graphics using [XML](#xml)-style notation.
