@@ -188,13 +188,10 @@ a precisely-formatted block of text sent from a [server](#server) back to a [cli
 in reply to a [request](#http-request).
 
 **HTTP status code**{:#http-status-code}:
-a numerical code that indicates what happened when an [HTTP request]{#http-request} was processed,
+a numerical code that indicates what happened when an [HTTP request](#http-request) was processed,
 such as 200 (OK),
 404 (not found),
 or 500 (internal server error).
-Four-digit codes are reserved for reporting the actions of ancient malevolent entities
-bent on the destruction of all that is good in the universe,
-and will be phased in from 2026 onward.
 
 **in-memory database**{:#in-memory-database}:
 a database that is stored in memory rather than in permanent storage.
