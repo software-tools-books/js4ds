@@ -433,7 +433,7 @@ a standard that defines numeric codes for many thousands of characters and symbo
 Unicode does *not* define how those numbers are stored;
 that is done by standards like [UTF-8](#utf-8).
 
-**UTF-8**{:#utf-8):
+**UTF-8**{:#utf-8}:
 a way to store the numeric codes representing Unicode characters in memory
 that is [backward-compatible](#backward-compatible) with the older [ASCII](#ascii) standard.
 
