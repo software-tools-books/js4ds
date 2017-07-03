@@ -29,7 +29,7 @@ permalink: "/htmlcss/"
 
 ## Formatting
 
-- An HTML [document](../gloss/#document) contains [elements](../gloss/#element) and [text](../gloss/#text)
+- An HTML [document](../gloss/#document) contains [elements](../gloss/#element) and text
   - Full spec allows for other things that we will ignore for now
 - Elements are shown using [tags](../gloss/#tag)
   - Opening tag: `<tagname>`

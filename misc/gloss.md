@@ -19,6 +19,11 @@ Lists are written as comma-separated values in square brackets,
 such as `['a', 'b', 'c']`.
 The term *list* is often used synonymously.
 
+**ASCII**{:#ascii):
+a widely-used set of numeric codes for representing characters from the Latin alphabet
+and common puncutation symbols,
+now superseded by [Unicode](#unicode).
+
 **assertion**{:#assertion}:
 a statement that something is true at a certain point in a program.
 Assertions are often used to define tests,
@@ -27,6 +32,9 @@ to check that software is behaving as it should.
 
 **attribute**{:#attribute}:
 a named property attached to an HTML [element](#element).
+
+**backward-compatible**{:#backward-compatible}:
+able to work consistently with older systems.
 
 **callback function**{:#callback-function}:
 a function A that is passed to another function B
@@ -148,6 +156,8 @@ an [array](#array) is said to be homogeneous
 if it contains only numbers or only character strings,
 but not a mix of the two.
 
+**HTTP**{:#http}:
+
 **HTTP request**{:#http-request}:
 a precisely-formatted block of text sent from a [client](#client) (such as a browser)
 to a [server](#server)
@@ -165,10 +175,19 @@ bent on the destruction of all that is good in the universe,
 and will be phased in from 2026 onward.
 
 **in-memory database**{:#in-memory-database}:
+a database that is stored in memory rather than in permanent storage.
+In-memory databases are often used for testing.
 
 **inherit**{:#inherit}:
+to acquire properties and methods from a parent class.
+See also [extend](#extend).
 
 **JSON**{:#json}:
+a way to represent data by combining basic values like numbers and character strings
+in [arrays](#arrays) and name/value structures.
+The acronym stands for "JavaScript Object Notation";
+unlike alternative standards like [XML](#xml),
+it is unencumbered by ways to define comments or specify [schemas](#schema).
 
 **list**{:#list}:
 see [array](#array).
@@ -228,9 +247,19 @@ see [throw](#throw).
 
 **Scalable Vector Graphics**{:#svg}:
 
+**schema**{:#schema}:
+a specification of the "shape" of data,
+such as the [fields](#field) making up a database table
+or the ways in which structures can be nested in [JSON](#json).
+
 **scope**{:#scope}:
+FIXME
 
 **selector**{:#selector}:
+a way to identify elements within an HTML document.
+The selector `h2#contents`,
+for example,
+means "the `h2` element with the ID `contents`".
 
 **server**{:#server}:
 FIXME
@@ -238,27 +267,64 @@ FIXME
 **server-side page generation**{:#server-side-page-generation}:
 
 **SQL**{:#sql}:
+the language used for writing queries for [relational databases](#relational-database).
+The term was originally an acronym for Structured Query Language.
 
 **stateful**{:#stateful}:
+to retain information from one operation to the next.
 
 **stateless**{:#stateless}:
+to *not* retain information from one operation to the next.
 
 **string**{:#string}:
+a block of text in a program.
+The term is short for "character string".
 
-**tables**{:#table}:
+**table**{:#table}:
+a set of uniformly-formatted [records](#record)
+in a [relational database](#relational-database).
+Tables are usually drawn with rows (each of which represents one record)
+and columns (each of which represents a [field](#field)).
 
 **tag**{:#tag}:
+a short textual label identifying a kind of element in an HTML page.
+Commonly-used tags include `p` (for a paragraph)
+and `h1` (for a level-1 heading).
 
 **template**{:#template}:
-
-**text**{:#text}:
+a document with some placeholders that can be filled in with specific values.
+Templates are often used to create personalized email messages and web pages,
+though their efficacy is predicated upon
+relentless commercialization and devaluation
+of modern society's sense of what constitutes "personal".
 
 **throw**{:#throw}:
+to signal that something unexpecte or unusual has happened in a program
+by creating an [exception](#exception)
+and handing it to the error-handling system,
+which then tries to find a point in the program that will [catch](#catch) it.
 
 **truthy**{:#truthy}:
+a truly horrible neologism meaning "not equivalent to false".
+See also [falsy](#falsy),
+but only if you are able to set aside your respect for the English language.
 
 **Unicode**{:#unicode}:
+a standard that defines numeric codes for many thousands of characters and symbols.
+Unicode does *not* define how those numbers are stored;
+that is done by standards like [UTF-8](#utf-8).
+
+**UTF-8**{:#utf-8):
+a way to store the numeric codes representing Unicode characters in memory
+that is [backward-compatible](#backward-compatible) with the older [ASCII](#ascii) standard.
 
 **variable**{:#variable}:
+a name in a program that has some data associated with it.
+A variable's value can be changed after definition.
+See also [constant](#constant).
 
 **XML**{:#xml}:
+a set of rules for defining HTML-like tags
+and using them to format documents (typically data).
+XML was popular in the early 2000s,
+but its complexity led many programmers to adopt [JSON](#json) instead.
