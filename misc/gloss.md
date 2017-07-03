@@ -22,7 +22,7 @@ Lists are written as comma-separated values in square brackets,
 such as `['a', 'b', 'c']`.
 The term *list* is often used synonymously.
 
-**ASCII**{:#ascii):
+**ASCII**{:#ascii}:
 a widely-used set of numeric codes for representing characters from the Latin alphabet
 and common puncutation symbols,
 now superseded by [Unicode](#unicode).
