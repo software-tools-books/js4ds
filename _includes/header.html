@@ -2,7 +2,7 @@
   <nav class="navbar navbar-default">
     <div class="container-fluid">
       <div class="navbar-header">
-        <a class="navbar-brand" href="{{'/'|absolute_url}}"><img src="{{'/favicon.ico'|absolute_url}}" alt="logo" height="30px" /></a>
+        <a class="navbar-brand" href="{{'/'|relative_url}}"><img src="{{'/favicon.ico'|relative_url}}" alt="logo" height="30px" /></a>
       </div>
       <div class="collapse navbar-collapse">
         <ul class="nav navbar-nav">
@@ -11,7 +11,7 @@
             <ul class="dropdown-menu">
               {% for entry in site.data.toc %}
                 {% if entry.type == 'lesson' %}
-                  <li><a href="{{entry.permalink | absolute_url}}">{{entry.title}}</a></li>
+                  <li><a href="{{entry.permalink | relative_url}}">{{entry.title}}</a></li>
                 {% endif %}
               {% endfor %}
             </ul>
@@ -21,17 +21,17 @@
             <ul class="dropdown-menu">
               {% for entry in site.data.toc %}
                 {% if entry.type == 'misc' %}
-                  <li><a href="{{entry.permalink | absolute_url}}">{{entry.title}}</a></li>
+                  <li><a href="{{entry.permalink | relative_url}}">{{entry.title}}</a></li>
                 {% endif %}
               {% endfor %}
             </ul>
           </li>
           <li><a href="{{site.repository}}">GitHub</a></li>
           <li>
-            {% if include.previous %}<a href="{{include.previous|absolute_url}}">&#9668;</a>{% else %}<a>&nbsp;</a>{% endif %}
+            {% if include.previous %}<a href="{{include.previous|relative_url}}">&#9668;</a>{% else %}<a>&nbsp;</a>{% endif %}
           </li>
           <li>
-            {% if include.next %}<a href="{{include.next|absolute_url}}">&#9658;</a>{% else %}<a>&nbsp;</a>{% endif %}
+            {% if include.next %}<a href="{{include.next|relative_url}}">&#9658;</a>{% else %}<a>&nbsp;</a>{% endif %}
           </li>
         </ul>
       </div>

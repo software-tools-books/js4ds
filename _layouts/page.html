@@ -24,14 +24,14 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="search-domain" content="http://gvwilson.github.io/js-vs-rc" />
-    <link href="{{'/css/bootstrap.min.css' | absolute_url}}" rel="stylesheet" />
-    <link href="{{'/css/bootstrap-theme.min.css' | absolute_url}}" rel="stylesheet" />
-    <link href="{{'/css/font-awesome.min.css' | absolute_url}}" rel="stylesheet" />
-    <link href="{{'/css/syntax.css' | absolute_url}}" rel="stylesheet" />
-    <link href="{{'/css/site.css' | absolute_url}}" rel="stylesheet" />
-    <script src="{{'/js/jquery-1.9.1.min.js' | absolute_url}}"></script>
-    <script src="{{'/js/bootstrap.min.js' | absolute_url}}"></script>
-    <script src="{{'/js/site.js' | absolute_url}}"></script>
+    <link href="{{'/css/bootstrap.min.css' | relative_url}}" rel="stylesheet" />
+    <link href="{{'/css/bootstrap-theme.min.css' | relative_url}}" rel="stylesheet" />
+    <link href="{{'/css/font-awesome.min.css' | relative_url}}" rel="stylesheet" />
+    <link href="{{'/css/syntax.css' | relative_url}}" rel="stylesheet" />
+    <link href="{{'/css/site.css' | relative_url}}" rel="stylesheet" />
+    <script src="{{'/js/jquery-1.9.1.min.js' | relative_url}}"></script>
+    <script src="{{'/js/bootstrap.min.js' | relative_url}}"></script>
+    <script src="{{'/js/site.js' | relative_url}}"></script>
     {% for script in page.scripts %}
     <script src="{{script}}"></script>
     {% endfor %}
