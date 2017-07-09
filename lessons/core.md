@@ -120,6 +120,8 @@ null of type object is falsy
   - Argument is that there's something there, it just happens to be empty
   - Test `Array.length` instead
   - This is a [property](../gloss/#property), not a [method](../gloss/#method)
+- Always use `===` and `!==` when testing for equality and inequality
+  - `==` and `!=` contain [some ugly surprises](../legacy/#equality)
 
 ## Formatting
 
