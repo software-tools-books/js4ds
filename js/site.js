@@ -13,7 +13,7 @@ document.addEventListener('DOMContentLoaded', function() {
     node.setAttribute('data-toggle', 'tooltip')
   })
   document.querySelectorAll('table').forEach((node) => {
-    node.className += ' table table-striped'
+    node.classList.add('table', 'table-striped')
   })
 }, false)
 
