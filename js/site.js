@@ -41,7 +41,7 @@ function doSearch() {
   if (! searchDomain) {
     return false
   }
-  const url = `https://duckduckgo.com/?q=site%3A${searchDomain}+${encodeURI(queryString)}`
+  const url = `https://www.google.com/search?q=${encodeURI(queryString)}+site:${searchDomain}`
   window.open(url)
   return false
 }
