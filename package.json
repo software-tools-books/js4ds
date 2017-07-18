@@ -34,6 +34,7 @@
     "babel-preset-react": "^6.24.1",
     "babel-preset-react-app": "^3.0.0",
     "body-parser": "^1.17.2",
+    "chart.js": "^2.6.0",
     "cheerio": "^1.0.0-rc.1",
     "copy-webpack-plugin": "^4.0.1",
     "cors": "^2.8.3",
