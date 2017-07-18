@@ -69,7 +69,7 @@
   - "`Array.some` is true if any element in an array passes a test, while `Array.every` is true if they all do."
   - "`Array.filter` selects elements of an array that pass a test."
   - "`Array.map` creates a new array by transforming values in an existing one."
-  - "`Array.scan` reduces an array to a single value."
+  - "`Array.reduce` reduces an array to a single value."
   - "A closure is a set of variables captured during the definition of a function."
 - permalink: /htmlcss/
   title: HTML and CSS
