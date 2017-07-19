@@ -63,7 +63,7 @@ permalink: "/viz/"
 
 </svg>
 
-## Data Visualization Options
+## D3 and Why Not
 
 - [D3]({{site.data.links.d3}}) is a toolkit for building visualizations, rather than a plotting library per se
 - A powerful but complicated model for reflecting data updates in graphical elements
@@ -75,3 +75,7 @@ permalink: "/viz/"
   - Documentation lacking
   - Missing features
 - Hope that will change in time for the next version of this tutorial
+
+## Chart.js
+
+- `npm run dev -- --context src/viz`
