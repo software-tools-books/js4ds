@@ -78,4 +78,72 @@ permalink: "/viz/"
 
 ## Chart.js
 
-- `npm run dev -- --context src/viz`
+- A more established JavaScript visualization library that is simpler than D3
+  - Uses `canvas` instead of SVG
+  - Still has gaps and oddities (two of which are discussed below)
+- First demo loads Chart.js from the web along with our own visualization, then creates a 600×400 canvas for it to fill in
+
+```html
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>Scatter Chart</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.6.0/Chart.bundle.js"></script>
+    <script src="./scatter.js"></script>
+  </head>
+  <body>
+    <div>
+      <canvas id="canvas" width="600" height="400"></canvas>
+    </div>
+  </body>
+</html>
+```
+{: title="src/viz/scatter.html"}
+
+- Visualization has three parts
+- Data must have a key `datasets` which is a list of data sets
+  - For a scatter plot, the data is (x,y) pairs
+  - Each data set has a label, some options, and an array of data
+  - We must turn off filling and tell Chart.js not to connect our points with a line (which is daft)
+- Options all have defaults
+  - We override the title and tell the chart *not* to be responsive
+  - If it *is* responsive, it resizes to fill all the available space
+- Finally, when the page has loaded, we:
+  - Find the canvas
+  - Create the scatter plot
+
+```js
+const data = {
+  datasets: [{
+    label: 'Random Data',
+    fill: false,
+    showLine: false,
+    borderColor: 'rgba(128, 128, 192, 1)',
+    backgroundColor: 'rgba(128, 128, 192, 0.5)',
+    data: Array.from(Array(20), () => {return {x: Math.random(), y: Math.random()}})
+  }]
+}
+
+const options = {
+  title: {
+    display: true,
+    text: 'Example Scatter Chart'
+  },
+  responsive: false
+}
+
+window.onload = function() {
+  const canvas = document.getElementById('canvas')
+  const scatter = Chart.Scatter(canvas, {
+    data: data,
+    options: options
+  })
+}
+```
+{: title="src/viz/scatter.js"}
+
+## Combining with React
+
+- Use `npm run dev -- --context src/viz` to bundle JavaScript files with WebPack
+
