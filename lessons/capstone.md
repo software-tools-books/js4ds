@@ -411,6 +411,74 @@ export default SurveyStats
 
 <div class="challenges" markdown="1">
 
+## The Chart
+
+- Finally add in a scatter plot to show relationship between hindfoot size and weight
+
+```js
+const DataChart = ({data}) => {
+
+  if (! data) {
+    return (<p>no data</p>)
+  }
+
+  data = {
+    datasets: [
+      {
+        label: 'Weight vs. Hindfoot',
+        fill: false,
+        showLine: false,
+        borderColor: 'rgba(75,192,192,1)',
+        backgroundColor: 'rgba(255,255,255,1)',
+        pointBorderWidth: 2,
+        pointRadius: 5,
+        data: data.map((rec) => {return {x: rec.hindfoot_avg, y: rec.weight_avg}})
+      }
+    ]
+  }
+  const options = {
+    width: 600,
+    height: 600,
+    responsive: false,
+    maintainAspectRatio: false
+  }
+  return (
+    <Scatter data={data} options={options}/>
+  )
+}
+```
+{: title="src/capstone/front/DataChart.js"}
+
+- The multiple uses of `data` are confusing
+  - A parameter
+  - Which is then assigned a new value
+  - Which contains a key called `data`
+  - Whose value is produced from the old value of `data`
+- `options` are set here, but really ought to be passed in
+  - Do this in an exercise
+- Put this into the application
+
+```js
+class App extends React.Component {
+
+  render = () => {
+    return (
+      <div>
+        <h1>Creatures</h1>
+        <SurveyStats data={this.state.summary} />
+        <ChooseRange
+          start={this.state.start} onStart={this.onStart}
+          end={this.state.end} onEnd={this.onEnd}
+          onNewRange={this.onNewRange} />
+        <DataChart data={this.state.data} />
+        <DataDisplay data={this.state.data} />
+      </div>
+    )
+  }
+}
+```
+{: title="src/capstone/front/app.js"}
+
 ## Challenges
 
 ### Reporting Other Data
@@ -467,5 +535,12 @@ but leave the integers as they are.
 Ask yourself why,
 seven decades after the invention of digital computers,
 this isn't easier.
+
+### Data, Data Everywhere
+
+Modify `DataChart` so that the word `data` isn't used in so many different ways.
+Does doing this make you feel better about yourself as a person?
+Modify it again so that the height and width of the chart are passed in as well.
+Did that help?
 
 </div>

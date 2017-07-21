@@ -7,8 +7,6 @@ const DataChart = ({data}) => {
     return (<p>no data</p>)
   }
 
-  console.log(data)
-
   data = {
     datasets: [
       {
