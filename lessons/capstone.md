@@ -363,10 +363,6 @@ ReactDOM.render(
   - `SurveyStats`, `ChooseRange`, and `DataDisplay` are all stateless (display) components
 
 ```js
-```
-{: title="src/capstone/back/app.js"}
-
-```js
   render = () => {
     return (
       <div>
