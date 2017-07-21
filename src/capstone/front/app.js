@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom'
 import SurveyStats from './SurveyStats'
 import ChooseRange from './ChooseRange'
 import DataDisplay from './DataDisplay'
+import DataChart from './DataChart'
 
 class App extends React.Component {
 
@@ -59,6 +60,7 @@ class App extends React.Component {
   }
 
   render = () => {
+    const tableStyle = {overflow: 'scroll', height: '200px'}
     return (
       <div>
         <h1>Creatures</h1>
@@ -67,7 +69,10 @@ class App extends React.Component {
           start={this.state.start} onStart={this.onStart}
           end={this.state.end} onEnd={this.onEnd}
           onNewRange={this.onNewRange} />
-        <DataDisplay data={this.state.data} />
+        <DataChart data={this.state.data} />
+        <div style={tableStyle}>
+          <DataDisplay data={this.state.data} />
+        </div>
       </div>
     )
   }

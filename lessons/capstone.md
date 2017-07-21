@@ -460,4 +460,12 @@ The `SurveyStats` and `DataDisplay` components in the front end both display tab
    (Hint: you may need to pass in a third parameter to each call
    to serve as the root or stem of those unique IDs.)
 
+### Formatting
+
+Modify `DataDisplay` to format fractional numbers with a single decimal place,
+but leave the integers as they are.
+Ask yourself why,
+seven decades after the invention of digital computers,
+this isn't easier.
+
 </div>
