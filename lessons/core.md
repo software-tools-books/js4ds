@@ -328,7 +328,7 @@ Something else?
 
 ### Fill in the Blanks
 
-Fill in the blanks in the program below
+Answer these questions about the program below:
 so that it produces the output shown.
 1. What does `Array.push` do?
 1. How does a `while` loop work?
