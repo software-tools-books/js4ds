@@ -163,6 +163,7 @@ FIXME-18: diagram
 ## Creating Components
 
 - If we're defining functions, we can write new ones
+- Component names must start with a capital letter to differentiate them from regular tags.
 
 ```html
   <body>
