@@ -190,7 +190,7 @@ console.log('shortened', data.map((x) => { return x.slice(0, 2) }))
 shortened [ 'th', 'is', 'a', 'te' ]
 ```
 
-- `Array.scan` reduces an array to a single value
+- `Array.reduce` reduces an array to a single value
   using a given function and a starting value
   - Need the starting value because the combiner function must take two values
     (next in sequence and running total)

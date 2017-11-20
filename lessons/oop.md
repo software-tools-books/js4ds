@@ -354,9 +354,9 @@ since it remembers its state from call to call.
 
 ### Filtering
 
-Define a class called `Filter` whose `call` method returns an empty string
+Define a class called `Filter` whose `call` method returns `null`
 if its input matches one of the values given to its constructor,
-or `null` otherwise:
+or the input as output otherwise:
 
 ```js
 const example = new Filter('a', 'e', 'i', 'o', 'u')
