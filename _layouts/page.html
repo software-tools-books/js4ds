@@ -40,10 +40,12 @@
   <body>
     <div class="container">
       {% include header.html previous=previous.permalink next=next.permalink %}
+      <div class="content">
       {% if this %}<h1>{{this.title}}</h1>{% endif %}
       {% if this.type == "lesson" %}{% include listblock.html title="Questions" items=this.questions class="questions" section=false %}{% endif %}
-{{content}}
+      {{content}}
       {% if this.type == "lesson" %}{% include listblock.html title="Key Points" items=this.keypoints class="keypoints" section=false %}{% endif %}
+      </div>
       {% include footer.html previous=previous.permalink next=next.permalink %}
     </div>
   </body>
