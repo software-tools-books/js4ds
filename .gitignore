@@ -62,6 +62,9 @@ typings/
 # Yarn Integrity file
 .yarn-integrity
 
+# Jekyll files.
+.jekyll-metadata
+
 # dotenv environment variables file
 .env
 
