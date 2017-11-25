@@ -239,8 +239,8 @@
 - permalink: /gloss/
   title: Glossary
   type: misc
-- permalink: /refs/
-  title: References
+- permalink: /bib/
+  title: Bibliography
   type: misc
 - permalink: /license/
   title: License
