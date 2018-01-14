@@ -203,23 +203,22 @@ node database-mode.js memory fixture.sql getOne 2
 ```js
   constructor (mode, arg) {
     switch (mode) {
+      case 'direct' :
+        this._inMemory(arg)
+        break
 
-    case 'direct' :
-      this._inMemory(arg)
-      break
+      case 'memory' :
+        const setup = fs.readFileSync(arg, 'utf-8')
+        this._inMemory(setup)
+        break
 
-    case 'memory' :
-      const setup = fs.readFileSync(arg, 'utf-8')
-      this._inMemory(setup)
-      break
+      case 'file' :
+        this._inFile(arg)
+        break
 
-    case 'file' :
-      this._inFile(arg)
-      break
-
-    default :
-      this.fail(`Unknown mode "${mode}"`)
-      break
+      default :
+        this.fail(`Unknown mode "${mode}"`)
+        break
     }
   }
 

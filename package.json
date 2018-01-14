@@ -16,6 +16,7 @@
     "lint": "eslint bin/*.js src/**/*.js",
     "build": "NODE_ENV=production webpack",
     "dev": "NODE_ENV=development webpack-dev-server",
+    "standard": "standard",
     "start": "react-scripts start",
     "test": "mocha",
     "words": "bin/wc.js *.md *.md *.md"
@@ -26,6 +27,11 @@
   },
   "bugs": {
     "url": "https://github.com/gvwilson/js-vs-rc/issues"
+  },
+  "standard": {
+    "ignore": [
+      "assets/**"
+    ]
   },
   "dependencies": {
     "babel-core": "^6.24.1",
@@ -52,6 +58,7 @@
     "react-scripts": "^1.0.7",
     "react-vega-lite": "^1.1.2",
     "sqlite3": "^3.1.8",
+    "standard": "^10.0.3",
     "supertest": "^3.0.0",
     "webpack": "^2.6.1",
     "winston": "^2.3.1"

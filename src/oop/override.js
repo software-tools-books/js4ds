@@ -6,8 +6,7 @@ class Person {
   greeting (formal) {
     if (formal) {
       return `Hello, my name is ${this.name}`
-    }
-    else {
+    } else {
       return `Hi, I'm ${this.name}`
     }
   }

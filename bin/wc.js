@@ -6,14 +6,12 @@ const marked = require('marked')
 const countText = (tokens) => {
   if (Array.isArray(tokens)) {
     return tokens.reduce((accum, val) => accum + countText(val), 0)
-  }
-  else if ((typeof tokens === 'object') && (tokens.type === 'text')) {
+  } else if ((typeof tokens === 'object') && (tokens.type === 'text')) {
     return tokens.text
       .split(' ')
       .filter((word) => { return word.length > 0 })
       .length
-  }
-  else {
+  } else {
     return 0
   }
 }

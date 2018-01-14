@@ -1,5 +1,4 @@
 const sqlite3 = require('sqlite3')
-const fs = require('fs')
 
 const Q_WORKSHOP_GET_ALL = `
 select
@@ -22,7 +21,6 @@ where
 `
 
 class Database {
-
   constructor (path) {
     this.db = new sqlite3.Database(path, sqlite3.OPEN_READWRITE, (err) => {
       if (err) this.fail(`Database open error ${err} for "${path}"`)
