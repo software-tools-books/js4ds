@@ -105,7 +105,7 @@ FIXME-18: diagram
 ## JSX
 
 - Writing nested functions is a clumsy way to write HTML
-- So add a tool called JSX that translates HTML into JavaScript function calls
+- So use a tool called JSX that translates HTML into JavaScript function calls
 
 ```html
 <!DOCTYPE html>
@@ -137,7 +137,7 @@ FIXME-18: diagram
 - Remember: the script is translated into pure JavaScript and then run as before
 
 - Why bother?
-- Because we can put JavaScript inside our HTML (inside our JavaScript)
+- Because we can put JavaScript inside our HTML (inside our JavaScript (inside our HTML))
 - E.g., use `map` to turn a list of strings into an HTML list
 
 ```html
