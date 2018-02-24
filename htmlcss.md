@@ -9,24 +9,6 @@ permalink: "/htmlcss/"
 - CSS is the standard way to describe how it should look
 - Both are more complicated than they should have been
 
-## History
-
-- 1969-1986: Standard Generalized Markup Language (SGML)
-  - Developed by Charles Goldfarb and others at IBM
-  - A way of adding information to medical and legal documents so that computers could process them
-  - Very complex specification (over 500 pages)
-- 1989: Tim Berners-Lee creates HyperText Markup Language (HTML) for the World Wide Web
-  - Much (much) simpler than SGML
-  - Anyone could write it, so everyone did
-- Problem: HTML had a small, fixed set of tags
-  - Everyone wanted to add new ones
-  - Solution: create a standard way to define a set of tags, and the relationships between them
-- First version of [XML](../gloss/#xml) standardized in 1998
-  - A set of rules for defining markup languages
-  - Much more complex than HTML, but still simpler than SGML
-- HTML5 (finally) standardized in 2014
-  - Supports most of the things sensible people do in practice
-
 ## Formatting
 
 - An HTML [document](../gloss/#document) contains [elements](../gloss/#element) and text
@@ -35,7 +17,7 @@ permalink: "/htmlcss/"
   - Opening tag: `<tagname>`
   - Corresponding closing tag: `</tagname>`
   - If there's nothing between the two: `<tagname/>`
-- Elements must be properly nested
+- Elements must form a [tree](../gloss/#tree), i.e. must be strictly nested
   - If Y starts inside X, Y must end before X ends
   - So `<X>…<Y>…</Y></X>` is legal…
   - …but `<X>…<Y>…</X></Y>` is not
@@ -47,7 +29,7 @@ permalink: "/htmlcss/"
 
 - Text is normal printable text
 - Must use escape sequences to represent `<` and `>`
-  - In XML, written `&name;`
+  - In HTML, written `&name;`
 
 | Escape Sequence | Character |
 | --------------- | --------- |
