@@ -1,4 +1,4 @@
 <ul class="list-unstyled">
 {% for entry in site.data.toc %}
-<li class="{{entry.type}}"><a href="{{entry.permalink | relative_url}}">{{entry.title}}</a></li>{% endfor %}
+{% if entry.type == include.flavor %}<li class="{{entry.type}}"><a href="{{entry.permalink | relative_url}}">{{entry.title}}</a></li>{% endif %}{% endfor %}
 </ul>

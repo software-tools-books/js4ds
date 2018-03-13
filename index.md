@@ -18,4 +18,13 @@ please [file an issue]({{site.data.links.issues}})
 in the book's [GitHub repository]({{site.data.links.repo}})
 or [email the author]({{site.data.links.email}}) directly.
 
-{% include toc.html copyright=false %}
+<div class="row">
+  <div class="col-sm-6">
+    <p><strong>Lessons</strong></p>
+    {% include toc.html flavor="lesson" %}
+  </div>
+  <div class="col-sm-6">
+    <p><strong>Extras</strong></p>
+    {% include toc.html flavor="misc" %}
+  </div>
+</div>
