@@ -67,3 +67,7 @@ pre, code {
 .language-text {
     font-style: italic;
 }
+
+ol, ul {
+    padding-left: 1.2em;
+}

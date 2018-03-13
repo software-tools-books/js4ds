@@ -56,6 +56,10 @@ Catch is the counterpart of [throw](#throw).
 a new [class](#class) that [extends](#extend) an existing class
 (called the [parent class](#parent-class)).
 
+**child node**{:#child-node}:
+a [node](#node) in a [tree](#tree) that is below some other node
+(which is call the child node's [parent](#parent-node)).
+
 **class**{:#class}:
 a programming structure that defines
 the properties and behavior of a family of related [objects](#object).
@@ -287,6 +291,10 @@ It's all very confusing.
 an existing [class](#class) that has been [extended](#extend) to create a new class.
 (The new class is called the [child class](#child-class).)
 
+**parent node**{:#parent-node}:
+the [node](#node) in a [tree](#tree) that is above some other node.
+Every node has a parent except the [root]{#root-node}.
+
 **polymorphism**{:#polymoprhism}:
 literally, "having many forms".
 The term refers to the way in which [objects](#object) whose [methods](#method) have
@@ -349,6 +357,9 @@ a way to represent colors as triples of red, green, and blue intensities,
 each of which ranges from 0 to 255.
 RGB is often augmented in modern systems to create RGBA,
 where the fourth component is the pixel's transparency.
+
+**root**{:#root-node}:
+the only node in a [tree](#tree) that *doesn't* have a [parent](#parent-node).
 
 **Scalable Vector Graphics**{:#svg}:
 a standard way to represent line-based graphics using [XML](#xml)-style notation.
@@ -420,6 +431,11 @@ by creating an [exception](#exception)
 and handing it to the error-handling system,
 which then tries to find a point in the program that will [catch](#catch) it.
 
+**tree**{:#tree}:
+a data structure containing strictly-nested [nodes](#node).
+Every node except the [root-node](#root) must have exactly one [parent-node](#parent),
+but each node may have zero or more [children](#child-node).
+
 **truthy**{:#truthy}:
 a truly horrible neologism meaning "not equivalent to false".
 See also [falsy](#falsy),
@@ -442,5 +458,5 @@ See also [constant](#constant).
 **XML**{:#xml}:
 a set of rules for defining HTML-like tags
 and using them to format documents (typically data).
-XML was popular in the early 2000s,
+XML achieved license plate popularity in the early 2000s,
 but its complexity led many programmers to adopt [JSON](#json) instead.
