@@ -16,8 +16,8 @@ this three files are in the root directory of the repository.
       </div>
       <div class="collapse navbar-collapse">
         <ul class="nav navbar-nav">
-          {% include dropdown.html title="Sections" items=site.sections %}
-          {% include dropdown.html title="Appendices" items=site.appendices %}
+          {% include dropdown.html title="Sections" selector="lesson" %}
+          {% include dropdown.html title="Appendices" selector="appendix" %}
           {% for item in site.toplevel %}
           <li><a href="{{item.permalink|relative_url}}">{{item.title}}</a></li>
           {% endfor %}

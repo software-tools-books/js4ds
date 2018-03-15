@@ -23,5 +23,3 @@ toplevel:
 collections:
   sections:
     output: true
-  appendices:
-    output: true
