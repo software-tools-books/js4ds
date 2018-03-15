@@ -1,7 +1,6 @@
 ---
 layout: default
 permalink: "/"
-manual: true
 ---
 <div align="center">
   <h1>{{site.title}}</h1>

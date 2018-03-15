@@ -1,10 +1,13 @@
-{% assign previous = null %}
-{% assign next = null %}
-{% unless page.manual %}
+<!--
+layout.prevnext {{layout.prevnext}}
+-->
+{% if layout.prevnext %}
+  {% assign prev = null %}
+  {% assign next = null %}
   {% for permalink in site.data.toc  %}
     {% if permalink == page.permalink %}
       {% unless forloop.first %}
-        {% assign previous = trailing %}
+        {% assign prev = trailing %}
       {% endunless %}
       {% unless forloop.last %}
         {% assign next = site.data.toc[forloop.index] %}
@@ -13,7 +16,7 @@
     {% endif %}
     {% assign trailing = permalink %}
   {% endfor %}
-{% endunless %}
+{% endif %}
 <!DOCTYPE HTML>
 <html>
   <head>
@@ -32,12 +35,12 @@
   </head>
   <body>
     <div class="container">
-      {% include header.html previous=previous next=next %}
+      {% include header.html prev=prev next=next %}
       <div class="content">
       {% if page.title %}<h1>{{page.title}}</h1>{% endif %}
       {{content}}
       </div>
-      {% include footer.html previous=previous next=next %}
+      {% include footer.html prev=prev next=next %}
     </div>
   </body>
 </html>
