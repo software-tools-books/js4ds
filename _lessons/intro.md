@@ -1,6 +1,15 @@
 ---
-layout: page
+layout: lesson
 permalink: "/intro/"
+title: Introduction
+questions:
+- "Why is this course called 'versus'?"
+- "What are the main topics of this course?"
+- "Is this the right course for me?"
+- "How do I set up my computer to do the exercises?"
+keypoints:
+- "Modern JavaScript is a good tool for building desktop and web-based applications."
+- "This course is for people who know what loops and functions are, but have never used JavaScript or built web applications."
 ---
 
 I was originally going to call this book *JavaScript for Scientists and Engineers*,

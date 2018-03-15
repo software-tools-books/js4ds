@@ -1,6 +1,24 @@
 ---
-layout: page
+layout: lesson
 permalink: "/testing/"
+title: Testing
+questions:
+- "How should software components be tested?"
+- "What tools can I use to test JavaScript programs?"
+- "How can I make software easier to test?"
+- "How can testing code drive a web server?"
+- "How can tests check the content of HTML pages?"
+- "How is HTML represented in a JavaScript program?"
+keypoints:
+- "A unit test checks the behavior of one software component in isolation."
+- "The result of a unit test can be pass, fail, or error."
+- "Use Mocha to write and run unit tests in JavaScript."
+- "Put assertions in unit tests to check results."
+- "Combine tests in suites for easier management."
+- "Divide modules into interactive and non-interactive parts for easier testing."
+- "Use `supertest` to simulate interaction with a server for testing."
+- "HTML is represented in memory using the Document Object Model (DOM)."
+- "Check the structure of the DOM rather than the textual representation of the HTML when testing."
 ---
 
 ## Unit Testing

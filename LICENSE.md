@@ -1,6 +1,7 @@
 ---
-layout: page
+layout: default
 permalink: "/license/"
+title: License
 ---
 ## Instructional Material
 

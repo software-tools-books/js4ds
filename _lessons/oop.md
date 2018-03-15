@@ -1,6 +1,24 @@
 ---
-layout: page
+layout: lesson
 permalink: "/oop/"
+title: Object-Oriented Programming
+questions:
+- "How can I use classes to keep code and data together?"
+- "What are the benefits of doing this?"
+- "How can I create an object from a class?"
+- "How can I initialize that object?"
+- "How can I create new classes from old?"
+- "How does JavaScript decide what to do when two classes define the same thing?"
+- "When should I create new classes and when should I combine existing ones?"
+- "How can old code use new code?"
+keypoints:
+- "Create classes to define combinations of data and behavior."
+- "Use the class's constructor to initialize objects."
+- "`this` refers to the current object."
+- "Use polymorphism to express common behavior patterns."
+- "Extend existing classes to create new ones-sometimes."
+- "Override methods to change or extend their behavior."
+- "Creating extensible systems by defining interfaces and protocols."
 ---
 
 ## Introduction

@@ -9,3 +9,10 @@ highlighter: rouge
 
 # GitHub repository.
 repository: https://github.com/gvwilson/js-vs-rc/
+
+# Collections.
+collections:
+  lessons:
+    output: true
+  extras:
+    output: true

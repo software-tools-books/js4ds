@@ -1,0 +1,7 @@
+<li class="dropdown">
+  <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{{include.title}}</a>
+  <ul class="dropdown-menu">
+    {% for toc_entry in site.data.toc %}{% for item in include.items %}{% if toc_entry == item.permalink %}<li><a href="{{item.permalink | relative_url}}">{{item.title}}</a></li>
+    {% endif %}{% endfor %}{% endfor %}
+  </ul>
+</li>

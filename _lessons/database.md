@@ -1,6 +1,21 @@
 ---
-layout: page
+layout: lesson
 permalink: "/database/"
+title: Using a Database
+questions:
+- "What options do modern applications have for storing data?"
+- "Where can I find a quick introduction to relational databases?"
+- "How can a JavaScript program get information out of a relational database?"
+- "How is the data returned by the database formatted?"
+- "How can I make database-backed applications testable?"
+keypoints:
+- "Relational databases store data in tables made up of fields (columns) and records (rows)."
+- "Programs interact with relational databases using SQL queries."
+- "Non-relational databases store data as JSON-like data structures."
+- "Basic SQL queries select and filter data."
+- "JavaScript programs send SQL queries to a database and get the results as a list of lists."
+- "Using an in-memory database to make tests faster and ensure that they are isolated."
+- "Use callbacks to handle the results of queries."
 ---
 
 ## Introduction

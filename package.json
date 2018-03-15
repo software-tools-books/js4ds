@@ -30,7 +30,9 @@
   },
   "standard": {
     "ignore": [
-      "assets/**"
+      "css/**",
+      "fonts/**",
+      "js/**"
     ]
   },
   "dependencies": {

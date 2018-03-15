@@ -1,6 +1,7 @@
 ---
-layout: page
+layout: extra
 permalink: "/legacy/"
+title: Legacy JavaScript Issues
 ---
 
 ## Equality

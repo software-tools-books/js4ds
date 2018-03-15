@@ -1,7 +1,16 @@
 ---
-layout: page
+layout: lesson
 permalink: "/capstone/"
 datasource: https://figshare.com/articles/Portal_Project_Teaching_Database/1314459
+title: Capstone Project
+questions:
+- "How can I set up test data to use during development?"
+- "What tests are most cost-effective when testing this kind of application?"
+- "How should I present data to users?"
+keypoints:
+- "Use slices of actual data to test applications."
+- "Test summaries and small cases so that results can be checked by hand."
+- "Store state in a class, use pure functions to display it."
 ---
 
 ## Introduction

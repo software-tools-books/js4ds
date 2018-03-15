@@ -1,6 +1,14 @@
 ---
-layout: page
+layout: lesson
 permalink: "/viz/"
+title: Visualizing Data
+questions:
+- "How can I visualize data on the web?"
+- "Why is this so hard?"
+keypoints:
+- "D3 is a toolkit for building data visualizations."
+- "None of the libraries that combine D3 with React are ready for use by beginners yet."
+- "Chart.js isn't great either, but it and its React wrappers are usable."
 ---
 
 ## Introduction

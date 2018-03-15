@@ -1,5 +1,5 @@
 ---
-layout: page
+layout: default
 permalink: "/"
 manual: true
 ---
@@ -21,10 +21,10 @@ or [email the author]({{site.data.links.email}}) directly.
 <div class="row">
   <div class="col-sm-6">
     <p><strong>Lessons</strong></p>
-    {% include toc.html flavor="lesson" %}
+    {% include toc.html items=site.lessons %}
   </div>
   <div class="col-sm-6">
     <p><strong>Extras</strong></p>
-    {% include toc.html flavor="misc" %}
+    {% include toc.html items=site.extras %}
   </div>
 </div>

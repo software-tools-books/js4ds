@@ -1,6 +1,7 @@
 ---
-layout: page
+layout: extra
 permalink: "/bib/"
+title: Bibliography
 ---
 
 ## Books

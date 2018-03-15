@@ -1,6 +1,7 @@
 ---
-layout: page
+layout: extra
 permalink: "/gloss/"
+title: Glossary
 ---
 
 **aggregation function**{:#aggregation-function}:

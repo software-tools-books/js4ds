@@ -1,21 +1,17 @@
 {% assign previous = null %}
 {% assign next = null %}
-{% assign this = null %}
-{% assign title = null %}
 {% unless page.manual %}
-  {% for item in site.data.toc  %}
-    {% if item.permalink == page.permalink %}
-      {% assign this = item %}
-      {% assign title = item.title %}
+  {% for permalink in site.data.toc  %}
+    {% if permalink == page.permalink %}
       {% unless forloop.first %}
-        {% assign previous = previous_item %}
+        {% assign previous = trailing %}
       {% endunless %}
       {% unless forloop.last %}
         {% assign next = site.data.toc[forloop.index] %}
       {% endunless %}
       {% break %}
     {% endif %}
-    {% assign previous_item = item %}
+    {% assign trailing = permalink %}
   {% endfor %}
 {% endunless %}
 <!DOCTYPE HTML>
@@ -32,18 +28,16 @@
     <script src="{{'/assets/js/jquery-1.9.1.min.js' | relative_url}}"></script>
     <script src="{{'/assets/js/bootstrap.min.js' | relative_url}}"></script>
     <script src="{{'/assets/js/site.js' | relative_url}}"></script>
-    <title>{{site.title}}{% if this %}: {{this.title}}{% endif %}</title>
+    <title>{{site.title}}{% if page.title %}: {{page.title}}{% endif %}</title>
   </head>
   <body>
     <div class="container">
-      {% include header.html previous=previous.permalink next=next.permalink %}
+      {% include header.html previous=previous next=next %}
       <div class="content">
-      {% if this %}<h1>{{this.title}}</h1>{% endif %}
-      {% if this.type == "lesson" %}{% include listblock.html title="Questions" items=this.questions class="questions" section=false %}{% endif %}
+      {% if page.title %}<h1>{{page.title}}</h1>{% endif %}
       {{content}}
-      {% if this.type == "lesson" %}{% include listblock.html title="Key Points" items=this.keypoints class="keypoints" section=false %}{% endif %}
       </div>
-      {% include footer.html previous=previous.permalink next=next.permalink %}
+      {% include footer.html previous=previous next=next %}
     </div>
   </body>
 </html>

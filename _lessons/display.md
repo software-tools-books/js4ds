@@ -1,6 +1,25 @@
 ---
-layout: page
+layout: lesson
 permalink: "/display/"
+title: Building Static Web Pages
+questions:
+- "What JavaScript libraries should I use to create a web pages?"
+- "How can I use them to create basic HTML elements?"
+- "How can I style those pages?"
+- "How can I mix my JavaScript with HTML?"
+- "How can I create reusable components for building web pages?"
+- "How can separate my code into multiple files to make it more manageable?"
+keypoints:
+- "Older dynamic web sites generated pages on the server."
+- "Newer dynamic web sites generate pages in the client."
+- "React is a JavaScript library for client-side page generation that represents HTML elements as function calls."
+- "React replaces page elements with dynamically-generated content in memory (not on disk)."
+- "React functions can be customized with elements."
+- "JSX translates HTML into React function calls so that HTML and JavaScript can be mixed freely."
+- "Use Babel to translate JSX into JavaScript in the browser."
+- "Define new React components with a pseudo-HTML element and a corresponding function."
+- "Attributes to pseudo-HTML are passed to the JavaScript function as a `props` object."
+- "Use Node's `http-server` to load scripts from files during development."
 ---
 
 ## Introduction
