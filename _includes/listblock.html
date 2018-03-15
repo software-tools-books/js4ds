@@ -1,9 +1,10 @@
 {% comment %}
 Display a block containing questions, key points, or something similar.
 - title: the block title.
-- items: a flat list of points to display.
+- link: (optional) permalink of title.
+- level: level of heading to use (`h2`, `h3`, etc.).
 - class: styling to apply to the containing `div`.
-- heading: type of heading to use (`h2`, `h4`, etc.).
+- items: a flat list of points to display.
 
 Jekyll wraps each list item with a '<p>', which makes the final
 spacing odd, so this code strips them out.  Using 'replace' means that
@@ -13,7 +14,7 @@ and end of lines.
 {% endcomment %}
 {% if include.items %}
 <div class="{{include.class}}">
-  <{{include.heading}}>{{include.title}}</{{include.heading}}>
+  <{{include.level}}>{% if include.link %}<a href="{{include.link|relative_url}}">{% endif %}{{include.title}}{% if include.link %}</a>{% endif %}</{{include.level}}>
   <ul>
     {% for item in include.items %}
     <li>{{ item|markdownify|replace: '<p>', ''|replace: '</p>', ''}}</li>{% endfor %}

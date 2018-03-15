@@ -23,3 +23,22 @@ toplevel:
 collections:
   sections:
     output: true
+
+# Order for sections.
+toc:
+- /intro/
+- /core/
+- /callbacks/
+- /htmlcss/
+- /display/
+- /oop/
+- /interactive/
+- /server/
+- /testing/
+- /database/
+- /viz/
+- /capstone/
+- /legacy/
+- /guide/
+- /gloss/
+- /bib/

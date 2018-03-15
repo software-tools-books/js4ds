@@ -1,12 +1,9 @@
 {% comment %}
-Navigation and search header for all pages.
-- prev: link to previous page (if any).
-- next: link to next page (if any).
-
-The license, code of conduct, and contribution guide are listed
-explicitly because they are not part of any collection - Jekyll
-insists that collections be in sub-directories, but by convention,
-this three files are in the root directory of the repository.
+Navigation and search header for all pages.  The license, code of
+conduct, and contribution guide are listed explicitly because they are
+not part of any collection - Jekyll insists that collections be in
+sub-directories, but by convention, this three files are in the root
+directory of the repository.
 {% endcomment %}
 <header>
   <nav class="navbar navbar-default">
@@ -22,12 +19,6 @@ this three files are in the root directory of the repository.
           <li><a href="{{item.permalink|relative_url}}">{{item.title}}</a></li>
           {% endfor %}
           <li><a href="{{site.repository}}">GitHub</a></li>
-          <li>
-            {% if include.prev %}<a href="{{include.prev|relative_url}}">&#9668;</a>{% else %}<a>&nbsp;</a>{% endif %}
-          </li>
-          <li>
-            {% if include.next %}<a href="{{include.next|relative_url}}">&#9658;</a>{% else %}<a>&nbsp;</a>{% endif %}
-          </li>
         </ul>
         <form class="navbar-form navbar-right" role="search" id="search" onsubmit="return doSearch()">
           <div class="form-group">

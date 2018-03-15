@@ -7,10 +7,10 @@ way to reflect values from derived templates back into this scope.
 {% endcomment %}
 {% if layout.prevnext %}
   {% assign prev = null %} {% assign next = null %}
-  {% for permalink in site.data.toc  %}
+  {% for permalink in site.toc  %}
     {% if permalink == page.permalink %}
       {% unless forloop.first %} {% assign prev = trailing %} {% endunless %}
-      {% unless forloop.last %} {% assign next = site.data.toc[forloop.index] %} {% endunless %}
+      {% unless forloop.last %} {% assign next = site.toc[forloop.index] %} {% endunless %}
       {% break %}
     {% endif %}
     {% assign trailing = permalink %}
@@ -27,10 +27,16 @@ way to reflect values from derived templates back into this scope.
   </head>
   <body>
     <div class="container">
-      {% include header.html prev=prev next=next %}
+      {% include header.html %}
       <div class="content">
-      {% if page.title %}<h1>{{page.title}}</h1>{% endif %}
-      {{content}}
+        <div class="container-fluid">
+          <div class="row-fluid">
+            <div class="col-sm-1">{% if prev %}<a href="{{prev|relative_url}}"><h1>&#9668;</h1></a>{% endif %}</div>
+            <div class="col-sm-10" align="center">{% if page.title %}<h1>{{page.title}}</h1>{% endif %}</div>
+            <div class="col-sm-1">{% if next %}<a href="{{next|relative_url}}"><h1>&#9658;</h1></a>{% endif %}</div>
+          </div>
+        </div>
+        {{content}}
       </div>
       {% include footer.html prev=prev next=next %}
     </div>

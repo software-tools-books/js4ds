@@ -8,7 +8,7 @@ See the comments in _includes/README.md about the nested loops.
 <li class="dropdown">
   <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{{include.title}}</a>
   <ul class="dropdown-menu">
-    {% for toc_entry in site.data.toc %}{% for item in site.sections %}{% if item.layout == include.selector %}{% if toc_entry == item.permalink %}<li><a href="{{item.permalink | relative_url}}">{{item.title}}</a></li>
+    {% for toc_entry in site.toc %}{% for item in site.sections %}{% if item.layout == include.selector %}{% if toc_entry == item.permalink %}<li><a href="{{item.permalink | relative_url}}">{{item.title}}</a></li>
     {% endif %}{% endif %}{% endfor %}{% endfor %}
   </ul>
 </li>

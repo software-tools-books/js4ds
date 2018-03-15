@@ -13,17 +13,16 @@ are required to abide by our [Code of Conduct](../conduct/).*
 
 ## Design Notes
 
-1. Content pages are divided between two collections: `sections`, which
-   holds the main lesson material, and `appendices`, which holds
+1. Content pages are divided between two collections: `sections`,
+   which holds the main lesson material, and `appendices`, which holds
    supplementary material. The overall order for the union of the two
-   collections is specified in `_data/toc.yml`, where each file is
-   identified by its permalink.
+   collections is specified in the `toc` section of `_config.yml`,
+   where each file is identified by its permalink.
 
 2. Jekyll doesn't provide a way to sort collection entries according
    to an external list, so several inclusions use a nested loop to
-   order items according to `site.data.toc`.  This means total
-   processing is O(N^3), since the doubly-nested loop is run once per
-   page.
+   order items according to `site.toc`.  This means total processing
+   is O(N^3), since the doubly-nested loop is run once per page.
 
 3. Most inter-page references use {% raw %}[term](../permalink/){% endraw %},
    since all generated pages are in their own sub-directories.  However,
