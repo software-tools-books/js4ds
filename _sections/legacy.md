@@ -5,7 +5,6 @@ title: Legacy JavaScript Issues
 ---
 
 ## Equality
-<a name="equality"></a>
 
 FIXME: explain equality testing <https://www.destroyallsoftware.com/talks/wat>
 

@@ -3,10 +3,18 @@ Display a section of the table of contents.
 - title: the TOC section title.
 - selector: the type of page to include (as identified by its layout field).
 
-See the comments in _includes/README.md about the nested loops.
+See the comments in CONTRIBUTING.md about the nested loops and the reasons
+for putting multiple control statements on a single line.
 {% endcomment %}
 <p><strong>{{include.title}}</strong></p>
 <ul class="list-unstyled">
-  {% for toc_entry in site.toc %}{% for item in site.sections %}{% if item.layout == include.selector %}{% if toc_entry == item.permalink %}<li><a href="{{item.permalink | relative_url}}">{{item.title}}</a></li>
-  {% endif %}{% endif %}{% endfor %}{% endfor %}
+  {%- for toc_entry in site.toc -%}
+    {%- for item in site.sections -%}
+      {%- if item.layout == include.selector -%}
+        {%- if toc_entry == item.permalink -%}
+  <li><a href="{{item.permalink | relative_url}}">{{item.title}}</a></li>
+        {%- endif -%}
+      {%- endif -%}
+    {%- endfor -%}
+  {%- endfor -%}
 </ul>

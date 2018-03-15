@@ -1,9 +1,8 @@
 {% comment %}
 Navigation and search header for all pages.  The license, code of
-conduct, and contribution guide are listed explicitly because they are
-not part of any collection - Jekyll insists that collections be in
-sub-directories, but by convention, this three files are in the root
-directory of the repository.
+conduct, and contribution guide are listed via `site.toplevel` because
+they are in the root directory of the repository by convention, but
+Jekyll insists that collections be in sub-directories.
 {% endcomment %}
 <header>
   <nav class="navbar navbar-default">
@@ -15,8 +14,7 @@ directory of the repository.
         <ul class="nav navbar-nav">
           {% include dropdown.html title="Sections" selector="lesson" %}
           {% include dropdown.html title="Appendices" selector="appendix" %}
-          {% for item in site.toplevel %}
-          <li><a href="{{item.permalink|relative_url}}">{{item.title}}</a></li>
+          {% for item in site.toplevel %}<li><a href="{{item.permalink|relative_url}}">{{item.title}}</a></li>
           {% endfor %}
           <li><a href="{{site.repository}}">GitHub</a></li>
         </ul>

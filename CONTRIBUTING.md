@@ -30,7 +30,6 @@ are required to abide by our [Code of Conduct](../conduct/).*
    because those references need to work both in per-page subdirectories and
    from the root directory (where the overall `index.html` page is placed).
 
-4. `_includes/bref` and `_includes/btitle` create text to cite
-    bibliography entries by citation key and title respectively.  Both
-    expect a single inclusion parameter `key`, which must match a
-    top-level key in `_data/bib.yml`.
+4. `_includes/bref` and `_includes/btitle` cite bibliography entries
+    by citation key and title respectively.  Both expect a single
+    parameter `key`, which must match a key in `_data/bib.yml`.

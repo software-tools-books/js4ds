@@ -16,8 +16,9 @@ and end of lines.
 <div class="{{include.class}}">
   <{{include.level}}>{% if include.link %}<a href="{{include.link|relative_url}}">{% endif %}{{include.title}}{% if include.link %}</a>{% endif %}</{{include.level}}>
   <ul>
-    {% for item in include.items %}
-    <li>{{ item|markdownify|replace: '<p>', ''|replace: '</p>', ''}}</li>{% endfor %}
+    {%- for item in include.items -%}
+    <li>{{ item|markdownify|replace: '<p>', ''|replace: '</p>', ''}}</li>
+    {%- endfor -%}
   </ul>
 </div>
 {% endif %}
