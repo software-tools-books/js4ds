@@ -1,3 +1,10 @@
+{% comment %}
+Construct a section of drop-down menu.
+- title: main title for section (to be clicked on).
+- items: page items to include in the dropdown.
+
+See the comments in _includes/README.md about the nested loops.
+{% endcomment %}
 <li class="dropdown">
   <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{{include.title}}</a>
   <ul class="dropdown-menu">

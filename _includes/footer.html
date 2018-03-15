@@ -1,11 +1,16 @@
+{% comment %}
+Footer for all pages.
+- prev: link to previous page (if any).
+- next: link to next page (if any).
+{% endcomment %}
 <footer>
   <div class="container-fluid copyright">
     <div class="row-fluid">
       <div class="col-sm-1">
-        {% if include.previous %}<a href="{{include.previous|relative_url}}">&#9668;</a>{% endif %}
+        {% if include.prev %}<a href="{{include.prev|relative_url}}">&#9668;</a>{% endif %}
       </div>
       <div class="col-sm-10">
-        <a href="{{'/'|relative_url}}"><strong><em>{{ site.title }}</em></strong></a>
+        <a href="{{'/'|relative_url}}"><strong><em>{{site.title}}</em></strong></a>
         <br/>
         Copyright &copy; {{site.author}} {{site.copyrightyear}} &ndash; see <a href="{{'/license/'|relative_url}}">the license</a> for terms of use.
       </div>

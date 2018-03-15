@@ -1,17 +1,19 @@
 {% comment %}
-Usage: {% include listblock.html title="Something" items=something class=something section=Boolean %}
-Jekyll wraps each list item with a '<p>', which makes the final spacing odd,
-so this code strips them out.  Using 'replace' means that any literal '<p>'
-tags will also be stripped out, but unfortunately there's no sed-style
-regular expression match/replace that would support anchoring to the start
+Display a block containing questions, key points, or something similar.
+- title: the block title.
+- items: a flat list of points to display.
+- class: styling to apply to the containing `div`.
+- heading: type of heading to use (`h2`, `h4`, etc.).
+
+Jekyll wraps each list item with a '<p>', which makes the final
+spacing odd, so this code strips them out.  Using 'replace' means that
+any literal '<p>' tags will also be stripped out, but unfortunately
+Jekyll lacks regular expression match/replace to anchor to the start
 and end of lines.
 {% endcomment %}
-
 {% if include.items %}
 <div class="{{include.class}}">
-  {% if include.section %}<h2>{% else %}<h4>{% endif %}
-        {{include.title}}
-  {% if include.section %}</h2>{% else %}</h4>{% endif %}
+  <{{include.heading}}>{{include.title}}</{{include.heading}}>
   <ul>
     {% for item in include.items %}
     <li>{{ item|markdownify|replace: '<p>', ''|replace: '</p>', ''}}</li>{% endfor %}

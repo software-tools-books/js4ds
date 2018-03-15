@@ -19,11 +19,9 @@ or [email the author]({{site.data.links.email}}) directly.
 
 <div class="row">
   <div class="col-sm-6">
-    <p><strong>Lessons</strong></p>
-    {% include toc.html items=site.lessons %}
+    {% include toc.html title="Lessons" items=site.lessons %}
   </div>
   <div class="col-sm-6">
-    <p><strong>Extras</strong></p>
-    {% include toc.html items=site.extras %}
+    {% include toc.html title="Appendices" items=site.appendices %}
   </div>
 </div>

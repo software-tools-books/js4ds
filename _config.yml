@@ -14,5 +14,5 @@ repository: https://github.com/gvwilson/js-vs-rc/
 collections:
   lessons:
     output: true
-  extras:
+  appendices:
     output: true

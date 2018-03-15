@@ -1,3 +1,11 @@
+{% comment %}
+Display a section of the table of contents.
+- title: the TOC section title.
+- items: a list of pages to display in this section.
+
+See the comments in _includes/README.md about the nested loops.
+{% endcomment %}
+<p><strong>{{include.title}}</strong></p>
 <ul class="list-unstyled">
   {% for toc_entry in site.data.toc %}{% for item in include.items %}{% if toc_entry == item.permalink %}<li><a href="{{item.permalink | relative_url}}">{{item.title}}</a></li>
   {% endif %}{% endfor %}{% endfor %}

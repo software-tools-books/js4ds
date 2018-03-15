@@ -1,17 +1,16 @@
-<!--
-layout.prevnext {{layout.prevnext}}
--->
+{% comment %}
+Default layout for all pages.  The logic to find previous and next
+links should be pushed into a derived template, since only `lesson`
+and `appendix` pages need it, but `prev` and `next` need to be set by
+the time `header.html` is included, and there doesn't appear to be a
+way to reflect values from derived templates back into this scope.
+{% endcomment %}
 {% if layout.prevnext %}
-  {% assign prev = null %}
-  {% assign next = null %}
+  {% assign prev = null %} {% assign next = null %}
   {% for permalink in site.data.toc  %}
     {% if permalink == page.permalink %}
-      {% unless forloop.first %}
-        {% assign prev = trailing %}
-      {% endunless %}
-      {% unless forloop.last %}
-        {% assign next = site.data.toc[forloop.index] %}
-      {% endunless %}
+      {% unless forloop.first %} {% assign prev = trailing %} {% endunless %}
+      {% unless forloop.last %} {% assign next = site.data.toc[forloop.index] %} {% endunless %}
       {% break %}
     {% endif %}
     {% assign trailing = permalink %}
@@ -23,14 +22,7 @@ layout.prevnext {{layout.prevnext}}
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="search-domain" content="http://gvwilson.github.io/js-vs-rc" />
-    <link href="{{'/assets/css/bootstrap.min.css' | relative_url}}" rel="stylesheet" />
-    <link href="{{'/assets/css/bootstrap-theme.min.css' | relative_url}}" rel="stylesheet" />
-    <link href="{{'/assets/css/font-awesome.min.css' | relative_url}}" rel="stylesheet" />
-    <link href="{{'/assets/css/syntax.css' | relative_url}}" rel="stylesheet" />
-    <link href="{{'/assets/css/site.css' | relative_url}}" rel="stylesheet" />
-    <script src="{{'/assets/js/jquery-1.9.1.min.js' | relative_url}}"></script>
-    <script src="{{'/assets/js/bootstrap.min.js' | relative_url}}"></script>
-    <script src="{{'/assets/js/site.js' | relative_url}}"></script>
+    {% include assets.html %}
     <title>{{site.title}}{% if page.title %}: {{page.title}}{% endif %}</title>
   </head>
   <body>

@@ -1,5 +1,5 @@
 ---
-layout: extra
+layout: appendix
 permalink: "/bib/"
 title: Bibliography
 ---

@@ -1,5 +1,5 @@
 ---
-layout: extra
+layout: appendix
 permalink: "/legacy/"
 title: Legacy JavaScript Issues
 ---
