@@ -10,9 +10,18 @@ highlighter: rouge
 # GitHub repository.
 repository: https://github.com/gvwilson/js-vs-rc/
 
+# Pages that aren't in collections.
+toplevel:
+- permalink: /license/
+  title: "License"
+- permalink: /conduct/
+  title: "Code of Conduct"
+- permalink: /contributing/
+  title: "Contributing"
+
 # Collections.
 collections:
-  lessons:
+  sections:
     output: true
   appendices:
     output: true

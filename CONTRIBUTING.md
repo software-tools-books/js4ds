@@ -13,7 +13,7 @@ are required to abide by our [Code of Conduct](../conduct/).*
 
 ## Design Notes
 
-1. Content pages are divided between two collections: `lessons`, which
+1. Content pages are divided between two collections: `sections`, which
    holds the main lesson material, and `appendices`, which holds
    supplementary material. The overall order for the union of the two
    collections is specified in `_data/toc.yml`, where each file is
