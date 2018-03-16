@@ -26,9 +26,9 @@ are required to abide by our [Code of Conduct](../conduct/).*
    doubly-nested loop is run once per page.  (See [Possible
    Improvements](#possible-improvements) below.)
 
-1. Inter-page links use {% raw %}[term](../page/){% endraw %}, since
+1. Inter-page links use `[term](../page/)`, since
    all generated pages are in their own sub-directories.  They should
-   use {% raw %}[term]({{/page/|relative_url}}){% endraw %}, but
+   use `[term]({% raw %}{{/page/|relative_url}}{% endraw %})`, but
    that's a lot more typing for the average author.
 
 1. References to asset files *do* use `relative_url` because they need
@@ -57,7 +57,7 @@ page order:
 2. Loop over `site.sections` and add an `order` attribute to each
    entry by looking up its permalink in that map.
 
-3. Use {% raw %}{{site.sections | sort: 'order' }}{% endraw %} to
+3. Use `{% raw %}{{site.sections | sort: 'order' }}{% endraw %}` to
    sort sections.
 
 4. Loop over the sorted collection and set `previous` and `next`
