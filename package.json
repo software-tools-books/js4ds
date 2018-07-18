@@ -1,16 +1,16 @@
 {
-  "name": "js-vs-rc",
+  "name": "js-vs-ds",
   "version": "0.1.0",
   "description": "JavaScript versus Research Computing",
   "keywords": [
     "lesson",
     "JavaScript",
-    "research computing"
+    "data science"
   ],
   "main": "index.js",
   "author": "Greg Wilson",
   "license": "SEE LICENSE IN LICENSE.md",
-  "homepage": "http://gvwilson.github.io/js-vs-rc/",
+  "homepage": "http://gvwilson.github.io/js-vs-ds/",
   "scripts": {
     "demo": "./bin/run-server.sh",
     "lint": "eslint bin/*.js src/**/*.js",
@@ -23,46 +23,16 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/gvwilson/js-vs-rc.git"
+    "url": "git+https://github.com/gvwilson/js-vs-ds.git"
   },
   "bugs": {
-    "url": "https://github.com/gvwilson/js-vs-rc/issues"
+    "url": "https://github.com/gvwilson/js-vs-ds/issues"
   },
   "standard": {
     "ignore": [
-      "css/**",
-      "fonts/**",
-      "js/**"
+      "css/**"
     ]
   },
   "dependencies": {
-    "babel-core": "^6.26.0",
-    "babel-loader": "^7.1.4",
-    "babel-preset-es2015": "^6.24.1",
-    "babel-preset-react": "^6.24.1",
-    "babel-preset-react-app": "^3.1.1",
-    "body-parser": "^1.18.2",
-    "chart.js": "^2.7.2",
-    "cheerio": "^1.0.0-rc.2",
-    "copy-webpack-plugin": "^4.5.1",
-    "cors": "^2.8.4",
-    "eslint-plugin-node": "^5.2.1",
-    "eslint-plugin-promise": "^3.7.0",
-    "eslint-plugin-standard": "^3.0.1",
-    "express-winston": "^2.5.0",
-    "http-server": "^0.10.0",
-    "marked": "^0.3.17",
-    "mocha": "^3.5.3",
-    "node": "0.0.0",
-    "react": "^15.6.2",
-    "react-chartjs-2": "^2.7.0",
-    "react-dom": "^15.6.2",
-    "react-scripts": "^1.1.1",
-    "react-vega-lite": "^1.1.3",
-    "sqlite3": "^3.1.13",
-    "standard": "^10.0.3",
-    "supertest": "^3.0.0",
-    "webpack": "^2.7.0",
-    "winston": "^2.4.1"
   }
 }
