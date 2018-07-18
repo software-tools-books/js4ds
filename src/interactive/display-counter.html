@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Hello World</title>
+    <meta charset="utf-8">
+    <script src="https://fb.me/react-15.0.1.js"></script>
+    <script src="https://fb.me/react-dom-15.0.1.js"></script>
+    <script src="https://unpkg.com/babel-standalone@6/babel.js"></script>
+  </head>
+  <body>
+    <div id="app">
+      <!-- this is filled in -->
+    </div>
+    <script type="text/babel">
+      class Counter extends React.Component {
+
+        constructor (props) {
+          super(props)
+          this.state = {counter: 0}
+        }
+
+        increment = (event) => {
+          this.setState({counter: this.state.counter+1})
+        }
+
+        render() {
+          return (
+            <p>
+              <button onClick={this.increment}>increment</button>
+              <br/>
+              current: {this.state.counter}
+            </p>
+          )
+        }
+      }
+
+      ReactDOM.render(
+        <Counter />,
+        document.getElementById("app")
+      )
+    </script>
+  </body>
+</html>

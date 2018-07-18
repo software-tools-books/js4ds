@@ -1,0 +1,9 @@
+#major {
+  text-decoration: underline red;
+}
+#minor {
+  text-decoration: overline blue;
+}
+.details {
+  font-style: italic;
+}

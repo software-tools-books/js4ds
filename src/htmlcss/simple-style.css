@@ -1,0 +1,9 @@
+h1.title {
+  text-align: center;
+}
+span.keyword {
+  font-weight: bold;
+}
+.highlight {
+  color: coral;
+}

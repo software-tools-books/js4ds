@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Hello World</title>
+    <meta charset="utf-8">
+    <script src="https://fb.me/react-15.0.1.js"></script>
+    <script src="https://fb.me/react-dom-15.0.1.js"></script>
+  </head>
+  <body>
+    <div id="app">
+      <!-- this is filled in -->
+    </div>
+    <script>
+      const attributes = {
+        'style': {
+          'background': 'pink',
+          'font-style': 'italic'
+        }
+      }
+      ReactDOM.render(
+        React.DOM.h1(attributes, "Hello, world"),
+        document.getElementById("app")
+      )
+    </script>
+  </body>
+</html>

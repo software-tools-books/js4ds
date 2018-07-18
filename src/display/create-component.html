@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Hello World</title>
+    <meta charset="utf-8">
+    <script src="https://fb.me/react-15.0.1.js"></script>
+    <script src="https://fb.me/react-dom-15.0.1.js"></script>
+    <script src="https://unpkg.com/babel-standalone@6/babel.js"></script>
+  </head>
+  <body>
+    <div id="app">
+      <!-- this is filled in -->
+    </div>
+    <script type="text/babel">
+      const allNames = ['McNulty', 'Jennings', 'Snyder', 'Meltzer', 'Bilas', 'Lichterman']
+
+      const ListOfNames = () => {
+        return (<ul>{allNames.map((name) => { return <li>{name}</li> })}</ul>)
+      }
+
+      ReactDOM.render(
+        <div>
+          <ListOfNames />
+        </div>,
+        document.getElementById("app")
+      )
+    </script>
+  </body>
+</html>

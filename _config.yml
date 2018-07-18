@@ -1,13 +1,13 @@
 # Display.
-title: "FIXME"
-subtitle: "FIXME"
-author: "FIXME"
+title: "JavaScript versus Data Science"
+subtitle: "A Brief Guide for Those Who Regret That This Has Become Necessary"
+author: "Greg Wilson"
 copyrightyear: "2018"
-repo: https://github.com/gvwilson/FIXME/
-email: FIXME@fixme.com
+repo: https://github.com/gvwilson/js-vs-ds/
+email: gvwilson@third-bit.com
 
 # Theme color.
-background: "#e0f0f0"
+background: "#f0e0f0"
 
 # Code highlighting.
 highlighter: rouge
@@ -35,7 +35,19 @@ toc:
   - /conduct/
   lessons:
   - /intro/
+  - /core/
+  - /callbacks/
+  - /htmlcss/
+  - /display/
+  - /oop/
+  - /interactive/
+  - /server/
+  - /testing/
+  - /database/
+  - /viz/
+  - /capstone/
   extras:
   - /bib/
   - /gloss/
   - /reference/
+  - /legacy/
