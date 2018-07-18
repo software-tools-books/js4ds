@@ -1,44 +1,27 @@
-{% comment %}
-Default layout for all pages.  The logic to find previous and next
-links should be pushed into a derived template, since only `lesson`
-and `appendix` pages need it, but `prev` and `next` need to be set by
-the time `header.html` is included, and there doesn't appear to be a
-way to reflect values from derived templates back into this scope.
-{% endcomment %}
-{% if layout.prevnext %}
-  {% assign prev = null %} {% assign next = null %}
-  {% for permalink in site.toc  %}
-    {% if permalink == page.permalink %}
-      {% unless forloop.first %} {% assign prev = trailing %} {% endunless %}
-      {% unless forloop.last %} {% assign next = site.toc[forloop.index] %} {% endunless %}
-      {% break %}
-    {% endif %}
-    {% assign trailing = permalink %}
-  {% endfor %}
-{% endif %}
-<!DOCTYPE HTML>
-<html>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
   <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="search-domain" content="http://gvwilson.github.io/js-vs-rc" />
-    {% include assets.html %}
-    <title>{{site.title}}{% if page.title %}: {{page.title}}{% endif %}</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+    <meta name="author" content="{{site.author}}" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{{'/css/theme.css'|relative_url}}" />
+    <link rel="stylesheet" href="{{'/css/murphy.css'|relative_url}}" />
+    <title>{{site.title}}: {% if page.title %}{{page.title}}{% else %}{{site.subtitle}}{% endif %}</title>
   </head>
   <body>
-    <div class="container">
-      {% include header.html %}
-      <div class="content">
-        <div class="container-fluid">
-          <div class="row-fluid">
-            <div class="col-sm-1">{% if prev %}<a href="{{prev|relative_url}}"><h1>&#9668;</h1></a>{% endif %}</div>
-            <div class="col-sm-10" align="center">{% if page.title %}<h1>{{page.title}}</h1>{% endif %}</div>
-            <div class="col-sm-1">{% if next %}<a href="{{next|relative_url}}"><h1>&#9658;</h1></a>{% endif %}</div>
-          </div>
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-md-2 d-print-none toc">
+          {% include toc.html %}
         </div>
-        {{content}}
+        <div class="col-md-10 main">
+          <h1>{% if page.title %}{{page.title}}{% else %}{{site.title}}{% endif %}</h1>
+          {% include listblock.html title="Questions" items=page.questions %}
+          {{content}}
+          {% include listblock.html title="Key Points" items=page.keypoints %}
+        </div>
       </div>
-      {% include footer.html prev=prev next=next %}
     </div>
   </body>
 </html>

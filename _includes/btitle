@@ -1,1 +1,0 @@
-<em><a href="../bib/#{{include.key}}">{{site.data.bib[include.key].title}}</a></em>

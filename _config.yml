@@ -1,44 +1,53 @@
 # Display.
-title: "JavaScript versus Research Computing"
+title: "JavaScript versus Data Science"
 subtitle: "A Brief Guide for Those Who Regret That This Has Become Necessary"
 author: "Greg Wilson"
-copyrightyear: "2017-18"
+copyrightyear: "2018"
+repo: https://github.com/gvwilson/js-vs-ds/
+email: gvwilson@third-bit.com
+
+# Theme color.
+background: "#f0e0f0"
 
 # Code highlighting.
 highlighter: rouge
 
-# GitHub repository.
-repository: https://github.com/gvwilson/js-vs-rc/
-
-# Pages that aren't in collections.
+# Pages that are stored in the root directory by convention.
+# Since they aren't part of a collection, their titles have
+# to be stored here explicitly.
 toplevel:
 - permalink: /license/
   title: "License"
 - permalink: /conduct/
   title: "Code of Conduct"
-- permalink: /contributing/
-  title: "Contributing"
 
-# Collections.
+# Collections: one for lessons, one for extras.
 collections:
-  sections:
+  lessons:
+    output: true
+  extras:
     output: true
 
-# Order for sections.
+# Order for Table of Contents.
 toc:
-- /intro/
-- /core/
-- /callbacks/
-- /htmlcss/
-- /display/
-- /oop/
-- /interactive/
-- /server/
-- /testing/
-- /database/
-- /viz/
-- /capstone/
-- /legacy/
-- /guide/
-- /gloss/
-- /bib/
+  toplevel:
+  - /license/
+  - /conduct/
+  lessons:
+  - /intro/
+  - /core/
+  - /callbacks/
+  - /htmlcss/
+  - /display/
+  - /oop/
+  - /interactive/
+  - /server/
+  - /testing/
+  - /database/
+  - /viz/
+  - /capstone/
+  extras:
+  - /bib/
+  - /gloss/
+  - /reference/
+  - /legacy/

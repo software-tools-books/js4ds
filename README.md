@@ -1,16 +1,77 @@
-# JavaScript versus Research Computing
+---
+layout: default
+permalink: "/"
+---
 
-This short book is an introduction to modern JavaScript
-for anyone who uses computing in their research.
-The book and related software freely available under [open licences][license],
-and can be viewed on [the book's website][site].
-Questions, suggestions, and corrections are very welcome:
-please [file an issue][issues]
-in the book's [GitHub repository][repo]
-or [email the author][email] directly.
+FIXME: introduction.
 
-[email]: mailto:gvwilson@third-bit.com?subject=JavaScript%20versus%20Research%20Computing
-[issues]: https://github.com/gvwilson/js-vs-rc/issues
-[license]: https://gvwilson.github.io/js-vs-rc/license/
-[repo]: https://github.com/gvwilson/js-vs-rc/
-[site]: https://gvwilson.github.io/js-vs-rc/
+----
+
+## Design
+
+This design template is taken from *[Teaching Tech Together][t3]*.
+The first section explains who this course is for,
+while the second sketches its scope.
+Sections 3 and 4 then lay out what learners will do in what order,
+and the final section is the course's public face.
+
+<!-- -------------------------------------------------------------------------------- -->
+
+## Step 1: Who is this course for?
+
+FIXME: learner personas.
+
+<!-- -------------------------------------------------------------------------------- -->
+
+## Step 2: Brainstorming
+
+1. What questions will this course answer?
+   1. FIXME
+1. What concepts and techniques will learners meet?
+   1. FIXME
+1. What technologies, packages, or functions will learners use?
+   1. FIXME
+1. What concepts will be introduced?
+   1. FIXME
+1. What misconceptions are expected?
+   1. FIXME
+1. What *won't* be covered?
+   1. FIXME
+
+<!-- -------------------------------------------------------------------------------- -->
+
+## Step 3: What mental models will learners form?
+
+FIXME: concept maps (drawn with [draw.io][draw-io]).
+
+<!-- -------------------------------------------------------------------------------- -->
+
+## Step 4: What will learners do along the way?
+
+1. FIXME
+
+<!-- -------------------------------------------------------------------------------- -->
+
+## Step 5: How are the concepts connected?
+
+FIXME
+
+<!-- -------------------------------------------------------------------------------- -->
+
+## Step 6: Course overview
+
+### Course Description
+
+FIXME
+
+### Prerequisites
+
+Learners will need:
+
+- FIXME
+
+### Other Resources
+
+- FIXME
+
+{% include links.md %}

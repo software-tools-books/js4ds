@@ -1,24 +1,8 @@
-{% comment %}
-Display a block containing questions, key points, or something similar.
-- title: the block title.
-- link: (optional) permalink of title.
-- level: level of heading to use (`h2`, `h3`, etc.).
-- class: styling to apply to the containing `div`.
-- items: a flat list of points to display.
-
-Jekyll wraps each list item with a '<p>', which makes the final
-spacing odd, so this code strips them out.  Using 'replace' means that
-any literal '<p>' tags will also be stripped out, but unfortunately
-Jekyll lacks regular expression match/replace to anchor to the start
-and end of lines.
-{% endcomment %}
 {% if include.items %}
-<div class="{{include.class}}">
-  <{{include.level}}>{% if include.link %}<a href="{{include.link|relative_url}}">{% endif %}{{include.title}}{% if include.link %}</a>{% endif %}</{{include.level}}>
+<div class="listblock">
+  <p><strong>{{include.title}}</strong></p>
   <ul>
-    {%- for item in include.items -%}
-    <li>{{ item|markdownify|replace: '<p>', ''|replace: '</p>', ''}}</li>
-    {%- endfor -%}
+    {% for item in include.items %}<li>{{item|markdownify||replace: "<p>", ""|replace: "</p>", ""}}</li>{% endfor %}
   </ul>
 </div>
 {% endif %}
