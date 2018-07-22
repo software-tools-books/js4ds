@@ -4,35 +4,45 @@ subtitle: "A Brief Guide for Those Who Regret That This Has Become Necessary"
 author: "Greg Wilson"
 copyrightyear: "2018"
 repo: https://github.com/gvwilson/js-vs-ds/
+website: "https://gvwilson.github.io/js-vs-ds/"
 email: gvwilson@third-bit.com
+isbn: "000-0-0000000-0"
 
 # Theme color.
 background: "#f0e0f0"
 
-# Code highlighting.
+# Jekyll settings.
 highlighter: rouge
+plugins:
+  - "jekyll-redirect-from"
 
-# Pages that are stored in the root directory by convention.
-# Since they aren't part of a collection, their titles have
-# to be stored here explicitly.
-toplevel:
-- permalink: /license/
-  title: "License"
-- permalink: /conduct/
-  title: "Code of Conduct"
+# Things to ignore
+exclude:
+- BUILD.md
+- CITATION.md
+- CONDUCT.md
+- LICENSE.md
+- Makefile
+- README.md
+- bin
+- requirements.txt
+- tex_en
 
-# Collections: one for lessons, one for extras.
+# Collections: one for lessons and one for extras for each language suffix.
 collections:
-  lessons:
+  chapters_en:
     output: true
-  extras:
-    output: true
+
+# Set the language for various collections.
+defaults:
+  - scope:
+      path: ""
+      type: chapters_en
+    values:
+      language: "en"
 
 # Order for Table of Contents.
 toc:
-  toplevel:
-  - /license/
-  - /conduct/
   lessons:
   - /intro/
   - /core/
@@ -47,7 +57,16 @@ toc:
   - /viz/
   - /capstone/
   extras:
+  - /license/
+  - /conduct/
+  - /citation/
   - /bib/
   - /gloss/
-  - /reference/
   - /legacy/
+
+# Translations by language.
+translations:
+  en:
+    generated: "Last generated"
+    questions: "Questions"
+    keypoints: "Key Points"
