@@ -21,8 +21,6 @@ keypoints:
 - "Check the structure of the DOM rather than the textual representation of the HTML when testing."
 ---
 
-## Unit Testing
-
 - Build some test infrastructure
 - Each test is a function, and each function is one test
 - Put repeated setup and teardown into functions that are automatically invoked before and after each test
@@ -34,7 +32,7 @@ keypoints:
 - Write the tests themselves using [assertions](#g:assertion)
   - Node provides an `assert` library with some useful functions
 
-## Introducing Mocha
+## Introducing Mocha {#s:testing-mocha}
 
 - We will use a library called Mocha
   - Don't need to import anything: it imports our code and calls our functions
@@ -85,7 +83,7 @@ describe('first test', () => {
 npm test -- path/to/test.js
 ```
 
-## Refactoring
+## Refactoring {#s:testing-refactoring}
 
 - Next step is to create testable software
 - In this case means:
@@ -119,7 +117,7 @@ module.exports = app
 ```
 {: title="src/testing/server.js"}
 
-## Testing the Server
+## Testing the Server {#s:testing-server}
 
 - Now add a test for our server
 - Use `supertest` to interact with the server
@@ -226,7 +224,7 @@ describe('server', () => {
 > Regular expressions are widely used in JavaScript,
 > but are outside the scope of this tutorial.
 
-## Checking the HTML
+## Checking the HTML {#s:testing-html}
 
 - Increasingly common to serve data for rendering by the client
 - But some servers still generate HTML
@@ -289,7 +287,7 @@ describe('server', () => {
 >   - Parses HTML to create a tree of nodes that are either elements with children and attributes or plain old text
 >   - Or other things that we won't get into
 
-## Challenges
+## Exercises {#s:testing-exercises}
 
 ### Not Done
 

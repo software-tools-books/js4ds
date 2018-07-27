@@ -19,8 +19,6 @@ keypoints:
 - "Use dynamic loading to support plugin extensions."
 ---
 
-## Introduction
-
 - HTTP request/response cycle
   - Client (browser or other program) makes a connection
   - Sends a blob of text specifying what it's asking for
@@ -30,7 +28,7 @@ keypoints:
 
 FIXME-28: diagrams
 
-## Hello, Express
+## Hello, Express {#s:server-express}
 
 - Express handles most of this for us
 - We provide callback functions taking three parameters:
@@ -59,7 +57,7 @@ app.listen(PORT, () => { console.log('listening...') })
 - There is no HTML file on disk
 - And there is no way for the browser to know if there was one or not
 
-## Handling Multiple Paths
+## Handling Multiple Paths {#s:server-paths}
 
 - Provide handlers for many different paths
 - And handle the case where the path is not known
@@ -94,7 +92,7 @@ app.listen(PORT, () => { console.log('listening...') })
 - Don't have to send a 404 status code
 - But many parts of web infrastructure depend on correct codes
 
-## Serving Files from Disk
+## Serving Files from Disk {#s:server-files}
 
 - Instead of creating HTML in memory, read from file
 - Provide our server with the path to the directory it's allowed to read
@@ -128,7 +126,7 @@ app.listen(PORT, () => { console.log('listening...') })
   4. Read that file
   5. Return that data
 
-## Content Types
+## Content Types {#s:server-content-types}
 
 - Clients expect to know what kind of data we're sending
   - Images, etc.
@@ -158,7 +156,7 @@ app.use((req, res, next) => {
 - The `Content-Type` header tells the client how to handle the bytes we're sending
   - Though it can still do whatever it wants
 
-## Dynamic Content
+## Dynamic Content {#s:server-dynamic}
 
 - Could add functions to our server to generate dynamic content
 - Or have it load JavaScript dynamically and run that
@@ -197,7 +195,7 @@ module.exports = {
 ```
 {: title="src/server/pages/plugin.js"}
 
-## Challenges
+## Exercises {#s:server-exercises}
 
 ### Report Missing Files
 

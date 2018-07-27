@@ -18,8 +18,6 @@ keypoints:
 - "Modern JavaScript uses promises to manage asynchronous activities."
 ---
 
-## Introduction
-
 - Browsers allow us to define [event handlers](#g:event-handler) to specify what to do in response to a user action
   - A callback function that is (usually) given an [event object](#g:event-object) containing information about what the user did
 - Pass the callback function as a specifically-named property of the thing whose behavior we are specifying
@@ -98,7 +96,7 @@ keypoints:
 - React calls components' `render` methods after `setState` is used to update their state
   - It does some thinking behind the scenes to minimize how much redrawing takes place
 
-## Models and Views
+## Models and Views {#s:interactive-models-views}
 
 - Common practice to separate models (which store data) from views (which display it)
   - Models are typically classes
@@ -196,7 +194,7 @@ FIXME-22: diagram
   - Data and event handlers are defined near the top
   - Then passed down for display components to use
 
-## Fetching Data
+## Fetching Data {#s:interactive-fetching}
 
 - NASA provides a web API to get information about near-approach asteroids
 - Build a small display with:
@@ -312,7 +310,7 @@ const DateSubmit = ({label, value, onChange, onCommit}) => {
 
 <div class="callout" markdown="1">
 
-### Destructuring
+### Destructuring {#s:interactive-destructuring}
 
 - Note the use of [destructuring](#g:destructuring) in the parameter list
   - Suppose an object `directions` has the value `{left: 1, right: 2}`
@@ -427,7 +425,7 @@ class App extends React.Component {
 - Unfortunately, top level of `near_earth_objects` is an object with dates as keys
   - So we have to use `let...in...` rather than purely `map` or `forEach`
 
-## Challenges
+## Exercises {#s:interactive-exercises}
 
 ### Reset
 

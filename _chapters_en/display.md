@@ -22,8 +22,6 @@ keypoints:
 - "Use Node's `http-server` to load scripts from files during development."
 ---
 
-## Introduction
-
 - In the beginning, people created HTML pages by typing them in
 - Quickly realized that a lot of pages shared a lot of content
   - Headers, footers, etc.
@@ -59,7 +57,7 @@ FIXME-18: diagram
 - Show how to do it the pure-JavaScript way
 - Then introduce a tool called JSX that simplifies things
 
-## Hello, World
+## Hello, World {#s:display-hello}
 
 ```html
 <!DOCTYPE html>
@@ -121,7 +119,7 @@ FIXME-18: diagram
 ```
 {: title="src/react/stylish.html"}
 
-## JSX
+## JSX {#s:display-jsx}
 
 - Writing nested functions is a clumsy way to write HTML
 - So use a tool called JSX that translates HTML into JavaScript function calls
@@ -179,7 +177,7 @@ FIXME-18: diagram
   - Could build up a string through repeated concatenation, but this is cleaner
 - *Must* return exactly one root node, because this is one function call
 
-## Creating Components
+## Creating Components {#s:display-components}
 
 - If we're defining functions, we can write new ones
 - Component names must start with a capital letter to differentiate them from regular tags.
@@ -236,7 +234,7 @@ FIXME-18: diagram
 
 - Gives us exactly one logical place to do calculations, set style, etc.
 
-## Developing with a Server
+## Developing with a Server {#s:display-server}
 
 - Putting all the source in the HTML file, in one block, is bad practice
 - Already seen problems with loading source in header
@@ -347,7 +345,7 @@ ReactDOM.render(
   - Would make more sense to have a `Name` element that formatted a name
   - And then let the application decide to put those names in a list
 
-## Challenges
+## Exercises {#s:display-exercises}
 
 ### Real Data
 

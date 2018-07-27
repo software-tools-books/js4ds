@@ -4,16 +4,16 @@ permalink: "/en/legacy/"
 title: "Legacy JavaScript Issues"
 ---
 
-## Equality
+## Equality {#s:legacy-equality}
 
 FIXME: explain equality testing <https://www.destroyallsoftware.com/talks/wat>
 
-## Iteration
+## Iteration {#s:legacy-iteration}
 <a name="iteration"></a>
 
 FIXME: explain iteration
 
-## Prototypes
+## Prototypes {#s:legacy-prototypes}
 <a name="prototypes"></a>
 
 FIXME: explain prototypes

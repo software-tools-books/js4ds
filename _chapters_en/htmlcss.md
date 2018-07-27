@@ -26,13 +26,11 @@ keypoints:
 - "Use selectors to specify the elements that CSS applies to."
 ---
 
-## Introduction
-
 - HTML is the standard way to represent documents for presentation in web browsers
 - CSS is the standard way to describe how it should look
 - Both are more complicated than they should have been
 
-## Formatting
+## Formatting {#s:htmlcss-formatting}
 
 - An HTML [document](#g:document) contains [elements](#g:element) and text
   - Full spec allows for other things that we will ignore for now
@@ -48,7 +46,7 @@ keypoints:
   - I.e., a single element must enclose everything else
   - Browsers aren't strict about this
 
-## Text
+## Text {#s:htmlcss-text}
 
 - Text is normal printable text
 - Must use escape sequences to represent `<` and `>`
@@ -61,7 +59,7 @@ keypoints:
 | `&amp;`         | &amp;     |
 | `&copy;`        | &copy;    |
 
-## Pages
+## Pages {#s:htmlcss-pages}
 
 - An HTML page should have:
   - Enclosing `html` element
@@ -90,7 +88,7 @@ keypoints:
 ```
 {: title="src/htmlcss/first-page.html"}
 
-## Attributes
+## Attributes {#s:htmlcss-attributes}
 
 - Elements can be customized by giving them [attributes](#g:attribute)
   - Enclosed in the opening tag
@@ -103,7 +101,7 @@ keypoints:
   - In practice, can often get away with `name=value`
   - And for Boolean attributes, sometimes just `name`
 
-## Lists
+## Lists {#s:htmlcss-lists}
 
 - Use `ul` for an unordered (bulleted) list, and `ol` for an ordered (numbered) one
   - Each list item is wrapped in `li`
@@ -132,7 +130,7 @@ keypoints:
 2. second
 3. third
 
-## Tables
+## Tables {#s:htmlcss-tables}
 
 - Use `table` for tables
   - Each row is wrapped in `tr` (for "table row")
@@ -171,7 +169,7 @@ keypoints:
   </body>
 </html>
 
-## Links
+## Links {#s:htmlcss-links}
 
 - Links to other pages are what makes HTML hypertext
 - Use the `a` element to create a link
@@ -186,7 +184,7 @@ keypoints:
 ```
 {: title="src/htmlcss/links.html"}
 
-## Images
+## Images {#s:htmlcss-images}
 
 - Store a reference to an external file using the `img` tag
 - The `src` attribute specifies where to find the file
@@ -199,7 +197,7 @@ keypoints:
 ```
 {: title="src/htmlcss/images.html"}
 
-## Cascading Style Sheets
+## Cascading Style Sheets {#s:htmlcss-css}
 
 - When HTML first appeared, people styled it using attributes
 
@@ -291,7 +289,7 @@ span.keyword {
 ```
 {: title="src/htmlcss/selector-style.css"}
 
-## Bootstrap
+## Bootstrap {#s:htmlcss-bootstrap}
 
 - CSS can become very complicated very quickly
 - Most people rely on a framework to take care of the details
@@ -349,7 +347,7 @@ span.keyword {
 
 - Note: interactive elements (buttons, forms) are deferred to React chapter
 
-## Challenges
+## Exercises {#s:htmlcss-exercises}
 
 ### Cutting Corners
 

@@ -7,8 +7,8 @@ repo: https://github.com/gvwilson/js-vs-ds/
 email: gvwilson@third-bit.com
 website: "https://gvwilson.github.io/js-vs-ds/"
 isbn: "000-0-0000000-0"
-purchase: "FIXME"
-paypal: "FIXME"
+# purchase: "FIXME"
+# paypal: "FIXME"
 
 # Theme color.
 background: "#f0e0f0"

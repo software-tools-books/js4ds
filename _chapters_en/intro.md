@@ -24,7 +24,7 @@ not just scientists and engineers.
 
 See [[Wils2018](#CITE)] for background on the teaching methods used.
 
-## Who You Are
+## Who You Are {#s:intro-personas}
 
 Every lesson should aim to [meet the needs of specific learners]({{site.data.links.h2tp}}).
 The three people described below define the intended audience for this one.
@@ -64,7 +64,7 @@ Sumi
   This book will fill in some of the gaps in her knowledge
   and show her how to take advantage of JavaScript's more modern features.
 
-## Setting Up
+## Setting Up {#s:intro-setup}
 
 You can do the exercises in the first part of this course online,
 but will need to install some software on your own computer
@@ -86,7 +86,7 @@ to do the later ones.
     - A better idea, since it isolates projects from one another
     - We will see [later](../display/) how to create projects
 
-## Challenges
+## Exercises {#s:intro-exercises}
 
 ### Setting Up
 

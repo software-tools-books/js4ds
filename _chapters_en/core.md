@@ -41,12 +41,10 @@ keypoints:
 - "Paths beginning with '.' are imported locally, but paths without '.' look in the library."
 ---
 
-## Introduction
-
 - Introduce enough of JavaScript's core features to get started
 - Experiment with these interactively in the Node REPL
 
-## Hello, World
+## Hello, World {#s:core-hello-world}
 
 ```js
 console.log('hello, world')
@@ -66,7 +64,7 @@ hello, world
 node src/core/hello.js
 ```
 
-## Basic Data Types
+## Basic Data Types {#s:core-data-types}
 
 ```js
 const aNumber = 123.45
@@ -115,7 +113,7 @@ the type of function () { [native code] } is function
   - We'll look at the implications of that [in detail](./callbacks/)
 - `typeof` returns a string
 
-## Control Flow
+## Control Flow {#s:core-control-flow}
 
 - Have already seen `for` loop
 
@@ -160,7 +158,7 @@ null of type object is falsy
 - Always use `===` and `!==` when testing for equality and inequality
   - `==` and `!=` contain [some ugly surprises](../legacy/#equality)
 
-## Formatting
+## Formatting {#s:core-formatting}
 
 - Use back quotes to create multi-line strings
 - Interpolate values in these strings using `${expression}`
@@ -178,7 +176,7 @@ color is green and capitalized is GREEN
 color is blue and capitalized is BLUE
 ```
 
-## Objects
+## Objects {#s:core-objects}
 
 ```js
 const creature = {
@@ -216,7 +214,7 @@ creature[species] is Jacchus
 - Can write keys without quotes
   - In which case they are treated as strings
 
-## Functions
+## Functions {#s:core-functions}
 
 ```js
 function limits (values) {
@@ -297,7 +295,7 @@ const limits = (values) => {
 > - Want to make it really easy to define little functions
 > - The way a language is used shapes the evolution of its syntax
 
-## Modules
+## Modules {#s:core-modules}
 
 - Want to put code in multiple files
 - Unavoidable bad news is that JavaScript has several module systems
@@ -348,7 +346,7 @@ clip(-1,5,3,0,10) -> 0,1,2,3
 - Use a relative path starting with `./` or `../` to import local files
   - Paths that start with names are taken from installed Node libraries
 
-## Challenges
+## Exercises {#s:core-exercises}
 
 ### Typeof
 

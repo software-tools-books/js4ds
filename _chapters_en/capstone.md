@@ -13,8 +13,6 @@ keypoints:
 - "Store state in a class, use pure functions to display it."
 ---
 
-## Introduction
-
 - Bring everything together in an extended example
 - A (slightly) interactive visualization of species data from <{{page.datasource}}>
 - Plan:
@@ -27,7 +25,7 @@ keypoints:
 - Will require some new ideas
   - But most work will recapitulate what's come before
 
-## Slicing Data
+## Slicing Data {#s:capstone-slicing}
 
 - Actual data is in a SQL file in <{{page.datasource}}>
 - Over 30,000 records
@@ -106,7 +104,7 @@ select * from test_surveys;
   - Could store the test data in a different table
   - But SQL doesn't allow parameterization of table names
 
-## Database Manager
+## Database Manager {#s:capstone-dbms}
 
 - Support two queries (for now)
   - Add others later as exercises
@@ -148,7 +146,7 @@ group by
 
 - Implementation of `Database` class look the same as [previously](../database/)
 
-## Server
+## Server {#s:capstone-server}
 
 - Implementation is almost the same as [previous server](../server/)
 - `GET /survey/stats` gets summary statistics as a single JSON record
@@ -214,7 +212,7 @@ group by
   - Could use `assert(res.body.length == expectedValue, ...)`
   - But then error message would just be `false != true`
 
-## The Display
+## The Display {#s:capstone-display}
 
 - Front end is a straightforward recapitulation of what we've done before
 - A single HTML page `index.html`
@@ -414,7 +412,7 @@ export default SurveyStats
 
 - Other components similar to those seen before
 
-## The Chart
+## The Chart {#s:capstone-chart}
 
 - Finally add in a scatter plot to show relationship between hindfoot size and weight
 
@@ -482,7 +480,7 @@ class App extends React.Component {
 ```
 {: title="src/capstone/front/app.js"}
 
-## Challenges
+## Exercises {#s:capstone-exercises}
 
 ### Reporting Other Data
 

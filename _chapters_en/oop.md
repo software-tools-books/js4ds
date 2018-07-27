@@ -21,13 +21,11 @@ keypoints:
 - "Creating extensible systems by defining interfaces and protocols."
 ---
 
-## Introduction
-
 - Making new code use old code is easy
 - How can we make old code use new code without rewriting?
 - Objects!
 
-## Doing It By Hand
+## Doing It By Hand {#s:oop-manual}
 
 - An object is a set of key/value pairs
 - Values can be functions
@@ -95,7 +93,7 @@ rectangle: area 6 perimeter 10
   - Building every object by hand is painful
   - Calling `it.function(it)` is clumsy
 
-## Classes
+## Classes {#s:oop-classes}
 
 - JavaScript solved these problems using [prototypes](#g:prototype)
   - Which turned out to be [clumsy and confusing](../legacy/#prototypes)
@@ -168,7 +166,7 @@ circle: area 19.634954084936208 perimeter 15.707963267948966
 rectangle: area 0.75 perimeter 4
 ```
 
-## Inheritance
+## Inheritance {#s:oop-inheritance}
 
 - Build new classes from old by:
   - Adding methods
@@ -231,7 +229,7 @@ parent: Hello, my name is Hakim
 child: Hi, I'm Bhadra. Let me tell you about microbiology...
 ```
 
-## Protocols
+## Protocols {#s:oop-protocols}
 
 - Common use of object-oriented programming is to define a [protocol](../guide/#protocol)
   - Actions that objects might take are defined in methods
@@ -345,7 +343,7 @@ in spring: penguin looks for food,,penguin is nesting
   - Old code defines expectations as an interface and a protocol
   - New code implements that interface and respects that protocol
 
-## Challenges
+## Exercises {#s:oop-exercises}
 
 ### Delays
 

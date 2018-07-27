@@ -18,8 +18,6 @@ keypoints:
 - "Use callbacks to handle the results of queries."
 ---
 
-## Introduction
-
 - Put a database under our web service
 - Many more storage options today than there were ten years ago
 - [Relational database](#g:relational-database)
@@ -57,7 +55,7 @@ insert into Workshop values(2, "ENIAC Programming", 150);
 - Then put a web service on top of it
 - Making it a separate class makes it easier to test
 
-## Starting Point
+## Starting Point {#s:database-start}
 
 - Class takes path to `.db` file as constructor parameter
 - Creates connection manager
@@ -157,7 +155,7 @@ node database-initial.js fixture.db getAll
   workshopDuration: 150 }
 ```
 
-## In-Memory Database
+## In-Memory Database {#s:database-in-memory}
 
 - Previous example always manipulates database on disk
 - Have it use an [in-memory database](#g:in-memory-database) for testing purposes
@@ -277,7 +275,7 @@ function main () {
 - And the control flow is a bit awkward
 - Look at how to refactor this in the exercises
 
-## Making It Testable
+## Making It Testable {#s:database-testable}
 
 - Put database class and its driver in separate files so that applications can load just the former
 - Have database query methods return results for display
@@ -386,7 +384,7 @@ main()
 ```
 {: title="src/database/callback-driver.js"}
 
-## Testing
+## Testing {#s:database-testing}
 
 - And *now* we can write tests
 
@@ -449,13 +447,13 @@ test('Can only get workshops that exist', (t) => {
 - Call `t.end()` to signal the end of the test
   - Because otherwise how would `tape` know?
 
-## Extending
+## Extending {#s:database-extending}
 
 - Now that we have something testable, we can develop in very short iterations
 - Add a method, write some tests, make sure nothing broke
 - Doesn't have to be test-first (although that often helps clarify design thinking)
 
-## Challenges
+## Exercises {#s:database-exercises}
 
 ### Copying Records
 

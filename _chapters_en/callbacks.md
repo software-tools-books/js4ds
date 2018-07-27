@@ -23,8 +23,6 @@ keypoints:
 - "A closure is a set of variables captured during the definition of a function."
 ---
 
-## Introduction
-
 - JavaScript relies heavily on [callback functions](#g:callback-function)
   - Instead of me giving you a result,
     you give me a function that tells me what to do next
@@ -33,7 +31,7 @@ keypoints:
 - In order to understand how they work and how to use them,
   must first understand what happens when functions are defined and called
 
-## Functions as Parameters
+## Functions as Parameters {#s:callbacks-func-params}
 
 - When we write `name = "text"`,
   JavaScript allocates a block of memory big enough for four characters,
@@ -151,7 +149,7 @@ first: o,t,t
 - When JavaScript programmers use the term "callback function",
   they usually mean a function defined and used this way
 
-## Functional Programming
+## Functional Programming {#s:callbacks-functional}
 
 - [Functional programming](#g:functional-programming) is a style of programming that:
   - Relies heavily on [higher-order functions](#g:higher-order-function)
@@ -234,7 +232,7 @@ acronym of this,is,a,test is tiat
 in one step tiat
 ```
 
-## Closures
+## Closures {#s:callbacks-closures}
 
 - Last tool we need to introduce is an extremely useful side-effect of the way memory is handled
   - Explain by example
@@ -332,7 +330,7 @@ console.log(`adding 1 and 2 to 100 -> ${result}`)
 adding 1 and 2 to 100 -> 103
 ```
 
-## Challenges
+## Exercises {#s:callbacks-exercises}
 
 ### Side Effects With `forEach`
 

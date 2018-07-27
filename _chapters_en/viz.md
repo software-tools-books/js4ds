@@ -11,15 +11,13 @@ keypoints:
 - "Chart.js isn't great either, but it and its React wrappers are usable."
 ---
 
-## Introduction
-
 - Tables are great, but visualizations are often more effective
   - At least if they're well designed...
   - ...and your audience is sighted
 - Many ways to do data visualization in the browser
 - Unfortunately, none "just work" for this tutorial's audience
 
-## Drawing Options
+## Drawing Options {#s:viz-options}
 
 - Server-side generation of static images
 - HTML `canvas` element
