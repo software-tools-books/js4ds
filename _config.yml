@@ -53,7 +53,6 @@ defaults:
 toc:
   lessons:
   - /intro/
-<<<<<<< HEAD
   - /core/
   - /callbacks/
   - /htmlcss/
@@ -65,11 +64,9 @@ toc:
   - /database/
   - /viz/
   - /capstone/
-=======
   - /finale/
   bib:
   - /bib/
->>>>>>> ca4cf5374f8424a0dcdb755568dd282151aefb8f
   extras:
   - /license/
   - /conduct/
