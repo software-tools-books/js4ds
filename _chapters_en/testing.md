@@ -31,7 +31,7 @@ keypoints:
   - Fail: the system being tested didn't do what was expected
   - Error: something went wrong with the test itself
 - Combine tests into test suites (and test suites into larger suites)
-- Write the tests themselves using [assertions](../gloss/#assertion)
+- Write the tests themselves using [assertions](#g:assertion)
   - Node provides an `assert` library with some useful functions
 
 ## Introducing Mocha
@@ -149,7 +149,7 @@ describe('server', () => {
 - `server` is our server code
 - `request(server)` starts building up a request to send
 - `.get('/')` specifies the path
-- `.expect('Content-Type', /html/)` checks the content type against a [regular expression](../gloss/#regular-expression)
+- `.expect('Content-Type', /html/)` checks the content type against a [regular expression](#g:regular-expression)
 - `.expect(200)` checks that the return code is 200 (OK)
 - `.end` is called when the whole response has been received
   - We really should check `err`
@@ -214,7 +214,7 @@ describe('server', () => {
 
 > **Regular Expressions**
 >
-> A [regular expression](../gloss/#regular-expression) is
+> A [regular expression](#g:regular-expression) is
 > a pattern for matching text which is itself written as text.
 > Alphanumeric characters match themselves,
 > so the regexp `/abc/` matches the strings `"abc"` and `"some abc here"`,
@@ -234,13 +234,13 @@ describe('server', () => {
   - The exceptions have exceptions
 - Instead, parse it to create a structure in memory and check that
   - If parsing fails because the HTML is badly formatted, that's worth knowing too
-- Structure is called [Document Object Model](../gloss/#dom) (DOM)
+- Structure is called [Document Object Model](#g:dom) (DOM)
   - Good news: there are lots of libraries that will parse HTML and produce DOM
   - Bad news: there are *lots* of libraries that will do this
 - We use `cheerio`
   - `cheerio.load` turns the text of HTML into DOM
   - Resulting object can be used like a function
-  - Can use [selectors](../gloss/#selector) to find things in it
+  - Can use [selectors](#g:selector) to find things in it
 
 ```js
 const assert = require('assert')

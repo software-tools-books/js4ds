@@ -20,8 +20,8 @@ keypoints:
 
 ## Introduction
 
-- Browsers allow us to define [event handlers](../gloss/#event-handler) to specify what to do in response to a user action
-  - A callback function that is (usually) given an [event object](../gloss/#event-object) containing information about what the user did
+- Browsers allow us to define [event handlers](#g:event-handler) to specify what to do in response to a user action
+  - A callback function that is (usually) given an [event object](#g:event-object) containing information about what the user did
 - Pass the callback function as a specifically-named property of the thing whose behavior we are specifying
 - We'll switch back to single-page examples for a moment
 
@@ -314,7 +314,7 @@ const DateSubmit = ({label, value, onChange, onCommit}) => {
 
 ### Destructuring
 
-- Note the use of [destructuring](../gloss/#destructuring) in the parameter list
+- Note the use of [destructuring](#g:destructuring) in the parameter list
   - Suppose an object `directions` has the value `{left: 1, right: 2}`
   - The expression `{left, right} = directions` will create new variables `left` and `right` and assign them 1 and 2 respectively
     - The names of the new variables must match the names of the fields in the object
@@ -375,7 +375,7 @@ class App extends React.Component {
 
 - Time to get real data
 - Use `fetch` with a URL
-- It returns a [promise](../gloss/#promise)
+- It returns a [promise](#g:promise)
   - JavaScript's newly-standardized way of making callbacks easier to work with
   - Although it practice it just seems to move the complexity around
 
@@ -399,7 +399,7 @@ class App extends React.Component {
   1. Build the URL for the data
   2. Start to fetch data from that URL
   3. Give a callback to execute when the data arrives
-  4. Give another callback to use when the data has been converted from text to [JSON](../gloss/#json)
+  4. Give another callback to use when the data has been converted from text to [JSON](#g:json)
   5. Transform that data from its raw form into the objects we need
   6. Set state
 - Transformation is:

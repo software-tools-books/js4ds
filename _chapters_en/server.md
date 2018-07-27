@@ -214,7 +214,7 @@ it is returned with the right `Content-Type` header.
 
 ### Using Query Parameters
 
-URLs may contain [query parameters](../gloss/#query-parameter)
+URLs may contain [query parameters](#g:query-parameter)
 in the form `http://site.edu?first=1&second=b`.
 Read the [online documentation for Express][express-docs] to find out
 how to access them in a server,

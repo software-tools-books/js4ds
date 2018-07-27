@@ -34,13 +34,13 @@ keypoints:
 
 ## Formatting
 
-- An HTML [document](../gloss/#document) contains [elements](../gloss/#element) and text
+- An HTML [document](#g:document) contains [elements](#g:element) and text
   - Full spec allows for other things that we will ignore for now
-- Elements are shown using [tags](../gloss/#tag)
+- Elements are shown using [tags](#g:tag)
   - Opening tag: `<tagname>`
   - Corresponding closing tag: `</tagname>`
   - If there's nothing between the two: `<tagname/>`
-- Elements must form a [tree](../gloss/#tree), i.e. must be strictly nested
+- Elements must form a [tree](#g:tree), i.e. must be strictly nested
   - If Y starts inside X, Y must end before X ends
   - So `<X>...<Y>...</Y></X>` is legal...
   - ...but `<X>...<Y>...</X></Y>` is not
@@ -92,7 +92,7 @@ keypoints:
 
 ## Attributes
 
-- Elements can be customized by giving them [attributes](../gloss/#attribute)
+- Elements can be customized by giving them [attributes](#g:attribute)
   - Enclosed in the opening tag
   - `<h1 align="center">A Centered Heading</h1>`
   - `<p class="disclaimer">This planet provided as-is.</p>`
@@ -216,7 +216,7 @@ keypoints:
 ```
 {: title="src/htmlcss/style-with-attributes.html"}
 
-- Many still do, but a better way is to using [Cascading Style Sheets](../gloss/#css) (CSS)
+- Many still do, but a better way is to using [Cascading Style Sheets](#g:css) (CSS)
   - Separates content from presentation
   - Easier to maintain consistency
 
@@ -258,7 +258,7 @@ span.keyword {
   - Try `<span class="keyword highlight">...</span>`
 
 - Can label particular elements uniquely within the page using `id="name"` attribute
-- Then refer to those elements using `#name` [selector](../gloss/#selector)
+- Then refer to those elements using `#name` [selector](#g:selector)
 - Can also use `parent > child` to select elements that are within specified other elements
 
 ```html
@@ -344,7 +344,7 @@ span.keyword {
   - First column is 4/12 wide
   - Second column is 8/12 wide
   - Bootstrap uses 12 because it has lots of divisors
-- Bootstrap is [responsive](../gloss/#responsive-design)
+- Bootstrap is [responsive](#g:responsive-design)
   - Elements change to stacked layout when screen is small
 
 - Note: interactive elements (buttons, forms) are deferred to React chapter
@@ -391,7 +391,7 @@ Why do web developers still use FORTRAN-style names in the 21st Century?
 ### Color
 
 HTML and CSS define names for a small number of colors.
-All other colors must be specified using [RGB](../gloss/#rgb) values.
+All other colors must be specified using [RGB](#g:rgb) values.
 Write a small JavaScript program that creates an HTML page
 that displays the word `color` in 100 different randomly-generated colors.
 Compare this to the color scheme used in your departmental website.

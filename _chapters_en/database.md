@@ -22,18 +22,18 @@ keypoints:
 
 - Put a database under our web service
 - Many more storage options today than there were ten years ago
-- [Relational database](../gloss/#relational-database)
-  - Databases consists of zero or more [tables](../gloss/#table)
-  - Each table has a fixed set of [fields](../gloss/#field)
+- [Relational database](#g:relational-database)
+  - Databases consists of zero or more [tables](#g:table)
+  - Each table has a fixed set of [fields](#g:field)
     - Usually drawn as columns
-  - And zero or more [records](../gloss/#record)
+  - And zero or more [records](#g:record)
     - Usually drawn as rows
   - Each record has a value for each field
     - Which may be `null` (meaning "no data" or "unknown")
-- Relational databases are manipulated using [SQL](../gloss/#sql)
-- Which is why alternatives are often called [NoSQL databases](../gloss/#nosql-database)
+- Relational databases are manipulated using [SQL](#g:sql)
+- Which is why alternatives are often called [NoSQL databases](#g:nosql-database)
   - Many different storage models
-  - Most popular stores [JSON](../gloss/#json)
+  - Most popular stores [JSON](#g:json)
   - Treat data as a document rather than as a collection of tables
 - We will use a SQL database because it's still the most common choice
 - See [this short SQL tutorial]({{site.data.links.sql_tutorial}}) for an introduction
@@ -160,7 +160,7 @@ node database-initial.js fixture.db getAll
 ## In-Memory Database
 
 - Previous example always manipulates database on disk
-- Have it use an [in-memory database](../gloss/#in-memory-database) for testing purposes
+- Have it use an [in-memory database](#g:in-memory-database) for testing purposes
 
 ```js
   constructor (mode, path) {
@@ -485,9 +485,9 @@ that selects specific records.
 The `Database` class prints a message and exits when it detects an error.
 This is bad practice,
 and I should be ashamed of having done it.
-The right thing to do is to [throw](../gloss/#throw)
-an [exception](../gloss/#exception)
-that main program can [catch](../gloss/#catch)
+The right thing to do is to [throw](#g:throw)
+an [exception](#g:exception)
+that main program can [catch](#g:catch)
 and handle however it wants.
 
 1. Modify the code to do this.

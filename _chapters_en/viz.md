@@ -25,7 +25,7 @@ keypoints:
 - HTML `canvas` element
   - Element specifies drawing region
   - Use JavaScript commands to draw lines, place text, etc.
-- [Scalable Vector Graphics](../gloss/#svg) (SVG)
+- [Scalable Vector Graphics](#g:svg) (SVG)
   - Represent stroke-based graphics using the same kinds of tags as HTML
   - Can be rendered by many applications (not just browsers)
 

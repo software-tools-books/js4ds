@@ -73,12 +73,12 @@ to do the later ones.
 - For small exercises, use an online service like [RunKit]({{site.data.links.runkit}})
 - For larger things, install the latest Long-term Support (LTS) versions of Node and NPM from <https://nodejs.org/en/download/>
 - `node` is a command-line interpreter for JavaScript
-  - The command `node` on its own starts a [read-evaluate-print loop](../gloss/#repl)
+  - The command `node` on its own starts a [read-evaluate-print loop](#g:repl)
     - Executes commands as they are typed in
     - Displays their output
   - The command `node filename.js` runs the commands in `filename.js`
     - We will see [later](../display/) how to run JavaScript in a browser
-- `npm` is Node's [package manager](../gloss/#package-manager)
+- `npm` is Node's [package manager](#g:package-manager)
   - A command-line tool for finding, installing, and updating libraries that your program depends on
   - Use <code>npm install --global <em>library-name</em></code> (without `.js` extension) to install a library globally
     (i.e., so that all projects can load it)

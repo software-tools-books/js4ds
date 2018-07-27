@@ -143,7 +143,7 @@ group by
 {: title="src/capstone/back/database.js"}
 
 - This introduces some new features of SQL
-  - [Aggregation functions](../gloss/#aggregation-function) like `min`, `avg`, and `max` combine all values in a column to produce a single value
+  - [Aggregation functions](#g:aggregation-function) like `min`, `avg`, and `max` combine all values in a column to produce a single value
   - `group by` partitions data into sub-groups (in this case, one per year)
 
 - Implementation of `Database` class look the same as [previously](../database/)
@@ -505,7 +505,7 @@ Write a small command-line JavaScript program that:
 
 ### Error Checking
 
-HTTP defines many [status codes](../gloss/#http-status-code)
+HTTP defines many [status codes](#g:http-status-code)
 that servers should return to tell clients what went wrong.
 
 1. Modify the server to return 400 with an error message

@@ -89,7 +89,7 @@ rectangle: area 6 perimeter 10
 
 - As long as we only use the value `name` and the functions `area` and `perimeter`
   we don't need to know what kind of thing we're actually working with
-- [Polymorphism](../gloss/#polymoprhism)
+- [Polymorphism](#g:polymoprhism)
 
 - But:
   - Building every object by hand is painful
@@ -97,9 +97,9 @@ rectangle: area 6 perimeter 10
 
 ## Classes
 
-- JavaScript solved these problems using [prototypes](../gloss/#prototype)
+- JavaScript solved these problems using [prototypes](#g:prototype)
   - Which turned out to be [clumsy and confusing](../legacy/#prototypes)
-- Most object-oriented languages use [classes](../gloss/#class)
+- Most object-oriented languages use [classes](#g:class)
   - These have been added to JavaScript ES6
   - We will only use them
 
@@ -123,7 +123,7 @@ sq name square and area 9
 
 - `new ClassName(...)`:
   - Creates a new blank object
-  - Inserts a (hidden) reference to the class, so that the object can find its [methods](../gloss/#method)
+  - Inserts a (hidden) reference to the class, so that the object can find its [methods](#g:method)
   - Calls `constructor` to initialize the object's state
   - Class names are written in CamelCase by convention
 - `this` is a pronoun that refers to a single specific object
@@ -172,7 +172,7 @@ rectangle: area 0.75 perimeter 4
 
 - Build new classes from old by:
   - Adding methods
-  - [Overriding methods](../gloss/#override-method)
+  - [Overriding methods](#g:override-method)
 - Start by defining a person
 
 ```js
@@ -192,8 +192,8 @@ class Person {
 ```
 {: title="src/oop/override.js"}
 
-- Then [extend](../gloss/#extend) to create a scientist
-  - Say that `Scientist` [inherits](../gloss/#inherit) from `Person`
+- Then [extend](#g:extend) to create a scientist
+  - Say that `Scientist` [inherits](#g:inherit) from `Person`
 
 ```js
 class Scientist extends Person {
@@ -364,7 +364,7 @@ c -> b
 d -> c
 ```
 
-A class like `Delay` is sometimes called [stateful](../gloss/#stateful),
+A class like `Delay` is sometimes called [stateful](#g:stateful),
 since it remembers its state from call to call.
 
 ### Filtering
@@ -387,7 +387,7 @@ d -> d
 e -> null
 ```
 
-A class like `Filter` is sometimes called [stateless](../gloss/#stateless),
+A class like `Filter` is sometimes called [stateless](#g:stateless),
 since it does not remember its state from call to call.
 
 ### Pipelines
@@ -461,4 +461,4 @@ start.update(123)
 3. Create a new class `Delay` whose `transform` method always returns the previous value.
    (Its constructor will need to take an initial value as a parameter.)
 
-This pattern is called [observer/observable](../gloss/#observer-observable).
+This pattern is called [observer/observable](#g:observer-observable).
