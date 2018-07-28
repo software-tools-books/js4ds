@@ -1,5 +1,4 @@
 ---
-layout: default
 permalink: "/en/intro/"
 title: "Introduction"
 questions:
@@ -93,3 +92,5 @@ to do the later ones.
 Install Node and NPM on your computer,
 then run the commands `node --version` and `npm --version`
 to see which versions you have.
+
+{% include links.md %}

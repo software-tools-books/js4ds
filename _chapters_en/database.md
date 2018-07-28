@@ -1,5 +1,4 @@
 ---
-layout: default
 permalink: "/en/database/"
 title: "Using a Database"
 questions:
@@ -490,3 +489,5 @@ and handle however it wants.
 
 1. Modify the code to do this.
 2. Modify the tests to check that the right exceptions are thrown when they should be.
+
+{% include links.md %}

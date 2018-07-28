@@ -1,5 +1,4 @@
 ---
-layout: default
 permalink: "/en/server/"
 title: "Building Data Services"
 questions:
@@ -219,3 +218,5 @@ how to access them in a server,
 and then write a server to do simple arithmetic:
 the URL `http://localhost:3654/add?left=1&right=2` should return `3`,
 while the URL `http://localhost:3654/subtract?left=1&right=2` should return `-1`.
+
+{% include links.md %}

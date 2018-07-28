@@ -1,5 +1,4 @@
 ---
-layout: default
 permalink: "/en/core/"
 title: Core Features
 questions:
@@ -426,3 +425,5 @@ console.log(`genus is ${genus}`)
 console.log(`species is ${species}`)
 ```
 {: title="ex/core/destructuring.js"}
+
+{% include links.md %}

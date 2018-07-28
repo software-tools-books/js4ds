@@ -1,5 +1,4 @@
 ---
-layout: default
 permalink: "/en/interactive/"
 title: "Making Web Pages Interactive"
 questions:
@@ -446,3 +445,5 @@ the application displays a warning message instead of fetching data.
 Once you are done,
 search the Internet for React validation and error messages
 and explore other tools you could use to do this.
+
+{% include links.md %}

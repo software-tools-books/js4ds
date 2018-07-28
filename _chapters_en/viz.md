@@ -1,5 +1,4 @@
 ---
-layout: default
 permalink: "/en/viz/"
 title: "Visualizing Data"
 questions:
@@ -68,3 +67,5 @@ keypoints:
   </text>
 
 </svg>
+
+{% include links.md %}

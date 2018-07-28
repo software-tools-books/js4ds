@@ -1,5 +1,4 @@
 ---
-layout: default
 permalink: "/en/display/"
 title: "Building Static Web Pages"
 questions:
@@ -387,3 +386,5 @@ even-numbered list elements are `<li>{name}</li>`
 and odd-numbered list elements are `<li><em>{name}</em></li>`.
 (You may want to use the fact that a `map` callback can have two parameters
 instead of one.)
+
+{% include links.md %}

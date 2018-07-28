@@ -1,5 +1,4 @@
 ---
-layout: default
 permalink: "/en/testing/"
 title: "Testing"
 questions:
@@ -310,3 +309,5 @@ that produce HTML
 which is then read and displayed by a browser.
 Draw a diagram to show the form taken by an H1 heading containing the word "data"
 from start to finish.
+
+{% include links.md %}

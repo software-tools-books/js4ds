@@ -1,5 +1,4 @@
 ---
-layout: default
 permalink: "/en/htmlcss/"
 title: "HTML and CSS"
 questions:
@@ -400,3 +399,5 @@ Which one hurts your eyes less?
 What different units can you use to specify text size in CSS?
 What do they mean?
 What does *anything* mean, when you get right down to it?
+
+{% include links.md %}

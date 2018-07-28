@@ -1,5 +1,4 @@
 ---
-layout: default
 permalink: "/en/legacy/"
 title: "Legacy JavaScript Issues"
 ---
@@ -17,3 +16,5 @@ FIXME: explain iteration
 <a name="prototypes"></a>
 
 FIXME: explain prototypes
+
+{% include links.md %}

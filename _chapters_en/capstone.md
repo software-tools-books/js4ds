@@ -1,7 +1,5 @@
 ---
-layout: default
 permalink: "/en/capstone/"
-datasource: "https://figshare.com/articles/Portal_Project_Teaching_Database/1314459"
 title: Capstone Project
 questions:
 - "How can I set up test data to use during development?"
@@ -11,6 +9,7 @@ keypoints:
 - "Use slices of actual data to test applications."
 - "Test summaries and small cases so that results can be checked by hand."
 - "Store state in a class, use pure functions to display it."
+datasource: "https://figshare.com/articles/Portal_Project_Teaching_Database/1314459"
 ---
 
 - Bring everything together in an extended example
@@ -543,3 +542,5 @@ Modify `DataChart` so that the word `data` isn't used in so many different ways.
 Does doing this make you feel better about yourself as a person?
 Modify it again so that the height and width of the chart are passed in as well.
 Did that help?
+
+{% include links.md %}

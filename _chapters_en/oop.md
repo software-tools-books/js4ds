@@ -1,5 +1,4 @@
 ---
-layout: default
 permalink: "/en/oop/"
 title: "Object-Oriented Programming"
 questions:
@@ -460,3 +459,5 @@ start.update(123)
    (Its constructor will need to take an initial value as a parameter.)
 
 This pattern is called [observer/observable](#g:observer-observable).
+
+{% include links.md %}
