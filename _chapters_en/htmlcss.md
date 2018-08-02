@@ -177,7 +177,7 @@ keypoints:
   - Both local filenames and URLs are supported
 
 ```html
-<a href="http://gvwilson.github.io/js-vs-rc/">This course</a>
+<a href="http://software-tools-in-javascript.github.io/js-vs-rc/">This course</a>
 <a href="https://nodejs.org/">Node.js</a>
 <a href="https://facebook.github.io/react/">React</a>
 ```
@@ -192,7 +192,7 @@ keypoints:
 
 ```html
 <img src="./html5.png" alt="HTML5 Logo with local path"/>
-<img src="https://github.com/gvwilson/js-vs-rc/blob/master/src/htmlcss/html5.png" alt="HTML5 logo online"/>
+<img src="https://github.com/software-tools-in-javascript/js-vs-rc/blob/master/src/htmlcss/html5.png" alt="HTML5 logo online"/>
 ```
 {: title="src/htmlcss/images.html"}
 
