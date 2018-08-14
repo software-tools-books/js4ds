@@ -57,9 +57,10 @@ toc:
   - /intro/
   - /core/
   - /callbacks/
-  - /htmlcss/
-  - /display/
   - /oop/
+  - /htmlcss/
+  - /promises/
+  - /display/
   - /interactive/
   - /server/
   - /testing/
