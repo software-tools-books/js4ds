@@ -8,6 +8,7 @@
 .jekyll-metadata
 __pycache__
 _site
-tex_*/inc
-tex_*/*.bib
+node_modules
+package-lock.json
 tex_*/*.pdf
+tex_*/inc

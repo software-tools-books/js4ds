@@ -34,5 +34,8 @@
     ]
   },
   "dependencies": {
+    "fs-extra": "^7.0.0",
+    "glob": "^7.1.2",
+    "glob-promise": "^3.4.0"
   }
 }

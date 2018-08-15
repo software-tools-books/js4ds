@@ -35,7 +35,7 @@ keypoints:
   console.log(t)
 })
 ```
-{: title=defer-execution/not-callbacks-alone.js}
+{: title=promises/not-callbacks-alone.js}
 ```output
 1000
 1500
@@ -51,7 +51,7 @@ keypoints:
   setTimeout(() => {console.log(`inside timer handler for ${t}`)}, t)
 })
 ```
-{: title=defer-execution/callbacks-with-timeouts.js}
+{: title=promises/callbacks-with-timeouts.js}
 ```output
 about to setTimeout for 1000
 about to setTimeout for 1500
@@ -69,7 +69,7 @@ inside timer handler for 1500
   setTimeout(() => {console.log(`inside timer handler for ${t}`)}, 0)
 })
 ```
-{: title=defer-execution/callbacks-with-zero-timeouts.js}
+{: title=promises/callbacks-with-zero-timeouts.js}
 ```output
 about to setTimeout for 1000
 about to setTimeout for 1500
@@ -91,7 +91,7 @@ const nonBlocking = (callback) => {
   nonBlocking(() => console.log(`inside callback for ${t}`))
 })
 ```
-{: title=defer-execution/non-blocking.js}
+{: title=promises/non-blocking.js}
 ```output
 about to do nonBlocking for 1000
 about to do nonBlocking for 1500
@@ -112,7 +112,7 @@ inside callback for 500
   setImmediate(() => console.log(`inside immediate handler for ${t}`))
 })
 ```
-{: title=defer-execution/set-immediate.js}
+{: title=promises/set-immediate.js}
 ```output
 about to do nextTick for 1000
 about to do nextTick for 1500
@@ -223,51 +223,79 @@ new Pledge((resolve, reject) => {
 
 ## Using Promises
 
--   FIXME: this example builds a histogram of the lengths of variable names in JavaScript files
-    -   It needs to be completely rewritten to do CSV-to-HTML transformation, but it serves to illustrate the idea
+-   Count the number of lines in a set of files
 
 -   Step 1: find input files
 
 ```js
 const fs = require('fs-extra')
 const glob = require('glob-promise')
-const acorn = require('acorn')
-const walk = require('acorn/dist/walk')
 
 const srcDir = process.argv[2]
 
-glob(`${srcDir}/**/*.js`)
+glob(`${srcDir}/**/*.txt`)
   .then(files => console.log('glob', files))
   .catch(error => console.error(error))
 ```
 {: title=promises/step-01.js}
+```
+$ node step-01.js .
+glob [ './common-sense.txt',
+  './jane-eyre.txt',
+  './life-of-frederick-douglass.txt',
+  './moby-dick.txt',
+  './sense-and-sensibility.txt',
+  './time-machine.txt' ]
+```
 
 -   Step 2: get the status of each file
 -   This doesn't work because `fs.stat` is delayed
 
 ```js
-…imports and arguments as before…
+...imports and arguments as before...
 
-glob(`${srcDir}/**/*.js`)
+glob(`${srcDir}/**/*.txt`)
   .then(files => files.map(f => fs.stat(f)))
   .then(files => console.log('glob + files.map/stat', files))
   .catch(error => console.error(error))
 ```
 {: title=promises/step-02.js}
+```
+$ node step-02.js .
+glob + files.map/stat [ Promise { <pending> },
+  Promise { <pending> },
+  Promise { <pending> },
+  Promise { <pending> },
+  Promise { <pending> },
+  Promise { <pending> } ]
+```
 
 -   Step 3: use `Promise.all` to wait for all stat promises to resolve
 
 ```js
-glob(`${srcDir}/**/*.js`)
+...imports and arguments as before...
+
+glob(`${srcDir}/**/*.txt`)
   .then(files => Promise.all(files.map(f => fs.stat(f))))
   .then(files => console.log('glob + Promise.all(files.map/stat)', files))
   .catch(error => console.error(error))
 ```
 {: title=promises/step-03.js}
+```
+$ node step-03.js
+glob + Promise.all(files.map/stat) [ Stats {
+    dev: 16777220,
+    mode: 33188,
+    ...more information... },
+    ...five more Stats objects...
+]
+```
 
 -   Step 4: we need to remember the name of the file we stat'd, so we need to write our own function that returns a pair
 
 ```js
+...imports and arguments as before...
+
 const statPair = (filename) => {
   return new Promise((resolve, reject) => {
     fs.stat(filename)
@@ -276,101 +304,64 @@ const statPair = (filename) => {
   })
 }
 
-glob(`${srcDir}/**/*.js`)
+glob(`${srcDir}/**/*.txt`)
   .then(files => Promise.all(files.map(f => statPair(f))))
   .then(files => console.log('glob + Promise.all(files.map/statPair)', files))
   .catch(error => console.error(error))
 ```
 {: title=promises/step-04.js}
+```
+$ node step-04.js .
+glob + Promise.all(files.map/statPair) [ { filename: './common-sense.txt',
+    stats: 
+     Stats {
+       dev: 16777220,
+       mode: 33188,
+       ...more information... }
+     },
+     ...five more (filename, Stats) pairs...
+]
+```
 
 -   Step 5: make sure we're only reading files
 
 ```js
-glob(`${srcDir}/**/*.js`)
+...imports and arguments as before...
+
+glob(`${srcDir}/**/*.txt`)
   .then(files => Promise.all(files.map(f => statPair(f))))
   .then(files => files.filter(pair => pair.stats.isFile()))
-  .then(files => Promise.all(files.map(f => fs.readFile(f.filename))))
+  .then(files => Promise.all(files.map(f => fs.readFile(f.filename, 'utf8'))))
   .then(contents => console.log('...readFile', contents.map(c => c.length)))
   .catch(error => console.error(error))
 ```
 {: title=promises/step-05.js}
+```
+$ node step-05.js .
+...readFile [ 148134, 1070331, 248369, 1276201, 706124, 204492 ]
+```
 
--   Step 6: gather the names of all variables
-    -   This is irrelevant to data scientists, but I'm copying this example over from another unfinished project
+-   Step 6: split into lines and count
 
 ```js
-…define statPair as before…
+...imports and arguments as before...
 
-const parse = (content) => {
-  const allNodes = []
-  try {
-    const ast = acorn.parse(content)
-    walk.simple(ast, {
-      VariableDeclarator: (node, state) => {
-        state.push(node)
-      }
-    }, null, allNodes)
-  } catch (err) {
-    console.error(`${content}: ${err.message}`)
-  }
-  return allNodes
+const countLines = (text) => {
+  return text.split('\n').length
 }
 
-glob(`${srcDir}/**/*.js`)
+glob(`${srcDir}/**/*.txt`)
   .then(files => Promise.all(files.map(f => statPair(f))))
   .then(files => files.filter(pair => pair.stats.isFile()))
-  .then(files => Promise.all(files.map(f => fs.readFile(f.filename))))
-  .then(contents => contents.map(c => parse(c)))
-  .then(nodes => console.log('...parse', nodes))
+  .then(files => Promise.all(files.map(f => fs.readFile(f.filename, 'utf8'))))
+  .then(contents => contents.map(c => countLines(c)))
+  .then(lengths => console.log('lengths', lengths))
   .catch(error => console.error(error))
 ```
 {: title=promises/step-06.js}
-
--   Step 7: calculate the lengths of all the variable names
-    -   As said earlier, this whole example needs to be re-done using CSV-to-HTML transformation
-
-```js
-glob(`${srcDir}/**/*.js`)
-  .then(files => Promise.all(files.map(f => statPair(f))))
-  .then(files => files.filter(pair => pair.stats.isFile()))
-  .then(files => Promise.all(files.map(f => fs.readFile(f.filename))))
-  .then(contents => contents.map(c => parse(c)))
-  .then(allNodeLists => allNodeLists.map(nodeList => nodeList.map(node => node.id.name.length)))
-  .then(lengths => console.log('...lengths', lengths))
-  .catch(error => console.error(error))
 ```
-{: title=promises/step-07.js}
-
--   Step 8: create histogram of variable name lengths
-
-```js
-…define statPair as before…
-
-…define parse as before…
-
-const makeHistogram = (lengths) => {
-  console.log('lengths are', lengths)
-  const largest = Math.max(...lengths)
-  const bins = new Array(largest + 1).fill(0)
-  lengths.forEach(n => { bins[n] += 1 })
-  return bins
-}
-
-const display = (bins) => {
-  bins.forEach((val, i) => console.log(`${i} ${val}`))
-}
-
-glob(`${srcDir}/**/*.js`)
-  .then(files => Promise.all(files.map(f => statPair(f))))
-  .then(files => files.filter(pair => pair.stats.isFile()))
-  .then(files => Promise.all(files.map(f => fs.readFile(f.filename))))
-  .then(contents => contents.map(c => parse(c)))
-  .then(allNodeLists => allNodeLists.map(nodeList => nodeList.map(node => node.id.name.length)))
-  .then(allNameLengths => [].concat(...allNameLengths))
-  .then(allLengths => makeHistogram(allLengths))
-  .then(histogram => display(histogram))
-  .catch(error => console.error(error))
+$ node step-06.js .
+lengths [ 2654, 21063, 4105, 22334, 13028, 3584 ]
 ```
-{: title=promises/step-08.js}
 
 {% include links.md %}
