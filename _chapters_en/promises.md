@@ -114,12 +114,12 @@ inside callback for 500
 ```
 {: title=promises/set-immediate.js}
 ```output
-about to do nextTick for 1000
-about to do nextTick for 1500
-about to do nextTick for 500
-inside timer handler for 1000
-inside timer handler for 1500
-inside timer handler for 500
+about to do setImmediate for 1000
+about to do setImmediate for 1500
+about to do setImmediate for 500
+inside immediate handler for 1000
+inside immediate handler for 1500
+inside immediate handler for 500
 ```
 
 ## Promises
