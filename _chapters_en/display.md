@@ -18,7 +18,6 @@ keypoints:
 - "Use Babel to translate JSX into JavaScript in the browser."
 - "Define new React components with a pseudo-HTML element and a corresponding function."
 - "Attributes to pseudo-HTML are passed to the JavaScript function as a `props` object."
-- "Use Node's `http-server` to load scripts from files during development."
 ---
 
 - In the beginning, people created HTML pages by typing them in
@@ -73,14 +72,14 @@ FIXME-18: diagram
     </div>
     <script>
       ReactDOM.render(
-        React.DOM.h1(null, "Hello, React"),
+        React.DOM.h1(null, "Hello React"),
         document.getElementById("app")
       )
     </script>
   </body>
 </html>
 ```
-{: title="src/react/hello-react.html"}
+{: title="src/display/hello-react.html"}
 
 - Head of the page loads two React libraries from the web
   - Use locally-installed libraries later
@@ -94,29 +93,30 @@ FIXME-18: diagram
   - Alters the representation of the page in memory, not the source of the page on disk
   - Can't put the script in a separate JavaScript file and load it in the head
     because the body might not exist in memory when the script is run
+  - Browsers try to do things asynchronously to improve speed from the user's point of view
+  - Which means we have to think a little harder
 
 - The first parameter to `React.DOM.h1` can be an object of attributes
+  - Note: `fontStyle` rather than `font-style` to make things look like valid JavaScript variables
 
 ```html
   <body>
-    <div id="app">
-      <!-- this is filled in -->
-    </div>
+    <div id="app"></div>
     <script>
       const attributes = {
         'style': {
           'background': 'pink',
-          'font-style': 'italic'
+          'fontStyle': 'italic'
         }
       }
       ReactDOM.render(
-        React.DOM.h1(attributes, "Hello, world"),
+        React.DOM.h1(attributes, "Hello Stylish"),
         document.getElementById("app")
       )
     </script>
   </body>
 ```
-{: title="src/react/stylish.html"}
+{: title="src/display/stylish.html"}
 
 ## JSX {#s:display-jsx}
 
@@ -127,26 +127,24 @@ FIXME-18: diagram
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Hello World</title>
+    <title>Hello JSX</title>
     <meta charset="utf-8">
     <script src="https://fb.me/react-15.0.1.js"></script>
     <script src="https://fb.me/react-dom-15.0.1.js"></script>
     <script src="https://unpkg.com/babel-standalone@6/babel.js"></script>
   </head>
   <body>
-    <div id="app">
-      <!-- this is filled in -->
-    </div>
+    <div id="app"></div>
     <script type="text/babel">
       ReactDOM.render(
-        <h1>Hello, world</h1>,
-        document.getElementById("app")
+        <h1>Hello JSX</h1>,
+        document.getElementById('app')
       )
     </script>
   </body>
 </html>
 ```
-{: title="src/react/hello-jsx.html"}
+{: title="src/display/hello-jsx.html"}
 
 - Include Babel to translate mixed content into pure JavaScript
 - Add `type="text/babel"` to the `script` tag to tell Babel where to do its work
@@ -158,34 +156,35 @@ FIXME-18: diagram
 
 ```html
   <body>
-    <div id="app">
-      <!-- this is filled in -->
-    </div>
+    <h1>JSX List</h1>
+    <div id="app"></div>
     <script type="text/babel">
       const allNames = ['McNulty', 'Jennings', 'Snyder', 'Meltzer', 'Bilas', 'Lichterman']
       ReactDOM.render(
         <ul>{allNames.map((name) => { return <li>{name}</li> })}</ul>,
-        document.getElementById("app")
+        document.getElementById('app')
       )
     </script>
   </body>
 ```
-{: title="src/react/jsx-list.html"}
+{: title="src/display/jsx-list.html"}
 
 - Have to use `map` rather than a loop because the function has to return something
   - Could build up a string through repeated concatenation, but this is cleaner
 - *Must* return exactly one root node, because this is one function call
+- The browser console will warn us that each list element ought to have a unique `key` property
+  - Want each element of the page to be selectable
+  - Add this later
 
 ## Creating Components {#s:display-components}
 
 - If we're defining functions, we can write new ones
-- Component names must start with a capital letter to differentiate them from regular tags.
+- React requires component names to start with a capital letter to differentiate them from regular tags.
 
 ```html
   <body>
-    <div id="app">
-      <!-- this is filled in -->
-    </div>
+    <h1>Create Component</h1>
+    <div id="app"></div>
     <script type="text/babel">
       const allNames = ['McNulty', 'Jennings', 'Snyder', 'Meltzer', 'Bilas', 'Lichterman']
 
@@ -197,12 +196,12 @@ FIXME-18: diagram
         <div>
           <ListOfNames />
         </div>,
-        document.getElementById("app")
+        document.getElementById('app')
       )
     </script>
   </body>
 ```
-{: title="src/react/create-components.html"}
+{: title="src/display/create-components.html"}
 
 - What we really want to do is parameterize
   - After all, the JSX is being turned into a function
@@ -210,9 +209,8 @@ FIXME-18: diagram
 
 ```html
   <body>
-    <div id="app">
-      <!-- this is filled in -->
-    </div>
+    <h1>Pass Parameters</h1>
+    <div id="app"></div>
     <script type="text/babel">
       const allNames = ['McNulty', 'Jennings', 'Snyder', 'Meltzer', 'Bilas', 'Lichterman']
 
@@ -224,45 +222,55 @@ FIXME-18: diagram
         <div>
           <ul>{allNames.map((name) => { return <ListElement name={name} /> })}</ul>
         </div>,
-        document.getElementById("app")
+        document.getElementById('app')
       )
     </script>
   </body>
 ```
-{: title="src/react/pass-parameters.html"}
+{: title="src/display/pass-parameters.html"}
 
 - Gives us exactly one logical place to do calculations, set style, etc.
 
-## Developing with a Server {#s:display-server}
+## Developing with Parcel {#s:display-parcel}
 
 - Putting all the source in the HTML file, in one block, is bad practice
 - Already seen problems with loading source in header
-  - Page doesn't exist yet
+  - Page doesn't exist yet in memory, so ReactDOM can't find the element it's supposed to fill in
 - And what about `require` statements?
   - Browser tries to load files when it sees those
   - But whose serves them?
-- `npm install --save http-server` to get a little HTTP server
-- Write a little shell script to change directories and run the server:
+- Solution: use a [bundler]{#g:bundler} to combine everything into one big file
+  - And run a server for previewing during development
+- So... many... options...
+  - [Webpack][webpack] is probably the most widely used, but it is rather complex
+- We will use [Parcel][parcel]
+  - Younger, and therefore not yet bloated, but give it time
+- `npm install parcel-bundler`
+- `parcel serve -p 4000 src/display/pass-parameters.html`
+  - Looks in the named file to find JavaScript
+  - Looks recursively at what that loads, etc.
+  - Creates a single file in a directory called `./dist`
+  - Serves out of there
+  - Also caches things in `./.cache`
+  - So both directories need to be added to `.gitignore`
+- Very common to add tasks like this to `package.json`
 
-```sh
-#!/usr/bin/env bash
-server_path=${PWD}/node_modules/.bin/http-server
-cd $1 && ${server_path}
-```
-{: title="bin/run-server"}
-
-- Add a line to `package.json` to run this
-
-```js
+```json
   "scripts": {
-    "demo": "./bin/run-server",
+    "dev": "parcel serve -p 4000",
     ...
-  }
+  },
 ```
 
-- Everything after `--` on the command line is passed to the script
-  - So `npm run demo -- src/react/hello-separate` will serve what's in that directory
-- Now include the JavaScript like any other script
+- Now use `npm run dev -- src/display/pass-parameters.html`
+  - Everything after `--` is passed to the script being run
+  - And now other developers have a record of how to use the project
+  - Unfortunately, there is no standard way to add comments to a JSON file...
+
+## Multiple Files {#s:display-multiple}
+
+- Putting scripts in the body of the page is a bad practice
+- So move the JSX into `app.js` and load that in the `head` of the page
 
 ```html
 <!DOCTYPE html>
@@ -273,76 +281,81 @@ cd $1 && ${server_path}
     <script src="https://fb.me/react-15.0.1.js"></script>
     <script src="https://fb.me/react-dom-15.0.1.js"></script>
     <script src="https://unpkg.com/babel-standalone@6/babel.js"></script>
-    <script src="app.js" type="text/babel"></script>
+    <script src="app.js"></script>
   </head>
   <body>
-    <div id="app">
-      <!-- this is filled in -->
-    </div>
+    <h1>Hello Separate</h1>
+    <div id="app"></div>
   </body>
 </html>
 ```
-{: title="src/react/hello-separate/index.html"}
-
-- And put the JavaScript in the file
+{: title="src/display/hello-separate/index.html"}
 
 ```js
 ReactDOM.render(
-  <h1>Hello, separate</h1>,
+  <p>Rendered by React</p>,
   document.getElementById("app")
 )
-```
-{: title="src/react/hello-separate/app.js"}
+``
+{: title="src/display/hello-separate/app.js"}
 
-- Can now load many separate files
-  - Warning: do this in the HTML with multiple script tags
-  - This is *not* how we will do production applications (which will have a compilation step)
-- HTML page:
+- Get the `h1` title but *not* the paragraph
+- Look in the browser console
+  - `Error: _registerComponent(...): Target container is not a DOM element.`
+- As mentioned earlier, the script loads and runs before the page has been constructed in memory
+  - So ReactDOM can't find something with an ID of `"app"`
+- Solution: load the script in the body of the page
+
+```js
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Hello Bottom</title>
+    <meta charset="utf-8">
+  </head>
+  <body>
+    <h1>Hello Bottom</h1>
+    <div id="app"></div>
+    <script src="./app.js"></script>
+  </body>
+</html>
+```
+
+- And rewrite `app.js` so that it loads the libraries it needs
+  - Because there's no guarantee that libraries loaded in `head` will be available when `app.js` runs
+
+```js
+const React = require('react')
+const ReactDOM = require('react-dom')
+
+ReactDOM.render(
+  <p>Rendered by React</p>,
+  document.getElementById('app')
+)
+```
+
+- Note: don't have to shut down the server every time we make changes
+  - Parcel watches for changes in files
+- Note also: Parcel looks at the libraries `app.js` loads and bundles them up for us
+  - `dist/app.ef6b320b.js` is 19930 lines
+- A better option than loading in the bottom is to add the `async` attribute to the script in the head of the page
+  - Tells the browser not to do anything with the JavaScript until the page has finished building
+  - Added to the HTML spec for exactly this purpose
 
 ```html
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Hello Separate</title>
+    <title>Hello Parcel</title>
     <meta charset="utf-8">
-    <script src="https://fb.me/react-15.0.1.js"></script>
-    <script src="https://fb.me/react-dom-15.0.1.js"></script>
-    <script src="https://unpkg.com/babel-standalone@6/babel.js"></script>
-    <script src="ListElement.js" type="text/babel"></script>
-    <script src="app.js" type="text/babel"></script>
+    <script src="./app.js" async></script>
   </head>
   <body>
-    <div id="app">
-      <!-- this is filled in -->
-    </div>
+    <div id="app"></div>
   </body>
+</html>
 ```
-{: title="src/react/multiple-files/index.html"}
-
-- React code to format a list element
-
-```js
-const ListElement = (props) => {
-  return (<li id="{props.name}"><em>{props.name}</em></li>)
-}
-```
-{: title="src/react/multiple-files/ListElement.js"}
-
-- Main application
-- Note that this JavaScript *doesn't* have an `import` or `require` statement
-
-```js
-const allNames = ['McNulty', 'Jennings', 'Snyder', 'Meltzer', 'Bilas', 'Lichterman']
-ReactDOM.render(
-  <ul>{allNames.map((name) => { return <ListElement name={name} /> })}</ul>,
-  document.getElementById("app")
-)
-```
-{: title="src/react/multiple-files/app.js"}
-
-- But this is probably a bad layout
-  - Would make more sense to have a `Name` element that formatted a name
-  - And then let the application decide to put those names in a list
+{: title="src/display/hello-parcel/index.html"}
 
 ## Exercises {#s:display-exercises}
 
