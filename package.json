@@ -34,5 +34,12 @@
     ]
   },
   "dependencies": {
+    "react": "^16.4.2",
+    "react-vega": "^4.0.2",
+    "react-vega-lite": "^2.0.2",
+    "vega": "^4.2.0",
+    "vega-embed": "^3.18.2",
+    "vega-lib": "^4.2.0",
+    "vega-lite": "^3.0.0-rc3"
   }
 }
