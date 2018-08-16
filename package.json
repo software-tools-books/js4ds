@@ -34,7 +34,9 @@
     ]
   },
   "dependencies": {
+    "http-server": "^0.11.1",
     "react": "^16.4.2",
+    "react-dom": "^16.4.2",
     "react-vega": "^4.0.2",
     "react-vega-lite": "^2.0.2",
     "vega": "^4.2.0",

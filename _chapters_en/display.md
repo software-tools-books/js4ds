@@ -316,6 +316,7 @@ ReactDOM.render(
       <!-- this is filled in -->
     </div>
   </body>
+</html>
 ```
 {: title="src/react/multiple-files/index.html"}
 
