@@ -1,14 +1,20 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Hello Separate</title>
+    <title>Loading Vega from a File</title>
     <meta charset="utf-8">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vega/3.0.7/vega.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vega-lite/2.0.1/vega-lite.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vega-embed/3.0.0-rc7/vega-embed.js"></script>
     <script src="https://fb.me/react-15.0.1.js"></script>
     <script src="https://fb.me/react-dom-15.0.1.js"></script>
     <script src="https://unpkg.com/babel-standalone@6/babel.js"></script>
-    <script src="app.js" type="text/babel"></script>
+    <script src="app.js"></script>
   </head>
   <body>
     <div id="app"></div>
+    <script type="text/javascript">
+      vegaEmbed("#app", spec, options)
+    </script>
   </body>
 </html>
