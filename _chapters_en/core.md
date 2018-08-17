@@ -397,6 +397,35 @@ and `false` for everything it considers `falsy`,
 *except* empty arrays:
 `isTruthy` should return `false` for those.
 
+### Combining Different Types
+
+What result would you expect from running the code below?
+Try running it and see whether the output matched your expectations.
+What are the implications of this behavior when working with real-world data?
+
+```js
+const data1 = [3, 7, 8, 9, 1]
+const data2 = [0, 3, -1, "NaN", 8]
+
+console.log("aggregating data1")
+var total = 0
+for (let d of data1) {
+    total += d
+}
+console.log(total)
+
+console.log("aggregating data2")
+total = 0
+for (let d of data2) {
+    total += d
+}
+console.log(total)
+```
+
+Change one of the loops above so that the code runs through the indexes of the
+array (`data1` or `data2`) instead of the values.
+Does the output match your expectations this time?
+
 ### What Does This Do?
 
 Explain what is happening in the assignment statement
