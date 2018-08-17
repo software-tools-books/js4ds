@@ -98,6 +98,7 @@ the type of function () { [native code] } is function
   - The latter returns the indexes of the collection (e.g., 0, 1, 2)
   - Which has some [traps](../legacy/#iteration)
   - Note that indexing starts from 0. This may be different from the language that you're used to
+  - Indentation is optional and for readability purposes only. This may be different from the language that you're used to
 - Use `const` to define a [constant](#g:constant)
 - `number`
   - JavaScript doesn't have separate types for integers and floating-point
