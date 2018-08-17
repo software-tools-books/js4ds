@@ -353,6 +353,9 @@ What kind of thing is `typeof`?
 Is it an expression?
 A function?
 Something else?
+_Note: You might notice that `typeof typeof` is
+syntactically invalid. In such circumstances, an internet search engine is your
+friend. Also recommended: the Mozilla Developer Network (MDN) JS reference: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference_
 
 ### Fill in the Blanks
 
