@@ -409,14 +409,14 @@ What are the implications of this behavior when working with real-world data?
 const data1 = [3, 7, 8, 9, 1]
 const data2 = [0, 3, -1, "NaN", 8]
 
-console.log("aggregating data1")
+console.log(`aggregating data1`)
 var total = 0
 for (let d of data1) {
     total += d
 }
 console.log(total)
 
-console.log("aggregating data2")
+console.log(`aggregating data2`)
 total = 0
 for (let d of data2) {
     total += d
@@ -460,5 +460,26 @@ console.log(`genus is ${genus}`)
 console.log(`species is ${species}`)
 ```
 {: title="ex/core/destructuring.js"}
+
+### Return to me, for my heart wants you only
+
+```js
+const verbose_sum = (first, second) => {
+    console.log(`Going to add ${first} to ${second}`)
+    let total = first + second
+    return total
+    console.log(`Finished summing`)
+}
+
+var result = verbose_sum(3, 6)
+console.log(result)
+```
+
+What output would you see in the console if you ran the code above?
+- Going to add ${first} to ${second}; 9
+- Going to add 3 to 6; 9; Finished summing
+- Going to add 3 to 6; 9
+- Going to add 3 to 6; 36
+
 
 {% include links.md %}
