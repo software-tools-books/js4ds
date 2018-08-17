@@ -37,7 +37,7 @@ keypoints:
 - "Use modules to divide code between multiple files for re-use."
 - "Assign to `module.exports` to specify what a module exports."
 - "`require(...path...)` imports a module."
-- "Paths beginning with '.' or '/' are imported locally, but paths without '.' look in the library."
+- "Paths beginning with '.' or '/' are imported locally, but paths without '.' or '/' look in the library."
 ---
 
 - Introduce enough of JavaScript's core features to get started
