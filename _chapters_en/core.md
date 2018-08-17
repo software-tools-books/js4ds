@@ -213,6 +213,7 @@ creature[species] is Jacchus
   - The [dotted notation](#g:dotted-notation) cannot
 - Can write keys without quotes
   - In which case they are treated as strings
+- To get string representation of whole object, try `JSON.stringify(object)`
 
 ## Functions {#s:core-functions}
 
