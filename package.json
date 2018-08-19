@@ -12,12 +12,9 @@
   "license": "SEE LICENSE IN LICENSE.md",
   "homepage": "http://gvwilson.github.io/js-vs-ds/",
   "scripts": {
-    "demo": "./bin/run-server.sh",
+    "dev": "parcel serve -p 4000",
     "lint": "eslint bin/*.js src/**/*.js",
-    "build": "NODE_ENV=production webpack",
-    "dev": "NODE_ENV=development webpack-dev-server",
     "standard": "standard",
-    "start": "react-scripts start",
     "test": "mocha",
     "words": "bin/wc.js *.md *.md *.md"
   },
@@ -35,6 +32,7 @@
   },
   "dependencies": {
     "http-server": "^0.11.1",
+    "parcel-bundler": "^1.9.7",
     "react": "^16.4.2",
     "react-dom": "^16.4.2",
     "react-vega": "^4.0.2",
@@ -42,8 +40,6 @@
     "vega": "^4.2.0",
     "vega-embed": "^3.18.2",
     "vega-lib": "^4.2.0",
-    "vega-lite": "^3.0.0-rc3",
-    "webpack": "^4.16.5",
-    "webpack-cli": "^3.1.0"
+    "vega-lite": "^3.0.0-rc3"
   }
 }

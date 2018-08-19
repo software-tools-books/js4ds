@@ -88,6 +88,7 @@ definitions if that's done.
 [open-source-guides]: https://opensource.guide/
 [orwell-why]: http://www.resort.com/~prime8/Orwell/whywrite.html
 
+[parcel]: https://parceljs.org/
 [partanen-finland-schools]: https://www.theatlantic.com/national/archive/2011/12/what-americans-keep-ignoring-about-finlands-school-success/250564/
 [pep-8]: https://www.python.org/dev/peps/pep-0008/
 [personalized-learning-improvements]: https://www.rand.org/pubs/research_briefs/RB9994.html
@@ -125,6 +126,7 @@ definitions if that's done.
 [video-screencast-bad]: https://youtu.be/xcnoHaxXvdQ
 
 [watters-timeline]: http://teachingmachin.es/timeline.html
+[webpack]: https://webpack.js.org/
 [wickes-analysis]: https://twitter.com/elliewix/status/981285432922202113
 [wilson-reasons]: http://third-bit.com/2016/04/29/why-teachers-dont-collaborate.html
 [wordpress]: https://wordpress.org/

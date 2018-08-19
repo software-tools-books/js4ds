@@ -1,4 +1,4 @@
 ReactDOM.render(
-  <h1>Hello, separate</h1>,
+  <h1>Rendered by React</h1>,
   document.getElementById("app")
 )
