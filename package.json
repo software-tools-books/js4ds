@@ -12,12 +12,9 @@
   "license": "SEE LICENSE IN LICENSE.md",
   "homepage": "http://gvwilson.github.io/js-vs-ds/",
   "scripts": {
-    "demo": "./bin/run-server.sh",
+    "dev": "parcel serve -p 4000",
     "lint": "eslint bin/*.js src/**/*.js",
-    "build": "NODE_ENV=production webpack",
-    "dev": "NODE_ENV=development webpack-dev-server",
     "standard": "standard",
-    "start": "react-scripts start",
     "test": "mocha",
     "words": "bin/wc.js *.md *.md *.md"
   },
@@ -37,6 +34,10 @@
     "fs-extra": "^7.0.0",
     "glob": "^7.1.2",
     "glob-promise": "^3.4.0",
+    "http-server": "^0.11.1",
+    "parcel-bundler": "^1.9.7",
+    "react": "^16.4.2",
+    "react-dom": "^16.4.2",
     "webpack": "^4.16.5",
     "webpack-cli": "^3.1.0"
   }
