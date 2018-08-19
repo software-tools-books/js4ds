@@ -22,3 +22,5 @@ const options = {
     "editor": false
   }
 }
+
+vegaEmbed("#vis", spec, options)
