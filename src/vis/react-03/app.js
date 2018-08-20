@@ -1,4 +1,4 @@
-import embed from 'vega-embed'
+import vegaEmbed from 'vega-embed'
 
 const spec = {
   "$schema": "https://vega.github.io/schema/vega-lite/v2.0.json",
@@ -25,4 +25,4 @@ const options = {
   }
 }
 
-embed("#vis", spec, options)
+vegaEmbed("#vis", spec, options)

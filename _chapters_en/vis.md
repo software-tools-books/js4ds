@@ -1,4 +1,4 @@
----
+`---
 permalink: "/en/viz/"
 title: "Visualizing Data"
 questions:
@@ -237,11 +237,98 @@ keypoints:
 
 ## Local Installation {#s:viz-vega-local}
 
-FIXME: explain how to install and use Vega-Lite locally
+- Loading Vega from a CDN reduces the load on our server
+  - But prevents offline development
+  - So let's load from local files
+- Step 1: put our application in `app.js` and load that (using the `async` attribute as before)
 
-## Integration {#s:viz-vega-react}
+```html
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Load Vega from a File</title>
+    <meta charset="utf-8">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vega/3.0.7/vega.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vega-lite/2.0.1/vega-lite.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vega-embed/3.0.0-rc7/vega-embed.js"></script>
+    <script src="app.js" async></script>
+  </head>
+  <body>
+    <div id="vis"></div>
+  </body>
+</html>
+```
+{: title="src/vis/react-01/index.html"}
+```js
+const spec = {
+  ...as before...
+}
 
-FIXME: integrate Vega-Lite with React
+const options = {
+  ...as before...
+}
+
+vegaEmbed("#vis", spec, options)
+```
+
+- Step 2: `npm install vega vega-lite vega-embed`
+- Only require the `vegaEmbed`  in `app.js`
+  - Parcel should find and bundle all of the dependencies
+
+```
+const vegaEmbed = require('vega-embed')
+```
+
+- Run this: nothing appears in the page
+  - Look in the console: browser tells us that `vegaEmbed` is not a function
+  - Open it in the object inspector (FIXME: screenshot)
+  - Sure enough, the thing we want is called `vegaEmbed.default`
+- This is where we trip over something that's still painful in 2018
+  - Old method of getting libraries is `require`, and that's still what Node supports as of Version 10.9.0
+  - New standard is `import`
+  - Allows a module to define a default value so that `import 'something'` gets a function a class, or whatever
+  - Which is really handy, but `require` doesn't work that way
+- Using Node on the command, we can:
+  - Add the `--experimental-modules` flag
+  - Rename our files with a `.mjs` extension
+  - Both of which are annoying
+- Alternative: get the thing we want by accessing `.default` during import
+  - Or by referring to `vegaEmbed.default` when we call
+
+```
+const vegaEmbed = require('vega-embed').default
+
+const spec = {
+  ...as before...
+}
+
+const options = {
+  ...as before...
+}
+
+vegaEmbed("#vis", spec, options)
+```
+{: title="src/vis/react-02/app.js"}
+
+- Option 3: use `import` where we can and fix the `require` statements in server-side code when Node is upgraded
+  - We can call the thing we import anything we want, but we will stick to `vegaEmbed` for consistency with previous examples
+
+```js
+import vegaEmbed from 'vega-embed'
+
+const spec = {
+  ...as before...
+}
+
+const options = {
+  ...as before...
+}
+
+vegaEmbed("#vis", spec, options)
+```
+
+- Bundled file is 74.5K lines of JavaScript
+  - But at least it's all in one place for distribution
 
 ## Exercises {#s:viz-exercises}
 

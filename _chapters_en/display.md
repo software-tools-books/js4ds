@@ -266,6 +266,8 @@ FIXME-18: diagram
   - Everything after `--` is passed to the script being run
   - And now other developers have a record of how to use the project
   - Unfortunately, there is no standard way to add comments to a JSON file...
+- If we give the directory name `src/display` instead of the filename, we get an error message in the console telling us that the character encoding of the document was not recognized
+  - Because Parcel is trying to read the actual directory structure as a file
 
 ## Multiple Files {#s:display-multiple}
 
