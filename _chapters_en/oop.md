@@ -1,6 +1,6 @@
 ---
 permalink: "/en/oop/"
-title: "Object-Oriented Programming"
+title: "Objects and Classes"
 questions:
 - "How can I use classes to keep code and data together?"
 - "What are the benefits of doing this?"

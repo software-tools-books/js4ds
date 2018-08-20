@@ -28,6 +28,7 @@ exclude:
 - README.md
 - bin
 - misc
+- node_modules
 - requirements.txt
 - "tex_*"
 
@@ -64,7 +65,7 @@ toc:
   - /server/
   - /testing/
   - /database/
-  - /viz/
+  - /vis/
   - /capstone/
   - /finale/
   bib:
