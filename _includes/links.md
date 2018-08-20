@@ -95,6 +95,7 @@ definitions if that's done.
 [unglue-versions]: https://unglue.it/work/313918/
 
 [variable-roles]: http://saja.kapsi.fi/var_roles/
+[vega-lite]: http://vega.github.io/
 [video-bad-teaching]: https://www.youtube.com/watch?v=-ApVt04rB4U
 [video-live-coding-bad]: https://youtu.be/bXxBeNkKmJE
 [video-live-coding-good]: https://youtu.be/SkPmwe_WjeY

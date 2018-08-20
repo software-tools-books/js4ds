@@ -1,6 +1,6 @@
 ---
 permalink: "/en/callbacks/"
-title: "Programming with Callbacks"
+title: "Callbacks"
 questions:
 - "What happens when a function is defined?"
 - "How can I pass a function to another function?"

@@ -1,6 +1,6 @@
 ---
 permalink: "/en/display/"
-title: "Building Static Web Pages"
+title: "Static Pages"
 questions:
 - "What JavaScript libraries should I use to create a web pages?"
 - "How can I use them to create basic HTML elements?"

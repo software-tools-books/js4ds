@@ -11,18 +11,6 @@ keypoints:
 - "This course is for people who know what loops and functions are, but have never used JavaScript or built web applications."
 ---
 
-I was originally going to call this book *JavaScript for Scientists and Engineers*,
-but [David Beazley thought that "versus" would make a better title]({{site.data.links.beazley_tweet}}).
-That one-word change sums up how many people view the language,
-but I hope I can convince you that modern JavaScript is usable as well as useful.
-I also changed the second half of the title in the hope that
-this guide will help librarians,
-digital humanists,
-and everyone else who uses computing in their research,
-not just scientists and engineers.
-
-See [[Wils2018](#CITE)] for background on the teaching methods used.
-
 ## Who You Are {#s:intro-personas}
 
 Every lesson should aim to [meet the needs of specific learners]({{site.data.links.h2tp}}).

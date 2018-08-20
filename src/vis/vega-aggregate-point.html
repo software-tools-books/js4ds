@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Vega-Lite Aggregate Points</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/vega/3.0.7/vega.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/vega-lite/2.0.1/vega-lite.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/vega-embed/3.0.0-rc7/vega-embed.js"></script>
+</head>
+<body>
+  <h1>Vega-Lite Aggregate Points</h1>
+
+  <div id="vis"></div>
+
+  <script type="text/javascript">
+    let spec = {
+      "$schema": "https://vega.github.io/schema/vega-lite/v2.0.json",
+      "description": "Disable control links.",
+      "data": {
+        "values": [
+          {"a": "P", "b": 19},
+          {"a": "P", "b": 28},
+          {"a": "P", "b": 91},
+          {"a": "Q", "b": 55},
+          {"a": "Q", "b": 81},
+          {"a": "Q", "b": 87},
+          {"a": "R", "b": 43},
+          {"a": "R", "b": 52},
+          {"a": "R", "b": 53}
+        ]
+      },
+      "mark": "point",
+      "encoding": {
+        "x": {"field": "a", "type": "nominal"},
+        "y": {"field": "b", "type": "quantitative", "aggregate": "average"}
+      }
+    }
+    let options = {
+      "actions": {
+        "export": false,
+        "source": false,
+        "editor": false
+      }
+    }
+    vegaEmbed("#vis", spec, options)
+  </script>
+</body>
+</html>
