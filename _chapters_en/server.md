@@ -213,7 +213,7 @@ it is returned with the right `Content-Type` header.
 
 URLs may contain [query parameters](#g:query-parameter)
 in the form `http://site.edu?first=1&second=b`.
-Read the [online documentation for Express][express-docs] to find out
+Read the online documentation for [Express][express] to find out
 how to access them in a server,
 and then write a server to do simple arithmetic:
 the URL `http://localhost:3654/add?left=1&right=2` should return `3`,
