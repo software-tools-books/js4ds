@@ -1,5 +1,5 @@
 `---
-permalink: "/en/viz/"
+permalink: "/en/vis/"
 title: "Visualizing Data"
 questions:
 - "How can I visualize data on the web?"
@@ -16,7 +16,7 @@ keypoints:
   - Declarative: specify data and settings, let the code take care of itself
   - Doesn't do everything, but does common things well and easily
 
-## Drawing Options {#s:viz-options}
+## Drawing Options {#s:vis-options}
 
 - Server-side generation of static images
 - HTML `canvas` element
@@ -68,7 +68,7 @@ keypoints:
 
 </svg>
 
-## Vega-Lite {#s:viz-vega-lite}
+## Vega-Lite {#s:vis-vega-lite}
 
 - Start by creating a skeleton web page to hold our visualization
 - For now, load Vega, Vega-Lite and Vega-Embed from the web
@@ -165,7 +165,7 @@ keypoints:
 
 <figure>
   <figcaption>Mark and Encoding</figcaption>
-  <img id="f:viz-vega-mark-encoding" src="../../files/vega-mark-encoding.png" alt="Mark and Encoding" />
+  <img id="f:vis-vega-mark-encoding" src="../../files/vega-mark-encoding.png" alt="Mark and Encoding" />
 </figure>
 
 - Use options to turn off those features
@@ -191,7 +191,7 @@ keypoints:
 
 <figure>
   <figcaption>Without Controls</figcaption>
-  <img id="f:viz-vega-disable-controls" src="../../files/vega-disable-controls.png" alt="Without Controls" />
+  <img id="f:vis-vega-disable-controls" src="../../files/vega-disable-controls.png" alt="Without Controls" />
 </figure>
 
 - Vega-Lite has a *lot* of options
@@ -232,10 +232,10 @@ keypoints:
 
 <figure>
   <figcaption>Aggregating and Using Points</figcaption>
-  <img id="f:viz-vega-aggregate-points" src="../../files/vega-aggregate-points.png" alt="Aggregating and Using Points" />
+  <img id="f:vis-vega-aggregate-points" src="../../files/vega-aggregate-points.png" alt="Aggregating and Using Points" />
 </figure>
 
-## Local Installation {#s:viz-vega-local}
+## Local Installation {#s:vis-vega-local}
 
 - Loading Vega from a CDN reduces the load on our server
   - But prevents offline development
@@ -330,7 +330,7 @@ vegaEmbed("#vis", spec, options)
 - Bundled file is 74.5K lines of JavaScript
   - But at least it's all in one place for distribution
 
-## Exercises {#s:viz-exercises}
+## Exercises {#s:vis-exercises}
 
 FIXME: visualization exercises
 

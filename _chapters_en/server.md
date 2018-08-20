@@ -18,7 +18,7 @@ keypoints:
 - "Use dynamic loading to support plugin extensions."
 ---
 
-- HTTP request/response cycle
+- [HTTP](#g:http) uses a [request](#g:http-request)/[response](#g:http-response) cycle
   - Client (browser or other program) makes a connection
   - Sends a blob of text specifying what it's asking for
   - Gets a blob of text in response

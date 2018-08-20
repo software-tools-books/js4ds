@@ -18,9 +18,9 @@ see [parameter](#g:parameter).
 
 **array**{:#g:array}:
 a collection of values stored in a particular ordered and indexed numerically.
-Lists are written as comma-separated values in square brackets,
+Arrays are written as comma-separated values in square brackets,
 such as `['a', 'b', 'c']`.
-The term *list* is often used synonymously.
+The term [list](#g:list) is often used synonymously.
 
 **ASCII**{:#g:ascii}:
 a widely-used set of numeric codes for representing characters from the Latin alphabet
@@ -109,6 +109,8 @@ are stored as [nodes](#g:node) organized in a tree.
 a common way to refer to the parts of structures in programming languages.
 `whole.part` means "the thing called `part` belonging to `whole`".
 
+**element**{:#g:element}: FIXME (HTML)
+
 **event handler**{:#g:event-handler}:
 a [callback function](#g:callback-function) that does something
 in response to a particular interaction with a browser,
@@ -146,7 +148,7 @@ Fields are typically shown as columns in a [table](#g:table).
 **functional programming**{:#g:functional-programming}:
 a style of programming in which data is transformed through successive application of functions,
 rather than by using control structures such as loops.
-Functional programming in JavaScript relies heavily on [callbacks](#g:callback)
+Functional programming in JavaScript relies heavily on [callbacks](#g:callback-function)
 and [higher-order functions](#g:higher-order-function).
 
 **global variable**{:#g:global-variable}:
@@ -187,7 +189,7 @@ that specifies what resource is being requested,
 what data formats the client will accept,
 and so on.
 
-**HTTP response**{:http-response}:
+**HTTP response**{:#g:http-response}:
 a precisely-formatted block of text sent from a [server](#g:server) back to a [client](#g:client)
 in reply to a [request](#g:http-request).
 
@@ -207,7 +209,7 @@ See also [extend](#g:extend).
 
 **JSON**{:#g:json}:
 a way to represent data by combining basic values like numbers and character strings
-in [arrays](#g:arrays) and name/value structures.
+in [arrays](#g:array) and name/value structures.
 The acronym stands for "JavaScript Object Notation";
 unlike better-defined standards like [XML](#g:xml),
 it is unencumbered by a syntax for comments
@@ -283,7 +285,7 @@ or a kindergarten teacher trying to keep everyone's shirt clean during finger-pa
 **parameter**{:#g:parameter}:
 a variable whose value is passed into a function when the function is called.
 Some writers distinguish parameters (the variables)
-from [arguments](#g:arguments) (the values passed in),
+from [arguments](#g:argument) (the values passed in),
 but others use the terms in the opposite sense.
 It's all very confusing.
 
@@ -319,7 +321,7 @@ that we unfortunately still have to cope with.
 **property**{:#g:property}:
 a variable associated with an [object](#g:object).
 The term is used to distinguish an object's passive data
-from its executable [methods](#g:methods).
+from its executable [methods](#g:method).
 Properties are sometimes called [member variables](#g:member-variable).
 
 **raise**{:#g:raise}:
@@ -430,10 +432,11 @@ to signal that something unexpecte or unusual has happened in a program
 by creating an [exception](#g:exception)
 and handing it to the error-handling system,
 which then tries to find a point in the program that will [catch](#g:catch) it.
+(Some languages call this *[raising](#g:raise)* an exception.)
 
 **tree**{:#g:tree}:
 a data structure containing strictly-nested [nodes](#g:node).
-Every node except the [root-node](#g:root) must have exactly one [parent-node](#g:parent),
+Every node except the [root-node](#g:root-node) must have exactly one [parent node](#g:parent-node),
 but each node may have zero or more [children](#g:child-node).
 
 **truthy**{:#g:truthy}:
