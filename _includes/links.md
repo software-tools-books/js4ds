@@ -7,28 +7,6 @@ file is a Markdown file because Jekyll doesn't expand the link
 definitions if that's done.
 {% endcomment %}
 
-[4h-club]: http://www.4-h-canada.ca/
-
-[acm-guidelines]: https://www.acm.org/education/curricula-recommendations
-[ada-guidelines]: https://www.usenix.org/blog/impostor-syndrome-proof-yourself-and-your-community
-[adept]: https://betterexplained.com/articles/adept-method/
-[appear-in]: https://appear.in/
-
-[berlin-liberty]: https://en.wikipedia.org/wiki/Two_Concepts_of_Liberty
-[black-girls-code]: http://www.blackgirlscode.com/
-[blockly]: https://developers.google.com/blockly/
-[bootstrap]: http://www.bootstrapworld.org/
-[bridge]: http://bridgeschool.io/
-[brown-wilson-rules]: https://doi.org/10.1371/journal.pcbi.1006023
-
-[camtasia]: https://www.techsmith.com/video-editor.html
-[canterbury-question-bank]: http://web-cat.org/questionbank/
-[carpentries-training]: http://carpentries.github.io/instructor-training/
-[cc-by-license]: https://creativecommons.org/licenses/by/4.0/
-[choral-explanations]: https://hapgood.us/2016/05/13/choral-explanations/
-[cmap-seasons]: https://cmap.ihmc.us/
-[community-types]: https://www.feverbee.com/types-of-community-and-activity-within-the-community/
-[constructive-alignment]: https://en.wikipedia.org/wiki/Constructive_alignment
 [covenant]: https://www.contributor-covenant.org
 [cra]: https://makingeducationfun.wordpress.com/2012/04/29/concrete-representational-abstract-cra/
 [cs-principles-pd]: http://www.pd4cs.org/
