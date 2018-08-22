@@ -199,7 +199,23 @@ console.log(total_size)
 
 - danger: `fs.stat` in each iteration is executed asynchronously
 - might try chaining Promises together, to ensure that each executes only after the last resolved
-- but this is a lot of unnecessary waiting around
+
+```js
+const fs = require("fs-extra")
+
+var total_size = 0
+new Promise((resolve, reject) => {
+    fs.stat("jane-eyre.txt").then((jeStats) => {
+        fs.stat("moby-dick.txt").then((mdStats) => {
+            fs.stat("life-of-frederick-douglass.txt").then((fdStats) => {
+                resolve(jeStats.size + mdStats.size + fdStats.size)
+            })
+        })
+    })
+}).then((total) => console.log(total))
+```
+
+- but this is a lot of nesting and (potentially) a lot of unnecessary waiting around
 - the answer is `Promise.all`
 - returns an array of results from completed promises _after all have resolved_
     - order of results corresponds to that of promises in input array
@@ -216,13 +232,13 @@ Promise.all(files.map(f => fs.stat(f))).then(stats => stats.reduce((t,s) => {ret
 
 ## Using Promises
 
--   Count the number of lines in a set of files
+-   Count the number of lines in a set of files over a certain size
 
 -   Step 1: find input files
 
 ```js
 const fs = require('fs-extra')
-const glob = require('glob-promise')
+const glob = require('glob-promise') // a way to find things in the filesystem using wildcards. returns a promise
 
 const srcDir = process.argv[2]
 
@@ -316,14 +332,14 @@ glob + Promise.all(files.map/statPair) [ { filename: './common-sense.txt',
 ]
 ```
 
--   Step 5: make sure we're only reading files
+-   Step 5: make sure we're only working with files >100000 characters
 
 ```js
 ...imports and arguments as before...
 
 glob(`${srcDir}/**/*.txt`)
   .then(files => Promise.all(files.map(f => statPair(f))))
-  .then(files => files.filter(pair => pair.stats.isFile()))
+  .then(files => files.filter(pair => pair.stats.size > 100000))
   .then(files => Promise.all(files.map(f => fs.readFile(f.filename, 'utf8'))))
   .then(contents => console.log('...readFile', contents.map(c => c.length)))
   .catch(error => console.error(error))
@@ -345,7 +361,7 @@ const countLines = (text) => {
 
 glob(`${srcDir}/**/*.txt`)
   .then(files => Promise.all(files.map(f => statPair(f))))
-  .then(files => files.filter(pair => pair.stats.isFile()))
+  .then(files => files.filter(pair => pair.stats > 100000))
   .then(files => Promise.all(files.map(f => fs.readFile(f.filename, 'utf8'))))
   .then(contents => contents.map(c => countLines(c)))
   .then(lengths => console.log('lengths', lengths))
