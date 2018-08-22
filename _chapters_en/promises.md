@@ -122,104 +122,97 @@ inside immediate handler for 1500
 inside immediate handler for 500
 ```
 
+- can see from first `setTimeout` example above that execution can happen in a different order than called
+    - function call with `t = 500` happens first, despite being last iteration of loop
+- this asynchronous execution is helpful but confusing at first
+
 ## Promises
 
--   Explain how promises work by building a very simple version
-    -   Inspired by <https://levelup.gitconnected.com/understand-javascript-promises-by-building-a-promise-from-scratch-84c0fd855720>
--   FIXME: explain `promises/pledge.js` in detail
+- consider situation where reading a file
+- accessing local storage takes a (relatively) long time
+    - worse when reading data over the web
+- JS doesn't wait for file to load before continuing execution
+- moves onto other tasks and comes back later
+- with Promises we can 'queue up' code to execute once a task is finished
+- e.g. finding size of a local file with `fs-extra.stat`
 
 ```js
-class Pledge {
-  constructor (action) {
-    this.actionCallbacks = []
-    this.errorCallback = () => {}
-    action(this.onResolve.bind(this), this.onReject.bind(this))
-  }
+const fs = require('fs-extra')
+fs.stat('moby-dick.txt').then((stats) => console.log(stats.size))
+```
 
-  then (thenHandler) {
-    this.actionCallbacks.push(thenHandler)
-    return this
-  }
+- `fs-extra.stat` produces some statistics about the file
+- the argument to `then` is a function that is called after `fs-extra.stat` has finished profiling the file
+- `fs-extra.stat` returns a Promise object
+- to understand them better, let's create our own Promise to fetch a datafile
 
-  catch (errorHandler) {
-    this.errorCallback = errorHandler
-    return this
-  }
+```js
+var prom = new Promise((resolve, reject) => {
+    fetch("https://api.nasa.gov/neo/rest/v1/feed?api_key=DEMO_KEY&start_date=2018-08-20")
+    .then((response) => {
+        if (response.status === 200) {
+            resolve("fetched page successfully")
+        }
+    })
+}).then((message) => console.log(message))
+// fetched page successfully
+```
 
-  onResolve (value) {
-    let storedValue = value
-    try {
-      this.actionCallbacks.forEach((action) => {
-        storedValue = action(storedValue)
-      })
-    } catch (error) {
-      this.actionCallbacks = []
-      this.onReject(error)
-    }
-  }
+- construct a new Promise object, providing a function
+- that function takes two arguments: resolve and reject
+- call `resolve` inside the function body, to determine the value returned if everything completed successfully
+- all promises have a `then` method that takes this value returned by resolve as an input argument
+- use `reject` to define returned value when promise fails
+- and `catch` to process that returned value (usually an `Error` object)
 
-  onReject (error) {
-    this.errorCallback(error)
-  }
+```js
+var prom = new Promise((resolve, reject) => {
+    fetch("https://api.nasa.gov/neo/rest/v1/feed?api_key=DEMO_KEY&start_date=20-08-2018")
+    .then((response) => {
+        if (response.status === 200) {
+            resolve("fetched page successfully")
+        }
+        else {
+            reject(Error("there was a problem. got HTTP status code ${response.status}"))
+        }
+    })
+}).then((message) => console.log(message))
+.catch((error) => console.log(error.message))
+```
+
+- can also provide two functions to `then`, where second argument will process reject value
+- going back to `fs-exta.stat` example above, what if we want to process multiple files e.g. calculate total size?
+- might think to write a loop
+
+```js
+const fs = require("fs-extra")
+
+var total_size = 0
+var files = ["jane-eyre.txt", "moby-dick.txt", "life-of-frederick-douglass.txt"]
+for (let fileName of files) {
+    fs.stat(fileName).then((stats) => {
+        total_size += stats.size
+    })
 }
+console.log(total_size)
 ```
-{: title=promises/pledge.js}
 
--   FIXME: Need to explain purpose of `this.method.bind(this)`: can this be motivated earlier?
--   Successful usage
+- danger: `fs.stat` in each iteration is executed asynchronously
+- might try chaining Promises together, to ensure that each executes only after the last resolved
+- but this is a lot of unnecessary waiting around
+- the answer is `Promise.all`
+- returns an array of results from completed promises _after all have resolved_
+    - order of results corresponds to that of promises in input array
 
 ```js
-new Pledge((resolve, reject) => {
-  console.log('1. top of action callback with double then and a catch')
-  setTimeout(() => {
-    console.log('1. about to call resolve callback')
-    resolve('1. initial result')
-    console.log('1. after resolve callback')
-  }, 0)
-  console.log('1. end of action callback')
-}).then((value) => {
-  console.log(`1. first then with "${value}"`)
-  return '1. first then value'
-}).then((value) => {
-  console.log(`1. second then with "${value}" about to throw`)
-  throw new Error(`1. exception from second then with "${value}"`)
-}).catch((error) => {
-  console.log(`1. in catch block with "${error}`)
-})
+const fs = require('fs-extra')
+
+var total_size = 0
+var files = ["jane-eyre.txt", "moby-dick.txt", "life-of-frederick-douglass.txt"]
+Promise.all(files.map(f => fs.stat(f))).then(stats => stats.reduce((t,s) => {return t + s.size}, 0)).then(console.log)
 ```
-{: title=promises/pledge.js}
 
--   An error case
-
-```js
-new Pledge((resolve, reject) => {
-  console.log('2. top of action callback with deliberate error')
-  setTimeout(() => {
-    console.log('2. about to reject on purpose')
-    reject('2. error on purpose')
-  }, 0)
-}).then((value) => {
-  console.log(`2. should not be here with "${value}"`)
-}).catch((error) => {
-  console.log(`2. in error handler with "${error}"`)
-})
-```
-{: title=promises/pledge.js}
-
--   Trace the output
-
-```output
-1. top of action callback with double then and a catch
-1. end of action callback
-2. top of action callback with deliberate error
-1. about to call resolve callback
-1. first then with "1. initial result"
-1. second then with "1. first then value" about to throw
-1. in catch block with "Error: 1. exception from second then with "1. first then value"
-1. after resolve callback
-2. about to reject on purpose
-2. in error handler with "2. error on purpose"
-```
+- there is also `Promise.race`, which takes an array of promises and returns the result of the __first one to complete__
 
 ## Using Promises
 
@@ -313,7 +306,7 @@ glob(`${srcDir}/**/*.txt`)
 ```
 $ node step-04.js .
 glob + Promise.all(files.map/statPair) [ { filename: './common-sense.txt',
-    stats: 
+    stats:
      Stats {
        dev: 16777220,
        mode: 33188,
