@@ -215,7 +215,7 @@ new Promise((resolve, reject) => {
 }).then((total) => console.log(total))
 ```
 
-- but this is a lot of nesting and (potentially) a lot of unnecessary waiting around
+- but this is a lot of nesting, doesn't scale, and (potentially) a lot of unnecessary waiting around
 - the answer is `Promise.all`
 - returns an array of results from completed promises _after all have resolved_
     - order of results corresponds to that of promises in input array
@@ -371,6 +371,59 @@ glob(`${srcDir}/**/*.txt`)
 ```
 $ node step-06.js .
 lengths [ 2654, 21063, 4105, 22334, 13028, 3584 ]
+```
+## `async` and `await`
+
+- review: work with the output of a promise with `.then`
+- output of `.then` is another promise
+- so we can end up with long chains
+- we can use `async` and `await` to avoid this problem
+- we can write asynchronous functions very similarly to the synchronous ones that we're used to
+- e.g. for the `statPair` function that we wrote earlier
+
+```js
+const fs = require('fs-extra')
+
+const statPairAsync = async (filename) => {
+    var stats = await fs.stat(filename)
+    return {filename, stats}
+}
+
+statPairAsync("moby-dick.txt").then((white_whale) => console.log(white_whale.stats))
+// console.log(`filename: ${white_whale.filename}\nstats: ${white_whale.stats}`)
+```
+
+- `async` functions still return a Promise
+- but we can then chain those with other `async` functions using `await`
+- `await` collects the result returned by a resolved promise, we can use `.catch` to handle any errors thrown
+- let's convert the complete example from the previous section
+
+```js
+const fs = require('fs-extra')
+const glob = require('glob-promise')
+
+const statPairAsync = async (filename) => {
+    var stats = await fs.stat(filename)
+    return {filename, stats}
+}
+
+const countLines = (text) => {
+  return text.split('\n').length
+}
+
+const processFiles = async (globpath) => {
+    var filenames = await glob(globpath)
+    var pairs = await Promise.all(filenames.map(f => statPairAsync(f)))
+    var filtered = pairs.filter(pair => pair.stats.size > 100000)
+    var contents = await Promise.all(filtered.map(f => fs.readFile(f.filename, 'utf8')))
+    var lengths = contents.map(c => countLines(c))
+    console.log(lengths)
+}
+
+const srcDir = process.argv[2]
+
+processFiles(`${srcDir}/**/*.txt`)
+  .catch(e => console.log(e.message))
 ```
 
 {% include links.md %}
