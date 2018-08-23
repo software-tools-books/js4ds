@@ -503,10 +503,18 @@ d) a new `Promise` object
 
 ### Empty Promises
 
-Fill in the blanks in the code block below so that, when executed, the function
-returns an `Array[1, 8, 2, 6, 5]`.
+Fill in the blanks (`___`)in the code block below so that, when executed, the function
+returns an `Array[7, 8, 2, 6, 5]`.
 
-
+```js
+const makePromise = (someInteger) => {
+    return ___ Promise((resolve, reject) => {
+        setTimeout(___(someInteger), someInteger*1000)
+    })
+}
+Promise.___([makePromise(7), makePromise(___), makePromise(2), makePromise(6), makePromise(5)]).then(
+    numbers => ___(numbers))
+```
 
 Now adapt the function so that it returns only `2`? (_Hint: you can achieve this
 by changing only a single one of the blank fields._)
@@ -517,5 +525,7 @@ Using `async` and `await`, convert the function below into an asynchronous funct
 with the same behaviour and output. Do you find your solution easier to read and
 follow than the original version? Do you think that that is only because you
 wrote this version?
+
+
 
 {% include links.md %}
