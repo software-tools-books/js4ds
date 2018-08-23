@@ -431,4 +431,67 @@ processFiles(`${srcDir}/**/*.txt`)
 
 ## Exercises {#s:promises-exercises}
 
+### A Stay of Execution
+
+Insert `console.log('This is a sharp Medicine, but it is a Physician for all diseases and miseries.')`
+in the appropriate place in the code block below so that the output reads
+
+```
+Waiting...
+This is a sharp Medicine, but it is a Physician for all diseases and miseries.
+Waiting...
+Finished.
+```
+
+```js
+const holdingMessage = () => {
+    console.log('Waiting...')
+}
+
+const swingAxe = () => {
+    setTimeout(() => {
+        holdingMessage()
+        console.log('Finished.')
+    }, 100)
+    holdingMessage()
+}
+
+swingAxe()
+```
+
+
+
+### A Synchronous or Asynchronous?
+
+Which of these functions would you expect to be asynchronous? How can you tell?
+Does it matter? And, if so, what is a good strategy to find out for sure if a
+function is asynchronous?
+
+### Handling Exceptions
+
+What (if any) output would you expect to see in the console when the code below
+is executed?
+
+a)
+b)
+c)
+d)
+
 {% include links.md %}
+
+### Empty Promises
+
+Fill in the blanks in the code block below so that, when executed, the function
+returns an `Array[1, 8, 2, 6, 5]`.
+
+
+
+Now adapt the function so that it returns only `2`? (_Hint: you can achieve this
+by changing only a single one of the blank fields._)
+
+### `async`, Therefore I Am
+
+Using `async` and `await`, convert the function below into an asynchronous function
+with the same behaviour and output. Do you find your solution easier to read and
+follow than the original version? Do you think that that is only because you
+wrote this version?
