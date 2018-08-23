@@ -474,10 +474,32 @@ function is asynchronous?
 What (if any) output would you expect to see in the console when the code below
 is executed?
 
-a)
-b)
-c)
-d)
+```js
+const checkForBlanks = (inputValue) => {
+    return new Promise((resolve, reject) => {
+        if (inputValue === '') {
+            reject(Error("Blank values are not allowed"))
+        } else {
+            resolve(inputValue)
+        }
+    })
+}
+
+new Promise((resolve, reject) => {
+    setTimeout(() => {
+        reject(Error('Timed out!'))
+    }, 1000)
+    resolve('')
+}).then(
+    output => checkForBlanks(output), error => console.log(error.message)).then(
+        checkedOutput => console.log(checkedOutput)).catch(
+            error => console.log(error.message))
+```
+
+a) `Timed out!`
+b) blank output
+c) `Blank values are not allowed`
+d) a new `Promise` object
 
 ### Empty Promises
 
