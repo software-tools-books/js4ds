@@ -126,7 +126,7 @@ inside immediate handler for 500
     - function call with `t = 500` happens first, despite being last iteration of loop
 - this asynchronous execution is helpful but confusing at first
 
-## Promises
+## Promises {#s:promises-promises}
 
 - consider situation where reading a file
 - accessing local storage takes a (relatively) long time
@@ -230,7 +230,7 @@ Promise.all(files.map(f => fs.stat(f))).then(stats => stats.reduce((t,s) => {ret
 
 - there is also `Promise.race`, which takes an array of promises and returns the result of the __first one to complete__
 
-## Using Promises
+## Using Promises {#s:promises-usage}
 
 -   Count the number of lines in a set of files over a certain size
 
@@ -372,7 +372,7 @@ glob(`${srcDir}/**/*.txt`)
 $ node step-06.js .
 lengths [ 2654, 21063, 4105, 22334, 13028, 3584 ]
 ```
-## `async` and `await`
+## `async` and `await` {#s:promises-async-await}
 
 - review: work with the output of a promise with `.then`
 - output of `.then` is another promise
@@ -425,5 +425,10 @@ const srcDir = process.argv[2]
 processFiles(`${srcDir}/**/*.txt`)
   .catch(e => console.log(e.message))
 ```
+
+- using `async` and `await` avoid need for long `then` chains, less nested
+- can only use `await` with `async` functions - syntax error if used elsewhere
+
+## Exercises {#s:promises-exercises}
 
 {% include links.md %}
