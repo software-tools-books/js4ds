@@ -459,13 +459,15 @@ const swingAxe = () => {
 swingAxe()
 ```
 
-
-
 ### A Synchronous or Asynchronous?
 
 Which of these functions would you expect to be asynchronous? How can you tell?
 Does it matter? And, if so, what is a good strategy to find out for sure if a
 function is asynchronous?
+
+1. `findNearestTown(coords)`: given a set of coordinates (`coords`) in Brazil, looks up and returns the name of the the nearest settlement with an estimated population >5000. Throws an error if `coords` fall outside Brazil.
+2. `calculateSphereVolume(r)`: calculates and returns the volume of a sphere with radius `r`.
+3. `calculateRoute(A,B)`: returns all possible routes by air between airports `A` and `B`, including direct routes and those with ≤2 transfers.
 
 ### Handling Exceptions
 
