@@ -479,8 +479,6 @@ b)
 c)
 d)
 
-{% include links.md %}
-
 ### Empty Promises
 
 Fill in the blanks in the code block below so that, when executed, the function
@@ -497,3 +495,5 @@ Using `async` and `await`, convert the function below into an asynchronous funct
 with the same behaviour and output. Do you find your solution easier to read and
 follow than the original version? Do you think that that is only because you
 wrote this version?
+
+{% include links.md %}
