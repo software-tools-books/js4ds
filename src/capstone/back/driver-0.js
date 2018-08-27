@@ -1,5 +1,5 @@
 const Database = require('./database')
-const server = require('./server')
+const server = require('./server-0')
 
 const PORT = 3418
 

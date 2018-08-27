@@ -1,15 +1,13 @@
 const express = require('express')
 const bodyParser = require('body-parser')
-const cors = require('cors'); // https://github.com/rangle/hub/wiki/CORS
-const winston = require('winston');
-const expressWinston = require('express-winston');
+const winston = require('winston')
+const expressWinston = require('express-winston')
 
 // Main server object and database object.
 // db is provided during load.
 let db = null
 const app = express()
 app.use(bodyParser.json())
-app.use(cors())
 
 // Set up logging.
 app.use(expressWinston.logger({
@@ -21,7 +19,7 @@ app.use(expressWinston.logger({
   ],
   meta: false,
   msg: "HTTP {{res.statusCode}} {{req.method}} {{req.url}}"
-}));
+}))
 
 // Get survey statistics.
 app.get('/survey/stats', (req, res, next) => {

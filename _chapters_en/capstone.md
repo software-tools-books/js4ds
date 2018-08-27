@@ -82,7 +82,7 @@ where record_id in
 - Step 3: save to file
   - `.schema` displays all the table descriptions of the database
   - `.schema TABLE` displays only one
-  - Change mode to `insert TABLE` has SQLite display query results as insert statements into a table
+  - Changing the mode to `insert TABLE` makes SQLite display query results as insert statements into a table
     - For exactly this purpose
   - Not something anyone would ever go looking for on their own...
   - ...which is another reason novices need tutorials to get started
@@ -148,6 +148,38 @@ group by
 ## Server {#s:capstone-server}
 
 - Implementation is almost the same as [previous server](../server/)
+  - For some version of "almost"...
+- Use `bodyParser` because we're always serving JSON
+- Use `express-winston` to log all requests
+
+```js
+const express = require('express')
+const bodyParser = require('body-parser')
+const winston = require('winston')
+const expressWinston = require('express-winston')
+
+// Main server object and database object.
+// db is provided during load.
+let db = null
+const app = express()
+app.use(bodyParser.json())
+
+// Set up logging.
+app.use(expressWinston.logger({
+  transports: [
+    new winston.transports.Console({
+      json: false,
+      colorize: true
+    })
+  ],
+  meta: false,
+  msg: "HTTP {{res.statusCode}} {{req.method}} {{req.url}}"
+}))
+
+...handle actual queries...
+```
+{: title="src/capstone/back/server-0.js"}
+
 - `GET /survey/stats` gets summary statistics as a single JSON record
 - `GET /survey/:start/:end` gets aggregate values for a range of years
   - Add error checking on the year range as an exercise
@@ -222,10 +254,10 @@ group by
   <head>
     <title>Creatures</title>
     <meta charset="utf-8">
+    <script src="app.js" async></script>
   </head>
   <body>
     <div id="app"></div>
-    <script src="bundle.js"></script>
   </body>
 </html>
 ```
@@ -238,6 +270,7 @@ group by
   - Display annual data
 - Not always such a close coupling between API calls and components...
 - ...but not a bad place to start
+- Note: using `import` because we're trying to be modern, even though the back end still needs `require`
 
 ```
 import React from 'react'
@@ -343,6 +376,7 @@ ReactDOM.render(
 - React will notice the state change and call `render` for us
   - More precisely, the browser will call the first `then` callback when the response arrives...
   - ...and the second `then` callback when the data has been converted to JSON
+- FIXME: convert this code to `async`/`await`
 
 ```js
   onNewRange = () => {
@@ -413,7 +447,7 @@ export default SurveyStats
 
 ## The Chart {#s:capstone-chart}
 
-FIXME: add chart to capstone
+- FIXME: add chart to capstone
 
 ## Exercises {#s:capstone-exercises}
 
