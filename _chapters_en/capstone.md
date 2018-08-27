@@ -82,7 +82,7 @@ where record_id in
 - Step 3: save to file
   - `.schema` displays all the table descriptions of the database
   - `.schema TABLE` displays only one
-  - Change mode to `insert TABLE` has SQLite display query results as insert statements into a table
+  - Changing the mode to `insert TABLE` makes SQLite display query results as insert statements into a table
     - For exactly this purpose
   - Not something anyone would ever go looking for on their own...
   - ...which is another reason novices need tutorials to get started
@@ -154,6 +154,9 @@ group by
 - Anything else returns a 404
 - Put this code in `server.js` and a command-line driver in `driver.js` for testability
 
+- FIXME: explains [CORS](https://en.wikipedia.org/wiki/Cross-origin_resource_sharing)
+- FIXME: explain [Winston](https://github.com/winstonjs/winston)
+
 - Test using sliced data
 - First test: are the stats right?
   - Inspect sliced data to figure out correct result
@@ -222,10 +225,10 @@ group by
   <head>
     <title>Creatures</title>
     <meta charset="utf-8">
+    <script src="app.js" async></script>
   </head>
   <body>
     <div id="app"></div>
-    <script src="bundle.js"></script>
   </body>
 </html>
 ```
@@ -238,6 +241,7 @@ group by
   - Display annual data
 - Not always such a close coupling between API calls and components...
 - ...but not a bad place to start
+- Note: using `import` because we're trying to be modern, even though the back end still needs `require`
 
 ```
 import React from 'react'
@@ -343,6 +347,7 @@ ReactDOM.render(
 - React will notice the state change and call `render` for us
   - More precisely, the browser will call the first `then` callback when the response arrives...
   - ...and the second `then` callback when the data has been converted to JSON
+- FIXME: convert this code to `async`/`await`
 
 ```js
   onNewRange = () => {
@@ -413,7 +418,7 @@ export default SurveyStats
 
 ## The Chart {#s:capstone-chart}
 
-FIXME: add chart to capstone
+- FIXME: add chart to capstone
 
 ## Exercises {#s:capstone-exercises}
 

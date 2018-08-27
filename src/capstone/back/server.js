@@ -1,8 +1,8 @@
 const express = require('express')
 const bodyParser = require('body-parser')
-const cors = require('cors'); // https://github.com/rangle/hub/wiki/CORS
-const winston = require('winston');
-const expressWinston = require('express-winston');
+const cors = require('cors')
+const winston = require('winston')
+const expressWinston = require('express-winston')
 
 // Main server object and database object.
 // db is provided during load.

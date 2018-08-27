@@ -359,6 +359,10 @@ ReactDOM.render(
 ```
 {: title="src/display/hello-parcel/index.html"}
 
+## Component Lifecycle
+
+- FIXME: must explain `componentDidMount` for use in capstone
+
 ## Exercises {#s:display-exercises}
 
 ### Real Data
