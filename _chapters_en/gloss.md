@@ -226,6 +226,9 @@ a variable defined inside a function
 which is only visible within that function.
 See also [global variable](#g:global-variable) and [closure](#g:closure).
 
+**logging**{:#g:logging}:
+FIXME
+
 **member variable**{:#g:member-variable}:
 see [property](#g:property).
 
@@ -433,6 +436,9 @@ by creating an [exception](#g:exception)
 and handing it to the error-handling system,
 which then tries to find a point in the program that will [catch](#g:catch) it.
 (Some languages call this *[raising](#g:raise)* an exception.)
+
+**transport**{:#g:logging-transport} (logging):
+FIXME
 
 **tree**{:#g:tree}:
 a data structure containing strictly-nested [nodes](#g:node).

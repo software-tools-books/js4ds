@@ -95,6 +95,7 @@ app.listen(PORT, () => { console.log('listening...') })
 
 - Instead of creating HTML in memory, read from file
 - Provide our server with the path to the directory it's allowed to read
+  - E.g., run with `node pages.js pages`
 
 ```js
 const express = require('express')
@@ -124,6 +125,14 @@ app.listen(PORT, () => { console.log('listening...') })
   3. Combine that with the path to the root directory
   4. Read that file
   5. Return that data
+- If page not found (e.g., go to `http://localhost:3418/missing.html`)
+
+```
+Error: ENOENT: no such file or directory, open 'pages/missing.html'
+    at Object.openSync (fs.js:434:3)
+    at Object.readFileSync (fs.js:339:35)
+    ... etc. ...
+```
 
 ## Content Types {#s:server-content-types}
 
@@ -193,6 +202,71 @@ module.exports = {
 }
 ```
 {: title="src/server/pages/plugin.js"}
+
+## Logging {#s:server-logging}
+
+- `console.log` is a simple form of [logging](#g:logging)
+- Use [Winston][winston] for more control and structure
+- Control: define levels for messages and a threshold for the logger, and only log things that are at least that important
+  - Much better than commenting and uncommenting messages
+  - Standard error levels are `'error'`, `'warn'`, `'info'`, `'verbose'`, and `'debug'`
+  - So if threshold is set to `'info'`, then `'verbose'` and `'debug'` messages won't be displayed
+- Structure: Winston produces log messages as JSON objects
+  - So parsing is easier
+  - Can configure to produce CSV
+  - Or some custom format, but don't --- just don't
+- Have to create and add a [transport](#g:logging-transport) to tell Winston where messages should go
+  - We will use one called `Console` that sends messages to the screen
+  - Can also send messages to files, to remote logging servers, etc.
+  - Note: do *not* create a variable called `console` for the transport, because that will overwrite the `console` you're used to
+  - Yes, that took a couple of minutes to figure out...
+
+```js
+const express = require('express')
+const path = require('path')
+const fs = require('fs')
+const winston = require('winston')
+
+const PORT = 3418
+const root = process.argv[2]
+const level = process.argv[3]
+
+const transport = new winston.transports.Console()
+winston.add(transport)
+winston.level = level
+
+// Main server object.
+let app = express()
+
+// Handle all requests.
+app.use((req, res, next) => {
+  const actual = path.join(root, req.url)
+
+  if (actual.endsWith('.js')) {
+    const libName = './'.concat(actual.slice(0, -3))
+    winston.debug('Loading "${libName}"')
+    const dynamic = require(libName)
+    const data = dynamic.page()
+    res.status(200).send(data)
+  }
+
+  else {
+    winston.debug('Reading "${actual}"')
+    const data = fs.readFileSync(actual, 'utf-8')
+    res.status(200).send(data)
+  }
+})
+
+app.listen(PORT, () => {
+  winston.info('Running on port ${PORT} with root ${root}')
+})
+```
+{: title="src/server/logging.js"}
+
+- Set the level with an extra command-line parameter
+  - Run with `'debug'` level: all messages appear
+  - Run with `'info'` level: only the startup message (at `'info'` level) appears
+  - Run with `'warning'` level: no messages appear
 
 ## Exercises {#s:server-exercises}
 

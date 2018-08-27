@@ -148,14 +148,43 @@ group by
 ## Server {#s:capstone-server}
 
 - Implementation is almost the same as [previous server](../server/)
+  - For some version of "almost"...
+- Use `bodyParser` because we're always serving JSON
+- Use `express-winston` to log all requests
+
+```js
+const express = require('express')
+const bodyParser = require('body-parser')
+const winston = require('winston')
+const expressWinston = require('express-winston')
+
+// Main server object and database object.
+// db is provided during load.
+let db = null
+const app = express()
+app.use(bodyParser.json())
+
+// Set up logging.
+app.use(expressWinston.logger({
+  transports: [
+    new winston.transports.Console({
+      json: false,
+      colorize: true
+    })
+  ],
+  meta: false,
+  msg: "HTTP {{res.statusCode}} {{req.method}} {{req.url}}"
+}))
+
+...handle actual queries...
+```
+{: title="src/capstone/back/server-0.js"}
+
 - `GET /survey/stats` gets summary statistics as a single JSON record
 - `GET /survey/:start/:end` gets aggregate values for a range of years
   - Add error checking on the year range as an exercise
 - Anything else returns a 404
 - Put this code in `server.js` and a command-line driver in `driver.js` for testability
-
-- FIXME: explains [CORS](https://en.wikipedia.org/wiki/Cross-origin_resource_sharing)
-- FIXME: explain [Winston](https://github.com/winstonjs/winston)
 
 - Test using sliced data
 - First test: are the stats right?

@@ -16,3 +16,5 @@ definitions if that's done.
 [vega-lite]: http://vega.github.io/
 
 [webpack]: https://webpack.js.org/
+[winston]: https://github.com/winstonjs/winston
+

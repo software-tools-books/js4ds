@@ -31,6 +31,8 @@
     ]
   },
   "dependencies": {
+    "express": "^4.16.3",
+    "express-winston": "^3.0.0",
     "fs-extra": "^7.0.0",
     "glob": "^7.1.2",
     "glob-promise": "^3.4.0",
@@ -40,9 +42,11 @@
     "react-dom": "^16.4.2",
     "react-vega": "^4.0.2",
     "react-vega-lite": "^2.0.2",
+    "sqlite3": "^4.0.2",
     "vega": "^4.2.0",
     "vega-embed": "^3.18.2",
     "vega-lib": "^4.2.0",
-    "vega-lite": "^3.0.0-rc3"
+    "vega-lite": "^3.0.0-rc3",
+    "winston": "^3.0.0"
   }
 }
