@@ -37,7 +37,7 @@ keypoints:
 - "Use modules to divide code between multiple files for re-use."
 - "Assign to `module.exports` to specify what a module exports."
 - "`require(...path...)` imports a module."
-- "Paths beginning with '.' are imported locally, but paths without '.' look in the library."
+- "Paths beginning with '.' or '/' are imported locally, but paths without '.' or '/' look in the library."
 ---
 
 - Introduce enough of JavaScript's core features to get started
@@ -97,6 +97,8 @@ the type of function () { [native code] } is function
   - Note: "of" not "in"
   - The latter returns the indexes of the collection (e.g., 0, 1, 2)
   - Which has some [traps](../legacy/#iteration)
+  - Note that indexing starts from 0. This may be different from the language that you're used to
+  - Indentation is optional and for readability purposes only. This may be different from the language that you're used to
 - Use `const` to define a [constant](#g:constant)
 - `number`
   - JavaScript doesn't have separate types for integers and floating-point
@@ -212,6 +214,7 @@ creature[species] is Jacchus
   - The [dotted notation](#g:dotted-notation) cannot
 - Can write keys without quotes
   - In which case they are treated as strings
+- To get string representation of whole object, try `JSON.stringify(object)`
 
 ## Functions {#s:core-functions}
 
@@ -353,6 +356,9 @@ What kind of thing is `typeof`?
 Is it an expression?
 A function?
 Something else?
+_Note: You might notice that `typeof typeof` is
+syntactically invalid. In such circumstances, an internet search engine is your
+friend. Also recommended: the Mozilla Developer Network (MDN) JS reference: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference_
 
 ### Fill in the Blanks
 
@@ -393,6 +399,35 @@ and `false` for everything it considers `falsy`,
 *except* empty arrays:
 `isTruthy` should return `false` for those.
 
+### Combining Different Types
+
+What result would you expect from running the code below?
+Try running it and see whether the output matched your expectations.
+What are the implications of this behavior when working with real-world data?
+
+```js
+const data1 = [3, 7, 8, 9, 1]
+const data2 = [0, 3, -1, "NaN", 8]
+
+console.log(`aggregating data1`)
+var total = 0
+for (let d of data1) {
+    total += d
+}
+console.log(total)
+
+console.log(`aggregating data2`)
+total = 0
+for (let d of data2) {
+    total += d
+}
+console.log(total)
+```
+
+Change one of the loops above so that the code runs through the indexes of the
+array (`data1` or `data2`) instead of the values.
+Does the output match your expectations this time?
+
 ### What Does This Do?
 
 Explain what is happening in the assignment statement
@@ -425,5 +460,26 @@ console.log(`genus is ${genus}`)
 console.log(`species is ${species}`)
 ```
 {: title="ex/core/destructuring.js"}
+
+### Return to me, for my heart wants you only
+
+```js
+const verbose_sum = (first, second) => {
+    console.log(`Going to add ${first} to ${second}`)
+    let total = first + second
+    return total
+    console.log(`Finished summing`)
+}
+
+var result = verbose_sum(3, 6)
+console.log(result)
+```
+
+What output would you see in the console if you ran the code above?
+- Going to add ${first} to ${second}; 9
+- Going to add 3 to 6; 9; Finished summing
+- Going to add 3 to 6; 9
+- Going to add 3 to 6; 36
+
 
 {% include links.md %}
