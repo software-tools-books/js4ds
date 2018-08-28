@@ -20,7 +20,7 @@ keypoints:
 - Put a database under our web service
 - Many more storage options today than there were ten years ago
 - [Relational database](#g:relational-database)
-  - Databases consists of zero or more [tables](#g:table)
+  - Databases consist of zero or more [tables](#g:table)
   - Each table has a fixed set of [fields](#g:field)
     - Usually drawn as columns
   - And zero or more [records](#g:record)
@@ -63,6 +63,8 @@ insert into Workshop values(2, "ENIAC Programming", 150);
 - Query methods all have the same signature so that can be handled interchangeably
 
 ```js
+const sqlite3 = require("sqlite3")
+
 class Database {
 
   constructor (path) {
