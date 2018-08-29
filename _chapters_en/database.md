@@ -479,6 +479,30 @@ Your `Database.getLongerThan` method's SQL query
 will need to use a `where` clause
 that selects specific records.
 
+### More Filtering
+
+The SQL query encapsulated in the variable below can be used to
+find all workshop whose duration falls within a range.
+
+```js
+const Q_WORKSHOP_DURATION_RANGE = `
+select
+  Workshop.ident        as workshopId,
+  Workshop.name         as workshopName,
+  Workshop.duration     as workshopDuration
+from
+  Workshop
+where
+  (Workshop.duration <= ?) and (Workshop.duration >= ?)
+`
+```
+
+What do the `?`s mean in this query?
+Write another method for the `Database` class, `getWithinLengthRange([args])`, that uses this query, taking arguments from the commandline as before.
+What happens when you provide the wrong number of arguments to this function? Or
+if you provide them in the wrong order?
+Can you write a test that provides more useful feedback than this?
+
 ### Handling Errors
 
 The `Database` class prints a message and exits when it detects an error.
