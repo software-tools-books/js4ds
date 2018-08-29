@@ -1,7 +1,7 @@
 const sqlite3 = require('sqlite3')
 const fs = require('fs')
 
-const Q_WORKSHOP_GET_SURVEY_STATS = `
+const Q_SURVEY_GET_STATS = `
 select
   min(year) as year_low,
   max(year) as year_high,
@@ -10,7 +10,7 @@ from
   surveys
 `
 
-const Q_WORKSHOP_GET_SURVEY_DATA = `
+const Q_SURVEY_GET_DATA = `
 select
   surveys.year as year,
   min(surveys.hindfoot_length) as hindfoot_min,
@@ -52,14 +52,14 @@ class Database {
   }
 
   getSurveyStats (args, callback) {
-    this.db.all(Q_WORKSHOP_GET_SURVEY_STATS, [], (err, rows) => {
+    this.db.all(Q_SURVEY_GET_STATS, [], (err, rows) => {
       if (err) fail(err)
       callback(rows, undefined)
     })
   }
 
   getSurveyData (args, callback) {
-    this.db.all(Q_WORKSHOP_GET_SURVEY_DATA, args, (err, rows) => {
+    this.db.all(Q_SURVEY_GET_DATA, args, (err, rows) => {
       if (err) fail(err)
       callback(rows, undefined)
     })
