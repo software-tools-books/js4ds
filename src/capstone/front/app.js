@@ -18,45 +18,49 @@ class App extends React.Component {
     }
   }
 
-  componentDidMount = await () => {
-    const url = `${this.baseUrl}/survey/stats`
-    var response = await fetch(url)
-    this.setState({
-      summary: response.json()
-    })
-  }
 
-  onStart = (start) => {
-    this.setState({
-      start: start
-    })
-  }
-
-  onEnd = (end) => {
-    this.setState({
-      end: end
-    })
-  }
-
-  onNewRange = () => {
-    const params = {
-      method: 'GET',
-      headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json'
-      }
-    }
-    const url = `${this.baseUrl}/survey/${this.state.start}/${this.state.end}`
-    fetch(url, params).then((response) => {
-      return response.json()
-    }).then((data) => {
-      this.setState({
-        data: data
+    componentDidMount() {
+      const url = `${this.baseUrl}/survey/stats`
+      fetch(url).then((response) => {
+        return response.json()
+      }).then((summary) => {
+        this.setState({
+          summary: summary
+        })
       })
-    })
+    }
+
+    onStart(start) {
+      this.setState({
+        start: start
+      })
+    }
+
+    onEnd(end) {
+      this.setState({
+        end: end
+      })
+    }
+
+    onNewRange() {
+      const params = {
+        method: 'GET',
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json'
+        }
+      }
+      const url = `${this.baseUrl}/survey/${this.state.start}/${this.state.end}`
+      fetch(url, params).then((response) => {
+        return response.json()
+      }).then((data) => {
+        this.setState({
+          data: data
+        })
+      })
   }
 
-  render = () => {
+  render() {
     const tableStyle = {overflow: 'scroll', height: '200px'}
     return (
       <div>
