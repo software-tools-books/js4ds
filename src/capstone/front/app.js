@@ -18,7 +18,7 @@ class App extends React.Component {
     }
   }
 
-  componentDidMount = () => {
+  componentDidMount() {
     const url = `${this.baseUrl}/survey/stats`
     fetch(url).then((response) => {
       return response.json()
@@ -29,19 +29,19 @@ class App extends React.Component {
     })
   }
 
-  onStart = (start) => {
+  onStart(start) {
     this.setState({
       start: start
     })
   }
 
-  onEnd = (end) => {
+  onEnd(end) {
     this.setState({
       end: end
     })
   }
 
-  onNewRange = () => {
+  onNewRange() {
     const params = {
       method: 'GET',
       headers: {
@@ -59,7 +59,7 @@ class App extends React.Component {
     })
   }
 
-  render = () => {
+  render() {
     const tableStyle = {overflow: 'scroll', height: '200px'}
     return (
       <div>
