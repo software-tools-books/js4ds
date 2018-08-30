@@ -18,14 +18,11 @@ class App extends React.Component {
     }
   }
 
-  componentDidMount = () => {
+  componentDidMount = await () => {
     const url = `${this.baseUrl}/survey/stats`
-    fetch(url).then((response) => {
-      return response.json()
-    }).then((summary) => {
-      this.setState({
-        summary: summary
-      })
+    var response = await fetch(url)
+    this.setState({
+      summary: response.json()
     })
   }
 
