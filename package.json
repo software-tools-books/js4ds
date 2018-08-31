@@ -31,6 +31,8 @@
     ]
   },
   "dependencies": {
+    "body-parser": "^1.18.3",
+    "cors": "^2.8.4",
     "express": "^4.16.3",
     "express-winston": "^3.0.0",
     "fs-extra": "^7.0.0",
