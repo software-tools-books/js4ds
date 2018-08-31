@@ -1,8 +1,12 @@
 import React from 'react'
+/*
 import {Scatter} from 'react-chartjs-2';
+*/
 
 const DataChart = ({data}) => {
+  return <p>NO CHART</p>
 
+/*
   if (! data) {
     return (<p>no data</p>)
   }
@@ -30,6 +34,7 @@ const DataChart = ({data}) => {
   return (
     <Scatter data={data} options={options}/>
   )
+*/
 }
 
 export default DataChart
