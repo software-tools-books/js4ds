@@ -1,7 +1,7 @@
 const assert = require('assert')
 const request = require('supertest')
 const Database = require('./database')
-const server = require('./server')
+const server = require('./server-1')
 const path = require('path')
 
 TEST_DATA_PATH = path.resolve(__dirname, 'test-data.sql')
