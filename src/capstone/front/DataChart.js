@@ -4,13 +4,35 @@ import {Scatter} from 'react-chartjs-2';
 */
 
 const DataChart = ({data}) => {
-  return <p>NO CHART</p>
-
-/*
   if (! data) {
     return (<p>no data</p>)
-  }
-
+} else {
+    const xy_values = data.map((rec) => {
+        return {x: rec.hindfoot_avg, y: rec.weight_avg}
+    })
+    let spec = {
+      "$schema": "https://vega.github.io/schema/vega-lite/v2.0.json",
+      "description": "A scatterplot of mean weight vs mean hindfoot length.",
+      "data": {
+        "values": {xy_values}
+      },
+      "mark": "point",
+      "encoding": {
+        "x": {"field": "a", "type": "quantitative"},
+        "y": {"field": "b", "type": "quantitative"}
+      }
+    }
+    let options = {
+        "actions": {
+          "export": false,
+          "source": false,
+          "editor": false
+      }
+    }
+    return (<p>plot coming soon!
+      {JSON.stringify(xy_values)}</p>)
+}
+/*
   data = {
     datasets: [
       {
