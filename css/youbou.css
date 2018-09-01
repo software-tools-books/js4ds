@@ -44,9 +44,14 @@ pre.highlight {
     border-color: {{site.background}};
 }
 
+/* Make inline code darker than Bootstrap default. */
+code.highlighter-rouge {
+    color: #a06060;
+}
+
 /* Make links darker than Bootstrap default. */
 a {
-  color: #6060C0;
+    color: #6060a0;
 }
 
 /* Don't indent lists quite so much. */
@@ -79,8 +84,22 @@ figcaption {
 
 /* Mark quotations. */
 blockquote {
-    border-left: solid 2px {{site.background}};
+    background-color: {{site.background}};
     padding-left: 0.5em;
+    font-style: italic;
+}
+
+/* Mark callouts. */
+blockquote.callout {
+    border-width: 1px;
+    border-color: #000000;
+    border-style: solid;
+    padding: 5px;
+}
+
+/* Make h3 more distinct from h2. */
+h3 {
+    font-style: italic;
 }
 
 /* Glossary references are in bold. */
@@ -114,6 +133,10 @@ dd p {
 }
 dt {
     margin-left: -1em;
+}
+
+.coverage {
+    background-color: #f0a0a0;
 }
 
 /* Fix Pygments displaying back quotes as errors by marking back quotes as Operator. */

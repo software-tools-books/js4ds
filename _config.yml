@@ -10,6 +10,21 @@ website: "http://gvwilson.github.io/youbou/"
 purchase: ""
 paypal: ""
 
+# Order for Table of Contents.
+toc:
+  lessons:
+  - /intro/
+  - /finale/
+  bib:
+  - /bib/
+  extras:
+  - /license/
+  - /conduct/
+  - /citation/
+  - /gloss/
+  - /objectives/
+  - /keypoints/
+
 # Theme color.
 background: "#f0f0f0"
 
@@ -29,7 +44,7 @@ exclude:
 - bin
 - misc
 - requirements.txt
-- tex_um
+- tex
 
 # Markers in generated files.
 marker:
@@ -39,30 +54,17 @@ marker:
 
 # Collections: one for lessons and one for extras for each language suffix.
 collections:
-  chapters_um:
+  um:
     output: true
 
 # Set the language for various collections.
 defaults:
   - scope:
       path: ""
-      type: chapters_um
+      type: um
     values:
       language: "um"
       layout: "default"
-
-# Order for Table of Contents.
-toc:
-  lessons:
-  - /intro/
-  - /finale/
-  bib:
-  - /bib/
-  extras:
-  - /license/
-  - /conduct/
-  - /citation/
-  - /gloss/
 
 # Translations by language.
 translations:
