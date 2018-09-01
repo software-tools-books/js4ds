@@ -1,6 +1,6 @@
 ---
 permalink: "/en/promises/"
-title: "Programming with Promises"
+title: "Promises"
 questions:
 - "Does it have to hurt this much?"
 keypoints:

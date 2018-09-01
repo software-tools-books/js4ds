@@ -83,6 +83,19 @@ blockquote {
     padding-left: 0.5em;
 }
 
+/* Mark callouts. */
+blockquote.callout {
+    border-width: 1px;
+    border-color: #000000;
+    border-style: solid;
+    padding: 5px;
+}
+
+/* Make h3 more distinct from h2. */
+h3 {
+    font-style: italic;
+}
+
 /* Glossary references are in bold. */
 .glossref {
     font-weight: bold;

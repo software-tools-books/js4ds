@@ -1,4 +1,4 @@
-`---
+---
 permalink: "/en/vis/"
 title: "Visualizing Data"
 questions:
