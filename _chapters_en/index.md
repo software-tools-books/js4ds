@@ -56,6 +56,6 @@ patches to open source software, and all contributors will be credited
 for their work each time a new version is released.  please file an
 issue in our [GitHub repository]({{site.repo}}) or [email the author
 directly](mailto:{{site.email}}).  Please note that all contributors
-are required to abide by our code of conduct ((s:conduct)[#APPENDIX]).
+are required to abide by our code of conduct.
 
 {% include links.md %}
