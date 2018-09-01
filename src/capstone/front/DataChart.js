@@ -1,7 +1,6 @@
 import React from 'react'
-/*
-import {Scatter} from 'react-chartjs-2';
-*/
+import VegaLite from 'react-vega-lite'
+//import {Scatter} from 'react-chartjs-2';
 
 const DataChart = ({data}) => {
   if (! data) {
@@ -13,13 +12,10 @@ const DataChart = ({data}) => {
     let spec = {
       "$schema": "https://vega.github.io/schema/vega-lite/v2.0.json",
       "description": "A scatterplot of mean weight vs mean hindfoot length.",
-      "data": {
-        "values": {xy_values}
-      },
       "mark": "point",
       "encoding": {
-        "x": {"field": "a", "type": "quantitative"},
-        "y": {"field": "b", "type": "quantitative"}
+        "x": {"field": "x", "type": "quantitative"},
+        "y": {"field": "y", "type": "quantitative"}
       }
     }
     let options = {
@@ -29,8 +25,13 @@ const DataChart = ({data}) => {
           "editor": false
       }
     }
-    return (<p>plot coming soon!
-      {JSON.stringify(xy_values)}</p>)
+    let scatterData = {
+        "values": xy_values
+    }
+    console.log(scatterData)
+  return(
+      <VegaLite spec={spec} data={scatterData} options={options}/>
+  )
 }
 /*
   data = {
