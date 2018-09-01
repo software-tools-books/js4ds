@@ -28,7 +28,6 @@ const DataChart = ({data}) => {
     let scatterData = {
         "values": xy_values
     }
-    console.log(scatterData)
     return(
       <VegaLite spec={spec} data={scatterData} options={options}/>
     )
