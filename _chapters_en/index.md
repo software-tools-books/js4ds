@@ -49,13 +49,12 @@ some of which are both up-to-date and well designed.
 
 ## Contributing {#s:intro-contrib}
 
-Contributions of all kinds are welcome, from errata and minor
-improvements to entirely new sections and chapters. All proposed
-contributions will be managed in the same way as edits to Wikipedia or
-patches to open source software, and all contributors will be credited
-for their work each time a new version is released.  please file an
-issue in our [GitHub repository]({{site.repo}}) or [email the author
-directly](mailto:{{site.email}}).  Please note that all contributors
-are required to abide by our code of conduct.
+Contributions of all kinds are welcome, from errata and minor improvements to
+entirely new sections and chapters.  Please <a href="mailto:{{site.email}}">email us</a>, <a href="{{site.repo}}/issues">file
+an issue</a> in <a href="{{site.repo}}">our GitHub repository</a>, or <a
+href="{{site.repo}}/pulls">submit a pull request</a>.  Everyone whose work is
+incorporated will be acknowledged; please note that all contributors are
+required to abide by <a href="{{'/en/conduct/'|relative_url}}">our Code of
+Conduct</a>.
 
 {% include links.md %}
