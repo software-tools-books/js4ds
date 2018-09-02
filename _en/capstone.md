@@ -36,14 +36,14 @@ datasource: "https://figshare.com/articles/Portal_Project_Teaching_Database/1314
 
 ```sql
 create table surveys (
-  record_id INTEGER,
-  year INTEGER,
-  month INTEGER,
-  day INTEGER,
-  plot_id INTEGER,
-  species_id TEXT,
-  sex TEXT,
-  hindfoot_length INTEGER,
+  record_id INTEGER, 
+  year INTEGER, 
+  month INTEGER, 
+  day INTEGER, 
+  plot_id INTEGER, 
+  species_id TEXT, 
+  sex TEXT, 
+  hindfoot_length INTEGER, 
   weight INTEGER
 );
 ```
@@ -60,14 +60,14 @@ create table surveys (
 
 ```sql
 create temporary table test_surveys (
-  record_id INTEGER,
-  year INTEGER,
-  month INTEGER,
-  day INTEGER,
-  plot_id INTEGER,
-  species_id TEXT,
-  sex TEXT,
-  hindfoot_length INTEGER,
+  record_id INTEGER, 
+  year INTEGER, 
+  month INTEGER, 
+  day INTEGER, 
+  plot_id INTEGER, 
+  species_id TEXT, 
+  sex TEXT, 
+  hindfoot_length INTEGER, 
   weight INTEGER
 );
 
@@ -338,11 +338,14 @@ ReactDOM.render(
 - This is the only place where the summary is updated
 
 ```js
-  componentDidMount = async () => {
+  componentDidMount = () => {
     const url = `${this.baseUrl}/survey/stats`
-    var response = await fetch(url)
-    this.setState({
-      summary: response.json()
+    fetch(url).then((response) => {
+      return response.json()
+    }).then((summary) => {
+      this.setState({
+        summary: summary
+      })
     })
   }
 ```
@@ -373,9 +376,10 @@ ReactDOM.render(
 - React will notice the state change and call `render` for us
   - More precisely, the browser will call the first `then` callback when the response arrives...
   - ...and the second `then` callback when the data has been converted to JSON
+- FIXME: convert this code to `async`/`await`
 
 ```js
-  onNewRange = async () => {
+  onNewRange = () => {
     const params = {
       method: 'GET',
       headers: {
@@ -384,9 +388,12 @@ ReactDOM.render(
       }
     }
     const url = `${this.baseUrl}/survey/${this.state.start}/${this.state.end}`
-    var response = await fetch(url, params)
-    this.setState({
-      data: response.json()
+    fetch(url, params).then((response) => {
+      return response.json()
+    }).then((data) => {
+      this.setState({
+        data: data
+      })
     })
   }
 ```
