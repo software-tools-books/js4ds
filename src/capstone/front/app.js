@@ -48,8 +48,9 @@ class App extends React.Component {
         'Accept': 'application/json',
         'Content-Type': 'application/json'
       }
-      const url = `${this.baseUrl}/survey/${this.state.start}/${this.state.end}`
-      fetch(url, params).then((response) => {
+    }
+    const url = `${this.baseUrl}/survey/${this.state.start}/${this.state.end}`
+    fetch(url, params).then((response) => {
         return response.json()
       }).then((data) => {
         this.setState({
