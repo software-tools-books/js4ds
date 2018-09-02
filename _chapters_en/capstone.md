@@ -419,7 +419,9 @@ ReactDOM.render(
 ```
 {: title="src/capstone/back/app.js"}
 
-- Display survey stats:
+- Display survey stats as a table
+  - With a paragraph fallback when there's no data
+  - Again, need parentheses around the HTML fragment so that it will parse properly
 
 ```js
 import React from 'react'
@@ -447,7 +449,51 @@ export default SurveyStats
 
 ## The Chart {#s:capstone-chart}
 
-- FIXME: add chart to capstone
+- Use `react-vega-lite` for the chart component
+  - `vega-embed` wants to modify an existing DOM element when called
+  - `react-vega-lite` constructs an element to be put in place at the right time
+- Steps:
+  - Paragraph placeholder if there's no data
+  - Re-organize the data into the form the chart needs
+  - Construct a spec like the ones seen before
+  - Create options (also seen before)
+  - Return an instance of the `VegaLite` component
+
+```js
+import React from 'react'
+import VegaLite from 'react-vega-lite'
+
+const DataChart = ({data}) => {
+  if (! data) {
+    return (<p>no data</p>)
+  }
+
+  const values = data.map((rec) => ({x: rec.hindfoot_avg, y: rec.weight_avg}))
+  let spec = {
+    '$schema': 'https://vega.github.io/schema/vega-lite/v2.0.json',
+    'description': 'Mean Weight vs Mean Hindfoot Length',
+    'mark': 'point',
+    'encoding': {
+      'x': {'field': 'x', 'type': 'quantitative'},
+      'y': {'field': 'y', 'type': 'quantitative'}
+    }
+  }
+  let options = {
+    'actions': {
+      'export': false,
+      'source': false,
+      'editor': false
+    }
+  }
+  let scatterData = {
+    'values': values
+  }
+  return (<VegaLite spec={spec} data={scatterData} options={options}/>)
+}
+
+export default DataChart
+```
+{: title="src/capstone/front/DataChart.js"}
 
 ## Exercises {#s:capstone-exercises}
 

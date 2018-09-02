@@ -52,7 +52,7 @@
     "vega": "^4.2.0",
     "vega-embed": "^3.18.2",
     "vega-lib": "^4.2.0",
-    "vega-lite": "^3.0.0-rc3",
+    "vega-lite": "^2.6.0",
     "winston": "^3.0.0"
   }
 }
