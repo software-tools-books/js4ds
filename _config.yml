@@ -37,7 +37,7 @@ toc:
   - /legacy/
 
 # Theme color.
-background: "#f0e0f0"
+background: "#e8f8e8"
 
 # Jekyll settings.
 highlighter: rouge
