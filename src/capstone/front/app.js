@@ -26,7 +26,7 @@ class App extends React.Component {
       this.setState({
         summary: summary
       })
-    }
+    })
   }
 
   onStart = (start) => {
