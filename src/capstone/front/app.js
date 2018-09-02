@@ -51,12 +51,12 @@ class App extends React.Component {
     }
     const url = `${this.baseUrl}/survey/${this.state.start}/${this.state.end}`
     fetch(url, params).then((response) => {
-        return response.json()
-      }).then((data) => {
-        this.setState({
-          data: data
-        })
+      return response.json()
+    }).then((data) => {
+      this.setState({
+        data: data
       })
+    })
   }
 
   render = () => {
