@@ -18,37 +18,34 @@ class App extends React.Component {
     }
   }
 
-
-    componentDidMount() {
-      const url = `${this.baseUrl}/survey/stats`
-      fetch(url).then((response) => {
-        return response.json()
-      }).then((summary) => {
-        this.setState({
-          summary: summary
-        })
-      })
-    }
-
-    onStart(start) {
+  componentDidMount = () => {
+    const url = `${this.baseUrl}/survey/stats`
+    fetch(url).then((response) => {
+      return response.json()
+    }).then((summary) => {
       this.setState({
-        start: start
+        summary: summary
       })
     }
 
-    onEnd(end) {
-      this.setState({
-        end: end
-      })
-    }
+  onStart = (start) => {
+    this.setState({
+      start: start
+    })
+  }
 
-    onNewRange() {
-      const params = {
-        method: 'GET',
-        headers: {
-          'Accept': 'application/json',
-          'Content-Type': 'application/json'
-        }
+  onEnd = (end) => {
+    this.setState({
+      end: end
+    })
+  }
+
+  onNewRange = () => {
+    const params = {
+      method: 'GET',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
       }
       const url = `${this.baseUrl}/survey/${this.state.start}/${this.state.end}`
       fetch(url, params).then((response) => {
@@ -60,7 +57,7 @@ class App extends React.Component {
       })
   }
 
-  render() {
+  render = () => {
     const tableStyle = {overflow: 'scroll', height: '200px'}
     return (
       <div>
@@ -81,5 +78,5 @@ class App extends React.Component {
 
 ReactDOM.render(
   <App />,
-  document.getElementById("app")
+  document.getElementById('app')
 )

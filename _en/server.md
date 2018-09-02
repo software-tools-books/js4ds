@@ -1,6 +1,6 @@
 ---
 permalink: "/en/server/"
-title: "Building Data Services"
+title: "Data Services"
 questions:
 - "How do browsers and servers communicate?"
 - "What tools can I use to create a data server in JavaScript?"

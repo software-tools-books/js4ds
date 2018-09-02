@@ -12,8 +12,9 @@ PANDOC_FLAGS=--from=markdown --to=latex
 REPO=FIXME
 
 # Language-dependent settings.
-DIR_MD=_chapters_${lang}
-DIR_TEX=tex_${lang}
+DIR_MD=_${lang}
+DIR_TEX=tex/${lang}
+DIR_INC=${DIR_TEX}/inc
 DIR_WEB=_site/${lang}
 WORDS_SRC=misc/${lang}.txt
 
@@ -21,8 +22,7 @@ WORDS_SRC=misc/${lang}.txt
 ALL_MD=$(wildcard ${DIR_MD}/*.md)
 BIB_SRC=${DIR_TEX}/book.bib
 CHAPTERS_MD=$(filter-out ${DIR_MD}/bib.md ${DIR_MD}/index.md,${ALL_MD})
-CHAPTERS_TEX=$(patsubst ${DIR_MD}/%.md,${DIR_TEX}/inc/%.tex,${CHAPTERS_MD})
-EXTRAS_TEX=$(wildcard misc/*.tex)
+CHAPTERS_TEX=$(patsubst ${DIR_MD}/%.md,${DIR_INC}/%.tex,${CHAPTERS_MD})
 ALL_TEX=${CHAPTERS_TEX} ${DIR_TEX}/book.tex ${DIR_TEX}/frontmatter.tex
 CHAPTERS_HTML=$(patsubst ${DIR_MD}/%.md,${DIR_WEB}/%.html,${ALL_MD})
 ALL_HTML=all-${lang}.html
@@ -36,11 +36,11 @@ commands :
 	@grep -h -E '^##' Makefile | sed -e 's/## //g'
 
 ## serve       : run a local server.
-serve :
+serve : files/crossref.js
 	${JEKYLL} serve -I
 
 ## site        : build files but do not run a server.
-site :
+site : files/crossref.js
 	${JEKYLL} build
 
 ## single      : regenerate all-in-one version of book.
@@ -63,8 +63,8 @@ ${DIR_TEX}/book.pdf : ${ALL_TEX} ${BIB_SRC}
 	&& ${LATEX} book \
 	&& ${LATEX} book
 
-${DIR_TEX}/inc/%.tex : ${DIR_MD}/%.md _config.yml bin/texpre.py bin/texpost.py _includes/links.md
-	mkdir -p ${DIR_TEX}/inc && \
+${DIR_INC}/%.tex : ${DIR_MD}/%.md _config.yml bin/texpre.py bin/texpost.py _includes/links.md
+	mkdir -p ${DIR_INC} && \
 	cat $< \
 	| bin/texpre.py _config.yml \
 	| ${PANDOC} ${PANDOC_FLAGS} -o - \
@@ -161,9 +161,11 @@ years :
 
 ## clean       : clean up junk files.
 clean :
-	@rm -rf _site ${CHAPTERS_TEX} */*.aux */*.bbl */*.blg */*.log */*.out */*.toc
-	@find . -name .DS_Store -exec rm {} \;
-	@find . -name '*~' -exec rm {} \;
+	@rm -r -f _site dist ${CHAPTERS_TEX} */*.aux */*.bbl */*.blg */*.log */*.out */*.toc
+	@find . -name '*~' -delete
+	@find . -name .DS_Store -prune -delete
+	@find . -name '__pycache__' -prune -delete
+	@rm -r -f ${DIR_INC}
 
 ## settings    : show macro values.
 settings :
@@ -175,6 +177,7 @@ settings :
 	@echo "REPO=${REPO}"
 	@echo "DIR_MD=${DIR_MD}"
 	@echo "DIR_TEX=${DIR_TEX}"
+	@echo "DIR_INC=${DIR_INC}"
 	@echo "DIR_WEB=${DIR_WEB}"
 	@echo "BIB_SRC=${BIB_SRC}"
 	@echo "WORDS_SRC=${WORDS_SRC}"

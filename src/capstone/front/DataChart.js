@@ -1,35 +1,32 @@
 import React from 'react'
-import {Scatter} from 'react-chartjs-2';
+import VegaLite from 'react-vega-lite'
 
 const DataChart = ({data}) => {
-
   if (! data) {
     return (<p>no data</p>)
   }
 
-  data = {
-    datasets: [
-      {
-        label: 'Weight vs. Hindfoot',
-        fill: false,
-        showLine: false,
-        borderColor: 'rgba(75,192,192,1)',
-        backgroundColor: 'rgba(255,255,255,1)',
-        pointBorderWidth: 2,
-        pointRadius: 5,
-        data: data.map((rec) => {return {x: rec.hindfoot_avg, y: rec.weight_avg}})
-      }
-    ]
+  const values = data.map((rec) => ({x: rec.hindfoot_avg, y: rec.weight_avg}))
+  let spec = {
+    '$schema': 'https://vega.github.io/schema/vega-lite/v2.0.json',
+    'description': 'Mean Weight vs Mean Hindfoot Length',
+    'mark': 'point',
+    'encoding': {
+      'x': {'field': 'x', 'type': 'quantitative'},
+      'y': {'field': 'y', 'type': 'quantitative'}
+    }
   }
-  const options = {
-    width: 600,
-    height: 600,
-    responsive: false,
-    maintainAspectRatio: false
+  let options = {
+    'actions': {
+      'export': false,
+      'source': false,
+      'editor': false
+    }
   }
-  return (
-    <Scatter data={data} options={options}/>
-  )
+  let scatterData = {
+    'values': values
+  }
+  return (<VegaLite spec={spec} data={scatterData} options={options}/>)
 }
 
 export default DataChart
