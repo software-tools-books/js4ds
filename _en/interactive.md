@@ -48,6 +48,19 @@ keypoints:
   - And then use a method as the event handler
 
 ```js
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>All-in-One Counter</title>
+    <meta charset="utf-8">
+    <script src="https://fb.me/react-15.0.1.js"></script>
+    <script src="https://fb.me/react-dom-15.0.1.js"></script>
+    <script src="https://unpkg.com/babel-standalone@6/babel.js"></script>
+  </head>
+  <body>
+    <div id="app">
+      <!-- this is filled in -->
+    </div>
       class Counter extends React.Component {
 
         constructor (props) {
@@ -59,7 +72,7 @@ keypoints:
           this.setState({counter: this.state.counter+1})
         }
 
-        render() {
+        render = () => {
           return (
             <p>
               <button onClick={this.increment}>increment</button>
@@ -74,6 +87,9 @@ keypoints:
         <Counter />,
         document.getElementById("app")
       )
+    </script>
+  </body>
+</html>
 ```
 {: title="src/interactive/display-counter.html"}
 
@@ -94,6 +110,143 @@ keypoints:
      - displays the current value of the counter
 - React calls components' `render` methods after `setState` is used to update their state
   - It does some thinking behind the scenes to minimize how much redrawing takes place
+
+## But It Doesn't Work {#s:interactive-babel}
+
+- Try running from the command line with Parcel
+  - `npm run dev -- src/interactive/display-counter.html`
+  - Everything is happy
+- But now try taking code out of web page and putting it in its own file
+
+```html
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Counter</title>
+    <meta charset="utf-8">
+    <script src="app.js" async></script>
+  </head>
+  <body>
+    <div id="app"></div>
+  </body>
+</html>
+```
+{: title="src/interactive/counter/index.html"}
+
+```js
+import React from 'react'
+import ReactDOM from 'react-dom'
+
+class Counter extends React.Component {
+
+  constructor (props) {
+    ...as before...
+  }
+
+  increment = (event) => {
+    this.setState({counter: this.state.counter+1})
+  }
+
+  render = () => {
+    ...as before...
+  }
+}
+
+ReactDOM.render(
+  <Counter />,
+  document.getElementById('app')
+)
+```
+{: title="src/interactive/counter/app.js"}
+
+- Run with `npm run dev -- src/interactive/counter/index.html`
+
+```
+> js-vs-ds@0.1.0 dev /Users/stj/js-vs-ds
+> parcel serve -p 4000 "src/interactive/counter/index.html"
+
+Server running at http://localhost:4000 
+!!  /Users/stj/js-vs-ds/src/interactive/counter/app.js:11:12: Unexpected token (11:12)
+   9 |   }
+  10 | 
+> 11 |   increment = (event) => {
+     |             ^
+  12 |     this.setState({counter: this.state.counter+1})
+  13 |   }
+  14 |
+```
+
+- It seems that Parcel doesn't like fat arrow methods
+  - React is still using ES6 JavaScript by default
+  - And fat arrow methods weren't included in JavaScript at that point
+- OK, so let's try using "normal" function-style method definitions in our script
+
+```js
+...imports as before...
+
+class Counter extends React.Component {
+
+  constructor (props) {
+    super(props)
+    this.state = {counter: 0}
+  }
+
+  increment (event) {
+    this.setState({counter: this.state.counter+1})
+  }
+
+  render () {
+    return (
+      <p>
+        <button onClick={this.increment}>increment</button>
+        <br/>
+        current: {this.state.counter}
+      </p>
+    )
+  }
+}
+
+...render as before...
+```
+{: title="src/interactive/counter-functions/app.js"}
+
+- Parcel happily compiles this
+- But clicking on the button doesn't change the display
+  - Despair is once again our friend --- our *only* friend --- but we persevere
+- Open the debugging console in the browser
+  - `TypeError: this is undefined`
+  - Because of some ill-considered choices early in JavaScript's development about scoping rules
+- So: we can compile but not run, or not bundle files together
+- But wait:
+  - When we used an in-page script, we specified the type as `text/babel`
+  - And loaded `https://unpkg.com/babel-standalone@6/babel.js` in the page header along with React
+  - Can Babel save us?
+- Yes, though it takes a fair bit of searching on the web to find this out
+  - Particularly if you don't know what you're looking for
+- Create a file in the project's root directory called `.babelrc` and add the following lines
+
+```
+{
+  "presets": [
+    "react"
+  ],
+  "plugins": [
+    "transform-class-properties"
+  ]
+}
+```
+
+- Use NPM to install `babel-preset-react` and `babel-plugin-transform-class-properties`
+- Switch back to fat arrow methods
+- Run, and everything works
+  - When Babel translates our JavaScript into old-fashioned JavaScript compatible with all browsers,
+    it reads `.babelrc` and obeys that configuration
+  - The settings above tell it to do everything React needs, and to transform things inside classes
+  - In particular, accept fat arrow method definitions and bind `this` correctly
+- This is madness
+  - Something outside our program determines how that program is interpreted
+  - The commands go in yet another configuration file
+  - As fragile as the apparent constancy of cause and effect that we so naively call "reality"
 
 ## Models and Views {#s:interactive-models-views}
 
@@ -431,6 +584,11 @@ class App extends React.Component {
 Add a "reset" button to the counter application that always sets the counter's value to zero.
 Does using it to wipe out every change you've made to the counter
 feel like a metaphor for programming in general?
+
+### Transform
+
+Modify all of the examples *after* the introduction of Babel
+to use external scripts rather than in-pace scripts.
 
 ### Validation
 

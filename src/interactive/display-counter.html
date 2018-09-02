@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Hello World</title>
+    <title>All-in-One Counter</title>
     <meta charset="utf-8">
     <script src="https://fb.me/react-15.0.1.js"></script>
     <script src="https://fb.me/react-dom-15.0.1.js"></script>
@@ -23,7 +23,7 @@
           this.setState({counter: this.state.counter+1})
         }
 
-        render() {
+        render = () => {
           return (
             <p>
               <button onClick={this.increment}>increment</button>
