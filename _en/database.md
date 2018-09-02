@@ -20,7 +20,7 @@ keypoints:
 - Put a database under our web service
 - Many more storage options today than there were ten years ago
 - [Relational database](#g:relational-database)
-  - Databases consists of zero or more [tables](#g:table)
+  - Databases consist of zero or more [tables](#g:table)
   - Each table has a fixed set of [fields](#g:field)
     - Usually drawn as columns
   - And zero or more [records](#g:record)
@@ -63,6 +63,8 @@ insert into Workshop values(2, "ENIAC Programming", 150);
 - Query methods all have the same signature so that can be handled interchangeably
 
 ```js
+const sqlite3 = require("sqlite3")
+
 class Database {
 
   constructor (path) {
@@ -476,6 +478,30 @@ assert.deepEqual(rows, [
 Your `Database.getLongerThan` method's SQL query
 will need to use a `where` clause
 that selects specific records.
+
+### More Filtering
+
+The SQL query encapsulated in the variable below can be used to
+find all workshop whose duration falls within a range.
+
+```js
+const Q_WORKSHOP_DURATION_RANGE = `
+select
+  Workshop.ident        as workshopId,
+  Workshop.name         as workshopName,
+  Workshop.duration     as workshopDuration
+from
+  Workshop
+where
+  (Workshop.duration <= ?) and (Workshop.duration >= ?)
+`
+```
+
+What do the `?`s mean in this query?
+Write another method for the `Database` class, `getWithinLengthRange([args])`, that uses this query, taking arguments from the commandline as before.
+What happens when you provide the wrong number of arguments to this function? Or
+if you provide them in the wrong order?
+Can you write a test that provides more useful feedback than this?
 
 ### Handling Errors
 
