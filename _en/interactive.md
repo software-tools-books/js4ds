@@ -460,10 +460,6 @@ const DateSubmit = ({label, value, onChange, onCommit}) => {
 ```
 {: title="src/interactive/asteroids/DateSubmit.js"}
 
-<div class="callout" markdown="1">
-
-### Destructuring {#s:interactive-destructuring}
-
 - Note the use of [destructuring](#g:destructuring) in the parameter list
   - Suppose an object `directions` has the value `{left: 1, right: 2}`
   - The expression `{left, right} = directions` will create new variables `left` and `right` and assign them 1 and 2 respectively
@@ -471,8 +467,6 @@ const DateSubmit = ({label, value, onChange, onCommit}) => {
 - Can use this when passing an object full of parameters to a function
   - Any "extra" names in the passed-in object are ignored
   - Any missing names are assigned `undefined`
-
-</div>
 
 - Important to understand order of operations
   - `value={value}` puts a value in the box for display
