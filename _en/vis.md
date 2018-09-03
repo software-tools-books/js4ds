@@ -286,7 +286,7 @@ const vegaEmbed = require('vega-embed')
 - This is where we trip over something that's still painful in 2018
   - Old method of getting libraries is `require`, and that's still what Node supports as of Version 10.9.0
   - New standard is `import`
-  - Allows a module to define a default value so that `import 'something'` gets a function a class, or whatever
+  - Allows a module to define a default value so that `import 'something'` gets a function, a class, or whatever
   - Which is really handy, but `require` doesn't work that way
 - Using Node on the command, we can:
   - Add the `--experimental-modules` flag

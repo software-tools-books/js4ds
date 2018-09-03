@@ -98,7 +98,7 @@ rectangle: area 6 perimeter 10
   - Which turned out to be [clumsy and confusing](../legacy/#prototypes)
 - Most object-oriented languages use [classes](#g:class)
   - These have been added to JavaScript ES6
-  - We will only use them
+  - We will use them instead of prototypes throughout
 
 ```js
 class Square {
@@ -124,7 +124,9 @@ sq name square and area 9
   - Calls `constructor` to initialize the object's state
   - Class names are written in CamelCase by convention
 - `this` is a pronoun that refers to a single specific object
-- Methods are defined with a slightly different syntax than the fat arrows we have been using
+- Methods are defined with classic syntax rather than the [fat arrows](#g:fat-arrow) we have been using
+  - It is what current version of Node prefer
+  - We will explore this topic further in the [discussion of visualization](../vis/)
 - Again, supports polymorphism
 
 ```js
