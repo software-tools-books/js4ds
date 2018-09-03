@@ -136,7 +136,7 @@ We say that the new class [inherits](#g:inherit) from the old one.
 a horrible neologism meaning "equivalent to false".
 See also the equally horrible [truthy](#g:truthy).
 
-**fat arrow function**{:#g:far-arrow-function}:
+**fat arrow function**{:#g:fat-arrow}:
 a JavaScript function defined using the syntax `(...parameters...) => {...body...}`.
 Fat arrow functions treat the special value `this` in a less inconsistent way
 than their older equivalents.

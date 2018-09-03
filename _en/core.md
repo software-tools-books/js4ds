@@ -268,7 +268,7 @@ limits of 3,apple,sub-array are 3,3
 - Generally don't write functions this way any longer
   - Interacts in odd ways with other features of the language
   - [Section on legacy issues](../legacy/#prototypes) explains why in more detail
-- Instead, use [fat arrow functions](#g:far-arrow-function)
+- Instead, use [fat arrow functions](#g:fat-arrow)
   - Parameter list, `=>`, and body creates a function without a name
   - Assign that to a constant or variable
 
