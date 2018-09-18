@@ -2,9 +2,18 @@
 permalink: "/en/promises/"
 title: "Promises"
 questions:
-- "Does it have to hurt this much?"
+- "How does JavaScript implemented delayed computation?"
+- "Is there an easier way to handle delayed computation?"
+- "How can a program wait for many promises to complete, or for one promise in a set to complete?"
+- "Is there an even easier way to manage all of this?"
 keypoints:
-- "Yes."
+- "JavaScript keeps an execution queue for delayed computations."
+- "Use promises to manage delayed computation instead of raw callbacks."
+- "Use a callback with two arguments to handle successful completion (resolve) and unsuccessful completion (reject)."
+- "Use `then` to express the next step after successful completion and `catch` to handle errors."
+- "Use `Promise.all` to wait for all promises in a list to complete and `Promise.race` to wait for the first promise in a set to complete."
+- "Use `await` to wait for the result of a computation."
+- "Mark functions that can be waited on with `async`."
 ---
 
 -   Callbacks quickly become complicated because of:
@@ -122,29 +131,29 @@ inside immediate handler for 1500
 inside immediate handler for 500
 ```
 
-- can see from first `setTimeout` example above that execution can happen in a different order than called
-    - function call with `t = 500` happens first, despite being last iteration of loop
-- this asynchronous execution is helpful but confusing at first
+-   Can see from first `setTimeout` example above that execution can happen in a different order than called
+    -   Function call with `t = 500` happens first, despite being last iteration of loop
+-   This asynchronous execution is helpful but confusing at first
 
 ## Promises {#s:promises-promises}
 
-- consider situation where reading a file
-- accessing local storage takes a (relatively) long time
-    - worse when reading data over the web
-- JS doesn't wait for file to load before continuing execution
-- moves onto other tasks and comes back later
-- with Promises we can 'queue up' code to execute once a task is finished
-- e.g. finding size of a local file with `fs-extra.stat`
+-   Consider situation where reading a file
+-   Accessing local storage takes a (relatively) long time
+    -   Worse when reading data over the web
+-   JS doesn't wait for file to load before continuing execution
+-   Moves onto other tasks and comes back later
+-   With promises we can queue up code to execute once a task is finished
+-   E.g., finding size of a local file with `fs-extra.stat`
 
 ```js
 const fs = require('fs-extra')
 fs.stat('moby-dick.txt').then((stats) => console.log(stats.size))
 ```
 
-- `fs-extra.stat` produces some statistics about the file
-- the argument to `then` is a function that is called after `fs-extra.stat` has finished profiling the file
-- `fs-extra.stat` returns a Promise object
-- to understand them better, let's create our own Promise to fetch a datafile
+-   `fs-extra.stat` produces some statistics about the file
+-   The argument to `then` is a function that is called after `fs-extra.stat` has finished profiling the file
+-   `fs-extra.stat` returns a Promise object
+-   To understand them better, let's create our own Promise to fetch a datafile
 
 ```js
 var prom = new Promise((resolve, reject) => {
@@ -158,12 +167,12 @@ var prom = new Promise((resolve, reject) => {
 // fetched page successfully
 ```
 
-- construct a new Promise object, providing a function
-- that function takes two arguments: resolve and reject
-- call `resolve` inside the function body, to determine the value returned if everything completed successfully
-- all promises have a `then` method that takes this value returned by resolve as an input argument
-- use `reject` to define returned value when promise fails
-- and `catch` to process that returned value (usually an `Error` object)
+-   Construct a new Promise object, providing a function
+-   That function takes two arguments: resolve and reject
+-   Call `resolve` inside the function body, to determine the value returned if everything completed successfully
+-   All promises have a `then` method that takes this value returned by resolve as an input argument
+-   Use `reject` to define returned value when promise fails
+-   And `catch` to process that returned value (usually an `Error` object)
 
 ```js
 var prom = new Promise((resolve, reject) => {
@@ -180,9 +189,9 @@ var prom = new Promise((resolve, reject) => {
 .catch((error) => console.log(error.message))
 ```
 
-- can also provide two functions to `then`, where second argument will process reject value
-- going back to `fs-exta.stat` example above, what if we want to process multiple files e.g. calculate total size?
-- might think to write a loop
+-   Can also provide two functions to `then`, where second argument will process reject value
+-   Going back to `fs-exta.stat` example above, what if we want to process multiple files e.g. calculate total size?
+-   Might think to write a loop
 
 ```js
 const fs = require("fs-extra")
@@ -197,8 +206,8 @@ for (let fileName of files) {
 console.log(total_size)
 ```
 
-- danger: `fs.stat` in each iteration is executed asynchronously
-- might try chaining Promises together, to ensure that each executes only after the last resolved
+-   Danger: `fs.stat` in each iteration is executed asynchronously
+-   Might try chaining Promises together, to ensure that each executes only after the last resolved
 
 ```js
 const fs = require("fs-extra")
@@ -215,10 +224,10 @@ new Promise((resolve, reject) => {
 }).then((total) => console.log(total))
 ```
 
-- but this is a lot of nesting, doesn't scale, and (potentially) a lot of unnecessary waiting around
-- the answer is `Promise.all`
-- returns an array of results from completed promises _after all have resolved_
-    - order of results corresponds to that of promises in input array
+-   But this is a lot of nesting, doesn't scale, and (potentially) a lot of unnecessary waiting around
+-   The answer is `Promise.all`
+-   Returns an array of results from completed promises _after all have resolved_
+    -   Order of results corresponds to that of promises in input array
 
 ```js
 const fs = require('fs-extra')
@@ -228,12 +237,11 @@ var files = ["jane-eyre.txt", "moby-dick.txt", "life-of-frederick-douglass.txt"]
 Promise.all(files.map(f => fs.stat(f))).then(stats => stats.reduce((t,s) => {return t + s.size}, 0)).then(console.log)
 ```
 
-- there is also `Promise.race`, which takes an array of promises and returns the result of the __first one to complete__
+-   There is also `Promise.race`, which takes an array of promises and returns the result of the first one to complete
 
 ## Using Promises {#s:promises-usage}
 
 -   Count the number of lines in a set of files over a certain size
-
 -   Step 1: find input files
 
 ```js
@@ -374,12 +382,12 @@ lengths [ 2654, 21063, 4105, 22334, 13028, 3584 ]
 ```
 ## `async` and `await` {#s:promises-async-await}
 
-- review: work with the output of a promise with `.then`
-- output of `.then` is another promise
-- so we can end up with long chains
-- we can use `async` and `await` to avoid this problem
-- we can write asynchronous functions very similarly to the synchronous ones that we're used to
-- e.g. for the `statPair` function that we wrote earlier
+-   Review: work with the output of a promise with `.then`
+-   Output of `.then` is another promise
+-   So we can end up with long chains
+-   We can use `async` and `await` to avoid this problem
+-   We can write asynchronous functions very similarly to the synchronous ones that we're used to
+    -   E.g., for the `statPair` function that we wrote earlier
 
 ```js
 const fs = require('fs-extra')
@@ -390,13 +398,12 @@ const statPairAsync = async (filename) => {
 }
 
 statPairAsync("moby-dick.txt").then((white_whale) => console.log(white_whale.stats))
-// console.log(`filename: ${white_whale.filename}\nstats: ${white_whale.stats}`)
 ```
 
-- `async` functions still return a Promise
-- but we can then chain those with other `async` functions using `await`
-- `await` collects the result returned by a resolved promise, we can use `.catch` to handle any errors thrown
-- let's convert the complete example from the previous section
+-   `async` functions still return a Promise
+-   But we can then chain those with other `async` functions using `await`
+-   `await` collects the result returned by a resolved promise, we can use `.catch` to handle any errors thrown
+-   Let's convert the complete example from the previous section
 
 ```js
 const fs = require('fs-extra')
@@ -426,8 +433,8 @@ processFiles(`${srcDir}/**/*.txt`)
   .catch(e => console.log(e.message))
 ```
 
-- using `async` and `await` avoid need for long `then` chains, less nested
-- can only use `await` with `async` functions - syntax error if used elsewhere
+-   Using `async` and `await` avoid need for long `then` chains, less nested
+-   Can only use `await` with `async` functions - syntax error if used elsewhere
 
 ## Exercises {#s:promises-exercises}
 
@@ -528,7 +535,5 @@ Using `async` and `await`, convert the function below into an asynchronous funct
 with the same behaviour and output. Do you find your solution easier to read and
 follow than the original version? Do you think that that is only because you
 wrote this version?
-
-
 
 {% include links.md %}
