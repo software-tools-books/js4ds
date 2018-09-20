@@ -2,14 +2,14 @@
 permalink: "/en/promises/"
 title: "Promises"
 questions:
-- "How does JavaScript implemented delayed computation?"
+- "How does JavaScript implement delayed computation?"
 - "Is there an easier way to handle delayed computation?"
 - "How can a program wait for many promises to complete, or for one promise in a set to complete?"
 - "Is there an even easier way to manage all of this?"
 keypoints:
 - "JavaScript keeps an execution queue for delayed computations."
 - "Use promises to manage delayed computation instead of raw callbacks."
-- "Use a callback with two arguments to handle successful completion (resolve) and unsuccessful completion (reject)."
+- "Use a callback with two arguments to handle successful completion (resolve) and unsuccessful completion (reject) of a promise."
 - "Use `then` to express the next step after successful completion and `catch` to handle errors."
 - "Use `Promise.all` to wait for all promises in a list to complete and `Promise.race` to wait for the first promise in a set to complete."
 - "Use `await` to wait for the result of a computation."
