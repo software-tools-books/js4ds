@@ -49,6 +49,11 @@ code.highlighter-rouge {
     color: #a06060;
 }
 
+/* Make output distinct. */
+code.language-output {
+    font-weight: bold;
+}
+
 /* Make links darker than Bootstrap default. */
 a {
     color: #6060a0;
@@ -153,6 +158,7 @@ dt {
 }
 
 .slide {
+    font-style: normal;
     padding-top: 1em;
     background-color: initial;
     border-style: dashed;
