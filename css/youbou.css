@@ -152,5 +152,14 @@ dt {
     background-color: #f0a0a0;
 }
 
+.slide {
+    padding-top: 1em;
+    background-color: initial;
+    border-style: dashed;
+    border-width: 1px;
+    border-color: #808080;
+    color: #808080;
+}
+
 /* Fix Pygments displaying back quotes as errors by marking back quotes as Operator. */
 .highlight .err { color: #ce5c00; font-weight: bold; border: none; }
