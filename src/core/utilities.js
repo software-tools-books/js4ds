@@ -1,6 +1,6 @@
-const bound = 3
+DEFAULT_BOUND = 3
 
-const clip = (values) => {
+const clip = (values, bound = DEFAULT_BOUND) => {
   let result = []
   for (let v in values) {
     if (v <= bound) {

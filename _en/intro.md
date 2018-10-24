@@ -53,46 +53,11 @@ Sumi
   This book will fill in some of the gaps in her knowledge
   and show her how to take advantage of JavaScript's more modern features.
 
-> **Requirements**
-> - You have:
->   - Used variables, lists, `for` loops, and `if`/`else` statements in two- and three-page programs
->   - Written functions and called them
-> - You have not:
->   - Written JavaScript 
->   - Written or used a web service
->   - Use a templating system to create HTML pages
->   - Created dynamic web pages
-> - You will need:
->   - To understand a little SQL (if you don't, check out the [Software Carpentry][swc] lessons)
->   - A computer with Node installed (instructions follow)
-{: .slide}
-
 ## Setting Up {#s:intro-setup}
 
 You can do the exercises in the first part of this course online,
 but will need to install some software on your own computer
 to do the later ones.
-
-> **Setting Up**
-> - For small exercises, use an online service like [RunKit][runkit]
-> - For larger things, [download and install][node-download] the latest Long-term Support (LTS) versions of Node and NPM from
-> - `node` is a command-line interpreter for JavaScript
-> - The command `node` on its own starts a [read-evaluate-print loop](#g:repl)
->   - Executes commands as they are typed in
->   - Displays their output
-> - The command `node filename.js` runs the commands in `filename.js`
->   - We will see [later](../display/) how to run JavaScript in a browser
-{: .slide}
-
-> **Installing Packages**
-> - `npm` is Node's [package manager](#g:package-manager)
->   - A command-line tool for finding, installing, and updating libraries that your program depends on
-> - Use <code>npm install --global <em>library-name</em></code> (without `.js` extension) to install a library globally
->   (i.e., so that all projects can load it)
-> - Use <code>npm install --save <em>library-name</em></code> to install in the current project
->   - A better idea, since it isolates projects from one another
->   - We will see [later](../display/) how to create projects
-{: .slide}
 
 For small exercises as you're getting started,
 you can use an online service like [RunKit][runkit],

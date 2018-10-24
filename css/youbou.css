@@ -50,7 +50,7 @@ code.highlighter-rouge {
 }
 
 /* Make output distinct. */
-code.language-output {
+div.language-text {
     font-weight: bold;
 }
 
@@ -155,16 +155,6 @@ dt {
 
 .coverage {
     background-color: #f0a0a0;
-}
-
-.slide {
-    font-style: normal;
-    padding-top: 1em;
-    background-color: initial;
-    border-style: dashed;
-    border-width: 1px;
-    border-color: #808080;
-    color: #808080;
 }
 
 /* Fix Pygments displaying back quotes as errors by marking back quotes as Operator. */

@@ -247,7 +247,7 @@ span.keyword {
 {: title="src/htmlcss/simple-style.css"}
 
 - Usual form is `tag.class` followed by a group of properties
-  - Each property is a key/value pair
+  - Each property is a key-value pair
 - Can omit the class, in which case the style applies to everything with that tag
   - Unless overridden by something more specific
 - Can omit the tag and simply use `.class`

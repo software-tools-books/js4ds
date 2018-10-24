@@ -45,7 +45,7 @@ keypoints:
 })
 ```
 {: title=promises/not-callbacks-alone.js}
-```output
+```text
 1000
 1500
 500
@@ -61,7 +61,7 @@ keypoints:
 })
 ```
 {: title=promises/callbacks-with-timeouts.js}
-```output
+```text
 about to setTimeout for 1000
 about to setTimeout for 1500
 about to setTimeout for 500
@@ -79,7 +79,7 @@ inside timer handler for 1500
 })
 ```
 {: title=promises/callbacks-with-zero-timeouts.js}
-```output
+```text
 about to setTimeout for 1000
 about to setTimeout for 1500
 about to setTimeout for 500
@@ -101,7 +101,7 @@ const nonBlocking = (callback) => {
 })
 ```
 {: title=promises/non-blocking.js}
-```output
+```text
 about to do nonBlocking for 1000
 about to do nonBlocking for 1500
 about to do nonBlocking for 500
@@ -122,7 +122,7 @@ inside callback for 500
 })
 ```
 {: title=promises/set-immediate.js}
-```output
+```text
 about to do setImmediate for 1000
 about to do setImmediate for 1500
 about to do setImmediate for 500

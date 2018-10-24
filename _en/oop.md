@@ -26,7 +26,7 @@ keypoints:
 
 ## Doing It By Hand {#s:oop-manual}
 
-- An object is a set of key/value pairs
+- An object is a set of key-value pairs
 - Values can be functions
 - So have data carry around functions that work on it
 
