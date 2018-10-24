@@ -9,11 +9,13 @@ questions:
 keypoints:
 - "Modern JavaScript is a good tool for building desktop and web-based applications."
 - "This course is for people who know what loops and functions are, but have never used JavaScript or built web applications."
+- "Node is a command-line interpreter for JavaScript, which can be used interactively or to run scripts in files."
+- "NPM is the Node Package Manager, which can be used to find, install, and update libraries."
 ---
 
 ## Who You Are {#s:intro-personas}
 
-Every lesson should aim to [meet the needs of specific learners]({{site.data.links.h2tp}}).
+Every lesson should aim to [meet the needs of specific learners][t3-process].
 The three people described below define the intended audience for this one.
 
 Bhadra
@@ -21,7 +23,7 @@ Bhadra
   and has worked since then for a biotech firm with labs in four countries.
   She did a statistics class using R as an undergrad,
   then learned some more R and some Unix shell scripting
-  in a [Software Carpentry]({{site.data.links.swc}}) workshop,
+  in a [Software Carpentry][swc] workshop,
   but has no other training as a programmer.
   Bhadra's team is developing tools
   to detect structural similarities between proteins.
@@ -44,12 +46,26 @@ Sumi
 : is completing a PhD in 19th Century history.
   As part of her research,
   she is transcribing and cataloging the records of several dozen Japanese-American midwives.
-  She has been creating and customizing [WordPress]({{site.data.links.wordpress}}) sites for several years,
+  She has been creating and customizing WordPress sites for several years,
   and has picked up bits and pieces of JavaScript while doing so.
   Sumi is about to start looking for a job,
   and wants to create an interactive website to showcase her research.
   This book will fill in some of the gaps in her knowledge
   and show her how to take advantage of JavaScript's more modern features.
+
+> **Requirements**
+> - You have:
+>   - Used variables, lists, `for` loops, and `if`/`else` statements in two- and three-page programs
+>   - Written functions and called them
+> - You have not:
+>   - Written JavaScript 
+>   - Written or used a web service
+>   - Use a templating system to create HTML pages
+>   - Created dynamic web pages
+> - You will need:
+>   - To understand a little SQL (if you don't, check out the [Software Carpentry][swc] lessons)
+>   - A computer with Node installed (instructions follow)
+{: .slide}
 
 ## Setting Up {#s:intro-setup}
 
@@ -57,21 +73,50 @@ You can do the exercises in the first part of this course online,
 but will need to install some software on your own computer
 to do the later ones.
 
-- For small exercises, use an online service like [RunKit]({{site.data.links.runkit}})
-- For larger things, install the latest Long-term Support (LTS) versions of Node and NPM from <https://nodejs.org/en/download/>
-- `node` is a command-line interpreter for JavaScript
-  - The command `node` on its own starts a [read-evaluate-print loop](#g:repl)
-    - Executes commands as they are typed in
-    - Displays their output
-  - The command `node filename.js` runs the commands in `filename.js`
-    - We will see [later](../display/) how to run JavaScript in a browser
-- `npm` is Node's [package manager](#g:package-manager)
-  - A command-line tool for finding, installing, and updating libraries that your program depends on
-  - Use <code>npm install --global <em>library-name</em></code> (without `.js` extension) to install a library globally
-    (i.e., so that all projects can load it)
-  - Use <code>npm install --save <em>library-name</em></code> to install in the current project
-    - A better idea, since it isolates projects from one another
-    - We will see [later](../display/) how to create projects
+> **Setting Up**
+> - For small exercises, use an online service like [RunKit][runkit]
+> - For larger things, [download and install][node-download] the latest Long-term Support (LTS) versions of Node and NPM from
+> - `node` is a command-line interpreter for JavaScript
+> - The command `node` on its own starts a [read-evaluate-print loop](#g:repl)
+>   - Executes commands as they are typed in
+>   - Displays their output
+> - The command `node filename.js` runs the commands in `filename.js`
+>   - We will see [later](../display/) how to run JavaScript in a browser
+{: .slide}
+
+> **Installing Packages**
+> - `npm` is Node's [package manager](#g:package-manager)
+>   - A command-line tool for finding, installing, and updating libraries that your program depends on
+> - Use <code>npm install --global <em>library-name</em></code> (without `.js` extension) to install a library globally
+>   (i.e., so that all projects can load it)
+> - Use <code>npm install --save <em>library-name</em></code> to install in the current project
+>   - A better idea, since it isolates projects from one another
+>   - We will see [later](../display/) how to create projects
+{: .slide}
+
+For small exercises as you're getting started,
+you can use an online service like [RunKit][runkit],
+which gives you an interactive JavaScript playground in your browser.
+For larger things,
+and for chapters starting with the one on [creating dynamic web pages](../display/),
+you should [download and install][node-download] the latest Long-term Support (LTS) versions of Node and NPM.
+
+`node` is a command-line interpreter for JavaScript
+like those for languages such as Python and R.
+The command `node` on its own starts a [read-evaluate-print loop](#g:repl)
+that executes commands as they are typed in and displays their output.
+The command `node filename.js` reads and runs the commands in `filename.js`;
+we will see [later](../display/) how to run JavaScript in a browser.
+
+`npm` the Node [Package Manager](#g:package-manager),
+a command-line tool for finding, installing, and updating JavaScript libraries.
+The command <code>npm install --global <em>library-name</em></code> (without a `.js` extension)
+installs a library [globally](#g:global-intallation) so that all projects can use it,
+while <code>npm install --save <em>library-name</em></code> installs the library [locally](#g:local-installation)
+(i.e., in the current project folder).
+Local installation is usually a better idea,
+since it isolates projects from one another;
+we will explore this [later](../display/) when we look at how to create projects.
 
 ## Exercises {#s:intro-exercises}
 

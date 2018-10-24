@@ -11,7 +11,15 @@ definitions if that's done.
 
 [express]: https://expressjs.org/
 
+[t3-process]: http://teachtogether.tech/en/process/
+
+[node-download]: https://nodejs.org/en/download/
+
 [parcel]: https://parceljs.org/
+
+[runkit]: https://runkit.com/
+
+[swc]: http://software-carpentry.org/
 
 [vega-lite]: http://vega.github.io/
 

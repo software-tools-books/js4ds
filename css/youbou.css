@@ -168,4 +168,8 @@ dt {
 }
 
 /* Fix Pygments displaying back quotes as errors by marking back quotes as Operator. */
-.highlight .err { color: #ce5c00; font-weight: bold; border: none; }
+.highlight .err {
+    color: #ce5c00;
+    font-weight: bold;
+    border: none;
+}
