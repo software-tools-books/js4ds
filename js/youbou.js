@@ -1,58 +1,42 @@
-let pageIsRoot = document.currentScript.getAttribute('ROOT') != ''
-$(document).ready(function() {
+const makeTableOfContents = () => {
+  const container = document.querySelectorAll('div.headings')[0]
+  const headings = Array.from(document.querySelectorAll('h2'))
+  const items = headings
+        .map((h) => '<li><a href="#' + h.id + '">' + h.innerHTML + '</a></li>')
+        .join('\n')
+  container.innerHTML = '<p><strong>Contents</strong></p><ul>\n' + items + '</ul>'
+}
 
-  // Set the path to the root directory based on the script parameter.
-  let prefix = pageIsRoot ? '.' : '..'
+const stripeTables = () => {
+  const tables = document.querySelectorAll('table')
+  Array.from(tables).forEach(t => {
+    t.classList.add('table', 'table-striped')
+    console.log(`converting table classlList is now ${t.classList}`)
+  })
+}
 
-  // Stripe all tables.
-  $('table').addClass('table table-striped')
-
-  // Change URLs of special internal references.
-  $('a').each(function() {
-    let target = $(this).attr('href')
-    let text = $(this).text()
-
-    // Glossary entries.
-    if (target.startsWith('#g:')) {
-      $(this).attr('href', prefix + '/gloss/' + target)
-      $(this).addClass('glossref')
+const fixSpecialLinks = (prefix) => {
+  const links = document.querySelectorAll('a')
+  console.log(`links are ${links}`)
+  Array.from(document.querySelectorAll('a')).forEach(a => {
+    const target = a.getAttribute('href')
+    if (target.startsWith('#b:')) {
+      a.setAttribute('href', prefix + '/bib/' + target)
+      a.classList.add('bibref')
+      console.log(`convert bib item now`, a)
     }
-
-    // Bibliography citations.
-    else if (target == '#CITE') {
-      $(this).attr('href', prefix + '/bib/#' + text)
-    }
-
-    // Appendix references.
-    else if (target == '#APPENDIX') {
-      $(this).attr('href', prefix + '/' + CROSSREF[text]['slug'] + '/')
-      $(this).text('Appendix ' + CROSSREF[text]['number'])
-    }
-
-    // Chapter references.
-    else if (target == '#CHAPTER') {
-      $(this).attr('href', prefix + '/' + CROSSREF[text]['slug'] + '/')
-      $(this).text('Chapter ' + CROSSREF[text]['number'])
-    }
-
-    // Figure references.
-    else if (target == '#FIGURE') {
-      $(this).attr('href', prefix + '/' + CROSSREF[text]['slug'] + '/#' + text)
-      $(this).text('Figure ' + CROSSREF[text]['number'])
-    }
-
-    // Section references.
-    else if (target == '#SECTION') {
-      $(this).attr('href', prefix + '/' + CROSSREF[text]['slug'] + '/#' + text)
-      $(this).text('Section ' + CROSSREF[text]['number'])
+    else if (target.startsWith('#g:')) {
+      a.setAttribute('href', prefix + '/gloss/' + target)
+      a.classList.add('glossref')
+      console.log(`convert gloss item now`, a)
     }
   })
+}
 
-  // Add "Figure A.B" to the title of every figure.
-  $('figcaption').each(function() {
-    let ident = $(this).attr('id')
-    let text = $(this).text()
-    console.log(ident, text)
-    $(this).text('Figure ' + CROSSREF[ident]['number'] + ': ' + text)
-  })
-})
+(function(){
+  const pageIsRoot = (document.currentScript.getAttribute('ROOT') != '')
+  const prefix = pageIsRoot ? '.' : '..'
+  makeTableOfContents()
+  stripeTables()
+  fixSpecialLinks(prefix)
+})()

@@ -7,7 +7,7 @@
     <meta name="author" content="{{site.author}}" />
     <title>{{site.title}}: {% if page.title %}{{page.title}}{% else %}{{site.subtitle}}{% endif %}</title>
     {% include css.html %}
-    {% include js.html %}
+    {% include js-header.html %}
   </head>
   <body>
     <div class="container-fluid">
@@ -20,11 +20,13 @@
           <h1>{% if page.root %}{{site.title}}{% else %}{{page.title}}{% endif %}</h1>
           {% include disclaimer.html %}
           {% include listblock.html title=translations.questions items=page.questions %}
+          <div class="listblock headings"></div>
           {{content}}
           {% include listblock.html title=translations.keypoints items=page.keypoints %}
           {{site.marker.end}}
         </div>
       </div>
     </div>
+    {% include js-footer.html %}
   </body>
 </html>

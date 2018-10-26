@@ -28,7 +28,7 @@ CHAPTERS_HTML=$(patsubst ${DIR_MD}/%.md,${DIR_WEB}/%.html,${ALL_MD})
 ALL_HTML=all-${lang}.html
 
 # Controls
-.PHONY : commands serve site bib crossref clean
+.PHONY : commands serve site bib clean
 all : commands
 
 ## commands    : show all commands.
@@ -36,17 +36,17 @@ commands :
 	@grep -h -E '^##' Makefile | sed -e 's/## //g'
 
 ## serve       : run a local server.
-serve : files/crossref.js
+serve :
 	${JEKYLL} serve -I
 
 ## site        : build files but do not run a server.
-site : files/crossref.js
+site :
 	${JEKYLL} build
 
 ## single      : regenerate all-in-one version of book.
 single : ${ALL_HTML}
 
-${ALL_HTML} : _config.yml files/crossref.js bin/mergebook.py
+${ALL_HTML} : _config.yml bin/mergebook.py
 	bin/mergebook.py ${lang} _config.yml files/crossref.js ${DIR_WEB} > $@
 
 ## pdf         : build PDF version of book.

@@ -7,16 +7,18 @@
     <meta name="author" content="{{site.author}}" />
     <title>{{site.title}}: {% if page.title %}{{page.title}}{% else %}{{site.subtitle}}{% endif %}</title>
     {% include css.html %}
-    {% include js.html %}
+    {% include js-header.html %}
   </head>
   <body>
     <div class="container-fluid">
       <div class="row">
         <div class="col-md-10 offset-md-1 main">
           <h1>{% if page.root %}{{site.title}}{% else %}{{page.title}}{% endif %}</h1>
+          <div class="listblock headings"></div>
           {{content}}
         </div>
       </div>
     </div>
+    {% include js-footer.html %}
   </body>
 </html>

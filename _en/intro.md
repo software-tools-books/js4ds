@@ -15,7 +15,7 @@ keypoints:
 
 ## Who You Are {#s:intro-personas}
 
-Every lesson should aim to [meet the needs of specific learners][t3-process].
+Every lesson should aim to [meet the needs of specific learners][t3-process] [[Wils2018](#b:Wils2018)].
 The three people described below define the intended audience for this one.
 
 Bhadra
