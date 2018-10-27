@@ -15,6 +15,16 @@ const circle = {
   perimeter: (it) => { return 2 * Math.PI * it.radius }
 }
 
+const show_all = (shapes) => {
+  for (let s of shapes) {
+    const a = s.area(s)
+    const p = s.perimeter(s)
+    console.log(`${s.name}: area ${a} perimeter ${p}`)
+  }
+}
+
+show_all([square, circle])
+
 const rectangle = {
   name: 'rectangle',
   width: 2,
@@ -23,9 +33,4 @@ const rectangle = {
   perimeter: (it) => { return 2 * (it.width + it.height) }
 }
 
-const everything = [square, circle, rectangle]
-for (let thing of everything) {
-  const a = thing.area(thing)
-  const p = thing.perimeter(thing)
-  console.log(`${thing.name}: area ${a} perimeter ${p}`)
-}
+show_all([square, circle, rectangle])

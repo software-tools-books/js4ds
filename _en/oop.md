@@ -20,15 +20,20 @@ keypoints:
 - "Creating extensible systems by defining interfaces and protocols."
 ---
 
-- Making new code use old code is easy
-- How can we make old code use new code without rewriting?
-- Objects!
+Making new code use old code is easy:
+just load the libraries you want and write calls to the functions you need.
+Making *old* code use *new* code without rewriting it is trickier,
+but object-oriented programming can help.
 
 ## Doing It By Hand {#s:oop-manual}
 
-- An object is a set of key-value pairs
-- Values can be functions
-- So have data carry around functions that work on it
+As we saw [earlier](../core/),
+an object in JavaScript is a set of key-value pairs.
+Since functions are just another kind of data,
+an object's values can be functions,
+so data can carry around functions that work on it.
+For example,
+we can create an object to represent a square:
 
 ```js
 const square = {
@@ -40,7 +45,7 @@ const square = {
 ```
 {: title="src/oop/clumsy-objects.js"}
 
-- Pass the object itself into the function
+and then pass the object itself into each of its own functions:
 
 ```js
 const a = square.area(square)
@@ -51,8 +56,10 @@ console.log(`area of square is ${a}`)
 area of square is 25
 ```
 
-- This seems like a lot of work
-- But it allows us to handle many different kinds of things in the same way
+This is a bit clumsy---we'll often forget to pass the object into its functions---but
+it allows us to handle many different kinds of things in the same way.
+For example,
+we can create another object to represent a circle:
 
 ```js
 const circle = {
@@ -61,7 +68,39 @@ const circle = {
   area: (it) => { return Math.PI * it.radius * it.radius },
   perimeter: (it) => { return 2 * Math.PI * it.radius }
 }
+```
+{: title="src/oop/clumsy-objects.js"}
 
+and then put all of these different objects in an array
+and operate on them in the same way
+without knowing precisely what kind of object we're dealing with:
+
+```js
+const show_all = (shapes) => {
+  for (let s of shapes) {
+    const a = s.area(s)
+    const p = s.perimeter(s)
+    console.log(`${s.name}: area ${a} perimeter ${p}`)
+  }
+}
+
+show_all([square, circle])
+```
+{: title="src/oop/clumsy-objects.js"}
+```text
+square: area 25 perimeter 20
+circle: area 28.274333882308138 perimeter 18.84955592153876
+```
+
+As long as we only use the value `name` and the functions `area` and `perimeter`
+we don't need to know what kind of shape we have.
+This is called [polymorphism](#g:polymoprhism),
+and it allows us to add new shapes without changing the code in our loop.
+In other words,
+it allows old code (in this case, the function `show_all`)
+to use new code (the new object `rectangle`).
+
+```js
 const rectangle = {
   name: 'rectangle',
   width: 2,
@@ -70,12 +109,7 @@ const rectangle = {
   perimeter: (it) => { return 2 * (it.width + it.height) }
 }
 
-const everything = [square, circle, rectangle]
-for (let thing of everything) {
-  const a = thing.area(thing)
-  const p = thing.perimeter(thing)
-  console.log(`${thing.name}: area ${a} perimeter ${p}`)
-}
+show_all([square, circle, rectangle])
 ```
 {: title="src/oop/clumsy-objects.js"}
 ```text
@@ -84,21 +118,16 @@ circle: area 28.274333882308138 perimeter 18.84955592153876
 rectangle: area 6 perimeter 10
 ```
 
-- As long as we only use the value `name` and the functions `area` and `perimeter`
-  we don't need to know what kind of thing we're actually working with
-- [Polymorphism](#g:polymoprhism)
-
-- But:
-  - Building every object by hand is painful
-  - Calling `it.function(it)` is clumsy
-
 ## Classes {#s:oop-classes}
 
-- JavaScript solved these problems using [prototypes](#g:prototype)
-  - Which turned out to be [clumsy and confusing](../legacy/#prototypes)
-- Most object-oriented languages use [classes](#g:class)
-  - These have been added to JavaScript ES6
-  - We will use them instead of prototypes throughout
+Building every object by hand and calling `thing.function(thing)` is clumsy.
+JavaScript solved these problems using [prototypes](#g:prototype),
+which also turned out to be [clumsy](../legacy/#prototypes).
+Most object-oriented languages use [classes](#g:class) instead;
+these were added to JavaScript in ES6,
+and we will use them instead of prototypes throughout.
+Here's how we create a class that defines the properties of a square,
+without actually creating any specific squares:
 
 ```js
 class Square {
@@ -109,7 +138,13 @@ class Square {
   area () { return this.size * this.size }
   perimeter () { return 4 * this.size }
 }
+```
+{: title="src/oop/es6-objects.js"}
 
+(Class names are written in CamelCase by convention.)
+We can then create a specific square by using the class's name as if it were a function:
+
+```
 const sq = Square(3)
 console.log(`sq name ${sq.name} and area ${sq.area()}`)
 ```
@@ -118,16 +153,25 @@ console.log(`sq name ${sq.name} and area ${sq.area()}`)
 sq name square and area 9
 ```
 
-- `new ClassName(...)`:
-  - Creates a new blank object
-  - Inserts a (hidden) reference to the class, so that the object can find its [methods](#g:method)
-  - Calls `constructor` to initialize the object's state
-  - Class names are written in CamelCase by convention
-- `this` is a pronoun that refers to a single specific object
-- Methods are defined with classic syntax rather than the [fat arrows](#g:fat-arrow) we have been using
-  - It is what current version of Node prefer
-  - We will explore this topic further in the [discussion of visualization](../vis/)
-- Again, supports polymorphism
+`new ClassName(...)` creates a new blank object
+and inserts a (hidden) reference to the class
+so that the object can find its [methods](#g:method).
+`new` then calls the specially-named method `constructor` to initialize the object's state.
+Inside the constructor and other methods,
+the object being operated on is referred to by the pronoun `this`.
+
+Inside the class,
+methods are defined with classic syntax rather than the [fat arrows](#g:fat-arrow) we have been using.
+This is what current version of Node prefer;
+we will explore this topic further in the [discussion of visualization](../vis/).
+
+Classes defined this way support polymorphism:
+if two or more classes have some methods with the same names
+that take the same parameters
+and return the same kinds of values,
+other code can use objects of those classes interchangeably.
+For example,
+here's a class-based rewrite of our shapes code:
 
 ```js
 class Circle {
@@ -169,10 +213,9 @@ rectangle: area 0.75 perimeter 4
 
 ## Inheritance {#s:oop-inheritance}
 
-- Build new classes from old by:
-  - Adding methods
-  - [Overriding methods](#g:override-method)
-- Start by defining a person
+We can build new classes from old ones by adding or [overriding](#g:override-method) methods.
+To show this,
+we'll start by defining a person:
 
 ```js
 class Person {
@@ -187,12 +230,18 @@ class Person {
       return `Hi, I'm ${this.name}`
     }
   }
+
+  farewell () {
+    return `Goodbye`
+  }
 }
 ```
 {: title="src/oop/override.js"}
 
-- Then [extend](#g:extend) to create a scientist
-  - Say that `Scientist` [inherits](#g:inherit) from `Person`
+We can now [extend](#g:extend) `Person` to create a new class `Scientist`,
+in which case we say that `Scientist` [inherits](#g:inherit) from `Person`,
+or that `Person` is a [parent class](#g:parent-class) of `Scientist`
+and `Scientist` is a [child class](#g:child-class) of `Person`.
 
 ```js
 class Scientist extends Person {
@@ -208,36 +257,70 @@ class Scientist extends Person {
 ```
 {: title="src/oop/override.js"}
 
-- Use `super(...)` in `constructor` to call up to parent's constructor
-  - Do *not* duplicate the steps it takes
-- An instance of `Scientist` will use `Scientist.greeting`,
-  while instances of `Person` will use `Person.greeting`
+This tells us that a `Scientist` is a `Person` who:
 
-FIXME-40: memory diagram
+- Has an area of specialization as well as a name.
+- Says hello in a slightly longer way
+- Says goodbye in the same way as a `Person`
+  (since `Scientist` *doesn't* define its own `farewell method)
 
-- Result
+The word `super` is used in two ways here:
+
+- In the construtor for `Scientist`,
+  `super(...)` calls up to the constructor of the parent class `Person`
+  so that it can do whatever initialization it does
+  before `Scientist` does its own initialization.
+  This saves us from duplicating steps.
+- Inside `greeting`,
+  the expression `super.greeting(formal)` means
+  "call the parent class's `greeting` method for this object".
+  This allows methods defined in child classes to add to or modify
+  the behavior of methods defined in parent classes,
+  again without duplicating code.
+
+Let's try it out:
 
 ```js
 const parent = new Person('Hakim')
-console.log(`parent: ${parent.greeting(true)}`)
+console.log(`parent: ${parent.greeting(true)} - ${parent.farewell()}`)
 
 const child = new Scientist('Bhadra', 'microbiology')
-console.log(`child: ${child.greeting(false)}`)
+console.log(`child: ${child.greeting(false)} - ${child.farewell()}`)
 ```
 {: title="src/oop/override.js"}
 ```text
-parent: Hello, my name is Hakim
-child: Hi, I'm Bhadra. Let me tell you about microbiology...
+parent: Hello, my name is Hakim - Goodbye
+child: Hi, I'm Bhadra. Let me tell you about microbiology... - Goodbye
 ```
+
+The diagram below shows what memory looks like after these classes have been defined
+and the objects `parent` and `child` have been created.
+It looks complex at first,
+but allows us to see how JavaScript finds the right method
+when `child.farewell()` is called:
+
+- It looks in the object `child` to see if there's a function there with the right name.
+- There isn't, so it follows `child`'s link to its class `Scientist`
+  to see if a function is there.
+- There isn't, so it follows the link from `Scientist` to the parent class `Person`
+  and finds the function it's looking for.
+
+FIXME-40: memory diagram
 
 ## Protocols {#s:oop-protocols}
 
-- Common use of object-oriented programming is to define a [protocol](../guide/#protocol)
-  - Actions that objects might take are defined in methods
-  - Parent defines a method that invokes them at specific times or in a specific order
-  - "You will all follow this procedure, but you may follow it in different ways"
+A common way to use object-oriented programming is to define a [protocol](../guide/#protocol).
+The parent defines a method that invokes other methods at specific times or in a specific order.
+Users then derive classes from the parent that implement those methods
+to do those specific things.
+In essence,
+a protocol says,
+"You will all follow this procedure, but you may follow it in different ways."
 
-- How does a generic bird behave throughout the year?
+For example,
+how does a generic bird behave throughout the year?
+The class `Bird` specifies that it forages, mates, and nests,
+and provides default methods for each:
 
 ```js
 class Bird {
@@ -272,10 +355,10 @@ class Bird {
 ```
 {: title="src/oop/protocol.js"}
 
-- `daily` defines the bird's overall behavior
-- `foraging`, `mating`, and `nesting` define default behaviors
-
-- How does a specific kind of bird behave?
+A specific kind of bird,
+such as a penguin,
+can then override these methods to provide its own behaviors
+*without* changing its daily behavior:
 
 ```js
 class Penguin extends Bird {
@@ -305,13 +388,12 @@ class Penguin extends Bird {
 ```
 {: title="src/oop/protocol.js"}
 
-- Has extra state (`this.hasEgg`)
-  - Calls parent constructor before setting this up
-- Doesn't override the default behavior for `foraging`
-- Extends the default behavior for `mating`
-- Replaces the default behavior for `nesting`
-
-- Result of some runs:
+`Penguin` has some extra state (the variable `this.hasEgg`),
+and calls its parent's constructor before setting this up.
+It doesn't override the default behavior for `foraging`,
+but it extends the default behavior for `mating`
+and completely replaces the default behavior for `nesting`.
+Here are the results of watching one penguin for four seasons:
 
 ```js
 const bird = new Penguin()
@@ -328,7 +410,7 @@ in winter: penguin looks for food,,
 in spring: penguin looks for food,,
 ```
 
-- Result of other runs:
+Here's another:
 
 ```text
 in summer: penguin looks for food,,
@@ -337,12 +419,16 @@ in winter: penguin looks for food,,penguin is nesting
 in spring: penguin looks for food,,penguin is nesting
 ```
 
-- Different random numbers produce different behaviors
-  - Makes testing hard
-  - Look at how to address this in challenges
-- But main idea is how old code can use new code
-  - Old code defines expectations as an interface and a protocol
-  - New code implements that interface and respects that protocol
+Different random numbers produce different behaviors,
+which makes testing hard:
+we'll see how to address this [later](../testing/)
+The main idea,
+though,
+is how old code can use new code:
+the old code defines expectations as an interface and a protocol,
+and the new code implements that interface and respects that protocol.
+We will see this idea over and over again
+as we build applications using standard libraries.
 
 ## Exercises {#s:oop-exercises}
 

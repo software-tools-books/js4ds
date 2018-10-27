@@ -10,6 +10,10 @@ class Person {
       return `Hi, I'm ${this.name}`
     }
   }
+
+  farewell () {
+    return `Goodbye`
+  }
 }
 
 class Scientist extends Person {
@@ -24,7 +28,7 @@ class Scientist extends Person {
 }
 
 const parent = new Person('Hakim')
-console.log(`parent: ${parent.greeting(true)}`)
+console.log(`parent: ${parent.greeting(true)} - ${parent.farewell()}`)
 
 const child = new Scientist('Bhadra', 'microbiology')
-console.log(`child: ${child.greeting(false)}`)
+console.log(`child: ${child.greeting(false)} - ${child.farewell()}`)

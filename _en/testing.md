@@ -288,6 +288,10 @@ describe('server', () => {
 
 ## Exercises {#s:testing-exercises}
 
+### FIXME: exercise on testing randomness
+
+FIXME
+
 ### Not Done
 
 What happens if we forget to call `done()` in a test?
