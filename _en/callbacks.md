@@ -22,31 +22,68 @@ keypoints:
 - "A closure is a set of variables captured during the definition of a function."
 ---
 
-- JavaScript relies heavily on [callback functions](#g:callback-function)
-  - Instead of me giving you a result,
-    you give me a function that tells me what to do next
-- Many other languages use them occasionally,
-  but JavaScript is often the first place programmers encounter them
-- In order to understand how they work and how to use them,
-  must first understand what happens when functions are defined and called
+JavaScript relies heavily on [callback functions](#g:callback-function):
+Instead of a function giving us a result immediately,
+we give it another function that tells it what to do next.
+Many other languages use them as well,
+but JavaScript is often the first place that programmers with data science backgrounds encounter them.
+In order to understand how they work and how to use them,
+we must first understand what actually happens when functions are defined and called.
+
+## The Call Stack {#s:callbacks-callstack}
+
+FIXME: explain call stack
 
 ## Functions as Parameters {#s:callbacks-func-params}
 
-- When we write `name = "text"`,
-  JavaScript allocates a block of memory big enough for four characters,
-  copies the characters into that block,
-  and stores a reference to it in the variable `name`
-- When we write `oneMore = (x) => {return x+1}`,
-  JavaScript allocates a block of memory big enough to store several instructions,
-  copies the instructions into that block,
-  and stores a reference to it in the variable `oneMore`
-- Draw a [memory diagram](#g:memory-diagram) to show this
+When JavaScript [parses](#g:parsing) the expression `let name = "text"`,
+it allocates a block of memory big enough for four characters
+and stores 't', 'e', 'x', and 't' in them.
+When it executes the assignment,
+it stores a reference to that block of characters in the variable `name`.
+We can show this by drawing a [memory diagram](#g:memory-diagram):
+
+FIXME: memory diagram
+
+Similarly,
+when we write:
+
+```js
+oneMore = (x) => {
+  return x + 1
+}
+```
+{: title="src/callbacks/one-more.js"}
+
+JavaScript allocates a block of memory big enough to store several instructions,
+translates the text of the function into instructions,
+and stores a reference to those instructions in the variable `oneMore`:
 
 FIXME-14: diagram
 
-- When we pass a value to a function,
-  what we're really giving it is a reference to its block of memory
-- So we can pass a function just as easily as we can pass a string or a number
+The only difference between these two cases is what's on the other end of the reference:
+four characters or a bunch of instructions that add one to a number.
+This means that we can assign the function to another variable,
+just as we would assign a number:
+
+```js
+const anotherName = oneMore
+console.log(anotherName(5))
+```
+{: title="src/callbacks/one-more.js"}
+```text
+6
+```
+
+Doing this does *not* call the function:
+as the memory diagram below shows,
+it creates a second name that refers to the same block of instructions.
+
+FIXME: diagram
+
+As the previous section explained,
+when JavaScript calls a function it assigns the arguments in the call to the function's parameters.
+This means that we can pass a function into another function:
 
 ```js
 const doTwice = (action) => {
@@ -66,15 +103,26 @@ hello
 hello
 ```
 
-FIXME-14: diagram
-
-- More useful when the function passed in takes parameters
+This is more useful when the function (or functions) passed in have parameters of their own.
+For example,
+the function `pipeline` passes a value to one function,
+then takes that function's result and passes it to a second,
+the result of which is then returned:
 
 ```js
 const pipeline = (initial, first, second) => {
-  return second(first(initial))
+  const temp = first(initial)
+  return second(temp)
 }
+```
+{: title="src/callbacks/two-functions.js"}
 
+FIXME: diagram
+
+Let's trace its operation on a function that trims blanks off the starts and ends of strings
+and another function that replaces spaces with dots:
+
+```js
 const trim = (text) => { return text.trim() }
 const dot = (text) => { return text.replace(/ /g, '.') }
 
@@ -82,17 +130,24 @@ const original = '  this example uses text  '
 
 const trimThenDot = pipeline(original, trim, dot)
 console.log(`trim then dot: |${trimThenDot}|`)
+```
+{: title="src/callbacks/two-functions.js"}
+```text
+trim then dot: |this.example.uses.text|
+```
 
+Reversing the order of the functions changes the result:
+
+```js
 const dotThenTrim = pipeline(original, dot, trim)
 console.log(`dot then trim: |${dotThenTrim}|`)
 ```
 {: title="src/callbacks/two-functions.js"}
 ```text
-trim then dot: |this.example.uses.text|
 dot then trim: |..this.example.uses.text..|
 ```
 
-- Make a general pipeline by passing an array of functions
+We can make a more general pipeline by passing an array of functions:
 
 ```js
 const pipeline = (initial, operations) => {
@@ -102,11 +157,18 @@ const pipeline = (initial, operations) => {
   }
   return current
 }
+```
+{: title="src/callbacks/general-pipeline.js"}
 
-const trim = (text) => { return text.trim() }
-const dot = (text) => { return text.replace(/ /g, '.') }
+Let's add a function `double` to our suite of text manglers:
+
+```js
 const double = (text) => { return text + text }
+{: title="src/callbacks/general-pipeline.js"}
 
+and then try it out:
+
+```
 const original = ' some text '
 const final = pipeline(original, [double, trim, dot])
 console.log(`|${original}| -> |${final}|`)
@@ -116,11 +178,34 @@ console.log(`|${original}| -> |${final}|`)
 | some text | -> |some.text..some.text|
 ```
 
-- Define the function in place without bothering to give it a name
-  - Just as we might pass `x+1` to a function directly
-    rather than assigning that value to a variable
-    and then passing in the variable
-- Often called an [anonymous function](#g:anonymous-function)
+## Anonymous Functions {#s:callbacks-anonymous}
+
+Remember the function `oneMore`?
+We can pass it a value that we have calculated on the fly:
+
+```js
+oneMore = (x) => {
+  return x + 1
+}
+
+console.log(oneMore(3 * 2))
+```
+{: title="src/callbacks/on-the-fly.js"}
+```text
+7
+```
+
+Behind the scenes,
+JavaScript allocates a nameless temporary variable to hold the value of `3 * 2`,
+then passes a reference to that temporary variable into `oneMore`:
+
+FIXME: diagram
+
+We can do the same thing with functions,
+i.e., create one on the fly without giving it a name as we're passing it into some other function.
+For example,
+suppose that instead of pushing one value through a pipeline of functions,
+we want to call a function once for each value in an array:
 
 ```js
 const transform = (values, operation) => {
@@ -131,33 +216,71 @@ const transform = (values, operation) => {
   return result
 }
 
-const data = ['one', 'two', 'three']
-
-const upper = transform(data, (x) => { return x.toUpperCase() })
-console.log(`upper: ${upper}`)
-
-const first = transform(data, (x) => { return x[0] })
-console.log(`first: ${first}`)
+const data = [10, 20, 30]
+const result = transform(data, oneMore)
+console.log(result)
 ```
 {: title="src/callbacks/transform.js"}
 ```text
-upper: ONE,TWO,THREE
-first: o,t,t
+[ 11, 21, 31 ]
 ```
 
-- When JavaScript programmers use the term "callback function",
-  they usually mean a function defined and used this way
+Adding one to a number is such a simple thing to do that it's hardly worth giving the function a name,
+so let's define it on the fly:
+
+```js
+result = transform(data, (x) => {return x + 1})
+console.log(result)
+```
+{: title="src/callbacks/transform.js"}
+```test
+[ 11, 21, 31 ]
+```
+
+A function that is created this way is sometimes called an [anonymous function](#g:anonymous-function),
+since its creator doesn't give it a name.
+When JavaScript programmers use the term "callback function",
+they usually mean a function defined and used like this.
 
 ## Functional Programming {#s:callbacks-functional}
 
-- [Functional programming](#g:functional-programming) is a style of programming that:
-  - Relies heavily on [higher-order functions](#g:higher-order-function)
-    (i.e., functions that take functions as parameters)
-  - Doesn't modify data structures in place, but instead creates new ones from old
-- JavaScript arrays provide several methods to support functional programming
+[Functional programming](#g:functional-programming) is a style of programming
+that relies heavily on [higher-order functions](#g:higher-order-function) like `pipeline`
+that take other functions as parameters.
+In addition,
+functional programming expects that functions won't modify data in place,
+but will instead create new data from old.
+For example,
+a true believer in functional programming would be saddened by this:
 
-- `Array.some` returns `true` if *any* element in an array passes a test
-- `Array.every` returns `true` if *all* elements in an array pass a test
+```js
+const impure = (values) => {
+  for (let i in values) {
+    values[i] += 1
+  }
+}
+```
+{: title="src/callbacks/impure.js"}
+
+and would politely, even patiently, suggest that it be rewritten like this:
+
+```js
+const pure = (values) -> {
+  result = []
+  for (let v of values) {
+    result.push(v + 1)
+  }
+  return result
+}
+```
+{: title="src/callbacks/pure.js"}
+
+JavaScript arrays provide several methods to support functional programming.
+For example,
+`Array.some` returns `true` if *any* element in an array passes a test,
+while `Array.every` returns `true` if *all* elements in an array pass a test.
+
+Here's how they work:
 
 ```js
 const data = ['this', 'is', 'a', 'test']
@@ -170,7 +293,7 @@ some longer than 3: true
 all greater than 3: false
 ```
 
-- `Array.filter` creates a new array containing only values that pass a test
+`Array.filter` creates a new array containing only values that pass a test:
 
 ```js
 const data = ['this', 'is', 'a', 'test']
@@ -185,18 +308,17 @@ those greater than 3: [ 'this', 'test' ]
 
 ```js
 const data = ['this', 'is', 'a', 'test']
-console.log('all longer than 3 start with t',
-            data
-            .filter((x) => { return x.length > 3 })
-            .every((x) => { return x[0] === 't' }))
+const result = data
+               .filter((x) => { return x.length > 3 })
+               .every((x) => { return x[0] === 't' })
+console.log(`all longer than 3 start with t: ${result}`)
 ```
 {: title="src/callbacks/filter-every.js"}
 ```text
-all longer than 3 start with t true
+all longer than 3 start with t: true
 ```
 
-- `Array.map` creates a new array
-  by calling a function for each element of an existing array
+`Array.map` creates a new array by calling a function for each element of an existing array:
 
 ```js
 const data = ['this', 'is', 'a', 'test']
@@ -207,10 +329,13 @@ console.log('shortened', data.map((x) => { return x.slice(0, 2) }))
 shortened [ 'th', 'is', 'a', 'te' ]
 ```
 
-- `Array.reduce` reduces an array to a single value
-  using a given function and a starting value
-  - Need the starting value because the combiner function must take two values
-    (next in sequence and running total)
+And finally,
+`Array.reduce` reduces an array to a single value
+using a combining function and a starting value.
+The combining function must take two values,
+which are the current running total and the next value from the array;
+if the array is empty,
+`Array.reduce` returns the starting value.
 
 ```js
 const data = ['this', 'is', 'a', 'test']
@@ -218,24 +343,30 @@ const data = ['this', 'is', 'a', 'test']
 const concatFirst = (accumulator, nextValue) => {
   return accumulator + nextValue[0]
 }
-const acronym = data.reduce(concatFirst, '')
+let acronym = data.reduce(concatFirst, '')
 console.log(`acronym of ${data} is ${acronym}`)
 
-console.log('in one step', data.reduce((accum, next) => {
+// In one step.
+acronym = data.reduce((accum, next) => {
   return accum + next[0]
-}, ''))
+}, '')
+console.log('all in one step:', acronym)
 ```
 {: title="src/callback/reduce.js"}
 ```text
 acronym of this,is,a,test is tiat
-in one step tiat
+all in one step: tiat
 ```
+
+The indentation of the "in one step" call may look a little odd,
+but this is the style the JavaScript community has settled on.
 
 ## Closures {#s:callbacks-closures}
 
-- Last tool we need to introduce is an extremely useful side-effect of the way memory is handled
-  - Explain by example
-- Have already created a function `pipeline` that combines any set of functions we want
+The last tool we need to introduce is an extremely useful side-effect of the way memory is handled
+called a [closure](#g:closure).
+The easiest way to explain it is by example.
+We have already defined a function called `pipeline` that chains any number of other functions together:
 
 ```js
 const pipeline = (initial, operations) => {
@@ -248,9 +379,15 @@ const pipeline = (initial, operations) => {
 ```
 {: title="src/callbacks/general-pipeline.js"}
 
-- But this only works if each function in `operations` has a single parameter
-- If we want to be able to add 1, add 2, and so on, we have to write separate functions
-- Better choice: write a function that creates the function we want
+However,
+`pipeline` only works if each function in the array `operations` has a single parameter.
+If we want to be able to add 1,
+add 2,
+and so on,
+we have to write separate functions,
+which is annoying.
+
+A better option is to write a function that creates the function we want:
 
 ```js
 const adder = (increment) => {
@@ -269,37 +406,43 @@ console.log(`add1(100) is ${add1(100)} and add2(100) is ${add2(100)}`)
 add1(100) is 101 and add2(100) is 102
 ```
 
-- Best way to understand what's going on is to draw a step-by-step memory diagram
-- Step 1: call `adder(1)`
+The best way to understand what's going on is to draw a step-by-step memory diagram.
+In step 1, we call `adder(1)`:
 
 FIXME-14: diagram
 
-- Step 2: `adder` creates a new function that includes a reference to that 1
+`adder` creates a new function that includes a reference to that 1 we just passed in:
 
 FIXME-14: diagram
 
-- Step 3: `adder` returns that function, which is assigned to `add1`
+In step 3,
+`adder` returns that function, which is assigned to the name `add1`:
 
 FIXME-14: diagram
 
-- Step 4: same sequence to create another function with an embedded reference to 2
+Crucially,
+the function that `add1` now refers to keeps its reference to the value 1,
+even though that value isn't referred to any longer by anyone else.
+
+In steps 4-6,
+we repeat these three steps to create another function that has a reference to the value 2,
+and assign that function to `add2`:
 
 FIXME-14: diagram
 
-- Step 5: call to `add1` inside `console.log`
-  - Call to `add2` works the same way
+When we now call `add1` or `add2`,
+they add the value passed in and the value they've kept a reference to.
 
-FIXME-14: diagram
-
-- The combination of a function and some embedded variable bindings is called a [closure](#g:closure)
-  - Works because a function "capture" the values of the variables
-    that are in scope when it is defined but it doesn't define itself
+This trick of capturing a reference to a value inside something else
+is called a [closure](#g:closure).
+It works because JavaScript holds on to values as long as anything,
+anywhere,
+still refers to them.
+Closures solve our pipeline problem by letting us define little functions
+on the fly
+and give them extra data to work with:
 
 ```js
-const pipeline = ...as before...
-
-const adder = ...as before...
-
 const result = pipeline(100, [adder(1), adder(2)])
 console.log(`adding 1 and 2 to 100 -> ${result}`)
 ```
@@ -308,19 +451,12 @@ console.log(`adding 1 and 2 to 100 -> ${result}`)
 adding 1 and 2 to 100 -> 103
 ```
 
-- Again, `adder(1)` and `adder(2)` do not add anything to anything
-  - They define new (unnamed) functions that will add 1 and 2 when called
-- Often go one step further and define the function inline
+Again, `adder(1)` and `adder(2)` do not add anything to anything:
+they define new (unnamed) functions that add 1 and 2 respectively when called.
+
+Programmers often go one step further and define little functions like this inline:
 
 ```js
-const pipeline = (initial, operations) => {
-  let current = initial
-  for (let op of operations) {
-    current = op(current)
-  }
-  return current
-}
-
 const result = pipeline(100, [(x) => x + 1, (x) => x + 2])
 console.log(`adding 1 and 2 to 100 -> ${result}`)
 ```
@@ -328,6 +464,10 @@ console.log(`adding 1 and 2 to 100 -> ${result}`)
 ```text
 adding 1 and 2 to 100 -> 103
 ```
+
+As this example shows,
+if the body of a function is a single expression,
+it doesn't have to be enclosed in `{...}` and `return` doesn't need to be used.
 
 ## Exercises {#s:callbacks-exercises}
 
@@ -398,9 +538,6 @@ The changes are:
 - The retained records are given sequence numbers to relate them back to the original data.
   (These sequence numbers are 1-based rather than 0-based.)
 
-You may want to use `Array.reduce`
-to generate the sequence numbers.
-Use the web to find a description of it,
-and work with a partner to ensure that you understand how it works.
+You will probably want to use `Array.reduce` to generate the sequence numbers.
 
 {% include links.md %}
