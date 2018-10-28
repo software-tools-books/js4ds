@@ -1,0 +1,25 @@
+<html>
+  <head>
+    <script>
+      const startTime = () => {
+        const today = new Date()
+        const fields = [today.getHours(),
+                        today.getMinutes(),
+                        today.getSeconds()]
+        const current = fields
+              .map(t => `${t}`.padStart(2, '0'))
+              .join(':')
+        document.getElementById('current').innerHTML = current
+        setTimeout(startTime, 1000)
+      }
+
+      document.addEventListener("DOMContentLoaded", (event) => {
+        startTime()
+      })
+    </script>
+  </head>
+
+  <body>
+    <p id="current"></p>
+  </body>
+</html>

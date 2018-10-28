@@ -21,10 +21,11 @@ definitions if that's done.
 
 [runkit]: https://runkit.com/
 
+[spolsky-unicode]: https://www.joelonsoftware.com/2003/10/08/the-absolute-minimum-every-software-developer-absolutely-positively-must-know-about-unicode-and-character-sets-no-excuses/
 [swc]: http://software-carpentry.org/
 
 [vega-lite]: http://vega.github.io/
 
+[w3schools]: https://www.w3schools.com/
 [webpack]: https://webpack.js.org/
 [winston]: https://github.com/winstonjs/winston
-

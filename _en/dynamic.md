@@ -1,6 +1,6 @@
 ---
-permalink: "/en/display/"
-title: "Static Pages"
+permalink: "/en/dynamic/"
+title: "Dynamic Pages"
 questions:
 - "What JavaScript libraries should I use to create a web pages?"
 - "How can I use them to create basic HTML elements?"
@@ -55,7 +55,7 @@ FIXME-18: diagram
 - Show how to do it the pure-JavaScript way
 - Then introduce a tool called JSX that simplifies things
 
-## Hello, World {#s:display-hello}
+## Hello, World {#s:dynamic-hello}
 
 ```html
 <!DOCTYPE html>
@@ -79,7 +79,7 @@ FIXME-18: diagram
   </body>
 </html>
 ```
-{: title="src/display/hello-react.html"}
+{: title="src/dynamic/hello-react.html"}
 
 - Head of the page loads two React libraries from the web
   - Use locally-installed libraries later
@@ -116,9 +116,9 @@ FIXME-18: diagram
     </script>
   </body>
 ```
-{: title="src/display/stylish.html"}
+{: title="src/dynamic/stylish.html"}
 
-## JSX {#s:display-jsx}
+## JSX {#s:dynamic-jsx}
 
 - Writing nested functions is a clumsy way to write HTML
 - So use a tool called JSX that translates HTML into JavaScript function calls
@@ -144,7 +144,7 @@ FIXME-18: diagram
   </body>
 </html>
 ```
-{: title="src/display/hello-jsx.html"}
+{: title="src/dynamic/hello-jsx.html"}
 
 - Include Babel to translate mixed content into pure JavaScript
 - Add `type="text/babel"` to the `script` tag to tell Babel where to do its work
@@ -167,7 +167,7 @@ FIXME-18: diagram
     </script>
   </body>
 ```
-{: title="src/display/jsx-list.html"}
+{: title="src/dynamic/jsx-list.html"}
 
 - Have to use `map` rather than a loop because the function has to return something
   - Could build up a string through repeated concatenation, but this is cleaner
@@ -176,7 +176,7 @@ FIXME-18: diagram
   - Want each element of the page to be selectable
   - Add this later
 
-## Creating Components {#s:display-components}
+## Creating Components {#s:dynamic-components}
 
 - If we're defining functions, we can write new ones
 - React requires component names to start with a capital letter to differentiate them from regular tags.
@@ -201,7 +201,7 @@ FIXME-18: diagram
     </script>
   </body>
 ```
-{: title="src/display/create-components.html"}
+{: title="src/dynamic/create-components.html"}
 
 - What we really want to do is parameterize
   - After all, the JSX is being turned into a function
@@ -227,11 +227,11 @@ FIXME-18: diagram
     </script>
   </body>
 ```
-{: title="src/display/pass-parameters.html"}
+{: title="src/dynamic/pass-parameters.html"}
 
 - Gives us exactly one logical place to do calculations, set style, etc.
 
-## Developing with Parcel {#s:display-parcel}
+## Developing with Parcel {#s:dynamic-parcel}
 
 - Putting all the source in the HTML file, in one block, is bad practice
 - Already seen problems with loading source in header
@@ -246,7 +246,7 @@ FIXME-18: diagram
 - We will use [Parcel][parcel]
   - Younger, and therefore not yet bloated, but give it time
 - `npm install parcel-bundler`
-- `parcel serve -p 4000 src/display/pass-parameters.html`
+- `parcel serve -p 4000 src/dynamic/pass-parameters.html`
   - Looks in the named file to find JavaScript
   - Looks recursively at what that loads, etc.
   - Creates a single file in a directory called `./dist`
@@ -262,7 +262,7 @@ FIXME-18: diagram
   },
 ```
 
-- Now use `npm run dev -- src/display/pass-parameters.html`
+- Now use `npm run dev -- src/dynamic/pass-parameters.html`
   - Everything after `--` is passed to the script being run
   - And now other developers have a record of how to use the project
   - Unfortunately, there is no standard way to add comments to a JSON file...
@@ -270,7 +270,7 @@ FIXME-18: diagram
   we get an error message in the console telling us that the character encoding of the document was not recognized
   - Because Parcel is trying to read the actual directory structure as a file
 
-## Multiple Files {#s:display-multiple}
+## Multiple Files {#s:dynamic-multiple}
 
 - Putting scripts in the body of the page is a bad practice
 - So move the JSX into `app.js` and load that in the `head` of the page
@@ -292,7 +292,7 @@ FIXME-18: diagram
   </body>
 </html>
 ```
-{: title="src/display/hello-separate/index.html"}
+{: title="src/dynamic/hello-separate/index.html"}
 
 ```js
 ReactDOM.render(
@@ -300,7 +300,7 @@ ReactDOM.render(
   document.getElementById("app")
 )
 ``
-{: title="src/display/hello-separate/app.js"}
+{: title="src/dynamic/hello-separate/app.js"}
 
 - Get the `h1` title but *not* the paragraph
 - Look in the browser console
@@ -358,9 +358,9 @@ ReactDOM.render(
   </body>
 </html>
 ```
-{: title="src/display/hello-parcel/index.html"}
+{: title="src/dynamic/hello-parcel/index.html"}
 
-## Exercises {#s:display-exercises}
+## Exercises {#s:dynamic-exercises}
 
 ### Real Data
 

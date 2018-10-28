@@ -1,0 +1,24 @@
+<html>
+  <head>
+    <meta charset="utf-8"/>
+  </head>
+  <body>
+    <h1>Title</h1>
+    <div id="fill"></div>
+    <h2 id="one">First <em>emphasized</em></h2>
+    <p>stuff</p>
+    <h2 id="two">Second <code>with code</code></h2>
+    <h3>stuff</h3>
+    <h2 id="three">Third</h2>
+    <p>stuff</p>
+
+    <script>
+      const counter = () => {
+        const paragraphs = document.querySelectorAll('p')
+        return paragraphs.length
+      }
+      const fill = document.getElementById('fill')
+      fill.innerHTML = `number of paragraphs: ${counter()}`
+    </script>
+  </body>
+</html>
