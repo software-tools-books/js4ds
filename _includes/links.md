@@ -7,6 +7,8 @@ file is a Markdown file because Jekyll doesn't expand the link
 definitions if that's done.
 {% endcomment %}
 
+[bootstrap]: https://getbootstrap.com/
+
 [covenant]: https://www.contributor-covenant.org
 
 [express]: https://expressjs.org/
