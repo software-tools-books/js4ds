@@ -1,0 +1,21 @@
+<html>
+  <head>
+    <script>
+      function startTime() {
+        const today = new Date()
+        const fields = [today.getHours(),
+                        today.getMinutes(),
+                        today.getSeconds()]
+        const current = fields
+              .map(t => `${t}`.padStart(2, '0'))
+              .join(':')
+        document.getElementById('current').innerHTML = current
+        setTimeout(startTime, 1000)
+      }
+    </script>
+  </head>
+
+  <body onload="startTime()">
+    <p id="current"></p>
+  </body>
+</html>
