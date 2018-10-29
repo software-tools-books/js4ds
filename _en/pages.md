@@ -41,8 +41,10 @@ they get something useful before having to dive into promises.
   - searching for "remove all children from node" tells to do it ourselves
   - then add all the (sorted) children
 
-- fixing glossary entries
-- citations
+- citations.html: find and patch citations
+  - HTML has a `cite` tag, but formats like Markdown don't have syntax (though many extensions do)
+  - Look for `<a href="#b">key1, key2</a>` in the doc (minimal typing)
+  - Turn it into `[<a href="../bib/#key1">key1</a>, <a href="../bib/#key2">key2</a>]`
 
 ## Exercises {#s:htmlcss-exercises}
 
