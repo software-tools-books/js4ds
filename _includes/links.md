@@ -10,7 +10,9 @@ definitions if that's done.
 [bootstrap]: https://getbootstrap.com/
 
 [covenant]: https://www.contributor-covenant.org
+[cpu-second]: http://exple.tive.org/blarg/2018/08/15/time-dilation/
 
+[event-loop]: https://nodejs.org/en/docs/guides/event-loop-timers-and-nexttick/
 [express]: https://expressjs.org/
 
 [t3-process]: http://teachtogether.tech/en/process/
