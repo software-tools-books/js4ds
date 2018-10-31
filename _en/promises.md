@@ -16,43 +16,69 @@ keypoints:
 - "Mark functions that can be waited on with `async`."
 ---
 
--   Callbacks quickly become complicated because of:
-    -   Nesting: a delayed calculation that needs the result of a delayed calculation that needs...
-    -   Error handling: who notices and takes care of errors?
-    -   This is often a problem in real life too
--   Example: turn a bunch of CSV files into HTML pages
-    -   Inputs: the name of a directory that contains one or more CSV files and the name of an output directory
-    -   Result: output directory is replaced by one that has one HTML page per CSV file *and* an index page
--   Can do this with synchronous operations, but that's not the JavaScript Way [tm]
-    -   By which we mean, doing it that way doesn't introduce you to tools we're going to need later
--   Try doing it with callbacks
-    -   Can't create the output directory until the existing one has been emptied
-    -   Can't generate the HTML pages until the output directory has been re-created
-    -   Can't generate the index page until the CSV files have been processed
--   Instead of callbacks, use [promises](#g:promise)
--   And then use `async` and `await` to make things even easier
--   Three mechanisms because people learn as they go along, but the simple high-level ideas often don't make sense unless you understand how they work
-    -   This is also often a problem in real life
+Callbacks quickly become complicated because of:
+
+- Nesting: a delayed calculation may need the result of a delayed calculation that needs...
+- Error handling: who notices and takes care of errors?
+  (This is often a problem in real life too.)
+
+For example,
+suppose we want to turn a set of CSV files into HTML pages.
+The inputs to our function are the name of a directory that contains one or more CSV files
+and the name of an output directory;
+the desired results are that the output directory created if it doesn't already exist,
+that one HTML file is created for each CSV file,
+that any HTML files in the directory that *don't* correspond to CSV files are removed,
+and that an index page is created with links to all the pages.
+
+We can do this with synchronous operations,
+but that's not the JavaScript way
+(by which we mean that doing it that way won't introduce you to tools we're going to need later).
+We can also try doing it with callbacks, but:
+
+- we can't create the output directory until the existing one has been emptied;
+- can't generate the HTML pages until the output directory has been re-created; and
+- we can't generate the index page until the CSV files have been processed.
+
+Instead of a tangled nest of callbacks,
+it's better to use [promises](#g:promise),
+and then to use `async` and `await` to make things even easier.
+JavaScript offers three mechanisms because
+its developers have invented better ways to do things as the language has evolved,
+but the simple high-level ideas often don't make sense unless you understand how they work.
+(This too is often a problem in real life.)
 
 ## The Execution Queue {#s:promises-queue}
 
--   FIXME: explain execution queue <https://nodejs.org/en/docs/guides/event-loop-timers-and-nexttick/>
--   Most functions execute in order
+In order for any of what follows to make sense,
+it's vital to understand JavaScript's [event loop](#g:event-loop),
+a full explanation of which can be found [here][event-loop].
+Most functions execute in order:
 
 ```js
 [1000, 1500, 500].forEach(t => {
   console.log(t)
 })
 ```
-{: title=promises/not-callbacks-alone.js}
+{: title="src/promises/not-callbacks-alone.js"}
 ```text
 1000
 1500
 500
 ```
 
--   A handful of built-in functions delay execution
-    -   `setTimeout` is probably the most widely used
+However,
+a handful of built-in functions delay execution:
+instead of running right away,
+they add a callback to a list that the JavaScript interpreter uses
+to keep track of things that want to be run.
+When one task finishes,
+the interpreter takes the next one from this queue and runs it.
+
+FIXME: diagram
+
+`setTimeout` is one of the most widely used functions of this kind.
+Here it is in operation:
 
 ```js
 [1000, 1500, 500].forEach(t => {
@@ -60,7 +86,7 @@ keypoints:
   setTimeout(() => {console.log(`inside timer handler for ${t}`)}, t)
 })
 ```
-{: title=promises/callbacks-with-timeouts.js}
+{: title="src/promises/callbacks-with-timeouts.js"}
 ```text
 about to setTimeout for 1000
 about to setTimeout for 1500
@@ -70,7 +96,10 @@ inside timer handler for 1000
 inside timer handler for 1500
 ```
 
--   Setting a timeout of zero has the effect of deferring execution without delay
+That's not surprising:
+if we ask JavaScript to delay execution,
+execution is delayed.
+What may be surprising is that setting a timeout of zero also defers execution:
 
 ```js
 [1000, 1500, 500].forEach(t => {
@@ -78,7 +107,7 @@ inside timer handler for 1500
   setTimeout(() => {console.log(`inside timer handler for ${t}`)}, 0)
 })
 ```
-{: title=promises/callbacks-with-zero-timeouts.js}
+{: title="src/promises/callbacks-with-zero-timeouts.js"}
 ```text
 about to setTimeout for 1000
 about to setTimeout for 1500
@@ -88,52 +117,60 @@ inside timer handler for 1500
 inside timer handler for 500
 ```
 
--   We can use this to build a generic non-blocking function
+We can use this to build a generic non-blocking function:
 
 ```js
 const nonBlocking = (callback) => {
   setTimeout(callback, 0)
 }
 
-[1000, 1500, 500].forEach(t => {
-  console.log(`about to do nonBlocking for ${t}`)
-  nonBlocking(() => console.log(`inside callback for ${t}`))
+['a', 'b', 'c'].forEach(val => {
+  console.log(`about to do nonBlocking for ${val}`)
+  nonBlocking(() => console.log(`inside callback for ${val}`))
 })
 ```
-{: title=promises/non-blocking.js}
+{: title="src/promises/non-blocking.js"}
 ```text
-about to do nonBlocking for 1000
-about to do nonBlocking for 1500
-about to do nonBlocking for 500
-inside callback for 1000
-inside callback for 1500
-inside callback for 500
+about to do nonBlocking for a
+about to do nonBlocking for b
+about to do nonBlocking for c
+inside callback for a
+inside callback for b
+inside callback for c
 ```
 
--   Why bother?
-    -   Because we may want to give something else a chance to run
--   Node provides `setImmediate` to do this for us
-    -   And also `process.nextTick`, which doesn't do quite the same thing
+Why bother doing this?
+Because we may want to give something else a chance to run.
+In particular,
+file I/O and anything involving a network request are incredibly slow from a computer's point of view.
+[If a single CPU cycle was one second long][cpu-second],
+then getting data from RAM would take several minutes,
+getting it from a solid-state disk would take six to eight days,
+and getting it over the network is the equivalent of eight years.
+Rather than wasting that time,
+JavaScript is designed to let us (or our browser) switch tasks and do something else.
+
+Using a timeout of zero is a clever trick,
+but Node provides another function called `setImmediate` to do this for us.
+(There is also `process.nextTick`,
+which doesn't do quite the same thing.
+You should probably not use it.)
 
 ```js
-[1000, 1500, 500].forEach(t => {
-  console.log(`about to do setImmediate for ${t}`)
-  setImmediate(() => console.log(`inside immediate handler for ${t}`))
+['a', 'b', 'c'].forEach(val => {
+  console.log(`about to do setImmediate for ${val}`)
+  setImmediate(() => console.log(`inside immediate handler for ${val}`))
 })
 ```
-{: title=promises/set-immediate.js}
+{: title="src/promises/set-immediate.js"}
 ```text
-about to do setImmediate for 1000
-about to do setImmediate for 1500
-about to do setImmediate for 500
-inside immediate handler for 1000
-inside immediate handler for 1500
-inside immediate handler for 500
+about to do setImmediate for a
+about to do setImmediate for b
+about to do setImmediate for c
+inside immediate handler for a
+inside immediate handler for b
+inside immediate handler for c
 ```
-
--   Can see from first `setTimeout` example above that execution can happen in a different order than called
-    -   Function call with `t = 500` happens first, despite being last iteration of loop
--   This asynchronous execution is helpful but confusing at first
 
 ## Promises {#s:promises-promises}
 
@@ -254,7 +291,7 @@ glob(`${srcDir}/**/*.txt`)
   .then(files => console.log('glob', files))
   .catch(error => console.error(error))
 ```
-{: title=promises/step-01.js}
+{: title="src/promises/step-01.js"}
 ```
 $ node step-01.js .
 glob [ './common-sense.txt',
@@ -276,7 +313,7 @@ glob(`${srcDir}/**/*.txt`)
   .then(files => console.log('glob + files.map/stat', files))
   .catch(error => console.error(error))
 ```
-{: title=promises/step-02.js}
+{: title="src/promises/step-02.js"}
 ```
 $ node step-02.js .
 glob + files.map/stat [ Promise { <pending> },
@@ -297,7 +334,7 @@ glob(`${srcDir}/**/*.txt`)
   .then(files => console.log('glob + Promise.all(files.map/stat)', files))
   .catch(error => console.error(error))
 ```
-{: title=promises/step-03.js}
+{: title="src/promises/step-03.js"}
 ```
 $ node step-03.js
 glob + Promise.all(files.map/stat) [ Stats {
@@ -326,7 +363,7 @@ glob(`${srcDir}/**/*.txt`)
   .then(files => console.log('glob + Promise.all(files.map/statPair)', files))
   .catch(error => console.error(error))
 ```
-{: title=promises/step-04.js}
+{: title="src/promises/step-04.js"}
 ```
 $ node step-04.js .
 glob + Promise.all(files.map/statPair) [ { filename: './common-sense.txt',
@@ -352,7 +389,7 @@ glob(`${srcDir}/**/*.txt`)
   .then(contents => console.log('...readFile', contents.map(c => c.length)))
   .catch(error => console.error(error))
 ```
-{: title=promises/step-05.js}
+{: title="src/promises/step-05.js"}
 ```
 $ node step-05.js .
 ...readFile [ 148134, 1070331, 248369, 1276201, 706124, 204492 ]
@@ -375,7 +412,7 @@ glob(`${srcDir}/**/*.txt`)
   .then(lengths => console.log('lengths', lengths))
   .catch(error => console.error(error))
 ```
-{: title=promises/step-06.js}
+{: title="src/promises/step-06.js"}
 ```
 $ node step-06.js .
 lengths [ 2654, 21063, 4105, 22334, 13028, 3584 ]
