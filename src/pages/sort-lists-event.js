@@ -11,6 +11,6 @@ const sortLists = () => {
   })
 }
 
-document.addEventListener("DOMContentLoaded", function(event) {
+document.addEventListener("DOMContentLoaded", (event) => {
   sortLists()
 })

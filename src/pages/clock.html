@@ -1,7 +1,7 @@
 <html>
   <head>
     <script>
-      function startTime() {
+      const startTime = () => {
         const today = new Date()
         const fields = [today.getHours(),
                         today.getMinutes(),
@@ -12,10 +12,14 @@
         document.getElementById('current').innerHTML = current
         setTimeout(startTime, 1000)
       }
+
+      document.addEventListener("DOMContentLoaded", (event) => {
+        startTime()
+      })
     </script>
   </head>
 
-  <body onload="startTime()">
+  <body>
     <p id="current"></p>
   </body>
 </html>
