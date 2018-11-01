@@ -174,67 +174,119 @@ inside immediate handler for c
 
 ## Promises {#s:promises-promises}
 
--   Consider situation where reading a file
--   Accessing local storage takes a (relatively) long time
-    -   Worse when reading data over the web
--   JS doesn't wait for file to load before continuing execution
--   Moves onto other tasks and comes back later
--   With promises we can queue up code to execute once a task is finished
--   E.g., finding size of a local file with `fs-extra.stat`
+Recent versions of JavaScript encourage programmers to use [promises](#g:promise)
+to manage delayed actions.
+For example,
+if we want to find the size of a file,
+we can write this:
 
 ```js
 const fs = require('fs-extra')
 fs.stat('moby-dick.txt').then((stats) => console.log(stats.size))
 ```
-
--   `fs-extra.stat` produces some statistics about the file
--   The argument to `then` is a function that is called after `fs-extra.stat` has finished profiling the file
--   `fs-extra.stat` returns a Promise object
--   To understand them better, let's create our own Promise to fetch a datafile
-
-```js
-var prom = new Promise((resolve, reject) => {
-    fetch("https://api.nasa.gov/neo/rest/v1/feed?api_key=DEMO_KEY&start_date=2018-08-20")
-    .then((response) => {
-        if (response.status === 200) {
-            resolve("fetched page successfully")
-        }
-    })
-}).then((message) => console.log(message))
-// fetched page successfully
+{: title="src/promises/promise-stats.js"}
+```text
+1276201
 ```
 
--   Construct a new Promise object, providing a function
--   That function takes two arguments: resolve and reject
--   Call `resolve` inside the function body, to determine the value returned if everything completed successfully
--   All promises have a `then` method that takes this value returned by resolve as an input argument
--   Use `reject` to define returned value when promise fails
--   And `catch` to process that returned value (usually an `Error` object)
+`fs-extra.stat` will eventually produce some statistics about the file,
+but this will take a while,
+so `fs-extra.stat` returns a object of the class `Promise` right away.
+`Promise` has a method `then` that takes a callback as an argument and stores it in the promise object.
+When the `stat` call completes,
+the remembered callback is called,
+and passed yet another object with statistics about the file (including its size).
+
+FIXME: diagram
+
+To understand this a little better,
+let's create our own promise to fetch a file from the web:
 
 ```js
-var prom = new Promise((resolve, reject) => {
-    fetch("https://api.nasa.gov/neo/rest/v1/feed?api_key=DEMO_KEY&start_date=20-08-2018")
-    .then((response) => {
-        if (response.status === 200) {
-            resolve("fetched page successfully")
-        }
-        else {
-            reject(Error("there was a problem. got HTTP status code ${response.status}"))
-        }
-    })
+const fetch = require('node-fetch')
+
+const prom = new Promise((resolve, reject) => {
+  fetch('https://api.nasa.gov/neo/rest/v1/feed?api_key=DEMO_KEY&start_date=2018-08-20')
+  .then((response) => {
+    if (response.status === 200) {
+      resolve('fetched page successfully')
+    }
+  })
+}).then((message) => console.log(message))
+```
+{: title="src/promises/nasa-fetch.js"}
+
+This code constructs a new `Promise` object.
+The constructor takes one argument;
+this must be a callback function of two arguments,
+which by convention are called `resolve` and `reject`.
+Inside the body of the callback,
+we call `resolve` to return a value if and when everything worked as planned.
+That value is then passed to the `then` method of the `Promise`.
+
+FIXME: diagram
+
+This may seem a roundabout way of doing things,
+but it solves several problems at once.
+The first and most important is error handling:
+if something goes wrong inside the callback passed to `Promise`'s constructor,
+we can call `reject` instead of `resolve`.
+Just as `then` handles whatever we pass to `resolve`,
+`Promise` defines a method called `catch` to handle whatever is passed to `reject`.
+We can therefore build a slightly more robust version of our data fetcher
+that will report something sensible if we mis-type a year as `2108`:
+
+```js
+const fetch = require('node-fetch')
+
+new Promise((resolve, reject) => {
+  fetch('https://api.nasa.gov/neo/rest/v1/feed?api_key=DEMO_KEY&start_date=20-08-2108')
+  .then((response) => {
+    if (response.status === 200) {
+      resolve('fetched page successfully')
+    }
+    else {
+      reject(Error(`got HTTP status code ${response.status}`))
+    }
+  })
 }).then((message) => console.log(message))
 .catch((error) => console.log(error.message))
 ```
+{: title="src/promises/nasa-catch.js"}
+```text
+got HTTP status code 400
+```
 
--   Can also provide two functions to `then`, where second argument will process reject value
--   Going back to `fs-exta.stat` example above, what if we want to process multiple files e.g. calculate total size?
--   Might think to write a loop
+Without this,
+it's extremely difficult to handle errors from delayed computations.
+If we try this:
 
 ```js
-const fs = require("fs-extra")
+const fetch = require('node-fetch')
+
+try {
+  fetch('https://api.nasa.gov/neo/rest/v1/feed?api_key=DEMO_KEY&start_date=20-08-2108')
+}
+catch (err) {
+  console.log(err)
+}
+```
+{: title="src/promises/try-catch.js"}
+
+then the error message won't appear
+because the call to `fetch` doesn't raise an exception right away.
+
+Going back to the `fs-exta.stat` example above,
+what if we want to process multiple files,
+e.g.,
+calculate their total size?
+We could write a loop:
+
+```js
+const fs = require('fs-extra')
 
 var total_size = 0
-var files = ["jane-eyre.txt", "moby-dick.txt", "life-of-frederick-douglass.txt"]
+var files = ['jane-eyre.txt', 'moby-dick.txt', 'life-of-frederick-douglass.txt']
 for (let fileName of files) {
     fs.stat(fileName).then((stats) => {
         total_size += stats.size
@@ -242,48 +294,70 @@ for (let fileName of files) {
 }
 console.log(total_size)
 ```
+{: title="src/promises/promise-loop.js"}
 
--   Danger: `fs.stat` in each iteration is executed asynchronously
--   Might try chaining Promises together, to ensure that each executes only after the last resolved
+but this doesn't work:
+the `fs.stat` in each iteration is executed asynchronously,
+so the loop finishes and the script prints a total size of zero
+before any of the promised code has run.
+
+Plan B is to chain the promises together
+to ensure that each executes only after the last has resolved:
 
 ```js
-const fs = require("fs-extra")
+const fs = require('fs-extra')
 
 var total_size = 0
 new Promise((resolve, reject) => {
-    fs.stat("jane-eyre.txt").then((jeStats) => {
-        fs.stat("moby-dick.txt").then((mdStats) => {
-            fs.stat("life-of-frederick-douglass.txt").then((fdStats) => {
+    fs.stat('jane-eyre.txt').then((jeStats) => {
+        fs.stat('moby-dick.txt').then((mdStats) => {
+            fs.stat('life-of-frederick-douglass.txt').then((fdStats) => {
                 resolve(jeStats.size + mdStats.size + fdStats.size)
             })
         })
     })
 }).then((total) => console.log(total))
 ```
+{: title="src/promises/promise-nest.js"}
 
--   But this is a lot of nesting, doesn't scale, and (potentially) a lot of unnecessary waiting around
--   The answer is `Promise.all`
--   Returns an array of results from completed promises _after all have resolved_
-    -   Order of results corresponds to that of promises in input array
+but this obviously doesn't handle an arbitrary number of files,
+since we have to write one level of nesting for each file.
+It's also potentially inefficient,
+since we could be waiting for one promise to complete
+while other promises further down are ready to be processed.
+
+The answer is `Promise.all`,
+which returns an array of results from completed promises after all of them have resolved.
+The order of results corresponds to the order of the promises in the input array,
+which makes processing straightforward:
 
 ```js
 const fs = require('fs-extra')
 
 var total_size = 0
-var files = ["jane-eyre.txt", "moby-dick.txt", "life-of-frederick-douglass.txt"]
-Promise.all(files.map(f => fs.stat(f))).then(stats => stats.reduce((t,s) => {return t + s.size}, 0)).then(console.log)
+var files = ['jane-eyre.txt', 'moby-dick.txt', 'life-of-frederick-douglass.txt']
+Promise.all(files.map(f => fs.stat(f))).
+  then(stats => stats.reduce((total, s) => {return total + s.size}, 0)).
+  then(console.log)
+```
+{: title="src/promises/promise-all.js"}
+```text
+2594901
 ```
 
--   There is also `Promise.race`, which takes an array of promises and returns the result of the first one to complete
+We can also use `Promise.race`,
+which takes an array of promises and returns the result of the first one to complete.
 
 ## Using Promises {#s:promises-usage}
 
--   Count the number of lines in a set of files over a certain size
--   Step 1: find input files
+Promises don't really make sense until we start to use them,
+so let's try counting the number of lines in a set of files
+that are larger than a specified threshold.
+Step 1 is to find the input files:
 
 ```js
 const fs = require('fs-extra')
-const glob = require('glob-promise') // a way to find things in the filesystem using wildcards. returns a promise
+const glob = require('glob-promise')
 
 const srcDir = process.argv[2]
 
@@ -292,8 +366,7 @@ glob(`${srcDir}/**/*.txt`)
   .catch(error => console.error(error))
 ```
 {: title="src/promises/step-01.js"}
-```
-$ node step-01.js .
+```text
 glob [ './common-sense.txt',
   './jane-eyre.txt',
   './life-of-frederick-douglass.txt',
@@ -302,8 +375,8 @@ glob [ './common-sense.txt',
   './time-machine.txt' ]
 ```
 
--   Step 2: get the status of each file
--   This doesn't work because `fs.stat` is delayed
+Step 2 is to get the status of each file.
+This approach doesn't work because `fs.stat` is delayed:
 
 ```js
 ...imports and arguments as before...
@@ -314,8 +387,7 @@ glob(`${srcDir}/**/*.txt`)
   .catch(error => console.error(error))
 ```
 {: title="src/promises/step-02.js"}
-```
-$ node step-02.js .
+```text
 glob + files.map/stat [ Promise { <pending> },
   Promise { <pending> },
   Promise { <pending> },
@@ -324,7 +396,7 @@ glob + files.map/stat [ Promise { <pending> },
   Promise { <pending> } ]
 ```
 
--   Step 3: use `Promise.all` to wait for all stat promises to resolve
+Step 3 is to use `Promise.all` to wait for all these promises to resolve:
 
 ```js
 ...imports and arguments as before...
@@ -335,8 +407,7 @@ glob(`${srcDir}/**/*.txt`)
   .catch(error => console.error(error))
 ```
 {: title="src/promises/step-03.js"}
-```
-$ node step-03.js
+```text
 glob + Promise.all(files.map/stat) [ Stats {
     dev: 16777220,
     mode: 33188,
@@ -345,7 +416,12 @@ glob + Promise.all(files.map/stat) [ Stats {
 ]
 ```
 
--   Step 4: we need to remember the name of the file we stat'd, so we need to write our own function that returns a pair
+In step 4,
+we remember that we need to keep track of the names of the files we are looking at,
+so we need to write our own function that returns an object with two keys
+(one for the filename, and one for the stats).
+As described [previous](../pages/),
+the notation `{a, b}` produces an object `{"a": a, "b", b}`:
 
 ```js
 ...imports and arguments as before...
@@ -364,8 +440,7 @@ glob(`${srcDir}/**/*.txt`)
   .catch(error => console.error(error))
 ```
 {: title="src/promises/step-04.js"}
-```
-$ node step-04.js .
+```text
 glob + Promise.all(files.map/statPair) [ { filename: './common-sense.txt',
     stats:
      Stats {
@@ -377,7 +452,8 @@ glob + Promise.all(files.map/statPair) [ { filename: './common-sense.txt',
 ]
 ```
 
--   Step 5: make sure we're only working with files >100000 characters
+Step 5 is to make sure that
+we're only working with files more than 100,000 characters long:
 
 ```js
 ...imports and arguments as before...
@@ -390,12 +466,12 @@ glob(`${srcDir}/**/*.txt`)
   .catch(error => console.error(error))
 ```
 {: title="src/promises/step-05.js"}
-```
-$ node step-05.js .
+```text
 ...readFile [ 148134, 1070331, 248369, 1276201, 706124, 204492 ]
 ```
 
--   Step 6: split into lines and count
+In step 6,
+we split each file's content into lines and count:
 
 ```js
 ...imports and arguments as before...
@@ -413,42 +489,53 @@ glob(`${srcDir}/**/*.txt`)
   .catch(error => console.error(error))
 ```
 {: title="src/promises/step-06.js"}
-```
-$ node step-06.js .
+```text
 lengths [ 2654, 21063, 4105, 22334, 13028, 3584 ]
 ```
+
 ## `async` and `await` {#s:promises-async-await}
 
--   Review: work with the output of a promise with `.then`
--   Output of `.then` is another promise
--   So we can end up with long chains
--   We can use `async` and `await` to avoid this problem
--   We can write asynchronous functions very similarly to the synchronous ones that we're used to
-    -   E.g., for the `statPair` function that we wrote earlier
+Programmers are never content to leave well enough alone,
+so the latest version of JavaScript offers yet another tool for managing asynchronous computation.
+As we saw above,
+the result of `Promise.then` is another promise,
+which allows us to create long chains of `.then(...).then(...).then(...)` calls.
+It works,
+but it isn't the most readable of notations.
+
+We can avoid this using two new keywords, `async` and `await`.
+`async` tells JavaScript that a function is asynchronous,
+i.e.,
+that it might want to wait for something to complete.
+Inside an asynchronous function,
+`await` tells JavaScript to act as if it had waited for something to finish.
+We use the two together like this:
 
 ```js
 const fs = require('fs-extra')
 
 const statPairAsync = async (filename) => {
-    var stats = await fs.stat(filename)
-    return {filename, stats}
+  var stats = await fs.stat(filename)
+  return {filename, stats}
 }
 
-statPairAsync("moby-dick.txt").then((white_whale) => console.log(white_whale.stats))
+statPairAsync('moby-dick.txt').then((white_whale) => console.log(white_whale.stats))
 ```
 
--   `async` functions still return a Promise
--   But we can then chain those with other `async` functions using `await`
--   `await` collects the result returned by a resolved promise, we can use `.catch` to handle any errors thrown
--   Let's convert the complete example from the previous section
+An `async` function still returns a `Promise`,
+but we can chain those promises together with other `async` functions using `await`,
+which collects the result returned by a resolved promise.
+As before, we can use `.catch` to handle any errors thrown.
+
+Let's use these to convert the complete example from the previous section:
 
 ```js
 const fs = require('fs-extra')
 const glob = require('glob-promise')
 
 const statPairAsync = async (filename) => {
-    var stats = await fs.stat(filename)
-    return {filename, stats}
+  var stats = await fs.stat(filename)
+  return {filename, stats}
 }
 
 const countLines = (text) => {
@@ -456,12 +543,12 @@ const countLines = (text) => {
 }
 
 const processFiles = async (globpath) => {
-    var filenames = await glob(globpath)
-    var pairs = await Promise.all(filenames.map(f => statPairAsync(f)))
-    var filtered = pairs.filter(pair => pair.stats.size > 100000)
-    var contents = await Promise.all(filtered.map(f => fs.readFile(f.filename, 'utf8')))
-    var lengths = contents.map(c => countLines(c))
-    console.log(lengths)
+  var filenames = await glob(globpath)
+  var pairs = await Promise.all(filenames.map(f => statPairAsync(f)))
+  var filtered = pairs.filter(pair => pair.stats.size > 100000)
+  var contents = await Promise.all(filtered.map(f => fs.readFile(f.filename, 'utf8')))
+  var lengths = contents.map(c => countLines(c))
+  console.log(lengths)
 }
 
 const srcDir = process.argv[2]
@@ -470,8 +557,15 @@ processFiles(`${srcDir}/**/*.txt`)
   .catch(e => console.log(e.message))
 ```
 
--   Using `async` and `await` avoid need for long `then` chains, less nested
--   Can only use `await` with `async` functions - syntax error if used elsewhere
+Using `async` and `await` lets us avoid long `then` chains;
+unless and until JavaScript allows us to define operators like R's `%>%` pipe operator,
+they are probably the easiest way to write readable code.
+Note,
+though,
+that we can only use `await` inside `async` functions:
+JavaScript will report a syntax error if we use them elsewhere.
+In particular,
+we cannot use them interactively unless we wrap whatever we want to do in a wee function.
 
 ## Exercises {#s:promises-exercises}
 
@@ -523,24 +617,24 @@ is executed?
 
 ```js
 const checkForBlanks = (inputValue) => {
-    return new Promise((resolve, reject) => {
-        if (inputValue === '') {
-            reject(Error("Blank values are not allowed"))
-        } else {
-            resolve(inputValue)
-        }
-    })
+  return new Promise((resolve, reject) => {
+    if (inputValue === '') {
+      reject(Error("Blank values are not allowed"))
+    } else {
+      resolve(inputValue)
+    }
+  })
 }
 
 new Promise((resolve, reject) => {
-    setTimeout(() => {
-        reject(Error('Timed out!'))
-    }, 1000)
-    resolve('')
+  setTimeout(() => {
+    reject(Error('Timed out!'))
+  }, 1000)
+  resolve('')
 }).then(
-    output => checkForBlanks(output), error => console.log(error.message)).then(
-        checkedOutput => console.log(checkedOutput)).catch(
-            error => console.log(error.message))
+  output => checkForBlanks(output), error => console.log(error.message)).then(
+    checkedOutput => console.log(checkedOutput)).catch(
+      error => console.log(error.message))
 ```
 
 a) `Timed out!`
@@ -555,12 +649,12 @@ returns an `Array[7, 8, 2, 6, 5]`.
 
 ```js
 const makePromise = (someInteger) => {
-    return ___ Promise((resolve, reject) => {
-        setTimeout(___(someInteger), someInteger*1000)
-    })
+  return ___ Promise((resolve, reject) => {
+    setTimeout(___(someInteger), someInteger*1000)
+  })
 }
 Promise.___([makePromise(7), makePromise(___), makePromise(2), makePromise(6), makePromise(5)]).then(
-    numbers => ___(numbers))
+  numbers => ___(numbers))
 ```
 
 Now adapt the function so that it returns only `2`? (_Hint: you can achieve this
