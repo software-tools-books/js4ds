@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Pass Parameters</title>
     <meta charset="utf-8">
+    <title>Pass Parameters</title>
     <script src="https://fb.me/react-15.0.1.js"></script>
     <script src="https://fb.me/react-dom-15.0.1.js"></script>
     <script src="https://unpkg.com/babel-standalone@6/babel.js"></script>
@@ -13,14 +13,10 @@
     <script type="text/babel">
       const allNames = ['McNulty', 'Jennings', 'Snyder', 'Meltzer', 'Bilas', 'Lichterman']
 
-      const ListElement = (props) => {
-        return (<li id={props.name}><em>{props.name}</em></li>)
-      }
+      const ListElement = (props) => (<li id={props.name}><em>{props.name}</em></li>)
 
       ReactDOM.render(
-        <div>
-          <ul>{allNames.map((name) => { return <ListElement name={name} /> })}</ul>
-        </div>,
+        <ul>{allNames.map((name) => <ListElement name={name} /> )}</ul>,
         document.getElementById('app')
       )
     </script>

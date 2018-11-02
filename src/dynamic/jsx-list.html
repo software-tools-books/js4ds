@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>JSX List</title>
     <meta charset="utf-8">
+    <title>JSX List</title>
     <script src="https://fb.me/react-15.0.1.js"></script>
     <script src="https://fb.me/react-dom-15.0.1.js"></script>
     <script src="https://unpkg.com/babel-standalone@6/babel.js"></script>
@@ -13,7 +13,7 @@
     <script type="text/babel">
       const allNames = ['McNulty', 'Jennings', 'Snyder', 'Meltzer', 'Bilas', 'Lichterman']
       ReactDOM.render(
-        <ul>{allNames.map((name) => { return <li>{name}</li> })}</ul>,
+        <ul>{allNames.map((name) => <li>{name}</li> )}</ul>,
         document.getElementById('app')
       )
     </script>
