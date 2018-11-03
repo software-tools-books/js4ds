@@ -42,8 +42,8 @@ so that you can become comfortable with the language's idiosyncracies
 before writing code that runs in your browser.
 We devote very little time to styling web pages with CSS;
 in fact,
-we devote very little time to any of our subjects;
-if you want to know more,
+we devote very little time to any of our subjects.
+If you want to know more,
 there are many other free tutorials you can dive into once you've mastered the basics,
 some of which are both up-to-date and well designed.
 
