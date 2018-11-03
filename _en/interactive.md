@@ -17,16 +17,21 @@ keypoints:
 - "Modern JavaScript uses promises to manage asynchronous activities."
 ---
 
-- Browsers allow us to define [event handlers](#g:event-handler) to specify what to do in response to a user action
-  - A callback function that is (usually) given an [event object](#g:event-object) containing information about what the user did
-- Pass the callback function as a specifically-named property of the thing whose behavior we are specifying
-- We'll switch back to single-page examples for a moment
+Browsers allow us to define [event handlers](#g:event-handler)
+to specify what to do in response to an externally-triggered action,
+such as a page loading or a user pressing a button.
+These event handlers are just callback functions
+that are (usually) given an [event object](#g:event-object) containing information about what happened,
+and while we can write them in pure JavaScript,
+they're even easier to build in React.
+
+Let's switch back to single-page examples for a moment
+to show how we pass a callback function as
+a specifically-named property of the thing whose behavior we are specifying:
 
 ```js
   <body>
-    <div id="app">
-      <!-- this is filled in -->
-    </div>
+    <div id="app"></div>
     <script type="text/babel">
       let counter = 0;
       const sayHello = (event) => {
@@ -43,24 +48,21 @@ keypoints:
 ```
 {: title="src/interactive/hello-button.html"}
 
-- Global variables and functions are a poor way to structure code
-- Better to define the component as a class
-  - And then use a method as the event handler
+As its name suggests,
+a button's `onClick` handler is called whenever the button is clicked.
+Here,
+we are telling React to call `sayHello`,
+which adds one to the variable `counter`
+and then prints its value.
+
+Global variables and functions are a poor way to structure code.
+It's far better to define the component as a class
+and then use a method as the event handler:
 
 ```js
-<!DOCTYPE html>
-<html>
-  <head>
-    <title>All-in-One Counter</title>
-    <meta charset="utf-8">
-    <script src="https://fb.me/react-15.0.1.js"></script>
-    <script src="https://fb.me/react-dom-15.0.1.js"></script>
-    <script src="https://unpkg.com/babel-standalone@6/babel.js"></script>
-  </head>
   <body>
-    <div id="app">
-      <!-- this is filled in -->
-    </div>
+    <div id="app"></div>
+    <script type="text/babel">
       class Counter extends React.Component {
 
         constructor (props) {
@@ -93,37 +95,56 @@ keypoints:
 ```
 {: title="src/interactive/display-counter.html"}
 
-- `ReactDOM.render` call at the end does what it always has
-- Class has three parts
-  1. Constructor passes the properties up to `React.Component`'s constructor
-     and then creates a property called `state`
-     that holds this component's state.
-  2. The `increment` method uses `setState` (inherited from `React.Component`)
-     to change the value of the counter.
-     We *must* do this rather than creating and modifying `this.counter`
-     so that React will notice the change in state
-     and re-draw what it needs to.
-  3. The `render` method takes the place of the functions we have been using so far.
-     It can do anything it wants, but must return some HTML (using JSX).
-     Here, it:
-     - creates a button with an event handler
-     - displays the current value of the counter
-- React calls components' `render` methods after `setState` is used to update their state
-  - It does some thinking behind the scenes to minimize how much redrawing takes place
+Working from bottom to top,
+the `ReactDOM.render` call inserts whatever HTML is produced by `<Counter/>`
+into the element whose ID is `"app"`.
+In this case,
+though,
+the counter is not a function,
+but a class with three parts:
+
+1. Its constructor passes the properties provided by the user up to `React.Component`'s constructor.
+   (There aren't any properties in this case,
+   but there will be in future examples,
+   so it's a good habit to get into.)
+   The constructor then creates a property called `state`
+   that holds this component's state.
+   This property *must* have this name so that React knows to watch it for changes.
+
+2. The `increment` method uses `setState` (inherited from `React.Component`)
+   to change the value of the counter.
+   We *must* do this rather than creating and modifying `this.counter`
+   so that React will notice the change in state
+   and re-draw what it needs to.
+
+3. The `render` method takes the place of the functions we have been using so far.
+   It can do anything it wants, but must return some HTML (using JSX).
+   Here, it creates a button with an event handler and displays the current value of the counter.
+
+React calls each component's `render` method each time `setState` is used to update the component's state;
+this is an example of a protocol,
+which was described [earlier](../oop/#s:oop-protocols).
+Behind the scenes,
+React does some thinking to minimize how much redrawing takes place:
+while it may look as though the paragraph, button, and current count are all being redrawn each time,
+React will only actually redraw as little as it can.
 
 ## But It Doesn't Work {#s:interactive-babel}
 
-- Try running from the command line with Parcel
-  - `npm run dev -- src/interactive/display-counter.html`
-  - Everything is happy
-- But now try taking code out of web page and putting it in its own file
+If we try running this little application from the command line with Parcel:
+
+```sh
+npm run dev -- src/interactive/display-counter.html
+```
+
+everything works as planned.
+But now try taking the code out of the web page and putting it in its own file:
 
 ```html
-<!DOCTYPE html>
 <html>
   <head>
-    <title>Counter</title>
     <meta charset="utf-8">
+    <title>Counter</title>
     <script src="app.js" async></script>
   </head>
   <body>
@@ -159,9 +180,11 @@ ReactDOM.render(
 ```
 {: title="src/interactive/counter/app.js"}
 
-- Run with `npm run dev -- src/interactive/counter/index.html`
+Let's try running this:
 
-```
+```sh
+`npm run dev -- src/interactive/counter/index.html
+```text
 > js-vs-ds@0.1.0 dev /Users/stj/js-vs-ds
 > parcel serve -p 4000 "src/interactive/counter/index.html"
 
@@ -176,10 +199,10 @@ Server running at http://localhost:4000
   14 |
 ```
 
-- It seems that Parcel doesn't like fat arrow methods
-  - React is still using ES6 JavaScript by default
-  - And fat arrow methods weren't included in JavaScript at that point
-- OK, so let's try using "normal" function-style method definitions in our script
+It seems that Parcel doesn't like fat arrow methods.
+This happens because React is still using ES6 JavaScript by default,
+and fat arrow methods weren't included in JavaScript at that point.
+All right, let's try using "normal" function-style method definitions instead:
 
 ```js
 ...imports as before...
@@ -210,22 +233,27 @@ class Counter extends React.Component {
 ```
 {: title="src/interactive/counter-functions/app.js"}
 
-- Parcel happily compiles this
-- But clicking on the button doesn't change the display
-  - Despair is once again our friend --- our *only* friend --- but we persevere
-- Open the debugging console in the browser
-  - `TypeError: this is undefined`
-  - Because of some ill-considered choices early in JavaScript's development about scoping rules
-- So: we can compile but not run, or not bundle files together
-- But wait:
-  - When we used an in-page script, we specified the type as `text/babel`
-  - And loaded `https://unpkg.com/babel-standalone@6/babel.js` in the page header along with React
-  - Can Babel save us?
-- Yes, though it takes a fair bit of searching on the web to find this out
-  - Particularly if you don't know what you're looking for
-- Create a file in the project's root directory called `.babelrc` and add the following lines
+Parcel runs this without complaint,
+but clicking on the button doesn't change the display.
+Despair is once again our friend---our *only* friend---but we persevere.
+When we open the debugging console in the browser,
+we see the message `TypeError: this is undefined`.
+The appendix [explains in detail](../legacy/#s:legacy-prototypes) why this happens;
+for now, suffice to say that some poor choices were made early in JavaScript's development about variable scoping.
 
-```
+At this point it appears that we can compile but not run, or not bundle files together.
+But wait:
+when we used an in-page script, we specified the type as `text/babel`
+and loaded `https://unpkg.com/babel-standalone@6/babel.js` in the page header along with React.
+Can Babel save us?
+
+The answer is "yes",
+though it takes a fair bit of searching on the web to find this out
+(particularly if you don't know what you're looking for).
+The magic is to create a file in the project's root directory called `.babelrc`
+and add the following lines:
+
+```js
 {
   "presets": [
     "react"
@@ -236,39 +264,54 @@ class Counter extends React.Component {
 }
 ```
 
-- Use NPM to install `babel-preset-react` and `babel-plugin-transform-class-properties`
-- Switch back to fat arrow methods
-- Run, and everything works
-  - When Babel translates our JavaScript into old-fashioned JavaScript compatible with all browsers,
-    it reads `.babelrc` and obeys that configuration
-  - The settings above tell it to do everything React needs, and to transform things inside classes
-  - In particular, accept fat arrow method definitions and bind `this` correctly
-- This is madness
-  - Something outside our program determines how that program is interpreted
-  - The commands go in yet another configuration file
-  - As fragile as the apparent constancy of cause and effect that we so naively call "reality"
+Once we've done this,
+we can use NPM to install `babel-preset-react` and `babel-plugin-transform-class-properties`
+and then switch back to fat arrow methods.
+Voila: everything works.
+
+What's happening here is that
+when Babel translates our sparkly modern JavaScript into old-fashioned JavaScript compatible with all browsers,
+it reads `.babelrc` and obeys that configuration.
+The settings above tell it to do everything React needs using the `transform-class-properties` plugin;
+in particular,
+to accept fat arrow method definitions and bind `this` correctly.
+This works,
+but is a form of madness:
+something outside our program determines how that program is interpreted,
+and the commands controlling it go in yet another configuration file.
+Still,
+it is a useful form of madness,
+so we will press on.
 
 ## Models and Views {#s:interactive-models-views}
 
-- Common practice to separate models (which store data) from views (which display it)
-  - Models are typically classes
-  - Views are typically pure functions
-- Re-implement the counter using
-  - `App`: stores the state and provides methods for altering it
-  - `NumberDisplay`: does nothing except display a number
-  - `UpAndDown`: provides buttons to go up and down
-- Crucial design features: `NumberDisplay` and `UpAndDown` don't know:
-  - What they're displaying
-  - What actions are being taken on their behalf
-  - So they're easier to re-use
-- Again, we're cheating on the component loading
+Well-designed applications separate models (which store data)
+from views (which display it)
+so that each can be tested and modified independently.
+When we use React,
+the models are typically classes,
+and the views are typically pure functions.
+
+To introduce this architecture,
+let's re-implement the counter using:
+
+- `App` to store the state and provides methods for altering it,
+- `NumberDisplay` to display a number, and
+- `UpAndDown` to provide buttons that increment and decrement that number.
+
+The crucial design feature is that
+`NumberDisplay` and `UpAndDown` don't know what they're displaying
+or what actions are being taken on their behalf,
+which makes them easier to re-use.
+Again,
+we will load everything manually instead of bundling to make dependencies clearer.
+The whole page is:
 
 ```html
-<!DOCTYPE html>
 <html>
   <head>
-    <title>Hello World</title>
     <meta charset="utf-8">
+    <title>Hello World</title>
     <script src="https://fb.me/react-15.0.1.js"></script>
     <script src="https://fb.me/react-dom-15.0.1.js"></script>
     <script src="https://unpkg.com/babel-standalone@6/babel.js"></script>
@@ -277,9 +320,7 @@ class Counter extends React.Component {
     <script src="app.js" type="text/babel"></script>
   </head>
   <body>
-    <div id="app">
-      <!-- this is filled in -->
-    </div>
+    <div id="app"></div>
     <script type="text/babel">
       ReactDOM.render(
         <App />,
@@ -291,12 +332,19 @@ class Counter extends React.Component {
 ```
 {: title="src/interactive/multi-component/index.html"}
 
+The `NumberDisplay` class takes a label and a value and puts them in a paragraph
+(remember, the label and value will appear in our function as properties of the `props` parameter):
+
 ```js
 const NumberDisplay = (props) => {
   return (<p>{props.label}: {props.value}</p>)
 }
 ```
 {: title="src/interactive/multi-component/NumberDisplay.js"}
+
+Similarly,
+`UpAndDown` expects two functions as its `up` and `down` properties,
+and makes each the event handler for an appropriately-labelled button:
 
 ```js
 const UpAndDown = (props) => {
@@ -309,6 +357,12 @@ const UpAndDown = (props) => {
 }
 ```
 {: title="src/interactive/multi-component/UpAndDown.js"}
+
+We are now ready to build the overall application.
+It create a `state` containing a counter
+and defines methods to increment or decrement the counter's value.
+Its `render` method then lays out the buttons and the current state
+using those elements:
 
 ```js
 class App extends React.Component {
@@ -340,20 +394,24 @@ class App extends React.Component {
 
 FIXME-22: diagram
 
-- This may seem pretty complicated
-- Because it is, in this small example
-- But this strategy is widely used to manage large applications
-  - Data and event handlers are defined near the top
-  - Then passed down for display components to use
+This may seem pretty complicated,
+and it is,
+because this example would be much simpler to write without all this indirection.
+However,
+this strategy is widely used to manage large applications:
+data and event handlers are defined in one class,
+then passed into display components to be displayed and interacted with.
 
 ## Fetching Data {#s:interactive-fetching}
 
-- NASA provides a web API to get information about near-approach asteroids
-- Build a small display with:
-  - A text box for submitting a starting date (get one week by default)
-  - A list of asteroids in that time period
+Let's use what we've learned to look at how the world might end.
+NASA provides a web API to get information about near-approach asteroids.
+We will use it to build a small display with:
 
-- First version of `App`
+- a text box for submitting a starting date (get one week by default), and
+- a list of asteroids in that time period.
+
+Here's the first version of our `App` class:
 
 ```js
 class App extends React.Component {
@@ -381,8 +439,10 @@ class App extends React.Component {
 ```
 {: title="src/interactive/asteroids/app.js"}
 
-- Start by displaying asteroids using fake data
-  - A pure display component
+We'll test it by displaying asteroids using fake data;
+as in our first example,
+the display component `AsteroidList` doesn't modify data,
+but just displays it:
 
 ```js
 const AsteroidList = (props) => {
@@ -405,7 +465,9 @@ const AsteroidList = (props) => {
 ```
 {: title="src/interactive/asteroids/AsteroidList.js"}
 
-- Go back and put fake data in `App` for now
+`AsteroidList` expects data to arrive in `props.asteroids`,
+so let's put some made-up values in `App` for now
+that we can then pass in:
 
 ```js
 class App extends React.Component {
@@ -426,7 +488,7 @@ class App extends React.Component {
 ```
 {: title="src/interactive/asteroids/app.js"}
 
-- Create placeholder for `DateSubmit`
+Let's also create placeholder for `DateSubmit`:
 
 ```js
 const DateSubmit = (props) => {
@@ -435,17 +497,18 @@ const DateSubmit = (props) => {
 ```
 {: title="src/interactive/asteroids/DateSubmit.js"}
 
-- And run
+and run it:
 
 FIXME-23: screenshot
 
-- Handle date submission
-  - Make the component reusable
-- Caller will pass in:
-  - Text label
-  - Variable to update with current value of text box
-  - Function to call when text box value changes
-  - Function to call when button clicked to submit
+The next step is to handle date submission.
+Since we're trying to instill good practices,
+we will make a reusable component whose caller will pass in:
+
+- a text label;
+- a variable to update with the current value of a text box;
+- a function to call when text box's value changes, and
+- another function to call when button clicked to submit.
 
 ```js
 const DateSubmit = ({label, value, onChange, onCommit}) => {
@@ -460,21 +523,19 @@ const DateSubmit = ({label, value, onChange, onCommit}) => {
 ```
 {: title="src/interactive/asteroids/DateSubmit.js"}
 
-- Note the use of [destructuring](#g:destructuring) in the parameter list
-  - Suppose an object `directions` has the value `{left: 1, right: 2}`
-  - The expression `{left, right} = directions` will create new variables `left` and `right` and assign them 1 and 2 respectively
-    - The names of the new variables must match the names of the fields in the object
-- Can use this when passing an object full of parameters to a function
-  - Any "extra" names in the passed-in object are ignored
-  - Any missing names are assigned `undefined`
+Note the use of destructuring in `DateSubmit`'s parameter list;
+this was introduced [earlier](../pages/#s:pages-citations)
+and is an easy way to pull values out of the `props` parameter.
 
-- Important to understand order of operations
-  - `value={value}` puts a value in the box for display
-  - Binds `onChange` and `onClick` to functions each time
-  - Remember, JSX gets translated into function calls
-  - So yes, this is being re-created every time someone types
-  - But React and the browser work together to minimize recalculation
-- Now go back and re-work application
+It's important to understand order of operations in the example above.
+`value={value}` puts a value in the input box to display each time `DateSubmit is called.
+We re-bind `onChange` and `onClick` to functions on each call as well
+(remember, JSX gets translated into function calls).
+So yes,
+this whole paragraph is being re-created every time someone types,
+but React and the browser work together to minimize recalculation.
+
+Now let's go back and re-work our application:
 
 ```js
 class App extends React.Component {
@@ -513,15 +574,19 @@ class App extends React.Component {
 ```
 {: title="src/interactive/asteroids/app.js"}
 
-- Safe to pass `this.state.newDate` because we're re-drawing each time there's a change
-  - Passing a value for display, not a reference to be modified
-- Note that we are not doing any kind of validation (yet)
+It's safe to pass `this.state.newDate` to `value`
+because we're re-drawing each time there's a change;
+remember, we're passing a value for display,
+not a reference to be modified.
+And note that we are not doing any kind of validation:
+the user could type `abc123` as a date
+and we would blithely try to process it.
 
-- Time to get real data
-- Use `fetch` with a URL
-- It returns a [promise](#g:promise)
-  - JavaScript's newly-standardized way of making callbacks easier to work with
-  - Although it practice it just seems to move the complexity around
+It's now time to get real data,
+which we will do using `fetch` with a URL.
+This returns a [promise](../promises/),
+so we'll handle the result of the fetch in the promise's `then` method,
+and then chain another `then` method to transform the data into what we need:
 
 ```js
   onSubmitNewDate = (text) => {
@@ -539,14 +604,18 @@ class App extends React.Component {
 ```
 {: title="src/interactive/asteroids/app.js"}
 
-- Steps are:
-  1. Build the URL for the data
-  2. Start to fetch data from that URL
-  3. Give a callback to execute when the data arrives
-  4. Give another callback to use when the data has been converted from text to [JSON](#g:json)
-  5. Transform that data from its raw form into the objects we need
-  6. Set state
-- Transformation is:
+Line by line,
+the steps are:
+
+1. Build the URL for the data
+2. Start to fetch data from that URL
+3. Give a callback to execute when the data arrives
+4. Give another callback to use when the data has been converted from text to [JSON](#g:json)
+5. Transform that data from its raw form into the objects we need
+6. Set state
+
+Finally,
+the method to transform the data NASA gives us is:
 
 ```js
   transform = (raw) => {
@@ -566,10 +635,11 @@ class App extends React.Component {
 ```
 {: title="src/interactive/asteroids/app.js"}
 
-- Look at the structure of the JSON
-- Figure out how to index the fields we need
-- Unfortunately, top level of `near_earth_objects` is an object with dates as keys
-  - So we have to use `let...in...` rather than purely `map` or `forEach`
+We built this by looking at the structure of the JSON that NASA returned
+and figuring out how to index the fields we need.
+(Unfortunately,
+the top level of `near_earth_objects` is an object with dates as keys rather than an array,
+so we have to use `let...in...` rather than purely `map` or `forEach`.)
 
 ## Exercises {#s:interactive-exercises}
 

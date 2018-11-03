@@ -578,6 +578,8 @@ if we have an object whose keys are called `a` and `b`,
 then the call `f({a, b})` means,
 "Match the value of key `a` to a parameter called `a`
 and the value of key `b` to a parameter called `b`."
+This is called [destructuring](#g:destructuring),
+and can save a lot of wear and tear on our keyboard and eyes.
 
 Second,
 if we have a variable called `name`,
