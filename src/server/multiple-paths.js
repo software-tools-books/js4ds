@@ -3,7 +3,7 @@ const express = require('express')
 const PORT = 3418
 
 // Main server object.
-let app = express()
+const app = express()
 
 // Root page.
 app.get('/', (req, res, next) => {

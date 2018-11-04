@@ -12,7 +12,7 @@ winston.add(transport)
 winston.level = level
 
 // Main server object.
-let app = express()
+const app = express()
 
 // Handle all requests.
 app.use((req, res, next) => {

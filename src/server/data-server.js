@@ -6,7 +6,7 @@ const PORT = 3418
 const root = process.argv[2]
 
 // Main server object.
-let app = express()
+const app = express()
 
 // Handle all requests.
 app.use((req, res, next) => {
