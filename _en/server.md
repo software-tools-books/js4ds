@@ -18,23 +18,114 @@ keypoints:
 - "Use dynamic loading to support plugin extensions."
 ---
 
-- [HTTP](#g:http) uses a [request](#g:http-request)/[response](#g:http-response) cycle
-  - Client (browser or other program) makes a connection
-  - Sends a blob of text specifying what it's asking for
-  - Gets a blob of text in response
-  - And possibly other data as well
-  - Client parses the data and decides what to draw
+Someone at NASA created the service that provided the data we used in [the previous chapter](../interactive/).
+If we think our data is valuable,
+we might want to provide such a service ourselves.
+And even if we are the only people in the world who want to look at our numbers,
+we still need to serve them somehow
+if we're going to build a browser-based application.
+
+The basis of almost everything on the web is
+the [HTTP](#g:http) [request](#g:http-request)/[response](#g:http-response) cycle.
+HTTP is the HyperText Transfer Protocol;
+it specifies the kinds of requests applications can make of servers,
+how they exchange data,
+and so on.
+The diagram below shows the request/response cycle in action:
+
+1. The client (a browser or some other program) makes a connection to a server.
+2. It then sends a blob of text specifying what it's asking for.
+3. The server replies with a blob of text, and possibly other data as well.
+4. The connection is closed.
+5. The client parses the text and decides what to do with the data.
 
 FIXME-28: diagrams
 
+This cycle might be repeated many times to display a single web page,
+since in theory a separate request has to be made for every image,
+every CSS or JavaScript file,
+and so on.
+In practice,
+a lot of behind-the-scenes engineering is done to keep connections alive as long as they're needed,
+and to [cache](#g:cache) items that are likely to be re-used.
+
+An HTTP request has at least parts:
+
+- The [method](#g:http-method) is almost always either `GET` (to get data) or `POST` (to submit data).
+- The [URL](#g:url) is typically a path to a file,
+  but as we'll see below,
+  it's completely up to the server to interpret it.
+
+The request can also contain [headers](#g:http-header),
+which are key-value pairs with more information about what the client wants.
+Some examples include:
+
+- `"Accept: text/html"` to specify that the client wants HTML
+- `"Accept-Language: fr, en"` to specify that the client prefers French, but will accept English
+- `"If-Modified-Since: 16-May-2018"` to tell the server that the client is only interested in recent data
+
+Unlike a dictionary, a key may appear any number of times,
+so that (for example) a request can specify that it's willing to accept several types of content.
+
+The body of the request is any extra data associated with it,
+such as files that are being uploaded.
+If a body is present,
+the request must contain the `Content-Length` header
+so that the server knows how much data to read.
+
+The headers and body in an HTTP response have the same form, and mean the same thing.
+Crucially,
+the response also includes a status code to indicate what happened:
+200 for OK, 400 for "page not found", and so on.
+Some of the more common are:
+
+| Code | Name                  | Meaning                                                              |
+| ---- | --------------------- | -------------------------------------------------------------------- |
+| 100  | Continue              | The client should continue sending data                              |
+| 200  | OK                    | The request has succeeded                                            |
+| 204  | No Content            | The server completed the request but doesn't need to return any data |
+| 301  | Moved Permanently     | The requested resource has moved to a new permanent location         |
+| 307  | Temporary Redirect    | The requested resource is temporarily at a different location        |
+| 400  | Bad Request           | The request is badly formatted                                       |
+| 401  | Unauthorized          | The request requires authentication                                  |
+| 404  | Not Found             | The requested resource could not be found                            |
+| 408  | Timeout               | The server gave up waiting for the client                            |
+| 500  | Internal Server Error | An error occurred in the server while trying to handle the request   |
+| 601  | Connection Timed Out  | The server did not respond before the connection timed out           |
+
+Finally,
+while it's not part of the HTTP protocol,
+it's important to understand hostnames and servers.
+Consider the following URL:
+
+```
+http://example.org:1234/some/path
+```
+
+Its four parts are:
+
+- The protocol `http`, which specifies what rules are going to be used to exchange data.
+- The [hostname](#g:host) `example.org`, which tells the client where to find the server.
+  If we are running a server on our own computer for testing,
+  we can use the name `localhost` to connect to it.
+- The [port](#g:port) `1234`, which tells the client where to call the service it wants.
+  (If a host is like an office building, a port is like a phone number in that building.
+  The fact that we think of phone numbers as having physical locations
+  says something about our age...)
+- The path `/some/path` tells the server what exactly the client wants *this* time.
+
 ## Hello, Express {#s:server-express}
 
-- Express handles most of this for us
-- We provide callback functions taking three parameters:
-  - The original request
-  - The response we're building up
-  - What to do next (which we'll ignore)
-- Also provide the path for that function
+A Node-based library called Express handles most of the details of HTTP for us.
+When we are building a server using Express,
+we provide callback functions that take three parameters:
+
+- the original request,
+- the response we're building up, and
+- what to do next (which we'll ignore for now).
+
+We also provide a pattern with each function that specifies what URLs it is to match.
+Here is a simple example:
 
 ```js
 const express = require('express')
@@ -42,7 +133,7 @@ const express = require('express')
 const PORT = 3418
 
 // Main server object.
-let app = express()
+const app = express()
 
 // Return a static page.
 app.get('/', (req, res, next) => {
@@ -53,13 +144,41 @@ app.listen(PORT, () => { console.log('listening...') })
 ```
 {: title="src/server/static-page.js"}
 
-- There is no HTML file on disk
-- And there is no way for the browser to know if there was one or not
+The first line of code loads the Express library.
+The next defines the port we will listen on,
+and then the third creates the object that will do most of the work.
+
+Further down,
+the call to `app.get` tells that object to handle any request for '/'
+by sending a reply whose status is 200 (OK)
+and whose boy is an HTML page containing only an `h1` heading.
+There is no actual HTML file on disk,
+and in fact no way for the browser to know if there was one or not:
+the server can send whatever it wants in response to whatever requests it wants to handle.
+
+Finally,
+the last line of this script tells our application to listen on the specified port,
+while the callback tells it to print a message as it starts running.
+When we run this, we see:
+
+```sh
+node static-page.js
+```
+```text
+listening...
+```
+
+Our little server is now waiting for something to ask it for something.
+If we go to our browser and request `http://localhost:3418/`,
+we get a page with a large title `Asteroids` on it:
+our server has worked,
+and we can now stop it by typing <kbd>Ctrl-C</kbd> in the shell.
 
 ## Handling Multiple Paths {#s:server-paths}
 
-- Provide handlers for many different paths
-- And handle the case where the path is not known
+Let's extend our server to do different things when given different paths,
+and to handle the case where the request path is not known:
+
 
 ```js
 const express = require('express')
@@ -67,7 +186,7 @@ const express = require('express')
 const PORT = 3418
 
 // Main server object.
-let app = express()
+const app = express()
 
 // Root page.
 app.get('/', (req, res, next) => {
@@ -88,14 +207,37 @@ app.listen(PORT, () => { console.log('listening...') })
 ```
 {: title="src/server/multiple-paths.js"}
 
-- Don't have to send a 404 status code
-- But many parts of web infrastructure depend on correct codes
+The first few lines are the same as before.
+We then specify handlers for the paths `/` and `/asteroids`,
+each of which sends a different chunk of HTML.
+The call to `app.use` specifies a default handler:
+if none of the `app.get` handlers above it took care of the request,
+this callback function will send a "page not found" code
+*and* a page containing an error message.
+Some sites skip the first part and only return error messages in pages for people to read,
+but this is sinful:
+making the code explicit makes it a lot easier to write programs to scrape data.
+
+As before, we can run our server from the command line
+and then go to various URLs to test it.
+`http://localhost:3418/` produces a page with the title "Home",
+`http://localhost:3418/asteroids` produces one with the title "Asteroids",
+and `http://localhost:3418/test` produces an error page.
 
 ## Serving Files from Disk {#s:server-files}
 
-- Instead of creating HTML in memory, read from file
-- Provide our server with the path to the directory it's allowed to read
-  - E.g., run with `node pages.js pages`
+It's common to generate HTML in memory when building data services,
+but it's also common for the server to return files.
+To do this,
+we will provide our server with the path to the directory it's allowed to read pages from,
+and then run it with <code>node <em>server-name</em>.js <em>path/to/directory</em></code>.
+We specify the path because we definitely do *not* want the server
+to be able to send everything on our computer to whoever asks for it.
+In particular,
+a request for `/etc/passwd` (the password file on a Unix computer)
+should probably be refused.
+
+Here's our updated server:
 
 ```js
 const express = require('express')
@@ -106,7 +248,7 @@ const PORT = 3418
 const root = process.argv[2]
 
 // Main server object.
-let app = express()
+const app = express()
 
 // Handle all requests.
 app.use((req, res, next) => {
@@ -117,31 +259,51 @@ app.use((req, res, next) => {
 
 app.listen(PORT, () => { console.log('listening...') })
 ```
-{: title="src/server/pages.js"}
+{: title="src/server/serve-pages.js"}
 
-- Steps are:
-  1. Get the request
-  2. Get the path to the file from the URL
-  3. Combine that with the path to the root directory
-  4. Read that file
-  5. Return that data
-- If page not found (e.g., go to `http://localhost:3418/missing.html`)
+The steps in handling a request are:
 
+1. The URL requested by the client is given to us in `req.url`.
+2. We combine that with the path to the root directory,
+   which we got from a command-line argument when the server was run.
+3. We try to read that file using `readFileSync`,
+   which blocks the server until the file is read.
+   We will see later how to do this I/O asynchronously
+   so that our server is more responsive.
+4. If successful, we return whatever we read.
+
+If a sub-directory call `web-dir` holds a file called `title.html`,
+and we run the server as:
+
+```sh
+node serve-pages.js ./web-dir
 ```
-Error: ENOENT: no such file or directory, open 'pages/missing.html'
+
+we can then ask for `http://localhost:3418/title.html`
+and get the content of `web-dir/title.html`.
+If we ask for a page that doesn't exist,
+such as `http://localhost:3418/missing.html`,
+we get this:
+
+```text
+Error: ENOENT: no such file or directory, open 'web-dir/missing.html'
     at Object.openSync (fs.js:434:3)
     at Object.readFileSync (fs.js:339:35)
     ... etc. ...
 ```
 
+We will see in the exercises how to add proper error handling to our server.
+
 ## Content Types {#s:server-content-types}
 
-- Clients expect to know what kind of data we're sending
-  - Images, etc.
-- We're going to serve JSON
+So far we have only served HTML,
+but the server can send any type of data,
+including images and other binary files.
+For example,
+let's serve some JSON data:
 
 ```js
-...
+...as before...
 
 app.use((req, res, next) => {
   const actual = path.join(root, req.url)
@@ -161,65 +323,45 @@ app.use((req, res, next) => {
 ```
 {: title="src/server/data-server.js"}
 
-- The `Content-Type` header tells the client how to handle the bytes we're sending
-  - Though it can still do whatever it wants
-
-## Dynamic Content {#s:server-dynamic}
-
-- Could add functions to our server to generate dynamic content
-- Or have it load JavaScript dynamically and run that
-
-```js
-...
-app.use((req, res, next) => {
-  const actual = path.join(root, req.url)
-
-  if (actual.endsWith('.js')) {
-    const libName = './'.concat(actual.slice(0, -3))
-    const dynamic = require(libName)
-    const data = dynamic.page()
-    res.status(200).send(data)
-  }
-
-  else {
-    const data = fs.readFileSync(actual, 'utf-8')
-    res.status(200).send(data)
-  }
-})
-```
-{: title="src/server/dynamic.js"}
-
-- Require all dynamic plugins to provide a `page` function
-  - We have to know what to call
-
-```js
-function page() {
-  return ('<html><body><h1>Plugin Content</h1></body></html>')
-}
-
-module.exports = {
-  page: page
-}
-```
-{: title="src/server/pages/plugin.js"}
+What's different here is that when the requested path ends with `.json`
+we explicitly set the `Content-Type` header to `application/json`
+to tell the client how to interpret the bytes we're sending back.
+If we run this server with `web-dir` as the directory to serve from
+and ask for `http://localhost:3418/data.json`,
+a modern browser will provide a folding display of the data
+rather than displaying the raw text.
 
 ## Logging {#s:server-logging}
 
-- `console.log` is a simple form of [logging](#g:logging)
-- Use [Winston][winston] for more control and structure
-- Control: define levels for messages and a threshold for the logger, and only log things that are at least that important
-  - Much better than commenting and uncommenting messages
-  - Standard error levels are `'error'`, `'warn'`, `'info'`, `'verbose'`, and `'debug'`
-  - So if threshold is set to `'info'`, then `'verbose'` and `'debug'` messages won't be displayed
-- Structure: Winston produces log messages as JSON objects
-  - So parsing is easier
-  - Can configure to produce CSV
-  - Or some custom format, but don't --- just don't
-- Have to create and add a [transport](#g:logging-transport) to tell Winston where messages should go
-  - We will use one called `Console` that sends messages to the screen
-  - Can also send messages to files, to remote logging servers, etc.
-  - Note: do *not* create a variable called `console` for the transport, because that will overwrite the `console` you're used to
-  - Yes, that took a couple of minutes to figure out...
+The `console.log` function we have been using
+is a simple form of [logging](#g:logging).
+We can use a library called [Winston][winston] to get more control and structure.
+By control,
+we mean that we candefine levels for messages and a threshold for the logger,
+and only log things that are at least that important.
+This is much better than commenting and uncommenting messages,
+both because it involves less typing
+and because we can leave the logging code in place when we put our application into production
+to debug the problems that inevitably arise after we thought we were done.
+The standard error levels provided by Winston (and similar logging libraries)
+are `'error'`, `'warn'`, `'info'`, `'verbose'`, and `'debug'`,
+so if we set the threshold to `'info'`,
+then `'verbose'` and `'debug'` messages won't be displayed.
+
+As for structure,
+Winston produces log messages as JSON objects by default
+so that other programs can easily read them.
+We can also configure it to produce CSV,
+or even define some custom format,
+though doing that will make everyone's life more difficult.
+
+Whatever format we choose,
+we have to create and add a [transport](#g:logging-transport) to tell Winston where messages should go.
+We will use one called `Console` that sends messages to the screen;
+we can also send messages to files, to remote logging servers, and so on.
+Note that we do *not* create a variable called `console` for the transport,
+because that will overwrite the `console` we have been using up until now,
+and yes, that took a couple of minutes to figure out...
 
 ```js
 const express = require('express')
@@ -236,7 +378,7 @@ winston.add(transport)
 winston.level = level
 
 // Main server object.
-let app = express()
+const app = express()
 
 // Handle all requests.
 app.use((req, res, next) => {
@@ -263,10 +405,13 @@ app.listen(PORT, () => {
 ```
 {: title="src/server/logging.js"}
 
-- Set the level with an extra command-line parameter
-  - Run with `'debug'` level: all messages appear
-  - Run with `'info'` level: only the startup message (at `'info'` level) appears
-  - Run with `'warning'` level: no messages appear
+In the script above,
+we set the logging level with an extra command-line parameter.
+If we run the script with the `'debug'` level, all messages appear.
+If we run it with the `'info'` level, only the startup message appears,
+and if we run it with the level `'warning'`,
+no messages appear
+because none are deemed important enough.
 
 ## Exercises {#s:server-exercises}
 
