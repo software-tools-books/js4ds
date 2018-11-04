@@ -30,6 +30,8 @@ We will cover:
 - Data visualization
 - Combining everything to create a three-tier web application
 
+## Intended Audience {#s:intro-audience}
+
 We assume that you:
 
 - can write two-page programs that use lists, loops, conditionals, and functions,
