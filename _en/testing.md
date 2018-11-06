@@ -20,22 +20,56 @@ keypoints:
 - "Check the structure of the DOM rather than the textual representation of the HTML when testing."
 ---
 
-- Build some test infrastructure
-- Each test is a function, and each function is one test
-- Put repeated setup and teardown into functions that are automatically invoked before and after each test
-- Each test can have one of three results:
-  - Pass: everything worked
-  - Fail: the system being tested didn't do what was expected
-  - Error: something went wrong with the test itself
-- Combine tests into test suites (and test suites into larger suites)
-- Write the tests themselves using [assertions](#g:assertion)
-  - Node provides an `assert` library with some useful functions
+We are bad people,
+because we have been writing code without testing it.
+In this lesson we will redeem ourselves
+(at least partially)
+by correcting that.
+
+JavaScript uses the same pattern for unit testing as most other modern languages.
+Each test is written as a function,
+and each of those functions tests one particular aspect of the code.
+A standalone program called a [test runner](#g:test-runner)
+finds test functions,
+runs them,
+and reports the results.
+Any setup code that needs to be run before each test to create a [fixture](#g:fixture)
+is put in a function of its own.
+Similarly (but less frequently),
+if some teardown needs to be done *after* each test,
+we put those operations in a function as well.
+
+Each unit test can have one of three results:
+
+- pass: everything worked
+- fail: the system being tested didn't do what was expected
+- error: something went wrong with the test itself
+
+We can combine tests into [test suites](#g:test-suite)
+(and test suites into larger suites, and so on)
+so that we can more easily run related sets of tests.
+This makes testing during development faster,
+which in turn makes it more likely that we'll actually do it.
+
+Finally,
+we write the tests themselves using [assertions](#g:assertion):
+statements that check whether or not some condition holds
+and generate an error if it doesn't.
+Node provides an `assert` library with some useful functions for asserting various things;
+we'll explore this as we go along.
 
 ## Introducing Mocha {#s:testing-mocha}
 
-- We will use a library called Mocha
-  - Don't need to import anything: it imports our code and calls our functions
-- Use `describe` to create a group of tests and `it` for individual tests
+JavaScript has almost as many testing libraries as it has front-end frameworks.
+We will use one called Mocha,
+mostly because it is well documented.
+We don't need to import anything to use it;
+instead,
+it imports our code and calls our functions.
+
+When writing Mocha tests,
+we use a function called `describe` to create a group of tests
+and another function called `it` for individual tests:
 
 ```js
 describe('first test', () => {
@@ -46,13 +80,27 @@ describe('first test', () => {
 ```
 {: title="src/testing/hello-test.js"}
 
-- `describe` takes an explanatory string and a callback function
-- Callback makes calls to `it`, which takes:
-  - An explanatory string
-  - A callback that receives a function (called `done` by convention)
-  - Call `done` to signal the end of the test
-- Run with `./node_modules/.bin/mocha path/to/test.js`
+As this example shows,
+`describe`'s arguments are an explanatory string and a callback function.
+That callback makes calls to `it`, which takes:
 
+- another explanatory string describing how the system should behave, and
+- a callback that receives a function (called `done` by convention).
+
+(The name `it` was chosen so that when we read tests aloud,
+it sounds like we're saying, "It should do this or that.")
+When our tests are done,
+we call `done` to signal that we're finished.
+We need to do this because callbacks run out of order
+and some tests might take a while to complete,
+so Mocha needs to know when each one is done.
+
+We can run our tests from the shell by invoking `mocha`
+and giving it the path to the file that contains the tests:
+
+```sh
+./node_modules/.bin/mocha path/to/test.js
+```
 ```text
   first test
     + should run without errors
@@ -61,8 +109,10 @@ describe('first test', () => {
   1 passing (12ms)
 ```
 
-- Normally put the command in `package.json`
-  - Which automatically puts `./node_modules/.bin` in the path
+As with bundling,
+we normally put the `mocha` command in `package.json`
+so that `./node_modules/.bin` is automatically included in the path.
+After we add this:
 
 ```js
 {
@@ -76,19 +126,27 @@ describe('first test', () => {
 ```
 {: title="package.json"}
 
-- and then:
+to `package.json`, our command becomes:
 
 ```sh
 npm test -- path/to/test.js
 ```
 
+(Again,
+everything after `--` is passed to the script itself.)
+
 ## Refactoring {#s:testing-refactoring}
 
-- Next step is to create testable software
-- In this case means:
-  - Move code that listens on a port into a separate file
-  - Have it import everything else
-  - So that we can run the server code in other contexts
+The next step is to create testable software.
+In the case of our server,
+we have to:
+
+- move the code that listens on a port into a separate file, and
+- have that import everything else
+
+Once we have done this,
+we can run the server code in other contexts.
+Here's the file `standalone.js` that actually runs the server:
 
 ```js
 const server = require('./server')
@@ -97,7 +155,7 @@ server.listen(PORT, () => { console.log(`listening on port ${PORT}...`) })
 ```
 {: title="src/testing/standalone.js"}
 
-- and
+And here is the application code we've extracted to be tested:
 
 ```js
 const express = require('express')
@@ -110,16 +168,26 @@ app.get('/', (req, res, next) => {
   res.status(200).send('<html><body><h1>Home</h1></body></html>')
 })
 
-...
+...as before...
 
 module.exports = app
 ```
 {: title="src/testing/server.js"}
 
+Before going any further,
+we can check that we haven't broken anything by running:
+
+```sh
+node standalone.js
+```
+
 ## Testing the Server {#s:testing-server}
 
-- Now add a test for our server
-- Use `supertest` to interact with the server
+All right:
+now that we have extracted the code that's specific to our server,
+how do we test it?
+The answer is yet another library called `supertest`
+that sends fake HTTP requests to a server and lets us interact with the replies:
 
 ```js
 const assert = require('assert')
@@ -143,21 +211,29 @@ describe('server', () => {
 ```
 {: title="src/testing/request-test.js"}
 
-- `server` is our server code
-- `request(server)` starts building up a request to send
-- `.get('/')` specifies the path
-- `.expect('Content-Type', /html/)` checks the content type against a [regular expression](#g:regular-expression)
-- `.expect(200)` checks that the return code is 200 (OK)
-- `.end` is called when the whole response has been received
-  - We really should check `err`
-- `res` is the result data
-  - Make sure `res.text` includes the word "Home"
-  - And just to prove that tests don't automatically pass,
-    check for something it *shouldn't* contain
-  - Always make sure the equipment is switched on...
-- Then call `done()` to signal the end of the test
-  - Because there's no telling when the outer `.end(...)` will be called
-- Run it
+Going through this line by line:
+
+1. `request(server)` starts building up a request to send.
+2. The `.get('/')` call specifies the path in the pretended URL.
+3. `.expect('Content-Type', /html/)`
+   checks the content type in the returned value against a regular expression
+   (discussed briefly at the end of this section).
+4. `.expect(200)` checks that the return code is 200 (OK).
+5. `.end` is called when the whole response has been received.
+   We really should check `err` to make sure everything worked properly,
+   but we're not quite that virtuous.
+6. Inside the callback to `end`,
+   `res` is the result data.
+   We make sure that `res.text` includes the word "Home",
+   and then just to prove that tests don't automatically pass
+   we check for something it *shouldn't* contain.
+   (Rule #2 of testing: always make sure the equipment is switched on...)
+7. Finally, we call `done()` to signal the end of the test.
+   Again,
+   we have to do this because there's no way Mocha can know
+   when the encloding `.end(...)` will be called
+
+Let's run our code:
 
 ```text
   server
@@ -167,7 +243,7 @@ describe('server', () => {
   1 passing (58ms)
 ```
 
-- Add more tests
+Excellent: let's add some more tests.
 
 ```js
 describe('server', () => {
@@ -225,19 +301,21 @@ describe('server', () => {
 
 ## Checking the HTML {#s:testing-html}
 
-- Increasingly common to serve data for rendering by the client
-- But some servers still generate HTML
-- Do *not* try to check this with substrings or regular expressions
-  - The exceptions have exceptions
-- Instead, parse it to create a structure in memory and check that
-  - If parsing fails because the HTML is badly formatted, that's worth knowing too
-- Structure is called [Document Object Model](#g:dom) (DOM)
-  - Good news: there are lots of libraries that will parse HTML and produce DOM
-  - Bad news: there are *lots* of libraries that will do this
-- We use `cheerio`
-  - `cheerio.load` turns the text of HTML into DOM
-  - Resulting object can be used like a function
-  - Can use [selectors](#g:selector) to find things in it
+It's increasingly common for servers to return data that is then rendered by the client,
+but some servers still generate HTML.
+Do *not* try to check this with substrings or regular expressions:
+the exceptions have exceptions,
+and [that way lies madness][parse-xml-regular-expressions].
+Instead,
+we should parse the HTML to create a structure in memory and check that;
+if parsing fails because the HTML is badly formatted, that's worth knowing too.
+The structure in question is our new friend the DOM,
+and to get it,
+we will use (yet another) library called `cheerio`.
+`cheerio.load` turns HTML text into a DOM tree;
+the resulting object can be used like a function,
+and we can use the same selectors we met previously to find things in it.
+Here's our test:
 
 ```js
 const assert = require('assert')
@@ -269,22 +347,15 @@ describe('server', () => {
   1 passing (77ms)
 ```
 
-- Get the page as before
-- Parse it
-- Look for `h1` elements
-- Get the text of the first one
-  - This *doesn't* check if the title is `<em>H</em>ome`,
-    because `.text()` concatenates all the text of the children
-- Won't explore this approach further because we're going to serve data for rendering
-  rather than generating HTML and sending that
-
-> **JSX vs. DOM**
->
-> - JSX is an extension to JavaScript that allows us to embed HTML in programs
->   - That HTML is translated into function calls that create text
-> - DOM is a data structure that a browser uses to store pages in memory
->   - Parses HTML to create a tree of nodes that are either elements with children and attributes or plain old text
->   - Or other things that we won't get into
+This gets the page as before,
+parses it,
+then looks for `h1` elements and checks the text of the first one.
+(Note that this *doesn't* check if the title is `<em>H</em>ome`
+because `.text()` concatenates all the text of the children.)
+We won't explore this approach further because we're going to serve data for rendering
+rather than generating HTML and sending that,
+but if you're doing any web scraping at all,
+libraries like `cheerio` are there to help.
 
 ## Exercises {#s:testing-exercises}
 

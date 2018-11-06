@@ -36,7 +36,7 @@ FIXME: explain call stack
 
 ## Functions as Parameters {#s:callbacks-func-params}
 
-When JavaScript [parses](#g:parsing) the expression `let name = "text"`,
+When JavaScript [parses](#g:parse) the expression `let name = "text"`,
 it allocates a block of memory big enough for four characters
 and stores 't', 'e', 'x', and 't' in them.
 When it executes the assignment,

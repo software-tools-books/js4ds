@@ -24,6 +24,7 @@ definitions if that's done.
 [node-download]: https://nodejs.org/en/download/
 
 [parcel]: https://parceljs.org/
+[parse-xml-regular-expressions]: https://stackoverflow.com/a/1732454
 
 [react]: https://reactjs.org/
 [runkit]: https://runkit.com/

@@ -3,6 +3,9 @@ permalink: "/en/gloss/"
 title: "Glossary"
 ---
 
+**absolute path**{:#g:absolute-path}:
+FIXME
+
 **aggregation function**{:#g:aggregation-function}:
 a function that combines many values into one,
 such as `sum` or `max`.
@@ -39,6 +42,12 @@ a named property attached to an HTML [element](#g:element).
 **backward-compatible**{:#g:backward-compatible}:
 able to work consistently with older systems.
 
+**bundler**{:#g:bundler}:
+FIXME
+
+**cache**{:#g:cache}:
+FIXME
+
 **callback function**{:#g:callback-function}:
 a function A that is passed to another function B
 for B to call at a later time.
@@ -51,6 +60,9 @@ a way to describe how HTML should be rendered.
 **catch**{:#g:catch}:
 to take responsibility for handling an [exception](#g:exception).
 Catch is the counterpart of [throw](#g:throw).
+
+**character encoding**{:#g:character-encoding}:
+FIXME
 
 **child class**{:#g:child-class}:
 a new [class](#g:class) that [extends](#g:extend) an existing class
@@ -111,10 +123,19 @@ a common way to refer to the parts of structures in programming languages.
 
 **element**{:#g:element}: FIXME (HTML)
 
+**escape sequence**{:#g:escape-sequence}:
+FIXME
+
 **event handler**{:#g:event-handler}:
 a [callback function](#g:callback-function) that does something
 in response to a particular interaction with a browser,
 such as a key being pressed or a link being clicked.
+
+**event listener**{:#g:event-listener}:
+FIXME
+
+**event loop**{:#g:event-loop}:
+FIXME
 
 **event object**{:#g:event-object}:
 an [object](#g:object) that the system passes to an [event handler](#g:event-handler)
@@ -145,11 +166,17 @@ than their older equivalents.
 a named part of a [record](#g:record) in a [relational database](#g:relational-database).
 Fields are typically shown as columns in a [table](#g:table).
 
+**fixture**{:#g:fixture}:
+FIXME
+
 **functional programming**{:#g:functional-programming}:
 a style of programming in which data is transformed through successive application of functions,
 rather than by using control structures such as loops.
 Functional programming in JavaScript relies heavily on [callbacks](#g:callback-function)
 and [higher-order functions](#g:higher-order-function).
+
+**global intallation**{:#g:global-intallation}:
+FIXME
 
 **global variable**{:#g:global-variable}:
 a variable defined outside any particular function,
@@ -176,11 +203,20 @@ an [array](#g:array) is said to be homogeneous
 if it contains only numbers or only character strings,
 but not a mix of the two.
 
+**host**{:#g:host}:
+FIXME
+
 **HTTP**{:#g:http}:
 the HyperText Transfer Protocol used to exchange information between browsers and websites,
 and more generally between other [clients](#g:client) and [servers](#g:server).
 HTTP is a [stateless](#g:stateless) protocol
 in which communication consists of [requests](#g:http-request) and [responses](#g:http-response).
+
+**HTTP header**{:#g:http-header}:
+FIXME
+
+**HTTP method**{:#g:http-method}:
+FIXME
 
 **HTTP request**{:#g:http-request}:
 a precisely-formatted block of text sent from a [client](#g:client) (such as a browser)
@@ -207,6 +243,12 @@ In-memory databases are often used for testing.
 to acquire properties and methods from a parent class.
 See also [extend](#g:extend).
 
+**internal style sheet**{:#g:internal-style-sheet}:
+FIXME
+
+**interpolation**{:#g:interpolation}:
+FIXME
+
 **JSON**{:#g:json}:
 a way to represent data by combining basic values like numbers and character strings
 in [arrays](#g:array) and name/value structures.
@@ -220,6 +262,12 @@ see [module](#g:module).
 
 **list**{:#g:list}:
 see [array](#g:array).
+
+**local installation**{:#g:local-installation}:
+FIXME
+
+**local server**{:#g:local-server}:
+FIXME
 
 **local variable**{:#g:local-variable}:
 a variable defined inside a function
@@ -241,6 +289,9 @@ typically called using [dotted notation](#g:dotted-notation).
 In JavaScript and many other languages,
 a special variable called `this` is provided to methods
 to refer to the particular object for which the method is being called.
+
+**minimization**{:#g:minimization}:
+FIXME
 
 **module**{:#g:module}:
 a set of variables, functions, and/or classes grouped together for easier management
@@ -300,11 +351,17 @@ an existing [class](#g:class) that has been [extended](#g:extend) to create a ne
 the [node](#g:node) in a [tree](#g:tree) that is above some other node.
 Every node has a parent except the [root]{#root-node}.
 
+**parse**{:#g:parse}:
+FIXME
+
 **polymorphism**{:#g:polymoprhism}:
 literally, "having many forms".
 The term refers to the way in which [objects](#g:object) whose [methods](#g:method) have
 the same names and [parameters](#g:parameter)
 can be used interchangeably.
+
+**port**{:#g:port}:
+FIXME
 
 **production code**{:#g:production-code}:
 software that is delivered to an end user.
@@ -326,6 +383,9 @@ a variable associated with an [object](#g:object).
 The term is used to distinguish an object's passive data
 from its executable [methods](#g:method).
 Properties are sometimes called [member variables](#g:member-variable).
+
+**race condition**{:#g:race-condition}:
+FIXME
 
 **raise**{:#g:raise}:
 see [throw](#g:throw).
@@ -352,6 +412,9 @@ each of which has a fixed set of named [fields](#g:field) (shown as columns)
 and a variable number of [records](#g:record) (shown as rows).
 See also [SQL](#g:sql).
 
+**relative path**{:#g:relative-path}:
+FIXME
+
 **responsive design**{:#g:responsive-design}:
 an approach to building web pages and other applications
 that resizes and reorganizes things smoothly
@@ -365,6 +428,12 @@ where the fourth component is the pixel's transparency.
 
 **root**{:#g:root-node}:
 the only node in a [tree](#g:tree) that *doesn't* have a [parent](#g:parent-node).
+
+**root directory**{:#g:root-directory}:
+FIXME
+
+**root element**{:#g:root-element}:
+FIXME
 
 **Scalable Vector Graphics**{:#g:svg}:
 a standard way to represent line-based graphics using [XML](#g:xml)-style notation.
@@ -430,6 +499,12 @@ though their efficacy is predicated upon
 relentless commercialization and devaluation
 of modern society's sense of what constitutes "personal".
 
+**test runner**{:#g:test-runner}:
+FIXME
+
+**test suite**{:#g:test-suite}:
+FIXME
+
 **throw**{:#g:throw}:
 to signal that something unexpecte or unusual has happened in a program
 by creating an [exception](#g:exception)
@@ -454,6 +529,9 @@ but only if you are able to set aside your respect for the English language.
 a standard that defines numeric codes for many thousands of characters and symbols.
 Unicode does *not* define how those numbers are stored;
 that is done by standards like [UTF-8](#g:utf-8).
+
+**URL**{:#g:url}:
+FIXME
 
 **UTF-8**{:#g:utf-8}:
 a way to store the numeric codes representing Unicode characters in memory
