@@ -20,6 +20,8 @@ keypoints:
 - "Check the structure of the DOM rather than the textual representation of the HTML when testing."
 ---
 
+FIXME: rewrite this with Tape for consistency with database testing.
+
 We are bad people,
 because we have been writing code without testing it.
 In this lesson we will redeem ourselves

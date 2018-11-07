@@ -30,6 +30,7 @@ definitions if that's done.
 [runkit]: https://runkit.com/
 
 [spolsky-unicode]: https://www.joelonsoftware.com/2003/10/08/the-absolute-minimum-every-software-developer-absolutely-positively-must-know-about-unicode-and-character-sets-no-excuses/
+[sql-tutorial]: https://swcarpentry.github.io/sql-novice-survey/
 [swc]: http://software-carpentry.org/
 
 [t3-process]: http://teachtogether.tech/en/process/

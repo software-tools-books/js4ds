@@ -17,23 +17,32 @@ keypoints:
 - "Use callbacks to handle the results of queries."
 ---
 
-- Put a database under our web service
-- Many more storage options today than there were ten years ago
-- [Relational database](#g:relational-database)
-  - Databases consist of zero or more [tables](#g:table)
-  - Each table has a fixed set of [fields](#g:field)
-    - Usually drawn as columns
-  - And zero or more [records](#g:record)
-    - Usually drawn as rows
-  - Each record has a value for each field
-    - Which may be `null` (meaning "no data" or "unknown")
-- Relational databases are manipulated using [SQL](#g:sql)
-- Which is why alternatives are often called [NoSQL databases](#g:nosql-database)
-  - Many different storage models
-  - Most popular stores [JSON](#g:json)
-  - Treat data as a document rather than as a collection of tables
-- We will use a SQL database because it's still the most common choice
-- See [this short SQL tutorial]({{site.data.links.sql_tutorial}}) for an introduction
+We now know how to [build a server](../server/) to share our data with the world;
+the next step is to store the data itself so that it can be served.
+There are many more choices for this today than there were ten years ago,
+fur [relational databases](#g:relational-database) continue to be the workhorse of the web.
+
+A relational database contains zero or more [tables](#g:table).
+Each table has a fixed set of [fields](#g:field),
+which are usually drawn as columns,
+and zero or more [records](#g:record),
+which are usually drawn as rows.
+Each record has a value for each field,
+which may be a number, a character string, a date and time,
+or `null` if the value is missing or unknown.
+
+Relational databases are manipulated using a language called [SQL](#g:sql),
+which originally stood for "Structured Query Language"
+and is pronounced "sequel" or "ess cue ell" depending on whether the speaker is
+left or right handed.
+Alternatives are collectively known as [NoSQL databases](#g:nosql-database),
+and use many different storage models.
+We will use a SQL database because it's still the most common choice,
+but we won't try to introduce SQL itself:
+see [this short tutorial][sql-tutorial] instead.
+As an example problem,
+we will store information about workshops.
+Here's the start of our database:
 
 ```sql
 drop table if exists Workshop;
@@ -49,18 +58,25 @@ insert into Workshop values(2, "ENIAC Programming", 150);
 ```
 {: title="src/database/fixture.sql"}
 
-- Build a class to handle interactions with database
-- Test it
-- Then put a web service on top of it
-- Making it a separate class makes it easier to test
+In the rest of this tutorial,
+we will build a class to handle our interactions with a SQLite database,
+test it,
+and then put a web service on top of it.
+Managing database interactions with a separate class makes it easier to test,
+and also makes it easier to change from one database to another
+if we want to down the road.
 
 ## Starting Point {#s:database-start}
 
-- Class takes path to `.db` file as constructor parameter
-- Creates connection manager
-- Runs queries
-- Displays results
-- Query methods all have the same signature so that can be handled interchangeably
+Our class, imaginatively named `Database`,
+tkaes the path to the SQLite database file as a constructor parameter
+and creates a [connection manager](#g:connection-manager)
+through which we can send queries and get results.
+We will create one method for each query we want to run,
+and one helper method to display query results.
+We will give all of the query methods the same [signature](#g:signature)
+so that can be handled interchangeably.
+The whole thing looks like this:
 
 ```js
 const sqlite3 = require("sqlite3")
@@ -101,7 +117,7 @@ class Database {
 ```
 {: title="src/database/database-initial.js"}
 
-- What do the queries look like?
+This makes a lot more sense once we see what the queries look like:
 
 ```js
 const Q_WORKSHOP_GET_ALL = `
@@ -126,7 +142,18 @@ where
 ```
 {: title="src/database/database-initial.js"}
 
-- What does the driver look like?
+It's easy to overlook,
+but the query to get details of one workshop has a question mark `?` as the value of `Workshop.ident`.
+This means that the query expects us to provide a parameter when we call it
+that will be substituted in for the question mark
+to specify which workshop we're interested in.
+This is why the arguments passed to `getOne` as `args`
+are then passed through to `db.all`;
+it's also why `getAll` takes an `args` parameter,
+but ignores it and always passed `[]` (no extra values) to `db.all` when running the query.
+
+All right:
+what does the [driver](#g:driver) look like?
 
 ```js
 function main () {
@@ -141,10 +168,26 @@ main()
 ```
 {: title="src/database/database-initial.js"}
 
-- Try running it
+This is simple enough:
+it gets the path to the database file,
+the desired action,
+and any extra arguments from `process.argv`,
+then creates an instance of the `Database` class and---um.
+And then it calls `database[action](args)`,
+which takes a moment to figure out.
+What's going on here is that an instance of a class is just a special kind of object,
+and we can always look up an object's fields by name using `object[name]`,
+so if the string `action` (taken from the command-line argument) is `getAll` or `getOne`,
+then `database[action](args)` is either `database.getAll(args)` or database.getOne(args)`.
+This is lever,
+but if we ask for an action like `show` or `help` or `GetOne` (with an upper-case 'G'),
+then `database[action]` doesn't exist and we get a very confusing error message.
+We really should try to do better...
+
+But before then,
+let's try running this:
 
 ```sh
-sqlite3 fixture.db < fixture.sql
 node database-initial.js fixture.db getAll
 ```
 ```text
@@ -156,10 +199,18 @@ node database-initial.js fixture.db getAll
   workshopDuration: 150 }
 ```
 
+That seems to have worked:
+`getAll` was called,
+and the result is an array of objects,
+one per record,
+whose names are the derived in an obvious way from the names of the columns.
+
 ## In-Memory Database {#s:database-in-memory}
 
-- Previous example always manipulates database on disk
-- Have it use an [in-memory database](#g:in-memory-database) for testing purposes
+The previous example always manipulates database on disk.
+For testing purposes,
+it's faster and safer to use an [in-memory database](#g:in-memory-database).
+Let's modify the constructor of `Database` to set this up:
 
 ```js
   constructor (mode, path) {
@@ -189,7 +240,17 @@ node database-initial.js fixture.db getAll
 ```
 {: title="src/database/database-mode.js"}
 
-- And use destructuring to handle command-line arguments in driver
+If the `mode` parameter is the string `"memory"`,
+we create an in-memory database and initialize it by executing
+a file full of setup commands specified by the user---in our case,
+exactly the commands we showed at the start of the lesson.
+If the `mode` is `"file"`,
+we interpret the file argument as the name of an on-disk database
+and proceed as before.
+And we put our error messages in ALL CAPS because that's the most annoying option easily available to us.
+
+Less annoyingly,
+we can use destructuring to handle command-line arguments in the driver:
 
 ```js
 function main () {
@@ -200,6 +261,11 @@ function main () {
 ```
 {: title="src/database/database-mode.js"}
 
+Here, the expression `...args` means
+"take anything left over after the fixed names have been matched and put it in an array called `args`".
+With these changes in place,
+we can run a query to get details of the second workshop like this:
+
 ```sh
 node database-mode.js memory fixture.sql getOne 2
 ```
@@ -209,10 +275,15 @@ node database-mode.js memory fixture.sql getOne 2
   workshopDuration: 150 }
 ```
 
-- Take this even further to make testing easier
-- Allow driver to read SQL script and pass that in
-  - So that we can do the file I/O once and then repeatedly build a database in memory and run tests on it
-  - A test fixture
+After a bit of experimentation,
+we decide to take this even further to make testing easier.
+We will allow the driver to read the SQL script itself and pass that into `Database`
+so that we can do the file I/O once and then repeatedly build a database in memory for testing.
+That way,
+each of our tests will start with the database in a known, predictable state,
+regardless of what other tests may have run before
+and what changes they might have made to the database.
+Here are the changes to the constructor:
 
 ```js
   constructor (mode, arg) {
@@ -235,9 +306,12 @@ node database-mode.js memory fixture.sql getOne 2
         break
     }
   }
+```
+{: title="src/database/database-mixed.js"}
 
-  ...
+And here are the supporting methods:
 
+```js
   _inMemory (script) {
     this.db = new sqlite3.Database(':memory:', sqlite3.OPEN_READWRITE, (err) => {
       if (err) this.fail(`In-memory database open error "${err}"`)
@@ -255,7 +329,8 @@ node database-mode.js memory fixture.sql getOne 2
 ```
 {: title="src/database/database-mixed.js"}
 
-- And:
+We also need to change the driver
+(and check, finally, that the requested action is actually supported):
 
 ```js
 function main () {
@@ -272,15 +347,13 @@ function main () {
 ```
 {: title="src/database/database-mixed.js"}
 
-- Some duplication of functionality (the `fs.readFileSync`)
-- And the control flow is a bit awkward
-- Look at how to refactor this in the exercises
-
 ## Making It Testable {#s:database-testable}
 
-- Put database class and its driver in separate files so that applications can load just the former
-- Have database query methods return results for display
-  - Since we will eventually want to compare them or return them to a server rather than printing them
+We put the database class and its driver in separate files
+so that applications can load just the former.
+We will now change the database query methods to return results for display
+rather than displaying them directly,
+since we will eventually want to compare them or return them to a server rather than printing them:
 
 ```js
 class Database {
@@ -296,10 +369,10 @@ class Database {
 
   ...
 }
-
-module.exports = Database
 ```
 {: title="src/database/separate-database.js"}
+
+The driver then looks like this:
 
 ```js
 const Database = require('./separate-database')
@@ -324,7 +397,7 @@ main()
 ```
 {: title="src/database/separate-driver.js"}
 
-- Try running it
+Let's try running it:
 
 ```sh
 node separate-driver.js file fixture.db getAll
@@ -338,11 +411,11 @@ TypeError: Cannot read property 'Symbol(Symbol.iterator)' of undefined
     at main (/project/src/database/separate-driver.js:16:3)
 ```
 
-- Because the database's `.run` method delivers results to a callback
-- Its own result is therefore `undefined`
-- So there's nothing in the caller to print
+Whoops: the `run` method of the database delivers results to a callback;
+its own result is therefore `undefined`,
+so there's nothing in the caller to print.
 
-- Solution: give the `get` methods a callback
+The solution is to give the `get` methods a callback of their own:
 
 ```js
 class Database {
@@ -361,7 +434,7 @@ class Database {
 ```
 {: title="src/database/callback-database.js"}
 
-- And then in the driver:
+We then change the driver to pass `display` to the database method it's calling:
 
 ```js
 const Database = require('./callback-database')
@@ -385,9 +458,17 @@ main()
 ```
 {: title="src/database/callback-driver.js"}
 
+This looks strange the first few (dozen) times,
+but it's the way JavaScript works:
+instead of asking for something and then operating on it,
+we say,
+"Here's what we want to do once results are available."
+
 ## Testing {#s:database-testing}
 
-- And *now* we can write tests
+Now,
+finally,
+we can write some tests:
 
 ```js
 const test = require('tape')
@@ -436,23 +517,15 @@ test('Can only get workshops that exist', (t) => {
 ```
 {: title="src/database/basic-tests.js"}
 
-- Walk through the structure of each test
-- Define expected result
-- Create an entirely new database
-- Call the method being tested, passing it:
-  - Parameter needed for operation
-  - Callback that will receives results
-- That callback uses the `t` object passed to the callback given to `test`
-  - Yes, it's mind-bending
-- Use `deepEqual` to check that the data structures are exact matches
-- Call `t.end()` to signal the end of the test
-  - Because otherwise how would `tape` know?
-
-## Extending {#s:database-extending}
-
-- Now that we have something testable, we can develop in very short iterations
-- Add a method, write some tests, make sure nothing broke
-- Doesn't have to be test-first (although that often helps clarify design thinking)
+Each test has the same structure:
+we define the expected result,
+create an entirely new database,
+and then call the method being tested,
+passing it the parameter needed for operation
+and the callback that will receives results.
+That callback uses the `t` object passed to our function by `test`
+to tell us when the test has completed.
+Inside the test we use `deepEqual` to check that the data structures are exact matches.
 
 ## Exercises {#s:database-exercises}
 
