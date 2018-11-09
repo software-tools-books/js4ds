@@ -12,138 +12,68 @@ keypoints:
 datasource: "https://figshare.com/articles/Portal_Project_Teaching_Database/1314459"
 ---
 
-- Bring everything together in an extended example
-- A (slightly) interactive visualization of species data from <{{page.datasource}}>
-- Plan:
-  - Slice data for testing
-  - Build database interface class
-  - Put data server on top of it
-  - Test
-  - Build interactive tabular display of data
-  - Add visualization
-- Will require some new ideas
-  - But most work will recapitulate what's come before
+It's time to bring everything together in an extended example:
+a (slightly) interactive visualization of species data from <{{page.datasource}}>.
+Our plan is to:
+- slice data for testing,
+- write a data server to serve that data,
+- test the server,
+- build an interactive tabular display of our data, and
+- add visualization.
+
+This will require some new ideas,
+but will mostly recapitulate what's come before.
 
 ## Slicing Data {#s:capstone-slicing}
 
-- Actual data is in a SQL file in <{{page.datasource}}>
-- Over 30,000 records
-- Create a 1000-record slice for testing
-  - Alternative approach: write small program to generate fake data
+The data we want to serve is available in a variety of formats from <{{page.datasource}}>.
+We will focus for now on `surveys.csv`,
+which has over 35,500 records.
+That's a lot to process,
+so our first step is to create a 1000-record slice for testing.
+It would be easy to take the first 1000,
+or the last,
+but the odds are good that neither would be representative of the data as a whole.
+Instead,
+we will write a little script that selects N records at random.
+This doesn't need to be efficient,
+so we will read the whole dataset,
+pair each record with a random number,
+sort,
+take the first N records,
+concatenate them,
+and print that out:
 
-- Step 1: inspect the source SQL file and find the table(s) we care about
-  - In this case, only need `surveys` table
+```js
+const fs = require('fs')
 
-```sql
-create table surveys (
-  record_id INTEGER, 
-  year INTEGER, 
-  month INTEGER, 
-  day INTEGER, 
-  plot_id INTEGER, 
-  species_id TEXT, 
-  sex TEXT, 
-  hindfoot_length INTEGER, 
-  weight INTEGER
-);
+const [inputFile, numLines, outputFile] = process.argv.splice(2)
+const sample = fs.readFileSync(inputFile, 'utf-8')
+    .split('\n')
+    .map(line => [Math.random(), line])
+    .sort((left, right) => { return left[0] < right[0] ? -1 : 1 })
+    .slice(0, parseInt(numLines))
+    .map(pair => pair[1])
+fs.writeFileSync(outputFile, sample.join('\n'))
 ```
-{: title="src/capstone/back/create-test-data.sql"}
+{: title="src/capstone/back/select-random.js"}
 
-- Step 2: copy a subset of data into a temporary table
-  - Temporary tables aren't saved to disk
-  - Use `insert into` to copy from one table to another
-- How to select randomly?
-  - Shuffle and keep the top cards
-  - `order by random()`
-  - `limit 1000`
-  - Only take records whose `record_id` matches one of those
+## Data Manager {#s:capstone-data}
 
-```sql
-create temporary table test_surveys (
-  record_id INTEGER, 
-  year INTEGER, 
-  month INTEGER, 
-  day INTEGER, 
-  plot_id INTEGER, 
-  species_id TEXT, 
-  sex TEXT, 
-  hindfoot_length INTEGER, 
-  weight INTEGER
-);
+Rather than putting the logic to handle the data in the server,
+we will create a separate class that can read in a CSV file
+and answer two questions:
 
-insert into test_surveys
-select *
-from surveys
-where record_id in
-(select record_id from surveys order by random() limit 1000);
+1. How many records do we have and what range of years do they cover?
+2. What are the minimum, average, and maximum values for weight and hindfoot length by year
+   for a given range of years?
+
+We will use Papa Parse to parse our CSV,
+so we start with this:
+
+```sh
+npm install papaparse
 ```
-{: title="src/capstone/back/create-test-data.sql"}
-
-- Step 3: save to file
-  - `.schema` displays all the table descriptions of the database
-  - `.schema TABLE` displays only one
-  - Changing the mode to `insert TABLE` makes SQLite display query results as insert statements into a table
-    - For exactly this purpose
-  - Not something anyone would ever go looking for on their own...
-  - ...which is another reason novices need tutorials to get started
-
-```sql
-.schema surveys
-.mode insert surveys
-select * from test_surveys;
-```
-{: title="src/capstone/back/create-test-data.sql"}
-
-- This sends results to standard output
-  - Can redirect to file on command line
-  - Could also use `.output FILENAME` to save to a particular file
-
-- Result is `test-data.sql`
-  - Use this to create a database with a single `surveys` table
-  - Could store the test data in a different table
-  - But SQL doesn't allow parameterization of table names
-
-## Database Manager {#s:capstone-dbms}
-
-- Support two queries (for now)
-  - Add others later as exercises
-- Summary statistics: range of years and number of records
-
-```sql
-select
-  min(year) as year_low,
-  max(year) as year_high,
-  count(*) as record_count
-from
-  surveys
-```
-{: title="src/capstone/back/database.js"}
-
-- Minimum, average, and maximum values for weight and hindfoot length by year for a range of years
-
-```sql
-select
-  surveys.year as year,
-  min(surveys.hindfoot_length) as hindfoot_min,
-  avg(surveys.hindfoot_length) as hindfoot_avg,
-  max(surveys.hindfoot_length) as hindfoot_max,
-  min(surveys.weight) as weight_min,
-  avg(surveys.weight) as weight_avg,
-  max(surveys.weight) as weight_max
-from
-  surveys
-where
-  (surveys.year >= ?) and (surveys.year <= ?)
-group by
-  year
-```
-{: title="src/capstone/back/database.js"}
-
-- This introduces some new features of SQL
-  - [Aggregation functions](#g:aggregation-function) like `min`, `avg`, and `max` combine all values in a column to produce a single value
-  - `group by` partitions data into sub-groups (in this case, one per year)
-
-- Implementation of `Database` class look the same as [previously](../database/)
 
 ## Server {#s:capstone-server}
 
@@ -496,6 +426,10 @@ export default DataChart
 {: title="src/capstone/front/DataChart.js"}
 
 ## Exercises {#s:capstone-exercises}
+
+### Selecting Random Data
+
+FIXME: we might select the header row!
 
 ### Reporting Other Data
 

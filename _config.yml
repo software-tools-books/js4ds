@@ -22,10 +22,9 @@ toc:
   - /promises/
   - /dynamic/
   - /interactive/
+  - /vis/
   - /server/
   - /testing/
-  - /database/
-  - /vis/
   - /capstone/
   - /finale/
   bib:
@@ -37,6 +36,7 @@ toc:
   - /gloss/
   - /keypoints/
   - /legacy/
+  - /database/
 
 # Theme color.
 background: "#e8f8e8"

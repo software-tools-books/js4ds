@@ -1,0 +1,10 @@
+const fs = require('fs')
+
+const [inputFile, numLines, outputFile] = process.argv.splice(2)
+const sample = fs.readFileSync(inputFile, 'utf-8')
+    .split('\n')
+    .map(line => [Math.random(), line])
+    .sort((left, right) => { return left[0] < right[0] ? -1 : 1 })
+    .slice(0, parseInt(numLines))
+    .map(pair => pair[1])
+fs.writeFileSync(outputFile, sample.join('\n'))
