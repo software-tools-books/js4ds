@@ -95,6 +95,12 @@ a set of variables defined in the same [scope](#g:scope)
 whose existence has been preserved after that scope has ended.
 Closures are one of the trickiest ideas in programming.
 
+**connection manager**{:#g:connection-manager}:
+FIME
+
+**Content Delivery Network**{:#g:cdn} (CDN):
+FIXME
+
 **constant**{:#g:constant}:
 a variable whose value cannot be changed.
 Note that the value itself might be changed:
@@ -102,6 +108,9 @@ for example,
 after the statement `const v = ['a', 'b']`,
 the name `v` will always refer to the same array,
 but the array's contents can be changed.
+
+**declarative programming**{:#g:declarative-programming}:
+FIXME
 
 **destructuring**{:#g:destructuring}:
 a form of assignment that unpacks a data structure in one step,
@@ -120,6 +129,9 @@ are stored as [nodes](#g:node) organized in a tree.
 **dotted notation**{:#g:dotted-notation}:
 a common way to refer to the parts of structures in programming languages.
 `whole.part` means "the thing called `part` belonging to `whole`".
+
+**driver**{:#g:driver}:
+FIXME
 
 **element**{:#g:element}: FIXME (HTML)
 
@@ -435,11 +447,6 @@ FIXME
 **root element**{:#g:root-element}:
 FIXME
 
-**Scalable Vector Graphics**{:#g:svg}:
-a standard way to represent line-based graphics using [XML](#g:xml)-style notation.
-SVG images resize much more cleanly than pixel-based images,
-and most browsers can draw them directly.
-
 **schema**{:#g:schema}:
 a specification of the "shape" of data,
 such as the [fields](#g:field) making up a database table
@@ -470,6 +477,9 @@ See also [client-side page generation](#g:client-side-page-generation).
 **SQL**{:#g:sql}:
 the language used for writing queries for [relational databases](#g:relational-database).
 The term was originally an acronym for Structured Query Language.
+
+**signature**{:#g:signature}:
+FIXME
 
 **stateful**{:#g:stateful}:
 to retain information from one operation to the next.

@@ -3,79 +3,37 @@ permalink: "/en/vis/"
 title: "Visualizing Data"
 questions:
 - "How can I visualize data on the web?"
+- "How does loading libraries in the browser differ from loading them on the server?"
 keypoints:
-- "D3 is a toolkit for building data visualizations."
-- "Vega-Lite is a much simpler way to build common visualizations."
+- "Vega-Lite is a simple way to build common visualizations."
+- "Vega-Lite is declarative: the user creates a data structure describing what they want, and the library creates the visualization."
+- "A Vega-List specification contains a schema identifier, a description, data, marks, and encodings."
+- "The overall layout of a Vega-Lite visualization can be controlled by setting options."
+- "Some applications will use `require` for server-side code and `import` for client-side code."
 ---
 
-- Tables are great, but visualizations are often more effective
-  - At least if they're well designed...
-  - ...and your audience is sighted
-- Many ways to visualize data in the browser
-- This tutorial focuses on [Vega-Lite][vega-lite]
-  - Declarative: specify data and settings, let the code take care of itself
-  - Doesn't do everything, but does common things well and easily
-
-## Drawing Options {#s:vis-options}
-
-- Server-side generation of static images
-- HTML `canvas` element
-  - Element specifies drawing region
-  - Use JavaScript commands to draw lines, place text, etc.
-- [Scalable Vector Graphics](#g:svg) (SVG)
-  - Represent stroke-based graphics using the same kinds of tags as HTML
-  - Can be rendered by many applications (not just browsers)
-
-```html
-<svg width="400" height="300">
-      
-  <circle cx="100" cy="100" r="30" 
-    fill="pink" stroke="red" stroke-width="2"/>
-      
-  <rect x="200" y="20" width="100" height="60"
-    fill="lightblue"/>
-      
-  <line x1="300" y1="200" x2="400" y2="300"
-    stroke="plum" stroke-width="5"/>
-      
-  <text x="50" y="200"
-    font-family="serif" font-size="16">
-    Hello World
-  </text>
-
-</svg>
-```
-{: title="src/viz/svg.html"}
-
-- Note that SVG's coordinate system starts in the upper left
-  - There is a special corner in Hell reserved for people who do this...
-
-<svg width="400" height="300" style="border: 1px solid black;">
-      
-  <circle cx="100" cy="100" r="30" 
-    fill="pink" stroke="red" stroke-width="2"/>
-      
-  <rect x="200" y="20" width="100" height="60"
-    fill="lightblue"/>
-      
-  <line x1="300" y1="200" x2="400" y2="300"
-    stroke="plum" stroke-width="5"/>
-      
-  <text x="50" y="200"
-    font-family="serif" font-size="16">
-    Hello World
-  </text>
-
-</svg>
+Tables are great, but visualizations are often more effective---if
+they're well designed and your audience is sighted, that is.
+There are even more ways to visualize data in the browser
+than there are front-end toolkits for JavaScript.
+We have chosen to use [Vega-Lite][vega-lite],
+which is a [declarative](#g:declarative-programming) framework:
+as a user,
+you specify the data and settings,
+and let the library take care of everything else.
+It doesn't do everything,
+but it does common things well and easily,
+and it interacts nicely with React.
 
 ## Vega-Lite {#s:vis-vega-lite}
 
-- Start by creating a skeleton web page to hold our visualization
-- For now, load Vega, Vega-Lite and Vega-Embed from the web
-  - Worry about local installation later
-- Create a `div` to be filled in by the visualization
-  - Don't have to give it the ID `vis`, but it's common to do so
-- Leave a space for the script
+Let's start by creating a skeleton web page to hold our visualization.
+For now, we will load Vega, Vega-Lite, and Vega-Embed from the web;
+we'll worry about local installation later.
+We will create a `div` to be filled in by the visualization---we
+don't have to give it the ID `vis`, but it's common to do so---ad
+we will leave space for the script.
+Our skeleton looks like this:
 
 ```
 <!DOCTYPE html>
@@ -97,17 +55,23 @@ keypoints:
 ```
 {: title="src/viz/vega-skeleton.html" }
 
-- Fill in the script with the beginning of a visualization spec
-  - `"$schema"` identifies the version of the spec being used
-  - `"description"` is self-explanatory
-  - `"data"` is the data
-    - In this case, represent a two-dimensional data table as objects with explicit indices `"a"` and `"b"`
-    - Because JSON doesn't have a native representation of two-dimensional arrays with row and column headers
-    - Because programmers
-- Then call `vegaEmbed` with:
-  - The ID of the element that will hold the visualization
-  - The spec
-  - Some options (for now, we'll leave them empty)
+We can now start filling in the script with the beginning of a visualization specification.
+This is a blob of [JSON](#g:json) with certain required fields:
+
+- `$schema` identifies the version of the spec being used (as a URL).
+- `description` is a comment to remind us what we thought we were doing when we created this.
+- `data` is the actual data.
+
+In this case,
+we represent a two-dimensional data table as objects with explicit indices `"a"` and `"b"`.
+We have to do this because JSON (like JavaScript) doesn't have a native representation
+of two-dimensional arrays with row and column headers,
+because programmers.
+
+Once we have created our spec,
+we can call `vegaEmbed` with the ID of the element that will hold the visualization,
+the spec,
+and some options (which for now we will leave empty):
 
 ```
     let spec = {
@@ -115,15 +79,7 @@ keypoints:
       "description": "Create data array but do not display anything.",
       "data": {
         "values": [
-          {"a": "A", "b": 28},
-          {"a": "B", "b": 55},
-          {"a": "C", "b": 43},
-          {"a": "D", "b": 91},
-          {"a": "E", "b": 81},
-          {"a": "F", "b": 53},
-          {"a": "G", "b": 19},
-          {"a": "H", "b": 87},
-          {"a": "I", "b": 52}
+          ...as above...
         ]
       }
     }
@@ -131,12 +87,15 @@ keypoints:
 ```
 {: title="src/viz/vega-values-only.html"}
 
-- Open the page
-  - Nothing appears
-  - Because we haven't told Vega-Lite how to display the data
-- Need:
-  - `"mark"`: the visual element used to show the data
-  - `"encoding"`: how values map to marks
+When we open the page, though, nothing appears,
+because we haven't told Vega-Lite *how* to display the data.
+To do that,
+we need to add two more fields to the spec:
+
+- `mark` specifies the visual element used to show the data
+- `encoding` tells Vega how to map values to marks
+
+Here's our updated spec:
 
 ```
     let spec = {
@@ -144,9 +103,7 @@ keypoints:
       "description": "Add mark and encoding for data.",
       "data": {
         "values": [
-          {"a": "A", "b": 28},
-          {"a": "B", "b": 55},
-          ...as before...
+          ...as above...
         ]
       },
       "mark": "bar",
@@ -159,16 +116,17 @@ keypoints:
 ```
 {: title="src/viz/vega-mark-encoding.html"}
 
-- Open the page
-  - There's the bar chart!
-  - And poorly-styled links for various editing controls
+When we open the page now,
+we see a bar chart,
+and feel very proud of ourselves.
 
 <figure>
   <figcaption>Mark and Encoding</figcaption>
   <img id="f:vis-vega-mark-encoding" src="../../files/vega-mark-encoding.png" alt="Mark and Encoding" />
 </figure>
 
-- Use options to turn off those features
+There are also some poorly-styled links for various controls that we're not going to use.
+We can fill in the options argument to `vegaEmbed` to turn those off:
 
 ```
     let spec = {
@@ -189,16 +147,22 @@ keypoints:
 ```
 {: title="src/viz/vega-disable-controls.html"}
 
+We now have the visualization we wanted:
+
 <figure>
   <figcaption>Without Controls</figcaption>
   <img id="f:vis-vega-disable-controls" src="../../files/vega-disable-controls.png" alt="Without Controls" />
 </figure>
 
-- Vega-Lite has a *lot* of options
-- For example, use points and average Y values
-  - Change the X data so that values aren't distinct, because otherwise averaging doesn't do much
-- `"x"` is now `"nominal"` instead of `"ordinal"`
-- `"y"` has an extra property `"aggregate"` set to `"average"`
+Vega-Lite has a *lot* of options:
+for example,
+we can use points and average the Y values.
+(We will change the X data so that values aren't distinct in order to show this off,
+because otherwise averaging doesn't do much.)
+In our revised spec,
+`x` is now `"nominal"` instead of `"ordinal"`
+and `y` has an extra property `"aggregate"`,
+which is set to `"average"`:
 
 ```
     let spec = {
@@ -237,10 +201,12 @@ keypoints:
 
 ## Local Installation {#s:vis-vega-local}
 
-- Loading Vega from a CDN reduces the load on our server
-  - But prevents offline development
-  - So let's load from local files
-- Step 1: put our application in `app.js` and load that (using the `async` attribute as before)
+Loading Vega from a [Content Delivery Network](#g:cdn) (CDN) reduces the load on our server,
+but prevents offline development.
+Since we want to be able to work when we're disconnected,
+let's load from local files.
+
+Step 1 is to put our application in `app.js` and load that (using the `async` attribute as before):
 
 ```html
 <!DOCTYPE html>
@@ -271,29 +237,39 @@ const options = {
 vegaEmbed("#vis", spec, options)
 ```
 
-- Step 2: `npm install vega vega-lite vega-embed`
-- Only require the `vegaEmbed`  in `app.js`
-  - Parcel should find and bundle all of the dependencies
+In step 2,
+we `npm install vega vega-lite vega-embed`.
+We only require `vegaEmbed`  in `app.js`;
+Parcel will then find and bundle all of the dependencies for us:
 
 ```
 const vegaEmbed = require('vega-embed')
 ```
 
-- Run this: nothing appears in the page
-  - Look in the console: browser tells us that `vegaEmbed` is not a function
-  - Open it in the object inspector (FIXME: screenshot)
-  - Sure enough, the thing we want is called `vegaEmbed.default`
-- This is where we trip over something that's still painful in 2018
-  - Old method of getting libraries is `require`, and that's still what Node supports as of Version 10.9.0
-  - New standard is `import`
-  - Allows a module to define a default value so that `import 'something'` gets a function, a class, or whatever
-  - Which is really handy, but `require` doesn't work that way
-- Using Node on the command, we can:
-  - Add the `--experimental-modules` flag
-  - Rename our files with a `.mjs` extension
-  - Both of which are annoying
-- Alternative: get the thing we want by accessing `.default` during import
-  - Or by referring to `vegaEmbed.default` when we call
+When we run this, though, nothing appears in the page.
+Looking in the browser console,
+we see a message telling us that `vegaEmbed` is not a function.
+If we open `vegaEmbed` in the object inspector,
+we see that the thing we want is actually called `vegaEmbed.default`.
+
+FIXME: screenshot of object inspector
+
+What we have tripped over is something that's still painful in 2018.
+The old method of getting libraries is `require`,
+and that's still what Node supports as of Version 10.9.0.
+The new standard is `import`,
+which allows a module to define a default value so that `import 'something'` gets a function, a class, or whatever.
+This is really handy, but `require` doesn't work that way.
+
+Using Node on the command line, we can either add the `--experimental-modules` flag
+or rename our files with a `.mjs` extension,
+both of which are annoying.
+Alternatively,
+we can get the thing we want by accessing `.default` during import,
+or by referring to `vegaEmbed.default` when we call it.
+These choices are also annoying,
+but after a bit of fiddling and cursing,
+we decide to make the fix as the library is loaded:
 
 ```
 const vegaEmbed = require('vega-embed').default
@@ -310,8 +286,10 @@ vegaEmbed("#vis", spec, options)
 ```
 {: title="src/vis/react-02/app.js"}
 
-- Option 3: use `import` where we can and fix the `require` statements in server-side code when Node is upgraded
-  - We can call the thing we import anything we want, but we will stick to `vegaEmbed` for consistency with previous examples
+The third option is to use `import` where we can
+and fix the `require` statements in the server-side code when Node is upgraded.
+We can call the thing we import anything we want,
+but we will stick to `vegaEmbed` for consistency with previous examples:
 
 ```js
 import vegaEmbed from 'vega-embed'
@@ -327,8 +305,9 @@ const options = {
 vegaEmbed("#vis", spec, options)
 ```
 
-- Bundled file is 74.5K lines of JavaScript
-  - But at least it's all in one place for distribution
+If we do this,
+the bundled file is 74.5K lines of JavaScript,
+but at least it's all in one place for distribution.
 
 ## Exercises {#s:vis-exercises}
 
