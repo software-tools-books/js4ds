@@ -3,9 +3,11 @@ const bodyParser = require('body-parser')
 const winston = require('winston')
 const expressWinston = require('express-winston')
 
-// Main server object and database object.
-// db is provided during load.
+// 'db' is a global variable that refers to our database.
+// It must be set when the server is created.
 let db = null
+
+// Main server object and database object.
 const app = express()
 app.use(bodyParser.json())
 
@@ -23,18 +25,16 @@ app.use(expressWinston.logger({
 
 // Get survey statistics.
 app.get('/survey/stats', (req, res, next) => {
-  db.getSurveyStats([], (rows, lastId) => {
-    res.status(200).json(rows[0])
-  })
+  const data = db.getSurveyStats()
+  res.status(200).json(data)
 })
 
 // Get a slice of the survey data.
 app.get('/survey/:start/:end', (req, res, next) => {
-  const start = req.params.start
-  const end = req.params.end
-  db.getSurveyData([start, end], (rows, lastId) => {
-    res.status(200).json(rows)
-  })
+  const start = parseInt(req.params.start)
+  const end = parseInt(req.params.end)
+  const data = db.getSurveyRange(start, end)
+  res.status(200).json(data)
 })
 
 // Nothing else worked.

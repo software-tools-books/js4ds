@@ -1,29 +1,46 @@
 const fs = require('fs')
 const papa = require('papaparse')
 
-FIELDS = {
-  record_id : 0,
-  month : 1,
-  day : 2,
-  year : 3,
-  plot_id : 4, 
-  species_id : 5,
-  sex : 6,
-  hindfoot_length : 7,
-  weight : 8
+const _average = (...values) => {
+  let sum = 0
+  for (let v of values) {
+    sum += v
+  }
+  return sum / values.length
 }
 
 class Database {
 
   constructor (filename) {
-    raw = fs.readFileSync(filename)
-    this.data = papa.parse(raw)
+    const raw = fs.readFileSync(filename, 'utf-8')
+    const options = {header: true, dynamicTyping: true}
+    this.data = papa.parse(raw, options).data
   }
 
   getSurveyStats () {
+    return {
+      minYear : this._get(this.data, 'year', Math.min),
+      maxYear : this._get(this.data, 'year', Math.max),
+      count : this.data.length
+    }
   }
 
-  getSurveyData (startYear, endYear) {
+  getSurveyRange (minYear, maxYear) {
+    const subset = this.data.filter(r => ((minYear <= r.year) && (r.year <= maxYear)))
+    return {
+      minYear : minYear,
+      maxYear : maxYear,
+      minHindfootLength : this._get(subset, 'hindfoot_length', Math.min),
+      aveHindfootLength : this._get(subset, 'hindfoot_length', _average),
+      maxHindfootLength : this._get(subset, 'hindfoot_length', Math.max),
+      minWeight : this._get(subset, 'weight', Math.min),
+      aveWeight : this._get(subset, 'weight', _average),
+      maxWeight : this._get(subset, 'weight', Math.max),
+    }
+  }
+
+  _get(values, field, func = null) {
+    return func(...values.map(rec => rec[field]))
   }
 }
 

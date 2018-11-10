@@ -35,8 +35,8 @@
     "babel-preset-react": "^6.24.1",
     "body-parser": "^1.18.3",
     "cors": "^2.8.4",
-    "express": "^4.16.3",
-    "express-winston": "^3.0.0",
+    "express": "^4.16.4",
+    "express-winston": "^3.0.1",
     "fs-extra": "^7.0.0",
     "glob": "^7.1.2",
     "glob-promise": "^3.4.0",
@@ -55,6 +55,6 @@
     "vega-embed": "^3.18.2",
     "vega-lib": "^4.2.0",
     "vega-lite": "^2.6.0",
-    "winston": "^3.0.0"
+    "winston": "^3.1.0"
   }
 }
