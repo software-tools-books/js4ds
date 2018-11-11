@@ -1,6 +1,6 @@
 ---
-permalink: "/en/core/"
-title: Core Features
+permalink: "/en/basics/"
+title: Basic Features
 questions:
 - "How can I execute short snippets of JavaScript interactively?"
 - "How can I run small JavaScript programs from the command line?"

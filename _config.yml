@@ -14,7 +14,7 @@ paypal: ""
 toc:
   lessons:
   - /intro/
-  - /core/
+  - /basics/
   - /callbacks/
   - /oop/
   - /htmlcss/
