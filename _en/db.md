@@ -1,5 +1,5 @@
 ---
-permalink: "/en/database/"
+permalink: "/en/db/"
 title: "Using a Database"
 questions:
 - "What options do modern applications have for storing data?"
