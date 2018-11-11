@@ -17,7 +17,7 @@ they're well designed and your audience is sighted, that is.
 There are even more ways to visualize data in the browser
 than there are front-end toolkits for JavaScript.
 We have chosen to use [Vega-Lite][vega-lite],
-which is a [declarative](#g:declarative-programming) framework:
+which is a [declarative](../gloss/#declarative-programming) framework:
 as a user,
 you specify the data and settings,
 and let the library take care of everything else.
@@ -56,7 +56,7 @@ Our skeleton looks like this:
 {: title="src/viz/vega-skeleton.html" }
 
 We can now start filling in the script with the beginning of a visualization specification.
-This is a blob of [JSON](#g:json) with certain required fields:
+This is a blob of [JSON](../gloss/#json) with certain required fields:
 
 - `$schema` identifies the version of the spec being used (as a URL).
 - `description` is a comment to remind us what we thought we were doing when we created this.
@@ -201,7 +201,7 @@ which is set to `"average"`:
 
 ## Local Installation {#s:vis-vega-local}
 
-Loading Vega from a [Content Delivery Network](#g:cdn) (CDN) reduces the load on our server,
+Loading Vega from a [Content Delivery Network](../gloss/#cdn) (CDN) reduces the load on our server,
 but prevents offline development.
 Since we want to be able to work when we're disconnected,
 let's load from local files.

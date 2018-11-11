@@ -26,7 +26,7 @@ we still need to serve them somehow
 if we're going to build a browser-based application.
 
 The basis of almost everything on the web is
-the [HTTP](#g:http) [request](#g:http-request)/[response](#g:http-response) cycle.
+the [HTTP](../gloss/#http) [request](../gloss/#http-request)/[response](../gloss/#http-response) cycle.
 HTTP is the HyperText Transfer Protocol;
 it specifies the kinds of requests applications can make of servers,
 how they exchange data,
@@ -47,16 +47,16 @@ every CSS or JavaScript file,
 and so on.
 In practice,
 a lot of behind-the-scenes engineering is done to keep connections alive as long as they're needed,
-and to [cache](#g:cache) items that are likely to be re-used.
+and to [cache](../gloss/#cache) items that are likely to be re-used.
 
 An HTTP request has at least parts:
 
-- The [method](#g:http-method) is almost always either `GET` (to get data) or `POST` (to submit data).
-- The [URL](#g:url) is typically a path to a file,
+- The [method](../gloss/#http-method) is almost always either `GET` (to get data) or `POST` (to submit data).
+- The [URL](../gloss/#url) is typically a path to a file,
   but as we'll see below,
   it's completely up to the server to interpret it.
 
-The request can also contain [headers](#g:http-header),
+The request can also contain [headers](../gloss/#http-header),
 which are key-value pairs with more information about what the client wants.
 Some examples include:
 
@@ -105,10 +105,10 @@ http://example.org:1234/some/path
 Its four parts are:
 
 - The protocol `http`, which specifies what rules are going to be used to exchange data.
-- The [hostname](#g:host) `example.org`, which tells the client where to find the server.
+- The [hostname](../gloss/#host) `example.org`, which tells the client where to find the server.
   If we are running a server on our own computer for testing,
   we can use the name `localhost` to connect to it.
-- The [port](#g:port) `1234`, which tells the client where to call the service it wants.
+- The [port](../gloss/#port) `1234`, which tells the client where to call the service it wants.
   (If a host is like an office building, a port is like a phone number in that building.
   The fact that we think of phone numbers as having physical locations
   says something about our age...)
@@ -348,7 +348,7 @@ it is returned with the right `Content-Type` header.
 
 ### Using Query Parameters
 
-URLs may contain [query parameters](#g:query-parameter)
+URLs may contain [query parameters](../gloss/#query-parameter)
 in the form `http://site.edu?first=1&second=b`.
 Read the online documentation for [Express][express] to find out
 how to access them in a server,

@@ -41,7 +41,7 @@ We can also try doing it with callbacks, but:
 - we can't generate the index page until the CSV files have been processed.
 
 Instead of a tangled nest of callbacks,
-it's better to use [promises](#g:promise),
+it's better to use [promises](../gloss/#promise),
 and then to use `async` and `await` to make things even easier.
 JavaScript offers three mechanisms because
 its developers have invented better ways to do things as the language has evolved,
@@ -51,7 +51,7 @@ but the simple high-level ideas often don't make sense unless you understand how
 ## The Execution Queue {#s:promises-queue}
 
 In order for any of what follows to make sense,
-it's vital to understand JavaScript's [event loop](#g:event-loop),
+it's vital to understand JavaScript's [event loop](../gloss/#event-loop),
 a full explanation of which can be found [here][event-loop].
 Most functions execute in order:
 
@@ -174,7 +174,7 @@ inside immediate handler for c
 
 ## Promises {#s:promises-promises}
 
-Recent versions of JavaScript encourage programmers to use [promises](#g:promise)
+Recent versions of JavaScript encourage programmers to use [promises](../gloss/#promise)
 to manage delayed actions.
 For example,
 if we want to find the size of a file,

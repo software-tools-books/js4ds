@@ -20,22 +20,22 @@ keypoints:
 We now know how to [build a server](../server/) to share our data with the world;
 the next step is to store the data itself so that it can be served.
 There are many more choices for this today than there were ten years ago,
-fur [relational databases](#g:relational-database) continue to be the workhorse of the web.
+fur [relational databases](../gloss/#relational-database) continue to be the workhorse of the web.
 
-A relational database contains zero or more [tables](#g:table).
-Each table has a fixed set of [fields](#g:field),
+A relational database contains zero or more [tables](../gloss/#table).
+Each table has a fixed set of [fields](../gloss/#field),
 which are usually drawn as columns,
-and zero or more [records](#g:record),
+and zero or more [records](../gloss/#record),
 which are usually drawn as rows.
 Each record has a value for each field,
 which may be a number, a character string, a date and time,
 or `null` if the value is missing or unknown.
 
-Relational databases are manipulated using a language called [SQL](#g:sql),
+Relational databases are manipulated using a language called [SQL](../gloss/#sql),
 which originally stood for "Structured Query Language"
 and is pronounced "sequel" or "ess cue ell" depending on whether the speaker is
 left or right handed.
-Alternatives are collectively known as [NoSQL databases](#g:nosql-database),
+Alternatives are collectively known as [NoSQL databases](../gloss/#nosql-database),
 and use many different storage models.
 We will use a SQL database because it's still the most common choice,
 but we won't try to introduce SQL itself:
@@ -70,11 +70,11 @@ if we want to down the road.
 
 Our class, imaginatively named `Database`,
 tkaes the path to the SQLite database file as a constructor parameter
-and creates a [connection manager](#g:connection-manager)
+and creates a [connection manager](../gloss/#connection-manager)
 through which we can send queries and get results.
 We will create one method for each query we want to run,
 and one helper method to display query results.
-We will give all of the query methods the same [signature](#g:signature)
+We will give all of the query methods the same [signature](../gloss/#signature)
 so that can be handled interchangeably.
 The whole thing looks like this:
 
@@ -153,7 +153,7 @@ it's also why `getAll` takes an `args` parameter,
 but ignores it and always passed `[]` (no extra values) to `db.all` when running the query.
 
 All right:
-what does the [driver](#g:driver) look like?
+what does the [driver](../gloss/#driver) look like?
 
 ```js
 function main () {
@@ -209,7 +209,7 @@ whose names are the derived in an obvious way from the names of the columns.
 
 The previous example always manipulates database on disk.
 For testing purposes,
-it's faster and safer to use an [in-memory database](#g:in-memory-database).
+it's faster and safer to use an [in-memory database](../gloss/#in-memory-database).
 Let's modify the constructor of `Database` to set this up:
 
 ```js
@@ -581,9 +581,9 @@ Can you write a test that provides more useful feedback than this?
 The `Database` class prints a message and exits when it detects an error.
 This is bad practice,
 and I should be ashamed of having done it.
-The right thing to do is to [throw](#g:throw)
-an [exception](#g:exception)
-that main program can [catch](#g:catch)
+The right thing to do is to [throw](../gloss/#throw)
+an [exception](../gloss/#exception)
+that main program can [catch](../gloss/#catch)
 and handle however it wants.
 
 1. Modify the code to do this.

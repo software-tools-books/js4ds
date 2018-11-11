@@ -17,11 +17,11 @@ keypoints:
 - "Modern JavaScript uses promises to manage asynchronous activities."
 ---
 
-Browsers allow us to define [event handlers](#g:event-handler)
+Browsers allow us to define [event handlers](../gloss/#event-handler)
 to specify what to do in response to an externally-triggered action,
 such as a page loading or a user pressing a button.
 These event handlers are just callback functions
-that are (usually) given an [event object](#g:event-object) containing information about what happened,
+that are (usually) given an [event object](../gloss/#event-object) containing information about what happened,
 and while we can write them in pure JavaScript,
 they're even easier to build in React.
 

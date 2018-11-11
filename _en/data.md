@@ -23,7 +23,7 @@ the [next lesson](../server/) will look at how to build a server.
 ## Data Formats {#s:data-formats}
 
 The most widely used text format for tabular data is undoubtedly
-[comma-separated values](#g:csv) or CSV.
+[comma-separated values](../gloss/#csv) or CSV.
 Each row of the table is a line in the file;
 the values within each row---i.e., the columns---are separated by commas.
 Numbers appear as themselves;
@@ -38,7 +38,7 @@ in which case they definitely are:
 "fuchsia",255,0,255
 ```
 
-The first row of a CSV file is often a [header](#g:header)
+The first row of a CSV file is often a [header](../gloss/#header)
 that defines the names of the columns.
 For example,
 the small table shown above would better be represented as:
@@ -60,7 +60,7 @@ and the weights in pounds or kilograms.
 
 CSV is good for tabular data,
 but a lot of data doesn't neatly fit into rows and columns.
-An alternative format for irregular data that is popular with programmers is [JSON](#g:json),
+An alternative format for irregular data that is popular with programmers is [JSON](../gloss/#json),
 which stands for JavaScript Object Notation.
 It allows us to use a subset of the syntax used for values, arrays, and objects in JavaScript,
 so that (for example)

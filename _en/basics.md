@@ -59,12 +59,12 @@ console.log('hello, world')
 ```
 {: title="src/core/hello.js"}
 
-`console` is a built-in [module](#g:module) that provides basic printing services
+`console` is a built-in [module](../gloss/#module) that provides basic printing services
 (among other things).
 As in many languages,
-we use the [dotted notation](#g:dotted-notation) `X.Y` to get part `Y` of thing `X`---in this case,
+we use the [dotted notation](../gloss/#dotted-notation) `X.Y` to get part `Y` of thing `X`---in this case,
 to get `console`'s `log` function.
-[Character strings](#g:string) like `'hello, world'` can be written with either single quotes or double quotes,
+[Character strings](../gloss/#string) like `'hello, world'` can be written with either single quotes or double quotes,
 so long as the quotation marks match,
 and semi-colons at the ends of statements are now (mostly) optional.
 
@@ -109,7 +109,7 @@ the type of 123 is number
 ```
 
 We have already met strings,
-which may contain any [Unicode](#g:unicode) character:
+which may contain any [Unicode](../gloss/#unicode) character:
 
 ```js
 const aString = 'some text'
@@ -148,9 +148,9 @@ the type of null is object
 ```
 
 As the example above shows,
-we use `let` to define a [variable](#g:variable)
-and `const` to define a [constant](#g:constant),
-put values separated by commas inside `[]` to create an [array](#g:array),
+we use `let` to define a [variable](../gloss/#variable)
+and `const` to define a [constant](../gloss/#constant),
+put values separated by commas inside `[]` to create an [array](../gloss/#array),
 and use `for...of` to loop over the values in that array.
 Note that we use `let` rather than the older `var` and `of` and not `in`:
 the latter returns the indexes of the collection (e.g., 0, 1, 2),
@@ -195,14 +195,14 @@ null of type object is falsy
 2,3 of type object is truthy
 ```
 
-This example shows that arrays are [heterogeneous](#g:heterogeneous),
+This example shows that arrays are [heterogeneous](../gloss/#heterogeneous),
 i.e.,
 that they can contain values of many different types
 (including other arrays).
 It also shows that `if` and `else` work as they do in other languages:
 it's the truthiness of things that may be different.
 For numbers,
-0 is [falsy](#g:falsy), all others are [truthy](#g:truthy);
+0 is [falsy](../gloss/#falsy), all others are [truthy](../gloss/#truthy);
 Similarly,
 the empty string is falsy and all other strings are truthy.
 `undefined` and `null` are both falsy,
@@ -216,8 +216,8 @@ it just happens to be empty,
 but this behavior is still a common cause of bugs.
 When testing an array,
 check that `Array.length` is zero.
-(Note that this is a [property](#g:property),
-not a [method](#g:method),
+(Note that this is a [property](../gloss/#property),
+not a [method](../gloss/#method),
 i.e.,
 it should be treated as a variable,
 not called like a function.)
@@ -231,7 +231,7 @@ not called like a function.)
 ## Formatting Strings {#s:core-formatting}
 
 Rather than printing multiple strings and expressions,
-we can [interpolate](#g:interpolation) values into a back-quoted string.
+we can [interpolate](../gloss/#interpolation) values into a back-quoted string.
 (We have to use back quotes because this feature was added to JavaScript
 long after the language was first created.)
 As the example below shows,
@@ -254,7 +254,7 @@ color is blue and capitalized is BLUE
 
 ## Objects {#s:core-objects}
 
-An [object](#g:object) in JavaScript is a collection of key-value pairs,
+An [object](../gloss/#object) in JavaScript is a collection of key-value pairs,
 and is equivalent in simple cases to what Python would call a dictionary.
 The keys do not have to be strings,
 but almost always are;
@@ -350,7 +350,7 @@ function limits (values) {
 
 Its definition consists of the keyword `function`,
 its name,
-a parameterized list of [parameters](#g:parameter) (which might be empty),
+a parameterized list of [parameters](../gloss/#parameter) (which might be empty),
 and its body.
 We can use `return` to explicitly return a value at any time;
 if nothing is returned,
@@ -384,7 +384,7 @@ Programmers generally don't write functions this way any longer,
 since it interacts in odd ways with other features of the language;
 the [section on legacy issues](../legacy/#prototypes) explains why and how in more detail.
 Instead,
-most programmers now write [fat arrow functions](#g:fat-arrow)
+most programmers now write [fat arrow functions](../gloss/#fat-arrow)
 consisting of a parameter list,
 the `=>` symbol,
 and a body.
@@ -408,8 +408,8 @@ const limits = (values) => {
 {: title="src/core/functions-modern.js"}
 
 No matter how functions are defined,
-each one is a [scope](#g:scope),
-which means its parameters and any variables created inside it are [local](#g:local-variable) to the function.
+each one is a [scope](../gloss/#scope),
+which means its parameters and any variables created inside it are [local](../gloss/#local-variable) to the function.
 We will discuss scope in more detail [later](../callbacks/).
 
 > **Stuck in the Past**

@@ -406,7 +406,7 @@ Write a small command-line JavaScript program that:
 
 ### Error Checking
 
-HTTP defines many [status codes](#g:http-status-code)
+HTTP defines many [status codes](../gloss/#http-status-code)
 that servers should return to tell clients what went wrong.
 
 1. Modify the server to return 400 with an error message
