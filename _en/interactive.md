@@ -610,7 +610,8 @@ the steps are:
 1. Build the URL for the data
 2. Start to fetch data from that URL
 3. Give a callback to execute when the data arrives
-4. Give another callback to use when the data has been converted from text to [JSON](#g:json)
+4. Give another callback to use when the data has been converted from text to JSON
+   (which we will look at in more detail [soon](../data/)).
 5. Transform that data from its raw form into the objects we need
 6. Set state
 

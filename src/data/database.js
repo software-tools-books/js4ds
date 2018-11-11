@@ -39,7 +39,7 @@ class Database {
     }
   }
 
-  _get(values, field, func = null) {
+  _get(values, field, func) {
     return func(...values.map(rec => rec[field]))
   }
 }
