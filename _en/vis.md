@@ -311,6 +311,31 @@ but at least it's all in one place for distribution.
 
 ## Exercises {#s:vis-exercises}
 
-FIXME: visualization exercises
+### Binned Scatterplots
+
+Vega-Lite can create
+[binned scatterplots](https://vega.github.io/vega-lite/examples/circle_binned.html)
+in which the sizes of markers indicate how many values were put in each bin.
+Modify the aggregating scatterplot shown above
+so that values are binned in this way.
+
+### Grouped Bar Charts
+
+Vega-Lite can display
+[grouped bar charts](https://vega.github.io/vega-lite/examples/bar_grouped.html)
+as well as simple ones.
+Find or create a simple data set and construct a grouped bar chart.
+How impressed will your supervisor, your committee, or a future employee be
+by your chosen color scheme?
+
+### Limits of Declarative Programming
+
+Look at Vega-Lite's
+[example gallery](https://vega.github.io/vega-lite/examples/)
+and identify one kind of plot or transformation you've used or seen
+that *isn't* included there.
+Do you think this is because they just haven't gotten around to it yet,
+or is there something about that plot or transformation
+that doesn't lend itself to Vega-Lite's declarative model?
 
 {% include links.md %}
