@@ -288,9 +288,9 @@ const fs = require('fs-extra')
 var total_size = 0
 var files = ['jane-eyre.txt', 'moby-dick.txt', 'life-of-frederick-douglass.txt']
 for (let fileName of files) {
-    fs.stat(fileName).then((stats) => {
-        total_size += stats.size
-    })
+  fs.stat(fileName).then((stats) => {
+    total_size += stats.size
+  })
 }
 console.log(total_size)
 ```
@@ -309,13 +309,13 @@ const fs = require('fs-extra')
 
 var total_size = 0
 new Promise((resolve, reject) => {
-    fs.stat('jane-eyre.txt').then((jeStats) => {
-        fs.stat('moby-dick.txt').then((mdStats) => {
-            fs.stat('life-of-frederick-douglass.txt').then((fdStats) => {
-                resolve(jeStats.size + mdStats.size + fdStats.size)
-            })
-        })
+  fs.stat('jane-eyre.txt').then((jeStats) => {
+    fs.stat('moby-dick.txt').then((mdStats) => {
+      fs.stat('life-of-frederick-douglass.txt').then((fdStats) => {
+        resolve(jeStats.size + mdStats.size + fdStats.size)
+      })
     })
+  })
 }).then((total) => console.log(total))
 ```
 {: title="src/promises/promise-nest.js"}
@@ -583,15 +583,15 @@ Finished.
 
 ```js
 const holdingMessage = () => {
-    console.log('Waiting...')
+  console.log('Waiting...')
 }
 
 const swingAxe = () => {
-    setTimeout(() => {
-        holdingMessage()
-        console.log('Finished.')
-    }, 100)
+  setTimeout(() => {
     holdingMessage()
+    console.log('Finished.')
+  }, 100)
+  holdingMessage()
 }
 
 swingAxe()
@@ -599,21 +599,22 @@ swingAxe()
 
 ### A Synchronous or Asynchronous?
 
-Which of these functions would you expect to be asynchronous? How can you tell?
-Does it matter? And, if so, what is a good strategy to find out for sure if a
-function is asynchronous?
+Which of these functions would you expect to be asynchronous?
+How can you tell?
+Does it matter?
+And, if so, what is a good strategy to find out for sure if a function is asynchronous?
 
 1. `findNearestTown(coords)`: given a set of coordinates (`coords`) in Brazil,
-   looks up and returns the name of the the nearest settlement with an estimated population greater than 5000.
-   Throws an error if `coords` fall outside Brazil.
+   looks up and returns the name of the nearest settlement with an estimated population greater than 5000.
+   The function throws an error if `coords` fall outside Brazil.
 2. `calculateSphereVolume(r)`: calculates and returns the volume of a sphere with radius `r`.
 3. `calculateRoute(A,B)`: returns all possible routes by air between airports `A` and `B`,
    including direct routes and those with no more than 2 transfers.
 
 ### Handling Exceptions
 
-What (if any) output would you expect to see in the console when the code below
-is executed?
+What (if any) output would you expect to see in the console
+when the code below is executed?
 
 ```js
 const checkForBlanks = (inputValue) => {
@@ -637,34 +638,34 @@ new Promise((resolve, reject) => {
       error => console.log(error.message))
 ```
 
-a) `Timed out!`
-b) blank output
-c) `Blank values are not allowed`
-d) a new `Promise` object
+1. `Timed out!`
+2. blank output
+3. `Blank values are not allowed`
+4. a new `Promise` object
 
 ### Empty Promises
 
-Fill in the blanks (`___`)in the code block below so that, when executed, the function
-returns an `Array[7, 8, 2, 6, 5]`.
+Fill in the blanks (`___`)in the code block below so that
+the function returns `Array[7, 8, 2, 6, 5]`.
 
 ```js
 const makePromise = (someInteger) => {
   return ___ Promise((resolve, reject) => {
-    setTimeout(___(someInteger), someInteger*1000)
+    setTimeout(___(someInteger), someInteger * 1000)
   })
 }
 Promise.___([makePromise(7), makePromise(___), makePromise(2), makePromise(6), makePromise(5)]).then(
   numbers => ___(numbers))
 ```
 
-Now adapt the function so that it returns only `2`? (_Hint: you can achieve this
-by changing only a single one of the blank fields._)
+Now adapt the function so that it returns only `2`.
+(Hint: you can achieve this by changing only one of the blank fields.)
 
 ### `async`, Therefore I Am
 
-Using `async` and `await`, convert the function below into an asynchronous function
-with the same behaviour and output. Do you find your solution easier to read and
-follow than the original version? Do you think that that is only because you
-wrote this version?
+Using `async` and `await`,
+convert the function below into an asynchronous function with the same behaviour and output.
+Do you find your solution easier to read and follow than the original version?
+Do you think that that is only because you wrote this version?
 
 {% include links.md %}
