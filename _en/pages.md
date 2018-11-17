@@ -13,7 +13,7 @@ keypoints:
 - "Assign HTML text to a node's `innerHTML` propery to change the node's content."
 - "Use `((params) => {...})(arguments)` to create and call a function in a single step."
 - "An event listener is a function run by the browser when some specific event occurs."
-- "Create an event listener for `"DOMContentLoaded"` to trigger execution of scripts *after* the DOM has been constructed."
+- "Create an event listener for `'DOMContentLoaded'` to trigger execution of scripts *after* the DOM has been constructed."
 - "Check the `nodeType` or `nodeName` property of a DOM node to find out what kind of node it is."
 - "Destructuring assignment allows us to assign to multiple variables by name in a single statement."
 - "Use `setTimeout` to trigger execution of a function after a delay."
