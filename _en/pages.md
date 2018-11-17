@@ -2,9 +2,22 @@
 permalink: "/en/pages/"
 title: "Manipulating Pages"
 questions:
-- "FIXME"
+- "How can I find things in pages?"
+- "How can I change things in pages?"
+- "How can I interact with JavaScript in the browser?"
 keypoints:
-- "FIXME"
+- "Use a `meta` tag in a page's header to specify the page's character encoding."
+- "Pages are represented in memory using a Document Object Model (DOM)."
+- "The `document` object represents the page a script is in."
+- "Use the `querySelectorAll` method to find DOM nodes that match a condition."
+- "Assign HTML text to a node's `innerHTML` propery to change the node's content."
+- "Use `((params) => {...})(arguments)` to create and call a function in a single step."
+- "An event listener is a function run by the browser when some specific event occurs."
+- "Create an event listener for `"DOMContentLoaded"` to trigger execution of scripts *after* the DOM has been constructed."
+- "Check the `nodeType` or `nodeName` property of a DOM node to find out what kind of node it is."
+- "Destructuring assignment allows us to assign to multiple variables by name in a single statement."
+- "Use `setTimeout` to trigger execution of a function after a delay."
+- "To make something run forever, have the function called by `setTimeout` set another timeout of the same function."
 ---
 
 We have presented a lot of tools, but as yet no applications.
@@ -59,7 +72,8 @@ This page has three main parts:
 1. The `head` contains a `meta` tag that specifies the page's
    [character encoding](../gloss/#character-encoding),
    i.e.,
-   the scheme used to represent characters not found on a standard American keyboard in the 1970s.
+   the scheme used to represent characters
+   not found on a standard American keyboard in the 1970s.
    Character sets and character encodings are out of scope for this lesson;
    see [this essay][spolsky-unicode] for an unfortunately timeless discussion.
 
@@ -109,7 +123,12 @@ number of paragraphs: 2
 
 > **Developer Tools**
 >
-> FIXME: explain how to open dev tools in Firefox, Chrome, Safari, and Edge
+> If you are using the Firefox browser,
+> you can open the developer tools pane by going to the main menu
+> and selecting `Tools... Web Developer... Toggle Tools`.
+> A tabbed display will open in the bottom of your page;
+> choose `Console` to view the output of your JavaScript,
+> or to write a little bit to run immediately.
 
 Showing results in the console is good enough for development work,
 but we would like to see the result in the page itself.
@@ -414,7 +433,8 @@ FIXME: diagram
 >
 > We could check `c.nodeType` instead of `c.nodeName` to spot text nodes,
 > but we felt that `nodeName` made the code easier to understand.
-> Note that we use `!==` for the comparison in order to prevent [unpleasant surprises](../legacy/#s:legacy-equality).
+> Note that we use `!==` for the comparison
+> in order to prevent [unpleasant surprises](../legacy/#s:legacy-equality).
 
 Now that we have an array of the `li` elements to be sorted,
 we can use `Array.sort` to order them.
@@ -430,7 +450,8 @@ primarily on the [W3Schools][w3schools] site.
 
 Unfortunately,
 searching for "remove all children from node" tells us that we have to do it ourselves,
-so we use a `while` loop to remove all the children (including the unwanted top-level text elements)
+so we use a `while` loop to remove all the children
+(including the unwanted top-level text elements)
 from the `ul` or `ol` list,
 then add all of the children back in sorted order.
 Sure enough,
@@ -509,7 +530,8 @@ const citations = () => {
 
 There is a lot going on here,
 but it all uses patterns we have seen before.
-It starts by building an array of all the links in the document (i.e., every `a` element):
+It starts by building an array of all the links in the document
+(i.e., every `a` element):
 
 ```js
   Array.from(document.querySelectorAll('a'))
@@ -689,6 +711,31 @@ to remind us just how quickly life is passing by.
 
 ## Exercises {#s:pages-exercises}
 
-FIXME: exercises for page manipulation
+### What Encoding Is This?
+
+1. Write a function that looks up the character encoding of the page the script is in
+   and prints it to the console.
+2. Extend the function to look up all the `meta` tags in the current page
+   and print their names and values.
+
+### Word Count
+
+1. Write a function called `countWords` that finds all the text nodes in a page,
+   splits them on white space,
+   and returns the total number of words in the page.
+2. Write a second function called `showWords` that uses the first to find the number of words,
+   then displays that number in a paragraph whose ID is `wordcount`.
+
+## A More Robust Table of Contents
+
+Modify the table of contents example so that if an `h2` heading doesn't have an `id`,
+it is still included in the table of contents.
+
+## Explicitly Creating Nodes
+
+Find documentation online for `document.createElement` and `document.createTextNode`,
+then rewrite the table of contents example to use these methods
+(and any others like them that you need)
+instead of assigning to a node's `innerHTML` property.
 
 {% include links.md %}
