@@ -112,7 +112,14 @@ We will come back and fix this later.
 
 > **Inspection Tools**
 >
-> FIXME: explain how to open inspection tools in major browsers.
+> If you are using the Firefox browser,
+> you can open the developer tools pane by going to the main menu
+> and selecting `Tools... Web Developer... Toggle Tools`.
+> A tabbed display will open in the bottom of your page;
+> choose `Inspector` to view the content of your page and page's CSS.
+> As you move your mouse around the page itself,
+> corresponding structural elements will be highlighted.
+> It's actually pretty cool...
 
 The first parameter to `React.DOM.h1` is `null` in the example above,
 but it can more generally be an object that specifies
@@ -208,7 +215,7 @@ and `for` loops don't return anything.
 but `map` is cleaner.)
 And note: we must return exactly one node,
 because this is one function call.
-FIXME: explain the curly braces immediately inside the `ul` element.
+We will look in the exercises at why the curly braces immediately inside the `<ul>` element are necessary.
 
 Note also that when we run this,
 the browser console will warn us that each list element ought to have a unique `key` property,
@@ -465,6 +472,17 @@ which tells the browser not to do anything with the JavaScript until the page ha
 {: title="src/dynamic/hello-parcel/index.html"}
 
 ## Exercises {#s:dynamic-exercises}
+
+### Those Damn Curly Braces
+
+Our list-building example includes this line of code:
+
+```js
+        <ul>{allNames.map((name) => <li>{name}</li> )}</ul>,
+```
+
+Why are the curly braces immediately inside the `<ul>` element necessary?
+What happens if you take them out?
 
 ### Real Data
 
