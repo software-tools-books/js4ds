@@ -43,6 +43,9 @@ toc:
 # Theme color.
 background: "#e8f8e8"
 
+# Data source.
+datasource: "https://figshare.com/articles/Portal_Project_Teaching_Database/1314459"
+
 # Jekyll settings.
 highlighter: rouge
 plugins:

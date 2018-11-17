@@ -23,6 +23,7 @@ definitions if that's done.
 
 [node-download]: https://nodejs.org/en/download/
 
+[papaparse]: https://www.papaparse.com/
 [parcel]: https://parceljs.org/
 [parse-xml-regular-expressions]: https://stackoverflow.com/a/1732454
 

@@ -2,20 +2,25 @@
 permalink: "/en/data/"
 title: "Providing Data"
 questions:
-- "FIXME"
+- "What formats are commonly used for small scientific datasets?"
+- "What are some of the strengths and weaknesses of those formats?"
+- "How can I parse CSV data?"
+- "How should I select a subset of data for testing purposes?"
 keypoints:
-- "FIXME"
+- "Small tabular datasets are commonly stored as Comma-Separated Values (CSV)."
+- "CSV can only represent regular data, and CSV files usually don't include units."
+- "Nested data is commonly stored using JavaScript Object Notation (JSON)."
+- "JSON representations of tabular data often include redundant (and therefore possibly inconsistent) specification of column names."
+- "PapaParse is a robust CSV parsing library that produces JSON output."
 ---
 
 There's not much point creating interactive web pages
 if they don't have something to interact with.
 To provide that,
-we need two things:
-something to store data,
-and something to serve it.
+we need something to store data and something to serve it.
 We could build one program to do both,
-but experience teaches that it's better to create two,
-as each will then be easier to understand, test, and maintain.
+but experience teaches that it's better to create one for each
+so that they are easier to understand, test, and maintain.
 After tossing a coin,
 we decide to start with the data store;
 the [next lesson](../server/) will look at how to build a server.
@@ -52,17 +57,18 @@ the small table shown above would better be represented as:
 ```
 
 Tragically,
-CSV files usually *don't* contain units or data types.
+CSV doesn't require the first row to be a header,
+and CSV files usually don't specify units or data types.
 We can guess that the values in the table above are integers,
 but it's all too common to have a CSV file whose columns are labelled "height" and "weight"
-without any indication of whether the heights are in feet or meters,
-and the weights in pounds or kilograms.
+without any indication of whether the heights are in feet or meters
+or the weights in pounds or kilograms.
 
 CSV is good for tabular data,
 but a lot of data doesn't neatly fit into rows and columns.
-An alternative format for irregular data that is popular with programmers is [JSON](../gloss/#json),
+A format for hierarhical data that is popular with many programmers is [JSON](../gloss/#json),
 which stands for JavaScript Object Notation.
-It allows us to use a subset of the syntax used for values, arrays, and objects in JavaScript,
+It supports a subset of the syntax for values, arrays, and objects in JavaScript,
 so that (for example)
 we can store configuration values for a program like this:
 
@@ -82,8 +88,8 @@ we can store configuration values for a program like this:
 }
 ```
 
-JSON is often used for tabular data as well:
-the whole table is an array,
+JSON can be used for tabular data as well.
+The whole table is an array,
 and each record is an object with name-value pairs:
 
 ```js
@@ -95,30 +101,25 @@ and each record is an object with name-value pairs:
 ]
 ```
 
-Redundantly repeating the names redundantly like this seems wasteful
-compared to listing them once at the top of a table,
+Repeating fields names like this is wasteful compared to listing them once at the top of a table,
 but it does mean that the fields within rows can be accessed directly
 using expressions like `colors[1].red`.
 
 ## Slicing Data {#s:data-slicing}
 
-The data we want to serve is available in a variety of formats from <{{page.datasource}}>.
-We will focus for now on `surveys.csv`,
+The data we will use as an example is available in a variety of formats from <{{site.datasource}}>.
+We will focus on `surveys.csv`,
 which has over 35,500 records.
-That's a lot to process,
-so our first step is to create a 10-record slice for testing.
+That's a lot to look at,
+so we will create a 10-record slice for testing.
+
 It would be easy to take the first ten,
 or the last,
-but the odds are good that neither would be representative of the data as a whole.
+there's a good chance that neither would be representative of the data as a whole.
 Instead,
 we will write a little script that selects N records at random.
-This doesn't need to be efficient,
-so we will read the whole dataset,
-pair each record with a random number,
-sort,
-take the first N records,
-concatenate them,
-and print that out:
+Since it doesn't need to be efficient,
+we will do something simple:
 
 ```js
 const fs = require('fs')
@@ -136,18 +137,48 @@ fs.writeFileSync(outputFile, header + '\n' + sample.join('\n'))
 ```
 {: title="src/data/select-random.js"}
 
+We run this on the command line:
+
+```sh
+node select-random.js ../surveys.csv 10 slice.csv
+```
+
+and get this:
+
+```sh
+record_id,month,day,year,plot_id,species_id,sex,hindfoot_length,weight
+18501,3,14,1991,13,OT,M,21,28
+2283,1,15,1980,11,OL,M,21,23
+19941,5,2,1992,1,PP,M,22,13
+27413,12,29,1997,5,,,,
+16002,5,9,1989,19,SC,,,
+28813,11,21,1998,12,DO,M,35,56
+9338,7,4,1984,11,DO,F,35,57
+28336,8,22,1998,7,PB,M,26,23
+25323,3,16,1997,9,DM,F,33,26
+6785,10,23,1982,5,DM,F,37,45
+```
+
+Running it again will probably generate a different data slice,
+since we're not specifying a random number generation seed.
+We are bad people, and will fix this in the exercises.
+
 ## Data Manager {#s:data-manager}
 
 Rather arbitrarily,
-we decide that our data manager will initially be able to answer two questions:
+we decide that our data manager will be able to answer two questions:
 
 1. How many records do we have and what range of years do they cover?
+   This is the kind of opening question that many client programs will ask.
 2. What are the minimum, average, and maximum values
    for weight and hindfoot length by year
    for a given range of years?
+   This would be very specific to a particular kind of client program;
+   a good service would either provide many such specialized queries
+   or (more usefully) provide a way to ask for particular aggregations of particular columns.
 
-We will use PapaParse to parse our CSV,
-so we start with this:
+We will use [PapaParse][papaparse] to parse our CSV,
+so our first step is to install it:
 
 ```sh
 npm install papaparse
@@ -155,13 +186,13 @@ npm install papaparse
 
 After loading the library and reading our test data file a couple of times,
 we break down and read the documentation,
-then come up with this as the skeleton of our "database":
+then come up with this as the first version of our data manager:
 
 ```
 const fs = require('fs')
 const papa = require('papaparse')
 
-class Database {
+class DataManager {
 
   constructor (filename) {
     const raw = fs.readFileSync(filename, 'utf-8')
@@ -170,16 +201,60 @@ class Database {
   }
 }
 
-module.exports = Database
+module.exports = DataManager
 ```
-{: title="src/data/database.js"}
+{: title="src/data/data-manager.js"}
 
-What we were missing in our first couple of attempts (before reading the documentation) was that
+What our hubris made us miss in our first couple of attempts was that
 the `options` object controls how the parser behaves.
-We want it to interpret the first row as a header (which sets column names)
+Here,
+we tell it to interpret the first row as a header (which sets column names)
 and to convert things that look like numbers to numbers (the `dynamicTyping` option).
+The output of `papa.parse` looks like this:
 
-Our data is now stored row-wise as JSON.
+```js
+{ data:
+   [ { record_id: 18501,
+       month: 3,
+       day: 14,
+       year: 1991,
+       plot_id: 13,
+       species_id: 'OT',
+       sex: 'M',
+       hindfoot_length: 21,
+       weight: 28 },
+
+     ...eight more records...
+
+     { record_id: 6785,
+       month: 10,
+       day: 23,
+       year: 1982,
+       plot_id: 5,
+       species_id: 'DM',
+       sex: 'F',
+       hindfoot_length: 37,
+       weight: 45 } ],
+  errors: [],
+  meta:
+   { delimiter: ',',
+     linebreak: '\n',
+     aborted: false,
+     truncated: false,
+     cursor: 350,
+     fields:
+      [ 'record_id',
+        'month',
+        'day',
+        'year',
+        'plot_id',
+        'species_id',
+        'sex',
+        'hindfoot_length',
+        'weight' ] } }
+```
+
+so using `papa.parse(raw, options).data` gets the data we want as JSON.
 Let's write a method to get some overall statistics:
 
 ```js
@@ -195,7 +270,7 @@ Let's write a method to get some overall statistics:
     return func(...this.data.map(rec => rec[field]))
   }
 ```
-{: title="src/data/database.js"}
+{: title="src/data/data-manager.js"}
 
 Functions like `Math.min` and `Math.max` take any number of scalar values as arguments,
 but do not directly process arrays.
@@ -207,9 +282,8 @@ Thus,
 "select the specified field from each record in `this.data` to create an array of fields,
 then pass all of those values as arguments to `func`.
 
-Now that we have this,
-adding the method to get weight and hindfoot length for a range of years
-is pretty straightforward.
+Adding the method to get weight and hindfoot length for a range of years
+is comparatively straightforward.
 First,
 we write a function to calculate the average of one or more arguments:
 
@@ -222,10 +296,9 @@ const _average = (...values) => {
   return sum / values.length
 }
 ```
-{: title="src/data/database.js"}
+{: title="src/data/data-manager.js"}
 
-It would be more natural for `average` to take an array,
-rather than a variable number of arguments,
+It would be more natural for `average` to take an array rather than a variable number of arguments,
 but we want to be able to use it in the same way that we use `Math.min` and `Math.max`,
 so we have to conform to their signature.
 
@@ -235,21 +308,46 @@ The method to get the values for a range of years is now:
   getSurveyRange (minYear, maxYear) {
     const subset = this.data.filter(r => ((minYear <= r.year) && (r.year <= maxYear)))
     return {
-      minYear : minYear,
-      maxYear : maxYear,
-      minHindfootLength : this._get(subset, 'hindfoot_length', Math.min),
-      aveHindfootLength : this._get(subset, 'hindfoot_length', _average),
-      maxHindfootLength : this._get(subset, 'hindfoot_length', Math.max),
-      minWeight : this._get(subset, 'weight', Math.min),
-      aveWeight : this._get(subset, 'weight', _average),
-      maxWeight : this._get(subset, 'weight', Math.max),
+      min_year : minYear,
+      max_year : maxYear,
+      min_hindfoot_length : this._get(subset, 'hindfoot_length', Math.min),
+      ave_hindfoot_length : this._get(subset, 'hindfoot_length', _average),
+      max_hindfoot_length : this._get(subset, 'hindfoot_length', Math.max),
+      min_weight : this._get(subset, 'weight', Math.min),
+      ave_weight : this._get(subset, 'weight', _average),
+      max_weight : this._get(subset, 'weight', Math.max)
     }
   }
 ```
-{: title="src/data/database.js"}
+{: title="src/data/data-manager.js"}
 
 ## Exercises {#s:data-exercises}
 
-FIXME
+### Tracing Data
+
+Trace the execution of the utility program that creates a small sample of the original data,
+explaining what is passed into each of the chained methods calls.
+
+### Improving Slice Selection
+
+Modify the utility that selects a slice of data for testing
+so that it optionally takes a random number generation seed as a command-line argument.
+(This allows us to generate the same slice over and over again when we want to for testing purposes.)
+
+### Error Handling
+
+Modify `DataManager`'s constructor so that it checks for errors.
+
+### Generalization
+
+Modify `getSurveyRange` so that it can be called like this:
+
+```js
+getSurveyRange(minYear, maxYear, 'hindfoot_length', 'weight')
+```
+
+i.e., so that the names of the fields whose minimum, average, and maximum values are wanted
+can be passed as strings,
+and the method will automatically create the right names and values in its result.
 
 {% include links.md %}

@@ -9,7 +9,7 @@ const _average = (...values) => {
   return sum / values.length
 }
 
-class Database {
+class DataManager {
 
   constructor (filename) {
     const raw = fs.readFileSync(filename, 'utf-8')
@@ -28,14 +28,14 @@ class Database {
   getSurveyRange (minYear, maxYear) {
     const subset = this.data.filter(r => ((minYear <= r.year) && (r.year <= maxYear)))
     return {
-      minYear : minYear,
-      maxYear : maxYear,
-      minHindfootLength : this._get(subset, 'hindfoot_length', Math.min),
-      aveHindfootLength : this._get(subset, 'hindfoot_length', _average),
-      maxHindfootLength : this._get(subset, 'hindfoot_length', Math.max),
-      minWeight : this._get(subset, 'weight', Math.min),
-      aveWeight : this._get(subset, 'weight', _average),
-      maxWeight : this._get(subset, 'weight', Math.max),
+      min_year : minYear,
+      max_year : maxYear,
+      min_hindfoot_length : this._get(subset, 'hindfoot_length', Math.min),
+      ave_hindfoot_length : this._get(subset, 'hindfoot_length', _average),
+      max_hindfoot_length : this._get(subset, 'hindfoot_length', Math.max),
+      min_weight : this._get(subset, 'weight', Math.min),
+      ave_weight : this._get(subset, 'weight', _average),
+      max_weight : this._get(subset, 'weight', Math.max)
     }
   }
 
@@ -44,4 +44,4 @@ class Database {
   }
 }
 
-module.exports = Database
+module.exports = DataManager
