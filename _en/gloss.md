@@ -42,6 +42,9 @@ a named property attached to an HTML [element](#element).
 **backward-compatible**{:#backward-compatible}:
 able to work consistently with older systems.
 
+**body**{:#http-body}:
+FIXME
+
 **bundler**{:#bundler}:
 FIXME
 
@@ -116,6 +119,9 @@ FIXME
 a form of assignment that unpacks a data structure in one step,
 such as `[a, b] = [1, 2]` or
 `{left, right} = {left: 1, right: 2}`.
+
+**Domain Name Service**{:#dns} (DNS):
+FIXME
 
 **document**{:#document}:
 an entire HTML page.

@@ -1,5 +1,3 @@
----
----
 /* Remove Table of Contents sidebar when printing. */
 @media print {
     .main {
@@ -52,6 +50,11 @@ code.highlighter-rouge {
 /* Make output distinct. */
 div.language-text {
     font-weight: bold;
+}
+
+/* Make keyboard items a little less stark */
+kbd {
+    background-color: #606060;
 }
 
 /* Make links darker than Bootstrap default. */

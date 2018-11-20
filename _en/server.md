@@ -18,20 +18,22 @@ keypoints:
 - "Use dynamic loading to support plugin extensions."
 ---
 
-Someone at NASA created the service that provided the data we used in [the previous chapter](../interactive/).
-If we think our data is valuable,
-we might want to provide such a service ourselves.
-And even if we are the only people in the world who want to look at our numbers,
-we still need to serve them somehow
-if we're going to build a browser-based application.
+Now that we have [a data manager](../data/),
+the next step is to create a server to share our data with the world,
+which we will build using a library called [Express][express].
+Before we start writing code,
+though,
+we need to understand how computers talk to each other.
 
-The basis of almost everything on the web is
-the [HTTP](../gloss/#http) [request](../gloss/#http-request)/[response](../gloss/#http-response) cycle.
-HTTP is the HyperText Transfer Protocol;
-it specifies the kinds of requests applications can make of servers,
+## HTTP {#s:server-http}
+
+Almost everything on the web communicates via [HTTP](../gloss/#http),
+which stands for HyperText Transfer Protocol.
+The core of HTTP is a [request](../gloss/#http-request)/[response](../gloss/#http-response) cycle
+that specifies the kinds of requests applications can make of servers,
 how they exchange data,
 and so on.
-The diagram below shows the request/response cycle in action:
+The diagram below shows this cycle in action:
 
 1. The client (a browser or some other program) makes a connection to a server.
 2. It then sends a blob of text specifying what it's asking for.
@@ -42,14 +44,14 @@ The diagram below shows the request/response cycle in action:
 FIXME-28: diagrams
 
 This cycle might be repeated many times to display a single web page,
-since in theory a separate request has to be made for every image,
+since a separate request has to be made for every image,
 every CSS or JavaScript file,
 and so on.
 In practice,
 a lot of behind-the-scenes engineering is done to keep connections alive as long as they're needed,
 and to [cache](../gloss/#cache) items that are likely to be re-used.
 
-An HTTP request has at least parts:
+An HTTP request is just a block of text with two important parts:
 
 - The [method](../gloss/#http-method) is almost always either `GET` (to get data) or `POST` (to submit data).
 - The [URL](../gloss/#url) is typically a path to a file,
@@ -67,7 +69,9 @@ Some examples include:
 Unlike a dictionary, a key may appear any number of times,
 so that (for example) a request can specify that it's willing to accept several types of content.
 
-The body of the request is any extra data associated with it,
+FIXME: diagram of typical request
+
+The [body](../gloss/#http-body) of the request is any extra data associated with it,
 such as files that are being uploaded.
 If a body is present,
 the request must contain the `Content-Length` header
@@ -90,34 +94,49 @@ Some of the more common are:
 | 401  | Unauthorized          | The request requires authentication                                  |
 | 404  | Not Found             | The requested resource could not be found                            |
 | 408  | Timeout               | The server gave up waiting for the client                            |
+| 418  | I'm a Teapot          | Originally an April Fool's joke, now used to identify devices        |
 | 500  | Internal Server Error | An error occurred in the server while trying to handle the request   |
 | 601  | Connection Timed Out  | The server did not respond before the connection timed out           |
 
-Finally,
-while it's not part of the HTTP protocol,
-it's important to understand hostnames and servers.
-Consider the following URL:
+One final thing we need to understand is the structure and interpretation of URLs.
+This one:
 
 ```
-http://example.org:1234/some/path
+http://example.org:1234/some/path?value=deferred&limit=200
 ```
 
-Its four parts are:
+has five parts:
 
 - The protocol `http`, which specifies what rules are going to be used to exchange data.
 - The [hostname](../gloss/#host) `example.org`, which tells the client where to find the server.
   If we are running a server on our own computer for testing,
   we can use the name `localhost` to connect to it.
+  (Computers rely on a service called [DNS](../gloss/#dns)
+  to find the machines assocaited with human-readable hostnames,
+  but its operation is out of scope for this tutorial.)
 - The [port](../gloss/#port) `1234`, which tells the client where to call the service it wants.
   (If a host is like an office building, a port is like a phone number in that building.
   The fact that we think of phone numbers as having physical locations
   says something about our age...)
-- The path `/some/path` tells the server what exactly the client wants *this* time.
+- The path `/some/path` tells the server what the client wants.
+- The [query parameters](../gloss/#query-parameter) `value=deferred` and `limit=200`.
+  These come after a question mark and are separated by ampersands,
+  and are used to provide extra information.
+
+It used to be common for paths to identify actual files on the server,
+but the server can interpret the path however it wants.
+In particular,
+when we are writing a data service,
+the segments of the path can identify what data we are asking for.
+Alternatively,
+it's common to think of the path as identifying a function on the server that we want to call,
+and to think of the query parameters as the arguments to that function.
+We'll return to these ideas after we've seen how a simple server works.
 
 ## Hello, Express {#s:server-express}
 
 A Node-based library called Express handles most of the details of HTTP for us.
-When we are building a server using Express,
+When we build a server using Express,
 we provide callback functions that take three parameters:
 
 - the original request,
@@ -149,12 +168,19 @@ The next defines the port we will listen on,
 and then the third creates the object that will do most of the work.
 
 Further down,
-the call to `app.get` tells that object to handle any request for '/'
+the call to `app.get` tells that object to handle any `GET` request for '/'
 by sending a reply whose status is 200 (OK)
 and whose boy is an HTML page containing only an `h1` heading.
 There is no actual HTML file on disk,
 and in fact no way for the browser to know if there was one or not:
 the server can send whatever it wants in response to whatever requests it wants to handle.
+
+Note that `app.get` doesn't actually get anything right away.
+Instead,
+it registers a callback with Express that says,
+"When you see this URL, call this function to handle it."
+As we'll see below,
+we can register as many path/callback pairs as we want to handle different things.
 
 Finally,
 the last line of this script tells our application to listen on the specified port,
@@ -170,15 +196,14 @@ listening...
 
 Our little server is now waiting for something to ask it for something.
 If we go to our browser and request `http://localhost:3418/`,
-we get a page with a large title `Asteroids` on it:
-our server has worked,
+we get a page with a large title `Asteroids` on it.
+Our server has worked,
 and we can now stop it by typing <kbd>Ctrl-C</kbd> in the shell.
 
 ## Handling Multiple Paths {#s:server-paths}
 
 Let's extend our server to do different things when given different paths,
 and to handle the case where the request path is not known:
-
 
 ```js
 const express = require('express')
@@ -210,6 +235,7 @@ app.listen(PORT, () => { console.log('listening...') })
 The first few lines are the same as before.
 We then specify handlers for the paths `/` and `/asteroids`,
 each of which sends a different chunk of HTML.
+
 The call to `app.use` specifies a default handler:
 if none of the `app.get` handlers above it took care of the request,
 this callback function will send a "page not found" code
@@ -231,11 +257,10 @@ but it's also common for the server to return files.
 To do this,
 we will provide our server with the path to the directory it's allowed to read pages from,
 and then run it with <code>node <em>server-name</em>.js <em>path/to/directory</em></code>.
-We specify the path because we definitely do *not* want the server
-to be able to send everything on our computer to whoever asks for it.
-In particular,
-a request for `/etc/passwd` (the password file on a Unix computer)
-should probably be refused.
+We have to tell the server whence it's allowed to read files
+because we definitely do *not* want it to be able to send everything on our computer to whoever asks for it.
+(For example,
+a request for the `/etc/passwd` password file on a Linux server should probably be refused.)
 
 Here's our updated server:
 
@@ -264,13 +289,13 @@ app.listen(PORT, () => { console.log('listening...') })
 The steps in handling a request are:
 
 1. The URL requested by the client is given to us in `req.url`.
-2. We combine that with the path to the root directory,
+2. We use `path.join` to combine that with the path to the root directory,
    which we got from a command-line argument when the server was run.
 3. We try to read that file using `readFileSync`,
    which blocks the server until the file is read.
    We will see later how to do this I/O asynchronously
    so that our server is more responsive.
-4. If successful, we return whatever we read.
+4. Once the file has been read, we return it with a status code of 200.
 
 If a sub-directory call `web-dir` holds a file called `title.html`,
 and we run the server as:
@@ -281,6 +306,10 @@ node serve-pages.js ./web-dir
 
 we can then ask for `http://localhost:3418/title.html`
 and get the content of `web-dir/title.html`.
+Notice that the directory `./web-dir` doesn't appear in the URL:
+our server interprets all paths as if the directory we've given it
+is the root of the filesystem.
+
 If we ask for a page that doesn't exist,
 such as `http://localhost:3418/missing.html`,
 we get this:
@@ -346,10 +375,16 @@ Modify the version of the server that returns files from disk
 so that if the file it is asked for has a name ending in `.png` or `.jpg`,
 it is returned with the right `Content-Type` header.
 
+### Delayed Replies
+
+Our file server uses `fs.readFileSync` to read files,
+which means that it stops each time a file is requested
+rather than handling other queries while waiting for the file to be read.
+Modify the callback given to `app.use` so that it uses `fs.readFile` with a callback instead.
+
 ### Using Query Parameters
 
-URLs may contain [query parameters](../gloss/#query-parameter)
-in the form `http://site.edu?first=1&second=b`.
+URLs can contain query parameters in the form `http://site.edu?first=1&second=b`.
 Read the online documentation for [Express][express] to find out
 how to access them in a server,
 and then write a server to do simple arithmetic:
