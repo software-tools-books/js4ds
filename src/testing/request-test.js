@@ -7,11 +7,10 @@ describe('server', () => {
   it('should return HTML with expected title', (done) => {
     request(server)
       .get('/')
-      .expect('Content-Type', /html/)
       .expect(200)
+      .expect('Content-Type', /html/)
       .end((err, res) => {
         assert(res.text.includes('Home'), 'Has expected title')
-        assert(!res.text.includes('Should not contain this'), 'Has unexpected text')
         done()
       })
   })
@@ -19,8 +18,8 @@ describe('server', () => {
   it('should return asteroids page as HTML with expected title', (done) => {
     request(server)
       .get('/asteroids')
-      .expect('Content-Type', /html/)
       .expect(200)
+      .expect('Content-Type', /html/)
       .end((err, res) => {
         assert(res.text.includes('Asteroids'), 'Has expected title')
         done()
@@ -29,8 +28,8 @@ describe('server', () => {
 
   it('should 404 for other pages', (done) => {
     request(server)
-      .get('/other')
       .expect(404)
+      .get('/other')
       .end((err, res) => {
         assert(res.text.includes('ERROR'), 'Has expected error message')
         done()

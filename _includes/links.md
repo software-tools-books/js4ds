@@ -10,6 +10,7 @@ definitions if that's done.
 [babel]: https://babeljs.io/
 [bootstrap]: https://getbootstrap.com/
 
+[cheerio]: https://cheerio.js.org/
 [covenant]: https://www.contributor-covenant.org
 [cpu-second]: http://exple.tive.org/blarg/2018/08/15/time-dilation/
 
@@ -21,6 +22,8 @@ definitions if that's done.
 [jeykll]: https://jekyllrb.com/
 [jsx]: https://reactjs.org/docs/introducing-jsx.html
 
+[mocha]: https://mochajs.org/
+
 [node-download]: https://nodejs.org/en/download/
 
 [papaparse]: https://www.papaparse.com/
@@ -30,8 +33,10 @@ definitions if that's done.
 [react]: https://reactjs.org/
 [runkit]: https://runkit.com/
 
+[seedrandom]: https://www.npmjs.com/package/seedrandom
 [spolsky-unicode]: https://www.joelonsoftware.com/2003/10/08/the-absolute-minimum-every-software-developer-absolutely-positively-must-know-about-unicode-and-character-sets-no-excuses/
 [sql-tutorial]: https://swcarpentry.github.io/sql-novice-survey/
+[supertest]: https://github.com/visionmedia/supertest
 [swc]: http://software-carpentry.org/
 
 [t3-process]: http://teachtogether.tech/en/process/

@@ -328,11 +328,21 @@ The method to get the values for a range of years is now:
 Trace the execution of the utility program that creates a small sample of the original data,
 explaining what is passed into each of the chained methods calls.
 
-### Improving Slice Selection
+### Unrandom
 
-Modify the utility that selects a slice of data for testing
-so that it optionally takes a random number generation seed as a command-line argument.
-(This allows us to generate the same slice over and over again when we want to for testing purposes.)
+Programs that rely on random numbers are impossible to test
+because there's (deliberately) no way to predict their output.
+Luckily, computer programs don't actually use random numbers:
+they use [pseudo-random numbers](../gloss/#pseudo-random-number)
+that are generated in a repeatable but unpredictable way.
+Given the same initial [seed](../gloss/#seed),
+a pseudo-random number generator will always produce the same sequence of values.
+
+There is no way to set a seed for `Math.random` out of the box,
+but the [seedrandom][seedrandom] package provides an add-on function for this purpose.
+Install the package and modify the slice selection utility
+so that it takes a word or phrase as a command-line argument
+and uses it to seed the random number generator.
 
 ### Error Handling
 

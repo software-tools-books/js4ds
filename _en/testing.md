@@ -22,9 +22,8 @@ keypoints:
 
 We are bad people,
 because we have been writing code without testing it.
-In this lesson we will redeem ourselves
-(at least partially)
-by correcting that.
+In this lesson we will redeem ourselves (partially)
+by correcting that (also partially).
 
 JavaScript uses the same pattern for unit testing as most other modern languages.
 Each test is written as a function,
@@ -61,15 +60,15 @@ we'll explore this as we go along.
 ## Introducing Mocha {#s:testing-mocha}
 
 JavaScript has almost as many testing libraries as it has front-end frameworks.
-We will use one called Mocha,
-mostly because it is well documented.
-We don't need to import anything to use it;
+We will use one called [Mocha][mocha] that is popular and well documented.
+Unlike the libraries we have seen before,
+we don't import anything to use it;
 instead,
-it imports our code and calls our functions.
+*it* imports *our* code and calls our functions.
 
-When writing Mocha tests,
+When we're writing tests for Mocha to run,
 we use a function called `describe` to create a group of tests
-and another function called `it` for individual tests:
+and another function called `it` for each test in that group:
 
 ```js
 describe('first test', () => {
@@ -89,11 +88,9 @@ That callback makes calls to `it`, which takes:
 
 (The name `it` was chosen so that when we read tests aloud,
 it sounds like we're saying, "It should do this or that.")
-When our tests are done,
-we call `done` to signal that we're finished.
-We need to do this because callbacks run out of order
-and some tests might take a while to complete,
-so Mocha needs to know when each one is done.
+At the end of each test we call `done` to signal that it has finished.
+We have to do this because callbacks run out of order,
+so Mocha needs to know when each one completes.
 
 We can run our tests from the shell by invoking `mocha`
 and giving it the path to the file that contains the tests:
@@ -132,8 +129,7 @@ to `package.json`, our command becomes:
 npm test -- path/to/test.js
 ```
 
-(Again,
-everything after `--` is passed to the script itself.)
+(Again, everything after `--` is passed to the script itself.)
 
 ## Refactoring {#s:testing-refactoring}
 
@@ -141,12 +137,12 @@ The next step is to create testable software.
 In the case of our server,
 we have to:
 
-- move the code that listens on a port into a separate file, and
-- have that import everything else
+- move the code that listens on a port into one file, and
+- have that import a file that contains the code to do everything else.
 
 Once we have done this,
 we can run the server code in other contexts.
-Here's the file `standalone.js` that actually runs the server:
+Here's the file `standalone.js` that actually launches a server:
 
 ```js
 const server = require('./server')
@@ -155,7 +151,8 @@ server.listen(PORT, () => { console.log(`listening on port ${PORT}...`) })
 ```
 {: title="src/testing/standalone.js"}
 
-And here is the application code we've extracted to be tested:
+And here is the application code we've extracted into `server.js`
+so that we can test it:
 
 ```js
 const express = require('express')
@@ -186,8 +183,13 @@ node standalone.js
 All right:
 now that we have extracted the code that's specific to our server,
 how do we test it?
-The answer is yet another library called `supertest`
-that sends fake HTTP requests to a server and lets us interact with the replies:
+The answer is yet another library called [supertest][supertest]
+that sends fake HTTP requests to an Express server
+that has been split in the way we just split ours
+and lets us interact with that server's replies.
+Here's a test of a simple request that uses Mocha to manage the test,
+and supertest's `request` function to send something to the server
+and check the result:
 
 ```js
 const assert = require('assert')
@@ -199,11 +201,10 @@ describe('server', () => {
   it('should return HTML with expected title', (done) => {
     request(server)
       .get('/')
-      .expect('Content-Type', /html/)
       .expect(200)
+      .expect('Content-Type', /html/)
       .end((err, res) => {
         assert(res.text.includes('Home'), 'Has expected title')
-        assert(!res.text.includes('Should not contain this'), 'Has unexpected text')
         done()
       })
   })
@@ -214,24 +215,23 @@ describe('server', () => {
 Going through this line by line:
 
 1. `request(server)` starts building up a request to send.
-2. The `.get('/')` call specifies the path in the pretended URL.
-3. `.expect('Content-Type', /html/)`
+2. `.get('/')` specifies the path in the URL we are sending.
+3. `.expect(200)` checks that the return code is 200 (OK).
+4. `.expect('Content-Type', /html/)`
    checks the content type in the returned value against a regular expression
    (discussed briefly at the end of this section).
-4. `.expect(200)` checks that the return code is 200 (OK).
-5. `.end` is called when the whole response has been received.
-   We really should check `err` to make sure everything worked properly,
-   but we're not quite that virtuous.
+5. `.end` is called when the whole response has been received,
+   i.e., when we can start looking at the content of the page or data
+   that the server has sent.
 6. Inside the callback to `end`,
    `res` is the result data.
-   We make sure that `res.text` includes the word "Home",
-   and then just to prove that tests don't automatically pass
-   we check for something it *shouldn't* contain.
-   (Rule #2 of testing: always make sure the equipment is switched on...)
+   We make sure that its text (i.e., `res.text`) includes the word "Home".
+   We really should check `err` here to make sure everything worked properly,
+   but we're not quite that virtuous.
 7. Finally, we call `done()` to signal the end of the test.
    Again,
    we have to do this because there's no way Mocha can know
-   when the encloding `.end(...)` will be called
+   when the enclosing `.end(...)` will be called
 
 Let's run our code:
 
@@ -255,8 +255,8 @@ describe('server', () => {
   it('should return asteroids page as HTML with expected title', (done) => {
     request(server)
       .get('/asteroids')
-      .expect('Content-Type', /html/)
       .expect(200)
+      .expect('Content-Type', /html/)
       .end((err, res) => {
         assert(res.text.includes('Asteroids'), 'Has expected title')
         done()
@@ -265,8 +265,8 @@ describe('server', () => {
 
   it('should 404 for other pages', (done) => {
     request(server)
-      .get('/other')
       .expect(404)
+      .get('/other')
       .end((err, res) => {
         assert(res.text.includes('ERROR'), 'Has expected error message')
         done()
@@ -285,19 +285,10 @@ describe('server', () => {
   3 passing (62ms)
 ```
 
-> **Regular Expressions**
->
-> A [regular expression](../gloss/#regular-expression) is
-> a pattern for matching text which is itself written as text.
-> Alphanumeric characters match themselves,
-> so the regexp `/abc/` matches the strings `"abc"` and `"some abc here"`,
-> but not the string `"no a-b-c here"`.
-> Most punctuation characters have special meaning:
-> the character `.`, for example, matches any single character,
-> while `+` means "one or more",
-> so `/a.+c/` matches an 'a' followed by one or more characters followed by a 'c'.
-> Regular expressions are widely used in JavaScript,
-> but are outside the scope of this tutorial.
+Notice that we check to make sure that the server sends a 404
+we ask for something that doesn't exist.
+Making sure the system fails gracefully is just as important
+as making sure that it provides data when asked to.
 
 ## Checking the HTML {#s:testing-html}
 
@@ -311,7 +302,7 @@ we should parse the HTML to create a structure in memory and check that;
 if parsing fails because the HTML is badly formatted, that's worth knowing too.
 The structure in question is our new friend the DOM,
 and to get it,
-we will use (yet another) library called `cheerio`.
+we will use (yet another) library called [cheerio][cheerio].
 `cheerio.load` turns HTML text into a DOM tree;
 the resulting object can be used like a function,
 and we can use the same selectors we met previously to find things in it.
@@ -359,10 +350,6 @@ libraries like `cheerio` are there to help.
 
 ## Exercises {#s:testing-exercises}
 
-### FIXME: exercise on testing randomness
-
-FIXME
-
 ### Not Done
 
 What happens if we forget to call `done()` in a test?
@@ -379,8 +366,7 @@ What happens if we forget to call `done()` in a test?
 
 ### Lifecycle
 
-Suppose a JavaScript program contains some JSX expressions
-that produce HTML
+Suppose a JavaScript program contains some JSX expressions that produce HTML
 which is then read and displayed by a browser.
 Draw a diagram to show the form taken by an H1 heading containing the word "data"
 from start to finish.

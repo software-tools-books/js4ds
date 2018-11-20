@@ -402,6 +402,9 @@ The term is used to distinguish an object's passive data
 from its executable [methods](#method).
 Properties are sometimes called [member variables](#member-variable).
 
+**pseudo-random number**{:#pseudo-random-number}:
+FIXME
+
 **race condition**{:#race-condition}:
 FIXME
 
@@ -463,6 +466,9 @@ the portion of a program within which a definition can be seen and used.
 See [global-variable](#global-variable),
 [local-variable](#local-variable),
 and (if you are brave) [closure](#closure).
+
+**seed**{:#seed}:
+FIXME
 
 **selector**{:#selector}:
 a way to identify elements within an HTML document.
