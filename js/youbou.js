@@ -1,7 +1,10 @@
-// Pull all H2's into div.headings.
+// Pull all H2's into div.headings, or delete div.headings.
 const makeTableOfContents = () => {
   const container = document.querySelectorAll('div.headings')[0]
   const headings = Array.from(document.querySelectorAll('h2'))
+  if (headings.length === 0) {
+    container.parentNode.removeChild(container)
+  }
   const items = headings
         .map((h) => '<li><a href="#' + h.id + '">' + h.innerHTML + '</a></li>')
         .join('\n')

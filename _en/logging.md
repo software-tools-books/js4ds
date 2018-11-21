@@ -1,13 +1,7 @@
 ---
-permalink: "/en/rest/"
-title: "Building a REST API"
-questions:
-- "FIXME"
-keypoints:
-- "FIXME"
+permalink: "/en/logging/"
+title: "Logging"
 ---
-
-## Logging {#s:server-logging}
 
 The `console.log` function we have been using
 is a simple form of [logging](../gloss/#logging).
@@ -89,9 +83,8 @@ and if we run it with the level `'warning'`,
 no messages appear
 because none are deemed important enough.
 
-## Middleware {#s:robust-middleware}
-
 FIXME: We will use `bodyParser` because we're always serving JSON.
+
 FIXME: a library called `express-winston` to log all requests:
 
 ```js
@@ -113,7 +106,5 @@ app.use(expressWinston.logger({
   msg: "HTTP {{res.statusCode}} {{req.method}} {{req.url}}"
 }))
 ```
-
-## Exercises {#s:robust-exercises}
 
 {% include links.md %}

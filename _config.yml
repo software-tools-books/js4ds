@@ -26,7 +26,6 @@ toc:
   - /data/
   - /server/
   - /testing/
-  - /rest/
   - /capstone/
   - /finale/
   bib:
@@ -38,6 +37,7 @@ toc:
   - /gloss/
   - /keypoints/
   - /regexp/
+  - /logging/
   - /legacy/
   - /db/
 
