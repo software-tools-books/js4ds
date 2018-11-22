@@ -17,15 +17,12 @@ not just scientists and engineers.
 We will cover:
 
 - Core features of modern JavaScript
-- Programming with callbacks
+- Programming with callbacks and promises
 - Creating objects and classes
 - Writing HTML and CSS
-- Programming with promises
-- Creating pages with React
-- Making pages interactive
+- Creating interactive pages with React
 - Building data services
 - Testing
-- Integrating with a database
 - Data visualization
 - Combining everything to create a three-tier web application
 
@@ -38,24 +35,14 @@ We assume that you:
 - have reliable access to the Internet.
 
 Unlike most introductions to JavaScript,
-these lessons start with server-side programming
-so that you can become comfortable with the language's idiosyncracies
-before writing code that runs in your browser.
-We devote very little time to styling web pages with CSS;
-in fact,
-we devote very little time to any of our subjects.
-If you want to know more,
+these lessons present an even mix of browser programming and server programming.
+We give each topic only shallow coverage;
+if you want to know more,
 there are many other free tutorials you can dive into once you've mastered the basics,
 some of which are both up-to-date and well designed.
 
 ## Contributing {#s:intro-contrib}
 
-Contributions of all kinds are welcome, from errata and minor improvements to
-entirely new sections and chapters.  Please <a href="mailto:{{site.email}}">email us</a>, <a href="{{site.repo}}/issues">file
-an issue</a> in <a href="{{site.repo}}">our GitHub repository</a>, or <a
-href="{{site.repo}}/pulls">submit a pull request</a>.  Everyone whose work is
-incorporated will be acknowledged; please note that all contributors are
-required to abide by <a href="{{'/en/conduct/'|relative_url}}">our Code of
-Conduct</a>.
+{% include contributing.md %}
 
 {% include links.md %}

@@ -1,7 +1,5 @@
 const express = require('express')
 const bodyParser = require('body-parser')
-const winston = require('winston')
-const expressWinston = require('express-winston')
 
 // 'db' is a global variable that refers to our database.
 // It must be set when the server is created.
@@ -10,18 +8,6 @@ let db = null
 // Main server object and database object.
 const app = express()
 app.use(bodyParser.json())
-
-// Set up logging.
-app.use(expressWinston.logger({
-  transports: [
-    new winston.transports.Console({
-      json: false,
-      colorize: true
-    })
-  ],
-  meta: false,
-  msg: "HTTP {{res.statusCode}} {{req.method}} {{req.url}}"
-}))
 
 // Get survey statistics.
 app.get('/survey/stats', (req, res, next) => {

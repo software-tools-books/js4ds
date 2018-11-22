@@ -344,6 +344,15 @@ Install the package and modify the slice selection utility
 so that it takes a word or phrase as a command-line argument
 and uses it to seed the random number generator.
 
+### One Record Per Year
+
+Another way to slice the data for testing purposes is to select one record from each year.
+Write a small command-line JavaScript program that:
+
+1. Reads all the data from the database.
+2. Keeps the first record it finds for each year.
+3. Prints these records formatted as SQL `insert` statements.
+
 ### Error Handling
 
 Modify `DataManager`'s constructor so that it checks for errors.

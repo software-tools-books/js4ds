@@ -15,46 +15,33 @@ datasource: "https://figshare.com/articles/Portal_Project_Teaching_Database/1314
 It's time to bring everything together in an extended example:
 a (slightly) interactive visualization of species data from <{{page.datasource}}>.
 Our plan is to:
+
 - slice data for testing,
 - write a data server to serve that data,
 - test the server,
 - build an interactive tabular display of our data, and
 - add visualization.
 
-This will require some new ideas,
+This will require a few new ideas,
 but will mostly recapitulate what's come before.
+
+## Data Manager {#s:capstone-data}
+
+The data manager is exactly [the one we built earlier](../data/).
 
 ## Server {#s:capstone-server}
 
-FIXME: data server
-
-Now that we can access our data,
-the implementation of the server is almost the same as [previous one](../server/)
-(for some version of "almost").
+The server is almost the same as [previous one](../server/):
 
 ```js
 const express = require('express')
 const bodyParser = require('body-parser')
-const winston = require('winston')
-const expressWinston = require('express-winston')
 
 // Main server object and database object.
 // db is provided during load.
 let db = null
 const app = express()
 app.use(bodyParser.json())
-
-// Set up logging.
-app.use(expressWinston.logger({
-  transports: [
-    new winston.transports.Console({
-      json: false,
-      colorize: true
-    })
-  ],
-  meta: false,
-  msg: "HTTP {{res.statusCode}} {{req.method}} {{req.url}}"
-}))
 
 ...handle actual queries...
 
@@ -105,7 +92,7 @@ Now let's write our first test:
       maxYear: 2000,
       count: 10
     }
-    const db = new Database('test-data.csv')
+    const db = new DataManager('test-data.csv')
     request(server(db))
       .get('/survey/stats')
       .expect(200)
@@ -141,8 +128,7 @@ There is a single HTML page called `index.html`:
 ```
 {: title="src/capstone/front/index.html"}
 
-The main application is in `app.js`.
-It imports components to display summary statistics,
+The main application in `app.js` imports components to display summary statistics,
 choose a range of years,
 and display annual data.
 There is not usually such a close coupling between API calls and components,
@@ -281,7 +267,8 @@ and the second `then` callback when the data has been converted to JSON.
 {: title="src/capstone/back/app.js"}
 
 Now let's update the display with `SurveyStats`, `ChooseRange`, and `DataDisplay`,
-which are all stateless (pure display) components:
+which are all stateless components
+(i.e., they display things but don't change anything):
 
 ```js
   render = () => {
@@ -332,9 +319,10 @@ The other components are similar to those we have seen before.
 
 We initially tried using Vega-Lite directly for the chart,
 but after a few failures and some googling,
-we switched to `react-vega-lite`.
-`vega-embed` wants to modify an existing DOM element when called,
-while `react-vega-lite` constructs an element to be put in place at the right time.
+we switched to `react-vega-lite`:
+Vega-Lite's `vega-embed` wants to modify an existing DOM element when called,
+while `react-vega-lite` constructs an element to be put in place at the right time,
+which proved easier to use.
 The steps are:
 
 1. Create a paragraph placeholder if there's no data.
@@ -379,35 +367,20 @@ export default DataChart
 ```
 {: title="src/capstone/front/DataChart.js"}
 
+## Running It {#s:capstone-run}
+
+FIXME: describe the parceling and how to run.
+
 ## Exercises {#s:capstone-exercises}
-
-### Selecting Random Data
-
-FIXME: we might select the header row!
 
 ### Reporting Other Data
 
 A user has asked for the number of male and female animals observed for each year.
 
-1. Should you add this to the existing query for yearly data
-   or create a new API call?
+1. Should you add this to the existing query for yearly data or create a new API call?
 2. Implement your choice.
 
-### One Record Per Year
-
-Another way to slice the data for testing purposes is to select one record from each year.
-This is tricky to do with SQL,
-but straightforward to do with a little bit of JavaScript.
-Write a small command-line JavaScript program that:
-
-1. Reads all the data from the database.
-2. Keeps the first record it finds for each year.
-3. Prints these records formatted as SQL `insert` statements.
-
 ### Error Checking
-
-HTTP defines many [status codes](../gloss/#http-status-code)
-that servers should return to tell clients what went wrong.
 
 1. Modify the server to return 400 with an error message
    if the range of years requested is invalid

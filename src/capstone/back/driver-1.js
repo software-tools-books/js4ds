@@ -1,9 +1,9 @@
-const Database = require('./database')
+const Database = require('./data-manager')
 const server = require('./server-1')
 
 const PORT = 3418
 
-const db = new Database('file', 'test-data.db')
+const db = new DataManager('file', 'test-data.db')
 const app = server(db)
 app.listen(PORT, () => {
   console.log(`listening on port ${PORT}...`)
