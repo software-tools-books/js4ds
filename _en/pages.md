@@ -70,7 +70,7 @@ Let's begin by counting the number of paragraphs in a page:
 This page has three main parts:
 
 1. The `head` contains a `meta` tag that specifies the page's
-   [character encoding](../gloss/#character-encoding),
+   [character encoding](../gloss/#g:character-encoding),
    i.e.,
    the scheme used to represent characters
    not found on a standard American keyboard in the 1970s.
@@ -93,7 +93,7 @@ This page has three main parts:
 > If we put the `script` tag and its contents at the top of the page,
 > the browser might run our JavaScript *after* the page has been read
 > but *before* its elements and text have been parsed and stored in memory.
-> [Race conditions](../gloss/#race-condition) like this bedevil web programming;
+> [Race conditions](../gloss/#g:race-condition) like this bedevil web programming;
 > we will see more robust ways to deal with them later.
 
 Inside the `script` tag,
@@ -161,7 +161,7 @@ and add it to the in-memory structure that represents the page.
 ...at which point some magic happens behind the scenes.
 The browser stores the elements and text of the current page in a data structure called
 the Document Object Model,
-or more commonly, the [DOM](../gloss/#dom).
+or more commonly, the [DOM](../gloss/#g:dom).
 Any time the browser detects a change to the DOM,
 it automatically refreshes just as much of its display as it needs to.
 We can insert or remove text,
@@ -384,7 +384,7 @@ document.addEventListener("DOMContentLoaded", (event) => {
 ```
 {: title="src/pages/sort-lists-event.js"}
 
-An [event listener](../gloss/#event-listener) is a function that the browser calls
+An [event listener](../gloss/#g:event-listener) is a function that the browser calls
 when some kind of event occurs.
 In our example,
 the event we care about is "DOM content has been loaded".
@@ -600,7 +600,7 @@ if we have an object whose keys are called `a` and `b`,
 then the call `f({a, b})` means,
 "Match the value of key `a` to a parameter called `a`
 and the value of key `b` to a parameter called `b`."
-This is called [destructuring](../gloss/#destructuring),
+This is called [destructuring](../gloss/#g:destructuring),
 and can save a lot of wear and tear on our keyboard and eyes.
 
 Second,

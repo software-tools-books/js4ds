@@ -27,9 +27,9 @@ we need to understand how computers talk to each other.
 
 ## HTTP {#s:server-http}
 
-Almost everything on the web communicates via [HTTP](../gloss/#http),
+Almost everything on the web communicates via [HTTP](../gloss/#g:http),
 which stands for HyperText Transfer Protocol.
-The core of HTTP is a [request](../gloss/#http-request)/[response](../gloss/#http-response) cycle
+The core of HTTP is a [request](../gloss/#g:http-request)/[response](../gloss/#g:http-response) cycle
 that specifies the kinds of requests applications can make of servers,
 how they exchange data,
 and so on.
@@ -49,16 +49,16 @@ every CSS or JavaScript file,
 and so on.
 In practice,
 a lot of behind-the-scenes engineering is done to keep connections alive as long as they're needed,
-and to [cache](../gloss/#cache) items that are likely to be re-used.
+and to [cache](../gloss/#g:cache) items that are likely to be re-used.
 
 An HTTP request is just a block of text with two important parts:
 
-- The [method](../gloss/#http-method) is almost always either `GET` (to get data) or `POST` (to submit data).
-- The [URL](../gloss/#url) is typically a path to a file,
+- The [method](../gloss/#g:http-method) is almost always either `GET` (to get data) or `POST` (to submit data).
+- The [URL](../gloss/#g:url) is typically a path to a file,
   but as we'll see below,
   it's completely up to the server to interpret it.
 
-The request can also contain [headers](../gloss/#http-header),
+The request can also contain [headers](../gloss/#g:http-header),
 which are key-value pairs with more information about what the client wants.
 Some examples include:
 
@@ -71,7 +71,7 @@ so that (for example) a request can specify that it's willing to accept several 
 
 FIXME: diagram of typical request
 
-The [body](../gloss/#http-body) of the request is any extra data associated with it,
+The [body](../gloss/#g:http-body) of the request is any extra data associated with it,
 such as files that are being uploaded.
 If a body is present,
 the request must contain the `Content-Length` header
@@ -108,18 +108,18 @@ http://example.org:1234/some/path?value=deferred&limit=200
 has five parts:
 
 - The protocol `http`, which specifies what rules are going to be used to exchange data.
-- The [hostname](../gloss/#host) `example.org`, which tells the client where to find the server.
+- The [hostname](../gloss/#g:host) `example.org`, which tells the client where to find the server.
   If we are running a server on our own computer for testing,
   we can use the name `localhost` to connect to it.
-  (Computers rely on a service called [DNS](../gloss/#dns)
+  (Computers rely on a service called [DNS](../gloss/#g:dns)
   to find the machines assocaited with human-readable hostnames,
   but its operation is out of scope for this tutorial.)
-- The [port](../gloss/#port) `1234`, which tells the client where to call the service it wants.
+- The [port](../gloss/#g:port) `1234`, which tells the client where to call the service it wants.
   (If a host is like an office building, a port is like a phone number in that building.
   The fact that we think of phone numbers as having physical locations
   says something about our age...)
 - The path `/some/path` tells the server what the client wants.
-- The [query parameters](../gloss/#query-parameter) `value=deferred` and `limit=200`.
+- The [query parameters](../gloss/#g:query-parameter) `value=deferred` and `limit=200`.
   These come after a question mark and are separated by ampersands,
   and are used to provide extra information.
 

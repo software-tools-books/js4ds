@@ -94,7 +94,7 @@ circle: area 28.274333882308138 perimeter 18.84955592153876
 
 As long as we only use the value `name` and the functions `area` and `perimeter`
 we don't need to know what kind of shape we have.
-This is called [polymorphism](../gloss/#polymoprhism),
+This is called [polymorphism](../gloss/#g:polymoprhism),
 and it allows us to add new shapes without changing the code in our loop.
 In other words,
 it allows old code (in this case, the function `show_all`)
@@ -121,9 +121,9 @@ rectangle: area 6 perimeter 10
 ## Classes {#s:oop-classes}
 
 Building every object by hand and calling `thing.function(thing)` is clumsy.
-JavaScript solved these problems using [prototypes](../gloss/#prototype),
-which also turned out to be [clumsy](../legacy/#prototypes).
-Most object-oriented languages use [classes](../gloss/#class) instead;
+JavaScript solved these problems using [prototypes](../gloss/#g:prototype),
+which also turned out to be [clumsy](../legacy/#s:legacy-prototypes).
+Most object-oriented languages use [classes](../gloss/#g:class) instead;
 these were added to JavaScript in ES6,
 and we will use them instead of prototypes throughout.
 Here's how we create a class that defines the properties of a square,
@@ -155,13 +155,13 @@ sq name square and area 9
 
 `new ClassName(...)` creates a new blank object
 and inserts a (hidden) reference to the class
-so that the object can find its [methods](../gloss/#method).
+so that the object can find its [methods](../gloss/#g:method).
 `new` then calls the specially-named method `constructor` to initialize the object's state.
 Inside the constructor and other methods,
 the object being operated on is referred to by the pronoun `this`.
 
 Inside the class,
-methods are defined with classic syntax rather than the [fat arrows](../gloss/#fat-arrow) we have been using.
+methods are defined with classic syntax rather than the [fat arrows](../gloss/#g:fat-arrow) we have been using.
 This is what current version of Node prefer;
 we will explore this topic further in the [discussion of visualization](../vis/).
 
@@ -213,7 +213,7 @@ rectangle: area 0.75 perimeter 4
 
 ## Inheritance {#s:oop-inheritance}
 
-We can build new classes from old ones by adding or [overriding](../gloss/#override-method) methods.
+We can build new classes from old ones by adding or [overriding](../gloss/#g:override-method) methods.
 To show this,
 we'll start by defining a person:
 
@@ -238,10 +238,10 @@ class Person {
 ```
 {: title="src/oop/override.js"}
 
-We can now [extend](../gloss/#extend) `Person` to create a new class `Scientist`,
-in which case we say that `Scientist` [inherits](../gloss/#inherit) from `Person`,
-or that `Person` is a [parent class](../gloss/#parent-class) of `Scientist`
-and `Scientist` is a [child class](../gloss/#child-class) of `Person`.
+We can now [extend](../gloss/#g:extend) `Person` to create a new class `Scientist`,
+in which case we say that `Scientist` [inherits](../gloss/#g:inherit) from `Person`,
+or that `Person` is a [parent class](../gloss/#g:parent-class) of `Scientist`
+and `Scientist` is a [child class](../gloss/#g:child-class) of `Person`.
 
 ```js
 class Scientist extends Person {
@@ -309,7 +309,7 @@ FIXME-40: memory diagram
 
 ## Protocols {#s:oop-protocols}
 
-A common way to use object-oriented programming is to define a [protocol](../guide/#protocol).
+A common way to use object-oriented programming is to define a [protocol](../gloss/#g:protocol).
 The parent defines a method that invokes other methods at specific times or in a specific order.
 Users then derive classes from the parent that implement those methods
 to do those specific things.
@@ -449,7 +449,7 @@ c -> b
 d -> c
 ```
 
-A class like `Delay` is sometimes called [stateful](../gloss/#stateful),
+A class like `Delay` is sometimes called [stateful](../gloss/#g:stateful),
 since it remembers its state from call to call.
 
 ### Filtering
@@ -472,7 +472,7 @@ d -> d
 e -> null
 ```
 
-A class like `Filter` is sometimes called [stateless](../gloss/#stateless),
+A class like `Filter` is sometimes called [stateless](../gloss/#g:stateless),
 since it does not remember its state from call to call.
 
 ### Pipelines
@@ -546,6 +546,6 @@ start.update(123)
 3. Create a new class `Delay` whose `transform` method always returns the previous value.
    (Its constructor will need to take an initial value as a parameter.)
 
-This pattern is called [observer/observable](../gloss/#observer-observable).
+This pattern is called [observer/observable](../gloss/#g:observer-observable).
 
 {% include links.md %}

@@ -33,14 +33,14 @@ we need to understand a little of both.
 
 ## Formatting {#s:htmlcss-formatting}
 
-An HTML [document](../gloss/#document) contains [elements](../gloss/#element) and text
+An HTML [document](../gloss/#g:document) contains [elements](../gloss/#g:element) and text
 (and possibly other things that we will ignore for now).
-Elements are shown using [tags](../gloss/#tag):
+Elements are shown using [tags](../gloss/#g:tag):
 an opening tag `<tagname>` shows where the element begins,
 and a corresponding closing tag `</tagname>` (with a leading slash) shows where it ends.
 If there's nothing between the two, we can write `<tagname/>` (with a trailing slash).
 
-A document's elements must form a [tree](../gloss/#tree),
+A document's elements must form a [tree](../gloss/#g:tree),
 i.e.,
 they must be strictly nested.
 This means that if Y starts inside X,
@@ -48,7 +48,7 @@ Y must end before X ends,
 so `<X>...<Y>...</Y></X>` is legal,
 but `<X>...<Y>...</X></Y>` is not.
 Finally,
-every document should have a single [root element](../gloss/#root-element) that encloses everything else,
+every document should have a single [root element](../gloss/#g:root-element) that encloses everything else,
 although browsers aren't strict about enforcing this.
 In fact,
 most browsers are pretty relaxed about enforcing any kind of rules at all,
@@ -59,7 +59,7 @@ since most people don't obey them anyway.
 The text in an HTML page is normal printable text.
 However,
 since `<` and `>` are used to show where tags start and end,
-we must use [escape sequences](../gloss/#escape-sequence) to represent them,
+we must use [escape sequences](../gloss/#g:escape-sequence) to represent them,
 just as we use `\"` to represented a literal double-quote character
 inside a double-quoted string in JavaScript.
 In HTML,
@@ -154,7 +154,7 @@ so let's add a little content:
 
 ## Attributes {#s:htmlcss-attributes}
 
-Elements can be customized by giving them [attributes](../gloss/#attribute),
+Elements can be customized by giving them [attributes](../gloss/#g:attribute),
 which are written as `name="value"` pairs inside the element's opening tag.
 For example:
 
@@ -353,11 +353,11 @@ Two things are worth noting here:
    Browsers will understand this,
    but some software packages will complain.
 2. If an image file is referred to using a path rather than a URL,
-   that path can be either [relative](../gloss/#relative-path) or [absolute](../gloss/#absolute-path).
+   that path can be either [relative](../gloss/#g:relative-path) or [absolute](../gloss/#g:absolute-path).
    If it's a relative path,
    it's interpreted starting from where the web page is located;
    if it's an absolute path,
-   it's interpreted relative to wherever the web browser thinks the [root directory](../gloss/#root-directory) of the filesystem is.
+   it's interpreted relative to wherever the web browser thinks the [root directory](../gloss/#g:root-directory) of the filesystem is.
    As we will see [later](../server/),
    this can change from one installation to the next,
    so you should always try to use relative paths,
@@ -382,7 +382,7 @@ When HTML first appeared, people styled elements by setting their attributes:
 {: title="src/htmlcss/style-with-attributes.html"}
 
 Many still do,
-but a better way is to using [Cascading Style Sheets](../gloss/#css) (CSS).
+but a better way is to using [Cascading Style Sheets](../gloss/#g:css) (CSS).
 These allow us to define a style once and use it many times,
 which makes it much easier to maintain consistency.
 (I was going to say "...and keep pages readable",
@@ -452,7 +452,7 @@ but has no effect unless it's styled.)
 
 One other thing CSS can do is match specific elements.
 We can label particular elements uniquely within a page using the `id` attribute,
-then refer to those elements using `#name` as a [selector](../gloss/#selector).
+then refer to those elements using `#name` as a [selector](../gloss/#g:selector).
 For example,
 if we create a page that gives two spans unique IDs:
 
@@ -544,10 +544,10 @@ to create a two-column layout with a banner at the top:
 
 The page opens by loading Bootstrap from the web;
 we can also download `bootstrap.min.css` and refer to it with a local path.
-(The `.min` in the file's name signals that the file has been [minimized](../gloss/#minimization)
+(The `.min` in the file's name signals that the file has been [minimized](../gloss/#g:minimization)
 so that it will load more quickly.)
 
-The page then uses a `style` element to create an [internal style sheet](../gloss/#internal-style-sheet)
+The page then uses a `style` element to create an [internal style sheet](../gloss/#g:internal-style-sheet)
 to put a solid one-pixel border around every `div`
 so that we can see the regions of the page more clearly.
 Defining styles in the page header is generally a bad idea,
@@ -565,7 +565,7 @@ one 4/12 as wide as the row and the other 8/12 as wide.
 (Bootstrap uses a 12-column system because 12 has lots of divisors.)
 
 The names `col-sm-4` and `col-sm-8` deserve some explanation.
-Bootstrap is [responsive](../gloss/#responsive-design):
+Bootstrap is [responsive](../gloss/#g:responsive-design):
 elements change size as the page grows narrower,
 and are then stacked when the screen becomes too small to display them side by side.
 The `-sm-` means "do this for small devices";
@@ -624,7 +624,7 @@ Why do web developers still use FORTRAN-style names in the 21st Century?
 ### Color
 
 HTML and CSS define names for a small number of colors.
-All other colors must be specified using [RGB](../gloss/#rgb) values.
+All other colors must be specified using [RGB](../gloss/#g:rgb) values.
 Write a small JavaScript program that creates an HTML page
 that displays the word `color` in 100 different randomly-generated colors.
 Compare this to the color scheme used in your departmental website.

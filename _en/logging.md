@@ -4,7 +4,7 @@ title: "Logging"
 ---
 
 The `console.log` function we have been using
-is a simple form of [logging](../gloss/#logging).
+is a simple form of [logging](../gloss/#g:logging).
 We can use a library called [Winston][winston] to get more control and structure.
 By control,
 we mean that we candefine levels for messages and a threshold for the logger,
@@ -26,7 +26,7 @@ or even define some custom format,
 though doing that will make everyone's life more difficult.
 
 Whatever format we choose,
-we have to create and add a [transport](../gloss/#logging-transport) to tell Winston where messages should go.
+we have to create and add a [transport](../gloss/#g:logging-transport) to tell Winston where messages should go.
 We will use one called `Console` that sends messages to the screen;
 we can also send messages to files, to remote logging servers, and so on.
 Note that we do *not* create a variable called `console` for the transport,

@@ -8,6 +8,7 @@ definitions if that's done.
 {% endcomment %}
 
 [babel]: https://babeljs.io/
+[beazley]: https://www.dabeaz.com/
 [bootstrap]: https://getbootstrap.com/
 
 [cheerio]: https://cheerio.js.org/

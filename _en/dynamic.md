@@ -24,11 +24,11 @@ In the beginning,
 people created HTML pages by typing them in (just as we have been doing).
 They quickly realized that a lot of pages share a lot of content:
 navigation menus, contact info, and so on.
-The nearly universal response was to create a [template](../gloss/#template)
+The nearly universal response was to create a [template](../gloss/#g:template)
 and embed commands to include other snippets of HTML (like headers)
 and loop over data structures to create lists and tables.
-This is called [server-side page generation](../gloss/#server-side-page-generation):
-the HTML is generated on the [server](../gloss/#server),
+This is called [server-side page generation](../gloss/#g:server-side-page-generation):
+the HTML is generated on the [server](../gloss/#g:server),
 and it was popular because that's where the data was,
 and that was the only place complex code could be run.
 (This tutorial uses a templating tool called [Jekyll][jekyll].
@@ -37,11 +37,11 @@ It's clumsy and limited, but it's the default on [GitHub][github].)
 FIXME-18: diagram of server-side and client-side page generation
 
 As browsers and JavaScript became more powerful,
-the balance shifted toward [client-side page generation](../gloss/#client-side-page-generation).
+the balance shifted toward [client-side page generation](../gloss/#g:client-side-page-generation).
 In this model,
 JavaScript running in the browser fetches data from one or more servers,
 and uses that data to generate HTML in the browser for display.
-This allows the [client](../gloss/#client) to decide how best to render data,
+This allows the [client](../gloss/#g:client) to decide how best to render data,
 which is increasingly important as phones and tablets take over
 from desktop and laptop computers.
 It also moves the computational burden off the server
@@ -296,8 +296,8 @@ And what about `require` statements?
 The browser will try to load the required files when those statements run,
 but who is going to serve them?
 
-The solution is use a [bundler](../gloss/#bundler) to combine everything into one big file,
-and to run a [local server](../gloss/#local-server) to preview our application during development.
+The solution is use a [bundler](../gloss/#g:bundler) to combine everything into one big file,
+and to run a [local server](../gloss/#g:local-server) to preview our application during development.
 However,
 this solution brings with it another problem:
 which bundler to choose?

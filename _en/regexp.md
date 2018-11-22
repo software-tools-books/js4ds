@@ -3,7 +3,7 @@ permalink: "/en/regexp/"
 title: "Regular Expressions"
 ---
 
-A [regular expression](../gloss/#regular-expression) is
+A [regular expression](../gloss/#g:regular-expression) is
 a pattern for matching text which is itself written as text.
 Alphanumeric characters match themselves,
 so the regexp `/abc/` matches the strings `"abc"` and `"some abc here"`,

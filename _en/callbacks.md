@@ -22,7 +22,7 @@ keypoints:
 - "A closure is a set of variables captured during the definition of a function."
 ---
 
-JavaScript relies heavily on [callback functions](../gloss/#callback-function):
+JavaScript relies heavily on [callback functions](../gloss/#g:callback-function):
 Instead of a function giving us a result immediately,
 we give it another function that tells it what to do next.
 Many other languages use them as well,
@@ -36,12 +36,12 @@ FIXME: explain call stack
 
 ## Functions as Parameters {#s:callbacks-func-params}
 
-When JavaScript [parses](../gloss/#parse) the expression `let name = "text"`,
+When JavaScript [parses](../gloss/#g:parse) the expression `let name = "text"`,
 it allocates a block of memory big enough for four characters
 and stores 't', 'e', 'x', and 't' in them.
 When it executes the assignment,
 it stores a reference to that block of characters in the variable `name`.
-We can show this by drawing a [memory diagram](../gloss/#memory-diagram):
+We can show this by drawing a [memory diagram](../gloss/#g:memory-diagram):
 
 FIXME: memory diagram
 
@@ -238,15 +238,15 @@ console.log(result)
 [ 11, 21, 31 ]
 ```
 
-A function that is created this way is sometimes called an [anonymous function](../gloss/#anonymous-function),
+A function that is created this way is sometimes called an [anonymous function](../gloss/#g:anonymous-function),
 since its creator doesn't give it a name.
 When JavaScript programmers use the term "callback function",
 they usually mean a function defined and used like this.
 
 ## Functional Programming {#s:callbacks-functional}
 
-[Functional programming](../gloss/#functional-programming) is a style of programming
-that relies heavily on [higher-order functions](../gloss/#higher-order-function) like `pipeline`
+[Functional programming](../gloss/#g:functional-programming) is a style of programming
+that relies heavily on [higher-order functions](../gloss/#g:higher-order-function) like `pipeline`
 that take other functions as parameters.
 In addition,
 functional programming expects that functions won't modify data in place,
@@ -365,7 +365,7 @@ but this is the style the JavaScript community has settled on.
 ## Closures {#s:callbacks-closures}
 
 The last tool we need to introduce is an extremely useful side-effect of the way memory is handled
-called a [closure](../gloss/#closure).
+called a [closure](../gloss/#g:closure).
 The easiest way to explain it is by example.
 We have already defined a function called `pipeline` that chains any number of other functions together:
 
@@ -435,7 +435,7 @@ When we now call `add1` or `add2`,
 they add the value passed in and the value they've kept a reference to.
 
 This trick of capturing a reference to a value inside something else
-is called a [closure](../gloss/#closure).
+is called a [closure](../gloss/#g:closure).
 It works because JavaScript holds on to values as long as anything,
 anywhere,
 still refers to them.

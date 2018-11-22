@@ -28,7 +28,7 @@ the [next lesson](../server/) will look at how to build a server.
 ## Data Formats {#s:data-formats}
 
 The most widely used text format for tabular data is undoubtedly
-[comma-separated values](../gloss/#csv) or CSV.
+[comma-separated values](../gloss/#g:csv) or CSV.
 Each row of the table is a line in the file;
 the values within each row---i.e., the columns---are separated by commas.
 Numbers appear as themselves;
@@ -43,7 +43,7 @@ in which case they definitely are:
 "fuchsia",255,0,255
 ```
 
-The first row of a CSV file is often a [header](../gloss/#header)
+The first row of a CSV file is often a [header](../gloss/#g:header)
 that defines the names of the columns.
 For example,
 the small table shown above would better be represented as:
@@ -66,7 +66,7 @@ or the weights in pounds or kilograms.
 
 CSV is good for tabular data,
 but a lot of data doesn't neatly fit into rows and columns.
-A format for hierarhical data that is popular with many programmers is [JSON](../gloss/#json),
+A format for hierarhical data that is popular with many programmers is [JSON](../gloss/#g:json),
 which stands for JavaScript Object Notation.
 It supports a subset of the syntax for values, arrays, and objects in JavaScript,
 so that (for example)
@@ -333,9 +333,9 @@ explaining what is passed into each of the chained methods calls.
 Programs that rely on random numbers are impossible to test
 because there's (deliberately) no way to predict their output.
 Luckily, computer programs don't actually use random numbers:
-they use [pseudo-random numbers](../gloss/#pseudo-random-number)
+they use [pseudo-random numbers](../gloss/#g:pseudo-random-number)
 that are generated in a repeatable but unpredictable way.
-Given the same initial [seed](../gloss/#seed),
+Given the same initial [seed](../gloss/#g:seed),
 a pseudo-random number generator will always produce the same sequence of values.
 
 There is no way to set a seed for `Math.random` out of the box,

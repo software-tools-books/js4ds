@@ -68,16 +68,16 @@ you should [download and install][node-download] the latest Long-term Support (L
 
 `node` is a command-line interpreter for JavaScript
 like those for languages such as Python and R.
-The command `node` on its own starts a [read-evaluate-print loop](../gloss/#repl)
+The command `node` on its own starts a [read-evaluate-print loop](../gloss/#g:repl)
 that executes commands as they are typed in and displays their output.
 The command `node filename.js` reads and runs the commands in `filename.js`;
 we will see [later](../display/) how to run JavaScript in a browser.
 
-`npm` the Node [Package Manager](../gloss/#package-manager),
+`npm` the Node [Package Manager](../gloss/#g:package-manager),
 a command-line tool for finding, installing, and updating JavaScript libraries.
 The command <code>npm install --global <em>library-name</em></code> (without a `.js` extension)
-installs a library [globally](../gloss/#global-intallation) so that all projects can use it,
-while <code>npm install --save <em>library-name</em></code> installs the library [locally](../gloss/#local-installation)
+installs a library [globally](../gloss/#g:global-intallation) so that all projects can use it,
+while <code>npm install --save <em>library-name</em></code> installs the library [locally](../gloss/#g:local-installation)
 (i.e., in the current project folder).
 Local installation is usually a better idea,
 since it isolates projects from one another;

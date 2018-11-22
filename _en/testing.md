@@ -28,11 +28,11 @@ by correcting that (also partially).
 JavaScript uses the same pattern for unit testing as most other modern languages.
 Each test is written as a function,
 and each of those functions tests one particular aspect of the code.
-A standalone program called a [test runner](../gloss/#test-runner)
+A standalone program called a [test runner](../gloss/#g:test-runner)
 finds test functions,
 runs them,
 and reports the results.
-Any setup code that needs to be run before each test to create a [fixture](../gloss/#fixture)
+Any setup code that needs to be run before each test to create a [fixture](../gloss/#g:fixture)
 is put in a function of its own.
 Similarly (but less frequently),
 if some teardown needs to be done *after* each test,
@@ -44,14 +44,14 @@ Each unit test can have one of three results:
 - fail: the system being tested didn't do what was expected
 - error: something went wrong with the test itself
 
-We can combine tests into [test suites](../gloss/#test-suite)
+We can combine tests into [test suites](../gloss/#g:test-suite)
 (and test suites into larger suites, and so on)
 so that we can more easily run related sets of tests.
 This makes testing during development faster,
 which in turn makes it more likely that we'll actually do it.
 
 Finally,
-we write the tests themselves using [assertions](../gloss/#assertion):
+we write the tests themselves using [assertions](../gloss/#g:assertion):
 statements that check whether or not some condition holds
 and generate an error if it doesn't.
 Node provides an `assert` library with some useful functions for asserting various things;
