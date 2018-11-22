@@ -17,10 +17,12 @@ keypoints:
 - "Use callbacks to handle the results of queries."
 ---
 
-We now know how to [build a server](../server/) to share our data with the world;
-the next step is to store the data itself so that it can be served.
-There are many more choices for this today than there were ten years ago,
-fur [relational databases](../gloss/#relational-database) continue to be the workhorse of the web.
+Our [data manager](../data/) got information from a single CSV file.
+That's fine for testing purposes,
+but real applications almost always use a database of some kind.
+There are many more choices these days for what kind of database to use,
+but [relational databases](../gloss/#relational-database) continue to be
+the workhorses of the web.
 
 A relational database contains zero or more [tables](../gloss/#table).
 Each table has a fixed set of [fields](../gloss/#field),
@@ -48,15 +50,15 @@ Here's the start of our database:
 drop table if exists Workshop;
 
 create table Workshop(
-	ident		integer unique not null primary key,
-	name		text unique not null,
-	duration	integer not null -- duration in minutes
+  ident         integer unique not null primary key,
+  name          text unique not null,
+  duration      integer not null -- duration in minutes
 );
 
 insert into Workshop values(1, "Building Community", 60);
 insert into Workshop values(2, "ENIAC Programming", 150);
 ```
-{: title="src/database/fixture.sql"}
+{: title="src/db/fixture.sql"}
 
 In the rest of this tutorial,
 we will build a class to handle our interactions with a SQLite database,
@@ -66,7 +68,7 @@ Managing database interactions with a separate class makes it easier to test,
 and also makes it easier to change from one database to another
 if we want to down the road.
 
-## Starting Point {#s:database-start}
+## Starting Point {#s:db-start}
 
 Our class, imaginatively named `Database`,
 tkaes the path to the SQLite database file as a constructor parameter
@@ -79,7 +81,7 @@ so that can be handled interchangeably.
 The whole thing looks like this:
 
 ```js
-const sqlite3 = require("sqlite3")
+const sqlite3 = require('sqlite3')
 
 class Database {
 
@@ -115,7 +117,7 @@ class Database {
   }
 }
 ```
-{: title="src/database/database-initial.js"}
+{: title="src/db/database-initial.js"}
 
 This makes a lot more sense once we see what the queries look like:
 
@@ -140,7 +142,7 @@ where
   Workshop.ident = ?
 `
 ```
-{: title="src/database/database-initial.js"}
+{: title="src/db/database-initial.js"}
 
 It's easy to overlook,
 but the query to get details of one workshop has a question mark `?` as the value of `Workshop.ident`.
@@ -166,7 +168,7 @@ function main () {
 
 main()
 ```
-{: title="src/database/database-initial.js"}
+{: title="src/db/database-initial.js"}
 
 This is simple enough:
 it gets the path to the database file,
@@ -205,7 +207,7 @@ and the result is an array of objects,
 one per record,
 whose names are the derived in an obvious way from the names of the columns.
 
-## In-Memory Database {#s:database-in-memory}
+## In-Memory Database {#s:db-in-memory}
 
 The previous example always manipulates database on disk.
 For testing purposes,
@@ -238,7 +240,7 @@ Let's modify the constructor of `Database` to set this up:
     }
   }
 ```
-{: title="src/database/database-mode.js"}
+{: title="src/db/database-mode.js"}
 
 If the `mode` parameter is the string `"memory"`,
 we create an in-memory database and initialize it by executing
@@ -259,7 +261,7 @@ function main () {
   database[action](args)
 }
 ```
-{: title="src/database/database-mode.js"}
+{: title="src/db/database-mode.js"}
 
 Here, the expression `...args` means
 "take anything left over after the fixed names have been matched and put it in an array called `args`".
@@ -307,7 +309,7 @@ Here are the changes to the constructor:
     }
   }
 ```
-{: title="src/database/database-mixed.js"}
+{: title="src/db/database-mixed.js"}
 
 And here are the supporting methods:
 
@@ -327,7 +329,7 @@ And here are the supporting methods:
     })
   }
 ```
-{: title="src/database/database-mixed.js"}
+{: title="src/db/database-mixed.js"}
 
 We also need to change the driver
 (and check, finally, that the requested action is actually supported):
@@ -345,9 +347,9 @@ function main () {
   database[action](args)
 }
 ```
-{: title="src/database/database-mixed.js"}
+{: title="src/db/database-mixed.js"}
 
-## Making It Testable {#s:database-testable}
+## Making It Testable {#s:db-testable}
 
 We put the database class and its driver in separate files
 so that applications can load just the former.
@@ -370,7 +372,7 @@ class Database {
   ...
 }
 ```
-{: title="src/database/separate-database.js"}
+{: title="src/db/separate-database.js"}
 
 The driver then looks like this:
 
@@ -395,7 +397,7 @@ const main = () => {
 
 main()
 ```
-{: title="src/database/separate-driver.js"}
+{: title="src/db/separate-driver.js"}
 
 Let's try running it:
 
@@ -407,8 +409,8 @@ node separate-driver.js file fixture.db getAll
               ^
 
 TypeError: Cannot read property 'Symbol(Symbol.iterator)' of undefined
-    at display (/project/src/database/separate-driver.js:4:15)
-    at main (/project/src/database/separate-driver.js:16:3)
+    at display (/project/src/db/separate-driver.js:4:15)
+    at main (/project/src/db/separate-driver.js:16:3)
 ```
 
 Whoops: the `run` method of the database delivers results to a callback;
@@ -432,7 +434,7 @@ class Database {
   ...
 }
 ```
-{: title="src/database/callback-database.js"}
+{: title="src/db/callback-database.js"}
 
 We then change the driver to pass `display` to the database method it's calling:
 
@@ -456,7 +458,7 @@ const main = () => {
 
 main()
 ```
-{: title="src/database/callback-driver.js"}
+{: title="src/db/callback-driver.js"}
 
 This looks strange the first few (dozen) times,
 but it's the way JavaScript works:
@@ -464,7 +466,7 @@ instead of asking for something and then operating on it,
 we say,
 "Here's what we want to do once results are available."
 
-## Testing {#s:database-testing}
+## Testing {#s:db-testing}
 
 Now,
 finally,
@@ -478,9 +480,9 @@ const FIXTURE = `
 drop table if exists Workshop;
 
 create table Workshop(
-        ident           integer unique not null primary key,
-        name            text unique not null,
-        duration        integer not null -- duration in minutes
+  ident           integer unique not null primary key,
+  name            text unique not null,
+  duration        integer not null -- duration in minutes
 );
 
 insert into Workshop values(1, "Building Community", 60);
@@ -515,7 +517,7 @@ test('Can only get workshops that exist', (t) => {
   })
 })
 ```
-{: title="src/database/basic-tests.js"}
+{: title="src/db/basic-tests.js"}
 
 Each test has the same structure:
 we define the expected result,
@@ -527,7 +529,11 @@ That callback uses the `t` object passed to our function by `test`
 to tell us when the test has completed.
 Inside the test we use `deepEqual` to check that the data structures are exact matches.
 
-## Exercises {#s:database-exercises}
+## Swapping {#s:db-swapping}
+
+FIXME: show how to swap the database in for the data manager.
+
+## Exercises {#s:db-exercises}
 
 ### Copying Records
 
