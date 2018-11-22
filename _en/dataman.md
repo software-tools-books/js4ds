@@ -1,6 +1,6 @@
 ---
-permalink: "/en/data/"
-title: "Providing Data"
+permalink: "/en/dataman/"
+title: "Managing Data"
 questions:
 - "What formats are commonly used for small scientific datasets?"
 - "What are some of the strengths and weaknesses of those formats?"

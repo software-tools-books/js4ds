@@ -23,7 +23,7 @@ toc:
   - /vis/
   - /promises/
   - /interactive/
-  - /data/
+  - /dataman/
   - /server/
   - /testing/
   - /capstone/
@@ -36,9 +36,9 @@ toc:
   - /citation/
   - /gloss/
   - /keypoints/
+  - /legacy/
   - /regexp/
   - /logging/
-  - /legacy/
   - /db/
 
 # Theme color.
