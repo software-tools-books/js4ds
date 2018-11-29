@@ -125,6 +125,69 @@ element 2 of x,y,z is z
 
 ## Prototypes {#s:legacy-prototypes}
 
-FIXME: explain prototypes
+We come finally to an aspect of JavaScript that has been the cause of a great deal of confusion: prototypes.
+Every JavaScript object has an internal property called its [prototype](../gloss/#g:prototype).
+If you try to access some property of an object and it's not found,
+JavaScript automatically looks in the object that the first object's prototype refers to.
+If the desired property isn't there,
+JavaScript looks in the prototype object's prototype, and so on.
+
+So where do prototypes come from?
+If an object is created with `new Something()`,
+and the function `Something` has a property called `prototype`,
+then the new object's prototype is set to that object.
+
+This will all make sense with an example and a diagram.
+Let's create an object to store the default properties of ice cream cones,
+then create a function `Cone` that creates an actual cone:
+
+```js
+const iceCream = {
+    size: 'large'
+}
+
+const Cone = function(f) {
+    this.flavor = f
+}
+
+Cone.prototype = iceCream
+```
+{: title="src/legacy/prototypes.js"}
+
+FIXME: diagram
+
+We can now create a cone and look at its properties:
+
+```js
+const dessert = new Cone('mustard')
+console.log(`initial flavor "${dessert.flavor}" and size "${dessert.size}"`)
+```
+{: title="src/legacy/prototypes.js"}
+```text
+initial flavor "mustard" and size "large"
+```
+
+If we change the `size` of our dessert,
+lookup finds the object's property before looking up the chain to find the parent object's:
+
+```js
+dessert.size = 'extra-large'
+console.log(`modified flavor "${dessert.flavor}" and size "${dessert.size}"`)
+```
+{: title="src/legacy/prototypes.js"}
+```text
+modified flavor "mustard" and size "extra-large"
+```
+
+Prototypes are a way to implement inheritance for object-oriented programming;
+the problem is that the mechanics are rather clumsy,
+and very different from what most programmers are used to,
+so people built a variety of layers on top of prototypes.
+To make things even more confusing,
+`this` can behave in some rather odd ways,
+and again,
+people built layers to try to insulate themselves from those oddities.
+Prototypes still have their fans,
+but most people find modern JavaScript's classes easier to use.
 
 {% include links.md %}
