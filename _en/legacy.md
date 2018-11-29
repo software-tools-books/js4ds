@@ -57,7 +57,71 @@ Every language except Canadian English has warts like these.
 
 ## Iteration {#s:legacy-iteration}
 
-FIXME: explain iteration
+We wrote above that arrays are objects.
+This led to some undesirable behavior with JavaScript's original `for` loop,
+which used the word `in` rather than `of`,
+and which looped over all of an object's enumerable keys:
+
+```js
+const things = ['x', 'y', 'z']
+things.someProperty = 'someValue'
+
+for (let key in things) {
+  console.log(key)
+}
+```
+{: title="src/legacy/for-loops.js"}
+```text
+0
+1
+2
+someProperty
+```
+
+That phrase "enumerable keys" conceals some strangeness of its own,
+but in brief,
+a `for-in` loop will loop over keys inherited from the object's parents
+as well as those defined in the object itself.
+Since this is usually not what programmers want (especially for arrays),
+older code often used a C-style loop:
+
+```js
+for (let i = 0; i < things.length; i += 1) {
+  console.log(i)
+}
+```
+```text
+0
+1
+2
+```
+
+Today's solution is to use `for-of` to get the *values* from an array,
+which is usually what we want:
+
+```js
+for (let key of things) {
+  console.log(key)
+}
+```
+```text
+x
+y
+z
+```
+
+Better yet, use `forEach` and take advantage of its optional second and third arguments:
+
+```js
+things.forEach((val, loc, array) => {
+    console.log(`element ${loc} of ${array} is ${val}`)
+})
+```
+```text
+element 0 of x,y,z is x
+element 1 of x,y,z is y
+element 2 of x,y,z is z
+```
 
 ## Prototypes {#s:legacy-prototypes}
 
