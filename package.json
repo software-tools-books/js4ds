@@ -12,6 +12,7 @@
   "license": "SEE LICENSE IN LICENSE.md",
   "homepage": "http://gvwilson.github.io/js-vs-ds/",
   "scripts": {
+    "merge": "node bin/stitch.js _config.yml docs/en docs/en/index.html docs/en/all/index.html",
     "dev": "parcel serve -p 4000",
     "lint": "eslint bin/*.js src/**/*.js",
     "standard": "standard",

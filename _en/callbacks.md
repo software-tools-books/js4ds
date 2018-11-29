@@ -59,7 +59,7 @@ JavaScript allocates a block of memory big enough to store several instructions,
 translates the text of the function into instructions,
 and stores a reference to those instructions in the variable `oneMore`:
 
-FIXME-14: diagram
+FIXME: diagram
 
 The only difference between these two cases is what's on the other end of the reference:
 four characters or a bunch of instructions that add one to a number.
@@ -410,16 +410,16 @@ add1(100) is 101 and add2(100) is 102
 The best way to understand what's going on is to draw a step-by-step memory diagram.
 In step 1, we call `adder(1)`:
 
-FIXME-14: diagram
+FIXME: diagram
 
 `adder` creates a new function that includes a reference to that 1 we just passed in:
 
-FIXME-14: diagram
+FIXME: diagram
 
 In step 3,
 `adder` returns that function, which is assigned to the name `add1`:
 
-FIXME-14: diagram
+FIXME: diagram
 
 Crucially,
 the function that `add1` now refers to keeps its reference to the value 1,
@@ -429,7 +429,7 @@ In steps 4-6,
 we repeat these three steps to create another function that has a reference to the value 2,
 and assign that function to `add2`:
 
-FIXME-14: diagram
+FIXME: diagram
 
 When we now call `add1` or `add2`,
 they add the value passed in and the value they've kept a reference to.

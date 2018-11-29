@@ -41,7 +41,7 @@ The diagram below shows this cycle in action:
 4. The connection is closed.
 5. The client parses the text and decides what to do with the data.
 
-FIXME-28: diagrams
+FIXME: diagrams
 
 This cycle might be repeated many times to display a single web page,
 since a separate request has to be made for every image,
@@ -108,7 +108,7 @@ http://example.org:1234/some/path?value=deferred&limit=200
 has five parts:
 
 - The protocol `http`, which specifies what rules are going to be used to exchange data.
-- The [hostname](../gloss/#g:host) `example.org`, which tells the client where to find the server.
+- The [hostname](../gloss/#g:hostname) `example.org`, which tells the client where to find the server.
   If we are running a server on our own computer for testing,
   we can use the name `localhost` to connect to it.
   (Computers rely on a service called [DNS](../gloss/#g:dns)

@@ -25,8 +25,10 @@ such as [logging what our server does](../logging/)
 and [using a relational database](../database/) instead of a text file
 as a data store.
 Beyond that,
-you could look at using the full power of the [D3](FIXME) library for interactive visualization,
-or at building more sophisticated React interfaces with [RxJS](FIXME).
+you could look at using the full power of the [D3][d3] library for interactive visualization,
+at building more sophisticated React interfaces with [RxJS][rxjs],
+or at starting over completely the way JavaScript programmers do every eight months
+and rewriting everything with [Web Components][web-components].
 Whatever you do,
 we hope that this tutorial has helped you get started.
 

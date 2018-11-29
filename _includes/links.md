@@ -9,11 +9,14 @@ definitions if that's done.
 
 [babel]: https://babeljs.io/
 [beazley]: https://www.dabeaz.com/
+[bernhardt-wat]: https://www.destroyallsoftware.com/talks/wat
 [bootstrap]: https://getbootstrap.com/
 
 [cheerio]: https://cheerio.js.org/
 [covenant]: https://www.contributor-covenant.org
 [cpu-second]: http://exple.tive.org/blarg/2018/08/15/time-dilation/
+
+[d3]: https://d3js.org/
 
 [event-loop]: https://nodejs.org/en/docs/guides/event-loop-timers-and-nexttick/
 [express]: https://expressjs.org/
@@ -33,11 +36,13 @@ definitions if that's done.
 
 [react]: https://reactjs.org/
 [runkit]: https://runkit.com/
+[rxjs]: https://rxjs-dev.firebaseapp.com/
 
 [seedrandom]: https://www.npmjs.com/package/seedrandom
 [spolsky-unicode]: https://www.joelonsoftware.com/2003/10/08/the-absolute-minimum-every-software-developer-absolutely-positively-must-know-about-unicode-and-character-sets-no-excuses/
 [sql-tutorial]: https://swcarpentry.github.io/sql-novice-survey/
 [supertest]: https://github.com/visionmedia/supertest
+[suri-wat]: https://medium.com/dailyjs/the-why-behind-the-wat-an-explanation-of-javascripts-weird-type-system-83b92879a8db
 [swc]: http://software-carpentry.org/
 
 [t3-process]: http://teachtogether.tech/en/process/
@@ -45,5 +50,6 @@ definitions if that's done.
 [vega-lite]: http://vega.github.io/
 
 [w3schools]: https://www.w3schools.com/
+[web-components]: https://developer.mozilla.org/en-US/docs/Web/Web_Components
 [webpack]: https://webpack.js.org/
 [winston]: https://github.com/winstonjs/winston

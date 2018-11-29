@@ -231,7 +231,7 @@ not called like a function.)
 ## Formatting Strings {#s:core-formatting}
 
 Rather than printing multiple strings and expressions,
-we can [interpolate](../gloss/#g:interpolation) values into a back-quoted string.
+we can [interpolate](../gloss/#g:string-interpolation) values into a back-quoted string.
 (We have to use back quotes because this feature was added to JavaScript
 long after the language was first created.)
 As the example below shows,

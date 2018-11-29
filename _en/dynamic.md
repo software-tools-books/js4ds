@@ -34,7 +34,7 @@ and that was the only place complex code could be run.
 (This tutorial uses a templating tool called [Jekyll][jekyll].
 It's clumsy and limited, but it's the default on [GitHub][github].)
 
-FIXME-18: diagram of server-side and client-side page generation
+FIXME: diagram of server-side and client-side page generation
 
 As browsers and JavaScript became more powerful,
 the balance shifted toward [client-side page generation](../gloss/#g:client-side-page-generation).

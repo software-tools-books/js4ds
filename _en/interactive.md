@@ -392,7 +392,7 @@ class App extends React.Component {
 ```
 {: title="src/interactive/multi-component/app.js"}
 
-FIXME-22: diagram
+FIXME: diagram
 
 This may seem pretty complicated,
 and it is,
@@ -499,7 +499,7 @@ const DateSubmit = (props) => {
 
 and run it:
 
-FIXME-23: screenshot
+FIXME: screenshot
 
 The next step is to handle date submission.
 Since we're trying to instill good practices,

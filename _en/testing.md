@@ -25,7 +25,7 @@ because we have been writing code without testing it.
 In this lesson we will redeem ourselves (partially)
 by correcting that (also partially).
 
-JavaScript uses the same pattern for unit testing as most other modern languages.
+JavaScript uses the same pattern for [unit testing](../gloss/#g:unit-test) as most other modern languages.
 Each test is written as a function,
 and each of those functions tests one particular aspect of the code.
 A standalone program called a [test runner](../gloss/#g:test-runner)
