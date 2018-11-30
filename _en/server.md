@@ -80,7 +80,7 @@ so that the server knows how much data to read.
 The headers and body in an HTTP response have the same form, and mean the same thing.
 Crucially,
 the response also includes a status code to indicate what happened:
-200 for OK, 400 for "page not found", and so on.
+200 for OK, 404 for "page not found", and so on.
 Some of the more common are:
 
 | Code | Name                  | Meaning                                                              |
@@ -112,7 +112,7 @@ has five parts:
   If we are running a server on our own computer for testing,
   we can use the name `localhost` to connect to it.
   (Computers rely on a service called [DNS](../gloss/#g:dns)
-  to find the machines assocaited with human-readable hostnames,
+  to find the machines associated with human-readable hostnames,
   but its operation is out of scope for this tutorial.)
 - The [port](../gloss/#g:port) `1234`, which tells the client where to call the service it wants.
   (If a host is like an office building, a port is like a phone number in that building.
@@ -170,7 +170,7 @@ and then the third creates the object that will do most of the work.
 Further down,
 the call to `app.get` tells that object to handle any `GET` request for '/'
 by sending a reply whose status is 200 (OK)
-and whose boy is an HTML page containing only an `h1` heading.
+and whose body is an HTML page containing only an `h1` heading.
 There is no actual HTML file on disk,
 and in fact no way for the browser to know if there was one or not:
 the server can send whatever it wants in response to whatever requests it wants to handle.
