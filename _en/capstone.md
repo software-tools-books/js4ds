@@ -31,7 +31,7 @@ The data manager is exactly [the one we built earlier](../data/).
 
 ## Server {#s:capstone-server}
 
-The server is almost the same as [previous one](../server/):
+The server is almost the same as [the previous one](../server/):
 
 ```js
 const express = require('express')
@@ -136,7 +136,7 @@ but it's not a bad place to start.
 Note that we are using `import` because we're trying to be modern,
 even though the back end still needs `require`.
 
-```
+```js
 import React from 'react'
 import ReactDOM from 'react-dom'
 import SurveyStats from './SurveyStats'
@@ -197,9 +197,9 @@ and data for those years:
 {: title="src/capstone/back/app.js"}
 
 We have to wait until our component has been mounted before we can fetch our summary data:
-we can't do this in constructor because
+we can't do this in the constructor because
 we have no control over the order in which bits of display are initialized.
-ON the upside,
+On the upside,
 we can use `response.json()` directly because we know the source is returning JSON data.
 This method is the only place where the summary is updated,
 since the data isn't changing underneath us:
