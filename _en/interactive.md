@@ -53,7 +53,7 @@ a button's `onClick` handler is called whenever the button is clicked.
 Here,
 we are telling React to call `sayHello`,
 which adds one to the variable `counter`
-and then prints its value.
+and then prints its value along with a greeting message.
 
 Global variables and functions are a poor way to structure code.
 It's far better to define the component as a class
@@ -96,7 +96,7 @@ and then use a method as the event handler:
 {: title="src/interactive/display-counter.html"}
 
 Working from bottom to top,
-the `ReactDOM.render` call inserts whatever HTML is produced by `<Counter/>`
+the `ReactDOM.render` call inserts whatever HTML is produced by `<Counter />`
 into the element whose ID is `"app"`.
 In this case,
 though,
@@ -188,10 +188,10 @@ Let's try running this:
 > js-vs-ds@0.1.0 dev /Users/stj/js-vs-ds
 > parcel serve -p 4000 "src/interactive/counter/index.html"
 
-Server running at http://localhost:4000 
+Server running at http://localhost:4000
 !!  /Users/stj/js-vs-ds/src/interactive/counter/app.js:11:12: Unexpected token (11:12)
    9 |   }
-  10 | 
+  10 |
 > 11 |   increment = (event) => {
      |             ^
   12 |     this.setState({counter: this.state.counter+1})
@@ -295,7 +295,7 @@ and the views are typically pure functions.
 To introduce this architecture,
 let's re-implement the counter using:
 
-- `App` to store the state and provides methods for altering it,
+- `App` to store the state and provide methods for altering it,
 - `NumberDisplay` to display a number, and
 - `UpAndDown` to provide buttons that increment and decrement that number.
 
@@ -359,7 +359,7 @@ const UpAndDown = (props) => {
 {: title="src/interactive/multi-component/UpAndDown.js"}
 
 We are now ready to build the overall application.
-It create a `state` containing a counter
+It creates a `state` containing a counter
 and defines methods to increment or decrement the counter's value.
 Its `render` method then lays out the buttons and the current state
 using those elements:
@@ -488,7 +488,7 @@ class App extends React.Component {
 ```
 {: title="src/interactive/asteroids/app.js"}
 
-Let's also create placeholder for `DateSubmit`:
+Let's also create a placeholder for `DateSubmit`:
 
 ```js
 const DateSubmit = (props) => {
@@ -508,7 +508,7 @@ we will make a reusable component whose caller will pass in:
 - a text label;
 - a variable to update with the current value of a text box;
 - a function to call when text box's value changes, and
-- another function to call when button clicked to submit.
+- another function to call when a button is clicked to submit.
 
 ```js
 const DateSubmit = ({label, value, onChange, onCommit}) => {
@@ -527,8 +527,8 @@ Note the use of destructuring in `DateSubmit`'s parameter list;
 this was introduced [earlier](../pages/#s:pages-citations)
 and is an easy way to pull values out of the `props` parameter.
 
-It's important to understand order of operations in the example above.
-`value={value}` puts a value in the input box to display each time `DateSubmit is called.
+It's important to understand the order of operations in the example above.
+`value={value}` puts a value in the input box to display each time `DateSubmit` is called.
 We re-bind `onChange` and `onClick` to functions on each call as well
 (remember, JSX gets translated into function calls).
 So yes,

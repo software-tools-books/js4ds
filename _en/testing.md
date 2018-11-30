@@ -286,7 +286,7 @@ describe('server', () => {
 ```
 
 Notice that we check to make sure that the server sends a 404
-we ask for something that doesn't exist.
+when we ask for something that doesn't exist.
 Making sure the system fails gracefully is just as important
 as making sure that it provides data when asked to.
 

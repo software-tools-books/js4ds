@@ -10,7 +10,7 @@ keypoints:
 - "Small tabular datasets are commonly stored as Comma-Separated Values (CSV)."
 - "CSV can only represent regular data, and CSV files usually don't include units."
 - "Nested data is commonly stored using JavaScript Object Notation (JSON)."
-- "JSON representations of tabular data often include redundant (and therefore possibly inconsistent) specification of column names."
+- "JSON representations of tabular data often include redundant (and therefore possibly inconsistent) specifications of column names."
 - "PapaParse is a robust CSV parsing library that produces JSON output."
 ---
 
@@ -101,7 +101,7 @@ and each record is an object with name-value pairs:
 ]
 ```
 
-Repeating fields names like this is wasteful compared to listing them once at the top of a table,
+Repeating field names like this is wasteful compared to listing them once at the top of a table,
 but it does mean that the fields within rows can be accessed directly
 using expressions like `colors[1].red`.
 
@@ -113,7 +113,7 @@ which has over 35,500 records.
 That's a lot to look at,
 so we will create a 10-record slice for testing.
 
-It would be easy to take the first ten,
+Although it would be easy to take the first ten,
 or the last,
 there's a good chance that neither would be representative of the data as a whole.
 Instead,
@@ -281,6 +281,8 @@ Thus,
 `func(...this.data.map(rec => rec[field]))` means
 "select the specified field from each record in `this.data` to create an array of fields,
 then pass all of those values as arguments to `func`.
+We include an underscore to the start of the name of `_get` to indicate that we
+intend it to be used only inside `getSurveyStats` and not to be called elsewhere.
 
 Adding the method to get weight and hindfoot length for a range of years
 is comparatively straightforward.
@@ -298,7 +300,7 @@ const _average = (...values) => {
 ```
 {: title="src/data/data-manager.js"}
 
-It would be more natural for `average` to take an array rather than a variable number of arguments,
+It would be more natural for `_average` to take an array rather than a variable number of arguments,
 but we want to be able to use it in the same way that we use `Math.min` and `Math.max`,
 so we have to conform to their signature.
 
@@ -349,7 +351,7 @@ and uses it to seed the random number generator.
 Another way to slice the data for testing purposes is to select one record from each year.
 Write a small command-line JavaScript program that:
 
-1. Reads all the data from the database.
+1. Reads all the data from the CSV.
 2. Keeps the first record it finds for each year.
 3. Prints these records formatted as SQL `insert` statements.
 
