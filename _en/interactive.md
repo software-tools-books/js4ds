@@ -33,7 +33,7 @@ a specifically-named property of the thing whose behavior we are specifying:
   <body>
     <div id="app"></div>
     <script type="text/babel">
-      let counter = 0;
+      let counter = 0
       const sayHello = (event) => {
         counter += 1
         console.log(`Hello, button: ${counter}`)
@@ -183,7 +183,8 @@ ReactDOM.render(
 Let's try running this:
 
 ```sh
-`npm run dev -- src/interactive/counter/index.html
+npm run dev -- src/interactive/counter/index.html
+```
 ```text
 > js-vs-ds@0.1.0 dev /Users/stj/js-vs-ds
 > parcel serve -p 4000 "src/interactive/counter/index.html"
