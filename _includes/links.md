@@ -32,6 +32,7 @@ definitions if that's done.
 
 [papaparse]: https://www.papaparse.com/
 [parcel]: https://parceljs.org/
+[parcel-tutorial]: https://medium.com/codingthesmartway-com-blog/getting-started-with-parcel-197eb85a2c8c
 [parse-xml-regular-expressions]: https://stackoverflow.com/a/1732454
 
 [react]: https://reactjs.org/

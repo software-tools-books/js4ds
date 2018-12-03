@@ -327,9 +327,9 @@ Server running at http://localhost:4000
 + Built in 128ms.
 ```
 
-When NPM installs a library in a project's `node_modules` directory,
+This works because when NPM installs a library in a project's `node_modules` directory,
 it will sometimes put a runnable script associated with that library in `node_modules/.bin`
-(note that it's `.bin`, not `bin`).
+(note that it's `.bin` with a leading `.`, not `bin`).
 When we ask Parcel to serve up an application, it:
 
 - looks in the named file to find JavaScript,
@@ -339,6 +339,7 @@ When we ask Parcel to serve up an application, it:
 
 Parcel also caches things in `./.cache` so that it doesn't need to do redundant work;
 both directories are normally added to `.gitignore`.
+To learn more about Parcel, see [Sebastian Eschweiler's quick tutorial][parcel-tutorial].
 
 It's very common to put tasks like "run my application" into NPM's `package.json` file,
 just as older programmers would put frequently-used commands into a project's Makefile.
