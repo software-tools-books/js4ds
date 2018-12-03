@@ -1,3 +1,6 @@
+import React from "react"
+import ReactDOM from "react-dom"
+
 const DateSubmit = ({label, value, onChange, onCommit}) => {
   return (
     <p>
@@ -7,3 +10,5 @@ const DateSubmit = ({label, value, onChange, onCommit}) => {
     </p>
   )
 }
+
+export {DateSubmit}

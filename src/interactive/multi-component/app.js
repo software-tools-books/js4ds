@@ -1,3 +1,8 @@
+import React from "react"
+import ReactDOM from "react-dom"
+import {UpAndDown} from "./UpAndDown"
+import {NumberDisplay} from "./NumberDisplay"
+
 class App extends React.Component {
 
   constructor (props) {
@@ -22,3 +27,6 @@ class App extends React.Component {
     )
   }
 }
+
+const mount = document.getElementById("app")
+ReactDOM.render(<App/>, mount)

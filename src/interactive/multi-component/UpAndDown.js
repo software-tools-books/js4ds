@@ -1,3 +1,6 @@
+import React from "react"
+import ReactDOM from "react-dom"
+
 const UpAndDown = (props) => {
   return (
     <p>
@@ -6,3 +9,5 @@ const UpAndDown = (props) => {
     </p>
   )
 }
+
+export {UpAndDown}

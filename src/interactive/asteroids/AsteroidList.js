@@ -1,3 +1,6 @@
+import React from "react"
+import ReactDOM from "react-dom"
+
 const AsteroidList = (props) => {
   return (
     <table>
@@ -15,3 +18,5 @@ const AsteroidList = (props) => {
     </table>
   )
 }
+
+export {AsteroidList}

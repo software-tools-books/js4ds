@@ -1,3 +1,8 @@
+import React from "react"
+import ReactDOM from "react-dom"
+import {AsteroidList} from "./AsteroidList"
+import {DateSubmit} from "./DateSubmit"
+
 class App extends React.Component {
 
   constructor (props) {
@@ -58,3 +63,6 @@ class App extends React.Component {
     return result
   }
 }
+
+const mount = document.getElementById("app")
+ReactDOM.render(<App/>, mount)
