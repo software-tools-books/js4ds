@@ -549,6 +549,8 @@ So we use the name of each asteroid,
 which should be unique,
 as the key for each `tr` element.
 
+FIXME: explain why React cares if we don't provide a key for each row
+
 `AsteroidList` expects data to arrive in `props.asteroids`,
 so let's put some made-up values in `App` for now
 that we can then pass in:
