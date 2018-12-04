@@ -27,7 +27,9 @@ they're even easier to build in React.
 
 Let's switch back to single-page examples for a moment
 to show how we pass a callback function as
-a specifically-named property of the thing whose behavior we are specifying:
+a specifically-named property of the thing whose behavior we are specifying.
+(Don't forget to load the required libraries in the HTML header, like we did
+[earlier](../dynamic/).)
 
 ```js
   <body>
@@ -185,6 +187,7 @@ Let's try running this:
 ```sh
 npm run dev -- src/interactive/counter/index.html
 ```
+
 ```text
 > js-vs-ds@0.1.0 dev /Users/stj/js-vs-ds
 > parcel serve -p 4000 "src/interactive/counter/index.html"
@@ -304,30 +307,27 @@ The crucial design feature is that
 `NumberDisplay` and `UpAndDown` don't know what they're displaying
 or what actions are being taken on their behalf,
 which makes them easier to re-use.
-Again,
-we will load everything manually instead of bundling to make dependencies clearer.
+Of course,
+no good deed goes unpunished.
+The price that we pay
+for organising our application into separate components
+is that now we must import the dependencies of each component
+and export the component itself within each script.
+
+After we've done this,
+our dependencies will be bundled by parcel.
+So we must remove the script loading from the HTML header.
 The whole page is:
 
 ```html
 <html>
   <head>
     <meta charset="utf-8">
-    <title>Hello World</title>
-    <script src="https://fb.me/react-15.0.1.js"></script>
-    <script src="https://fb.me/react-dom-15.0.1.js"></script>
-    <script src="https://unpkg.com/babel-standalone@6/babel.js"></script>
-    <script src="NumberDisplay.js" type="text/babel"></script>
-    <script src="UpAndDown.js" type="text/babel"></script>
-    <script src="app.js" type="text/babel"></script>
+    <title>Up and Down</title>
   </head>
   <body>
     <div id="app"></div>
-    <script type="text/babel">
-      ReactDOM.render(
-        <App />,
-        document.getElementById("app")
-      )
-    </script>
+    <script src="app.js"></script>
   </body>
 </html>
 ```
@@ -358,6 +358,41 @@ const UpAndDown = (props) => {
 }
 ```
 {: title="src/interactive/multi-component/UpAndDown.js"}
+
+Both of these components will use React and ReactDOM when they are rendered
+so we must import these.
+We do this by adding import statements to the beginning of both components:
+
+```js
+import React from "react"
+import ReactDOM from "react-dom"
+```
+{: title="src/interactive/multi-component/NumberDisplay.js"}
+
+Similarly, our application will need to import the
+`UpAndDown` and `NumberDisplay` components,
+so we need to export them after they've been defined.
+This is done by adding `export {<object_name>}` to the end of the
+component script.
+(We will explore why the curly braces are necessary in the exercises.)
+After we've done this for `UpAndDown`,
+the complete component script looks like this:
+
+```js
+import React from "react"
+import ReactDOM from "react-dom"
+
+const UpAndDown = (props) => {
+  return (
+    <p>
+      <button onClick={props.up}> [+] </button>
+      <button onClick={props.down}> [-] </button>
+    </p>
+  )
+}
+
+export {UpAndDown}
+```
 
 We are now ready to build the overall application.
 It creates a `state` containing a counter
@@ -395,6 +430,32 @@ class App extends React.Component {
 
 FIXME: diagram
 
+We must import the dependencies as we did with the other components.
+As well as `React` and `ReactDOM`,
+we need to include the components that we've written.
+Dependencies stored locally can be imported by providing the path to
+the file in which they are defined,
+with the `.js` removed from the file name:
+
+```js
+import React from "react"
+import ReactDOM from "react-dom"
+import {UpAndDown} from "./UpAndDown"
+import {NumberDisplay} from "./NumberDisplay"
+
+...script body...
+```
+
+Finally,
+we can render the application with `ReactDOM` as before:
+
+```js
+...script body...
+
+const mount = document.getElementById("app")
+ReactDOM.render(<App/>, mount)
+```
+
 This may seem pretty complicated,
 and it is,
 because this example would be much simpler to write without all this indirection.
@@ -415,6 +476,11 @@ We will use it to build a small display with:
 Here's the first version of our `App` class:
 
 ```js
+import React from "react"
+import ReactDOM from "react-dom"
+import {AsteroidList} from "./AsteroidList"
+import {DateSubmit} from "./DateSubmit"
+
 class App extends React.Component {
 
   constructor (props) {
@@ -437,22 +503,29 @@ class App extends React.Component {
     )
   }
 }
+
+const mount = document.getElementById("app")
+ReactDOM.render(<App/>, mount)
 ```
 {: title="src/interactive/asteroids/app.js"}
 
 We'll test it by displaying asteroids using fake data;
 as in our first example,
 the display component `AsteroidList` doesn't modify data,
-but just displays it:
+but just displays it in a table:
 
 ```js
+import React from "react"
+import ReactDOM from "react-dom"
+
 const AsteroidList = (props) => {
   return (
     <table>
+      <tbody>
       <tr><th>Name</th><th>Date</th><th>Diameter (m)</th><th>Approach (km)</th></tr>
       {props.asteroids.map((a) => {
         return (
-          <tr>
+          <tr key={a.name}>
             <td>{a.name}</td>
             <td>{a.date}</td>
             <td>{a.diameter}</td>
@@ -460,11 +533,23 @@ const AsteroidList = (props) => {
           </tr>
         )
       })}
+      </tbody>
     </table>
   )
 }
+
+export {AsteroidList}
 ```
 {: title="src/interactive/asteroids/AsteroidList.js"}
+
+`React` will complain if we don't provide a unique key
+to distinguish elements that we create iteratively
+as we are doing with the table rows above.
+So we use the name of each asteroid,
+which should be unique,
+as the key for each `tr` element.
+
+FIXME: explain why React cares if we don't provide a key for each row
 
 `AsteroidList` expects data to arrive in `props.asteroids`,
 so let's put some made-up values in `App` for now
@@ -492,9 +577,14 @@ class App extends React.Component {
 Let's also create a placeholder for `DateSubmit`:
 
 ```js
+import React from "react"
+import ReactDOM from "react-dom"
+
 const DateSubmit = (props) => {
   return (<p>DateSubmit</p>)
 }
+
+export {DateSubmit}
 ```
 {: title="src/interactive/asteroids/DateSubmit.js"}
 
@@ -512,6 +602,8 @@ we will make a reusable component whose caller will pass in:
 - another function to call when a button is clicked to submit.
 
 ```js
+...imports as before...
+
 const DateSubmit = ({label, value, onChange, onCommit}) => {
   return (
     <p>
@@ -521,6 +613,8 @@ const DateSubmit = ({label, value, onChange, onCommit}) => {
     </p>
   )
 }
+
+...export as before...
 ```
 {: title="src/interactive/asteroids/DateSubmit.js"}
 
@@ -539,6 +633,8 @@ but React and the browser work together to minimize recalculation.
 Now let's go back and re-work our application:
 
 ```js
+...imports as before...
+
 class App extends React.Component {
 
   constructor (props) {
@@ -572,6 +668,8 @@ class App extends React.Component {
     )
   }
 }
+
+...mount as before...
 ```
 {: title="src/interactive/asteroids/app.js"}
 
@@ -655,6 +753,14 @@ feel like a metaphor for programming in general?
 
 Modify all of the examples *after* the introduction of Babel
 to use external scripts rather than in-pace scripts.
+
+### Exports
+
+Are the curly braces necessary when exporting from a component file?
+What happens if you remove them?
+Read this [blogpost][es6-modules] and then consider whether it might
+have been more appropriate to use default exports and imports
+in the examples above.
 
 ### Validation
 
