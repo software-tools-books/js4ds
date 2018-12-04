@@ -476,6 +476,11 @@ We will use it to build a small display with:
 Here's the first version of our `App` class:
 
 ```js
+import React from "react"
+import ReactDOM from "react-dom"
+import {AsteroidList} from "./AsteroidList"
+import {DateSubmit} from "./DateSubmit"
+
 class App extends React.Component {
 
   constructor (props) {
@@ -498,6 +503,9 @@ class App extends React.Component {
     )
   }
 }
+
+const mount = document.getElementById("app")
+ReactDOM.render(<App/>, mount)
 ```
 {: title="src/interactive/asteroids/app.js"}
 
@@ -507,13 +515,17 @@ the display component `AsteroidList` doesn't modify data,
 but just displays it:
 
 ```js
+import React from "react"
+import ReactDOM from "react-dom"
+
 const AsteroidList = (props) => {
   return (
     <table>
+      <tbody>
       <tr><th>Name</th><th>Date</th><th>Diameter (m)</th><th>Approach (km)</th></tr>
       {props.asteroids.map((a) => {
         return (
-          <tr>
+          <tr key={a.name}>
             <td>{a.name}</td>
             <td>{a.date}</td>
             <td>{a.diameter}</td>
@@ -521,9 +533,12 @@ const AsteroidList = (props) => {
           </tr>
         )
       })}
+      </tbody>
     </table>
   )
 }
+
+export {AsteroidList}
 ```
 {: title="src/interactive/asteroids/AsteroidList.js"}
 
@@ -553,9 +568,14 @@ class App extends React.Component {
 Let's also create a placeholder for `DateSubmit`:
 
 ```js
+import React from "react"
+import ReactDOM from "react-dom"
+
 const DateSubmit = (props) => {
   return (<p>DateSubmit</p>)
 }
+
+export {DateSubmit}
 ```
 {: title="src/interactive/asteroids/DateSubmit.js"}
 
@@ -573,6 +593,8 @@ we will make a reusable component whose caller will pass in:
 - another function to call when a button is clicked to submit.
 
 ```js
+...imports as before...
+
 const DateSubmit = ({label, value, onChange, onCommit}) => {
   return (
     <p>
@@ -582,6 +604,8 @@ const DateSubmit = ({label, value, onChange, onCommit}) => {
     </p>
   )
 }
+
+...export as before...
 ```
 {: title="src/interactive/asteroids/DateSubmit.js"}
 
@@ -600,6 +624,8 @@ but React and the browser work together to minimize recalculation.
 Now let's go back and re-work our application:
 
 ```js
+...imports as before...
+
 class App extends React.Component {
 
   constructor (props) {
@@ -633,6 +659,8 @@ class App extends React.Component {
     )
   }
 }
+
+...mount as before...
 ```
 {: title="src/interactive/asteroids/app.js"}
 
