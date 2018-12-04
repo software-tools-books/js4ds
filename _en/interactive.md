@@ -35,7 +35,7 @@ a specifically-named property of the thing whose behavior we are specifying.
   <body>
     <div id="app"></div>
     <script type="text/babel">
-      let counter = 0;
+      let counter = 0
       const sayHello = (event) => {
         counter += 1
         console.log(`Hello, button: ${counter}`)
@@ -206,7 +206,7 @@ Server running at http://localhost:4000
 It seems that Parcel doesn't like fat arrow methods.
 This happens because React is still using ES6 JavaScript by default,
 and fat arrow methods weren't included in JavaScript at that point.
-Alright, let's try using "normal" function-style method definitions instead:
+All right, let's try using "normal" function-style method definitions instead:
 
 ```js
 ...imports as before...
@@ -512,7 +512,7 @@ ReactDOM.render(<App/>, mount)
 We'll test it by displaying asteroids using fake data;
 as in our first example,
 the display component `AsteroidList` doesn't modify data,
-but just displays it:
+but just displays it in a table:
 
 ```js
 import React from "react"
@@ -541,6 +541,13 @@ const AsteroidList = (props) => {
 export {AsteroidList}
 ```
 {: title="src/interactive/asteroids/AsteroidList.js"}
+
+`React` will complain if we don't provide a unique key
+to distinguish elements that we create iteratively
+as we are doing with the table rows above.
+So we use the name of each asteroid,
+which should be unique,
+as the key for each `tr` element.
 
 `AsteroidList` expects data to arrive in `props.asteroids`,
 so let's put some made-up values in `App` for now
@@ -750,7 +757,7 @@ to use external scripts rather than in-pace scripts.
 Are the curly braces necessary when exporting from a component file?
 What happens if you remove them?
 Read this [blogpost][es6-modules] and then consider whether it might
-have been more apporpriate to use default exports and imports
+have been more appropriate to use default exports and imports
 in the examples above.
 
 ### Validation
