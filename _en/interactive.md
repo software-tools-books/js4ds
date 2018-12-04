@@ -27,13 +27,15 @@ they're even easier to build in React.
 
 Let's switch back to single-page examples for a moment
 to show how we pass a callback function as
-a specifically-named property of the thing whose behavior we are specifying:
+a specifically-named property of the thing whose behavior we are specifying.
+(Don't forget to load the required libraries in the HTML header, like we did
+[earlier](../dynamic/).)
 
 ```js
   <body>
     <div id="app"></div>
     <script type="text/babel">
-      let counter = 0
+      let counter = 0;
       const sayHello = (event) => {
         counter += 1
         console.log(`Hello, button: ${counter}`)
@@ -185,6 +187,7 @@ Let's try running this:
 ```sh
 npm run dev -- src/interactive/counter/index.html
 ```
+
 ```text
 > js-vs-ds@0.1.0 dev /Users/stj/js-vs-ds
 > parcel serve -p 4000 "src/interactive/counter/index.html"
@@ -203,7 +206,7 @@ Server running at http://localhost:4000
 It seems that Parcel doesn't like fat arrow methods.
 This happens because React is still using ES6 JavaScript by default,
 and fat arrow methods weren't included in JavaScript at that point.
-All right, let's try using "normal" function-style method definitions instead:
+Alright, let's try using "normal" function-style method definitions instead:
 
 ```js
 ...imports as before...
@@ -304,30 +307,27 @@ The crucial design feature is that
 `NumberDisplay` and `UpAndDown` don't know what they're displaying
 or what actions are being taken on their behalf,
 which makes them easier to re-use.
-Again,
-we will load everything manually instead of bundling to make dependencies clearer.
+Of course,
+no good deed goes unpunished.
+The price that we pay
+for organising our application into separate components
+is that now we must import the dependencies of each component
+and export the component itself within each script.
+
+After we've done this,
+our dependencies will be bundled by parcel.
+So we must remove the script loading from the HTML header.
 The whole page is:
 
 ```html
 <html>
   <head>
     <meta charset="utf-8">
-    <title>Hello World</title>
-    <script src="https://fb.me/react-15.0.1.js"></script>
-    <script src="https://fb.me/react-dom-15.0.1.js"></script>
-    <script src="https://unpkg.com/babel-standalone@6/babel.js"></script>
-    <script src="NumberDisplay.js" type="text/babel"></script>
-    <script src="UpAndDown.js" type="text/babel"></script>
-    <script src="app.js" type="text/babel"></script>
+    <title>Up and Down</title>
   </head>
   <body>
     <div id="app"></div>
-    <script type="text/babel">
-      ReactDOM.render(
-        <App />,
-        document.getElementById("app")
-      )
-    </script>
+    <script src="app.js"></script>
   </body>
 </html>
 ```
@@ -358,6 +358,41 @@ const UpAndDown = (props) => {
 }
 ```
 {: title="src/interactive/multi-component/UpAndDown.js"}
+
+Both of these components will use React and ReactDOM when they are rendered
+so we must import these.
+We do this by adding import statements to the beginning of both components:
+
+```js
+import React from "react"
+import ReactDOM from "react-dom"
+```
+{: title="src/interactive/multi-component/NumberDisplay.js"}
+
+Similarly, our application will need to import the
+`UpAndDown` and `NumberDisplay` components,
+so we need to export them after they've been defined.
+This is done by adding `export {<object_name>}` to the end of the
+component script.
+(We will explore why the curly braces are necessary in the exercises.)
+After we've done this for `UpAndDown`,
+the complete component script looks like this:
+
+```js
+import React from "react"
+import ReactDOM from "react-dom"
+
+const UpAndDown = (props) => {
+  return (
+    <p>
+      <button onClick={props.up}> [+] </button>
+      <button onClick={props.down}> [-] </button>
+    </p>
+  )
+}
+
+export {UpAndDown}
+```
 
 We are now ready to build the overall application.
 It creates a `state` containing a counter
@@ -394,6 +429,32 @@ class App extends React.Component {
 {: title="src/interactive/multi-component/app.js"}
 
 FIXME: diagram
+
+We must import the dependencies as we did with the other components.
+As well as `React` and `ReactDOM`,
+we need to include the components that we've written.
+Dependencies stored locally can be imported by providing the path to
+the file in which they are defined,
+with the `.js` removed from the file name:
+
+```js
+import React from "react"
+import ReactDOM from "react-dom"
+import {UpAndDown} from "./UpAndDown"
+import {NumberDisplay} from "./NumberDisplay"
+
+...script body...
+```
+
+Finally,
+we can render the application with `ReactDOM` as before:
+
+```js
+...script body...
+
+const mount = document.getElementById("app")
+ReactDOM.render(<App/>, mount)
+```
 
 This may seem pretty complicated,
 and it is,
@@ -655,6 +716,14 @@ feel like a metaphor for programming in general?
 
 Modify all of the examples *after* the introduction of Babel
 to use external scripts rather than in-pace scripts.
+
+### Exports
+
+Are the curly braces necessary when exporting from a component file?
+What happens if you remove them?
+Read this [blogpost][es6-modules] and then consider whether it might
+have been more apporpriate to use default exports and imports
+in the examples above.
 
 ### Validation
 

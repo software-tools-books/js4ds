@@ -18,6 +18,7 @@ definitions if that's done.
 
 [d3]: https://d3js.org/
 
+[es6-modules]: http://2ality.com/2014/09/es6-modules-final.html
 [event-loop]: https://nodejs.org/en/docs/guides/event-loop-timers-and-nexttick/
 [express]: https://expressjs.org/
 
