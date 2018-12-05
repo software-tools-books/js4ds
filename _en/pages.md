@@ -424,10 +424,8 @@ The callback function inside `forEach` creates an array containing the child nod
 then filters that list to remove any top-level text nodes.
 We need the `Array.from` call because (once again) the DOM doesn't use a JavaScript array to store children,
 but a structure of its own devising that lacks the methods we want to call.
-As for removing top-level text nodes,
-the diagram below shows why we have to do this:
-
-FIXME: diagram
+The exercises will explore why we remove the top-level text nodes with
+`c.nodeName !== '#text'`.
 
 > **Identifying Text Nodes**
 >
@@ -725,6 +723,17 @@ to remind us just how quickly life is passing by.
    and returns the total number of words in the page.
 2. Write a second function called `showWords` that uses the first to find the number of words,
    then displays that number in a paragraph whose ID is `wordcount`.
+
+## Removing Text Nodes
+
+In the example that sorts the items in lists,
+we remove all the text nodes from the list of child nodes before sorting.
+Why?
+What happens if remove the line:
+
+```js
+          .filter(c => c.nodeName !== '#text')
+```
 
 ## A More Robust Table of Contents
 
