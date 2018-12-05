@@ -40,7 +40,7 @@ pages can be compiled once, stored on disk, and served thereafter,
 or each page can be recompiled whenever it's needed
 (which makes it easy to include dynamic elements like today's top news story):
 
-<img id="f:dynamic-alternatives" src="../../files/dynamic-alternatives.svg" />
+<img title="Page Generation Alternatives" id="f:dynamic-alternatives" src="../../files/dynamic-alternatives.svg" />
 
 As browsers and JavaScript became more powerful,
 the balance shifted toward [client-side page generation](../gloss/#g:client-side-page-generation).
