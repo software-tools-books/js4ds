@@ -154,8 +154,6 @@ Cone.prototype = iceCream
 ```
 {: title="src/legacy/prototypes.js"}
 
-FIXME: diagram
-
 We can now create a cone and look at its properties:
 
 ```js
@@ -166,6 +164,8 @@ console.log(`initial flavor "${dessert.flavor}" and size "${dessert.size}"`)
 ```text
 initial flavor "mustard" and size "large"
 ```
+
+<img title="Prototypes" id="f:legacy-prototype" src="../../files/legacy-prototype.svg" />
 
 If we change the `size` of our dessert,
 lookup finds the object's property before looking up the chain to find the parent object's:
