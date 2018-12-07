@@ -33,15 +33,18 @@ The core of HTTP is a [request](../gloss/#g:http-request)/[response](../gloss/#g
 that specifies the kinds of requests applications can make of servers,
 how they exchange data,
 and so on.
-The diagram below shows this cycle in action:
+The diagram below shows this cycle in action for a page that includes one image:
 
-1. The client (a browser or some other program) makes a connection to a server.
-2. It then sends a blob of text specifying what it's asking for.
-3. The server replies with a blob of text, and possibly other data as well.
-4. The connection is closed.
-5. The client parses the text and decides what to do with the data.
+1.  The client (a browser or some other program) makes a connection to a server.
+2.  It then sends a blob of text specifying what it's asking for.
+3.  The server replies with a blob of text and the HTML.
+4.  The connection is closed.
+5.  The client parses the text and realizes it needs an image.
+6.  It sends another blob of text to the server asking for that image.
+7.  The server replies with a blob of text and the contents of the image file.
+8.  The connection is closed.
 
-FIXME: diagrams
+<img title="HTTP Request/Response Cycle" id="f:server-cycle" src="../../files/server-cycle.svg" />
 
 This cycle might be repeated many times to display a single web page,
 since a separate request has to be made for every image,
@@ -66,16 +69,15 @@ Some examples include:
 - `"Accept-Language: fr, en"` to specify that the client prefers French, but will accept English
 - `"If-Modified-Since: 16-May-2018"` to tell the server that the client is only interested in recent data
 
-Unlike a dictionary, a key may appear any number of times,
-so that (for example) a request can specify that it's willing to accept several types of content.
-
-FIXME: diagram of typical request
-
+(Unlike a dictionary, a key may appear any number of times,
+which allows a request to do things like specify that it's willing to accept several types of content.
 The [body](../gloss/#g:http-body) of the request is any extra data associated with it,
 such as files that are being uploaded.
 If a body is present,
 the request must contain the `Content-Length` header
 so that the server knows how much data to read.
+
+<img title="Structure of an HTTP Request" id="f:server-request" src="../../files/server-request.svg" />
 
 The headers and body in an HTTP response have the same form, and mean the same thing.
 Crucially,
