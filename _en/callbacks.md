@@ -32,21 +32,14 @@ we must first understand what actually happens when functions are defined and ca
 
 ## The Call Stack {#s:callbacks-callstack}
 
-FIXME: explain call stack
-
-## Functions as Parameters {#s:callbacks-func-params}
-
 When JavaScript [parses](../gloss/#g:parse) the expression `let name = "text"`,
 it allocates a block of memory big enough for four characters
-and stores 't', 'e', 'x', and 't' in them.
-When it executes the assignment,
-it stores a reference to that block of characters in the variable `name`.
+and stores a reference to that block of characters in the variable `name`.
 We can show this by drawing a [memory diagram](../gloss/#g:memory-diagram):
 
-FIXME: memory diagram
+<img title="Name and Value" id="f:callbacks-name-value" src ="../../files/callbacks-name-value.svg" />
 
-Similarly,
-when we write:
+When we write:
 
 ```js
 oneMore = (x) => {
@@ -59,7 +52,7 @@ JavaScript allocates a block of memory big enough to store several instructions,
 translates the text of the function into instructions,
 and stores a reference to those instructions in the variable `oneMore`:
 
-FIXME: diagram
+<img title="Functions in Memory" id="f:callbacks-one-more" src="../../files/callbacks-one-more.svg" />
 
 The only difference between these two cases is what's on the other end of the reference:
 four characters or a bunch of instructions that add one to a number.
@@ -79,11 +72,34 @@ Doing this does *not* call the function:
 as the memory diagram below shows,
 it creates a second name that refers to the same block of instructions.
 
-FIXME: diagram
+<img title="Aliasing a Function" src="f:callbacks-alias-function" src="../../files/callbacks-alias-function.svg" />
 
-As the previous section explained,
+As explained in [the previous lesson](../basics/),
 when JavaScript calls a function it assigns the arguments in the call to the function's parameters.
-This means that we can pass a function into another function:
+In order for this to be safe,
+we need to ensure that there are no [name collisions](../gloss/#g:name-collision),
+i.e.,
+that if there is a variable called `something` and one of the function's parameters is also called `something`,
+the function will use the right one.
+The way every modern language implements this is to use a [call stack](../gloss/#g:call-stack).
+Instead of putting all our variables in one big table,
+we have one table for global varibles
+and one extra table for each function call.
+This means that if we assign 100 to `x`,
+call `oneMore(2 * x + 1)`,
+and look at memory in the middle of that call,
+we will find this:
+
+<img title="The Call Stack" src="f:callbacks-call-stack" src="../../files/callbacks-call-stack.svg" />
+
+## Functions of Functions {#s:callbacks-func}
+
+The call stack allows us to write and call functions
+without worrying about whether we're accidentally going to refer to the wrong variable.
+And since functions are just another kind of data,
+we can pass one function into another.
+For example,
+we can write a function called `doTwice` that calls some other function two times:
 
 ```js
 const doTwice = (action) => {
@@ -103,11 +119,16 @@ hello
 hello
 ```
 
-This is more useful when the function (or functions) passed in have parameters of their own.
+Again,
+this is clearer when we look at the state of memory while `doTwice` is running:
+
+<img title="Functions of Functions" src="f:callbacks-do-twice" src="../../files/callbacks-do-twice.svg" />
+
+This becomes more useful when the function or functions passed in have parameters of their own.
 For example,
 the function `pipeline` passes a value to one function,
 then takes that function's result and passes it to a second,
-the result of which is then returned:
+and returns the final result:
 
 ```js
 const pipeline = (initial, first, second) => {
@@ -117,9 +138,8 @@ const pipeline = (initial, first, second) => {
 ```
 {: title="src/callbacks/two-functions.js"}
 
-FIXME: diagram
-
-Let's trace its operation on a function that trims blanks off the starts and ends of strings
+Let's use this to combine
+a function that trims blanks off the starts and ends of strings
 and another function that replaces spaces with dots:
 
 ```js
@@ -135,6 +155,12 @@ console.log(`trim then dot: |${trimThenDot}|`)
 ```text
 trim then dot: |this.example.uses.text|
 ```
+
+During the call to `temp = first(initial)`,
+but before a value has been returned to be assigned to `temp`,
+memory looks like this:
+
+<img title="Implementing a Pipeline" src="f:callbacks-pipeline" src="../../files/callbacks-pipeline.svg" />
 
 Reversing the order of the functions changes the result:
 
@@ -198,10 +224,7 @@ console.log(oneMore(3 * 2))
 
 Behind the scenes,
 JavaScript allocates a nameless temporary variable to hold the value of `3 * 2`,
-then passes a reference to that temporary variable into `oneMore`:
-
-FIXME: diagram
-
+then passes a reference to that temporary variable into `oneMore`.
 We can do the same thing with functions,
 i.e., create one on the fly without giving it a name as we're passing it into some other function.
 For example,
@@ -398,40 +421,40 @@ const adder = (increment) => {
   return f
 }
 
-const add1 = adder(1)
-const add2 = adder(2)
-console.log(`add1(100) is ${add1(100)} and add2(100) is ${add2(100)}`)
+const add_1 = adder(1)
+const add_2 = adder(2)
+console.log(`add_1(100) is ${add_1(100)} and add_2(100) is ${add_2(100)}`)
 ```
 {: title="src/callbacks/adder.js"}
 ```text
-add1(100) is 101 and add2(100) is 102
+add_1(100) is 101 and add_2(100) is 102
 ```
 
 The best way to understand what's going on is to draw a step-by-step memory diagram.
 In step 1, we call `adder(1)`:
 
-FIXME: diagram
+<img title="Creating an Adder (Step 1)" src="f:callbacks-adder-1" src="../../files/callbacks-adder-1.svg" />
 
 `adder` creates a new function that includes a reference to that 1 we just passed in:
 
-FIXME: diagram
+<img title="Creating an Adder (Step 2)" src="f:callbacks-adder-2" src="../../files/callbacks-adder-2.svg" />
 
 In step 3,
-`adder` returns that function, which is assigned to the name `add1`:
+`adder` returns that function, which is assigned to `add_1`:
 
-FIXME: diagram
+<img title="Creating an Adder (Step 3)" src="f:callbacks-adder-3" src="../../files/callbacks-adder-3.svg" />
 
 Crucially,
-the function that `add1` now refers to keeps its reference to the value 1,
+the function that `add_1` refers to still has a reference to the value 1,
 even though that value isn't referred to any longer by anyone else.
 
 In steps 4-6,
 we repeat these three steps to create another function that has a reference to the value 2,
-and assign that function to `add2`:
+and assign that function to `add_2`:
 
-FIXME: diagram
+<img title="Creating an Adder (Steps 4-6)" src="f:callbacks-adder-4" src="../../files/callbacks-adder-4.svg" />
 
-When we now call `add1` or `add2`,
+When we now call `add_1` or `add_2`,
 they add the value passed in and the value they've kept a reference to.
 
 This trick of capturing a reference to a value inside something else
