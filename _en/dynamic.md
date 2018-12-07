@@ -34,13 +34,19 @@ and that was the only place complex code could be run.
 (This tutorial uses a templating tool called [Jekyll][jekyll].
 It's clumsy and limited, but it's the default on [GitHub][github].)
 
-FIXME: diagram of server-side and client-side page generation
+Server-side generation can be done statically or dynamically,
+i.e.,
+pages can be compiled once, stored on disk, and served thereafter,
+or each page can be recompiled whenever it's needed
+(which makes it easy to include dynamic elements like today's top news story):
+
+<img title="Page Generation Alternatives" id="f:dynamic-alternatives" src="../../files/dynamic-alternatives.svg" />
 
 As browsers and JavaScript became more powerful,
 the balance shifted toward [client-side page generation](../gloss/#g:client-side-page-generation).
 In this model,
-JavaScript running in the browser fetches data from one or more servers,
-and uses that data to generate HTML in the browser for display.
+the browser fetches data from one or more servers
+and feeds that data to a JavaScript library that generate HTML in the browser for display.
 This allows the [client](../gloss/#g:client) to decide how best to render data,
 which is increasingly important as phones and tablets take over
 from desktop and laptop computers.
