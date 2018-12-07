@@ -305,7 +305,7 @@ when `child.farewell()` is called:
 - There isn't, so it follows the link from `Scientist` to the parent class `Person`
   and finds the function it's looking for.
 
-FIXME: memory diagram
+<img title="Object-Oriented Inheritance" id="f:oop-inheritance" src="../../files/oop-inheritance.svg" />
 
 ## Protocols {#s:oop-protocols}
 
