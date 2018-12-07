@@ -122,7 +122,7 @@ and feel very proud of ourselves.
 
 <figure>
   <figcaption>Mark and Encoding</figcaption>
-  <img id="f:vis-vega-mark-encoding" src="../../files/vega-mark-encoding.png" alt="Mark and Encoding" />
+  <img id="f:vis-vega-mark-encoding" src="../../files/vega-mark-encoding.png" title="Mark and Encoding" />
 </figure>
 
 There are also some poorly-styled links for various controls that we're not going to use.
@@ -151,7 +151,7 @@ We now have the visualization we wanted:
 
 <figure>
   <figcaption>Without Controls</figcaption>
-  <img id="f:vis-vega-disable-controls" src="../../files/vega-disable-controls.png" alt="Without Controls" />
+  <img id="f:vis-vega-disable-controls" src="../../files/vega-disable-controls.png" title="Without Controls" />
 </figure>
 
 Vega-Lite has a *lot* of options:
@@ -196,7 +196,7 @@ which is set to `"average"`:
 
 <figure>
   <figcaption>Aggregating and Using Points</figcaption>
-  <img id="f:vis-vega-aggregate-points" src="../../files/vega-aggregate-points.png" alt="Aggregating and Using Points" />
+  <img id="f:vis-vega-aggregate-points" src="../../files/vega-aggregate-points.png" title="Aggregating and Using Points" />
 </figure>
 
 ## Local Installation {#s:vis-vega-local}
