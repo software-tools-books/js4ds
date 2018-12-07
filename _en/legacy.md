@@ -165,7 +165,10 @@ console.log(`initial flavor "${dessert.flavor}" and size "${dessert.size}"`)
 initial flavor "mustard" and size "large"
 ```
 
-<img title="Prototypes" id="f:legacy-prototype" src="../../files/legacy-prototype.svg" />
+<figure id="f:legacy-prototype">
+  <figcaption>Prototypes</figcaption>
+  <img src="../../files/legacy-prototype.svg" />
+</figure>
 
 If we change the `size` of our dessert,
 lookup finds the object's property before looking up the chain to find the parent object's:
