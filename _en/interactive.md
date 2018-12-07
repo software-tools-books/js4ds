@@ -428,7 +428,10 @@ class App extends React.Component {
 ```
 {: title="src/interactive/multi-component/app.js"}
 
-FIXME: diagram
+<figure id="f:interactive-objects-dom">
+  <figcaption>React Objects and the DOM</figcaption>
+  <img src="../../files/interactive-objects-dom.svg" />
+</figure>
 
 We must import the dependencies as we did with the other components.
 As well as `React` and `ReactDOM`,
@@ -543,13 +546,11 @@ export {AsteroidList}
 {: title="src/interactive/asteroids/AsteroidList.js"}
 
 `React` will complain if we don't provide a unique key
-to distinguish elements that we create iteratively
-as we are doing with the table rows above.
-So we use the name of each asteroid,
-which should be unique,
-as the key for each `tr` element.
-
-FIXME: explain why React cares if we don't provide a key for each row
+to distinguish elements that we create,
+since having these keys helps it keep track of the component-to-DOM relationship,
+which in turn [makes updates much more efficient][react-keys].
+Since each asteroid's name is supposed to be unique,
+we use that name as the key for each table row.
 
 `AsteroidList` expects data to arrive in `props.asteroids`,
 so let's put some made-up values in `App` for now
@@ -590,7 +591,10 @@ export {DateSubmit}
 
 and run it:
 
-FIXME: screenshot
+<figure id="f:interactive-asteroids-screenshot">
+  <figcaption>Asteroids Application</figcaption>
+  <img src="../../files/interactive-asteroids-screenshot.png" />
+</figure>
 
 The next step is to handle date submission.
 Since we're trying to instill good practices,
