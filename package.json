@@ -59,5 +59,8 @@
     "vega-lib": "^4.2.0",
     "vega-lite": "^2.6.0",
     "winston": "^3.1.0"
+  },
+  "devDependencies": {
+    "babel-core": "^6.26.3"
   }
 }
