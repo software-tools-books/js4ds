@@ -75,8 +75,6 @@ to keep track of things that want to be run.
 When one task finishes,
 the interpreter takes the next one from this queue and runs it.
 
-FIXME: diagram
-
 `setTimeout` is one of the most widely used functions of this kind.
 Here it is in operation:
 
@@ -102,22 +100,31 @@ execution is delayed.
 What may be surprising is that setting a timeout of zero also defers execution:
 
 ```js
-[1000, 1500, 500].forEach(t => {
+const values = [1000, 1500, 500]
+console.log('starting...')
+values.forEach(t => {
   console.log(`about to setTimeout for ${t}`)
   setTimeout(() => {console.log(`inside timer handler for ${t}`)}, 0)
 })
+console.log('...finishing')
 ```
 {: title="src/promises/callbacks-with-zero-timeouts.js"}
 ```text
+starting...
 about to setTimeout for 1000
 about to setTimeout for 1500
 about to setTimeout for 500
+...finishing
 inside timer handler for 1000
 inside timer handler for 1500
 inside timer handler for 500
 ```
 
-We can use this to build a generic non-blocking function:
+Here's what the run queue looks like just before the program prints `...finishing`:
+
+<img title="Run Queue" id="f:promises-queue.svg" src="../../files/promises-queue.svg" />
+
+We can use `setTimeout` to build a generic non-blocking function:
 
 ```js
 const nonBlocking = (callback) => {
@@ -197,8 +204,6 @@ When the `stat` call completes,
 the remembered callback is called,
 and passed yet another object with statistics about the file (including its size).
 
-FIXME: diagram
-
 To understand this a little better,
 let's create our own promise to fetch a file from the web:
 
@@ -223,8 +228,6 @@ which by convention are called `resolve` and `reject`.
 Inside the body of the callback,
 we call `resolve` to return a value if and when everything worked as planned.
 That value is then passed to the `then` method of the `Promise`.
-
-FIXME: diagram
 
 This may seem a roundabout way of doing things,
 but it solves several problems at once.
@@ -257,7 +260,47 @@ new Promise((resolve, reject) => {
 got HTTP status code 400
 ```
 
-Without this,
+What makes this all work is that a promise is an object.
+Here's what's in memory just after this promise has been created:
+
+<img title="Promises as Objects (after creation)" id="f:promises-object-a" src="../../files/promises-object-a.svg" />
+
+There are a lot of arrows in this diagram,
+but they all serve a purpose:
+
+-   The promise has three fields:
+    the initial action (which is the callback passed to the constructor),
+    the action to be taken if everything succeeds,
+    and the action to be taken if there's an error.
+-   The success and error actions are empty,
+    because the initial action hasn't executed yet.
+
+Once the promise is created,
+the program calls its `then` and `catch` methods in that order,
+giving each a callback.
+This happens *before* the callback passed to the constructor
+(i.e., the initial action) is executed,
+and leaves the promise in this state:
+
+<img title="Promises as Objects (after then and catch)" id="f:promises-object-b" src="../../files/promises-object-b.svg" />
+
+Calling `then` and `catch` assigns callbacks to the success action and error action members of the promise object.
+Those methods are then passed into the initial action callback as `resolve` and `reject`,
+i.e.,
+if `resolve` is called because the page was fetched successfully,
+what's actually called is the promise's success action,
+which is the callback that was given to `then`.
+If `reject` is called,
+on the other hand,
+it triggers execution of the error action,
+which is the callback that was passed to `catch`.
+
+Yes,
+this is complicated---so complicated that another layer
+(which we will look at [soon](#s:promises-async-await))
+has been added to JavaScript to hide these details.
+Without this complexity,
+though,
 it's extremely difficult to handle errors from delayed computations.
 If we try this:
 
@@ -568,6 +611,29 @@ In particular,
 we cannot use them interactively unless we wrap whatever we want to do in a wee function.
 
 ## Exercises {#s:promises-exercises}
+
+### What's Going On?
+
+This code runs fine:
+
+```js
+[500, 1000].forEach(t => {
+  console.log(`about to setTimeout for ${t}`)
+  setTimeout(() => {console.log(`inside timer handler for ${t}`)}, 0)
+})
+```
+
+but this code fails:
+
+```js
+console.log('starting...')
+[500, 1000].forEach(t => {
+  console.log(`about to setTimeout for ${t}`)
+  setTimeout(() => {console.log(`inside timer handler for ${t}`)}, 0)
+})
+```
+
+Why?
 
 ### A Stay of Execution
 
