@@ -1,9 +1,10 @@
 ---
 permalink: /en/all/
+root: true
 layout: plain
 ---
 <div class="chapter">
-          <h1>JavaScript versus Data Science</h1>
+          <h2 id="s:en">JavaScript versus Data Science</h2>
           
 
           
@@ -33,7 +34,7 @@ not just scientists and engineers.</p>
   <li>Combining everything to create a three-tier web application</li>
 </ul>
 
-<h2 id="s:intro-audience">Intended Audience</h2>
+<h3 id="s:intro-audience">Intended Audience</h3>
 
 <p>We assume that you:</p>
 
@@ -50,7 +51,7 @@ if you want to know more,
 there are many other free tutorials you can dive into once you’ve mastered the basics,
 some of which are both up-to-date and well designed.</p>
 
-<h2 id="s:intro-contrib">Contributing</h2>
+<h3 id="s:intro-contrib">Contributing</h3>
 
 <p>Contributions of all kinds are welcome,
 from errata and minor improvements to entirely new sections and chapters.
@@ -66,7 +67,7 @@ our <a href="/en/conduct/">Code of Conduct</a>.</p>
 
         </div>
 <div class="chapter">
-          <h1>Introduction</h1>
+          <h2 id="s:intro">Introduction</h2>
           
 
           
@@ -83,7 +84,7 @@ our <a href="/en/conduct/">Code of Conduct</a>.</p>
 
 
           
-          <h2 id="s:intro-personas">Who You Are</h2>
+          <h3 id="s:intro-personas">Who You Are</h3>
 
 <p>Every lesson should aim to <a href="http://teachtogether.tech/en/process/">meet the needs of specific learners</a> <a href="#b">Wils2018</a>.
 The three people described below define the intended audience for this one.</p>
@@ -123,7 +124,7 @@ This book will fill in some of the gaps in her knowledge
 and show her how to take advantage of JavaScript’s more modern features.</dd>
 </dl>
 
-<h2 id="s:intro-setup">Setting Up</h2>
+<h3 id="s:intro-setup">Setting Up</h3>
 
 <p>You can do the exercises in the first part of this course online,
 but will need to install some software on your own computer
@@ -153,9 +154,9 @@ Local installation is usually a better idea,
 since it isolates projects from one another;
 we will explore this <a href="#s:display">later</a> when we look at how to create projects.</p>
 
-<h2 id="s:intro-exercises">Exercises</h2>
+<h3 id="s:intro-exercises">Exercises</h3>
 
-<h3 id="setting-up">Setting Up</h3>
+<h4>Setting Up</h4>
 
 <p>Install Node and NPM on your computer,
 then run the commands <code class="highlighter-rouge">node --version</code> and <code class="highlighter-rouge">npm --version</code>
@@ -177,7 +178,7 @@ to see which versions you have.</p>
 
         </div>
 <div class="chapter">
-          <h1>Basic Features</h1>
+          <h2 id="s:basics">Basic Features</h2>
           
 
           
@@ -214,7 +215,7 @@ functions,
 and modules.
 All of these concepts should be familiar if you have programmed before.</p>
 
-<h2 id="s:core-hello-world">Hello, World</h2>
+<h3 id="s:core-hello-world">Hello, World</h3>
 
 <p>Use your favorite text editor to put the following line in a file called <code class="highlighter-rouge">hello.js</code>:</p>
 
@@ -239,7 +240,7 @@ type <code>node <em>program_name.js</em></code> at the command line.
 <div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>hello, world
 </code></pre></div></div>
 
-<h2 id="s:core-data-types">Basic Data Types</h2>
+<h3 id="s:core-data-types">Basic Data Types</h3>
 
 <p>JavaScript has the usual datatypes,
 though unlike C, Python, and many other languages,
@@ -311,7 +312,7 @@ though we will see below that other things can be treated as Booleans.
 <code class="highlighter-rouge">undefined</code> means “hasn’t been given a value”,
 while <code class="highlighter-rouge">null</code> means “has a value, which is nothing”.</p>
 
-<h2 id="s:core-control-flow">Control Flow</h2>
+<h3 id="s:core-control-flow">Control Flow</h3>
 
 <p>We have already seen <code class="highlighter-rouge">for</code> loops and flat arrays,
 so let’s have a look at conditionals and nested arrays:</p>
@@ -372,7 +373,7 @@ not called like a function.)</p>
 which can produce some <a href="#s:legacy-equality">ugly surprises</a>.</p>
 </blockquote>
 
-<h2 id="s:core-formatting">Formatting Strings</h2>
+<h3 id="s:core-formatting">Formatting Strings</h3>
 
 <p>Rather than printing multiple strings and expressions,
 we can <a href="#g:string-interpolation">interpolate</a> values into a back-quoted string.
@@ -393,7 +394,7 @@ color is green and capitalized is GREEN
 color is blue and capitalized is BLUE
 </code></pre></div></div>
 
-<h2 id="s:core-objects">Objects</h2>
+<h3 id="s:core-objects">Objects</h3>
 
 <p>An <a href="#g:object">object</a> in JavaScript is a collection of key-value pairs,
 and is equivalent in simple cases to what Python would call a dictionary.
@@ -460,7 +461,7 @@ use <code class="highlighter-rouge">JSON.stringify(object)</code>:</p>
 “JSON” stands for “JavaScript Object Notation”;
 we will learn more about it <a href="#s:data">later</a>.</p>
 
-<h2 id="s:core-functions">Functions</h2>
+<h3 id="s:core-functions">Functions</h3>
 
 <p>Functions make it possible for mere mortals to understand programs
 by allowing us to think about them one piece at a time.
@@ -550,7 +551,7 @@ Here and elsewhere,
 we will see how a language’s history and the way it is used shape its evolution.</p>
 </blockquote>
 
-<h2 id="s:core-modules">Modules</h2>
+<h3 id="s:core-modules">Modules</h3>
 
 <p>As our programs grow larger,
 we will want to put code in multiple files.
@@ -624,9 +625,9 @@ we must then call our function as <code class="highlighter-rouge">utilities.clip
 We use a relative path starting with <code class="highlighter-rouge">./</code> or <code class="highlighter-rouge">../</code> to import local files;
 paths that start with names are taken from installed Node libraries.</p>
 
-<h2 id="s:core-exercises">Exercises</h2>
+<h3 id="s:core-exercises">Exercises</h3>
 
-<h3 id="typeof">Typeof</h3>
+<h4>Typeof</h4>
 
 <p>What kind of thing is <code class="highlighter-rouge">typeof</code>?
 Is it an expression?
@@ -638,7 +639,7 @@ an internet search engine is your friend,
 as is the Mozilla Developer Network (MDN) JavaScript reference
 at <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference">https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference</a>.</p>
 
-<h3 id="fill-in-the-blanks">Fill in the Blanks</h3>
+<h4>Fill in the Blanks</h4>
 
 <p>Answer these questions about the program below:</p>
 
@@ -668,13 +669,13 @@ square of 1 is 1
 square of 0 is 0
 </code></pre></div></div>
 
-<h3 id="what-is-truth">What Is Truth?</h3>
+<h4>What Is Truth?</h4>
 
 <p>Write a function called <code class="highlighter-rouge">isTruthy</code> that returns <code class="highlighter-rouge">true</code> for everything that JavaScript considers truthy,
 and <code class="highlighter-rouge">false</code> for everything it considers <code class="highlighter-rouge">falsy</code> <em>except</em> empty arrays:
 <code class="highlighter-rouge">isTruthy</code> should return <code class="highlighter-rouge">false</code> for those.</p>
 
-<h3 id="combining-different-types">Combining Different Types</h3>
+<h4>Combining Different Types</h4>
 
 <p>What output would you expect from the code below?
 Try running it and see whether the results match your expectations.
@@ -697,7 +698,7 @@ What are the implications of this behavior when working with real-world data?</p
 <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">total</span><span class="p">)</span>
 </code></pre></div></div>
 
-<h3 id="what-does-this-do">What Does This Do?</h3>
+<h4>What Does This Do?</h4>
 
 <p>Explain what is happening in the assignment statement that creates the constant <code class="highlighter-rouge">creature</code>.</p>
 
@@ -709,7 +710,7 @@ What are the implications of this behavior when working with real-world data?</p
 <div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>{ genus: 'Callithrix', species: 'Jacchus' }
 </code></pre></div></div>
 
-<h3 id="what-does-this-code-do">What Does This Code Do?</h3>
+<h4>What Does This Code Do?</h4>
 
 <p>Explain what is happening in the assignment statement in this program.
 Use this technique to rewrite <code class="highlighter-rouge">src/core/import.js</code>
@@ -724,7 +725,7 @@ so that <code class="highlighter-rouge">clip</code> can be called directly as <c
 <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">`species is </span><span class="p">${</span><span class="nx">species</span><span class="p">}</span><span class="s2">`</span><span class="p">)</span>
 </code></pre></div></div>
 
-<h3 id="return-to-me-for-my-heart-wants-you-only">Return To Me, For My Heart Wants You Only</h3>
+<h4>Return To Me, For My Heart Wants You Only</h4>
 
 <div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">verbose_sum</span> <span class="o">=</span> <span class="p">(</span><span class="nx">first</span><span class="p">,</span> <span class="nx">second</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
   <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">`Going to add </span><span class="p">${</span><span class="nx">first</span><span class="p">}</span><span class="s2"> to </span><span class="p">${</span><span class="nx">second</span><span class="p">}</span><span class="s2">`</span><span class="p">)</span>
@@ -779,7 +780,7 @@ so that <code class="highlighter-rouge">clip</code> can be called directly as <c
 
         </div>
 <div class="chapter">
-          <h1>Callbacks</h1>
+          <h2 id="s:callbacks">Callbacks</h2>
           
 
           
@@ -807,7 +808,7 @@ but JavaScript is often the first place that programmers with data science backg
 In order to understand how they work and how to use them,
 we must first understand what actually happens when functions are defined and called.</p>
 
-<h2 id="s:callbacks-callstack">The Call Stack</h2>
+<h3 id="s:callbacks-callstack">The Call Stack</h3>
 
 <p>When JavaScript <a href="#g:parse">parses</a> the expression <code class="highlighter-rouge">let name = "text"</code>,
 it allocates a block of memory big enough for four characters
@@ -876,7 +877,7 @@ we will find this:</p>
   <img src="../../files/callbacks-call-stack.svg">
 </figure>
 
-<h2 id="s:callbacks-func">Functions of Functions</h2>
+<h3 id="s:callbacks-func">Functions of Functions</h3>
 
 <p>The call stack allows us to write and call functions
 without worrying about whether we’re accidentally going to refer to the wrong variable.
@@ -977,7 +978,7 @@ console.log(`|${original}| -&gt; |${final}|`)
 <div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>| some text | -&gt; |some.text..some.text|
 </code></pre></div></div>
 
-<h2 id="s:callbacks-anonymous">Anonymous Functions</h2>
+<h3 id="s:callbacks-anonymous">Anonymous Functions</h3>
 
 <p>Remember the function <code class="highlighter-rouge">oneMore</code>?
 We can pass it a value that we have calculated on the fly:</p>
@@ -1029,7 +1030,7 @@ since its creator doesn’t give it a name.
 When JavaScript programmers use the term “callback function”,
 they usually mean a function defined and used like this.</p>
 
-<h2 id="s:callbacks-functional">Functional Programming</h2>
+<h3 id="s:callbacks-functional">Functional Programming</h3>
 
 <p><a href="#g:functional-programming">Functional programming</a> is a style of programming
 that relies heavily on <a href="#g:higher-order-function">higher-order functions</a> like <code class="highlighter-rouge">pipeline</code>
@@ -1131,7 +1132,7 @@ all in one step: tiat
 <p>The indentation of the “in one step” call may look a little odd,
 but this is the style the JavaScript community has settled on.</p>
 
-<h2 id="s:callbacks-closures">Closures</h2>
+<h3 id="s:callbacks-closures">Closures</h3>
 
 <p>The last tool we need to introduce is an extremely useful side-effect of the way memory is handled
 called a <a href="#g:closure">closure</a>.
@@ -1240,9 +1241,9 @@ they define new (unnamed) functions that add 1 and 2 respectively when called.</
 if the body of a function is a single expression,
 it doesn’t have to be enclosed in <code class="highlighter-rouge">{...}</code> and <code class="highlighter-rouge">return</code> doesn’t need to be used.</p>
 
-<h2 id="s:callbacks-exercises">Exercises</h2>
+<h3 id="s:callbacks-exercises">Exercises</h3>
 
-<h3 id="side-effects-with-foreach">Side Effects With <code class="highlighter-rouge">forEach</code></h3>
+<h4>Side Effects With <code class="highlighter-rouge">forEach</code></h4>
 
 <p>JavaScript arrays have a method called <code class="highlighter-rouge">forEach</code>,
 which calls a callback function once for each element of the array.
@@ -1272,7 +1273,7 @@ that doubles all the values in an array in place:</p>
 <div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>vals after change: 2,4,6
 </code></pre></div></div>
 
-<h3 id="annotating-data">Annotating Data</h3>
+<h4>Annotating Data</h4>
 
 <p>Given an array of objects representing observations of wild animals:</p>
 
@@ -1330,7 +1331,7 @@ The changes are:</p>
 
         </div>
 <div class="chapter">
-          <h1>Objects and Classes</h1>
+          <h2 id="s:oop">Objects and Classes</h2>
           
 
           
@@ -1356,7 +1357,7 @@ just load the libraries you want and write calls to the functions you need.
 Making <em>old</em> code use <em>new</em> code without rewriting it is trickier,
 but object-oriented programming can help.</p>
 
-<h2 id="s:oop-manual">Doing It By Hand</h2>
+<h3 id="s:oop-manual">Doing It By Hand</h3>
 
 <p>As we saw <a href="#s:core">earlier</a>,
 an object in JavaScript is a set of key-value pairs.
@@ -1436,7 +1437,7 @@ circle: area 28.274333882308138 perimeter 18.84955592153876
 rectangle: area 6 perimeter 10
 </code></pre></div></div>
 
-<h2 id="s:oop-classes">Classes</h2>
+<h3 id="s:oop-classes">Classes</h3>
 
 <p>Building every object by hand and calling <code class="highlighter-rouge">thing.function(thing)</code> is clumsy.
 JavaScript solved these problems using <a href="#g:prototype">prototypes</a>,
@@ -1521,7 +1522,7 @@ circle: area 19.634954084936208 perimeter 15.707963267948966
 rectangle: area 0.75 perimeter 4
 </code></pre></div></div>
 
-<h2 id="s:oop-inheritance">Inheritance</h2>
+<h3 id="s:oop-inheritance">Inheritance</h3>
 
 <p>We can build new classes from old ones by adding or <a href="#g:override-method">overriding</a> methods.
 To show this,
@@ -1619,7 +1620,7 @@ and finds the function it’s looking for.</li>
   <img src="../../files/oop-inheritance.svg">
 </figure>
 
-<h2 id="s:oop-protocols">Protocols</h2>
+<h3 id="s:oop-protocols">Protocols</h3>
 
 <p>A common way to use object-oriented programming is to define a <a href="#g:protocol">protocol</a>.
 The parent defines a method that invokes other methods at specific times or in a specific order.
@@ -1734,9 +1735,9 @@ and the new code implements that interface and respects that protocol.
 We will see this idea over and over again
 as we build applications using standard libraries.</p>
 
-<h2 id="s:oop-exercises">Exercises</h2>
+<h3 id="s:oop-exercises">Exercises</h3>
 
-<h3 id="delays">Delays</h3>
+<h4>Delays</h4>
 
 <p>Define a class called <code class="highlighter-rouge">Delay</code> whose <code class="highlighter-rouge">call</code> method always returns
 the value given in the <em>previous</em> call:</p>
@@ -1754,7 +1755,7 @@ d -&gt; c
 <p>A class like <code class="highlighter-rouge">Delay</code> is sometimes called <a href="#g:stateful">stateful</a>,
 since it remembers its state from call to call.</p>
 
-<h3 id="filtering">Filtering</h3>
+<h4>Filtering</h4>
 
 <p>Define a class called <code class="highlighter-rouge">Filter</code> whose <code class="highlighter-rouge">call</code> method returns <code class="highlighter-rouge">null</code>
 if its input matches one of the values given to its constructor,
@@ -1775,7 +1776,7 @@ e -&gt; null
 <p>A class like <code class="highlighter-rouge">Filter</code> is sometimes called <a href="#g:stateless">stateless</a>,
 since it does not remember its state from call to call.</p>
 
-<h3 id="pipelines">Pipelines</h3>
+<h4>Pipelines</h4>
 
 <p>Define a class called <code class="highlighter-rouge">Pipeline</code>
 whose constructor takes one or more objects with a single-parameter <code class="highlighter-rouge">call</code> method,
@@ -1795,7 +1796,7 @@ d -&gt; c
 e -&gt; null
 </code></pre></div></div>
 
-<h3 id="active-expressions">Active Expressions</h3>
+<h4>Active Expressions</h4>
 
 <p>Consider this class:</p>
 
@@ -1863,7 +1864,7 @@ or a method <code class="highlighter-rouge">Active.transform</code> if a transfo
 
         </div>
 <div class="chapter">
-          <h1>HTML and CSS</h1>
+          <h2 id="s:htmlcss">HTML and CSS</h2>
           
 
           
@@ -1888,7 +1889,7 @@ Both are more complicated than they should have been,
 but in order to create web applications,
 we need to understand a little of both.</p>
 
-<h2 id="s:htmlcss-formatting">Formatting</h2>
+<h3 id="s:htmlcss-formatting">Formatting</h3>
 
 <p>An HTML <a href="#g:document">document</a> contains <a href="#g:element">elements</a> and text
 (and possibly other things that we will ignore for now).
@@ -1911,7 +1912,7 @@ In fact,
 most browsers are pretty relaxed about enforcing any kind of rules at all,
 since most people don’t obey them anyway.</p>
 
-<h2 id="s:htmlcss-text">Text</h2>
+<h3 id="s:htmlcss-text">Text</h3>
 
 <p>The text in an HTML page is normal printable text.
 However,
@@ -1974,7 +1975,7 @@ and <code class="highlighter-rouge">&amp;amp;</code> is needed so that we can wr
 since most editors will allow us to put non-ASCII characters directly into documents these days,
 but occasionally we will run into older or stricter systems.</p>
 
-<h2 id="s:htmlcss-pages">Pages</h2>
+<h3 id="s:htmlcss-pages">Pages</h3>
 
 <p>An HTML page should have:</p>
 
@@ -2042,7 +2043,7 @@ Someone who is visually impaired, or someone using a small-screen device,
 may want emphasis of various kinds displayed in different ways.</li>
 </ul>
 
-<h2 id="s:htmlcss-attributes">Attributes</h2>
+<h3 id="s:htmlcss-attributes">Attributes</h3>
 
 <p>Elements can be customized by giving them <a href="#g:attribute">attributes</a>,
 which are written as <code class="highlighter-rouge">name="value"</code> pairs inside the element’s opening tag.
@@ -2079,7 +2080,7 @@ but in practice we can often get away with <code class="highlighter-rouge">name=
 And for Boolean attributes whose values are just true or false,
 we can even sometimes just get away with <code class="highlighter-rouge">name</code> on its own.</p>
 
-<h2 id="s:htmlcss-lists">Lists</h2>
+<h3 id="s:htmlcss-lists">Lists</h3>
 
 <p>Headings and paragraphs are all very well,
 but data scientists need more.
@@ -2150,7 +2151,7 @@ inside one of the outer list’s <code class="highlighter-rouge">li</code> eleme
   </li>
 </ol>
 
-<h2 id="s:htmlcss-tables">Tables</h2>
+<h3 id="s:htmlcss-tables">Tables</h3>
 
 <p>Lists are a great way to get started,
 but if we <em>really</em> want to impress people with our data science skills,
@@ -2180,7 +2181,7 @@ or <code class="highlighter-rouge">th</code> (for “table heading”).</p>
 <p>Do <em>not</em> use tables to create multi-column layouts:
 there’s a better way.</p>
 
-<h2 id="s:htmlcss-links">Links</h2>
+<h3 id="s:htmlcss-links">Links</h3>
 
 <p>Links to other pages are what makes HTML hypertext.
 Confusingly,
@@ -2205,7 +2206,7 @@ and we can use <code class="highlighter-rouge">&lt;br/&gt;</code> to force a lin
 <br>
 <a href="../index.html">home page (relative path)</a></p>
 
-<h2 id="s:htmlcss-images">Images</h2>
+<h3 id="s:htmlcss-images">Images</h3>
 
 <p>Images can be stored inside HTML pages in two ways:
 by using SVG (which we will discuss <a href="#s:vis">later</a>
@@ -2249,7 +2250,7 @@ except where you can’t.
 It’s all very confusing…</li>
 </ol>
 
-<h2 id="s:htmlcss-css">Cascading Style Sheets</h2>
+<h3 id="s:htmlcss-css">Cascading Style Sheets</h3>
 
 <p>When HTML first appeared, people styled elements by setting their attributes:</p>
 
@@ -2372,7 +2373,7 @@ This is particularly useful <em>within</em> pages:
 Internal links like this are often used for cross-referencing and to create a table of contents.</p>
 </blockquote>
 
-<h2 id="s:htmlcss-bootstrap">Bootstrap</h2>
+<h3 id="s:htmlcss-bootstrap">Bootstrap</h3>
 
 <p>CSS can become very complicated very quickly,
 so most people use a framework to take care of the details.
@@ -2456,9 +2457,9 @@ how to include interative elements like buttons and forms in a page.
 Handling those is part of why JavaScript was invented in the first place,
 but we need more experience before tackling them.</p>
 
-<h2 id="s:htmlcss-exercises">Exercises</h2>
+<h3 id="s:htmlcss-exercises">Exercises</h3>
 
-<h3 id="cutting-corners">Cutting Corners</h3>
+<h4>Cutting Corners</h4>
 
 <p>What does your browser display if you forget to close a paragraph or list item tag
 like this:</p>
@@ -2478,7 +2479,7 @@ like this:</p>
   <li>Is that behavior consistent with what happens when you omit <code class="highlighter-rouge">&lt;/p&gt;</code> or <code class="highlighter-rouge">&lt;/li&gt;</code>?</li>
 </ol>
 
-<h3 id="mix-and-match">Mix and Match</h3>
+<h4>Mix and Match</h4>
 
 <ol>
   <li>Create a page that contains a 2x2 table,
@@ -2492,13 +2493,13 @@ Why?
 Why why why why why?</li>
 </ol>
 
-<h3 id="naming">Naming</h3>
+<h4>Naming</h4>
 
 <p>What does the <code class="highlighter-rouge">sm</code> in Bootstrap’s <code class="highlighter-rouge">col-sm-4</code> and <code class="highlighter-rouge">col-sm-8</code> stand for?
 What other options could you use instead?
 Why do web developers still use FORTRAN-style names in the 21st Century?</p>
 
-<h3 id="color">Color</h3>
+<h4>Color</h4>
 
 <p>HTML and CSS define names for a small number of colors.
 All other colors must be specified using <a href="#g:rgb">RGB</a> values.
@@ -2507,7 +2508,7 @@ that displays the word <code class="highlighter-rouge">color</code> in 100 diffe
 Compare this to the color scheme used in your departmental website.
 Which one hurts your eyes less?</p>
 
-<h3 id="units">Units</h3>
+<h4>Units</h4>
 
 <p>What different units can you use to specify text size in CSS?
 What do they mean?
@@ -2539,7 +2540,7 @@ What does <em>anything</em> mean, when you get right down to it?</p>
 
         </div>
 <div class="chapter">
-          <h1>Manipulating Pages</h1>
+          <h2 id="s:pages">Manipulating Pages</h2>
           
 
           
@@ -2571,7 +2572,7 @@ Still,
 we can do a surprising number of useful things
 simply by playing with the content of pages.</p>
 
-<h2 id="s:pages-counting">Counting Paragraphs</h2>
+<h3 id="s:pages-counting">Counting Paragraphs</h3>
 
 <p>Let’s begin by counting the number of paragraphs in a page:</p>
 
@@ -2712,7 +2713,7 @@ each time,
 the browser will do only the work required to reflect that change
 as quickly as possible.</p>
 
-<h2 id="s:pages-toc">Creating a Table of Contents</h2>
+<h3 id="s:pages-toc">Creating a Table of Contents</h3>
 
 <p>Reporting the number of paragraphs is a good way to see how JavaScript works in the browser,
 but isn’t particularly useful
@@ -2826,7 +2827,7 @@ but building and parsing strings is usually easier to read,
 and the performance differences are small enough in modern browsers
 that we should only worry about them if they actually prove themselves a problem.</p>
 
-<h2 id="s:pages-sort-list">Sortable Lists</h2>
+<h3 id="s:pages-sort-list">Sortable Lists</h3>
 
 <p>Creating nodes allows us to add content to a page,
 but we can also rearrange the nodes that are there.
@@ -2983,7 +2984,7 @@ then add all of the children back in sorted order.
 Sure enough,
 the page now displays the nodes in the right order.</p>
 
-<h2 id="s:pages-citations">Bibliographic Citations</h2>
+<h3 id="s:pages-citations">Bibliographic Citations</h3>
 
 <p>And so we come to the largest example in this lesson.
 HTML has a <code class="highlighter-rouge">cite</code> tag for formatting citations,
@@ -3160,7 +3161,7 @@ and then replace the original link node with the node we have just created.
 If we now load our page,
 we see our citations formatted as we desired.</p>
 
-<h2 id="s:pages-clock">A Real-time Clock</h2>
+<h3 id="s:pages-clock">A Real-time Clock</h3>
 
 <p>We will wrap up this lesson with an example that is short,
 but hints at the possibilities to come:</p>
@@ -3216,9 +3217,9 @@ When we load the page,
 we see the current time updating itself second by second
 to remind us just how quickly life is passing by.</p>
 
-<h2 id="s:pages-exercises">Exercises</h2>
+<h3 id="s:pages-exercises">Exercises</h3>
 
-<h3 id="what-encoding-is-this">What Encoding Is This?</h3>
+<h4>What Encoding Is This?</h4>
 
 <ol>
   <li>Write a function that looks up the character encoding of the page the script is in
@@ -3227,7 +3228,7 @@ and prints it to the console.</li>
 and print their names and values.</li>
 </ol>
 
-<h3 id="word-count">Word Count</h3>
+<h4>Word Count</h4>
 
 <ol>
   <li>Write a function called <code class="highlighter-rouge">countWords</code> that finds all the text nodes in a page,
@@ -3237,7 +3238,7 @@ and returns the total number of words in the page.</li>
 then displays that number in a paragraph whose ID is <code class="highlighter-rouge">wordcount</code>.</li>
 </ol>
 
-<h2 id="removing-text-nodes">Removing Text Nodes</h2>
+<h3 id="removing-text-nodes">Removing Text Nodes</h3>
 
 <p>In the example that sorts the items in lists,
 we remove all the text nodes from the list of child nodes before sorting.
@@ -3247,12 +3248,12 @@ What happens if remove the line:</p>
 <div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code>          <span class="p">.</span><span class="nx">filter</span><span class="p">(</span><span class="nx">c</span> <span class="o">=&gt;</span> <span class="nx">c</span><span class="p">.</span><span class="nx">nodeName</span> <span class="o">!==</span> <span class="s1">'#text'</span><span class="p">)</span>
 </code></pre></div></div>
 
-<h2 id="a-more-robust-table-of-contents">A More Robust Table of Contents</h2>
+<h3 id="a-more-robust-table-of-contents">A More Robust Table of Contents</h3>
 
 <p>Modify the table of contents example so that if an <code class="highlighter-rouge">h2</code> heading doesn’t have an <code class="highlighter-rouge">id</code>,
 it is still included in the table of contents.</p>
 
-<h2 id="explicitly-creating-nodes">Explicitly Creating Nodes</h2>
+<h3 id="explicitly-creating-nodes">Explicitly Creating Nodes</h3>
 
 <p>Find documentation online for <code class="highlighter-rouge">document.createElement</code> and <code class="highlighter-rouge">document.createTextNode</code>,
 then rewrite the table of contents example to use these methods
@@ -3283,7 +3284,7 @@ instead of assigning to a node’s <code class="highlighter-rouge">innerHTML</co
 
         </div>
 <div class="chapter">
-          <h1>Dynamic Pages</h1>
+          <h2 id="s:dynamic">Dynamic Pages</h2>
           
 
           
@@ -3356,7 +3357,7 @@ Its central design principles are:</p>
 <p>We will show how to use it in pure JavaScript,
 then introduce a tool called JSX that simplifies things.</p>
 
-<h2 id="s:dynamic-hello">Hello, World</h2>
+<h3 id="s:dynamic-hello">Hello, World</h3>
 
 <p>Let’s begin by saying hello:</p>
 
@@ -3439,7 +3440,7 @@ the mechanism is surprisingly easy to use:</p>
   <span class="nt">&lt;/body&gt;</span>
 </code></pre></div></div>
 
-<h2 id="s:dynamic-jsx">JSX</h2>
+<h3 id="s:dynamic-jsx">JSX</h3>
 
 <p>Writing nested functions is a clumsy way to write HTML,
 so most React programmers use a tool called <a href="https://reactjs.org/docs/introducing-jsx.html">JSX</a>
@@ -3509,7 +3510,7 @@ the browser console will warn us that each list element ought to have a unique <
 because React wants each element of the page to be selectable.
 We will add this later.</p>
 
-<h2 id="s:dynamic-components">Creating Components</h2>
+<h3 id="s:dynamic-components">Creating Components</h3>
 
 <p>One of the most powerful features of React is that it lets us create new components
 that look like custom HTML tags,
@@ -3571,7 +3572,7 @@ you’ll see that the <code class="highlighter-rouge">name</code> attribute pass
 becomes the value of <code class="highlighter-rouge">prop.names</code> inside the function that implements <code class="highlighter-rouge">ListElement</code>.
 This gives us exactly one logical place to do calculations, set style, etc.</p>
 
-<h2 id="s:dynamic-parcel">Developing with Parcel</h2>
+<h3 id="s:dynamic-parcel">Developing with Parcel</h3>
 
 <p>Putting all of the source for an application in one HTML file is a bad practice,
 but we’ve already seen the race conditions that can arise when we load JavaScript in a page’s header.
@@ -3651,7 +3652,7 @@ This happens because it is trying to read the actual directory structure
 as if it were a file.</p>
 </blockquote>
 
-<h2 id="s:dynamic-multiple">Multiple Files</h2>
+<h3 id="s:dynamic-multiple">Multiple Files</h3>
 
 <p>Now that we can bundle things up,
 let’s move our JSX into <code class="highlighter-rouge">app.js</code> and load that in the <code class="highlighter-rouge">head</code> of the page:</p>
@@ -3746,9 +3747,9 @@ which tells the browser not to do anything with the JavaScript until the page ha
 <span class="nt">&lt;/html&gt;</span>
 </code></pre></div></div>
 
-<h2 id="s:dynamic-exercises">Exercises</h2>
+<h3 id="s:dynamic-exercises">Exercises</h3>
 
-<h3 id="those-damn-curly-braces">Those Damn Curly Braces</h3>
+<h4>Those Damn Curly Braces</h4>
 
 <p>Our list-building example includes this line of code:</p>
 
@@ -3758,7 +3759,7 @@ which tells the browser not to do anything with the JavaScript until the page ha
 <p>Why are the curly braces immediately inside the <code class="highlighter-rouge">&lt;ul&gt;</code> element necessary?
 What happens if you take them out?</p>
 
-<h3 id="real-data">Real Data</h3>
+<h4>Real Data</h4>
 
 <ol>
   <li>Create a file called <code class="highlighter-rouge">programmers.js</code> that defines
@@ -3772,23 +3773,23 @@ and modify it to use data from the list <code class="highlighter-rouge">programm
 
 <p>Loading constant data like this is a common practice during testing.</p>
 
-<h3 id="ordering">Ordering</h3>
+<h4>Ordering</h4>
 
 <p>What happens if you change the order in which the JavaScript files
 are loaded in your web page?
 For example,
 what happens if you load <code class="highlighter-rouge">app.js</code> <em>before</em> you load <code class="highlighter-rouge">ListElement.js</code>?</p>
 
-<h3 id="multiple-targets">Multiple Targets</h3>
+<h4>Multiple Targets</h4>
 
 <p>What happens if your HTML page contains two <code class="highlighter-rouge">div</code> elements with <code class="highlighter-rouge">id="app"</code>?</p>
 
-<h3 id="creating-a-component-for-names">Creating a Component for Names</h3>
+<h4>Creating a Component for Names</h4>
 
 <p>Create a new React component that renders a name,
 and modify the example to use it instead of always displaying names in <code class="highlighter-rouge">&lt;li&gt;</code> elements.</p>
 
-<h3 id="striping">Striping</h3>
+<h4>Striping</h4>
 
 <p>Suppose we want to render every second list element in italics.
 (This would be a horrible design,
@@ -3822,7 +3823,7 @@ instead of one.)</p>
 
         </div>
 <div class="chapter">
-          <h1>Visualizing Data</h1>
+          <h2 id="s:vis">Visualizing Data</h2>
           
 
           
@@ -3850,7 +3851,7 @@ It doesn’t do everything,
 but it does common things well and easily,
 and it interacts nicely with React.</p>
 
-<h2 id="s:vis-vega-lite">Vega-Lite</h2>
+<h3 id="s:vis-vega-lite">Vega-Lite</h3>
 
 <p>Let’s start by creating a skeleton web page to hold our visualization.
 For now, we will load Vega, Vega-Lite, and Vega-Embed from the web;
@@ -4018,7 +4019,7 @@ which is set to <code class="highlighter-rouge">"average"</code>:</p>
   <img id="f:vis-aggregate-points" src="../../files/vis-aggregate-points.png" alt="Aggregating and Using Points">
 </figure>
 
-<h2 id="s:vis-vega-local">Local Installation</h2>
+<h3 id="s:vis-vega-local">Local Installation</h3>
 
 <p>Loading Vega from a <a href="#g:cdn">Content Delivery Network</a> (CDN) reduces the load on our server,
 but prevents offline development.
@@ -4101,9 +4102,9 @@ but we will stick to <code class="highlighter-rouge">vegaEmbed</code> for consis
 the bundled file is 74.5K lines of JavaScript,
 but at least it’s all in one place for distribution.</p>
 
-<h2 id="s:vis-exercises">Exercises</h2>
+<h3 id="s:vis-exercises">Exercises</h3>
 
-<h3 id="binned-scatterplots">Binned Scatterplots</h3>
+<h4>Binned Scatterplots</h4>
 
 <p>Vega-Lite can create
 <a href="https://vega.github.io/vega-lite/examples/circle_binned.html">binned scatterplots</a>
@@ -4111,7 +4112,7 @@ in which the sizes of markers indicate how many values were put in each bin.
 Modify the aggregating scatterplot shown above
 so that values are binned in this way.</p>
 
-<h3 id="grouped-bar-charts">Grouped Bar Charts</h3>
+<h4>Grouped Bar Charts</h4>
 
 <p>Vega-Lite can display
 <a href="https://vega.github.io/vega-lite/examples/bar_grouped.html">grouped bar charts</a>
@@ -4120,7 +4121,7 @@ Find or create a simple data set and construct a grouped bar chart.
 How impressed will your supervisor, your committee, or a future employee be
 by your chosen color scheme?</p>
 
-<h3 id="limits-of-declarative-programming">Limits of Declarative Programming</h3>
+<h4>Limits of Declarative Programming</h4>
 
 <p>Look at Vega-Lite’s
 <a href="https://vega.github.io/vega-lite/examples/">example gallery</a>
@@ -4147,7 +4148,7 @@ that doesn’t lend itself to Vega-Lite’s declarative model?</p>
 
         </div>
 <div class="chapter">
-          <h1>Promises</h1>
+          <h2 id="s:promises">Promises</h2>
           
 
           
@@ -4200,7 +4201,7 @@ its developers have invented better ways to do things as the language has evolve
 but the simple high-level ideas often don’t make sense unless you understand how they work.
 (This too is often a problem in real life.)</p>
 
-<h2 id="s:promises-queue">The Execution Queue</h2>
+<h3 id="s:promises-queue">The Execution Queue</h3>
 
 <p>In order for any of what follows to make sense,
 it’s vital to understand JavaScript’s <a href="#g:event-loop">event loop</a>,
@@ -4319,7 +4320,7 @@ inside immediate handler for b
 inside immediate handler for c
 </code></pre></div></div>
 
-<h2 id="s:promises-promises">Promises</h2>
+<h3 id="s:promises-promises">Promises</h3>
 
 <p>Recent versions of JavaScript encourage programmers to use <a href="#g:promise">promises</a>
 to manage delayed actions.
@@ -4522,7 +4523,7 @@ which makes processing straightforward:</p>
 <p>We can also use <code class="highlighter-rouge">Promise.race</code>,
 which takes an array of promises and returns the result of the first one to complete.</p>
 
-<h2 id="s:promises-usage">Using Promises</h2>
+<h3 id="s:promises-usage">Using Promises</h3>
 
 <p>Promises don’t really make sense until we start to use them,
 so let’s try counting the number of lines in a set of files
@@ -4649,7 +4650,7 @@ we split each file’s content into lines and count:</p>
 <div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>lengths [ 2654, 21063, 4105, 22334, 13028, 3584 ]
 </code></pre></div></div>
 
-<h2 id="s:promises-async-await"><code class="highlighter-rouge">async</code> and <code class="highlighter-rouge">await</code></h2>
+<h3 id="s:promises-async-await"><code class="highlighter-rouge">async</code> and <code class="highlighter-rouge">await</code></h3>
 
 <p>Programmers are never content to leave well enough alone,
 so the latest version of JavaScript offers yet another tool for managing asynchronous computation.
@@ -4721,9 +4722,9 @@ JavaScript will report a syntax error if we use them elsewhere.
 In particular,
 we cannot use them interactively unless we wrap whatever we want to do in a wee function.</p>
 
-<h2 id="s:promises-exercises">Exercises</h2>
+<h3 id="s:promises-exercises">Exercises</h3>
 
-<h3 id="whats-going-on">What’s Going On?</h3>
+<h4>What’s Going On?</h4>
 
 <p>This code runs fine:</p>
 
@@ -4744,7 +4745,7 @@ we cannot use them interactively unless we wrap whatever we want to do in a wee 
 
 <p>Why?</p>
 
-<h3 id="a-stay-of-execution">A Stay of Execution</h3>
+<h4>A Stay of Execution</h4>
 
 <p>Insert <code class="highlighter-rouge">console.log('This is a sharp Medicine, but it is a Physician for all diseases and miseries.')</code>
 in the appropriate place in the code block below so that the output reads</p>
@@ -4770,7 +4771,7 @@ Finished.
 <span class="nx">swingAxe</span><span class="p">()</span>
 </code></pre></div></div>
 
-<h3 id="a-synchronous-or-asynchronous">A Synchronous or Asynchronous?</h3>
+<h4>A Synchronous or Asynchronous?</h4>
 
 <p>Which of these functions would you expect to be asynchronous?
 How can you tell?
@@ -4786,7 +4787,7 @@ The function throws an error if <code class="highlighter-rouge">coords</code> fa
 including direct routes and those with no more than 2 transfers.</li>
 </ol>
 
-<h3 id="handling-exceptions">Handling Exceptions</h3>
+<h4>Handling Exceptions</h4>
 
 <p>What (if any) output would you expect to see in the console
 when the code below is executed?</p>
@@ -4819,7 +4820,7 @@ when the code below is executed?</p>
   <li>a new <code class="highlighter-rouge">Promise</code> object</li>
 </ol>
 
-<h3 id="empty-promises">Empty Promises</h3>
+<h4>Empty Promises</h4>
 
 <p>Fill in the blanks (<code class="highlighter-rouge">___</code>)in the code block below so that
 the function returns <code class="highlighter-rouge">Array[7, 8, 2, 6, 5]</code>.</p>
@@ -4836,7 +4837,7 @@ the function returns <code class="highlighter-rouge">Array[7, 8, 2, 6, 5]</code>
 <p>Now adapt the function so that it returns only <code class="highlighter-rouge">2</code>.
 (Hint: you can achieve this by changing only one of the blank fields.)</p>
 
-<h3 id="async-therefore-i-am"><code class="highlighter-rouge">async</code>, Therefore I Am</h3>
+<h4><code class="highlighter-rouge">async</code>, Therefore I Am</h4>
 
 <p>Using <code class="highlighter-rouge">async</code> and <code class="highlighter-rouge">await</code>,
 convert the function below into an asynchronous function with the same behaviour and output.
@@ -4862,7 +4863,7 @@ Do you think that that is only because you wrote this version?</p>
 
         </div>
 <div class="chapter">
-          <h1>Interactive Sites</h1>
+          <h2 id="s:interactive">Interactive Sites</h2>
           
 
           
@@ -4995,7 +4996,7 @@ React does some thinking to minimize how much redrawing takes place:
 while it may look as though the paragraph, button, and current count are all being redrawn each time,
 React will only actually redraw as little as it can.</p>
 
-<h2 id="s:interactive-babel">But It Doesn’t Work</h2>
+<h3 id="s:interactive-babel">But It Doesn’t Work</h3>
 
 <p>If we try running this little application from the command line with Parcel:</p>
 
@@ -5141,7 +5142,7 @@ Still,
 it is a useful form of madness,
 so we will press on.</p>
 
-<h2 id="s:interactive-models-views">Models and Views</h2>
+<h3 id="s:interactive-models-views">Models and Views</h3>
 
 <p>Well-designed applications separate models (which store data)
 from views (which display it)
@@ -5310,7 +5311,7 @@ this strategy is widely used to manage large applications:
 data and event handlers are defined in one class,
 then passed into display components to be displayed and interacted with.</p>
 
-<h2 id="s:interactive-fetching">Fetching Data</h2>
+<h3 id="s:interactive-fetching">Fetching Data</h3>
 
 <p>Let’s use what we’ve learned to look at how the world might end.
 NASA provides a web API to get information about near-approach asteroids.
@@ -5578,20 +5579,20 @@ and figuring out how to index the fields we need.
 the top level of <code class="highlighter-rouge">near_earth_objects</code> is an object with dates as keys rather than an array,
 so we have to use <code class="highlighter-rouge">let...in...</code> rather than purely <code class="highlighter-rouge">map</code> or <code class="highlighter-rouge">forEach</code>.)</p>
 
-<h2 id="s:interactive-exercises">Exercises</h2>
+<h3 id="s:interactive-exercises">Exercises</h3>
 
-<h3 id="reset">Reset</h3>
+<h4>Reset</h4>
 
 <p>Add a “reset” button to the counter application that always sets the counter’s value to zero.
 Does using it to wipe out every change you’ve made to the counter
 feel like a metaphor for programming in general?</p>
 
-<h3 id="transform">Transform</h3>
+<h4>Transform</h4>
 
 <p>Modify all of the examples <em>after</em> the introduction of Babel
 to use external scripts rather than in-pace scripts.</p>
 
-<h3 id="exports">Exports</h3>
+<h4>Exports</h4>
 
 <p>Are the curly braces necessary when exporting from a component file?
 What happens if you remove them?
@@ -5599,7 +5600,7 @@ Read this <a href="http://2ality.com/2014/09/es6-modules-final.html">blogpost</a
 have been more appropriate to use default exports and imports
 in the examples above.</p>
 
-<h3 id="validation">Validation</h3>
+<h4>Validation</h4>
 
 <p>Modify the application so that if the starting date isn’t valid when the button is clicked,
 the application displays a warning message instead of fetching data.</p>
@@ -5635,7 +5636,7 @@ and explore other tools you could use to do this.</p>
 
         </div>
 <div class="chapter">
-          <h1>Managing Data</h1>
+          <h2 id="s:dataman">Managing Data</h2>
           
 
           
@@ -5663,7 +5664,7 @@ After tossing a coin,
 we decide to start with the data store;
 the <a href="#s:server">next lesson</a> will look at how to build a server.</p>
 
-<h2 id="s:data-formats">Data Formats</h2>
+<h3 id="s:data-formats">Data Formats</h3>
 
 <p>The most widely used text format for tabular data is undoubtedly
 <a href="#g:csv">comma-separated values</a> or CSV.
@@ -5739,7 +5740,7 @@ and each record is an object with name-value pairs:</p>
 but it does mean that the fields within rows can be accessed directly
 using expressions like <code class="highlighter-rouge">colors[1].red</code>.</p>
 
-<h2 id="s:data-slicing">Slicing Data</h2>
+<h3 id="s:data-slicing">Slicing Data</h3>
 
 <p>The data we will use as an example is available in a variety of formats from <a href="https://figshare.com/articles/Portal_Project_Teaching_Database/1314459">https://figshare.com/articles/Portal_Project_Teaching_Database/1314459</a>.
 We will focus on <code class="highlighter-rouge">surveys.csv</code>,
@@ -5793,7 +5794,7 @@ we will do something simple:</p>
 since we’re not specifying a random number generation seed.
 We are bad people, and will fix this in the exercises.</p>
 
-<h2 id="s:data-manager">Data Manager</h2>
+<h3 id="s:data-manager">Data Manager</h3>
 
 <p>Rather arbitrarily,
 we decide that our data manager will be able to answer two questions:</p>
@@ -5945,14 +5946,14 @@ so we have to conform to their signature.</p>
   <span class="p">}</span>
 </code></pre></div></div>
 
-<h2 id="s:data-exercises">Exercises</h2>
+<h3 id="s:data-exercises">Exercises</h3>
 
-<h3 id="tracing-data">Tracing Data</h3>
+<h4>Tracing Data</h4>
 
 <p>Trace the execution of the utility program that creates a small sample of the original data,
 explaining what is passed into each of the chained methods calls.</p>
 
-<h3 id="unrandom">Unrandom</h3>
+<h4>Unrandom</h4>
 
 <p>Programs that rely on random numbers are impossible to test
 because there’s (deliberately) no way to predict their output.
@@ -5968,7 +5969,7 @@ Install the package and modify the slice selection utility
 so that it takes a word or phrase as a command-line argument
 and uses it to seed the random number generator.</p>
 
-<h3 id="one-record-per-year">One Record Per Year</h3>
+<h4>One Record Per Year</h4>
 
 <p>Another way to slice the data for testing purposes is to select one record from each year.
 Write a small command-line JavaScript program that:</p>
@@ -5979,11 +5980,11 @@ Write a small command-line JavaScript program that:</p>
   <li>Prints these records formatted as SQL <code class="highlighter-rouge">insert</code> statements.</li>
 </ol>
 
-<h3 id="error-handling">Error Handling</h3>
+<h4>Error Handling</h4>
 
 <p>Modify <code class="highlighter-rouge">DataManager</code>’s constructor so that it checks for errors.</p>
 
-<h3 id="generalization">Generalization</h3>
+<h4>Generalization</h4>
 
 <p>Modify <code class="highlighter-rouge">getSurveyRange</code> so that it can be called like this:</p>
 
@@ -6011,7 +6012,7 @@ and the method will automatically create the right names and values in its resul
 
         </div>
 <div class="chapter">
-          <h1>Creating a Server</h1>
+          <h2 id="s:server">Creating a Server</h2>
           
 
           
@@ -6037,7 +6038,7 @@ Before we start writing code,
 though,
 we need to understand how computers talk to each other.</p>
 
-<h2 id="s:server-http">HTTP</h2>
+<h3 id="s:server-http">HTTP</h3>
 
 <p>Almost everything on the web communicates via <a href="#g:http">HTTP</a>,
 which stands for HyperText Transfer Protocol.
@@ -6217,7 +6218,7 @@ it’s common to think of the path as identifying a function on the server that 
 and to think of the query parameters as the arguments to that function.
 We’ll return to these ideas after we’ve seen how a simple server works.</p>
 
-<h2 id="s:server-express">Hello, Express</h2>
+<h3 id="s:server-express">Hello, Express</h3>
 
 <p>A Node-based library called Express handles most of the details of HTTP for us.
 When we build a server using Express,
@@ -6282,7 +6283,7 @@ we get a page with a large title <code class="highlighter-rouge">Asteroids</code
 Our server has worked,
 and we can now stop it by typing <kbd>Ctrl-C</kbd> in the shell.</p>
 
-<h2 id="s:server-paths">Handling Multiple Paths</h2>
+<h3 id="s:server-paths">Handling Multiple Paths</h3>
 
 <p>Let’s extend our server to do different things when given different paths,
 and to handle the case where the request path is not known:</p>
@@ -6330,7 +6331,7 @@ and then go to various URLs to test it.
 <code class="highlighter-rouge">http://localhost:3418/asteroids</code> produces one with the title “Asteroids”,
 and <code class="highlighter-rouge">http://localhost:3418/test</code> produces an error page.</p>
 
-<h2 id="s:server-files">Serving Files from Disk</h2>
+<h3 id="s:server-files">Serving Files from Disk</h3>
 
 <p>It’s common to generate HTML in memory when building data services,
 but it’s also common for the server to return files.
@@ -6401,7 +6402,7 @@ we get this:</p>
 
 <p>We will see in the exercises how to add proper error handling to our server.</p>
 
-<h2 id="s:server-content-types">Content Types</h2>
+<h3 id="s:server-content-types">Content Types</h3>
 
 <p>So far we have only served HTML,
 but the server can send any type of data,
@@ -6436,29 +6437,29 @@ and ask for <code class="highlighter-rouge">http://localhost:3418/data.json</cod
 a modern browser will provide a folding display of the data
 rather than displaying the raw text.</p>
 
-<h2 id="s:server-exercises">Exercises</h2>
+<h3 id="s:server-exercises">Exercises</h3>
 
-<h3 id="report-missing-files">Report Missing Files</h3>
+<h4>Report Missing Files</h4>
 
 <p>Modify the version of the server that returns files from disk
 to report a 404 error if a file cannot be found.
 What should it return if the file exists but cannot be read
 (e.g., if the server does not have permissions)?</p>
 
-<h3 id="serving-images">Serving Images</h3>
+<h4>Serving Images</h4>
 
 <p>Modify the version of the server that returns files from disk
 so that if the file it is asked for has a name ending in <code class="highlighter-rouge">.png</code> or <code class="highlighter-rouge">.jpg</code>,
 it is returned with the right <code class="highlighter-rouge">Content-Type</code> header.</p>
 
-<h3 id="delayed-replies">Delayed Replies</h3>
+<h4>Delayed Replies</h4>
 
 <p>Our file server uses <code class="highlighter-rouge">fs.readFileSync</code> to read files,
 which means that it stops each time a file is requested
 rather than handling other queries while waiting for the file to be read.
 Modify the callback given to <code class="highlighter-rouge">app.use</code> so that it uses <code class="highlighter-rouge">fs.readFile</code> with a callback instead.</p>
 
-<h3 id="using-query-parameters">Using Query Parameters</h3>
+<h4>Using Query Parameters</h4>
 
 <p>URLs can contain query parameters in the form <code class="highlighter-rouge">http://site.edu?first=1&amp;second=b</code>.
 Read the online documentation for <a href="https://expressjs.org/">Express</a> to find out
@@ -6486,7 +6487,7 @@ while the URL <code class="highlighter-rouge">http://localhost:3654/subtract?lef
 
         </div>
 <div class="chapter">
-          <h1>Testing</h1>
+          <h2 id="s:testing">Testing</h2>
           
 
           
@@ -6544,7 +6545,7 @@ and generate an error if it doesn’t.
 Node provides an <code class="highlighter-rouge">assert</code> library with some useful functions for asserting various things;
 we’ll explore this as we go along.</p>
 
-<h2 id="s:testing-mocha">Introducing Mocha</h2>
+<h3 id="s:testing-mocha">Introducing Mocha</h3>
 
 <p>JavaScript has almost as many testing libraries as it has front-end frameworks.
 We will use one called <a href="https://mochajs.org/">Mocha</a> that is popular and well documented.
@@ -6613,7 +6614,7 @@ After we add this:</p>
 
 <p>(Again, everything after <code class="highlighter-rouge">--</code> is passed to the script itself.)</p>
 
-<h2 id="s:testing-refactoring">Refactoring</h2>
+<h3 id="s:testing-refactoring">Refactoring</h3>
 
 <p>The next step is to create testable software.
 In the case of our server,
@@ -6657,7 +6658,7 @@ we can check that we haven’t broken anything by running:</p>
 <div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>node standalone.js
 </code></pre></div></div>
 
-<h2 id="s:testing-server">Testing the Server</h2>
+<h3 id="s:testing-server">Testing the Server</h3>
 
 <p>All right:
 now that we have extracted the code that’s specific to our server,
@@ -6765,7 +6766,7 @@ when we ask for something that doesn’t exist.
 Making sure the system fails gracefully is just as important
 as making sure that it provides data when asked to.</p>
 
-<h2 id="s:testing-html">Checking the HTML</h2>
+<h3 id="s:testing-html">Checking the HTML</h3>
 
 <p>It’s increasingly common for servers to return data that is then rendered by the client,
 but some servers still generate HTML.
@@ -6820,13 +6821,13 @@ rather than generating HTML and sending that,
 but if you’re doing any web scraping at all,
 libraries like <code class="highlighter-rouge">cheerio</code> are there to help.</p>
 
-<h2 id="s:testing-exercises">Exercises</h2>
+<h3 id="s:testing-exercises">Exercises</h3>
 
-<h3 id="not-done">Not Done</h3>
+<h4>Not Done</h4>
 
 <p>What happens if we forget to call <code class="highlighter-rouge">done()</code> in a test?</p>
 
-<h3 id="adding-tests">Adding Tests</h3>
+<h4>Adding Tests</h4>
 
 <ol>
   <li>What is the most useful test you could add for the asteroids application?
@@ -6838,7 +6839,7 @@ Are you comfortable with the paternalistic power relationship embodied in the ab
 and with the somewhat uncomfortable attempt at ironic humor embodied in this question?</li>
 </ol>
 
-<h3 id="lifecycle">Lifecycle</h3>
+<h4>Lifecycle</h4>
 
 <p>Suppose a JavaScript program contains some JSX expressions that produce HTML
 which is then read and displayed by a browser.
@@ -6866,7 +6867,7 @@ from start to finish.</p>
 
         </div>
 <div class="chapter">
-          <h1>Capstone Project</h1>
+          <h2 id="s:capstone">Capstone Project</h2>
           
 
           
@@ -6897,7 +6898,7 @@ Our plan is to:</p>
 <p>This will require a few new ideas,
 but will mostly recapitulate what’s come before.</p>
 
-<h2 id="s:capstone-data">Data Manager</h2>
+<h3 id="s:capstone-data">Data Manager</h3>
 
 <p>The data manager is exactly the same as
 <a href="#s:dataman">the one we built earlier</a>.
@@ -6915,7 +6916,7 @@ the key class is:</p>
   <span class="nx">getSurveyRange</span> <span class="p">(</span><span class="nx">minYear</span><span class="p">,</span> <span class="nx">maxYear</span><span class="p">)</span> <span class="p">{...</span><span class="k">return</span> <span class="nx">slice</span> <span class="k">of</span> <span class="nx">data</span><span class="p">...}</span>
 </code></pre></div></div>
 
-<h2 id="s:capstone-server">Server</h2>
+<h3 id="s:capstone-server">Server</h3>
 
 <p>The server is going to be almost the same as <a href="#s:server">the previous one</a>.
 However, we need to connect it to the data manager class.
@@ -6971,7 +6972,7 @@ Variables like this are called <a href="#g:module-variable">module variables</a>
 and give us a way to share information among the functions in a module
 without giving anything outside the module a way to cause (direct) harm to that information.</p>
 
-<h2 id="s:capstone-api">API</h2>
+<h3 id="s:capstone-api">API</h3>
 
 <p>The next step is to decide what our server’s API will be,
 i.e.,
@@ -7039,7 +7040,7 @@ We run this with:</p>
 
 <p>and it passes.</p>
 
-<h2 id="s:capstone-display">The Display</h2>
+<h3 id="s:capstone-display">The Display</h3>
 
 <p>The front end is a straightforward recapitulation of what we’ve done before.
 There is a single HTML page called <code class="highlighter-rouge">index.html</code>:</p>
@@ -7236,7 +7237,7 @@ with a paragraph fallback when there’s no data.
 
 <p>The other components are similar to those we have seen before.</p>
 
-<h2 id="s:capstone-chart">The Chart</h2>
+<h3 id="s:capstone-chart">The Chart</h3>
 
 <p>We initially tried using Vega-Lite directly for the chart,
 but after a few failures and some googling,
@@ -7288,7 +7289,7 @@ The steps are:</p>
 <span class="k">export</span> <span class="k">default</span> <span class="nx">DataChart</span>
 </code></pre></div></div>
 
-<h2 id="s:capstone-run">Running It</h2>
+<h3 id="s:capstone-run">Running It</h3>
 
 <p>In order to test our application,
 we need to run a data server,
@@ -7375,9 +7376,9 @@ Let’s run that:</p>
 
 <p>and then re-launch our application:</p>
 
-<h2 id="s:capstone-exercises">Exercises</h2>
+<h3 id="s:capstone-exercises">Exercises</h3>
 
-<h3 id="well-that-didnt-work">Well, That Didn’t Work</h3>
+<h4>Well, That Didn’t Work</h4>
 
 <p>In an early version of the server,
 we chained the <code class="highlighter-rouge">setHeader</code> call with the <code class="highlighter-rouge">status</code> and <code class="highlighter-rouge">send</code> calls like this:</p>
@@ -7388,7 +7389,7 @@ we chained the <code class="highlighter-rouge">setHeader</code> call with the <c
 <p>That looks like it ought to work, but it doesn’t.
 Why not?</p>
 
-<h3 id="reporting-other-data">Reporting Other Data</h3>
+<h4>Reporting Other Data</h4>
 
 <p>A user has asked for the number of male and female animals observed for each year.</p>
 
@@ -7397,7 +7398,7 @@ Why not?</p>
   <li>Implement your choice.</li>
 </ol>
 
-<h3 id="error-checking">Error Checking</h3>
+<h4>Error Checking</h4>
 
 <ol>
   <li>Modify the server to return 400 with an error message
@@ -7407,12 +7408,12 @@ Did you define “invalid” in the same way?
 I.e., will your programs always return the same status codes for every query?</li>
 </ol>
 
-<h3 id="use-all-the-data">Use All the Data</h3>
+<h4>Use All the Data</h4>
 
 <p>Create a database using all of the survey data and test the display.
 What bugs or shortcomings do you notice compared to displaying test data?</p>
 
-<h3 id="merging-displays">Merging Displays</h3>
+<h4>Merging Displays</h4>
 
 <p>The <code class="highlighter-rouge">SurveyStats</code> and <code class="highlighter-rouge">DataDisplay</code> components in the front end both display tables.</p>
 
@@ -7426,7 +7427,7 @@ and a list of objects which all have (at least) those fields.</li>
 to serve as the root or stem of those unique IDs.)</li>
 </ol>
 
-<h3 id="formatting">Formatting</h3>
+<h4>Formatting</h4>
 
 <p>Modify <code class="highlighter-rouge">DataDisplay</code> to format fractional numbers with a single decimal place,
 but leave the integers as they are.
@@ -7434,7 +7435,7 @@ Ask yourself why,
 seven decades after the invention of digital computers,
 this isn’t easier.</p>
 
-<h3 id="data-data-everywhere">Data, Data Everywhere</h3>
+<h4>Data, Data Everywhere</h4>
 
 <p>Modify <code class="highlighter-rouge">DataChart</code> so that the word <code class="highlighter-rouge">data</code> isn’t used in so many different ways.
 Does doing this make you feel better about yourself as a person?
@@ -7456,7 +7457,7 @@ Did that help?</p>
 
         </div>
 <div class="chapter">
-          <h1>Conclusion</h1>
+          <h2 id="s:finale">Conclusion</h2>
           
 
           
@@ -7517,7 +7518,7 @@ our <a href="/en/conduct/">Code of Conduct</a>.</p>
 
         </div>
 <div class="chapter">
-          <h1>Bibliography</h1>
+          <h2 id="s:bib">Bibliography</h2>
           
 
           
@@ -7536,7 +7537,7 @@ Lulu.com,
 
         </div>
 <div class="chapter">
-          <h1>License</h1>
+          <h2 id="s:license">License</h2>
           
 
           
@@ -7596,7 +7597,7 @@ material.</p>
 
         </div>
 <div class="chapter">
-          <h1>Code of Conduct</h1>
+          <h2 id="s:conduct">Code of Conduct</h2>
           
 
           
@@ -7610,7 +7611,7 @@ and expression, level of experience, education, socio-economic status,
 nationality, personal appearance, race, religion, or sexual identity
 and orientation.</p>
 
-<h2 id="s:conduct-standards">Our Standards</h2>
+<h3 id="s:conduct-standards">Our Standards</h3>
 
 <p>Examples of behavior that contributes to creating a positive
 environment include:</p>
@@ -7637,7 +7638,7 @@ electronic address, without explicit permission, and</li>
 a professional setting</li>
 </ul>
 
-<h2 id="s:conduct-responsibilities">Our Responsibilities</h2>
+<h3 id="s:conduct-responsibilities">Our Responsibilities</h3>
 
 <p>Project maintainers are responsible for clarifying the standards of
 acceptable behavior and are expected to take appropriate and fair
@@ -7650,7 +7651,7 @@ contributions that are not aligned to this Code of Conduct, or to ban
 temporarily or permanently any contributor for other behaviors that
 they deem inappropriate, threatening, offensive, or harmful.</p>
 
-<h2 id="s:conduct-scope">Scope</h2>
+<h3 id="s:conduct-scope">Scope</h3>
 
 <p>This Code of Conduct applies both within project spaces and in public
 spaces when an individual is representing the project or its
@@ -7660,7 +7661,7 @@ social media account, or acting as an appointed representative at an
 online or offline event. Representation of a project may be further
 defined and clarified by project maintainers.</p>
 
-<h2 id="s:conduct-enforcement">Enforcement</h2>
+<h3 id="s:conduct-enforcement">Enforcement</h3>
 
 <p>Instances of abusive, harassing, or otherwise unacceptable behavior
 may be reported by <a href="gvwilson@third-bit.com">emailing the project team</a>. All
@@ -7674,7 +7675,7 @@ details of specific enforcement policies may be posted separately.</p>
 in good faith may face temporary or permanent repercussions as
 determined by other members of the project’s leadership.</p>
 
-<h2 id="s:conduct-attribution">Attribution</h2>
+<h3 id="s:conduct-attribution">Attribution</h3>
 
 <p>This Code of Conduct is adapted from
 the <a href="https://www.contributor-covenant.org">Contributor Covenant</a> version 1.4.</p>
@@ -7684,7 +7685,7 @@ the <a href="https://www.contributor-covenant.org">Contributor Covenant</a> vers
 
         </div>
 <div class="chapter">
-          <h1>Citation</h1>
+          <h2 id="s:citation">Citation</h2>
           
 
           
@@ -7701,7 +7702,7 @@ the <a href="https://www.contributor-covenant.org">Contributor Covenant</a> vers
 
         </div>
 <div class="chapter">
-          <h1>Glossary</h1>
+          <h2 id="s:gloss">Glossary</h2>
           
 
           
@@ -8373,20 +8374,20 @@ but its complexity led many programmers to adopt <a href="#g:json">JSON</a> inst
 
         </div>
 <div class="chapter">
-          <h1>Key Points</h1>
+          <h2 id="s:keypoints">Key Points</h2>
           
 
           
 
           
           
-<h2><a href="/en/intro/">Introduction</a></h2>
+<h3 id="null"><a href="/en/intro/">Introduction</a></h3>
 <ul><li>Modern JavaScript is a good tool for building desktop and web-based applications.
 </li><li>This course is for people who know what loops and functions are, but have never used JavaScript or built web applications.
 </li><li>Node is a command-line interpreter for JavaScript, which can be used interactively or to run scripts in files.
 </li><li>NPM is the Node Package Manager, which can be used to find, install, and update libraries.
 </li></ul>
-<h2><a href="/en/basics/">Basic Features</a></h2>
+<h3 id="null"><a href="/en/basics/">Basic Features</a></h3>
 <ul><li>Use <code class="highlighter-rouge">console.log</code> to print messages.
 </li><li>Use dotted notation <code class="highlighter-rouge">X.Y</code> to get part <code class="highlighter-rouge">Y</code> of object <code class="highlighter-rouge">X</code>.
 </li><li>Basic data types are Booleans, numbers, and character strings.
@@ -8409,7 +8410,7 @@ but its complexity led many programmers to adopt <a href="#g:json">JSON</a> inst
 </li><li><code class="highlighter-rouge">require(...path...)</code> imports a module.
 </li><li>Paths beginning with ‘.’ or ‘/’ are imported locally, but paths without ‘.’ or ‘/’ look in the library.
 </li></ul>
-<h2><a href="/en/callbacks/">Callbacks</a></h2>
+<h3 id="null"><a href="/en/callbacks/">Callbacks</a></h3>
 <ul><li>JavaScript stores the instructions making up a function in memory like any other object.
 </li><li>Function objects can be assigned to variables, put in lists, passed as arguments to other functions, etc.
 </li><li>Functions can be defined in place without ever being given a name.
@@ -8421,7 +8422,7 @@ but its complexity led many programmers to adopt <a href="#g:json">JSON</a> inst
 </li><li><code class="highlighter-rouge">Array.reduce</code> reduces an array to a single value.
 </li><li>A closure is a set of variables captured during the definition of a function.
 </li></ul>
-<h2><a href="/en/oop/">Objects and Classes</a></h2>
+<h3 id="null"><a href="/en/oop/">Objects and Classes</a></h3>
 <ul><li>Create classes to define combinations of data and behavior.
 </li><li>Use the class’s constructor to initialize objects.
 </li><li><code class="highlighter-rouge">this</code> refers to the current object.
@@ -8430,7 +8431,7 @@ but its complexity led many programmers to adopt <a href="#g:json">JSON</a> inst
 </li><li>Override methods to change or extend their behavior.
 </li><li>Creating extensible systems by defining interfaces and protocols.
 </li></ul>
-<h2><a href="/en/htmlcss/">HTML and CSS</a></h2>
+<h3 id="null"><a href="/en/htmlcss/">HTML and CSS</a></h3>
 <ul><li>HTML is the latest in a long line of markup languages.
 </li><li>HTML documents contain elements (represented by tags in angle brackets) and text.
 </li><li>Elements must be strictly nested.
@@ -8446,7 +8447,7 @@ but its complexity led many programmers to adopt <a href="#g:json">JSON</a> inst
 </li><li>Use <code class="highlighter-rouge">class</code> and <code class="highlighter-rouge">id</code> to identify elements.
 </li><li>Use selectors to specify the elements that CSS applies to.
 </li></ul>
-<h2><a href="/en/pages/">Manipulating Pages</a></h2>
+<h3 id="null"><a href="/en/pages/">Manipulating Pages</a></h3>
 <ul><li>Use a <code class="highlighter-rouge">meta</code> tag in a page’s header to specify the page’s character encoding.
 </li><li>Pages are represented in memory using a Document Object Model (DOM).
 </li><li>The <code class="highlighter-rouge">document</code> object represents the page a script is in.
@@ -8460,7 +8461,7 @@ but its complexity led many programmers to adopt <a href="#g:json">JSON</a> inst
 </li><li>Use <code class="highlighter-rouge">setTimeout</code> to trigger execution of a function after a delay.
 </li><li>To make something run forever, have the function called by <code class="highlighter-rouge">setTimeout</code> set another timeout of the same function.
 </li></ul>
-<h2><a href="/en/dynamic/">Dynamic Pages</a></h2>
+<h3 id="null"><a href="/en/dynamic/">Dynamic Pages</a></h3>
 <ul><li>Older dynamic web sites generated pages on the server.
 </li><li>Newer dynamic web sites generate pages in the client.
 </li><li>React is a JavaScript library for client-side page generation that represents HTML elements as function calls.
@@ -8471,14 +8472,14 @@ but its complexity led many programmers to adopt <a href="#g:json">JSON</a> inst
 </li><li>Define new React components with a pseudo-HTML element and a corresponding function.
 </li><li>Attributes to pseudo-HTML are passed to the JavaScript function as a <code class="highlighter-rouge">props</code> object.
 </li></ul>
-<h2><a href="/en/vis/">Visualizing Data</a></h2>
+<h3 id="null"><a href="/en/vis/">Visualizing Data</a></h3>
 <ul><li>Vega-Lite is a simple way to build common visualizations.
 </li><li>Vega-Lite is declarative: the user creates a data structure describing what they want, and the library creates the visualization.
 </li><li>A Vega-List specification contains a schema identifier, a description, data, marks, and encodings.
 </li><li>The overall layout of a Vega-Lite visualization can be controlled by setting options.
 </li><li>Some applications will use <code class="highlighter-rouge">require</code> for server-side code and <code class="highlighter-rouge">import</code> for client-side code.
 </li></ul>
-<h2><a href="/en/promises/">Promises</a></h2>
+<h3 id="null"><a href="/en/promises/">Promises</a></h3>
 <ul><li>JavaScript keeps an execution queue for delayed computations.
 </li><li>Use promises to manage delayed computation instead of raw callbacks.
 </li><li>Use a callback with two arguments to handle successful completion (resolve) and unsuccessful completion (reject) of a promise.
@@ -8487,7 +8488,7 @@ but its complexity led many programmers to adopt <a href="#g:json">JSON</a> inst
 </li><li>Use <code class="highlighter-rouge">await</code> to wait for the result of a computation.
 </li><li>Mark functions that can be waited on with <code class="highlighter-rouge">async</code>.
 </li></ul>
-<h2><a href="/en/interactive/">Interactive Sites</a></h2>
+<h3 id="null"><a href="/en/interactive/">Interactive Sites</a></h3>
 <ul><li>Define event handlers to specify what actions the browser should take when the user interacts with an application.
 </li><li>The browser passes event objects containing details of events to event handlers.
 </li><li>Use classes to keep state and event handlers together.
@@ -8497,14 +8498,14 @@ but its complexity led many programmers to adopt <a href="#g:json">JSON</a> inst
 </li><li>Use destructuring to get individual members from an object in a single step.
 </li><li>Modern JavaScript uses promises to manage asynchronous activities.
 </li></ul>
-<h2><a href="/en/dataman/">Managing Data</a></h2>
+<h3 id="null"><a href="/en/dataman/">Managing Data</a></h3>
 <ul><li>Small tabular datasets are commonly stored as Comma-Separated Values (CSV).
 </li><li>CSV can only represent regular data, and CSV files usually don’t include units.
 </li><li>Nested data is commonly stored using JavaScript Object Notation (JSON).
 </li><li>JSON representations of tabular data often include redundant (and therefore possibly inconsistent) specifications of column names.
 </li><li>PapaParse is a robust CSV parsing library that produces JSON output.
 </li></ul>
-<h2><a href="/en/server/">Creating a Server</a></h2>
+<h3 id="null"><a href="/en/server/">Creating a Server</a></h3>
 <ul><li>An HTTP request or response consists of a plain-text header and an optional body.
 </li><li>HTTP is a stateless protocol.
 </li><li>Express provides a simple path-based JavaScript server.
@@ -8513,7 +8514,7 @@ but its complexity led many programmers to adopt <a href="#g:json">JSON</a> inst
 </li><li>Use <code class="highlighter-rouge">Content-Type</code> to specify the type of data being returned.
 </li><li>Use dynamic loading to support plugin extensions.
 </li></ul>
-<h2><a href="/en/testing/">Testing</a></h2>
+<h3 id="null"><a href="/en/testing/">Testing</a></h3>
 <ul><li>A unit test checks the behavior of one software component in isolation.
 </li><li>The result of a unit test can be pass, fail, or error.
 </li><li>Use Mocha to write and run unit tests in JavaScript.
@@ -8524,12 +8525,12 @@ but its complexity led many programmers to adopt <a href="#g:json">JSON</a> inst
 </li><li>HTML is represented in memory using the Document Object Model (DOM).
 </li><li>Check the structure of the DOM rather than the textual representation of the HTML when testing.
 </li></ul>
-<h2><a href="/en/capstone/">Capstone Project</a></h2>
+<h3 id="null"><a href="/en/capstone/">Capstone Project</a></h3>
 <ul><li>Use slices of actual data to test applications.
 </li><li>Test summaries and small cases so that results can be checked by hand.
 </li><li>Store state in a class, use pure functions to display it.
 </li></ul>
-<h2><a href="/en/finale/">Conclusion</a></h2>
+<h3 id="null"><a href="/en/finale/">Conclusion</a></h3>
 <ul><li>We have learned a lot.
 </li><li>Contributions are very welcome.
 </li></ul>
@@ -8539,7 +8540,7 @@ but its complexity led many programmers to adopt <a href="#g:json">JSON</a> inst
 
         </div>
 <div class="chapter">
-          <h1>Legacy JavaScript Issues</h1>
+          <h2 id="s:legacy">Legacy JavaScript Issues</h2>
           
 
           
@@ -8550,7 +8551,7 @@ and like many twenty-somethings,
 it is still struggling with issues from its childhood.
 This appendix explores three of them.</p>
 
-<h2 id="s:legacy-equality">Equality</h2>
+<h3 id="s:legacy-equality">Equality</h3>
 
 <p>Gary Bernhardt’s <a href="https://www.destroyallsoftware.com/talks/wat">lightning talk from 2012</a>
 may be the most-watched presentation on JavaScript ever.
@@ -8626,7 +8627,7 @@ doing something that’s convenient in a simple case
 produces confusion in less common cases.
 Every language except Canadian English has warts like these.</p>
 
-<h2 id="s:legacy-iteration">Iteration</h2>
+<h3 id="s:legacy-iteration">Iteration</h3>
 
 <p>We wrote above that arrays are objects.
 This led to some undesirable behavior with JavaScript’s original <code class="highlighter-rouge">for</code> loop,
@@ -8685,7 +8686,7 @@ element 1 of x,y,z is y
 element 2 of x,y,z is z
 </code></pre></div></div>
 
-<h2 id="s:legacy-prototypes">Prototypes</h2>
+<h3 id="s:legacy-prototypes">Prototypes</h3>
 
 <p>We come finally to an aspect of JavaScript that has been the cause of a great deal of confusion: prototypes.
 Every JavaScript object has an internal property called its <a href="#g:prototype">prototype</a>.
@@ -8753,7 +8754,7 @@ but most people find modern JavaScript’s classes easier to use.</p>
 
         </div>
 <div class="chapter">
-          <h1>Regular Expressions</h1>
+          <h2 id="s:regexp">Regular Expressions</h2>
           
 
           
@@ -8775,7 +8776,7 @@ but are outside the scope of this tutorial.</p>
 
         </div>
 <div class="chapter">
-          <h1>Logging</h1>
+          <h2 id="s:logging">Logging</h2>
           
 
           
@@ -8887,7 +8888,7 @@ because none are deemed important enough.</p>
 
         </div>
 <div class="chapter">
-          <h1>Using a Database</h1>
+          <h2 id="s:db">Using a Database</h2>
           
 
           
@@ -8946,7 +8947,7 @@ we will build a class to handle our interactions with a SQLite database,
 test it,
 and then put a web service on top of it.</p>
 
-<h2 id="s:db-start">Starting Point</h2>
+<h3 id="s:db-start">Starting Point</h3>
 
 <p>Our class, imaginatively named <code class="highlighter-rouge">Database</code>,
 tkaes the path to the SQLite database file as a constructor parameter
@@ -9077,7 +9078,7 @@ and the result is an array of objects,
 one per record,
 whose names are the derived in an obvious way from the names of the columns.</p>
 
-<h2 id="s:db-in-memory">In-Memory Database</h2>
+<h3 id="s:db-in-memory">In-Memory Database</h3>
 
 <p>The previous example always manipulates database on disk.
 For testing purposes,
@@ -9207,7 +9208,7 @@ Here are the changes to the constructor:</p>
 <span class="p">}</span>
 </code></pre></div></div>
 
-<h2 id="s:db-testable">Making It Testable</h2>
+<h3 id="s:db-testable">Making It Testable</h3>
 
 <p>We put the database class and its driver in separate files
 so that applications can load just the former.
@@ -9314,7 +9315,7 @@ instead of asking for something and then operating on it,
 we say,
 “Here’s what we want to do once results are available.”</p>
 
-<h2 id="s:db-testing">Testing</h2>
+<h3 id="s:db-testing">Testing</h3>
 
 <p>We can finally write some tests:</p>
 
@@ -9375,7 +9376,7 @@ passing it the fixture and the callback that will receives results.
 That callback uses <code class="highlighter-rouge">assert</code> to check results
 and <code class="highlighter-rouge">done</code> to signal that the test has completed.</p>
 
-<h2 id="s:db-mutate">Updating the Database</h2>
+<h3 id="s:db-mutate">Updating the Database</h3>
 
 <p>The <a href="#s:dataman">data manager we built earlier</a> only let us read data;
 we couldn’t modify it.
@@ -9471,15 +9472,15 @@ since want to check that the database is in the right state after the operation:
 <span class="p">})</span>
 </code></pre></div></div>
 
-<h2 id="s:db-exercises">Exercises</h2>
+<h3 id="s:db-exercises">Exercises</h3>
 
-<h3 id="copying-records">Copying Records</h3>
+<h4>Copying Records</h4>
 
 <p>Write a program that copies all the rows
 from the table <code class="highlighter-rouge">Workshop</code> in a database <code class="highlighter-rouge">source.db</code>
 to a table with the same name in a new database <code class="highlighter-rouge">backup.db</code>.</p>
 
-<h3 id="filtering-records">Filtering Records</h3>
+<h4>Filtering Records</h4>
 
 <p>Add a new method to the <code class="highlighter-rouge">Database</code> class
 to get all workshops that are longer than a specified time:</p>
@@ -9495,7 +9496,7 @@ to get all workshops that are longer than a specified time:</p>
 will need to use a <code class="highlighter-rouge">where</code> clause
 that selects specific records.</p>
 
-<h3 id="more-filtering">More Filtering</h3>
+<h4>More Filtering</h4>
 
 <p>The SQL query encapsulated in the variable below can be used to
 find all workshop whose duration falls within a range.</p>
@@ -9519,7 +9520,7 @@ What happens when you provide the wrong number of arguments to this function? Or
 if you provide them in the wrong order?
 Can you write a test that provides more useful feedback than this?</p>
 
-<h3 id="handling-errors">Handling Errors</h3>
+<h4>Handling Errors</h4>
 
 <p>The <code class="highlighter-rouge">Database</code> class prints a message and exits when it detects an error.
 This is bad practice,
@@ -9534,7 +9535,7 @@ and handle however it wants.</p>
   <li>Modify the tests to check that the right exceptions are thrown when they should be.</li>
 </ol>
 
-<h3 id="using-a-database-with-a-server">Using a Database with a Server</h3>
+<h4>Using a Database with a Server</h4>
 
 <p>Rewrite the <a href="#s:capstone">capstone project</a> to use a database instead of a file for data storage.</p>
 
@@ -9557,7 +9558,7 @@ and handle however it wants.</p>
 
         </div>
 <div class="chapter">
-          <h1>Extensible Servers</h1>
+          <h2 id="s:extensible">Extensible Servers</h2>
           
 
           

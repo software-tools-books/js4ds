@@ -6,7 +6,8 @@ const yaml = require('js-yaml')
 const { JSDOM } = require('jsdom')
 
 HEADER = `---
-permalink: /en/all/
+permalink: /all/
+root: true
 layout: plain
 ---
 `
@@ -18,7 +19,8 @@ const main = () => {
   const allFiles = [indexFile]
 	.concat(order.map(key => makeSrcPath(rootDir, key)))
   const allChapters = allFiles
-	.map(path => getDoc(path))
+	.map(path => ({path, doc: getDoc(path)}))
+	.map(({path, doc}) => transformHeadings(path, doc))
 	.map(doc => doc.querySelector('html'))
 	.map(doc => transformHrefs(doc))
 	.map(doc => doc.querySelector('div.main'))
@@ -34,18 +36,6 @@ const getConfig = (configFile) => {
   const toc = config.toc
   const order = toc.lessons.concat(toc.bib).concat(toc.extras)
   return {config, order}
-}
-
-const cleanup = (div) => {
-  div.className = 'chapter'
-
-  removeAll(div, 'blockquote.disclaimer', 'div.headings')
-
-  replaceAll('h3', 'h4')
-  replaceAll('h2', 'h3')
-  replaceAll('h1', 'h2')
-
-  return div
 }
 
 const makeSrcPath = (rootDir, key) => {
@@ -77,6 +67,31 @@ const transformHrefs = (doc) => {
   return doc
 }
 
+const transformHeadings = (path, doc) => {
+
+    // h3 becomes h4 and auto-generated IDs are removed.
+    Array.from(doc.querySelectorAll('h3')).forEach(node => {
+	const h4 = doc.createElement('h4')
+	patch(node, h4)
+    })
+
+    // h2 becomes h3.
+    Array.from(doc.querySelectorAll('h2')).forEach(node => {
+	const h3 = doc.createElement('h3')
+	h3.setAttribute('id', node.getAttribute('id'))
+	patch(node, h3)
+    })
+
+    // h1 becomes h2 with new ID.
+    Array.from(doc.querySelectorAll('h1')).forEach(node => {
+	const h2 = doc.createElement('h2')
+	h2.setAttribute('id', pathToId(path))
+	patch(node, h2)
+    })
+
+    return doc
+}
+
 const patch = (oldNode, newNode) => {
   while (oldNode.childNodes.length > 0) {
     newNode.appendChild(oldNode.childNodes[0])
@@ -88,12 +103,14 @@ const pathToId = (path) => {
   return 's:' + path.split('/').slice(-2, -1)
 }
 
-const removeAll = (doc, ...selectors) => {
-  selectors.forEach(sel => {
-    Array.from(doc.querySelectorAll(sel)).forEach(node => {
+const cleanup = (div) => {
+  div.className = 'chapter'
+  for (sel of ['blockquote.disclaimer', 'div.headings']) {
+    Array.from(div.querySelectorAll(sel)).forEach(node => {
       node.parentNode.removeChild(node)
     })
-  })
+  }
+  return div
 }
 
 main()

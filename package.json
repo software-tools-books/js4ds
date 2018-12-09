@@ -15,7 +15,7 @@
     "dev": "parcel serve -p 4000",
     "lint": "eslint bin/*.js src/**/*.js",
     "standard": "standard",
-    "stitch": "node bin/stitch.js _config.yml _site/en _site/en/index.html all.html",
+    "stitch": "node bin/stitch.js _config.yml _site _site/index.html all.html",
     "test": "mocha",
     "words": "bin/wc.js *.md *.md *.md"
   },
