@@ -1,35 +1,36 @@
 const express = require('express')
-const bodyParser = require('body-parser')
 
-// 'db' is a global variable that refers to our database.
+// 'dataManager' is a global variable that refers to our database.
 // It must be set when the server is created.
-let db = null
+let dataManager = null
 
-// Main server object and database object.
+// Main server object.
 const app = express()
-app.use(bodyParser.json())
 
 // Get survey statistics.
 app.get('/survey/stats', (req, res, next) => {
-  const data = db.getSurveyStats()
-  res.status(200).json(data)
+  const data = dataManager.getSurveyStats()
+  res.setHeader('Content-Type', 'application/json')
+  res.status(200).send(data)
 })
 
 // Get a slice of the survey data.
 app.get('/survey/:start/:end', (req, res, next) => {
   const start = parseInt(req.params.start)
   const end = parseInt(req.params.end)
-  const data = db.getSurveyRange(start, end)
-  res.status(200).json(data)
+  const data = dataManager.getSurveyRange(start, end)
+  res.setHeader('Content-Type', 'application/json')
+  res.status(200).send(data)
 })
 
 // Nothing else worked.
 app.use((req, res, next) => {
   page = `<html><body><p>error: "${req.url}" not found</p></body></html>`
-  res.status(404).send(page)
+  res.status(404)
+     .send(page)
 })
 
-module.exports = (databaseHandler) => {
-  db = databaseHandler
+module.exports = (dbm) => {
+  dataManager = dbm
   return app
 }

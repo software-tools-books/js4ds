@@ -13,6 +13,8 @@ definitions if that's done.
 [bootstrap]: https://getbootstrap.com/
 
 [cheerio]: https://cheerio.js.org/
+[cors-docs]: https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS/Errors/CORSMissingAllowOrigin
+[cors-wikipedia]: https://en.wikipedia.org/wiki/Cross-origin_resource_sharing
 [covenant]: https://www.contributor-covenant.org
 [cpu-second]: http://exple.tive.org/blarg/2018/08/15/time-dilation/
 

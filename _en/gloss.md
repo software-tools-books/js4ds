@@ -125,6 +125,10 @@ after the statement `const v = ['a', 'b']`,
 the name `v` will always refer to the same array,
 but the array's contents can be changed.
 
+**Cross-Origin Resource Sharing**{:#g:cors} (CORS):
+a way to control requests made for data and other resources
+that aren't served by the site that gave the browser the original page.
+
 **declarative programming**{:#g:declarative-programming}:
 a style of programming in which the user specifies what they want,
 and the computer figures out how to deliver it.
@@ -356,6 +360,10 @@ a set of variables, functions, and/or classes grouped together for easier manage
 (typically but not always in a single file).
 Modules are sometimes also called [libraries](#g:library).
 
+**module variable**{:#g:module-variable}:
+a variable that is visible within a module but not outside it.
+See [scope](#g:scope).
+
 **mutation**{:#g:mutation}:
 changing data in place,
 such as modifying an element of an array or adding a record to a database.
@@ -527,6 +535,7 @@ or the ways in which structures can be nested in [JSON](#g:json).
 the portion of a program within which a definition can be seen and used.
 See [global-variable](#g:global-variable),
 [local-variable](#g:local-variable),
+[module-variable](#g:module-variable),
 and (if you are brave) [closure](#g:closure).
 
 **seed**{:#g:seed}:
