@@ -5,8 +5,14 @@ const path = require('path')
 const yaml = require('js-yaml')
 const { JSDOM } = require('jsdom')
 
+HEADER = `---
+permalink: /en/all/
+layout: plain
+---
+`
+
 const main = () => {
-  const [configFile, rootDir, indexFile, templateFile, destFile] = process.argv.slice(2)
+  const [configFile, rootDir, indexFile, destFile] = process.argv.slice(2)
   const {config, order} = getConfig(configFile)
 
   const allFiles = [indexFile]
@@ -16,11 +22,11 @@ const main = () => {
 	.map(doc => doc.querySelector('html'))
 	.map(doc => transformHrefs(doc))
 	.map(doc => doc.querySelector('div.main'))
-  allChapters.forEach(div => div.className = 'chapter')
+	.map(div => cleanup(div))
 
-  const destDoc = getDoc(templateFile)
-  fillIn(destDoc, config.title, allChapters)
-  fs.writeFileSync(destFile, destDoc.querySelector('html').outerHTML, 'utf-8')
+  const result = HEADER.replace('TITLE', config.title) +
+	allChapters.map(div => div.outerHTML).join('\n')
+  fs.writeFileSync(destFile, result, 'utf-8')
 }
 
 const getConfig = (configFile) => {
@@ -30,26 +36,10 @@ const getConfig = (configFile) => {
   return {config, order}
 }
 
-const fillIn = (doc, title, allChapters) => {
-  console.log('***doc is', doc)
-  const destDiv = doc.querySelector('div.main')
-  console.log('destDiv is', destDiv.outerHTML)
-
-  removeAll(destDiv, 'blockquote.disclaimer', 'div.headings')
-  while (destDiv.childNodes.length > 0) {
-    destDiv.removeChild(destDiv.childNodes[0])
-  }
-
-  const h1 = doc.createElement('h1')
-  h1.innerHTML = title
-  console.log('h1 is', h1.outerHTML)
-  destDiv.appendChild(h1)
-  const toc = doc.createElement('div')
-  toc.classList.add('listblock', 'headings')
-  destDiv.appendChild(toc)
-  console.log('destDiv becomes', destDiv.outerHTML)
-
-  allChapters.forEach(c => destDiv.appendChild(c))
+const cleanup = (div) => {
+  div.className = 'chapter'
+  removeAll(div, 'blockquote.disclaimer', 'div.headings')
+  return div
 }
 
 const makeSrcPath = (rootDir, key) => {
