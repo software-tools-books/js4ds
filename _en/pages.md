@@ -438,7 +438,7 @@ Now that we have an array of the `li` elements to be sorted,
 we can use `Array.sort` to order them.
 Since we want to sort them by the text they contain,
 we have to provide our own sorting function
-that returns -1, 0, or 1 to show whether its `left` argument is less than,
+that returns a negative number, 0, or a positive number to show whether its `left` argument is less than,
 equal to,
 or greater than its `right` argument.
 We use the `textContent` member of the node to get the text it contains,
