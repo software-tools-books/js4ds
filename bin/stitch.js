@@ -38,7 +38,13 @@ const getConfig = (configFile) => {
 
 const cleanup = (div) => {
   div.className = 'chapter'
+
   removeAll(div, 'blockquote.disclaimer', 'div.headings')
+
+  replaceAll('h3', 'h4')
+  replaceAll('h2', 'h3')
+  replaceAll('h1', 'h2')
+
   return div
 }
 
