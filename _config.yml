@@ -40,6 +40,7 @@ toc:
   - /regexp/
   - /logging/
   - /db/
+  - /extensible/
 
 # Theme color.
 background: "#e8f8e8"

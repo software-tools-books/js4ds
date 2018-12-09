@@ -168,6 +168,11 @@ In HTML, elements are enclosed in matching `<tag>` and `</tag>` pairs,
 or written as `<tag/>` if they contain no content.
 Elements are represents as [nodes](#g:node) in the [DOM](#g:dom).
 
+**entry point**{:#g:entry-point}:
+a function with a known name and [signature](#g:signature)
+that a framework requires every plugin or other dynamically-loaded content to have.
+The entry point is (as the name suggests) how the framework gets into the plugin.
+
 **escape sequence**{:#g:escape-sequence}:
 a sequence of characters used to represent some other character
 that would otherwise have a special meaning.
@@ -429,6 +434,12 @@ Every node has a parent except the [root]{#root-node}.
 **parse**{:#g:parse}:
 to translate the text of a program or web page into a data structure in memory
 that the program can then manipulate.
+
+**plugin protocol**{:#g:plugin-protocol}:
+a set of rules specifying where plugin modules are to be placed,
+how they will be referred to,
+and what [entry points](#g:entry-point) they must contain
+so that they can be used by some generic program like a server.
 
 **polymorphism**{:#g:polymoprhism}:
 literally, "having many forms".
