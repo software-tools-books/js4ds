@@ -1,3 +1,5 @@
+const vegaEmbed = require('vega-embed')
+
 const spec = {
   "$schema": "https://vega.github.io/schema/vega-lite/v2.0.json",
   "description": "A simple bar chart with embedded data.",

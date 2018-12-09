@@ -135,7 +135,8 @@ JavaScript looks in the prototype object's prototype, and so on.
 So where do prototypes come from?
 If an object is created with `new Something()`,
 and the function `Something` has a property called `prototype`,
-then the new object's prototype is set to that object.
+then the new object's prototype is set to the object to which that
+`prototype` property points.
 
 This will all make sense with an example and a diagram.
 Let's create an object to store the default properties of ice cream cones,
@@ -154,8 +155,6 @@ Cone.prototype = iceCream
 ```
 {: title="src/legacy/prototypes.js"}
 
-FIXME: diagram
-
 We can now create a cone and look at its properties:
 
 ```js
@@ -166,6 +165,11 @@ console.log(`initial flavor "${dessert.flavor}" and size "${dessert.size}"`)
 ```text
 initial flavor "mustard" and size "large"
 ```
+
+<figure id="f:legacy-prototype">
+  <figcaption>Prototypes</figcaption>
+  <img src="../../files/legacy-prototype.svg" />
+</figure>
 
 If we change the `size` of our dessert,
 lookup finds the object's property before looking up the chain to find the parent object's:
