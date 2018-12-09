@@ -54,6 +54,13 @@ into a single bundle for deployment.
 **cache**{:#g:cache}:
 a place where copies of recently-used values are stored for quicker access.
 
+**call stack**{:#g:call-stack}:
+a data structure that stores information about function calls that are currently in progress.
+Each function call adds another table of variable-value pairs to the top of the stack;
+when the function completes,
+that table is discarded.
+See also [closure](#g:closure).
+
 **callback function**{:#g:callback-function}:
 a function A that is passed to another function B
 for B to call at a later time.
@@ -348,6 +355,11 @@ This makes those files smaller and faster to deploy at the expense of readabilit
 a set of variables, functions, and/or classes grouped together for easier management
 (typically but not always in a single file).
 Modules are sometimes also called [libraries](#g:library).
+
+**name collision**{:#g:name-collision}:
+the ambiguity that arises when two or more things in a program that have the same name
+are active at the same time.
+The [call stack](#g:call-stack) was invented in part to address this problem.
 
 **node**{:#g:node}:
 an in-memory representation of an element in an HTML page.
