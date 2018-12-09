@@ -249,7 +249,7 @@ ReactDOM.render(
 ```
 {: title="src/capstone/back/app.js"}
 
-The constructor defines URL for the data source and sets up the initial state,
+The constructor defines the URL for the data source and sets up the initial state,
 which has summary data,
 start and end years,
 and data for those years:
