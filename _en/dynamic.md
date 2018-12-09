@@ -49,7 +49,7 @@ As browsers and JavaScript became more powerful,
 the balance shifted toward [client-side page generation](../gloss/#g:client-side-page-generation).
 In this model,
 the browser fetches data from one or more servers
-and feeds that data to a JavaScript library that generate HTML in the browser for display.
+and feeds that data to a JavaScript library that generates HTML in the browser for display.
 This allows the [client](../gloss/#g:client) to decide how best to render data,
 which is increasingly important as phones and tablets take over
 from desktop and laptop computers.
