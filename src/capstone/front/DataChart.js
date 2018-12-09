@@ -6,7 +6,7 @@ const DataChart = ({data}) => {
     return (<p>no data</p>)
   }
 
-  const values = data.map((rec) => ({x: rec.hindfoot_avg, y: rec.weight_avg}))
+  const values = data.map(r => ({x: r.ave_hindfoot_length, y: r.ave_weight}))
   let spec = {
     '$schema': 'https://vega.github.io/schema/vega-lite/v2.0.json',
     'description': 'Mean Weight vs Mean Hindfoot Length',

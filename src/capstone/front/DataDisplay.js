@@ -8,19 +8,19 @@ const DataDisplay = ({data}) => {
 
   const columns = [
     'year',
-    'hindfoot_min',
-    'hindfoot_avg',
-    'hindfoot_max',
-    'weight_min',
-    'weight_avg',
-    'weight_max'
+    'min_hindfoot_length',
+    'ave_hindfoot_length',
+    'max_hindfoot_length',
+    'min_weight',
+    'ave_weight',
+    'max_weight'
   ]
   return (
     <table>
       <tbody>
         <tr>{columns.map((c) => (<th>{c}</th>))}</tr>
         {data.map((record) => {
-          return (<tr>{columns.map((c) => (<td>{record[c]}</td>))}</tr>)
+          return (<tr key={record['year']}>{columns.map((c) => (<td>{record[c]}</td>))}</tr>)
         })}
       </tbody>
     </table>
