@@ -349,6 +349,10 @@ a set of variables, functions, and/or classes grouped together for easier manage
 (typically but not always in a single file).
 Modules are sometimes also called [libraries](#g:library).
 
+**mutation**{:#g:mutation}:
+changing data in place,
+such as modifying an element of an array or adding a record to a database.
+
 **node**{:#g:node}:
 an in-memory representation of an element in an HTML page.
 See also [DOM](#g:dom).
