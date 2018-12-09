@@ -120,9 +120,9 @@ When we open the page now,
 we see a bar chart,
 and feel very proud of ourselves.
 
-<figure>
+<figure id="f:vis-vega-mark-encoding">
   <figcaption>Mark and Encoding</figcaption>
-  <img id="f:vis-vega-mark-encoding" src="../../files/vega-mark-encoding.png" alt="Mark and Encoding" />
+  <img id="f:vis-mark-encoding" src="../../files/vis-mark-encoding.png" alt="Mark and Encoding" />
 </figure>
 
 There are also some poorly-styled links for various controls that we're not going to use.
@@ -149,9 +149,9 @@ We can fill in the options argument to `vegaEmbed` to turn those off:
 
 We now have the visualization we wanted:
 
-<figure>
+<figure id="f:vis-vega-disable-controls">
   <figcaption>Without Controls</figcaption>
-  <img id="f:vis-vega-disable-controls" src="../../files/vega-disable-controls.png" alt="Without Controls" />
+  <img id="f:vis-disable-controls" src="../../files/vis-disable-controls.png" alt="Without Controls" />
 </figure>
 
 Vega-Lite has a *lot* of options:
@@ -194,9 +194,9 @@ which is set to `"average"`:
 ```
 {: title="src/viz/vega-aggregate-points.html"}
 
-<figure>
+<figure id="f:vis-vega-aggregate-points">
   <figcaption>Aggregating and Using Points</figcaption>
-  <img id="f:vis-vega-aggregate-points" src="../../files/vega-aggregate-points.png" alt="Aggregating and Using Points" />
+  <img id="f:vis-aggregate-points" src="../../files/vis-aggregate-points.png" alt="Aggregating and Using Points" />
 </figure>
 
 ## Local Installation {#s:vis-vega-local}
@@ -206,7 +206,7 @@ but prevents offline development.
 Since we want to be able to work when we're disconnected,
 let's load from local files.
 
-Step 1 is to put our application in `app.js` and load that (using the `async` attribute as before):
+Step 1 is to slim down our HTML file so that it only loads our application:
 
 ```html
 <!DOCTYPE html>
@@ -214,9 +214,6 @@ Step 1 is to put our application in `app.js` and load that (using the `async` at
   <head>
     <title>Load Vega from a File</title>
     <meta charset="utf-8">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/vega/3.0.7/vega.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/vega-lite/2.0.1/vega-lite.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/vega-embed/3.0.0-rc7/vega-embed.js"></script>
     <script src="app.js" async></script>
   </head>
   <body>
@@ -225,7 +222,13 @@ Step 1 is to put our application in `app.js` and load that (using the `async` at
 </html>
 ```
 {: title="src/vis/react-01/index.html"}
+
+In step 2,
+we `npm install vega vega-lite vega-embed` and `require('vega-embed')` in `app.js`:
+
 ```js
+const vegaEmbed = require('vega-embed')
+
 const spec = {
   ...as before...
 }
@@ -236,23 +239,17 @@ const options = {
 
 vegaEmbed("#vis", spec, options)
 ```
+{: title="src/vis/react-01/app.js"}
 
-In step 2,
-we `npm install vega vega-lite vega-embed`.
-We only require `vegaEmbed`  in `app.js`;
-Parcel will then find and bundle all of the dependencies for us:
+We launch this with Parcel via our saved `npm run` command:
 
-```
-const vegaEmbed = require('vega-embed')
+```sh
+npm run dev -- src/vis/react-01/index.html
 ```
 
-When we run this, though, nothing appears in the page.
+But nothing appears when we open `http://localhost:4000` in our browser.
 Looking in the browser console,
 we see a message telling us that `vegaEmbed` is not a function.
-If we open `vegaEmbed` in the object inspector,
-we see that the thing we want is actually called `vegaEmbed.default`.
-
-FIXME: screenshot of object inspector
 
 What we have tripped over is something that's still painful in 2018.
 The old method of getting libraries is `require`,
@@ -274,15 +271,7 @@ we decide to make the fix as the library is loaded:
 ```
 const vegaEmbed = require('vega-embed').default
 
-const spec = {
-  ...as before...
-}
-
-const options = {
-  ...as before...
-}
-
-vegaEmbed("#vis", spec, options)
+...everything else as before...
 ```
 {: title="src/vis/react-02/app.js"}
 
@@ -294,16 +283,9 @@ but we will stick to `vegaEmbed` for consistency with previous examples:
 ```js
 import vegaEmbed from 'vega-embed'
 
-const spec = {
-  ...as before...
-}
-
-const options = {
-  ...as before...
-}
-
-vegaEmbed("#vis", spec, options)
+...everything else as before...
 ```
+{: title="src/vis/react-02/app.js"}
 
 If we do this,
 the bundled file is 74.5K lines of JavaScript,
