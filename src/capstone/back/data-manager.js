@@ -19,9 +19,9 @@ class DataManager {
 
   getSurveyStats () {
     return {
-      minYear : this._get(this.data, 'year', Math.min),
-      maxYear : this._get(this.data, 'year', Math.max),
-      count : this.data.length
+      year_low : this._get(this.data, 'year', Math.min),
+      year_high : this._get(this.data, 'year', Math.max),
+      record_count : this.data.length
     }
   }
 
