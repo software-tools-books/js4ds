@@ -19,7 +19,7 @@ keypoints:
 - "Use `ul` and `ol` for unordered and ordered lists, and `li` for list elements."
 - "Use `table` for tables, `tr` for rows, `th` for headings, and `td` for regular data."
 - "Use `<a href=\"...\">...</a>` to create links."
-- "Use `<img src=\"...\" alt=\"...\" />` to include images."
+- "Use `<img src=\"...\" title=\"...\" alt=\"...\" />` to include images."
 - "Use CSS to define appearance of elements."
 - "Use `class` and `id` to identify elements."
 - "Use selectors to specify the elements that CSS applies to."
@@ -335,12 +335,13 @@ and refer to that file using an `img` element
 The `src` attribute of the `img` tag specifies where to find the file;
 as with the `href` attribute of an `a` element,
 this can be either a URL or a local path.
-Every `img` should also include an `alt` attribute
-with some descriptive text to aid accessibility and search engines.
+Every `img` should also include a `title` attribute (whose purpose is self-explanatory)
+and an `alt` attribute with some descriptive text to aid accessibility and search engines.
 
 ```html
-<img src="./html5.png" alt="HTML5 Logo with local path"/>
-<img src="https://github.com/software-tools-in-javascript/js-vs-rc/blob/master/src/htmlcss/html5.png" alt="HTML5 logo online"/>
+<img src="./html5.png" title="HTML5 Logo" alt="Displays the HTML5 logo using a local path" />
+<img src="https://github.com/software-tools-in-javascript/js-vs-rc/blob/master/src/htmlcss/html5.png"
+     title="HTML5 Logo" alt="Display the HTML5 logo using a URL" />
 ```
 {: title="src/htmlcss/images.html"}
 

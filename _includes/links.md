@@ -37,6 +37,7 @@ definitions if that's done.
 [parse-xml-regular-expressions]: https://stackoverflow.com/a/1732454
 
 [react]: https://reactjs.org/
+[react-keys]: https://stackoverflow.com/questions/28329382/understanding-unique-keys-for-array-children-in-react-js
 [runkit]: https://runkit.com/
 [rxjs]: https://rxjs-dev.firebaseapp.com/
 
