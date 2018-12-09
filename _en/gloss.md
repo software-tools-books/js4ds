@@ -118,6 +118,10 @@ after the statement `const v = ['a', 'b']`,
 the name `v` will always refer to the same array,
 but the array's contents can be changed.
 
+**Cross-Origin Resource Sharing**{:#g:cors} (CORS):
+a way to control requests made for data and other resources
+that aren't served by the site that gave the browser the original page.
+
 **declarative programming**{:#g:declarative-programming}:
 a style of programming in which the user specifies what they want,
 and the computer figures out how to deliver it.

@@ -53,12 +53,13 @@ We'll do this by having the driver create a data manager,
 and then pass that data manager to the server as the latter is being created:
 
 ```js
-const Database = require('./data-manager')
+const DataManager = require('./data-manager')
 const server = require('./server-0')
 
 const PORT = 3418
 
-const db = new DataManager('test-data.csv')
+const filename = process.argv[2]
+const db = new DataManager(filename)
 const app = server(db)
 app.listen(PORT, () => {
   console.log(`listening on port ${PORT}...`)
@@ -66,8 +67,6 @@ app.listen(PORT, () => {
 ```
 {: title="src/capstone/back/driver-0.js"}
 
-For the moment,
-this always loads `test-data.csv`.
 As you can probably guess from the fact that we've called it `driver-0`,
 we're going to be making some changes down the road...
 
@@ -269,13 +268,9 @@ and data for those years:
 ```
 {: title="src/capstone/back/app.js"}
 
-We have to wait until our component has been mounted before we can fetch our summary data:
-we can't do this in the constructor because
-we have no control over the order in which bits of display are initialized.
-On the upside,
-we can use `response.json()` directly because we know the source is returning JSON data.
-This method is the only place where the summary is updated,
-since the data isn't changing underneath us:
+The method `componentDidMount` is new:
+it fetches data for the very first time
+so that the user sees something useful on the page when they first load it.
 
 ```js
   componentDidMount = () => {
@@ -290,6 +285,16 @@ since the data isn't changing underneath us:
   }
 ```
 {: title="src/capstone/back/app.js"}
+
+We don't call this method ourselves;
+instead,
+React automatically calls it once our application and its children have been loaded and initialized.
+We can't fetch the initial data in the application's constructor because
+we have no control over the order in which bits of display are initialized.
+On the upside,
+we can use `response.json()` directly because we know the source is returning JSON data.
+This method is the only place where the summary is updated,
+since the data isn't changing underneath us:
 
 Next up we need to handle typing in the "start" and "end" boxes.
 The HTML controls in the web page will capture the characters without our help,
@@ -442,7 +447,97 @@ export default DataChart
 
 ## Running It {#s:capstone-run}
 
-FIXME: describe the parceling and how to run.
+In order to test our application,
+we need to run a data server,
+and then launch our application with Parcel.
+The easiest way to do that is to open two windows on our computer
+and make each half the width (or height) of our screen
+so that we can see messages from both halves of what we're doing.
+
+In one window,
+we run:
+
+```sh
+node src/capstone/back/driver-0.js src/capstone/back/test-data.csv
+```
+
+Note that we *don't* use `npm run dev` to trigger Parcel:
+this is running on the server,
+so no bundling is necessary.
+In our other window,
+we run:
+
+```sh
+npm run dev src/capstone/front/index.html
+```
+
+which displays:
+
+```text
+> js-vs-ds@0.1.0 dev /Users/stj/js-vs-ds
+> parcel serve -p 4000 "src/capstone/front/index.html"
+
+Server running at http://localhost:4000 
+✨  Built in 20.15s.
+```
+
+We then open `http://localhost:4000` in our browser and see this:
+
+<figure id="f:capstone-first-attempt">
+  <figcaption>First Attempt at Viewing Capstone Project</figcaption>
+  <img src="../../files/capstone-first-attempt.png" />
+</figure>
+
+That's unexpected: we should see the initial data displayed.
+If we open the console in the browser and reload the page,
+we see this error message:
+
+```text
+Cross-Origin Request Blocked:
+The Same Origin Policy disallows reading the remote resource at http://localhost:3418/survey/stats.
+(Reason: CORS header ‘Access-Control-Allow-Origin’ missing).
+```
+
+The "Learn More" link given with the error message takes us to [this page][cors-docs],
+which uses many science words we don't know.
+A web search turns up [this article on Wikipedia][cors-wikipedia],
+which tells us that [Cross-origin resource sharing](../gloss/#g:cors) (CORS)
+is a security mechanism.
+If a page loads some JavaScript,
+and that JavaScript is allowed to send requests to servers other than the one that the page came from,
+then villains would be able to do things like send passwords saved in the browser to themselves.
+The details are too complex for this tutorial;
+the good news is that they've been wrapped up in a Node library called `cors`,
+which we can add to our server with just a couple of lines of code:
+
+```js
+const express = require('express')
+const cors = require('cors')          // added
+
+let dataManager = null
+
+const app = express()
+app.use(cors())                       // added
+
+app.get('/survey/stats', (req, res, next) => {...as before...}
+
+app.get('/survey/:start/:end', (req, res, next) => {...as before...}
+
+app.use((req, res, next) => {...as before...}
+
+module.exports = (dbm) => {...as before...}
+```
+{: title="src/capstone/back/server-1.js"}
+
+Since this code is saved in `server-1.js`,
+we need to create a copy of the driver called `driver-1.js` that invokes it.
+Let's run that:
+
+```sh
+node src/capstone/back/driver-1.js src/capstone/back/test-data.csv
+```
+
+and then re-launch our application:
 
 ## Exercises {#s:capstone-exercises}
 
