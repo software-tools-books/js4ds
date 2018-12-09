@@ -356,6 +356,10 @@ a set of variables, functions, and/or classes grouped together for easier manage
 (typically but not always in a single file).
 Modules are sometimes also called [libraries](#g:library).
 
+**mutation**{:#g:mutation}:
+changing data in place,
+such as modifying an element of an array or adding a record to a database.
+
 **name collision**{:#g:name-collision}:
 the ambiguity that arises when two or more things in a program that have the same name
 are active at the same time.

@@ -20,31 +20,26 @@ keypoints:
 Our [data manager](../data/) got information from a single CSV file.
 That's fine for testing purposes,
 but real applications almost always use a database of some kind.
-There are many more choices these days for what kind of database to use,
+There are many options these days for what kind,
 but [relational databases](../gloss/#g:relational-database) continue to be
 the workhorses of the web.
-
-A relational database contains zero or more [tables](../gloss/#g:table).
-Each table has a fixed set of [fields](../gloss/#g:field),
-which are usually drawn as columns,
-and zero or more [records](../gloss/#g:record),
-which are usually drawn as rows.
-Each record has a value for each field,
-which may be a number, a character string, a date and time,
-or `null` if the value is missing or unknown.
 
 Relational databases are manipulated using a language called [SQL](../gloss/#g:sql),
 which originally stood for "Structured Query Language"
 and is pronounced "sequel" or "ess cue ell" depending on whether the speaker is
 left or right handed.
-Alternatives are collectively known as [NoSQL databases](../gloss/#g:nosql-database),
-and use many different storage models.
+(Alternatives are collectively known as [NoSQL databases](../gloss/#g:nosql-database),
+and use many different storage models.)
 We will use a SQL database because it's still the most common choice,
 but we won't try to introduce SQL itself:
-see [this short tutorial][sql-tutorial] instead.
+for that,
+see [this short tutorial][sql-tutorial].
+
 As an example problem,
 we will store information about workshops.
-Here's the start of our database:
+Our database begins with a single [table](../gloss/#g:table)
+with three [fields](../gloss/#g:field)
+and two [records](../gloss/#g:record):
 
 ```sql
 drop table if exists Workshop;
@@ -64,9 +59,6 @@ In the rest of this tutorial,
 we will build a class to handle our interactions with a SQLite database,
 test it,
 and then put a web service on top of it.
-Managing database interactions with a separate class makes it easier to test,
-and also makes it easier to change from one database to another
-if we want to down the road.
 
 ## Starting Point {#s:db-start}
 
@@ -249,8 +241,8 @@ exactly the commands we showed at the start of the lesson.
 If the `mode` is `"file"`,
 we interpret the file argument as the name of an on-disk database
 and proceed as before.
-And we put our error messages in ALL CAPS because that's the most annoying option easily available to us.
 
+We put our error messages in ALL CAPS because that's the most annoying option easily available to us.
 Less annoyingly,
 we can use destructuring to handle command-line arguments in the driver:
 
@@ -468,12 +460,10 @@ we say,
 
 ## Testing {#s:db-testing}
 
-Now,
-finally,
-we can write some tests:
+We can finally write some tests:
 
 ```js
-const test = require('tape')
+const assert = require('assert')
 const Database = require('./callback-database')
 
 const FIXTURE = `
@@ -489,49 +479,147 @@ insert into Workshop values(1, "Building Community", 60);
 insert into Workshop values(2, "ENIAC Programming", 150);
 `
 
-test('Can get all workshops', (t) => {
-  expected = [
-    { workshopName: 'Building Community', workshopDuration: 60, workshopId: 1 },
-    { workshopName: 'ENIAC Programming', workshopDuration: 150, workshopId: 2 }
-  ]
-  new Database('direct', FIXTURE).getAll([], (results) => {
-    t.deepEqual(results, expected, 'Got expected workshops')
-    t.end()
-  })
-})
+describe('database', () => {
 
-test('Can get one workshop', (t) => {
-  expected = [
-    { workshopName: 'Building Community', workshopDuration: 60, workshopId: 1 }
-  ]
-  new Database('direct', FIXTURE).getOne(1, (results) => {
-    t.deepEqual(results, expected, 'Got single expected workshop')
-    t.end()
+  it('should return all workshops', (done) => {
+    expected = [
+      { workshopName: 'Building Community', workshopDuration: 60, workshopId: 1 },
+      { workshopName: 'ENIAC Programming', workshopDuration: 150, workshopId: 2 }
+    ]
+    new Database('direct', FIXTURE).getAll([], (results) => {
+      assert.deepEqual(results, expected, 'Got expected workshops')
+      done()
+    })
   })
-})
 
-test('Can only get workshops that exist', (t) => {
-  new Database('direct', FIXTURE).getOne(99, (results) => {
-    t.deepEqual(results, [], 'Got no workshops matching nonexistent key')
-    t.end()
+  it('should return one workshop', (done) => {
+    expected = [
+      { workshopName: 'Building Community', workshopDuration: 60, workshopId: 1 }
+    ]
+    new Database('direct', FIXTURE).getOne(1, (results) => {
+      assert.deepEqual(results, expected, 'Got single expected workshop')
+      done()
+    })
   })
+
+  it('can only get workshops that exist', (done) => {
+    new Database('direct', FIXTURE).getOne(99, (results) => {
+      assert.deepEqual(results, [], 'Got no workshops matching nonexistent key')
+      done()
+    })
+  })
+
 })
 ```
 {: title="src/db/basic-tests.js"}
 
 Each test has the same structure:
 we define the expected result,
-create an entirely new database,
+create an entirely new database in memory,
 and then call the method being tested,
-passing it the parameter needed for operation
-and the callback that will receives results.
-That callback uses the `t` object passed to our function by `test`
-to tell us when the test has completed.
-Inside the test we use `deepEqual` to check that the data structures are exact matches.
+passing it the fixture and the callback that will receives results.
+That callback uses `assert` to check results
+and `done` to signal that the test has completed.
 
-## Swapping {#s:db-swapping}
+## Updating the Database {#s:db-mutate}
 
-FIXME: show how to swap the database in for the data manager.
+The [data manager we built earlier](../dataman/) only let us read data;
+we couldn't modify it.
+Let's add a bit more to our database class to support [mutation](../gloss/#g:mutation):
+
+```js
+...imports as before...
+
+const Q_WORKSHOP_GET_ALL = ...as before...
+const Q_WORKSHOP_GET_ONE = ...as before...
+
+const Q_WORKSHOP_ADD = `
+insert into Workshop(name, duration) values(?, ?);
+`
+
+const Q_WORKSHOP_DELETE = `
+delete from Workshop where ident = ?;
+`
+
+class Database {
+
+  constructor (mode, arg) {...as before...}
+  getAll (args, callback) {...as before...}
+  getOne (args, callback) {...as before...}
+
+  addOne (args, callback) {
+    this.db.run(Q_WORKSHOP_ADD, args, function (err, rows) {
+      if (err) this.fail(err)
+      callback([], this.lastID)
+    })
+  }
+
+  deleteOne (args, callback) {
+    this.db.run(Q_WORKSHOP_DELETE, args, (err, rows) => {
+      if (err) this.fail(err)
+      callback([], undefined)
+    })
+  }
+
+  fail (msg) {...as before...}
+  _inMemory (script) {...as before...}
+  _inFile (path) {...as before...}
+}
+
+module.exports = Database
+```
+{: title="src/db/mutate-database.js"}
+
+The additions are straightforward:
+the query that does the work is passed to `this.db.run` along with the incoming arguments
+that specify what is to be added or deleted,
+and an empty list of rows is passed to the action callback
+(since adding and deleting don't return anything).
+Testing involves a little more typing,
+since want to check that the database is in the right state after the operation:
+
+```js
+...imports as before...
+
+const FIXTURE = ...as before...
+
+describe('mutating database', () => {
+
+  it('can add a workshop', (done) => {
+    const duration = 35, name = 'Creating Bugs'
+    const db = new Database('direct', FIXTURE)
+    db.addOne([name, duration], function (results, lastId) {
+      assert.deepEqual(results, [], 'Got empty list as result when adding')
+      assert.equal(lastId, 3, 'Got the correct last ID after adding')
+      db.getAll([], (results) => {
+        expected = [
+          { workshopName: 'Building Community', workshopDuration: 60, workshopId: 1 },
+          { workshopName: 'ENIAC Programming', workshopDuration: 150, workshopId: 2 },
+          { workshopName: name, workshopDuration: duration, workshopId: 3 }
+        ]
+        assert.deepEqual(results, expected, 'Got expected workshops after add')
+        done()
+      })
+    })
+  })
+
+  it('can delete a workshop', (done) => {
+    const db = new Database('direct', FIXTURE)
+    db.deleteOne([1], (results, lastId) => {
+      assert.equal(lastId, undefined, 'Expected last ID to be undefined')
+      assert.deepEqual(results, [], 'Got empty list as result when deleting')
+      db.getAll([], (results) => {
+        expected = [
+          { workshopName: 'ENIAC Programming', workshopDuration: 150, workshopId: 2 }
+        ]
+        assert.deepEqual(results, expected, 'Got expected workshops after delete')
+        done()
+      })
+    })
+  })
+})
+```
+{: title="src/db/mutate-test.js"}
 
 ## Exercises {#s:db-exercises}
 
@@ -577,7 +665,8 @@ where
 ```
 
 What do the `?`s mean in this query?
-Write another method for the `Database` class, `getWithinLengthRange([args])`, that uses this query, taking arguments from the commandline as before.
+Write another method for the `Database` class called `getWithinLengthRange([args])`
+that uses this query, taking arguments from the commandline as before.
 What happens when you provide the wrong number of arguments to this function? Or
 if you provide them in the wrong order?
 Can you write a test that provides more useful feedback than this?
@@ -594,5 +683,9 @@ and handle however it wants.
 
 1. Modify the code to do this.
 2. Modify the tests to check that the right exceptions are thrown when they should be.
+
+### Using a Database with a Server
+
+Rewrite the [capstone project](../capstone/) to use a database instead of a file for data storage.
 
 {% include links.md %}
