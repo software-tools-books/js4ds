@@ -27,32 +27,90 @@ but will mostly recapitulate what's come before.
 
 ## Data Manager {#s:capstone-data}
 
-The data manager is exactly [the one we built earlier](../data/).
+The data manager is exactly the same as
+[the one we built earlier](../dataman/).
+As a reminder,
+the key class is:
+
+```js
+class DataManager {
+
+  constructor (filename) {
+    ...read and store data from CSV file...
+  }
+
+  getSurveyStats () {...return summary statistics...}
+
+  getSurveyRange (minYear, maxYear) {...return slice of data...}
+```
+{: title="src/capstone/back/data-manager.js"}
 
 ## Server {#s:capstone-server}
 
-The server is almost the same as [the previous one](../server/):
+The server is going to be almost the same as [the previous one](../server/).
+However, we need to connect it to the data manager class.
+We'll do this by having the driver create a data manager,
+and then pass that data manager to the server as the latter is being created:
+
+```js
+const Database = require('./data-manager')
+const server = require('./server-0')
+
+const PORT = 3418
+
+const db = new DataManager('test-data.csv')
+const app = server(db)
+app.listen(PORT, () => {
+  console.log(`listening on port ${PORT}...`)
+})
+```
+{: title="src/capstone/back/driver-0.js"}
+
+For the moment,
+this always loads `test-data.csv`.
+As you can probably guess from the fact that we've called it `driver-0`,
+we're going to be making some changes down the road...
+
+Here's the start of the server it works with:
 
 ```js
 const express = require('express')
-const bodyParser = require('body-parser')
 
-// Main server object and database object.
-// db is provided during load.
-let db = null
+// 'dataManager' is a global variable that refers to our database.
+// It must be set when the server is created.
+let dataManager = null
+
+// Main server object.
 const app = express()
-app.use(bodyParser.json())
 
-...handle actual queries...
+...handle requests...
 
-module.exports = (databaseHandler) => {
-  db = databaseHandler
+module.exports = (dbm) => {
+  dataManager = dbm
   return app
 }
 ```
 {: title="src/capstone/back/server-0.js"}
 
-The next step is to decide what our URLs will look like.
+We'll look at handling requests for data in the next section.
+The most important thing for now is the way we manage the connection to the data manager.
+Down at the bottom of `server-0.js`,
+we export a function that assigns its single argument to a variable called `dataManager`.
+Inside the methods that handle requests,
+we'll be able to send database queries to `dataManager`.
+
+This variable is global within this file,
+but since it's not exported,
+it's invisible outside.
+Variables like this are called [module variables](#g:module-variable),
+and give us a way to share information among the functions in a module
+without giving anything outside the module a way to cause (direct) harm to that information.
+
+## API {#s:capstone-api}
+
+The next step is to decide what our server's API will be,
+i.e.,
+what URLs it will understand and what data they will fetch.
 `GET /survey/stats` will get summary statistics as a single JSON record,
 and `GET /survey/:start/:end` gets aggregate values for a range of years.
 (We will add error checking on the year range as an exercise.)
@@ -63,22 +121,30 @@ The server functions are:
 ```js
 // Get survey statistics.
 app.get('/survey/stats', (req, res, next) => {
-  const data = db.getSurveyStats()
-  res.status(200).json(data)
+  const data = dataManager.getSurveyStats()
+  res.setHeader('Content-Type', 'application/json')
+  res.status(200).send(data)
 })
 
 // Get a slice of the survey data.
 app.get('/survey/:start/:end', (req, res, next) => {
   const start = parseInt(req.params.start)
   const end = parseInt(req.params.end)
-  const data = db.getSurveyRange(start, end)
-  res.status(200).json(data)
+  const data = dataManager.getSurveyRange(start, end)
+  res.setHeader('Content-Type', 'application/json')
+  res.status(200).send(data)
 })
+```
+{: title="src/capstone/back/server-0.js"}
 
+We also write an error handling function:
+
+```js
 // Nothing else worked.
 app.use((req, res, next) => {
   page = `<html><body><p>error: "${req.url}" not found</p></body></html>`
-  res.status(404).send(page)
+  res.status(404)
+     .send(page)
 })
 ```
 {: title="src/capstone/back/server-0.js"}
@@ -107,6 +173,13 @@ Now let's write our first test:
 
 Note that the range of years is 1979-2000,
 which is *not* the range in the full dataset.
+We run this with:
+
+```sh
+npm test -- src/capstone/back/test-server.js
+```
+
+and it passes.
 
 ## The Display {#s:capstone-display}
 
@@ -372,6 +445,18 @@ export default DataChart
 FIXME: describe the parceling and how to run.
 
 ## Exercises {#s:capstone-exercises}
+
+### Well, That Didn't Work
+
+In an early version of the server,
+we chained the `setHeader` call with the `status` and `send` calls like this:
+
+```js
+res.setHeader('Content-Type', 'application/json').status(200).send(data)
+```
+
+That looks like it ought to work, but it doesn't.
+Why not?
 
 ### Reporting Other Data
 

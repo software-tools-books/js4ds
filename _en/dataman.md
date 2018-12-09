@@ -135,7 +135,7 @@ const sample = lines.slice(1)
     .map(pair => pair[1])
 fs.writeFileSync(outputFile, header + '\n' + sample.join('\n'))
 ```
-{: title="src/data/select-random.js"}
+{: title="src/dataman/select-random.js"}
 
 We run this on the command line:
 
@@ -203,7 +203,7 @@ class DataManager {
 
 module.exports = DataManager
 ```
-{: title="src/data/data-manager.js"}
+{: title="src/dataman/data-manager.js"}
 
 What our hubris made us miss in our first couple of attempts was that
 the `options` object controls how the parser behaves.
@@ -270,7 +270,7 @@ Let's write a method to get some overall statistics:
     return func(...this.data.map(rec => rec[field]))
   }
 ```
-{: title="src/data/data-manager.js"}
+{: title="src/dataman/data-manager.js"}
 
 Functions like `Math.min` and `Math.max` take any number of scalar values as arguments,
 but do not directly process arrays.
@@ -298,7 +298,7 @@ const _average = (...values) => {
   return sum / values.length
 }
 ```
-{: title="src/data/data-manager.js"}
+{: title="src/dataman/data-manager.js"}
 
 It would be more natural for `_average` to take an array rather than a variable number of arguments,
 but we want to be able to use it in the same way that we use `Math.min` and `Math.max`,
@@ -321,7 +321,7 @@ The method to get the values for a range of years is now:
     }
   }
 ```
-{: title="src/data/data-manager.js"}
+{: title="src/dataman/data-manager.js"}
 
 ## Exercises {#s:data-exercises}
 
