@@ -50,14 +50,14 @@ functions,
 and modules.
 All of these concepts should be familiar if you have programmed before.
 
-## Hello, World {#s:core-hello-world}
+## Hello, World {#s:basics-hello-world}
 
 Use your favorite text editor to put the following line in a file called `hello.js`:
 
 ```js
 console.log('hello, world')
 ```
-{: title="src/core/hello.js"}
+{: title="src/basics/hello.js"}
 
 `console` is a built-in [module](../gloss/#g:module) that provides basic printing services
 (among other things).
@@ -73,13 +73,13 @@ type <code>node <em>program_name.js</em></code> at the command line.
 (We will preface shell commands with `$` to make them easier to spot.)
 
 ```sh
-$ node src/core/hello.js
+$ node src/basics/hello.js
 ```
 ```text
 hello, world
 ```
 
-## Basic Data Types {#s:core-data-types}
+## Basic Data Types {#s:basics-data-types}
 
 JavaScript has the usual datatypes,
 though unlike C, Python, and many other languages,
@@ -94,7 +94,7 @@ and which returns a string:
 const aNumber = 123.45
 console.log('the type of', aNumber, 'is', typeof aNumber)
 ```
-{: title="src/core/types.js"}
+{: title="src/basics/types.js"}
 ```text
 the type of 123.45 is number
 ```
@@ -103,7 +103,7 @@ the type of 123.45 is number
 const anInteger = 123
 console.log('the type of', anInteger, 'is', typeof anInteger)
 ```
-{: title="src/core/types.js"}
+{: title="src/basics/types.js"}
 ```text
 the type of 123 is number
 ```
@@ -115,7 +115,7 @@ which may contain any [Unicode](../gloss/#g:unicode) character:
 const aString = 'some text'
 console.log('the type of', aString, 'is', typeof aString)
 ```
-{: title="src/core/types.js"}
+{: title="src/basics/types.js"}
 ```text
 the type of some text is string
 ```
@@ -126,7 +126,7 @@ a fact whose implications we will explore in [the next lesson](./callbacks/):
 ```js
 console.log('the type of', console.log, 'is', typeof console.log)
 ```
-{: title="src/core/types.js"}
+{: title="src/basics/types.js"}
 ```text
 the type of function () { [native code] } is function
 ```
@@ -140,7 +140,7 @@ for (let value of otherValues) {
   console.log('the type of', value, 'is', typeof value)
 }
 ```
-{: title="src/core/types.js"}
+{: title="src/basics/types.js"}
 ```text
 the type of true is boolean
 the type of undefined is undefined
@@ -166,7 +166,7 @@ though we will see below that other things can be treated as Booleans.
 `undefined` means "hasn't been given a value",
 while `null` means "has a value, which is nothing".
 
-## Control Flow {#s:core-control-flow}
+## Control Flow {#s:basics-control-flow}
 
 We have already seen `for` loops and flat arrays,
 so let's have a look at conditionals and nested arrays:
@@ -183,7 +183,7 @@ for (let pair of values) {
   }
 }
 ```
-{: title="src/core/control-flow.js"}
+{: title="src/basics/control-flow.js"}
 ```text
 0 of type number is falsy
 1 of type number is truthy
@@ -228,7 +228,7 @@ not called like a function.)
 > `==` and `!=` do type conversion,
 > which can produce some [ugly surprises](../legacy/#s:legacy-equality).
 
-## Formatting Strings {#s:core-formatting}
+## Formatting Strings {#s:basics-formatting}
 
 Rather than printing multiple strings and expressions,
 we can [interpolate](../gloss/#g:string-interpolation) values into a back-quoted string.
@@ -245,14 +245,14 @@ for (let color of ['red', 'green', 'blue']) {
   console.log(message, `and capitalized is ${color.toUpperCase()}`)
 }
 ```
-{: title="src/core/formatting.js"}
+{: title="src/basics/formatting.js"}
 ```text
 color is red and capitalized is RED
 color is green and capitalized is GREEN
 color is blue and capitalized is BLUE
 ```
 
-## Objects {#s:core-objects}
+## Objects {#s:basics-objects}
 
 An [object](../gloss/#g:object) in JavaScript is a collection of key-value pairs,
 and is equivalent in simple cases to what Python would call a dictionary.
@@ -277,7 +277,7 @@ for (let key in creature) {
   console.log(`creature[${key}] is ${creature[key]}`)
 }
 ```
-{: title="src/core/objects.js"}
+{: title="src/basics/objects.js"}
 ```text
 creature is [object Object]
 creature.genus is Callithrix
@@ -317,7 +317,7 @@ use `JSON.stringify(object)`:
 ```js
 console.log(JSON.stringify(creature))
 ```
-{: title="src/core/objects.js"}
+{: title="src/basics/objects.js"}
 ```text
 {"order":"Primates","family":"Callitrichidae","genus":"Callithrix","species":"Jacchus"}
 ```
@@ -326,7 +326,7 @@ Here,
 "JSON" stands for "JavaScript Object Notation";
 we will learn more about it [later](../data/).
 
-## Functions {#s:core-functions}
+## Functions {#s:basics-functions}
 
 Functions make it possible for mere mortals to understand programs
 by allowing us to think about them one piece at a time.
@@ -346,7 +346,7 @@ function limits (values) {
   return [low, high]
 }
 ```
-{: title="src/core/functions-classic.js"}
+{: title="src/basics/functions-classic.js"}
 
 Its definition consists of the keyword `function`,
 its name,
@@ -371,7 +371,7 @@ for (let test of allTests) {
   console.log(`limits of ${test} are ${limits(test)}`)
 }
 ```
-{: title="src/core/functions-classic.js"}
+{: title="src/basics/functions-classic.js"}
 ```text
 limits of  are ,
 limits of 9 are 9,9
@@ -405,7 +405,7 @@ const limits = (values) => {
   return [low, high]
 }
 ```
-{: title="src/core/functions-modern.js"}
+{: title="src/basics/functions-modern.js"}
 
 No matter how functions are defined,
 each one is a [scope](../gloss/#g:scope),
@@ -421,7 +421,7 @@ We will discuss scope in more detail [later](../callbacks/).
 > Here and elsewhere,
 > we will see how a language's history and the way it is used shape its evolution.
 
-## Modules {#s:core-modules}
+## Modules {#s:basics-modules}
 
 As our programs grow larger,
 we will want to put code in multiple files.
@@ -458,7 +458,7 @@ module.exports = {
   clip: clip
 }
 ```
-{: title="src/core/utilities.js"}
+{: title="src/basics/utilities.js"}
 
 The function definition is straightforward;
 as you may have guessed, `bound = DEFAULT_BOUND` sets a default value for that parameter
@@ -486,7 +486,7 @@ const data = [-1, 5, 3, 0, 10]
 console.log(`clip(${data}) -> ${utilities.clip(data)}`)
 console.log(`clip(${data}, 5) -> ${utilities.clip(data, 5)}`)
 ```
-{: title="src/core/import.js"}
+{: title="src/basics/import.js"}
 ```text
 clip(-1,5,3,0,10) -> 0,1,2,3
 clip(-1,5,3,0,10, 5) -> 0,1,2,3,4
@@ -498,7 +498,7 @@ we must then call our function as `utilities.clip`.
 We use a relative path starting with `./` or `../` to import local files;
 paths that start with names are taken from installed Node libraries.
 
-## Exercises {#s:core-exercises}
+## Exercises {#s:basics-exercises}
 
 ### Typeof
 
@@ -534,7 +534,7 @@ for (let line of table) {
   console.log(line)
 }
 ```
-{: title="ex/core/table-of-squares.js"}
+{: title="ex/basics/table-of-squares.js"}
 ```text
 square of 4 is 16
 square of 3 is 9
@@ -572,7 +572,7 @@ for (let d of second) {
 }
 console.log(total)
 ```
-{: title="ex/core/aggregating.js"}
+{: title="ex/basics/aggregating.js"}
 
 ### What Does This Do?
 
@@ -584,7 +584,7 @@ const species = 'Jacchus'
 const creature = {genus, species}
 console.log(creature)
 ```
-{: title="ex/core/implied.js"}
+{: title="ex/basics/implied.js"}
 ```text
 { genus: 'Callithrix', species: 'Jacchus' }
 ```
@@ -592,7 +592,7 @@ console.log(creature)
 ### What Does This Code Do?
 
 Explain what is happening in the assignment statement in this program.
-Use this technique to rewrite `src/core/import.js`
+Use this technique to rewrite `src/basics/import.js`
 so that `clip` can be called directly as `clip(...)` rather than `utilities.clip(...)`.
 
 ```js
@@ -604,7 +604,7 @@ const {genus, species} = creature
 console.log(`genus is ${genus}`)
 console.log(`species is ${species}`)
 ```
-{: title="ex/core/destructuring.js"}
+{: title="ex/basics/destructuring.js"}
 
 ### Return To Me, For My Heart Wants You Only
 
