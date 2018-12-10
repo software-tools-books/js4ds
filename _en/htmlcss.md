@@ -182,7 +182,7 @@ Unfortunately,
 as the example below shows,
 HTML is inconsistent about whether values should be separated by spaces or semi-colons:
 
-```
+```html
 <p class="disclaimer optional" style="color: blue; font-size: 200%;">
 ```
 
@@ -383,7 +383,7 @@ When HTML first appeared, people styled elements by setting their attributes:
 {: title="src/htmlcss/style-with-attributes.html"}
 
 Many still do,
-but a better way is to using [Cascading Style Sheets](../gloss/#g:css) (CSS).
+but a better way is to use [Cascading Style Sheets](../gloss/#g:css) (CSS).
 These allow us to define a style once and use it many times,
 which makes it much easier to maintain consistency.
 (I was going to say "...and keep pages readable",
@@ -446,10 +446,21 @@ We can also omit the tag and simply use `.class`,
 in which case every element with that class has that style.
 
 As suggested by the earlier discussion of separators,
-Elements may have multiple values for class,
+elements may have multiple values for class,
 as in `<span class="keyword highlight">...</span>`.
 (The `span` element simply marks a region of text,
 but has no effect unless it's styled.)
+
+These two features are one
+(but unfortunately not the only)
+common source of confusion with CSS:
+If one may override general rules with specific ones
+but also provide multiple values for class,
+how do we keep track of which rules will apply to an element with multiple classes?
+A detailed discussion of the order of precedence for CSS rules
+is outside the scope of this tutorial. We recommend that those
+likely to work often with stylesheets read (and consider bookmarking)
+[this W3Schools page][css-precedence].
 
 One other thing CSS can do is match specific elements.
 We can label particular elements uniquely within a page using the `id` attribute,
