@@ -42,6 +42,7 @@ class DataManager {
   getSurveyStats () {...return summary statistics...}
 
   getSurveyRange (minYear, maxYear) {...return slice of data...}
+}
 ```
 {: title="src/capstone/back/data-manager.js"}
 
@@ -249,7 +250,7 @@ ReactDOM.render(
 ```
 {: title="src/capstone/back/app.js"}
 
-The constructor defines URL for the data source and sets up the initial state,
+The constructor defines the URL for the data source and sets up the initial state,
 which has summary data,
 start and end years,
 and data for those years:
@@ -344,12 +345,13 @@ and the second `then` callback when the data has been converted to JSON.
 ```
 {: title="src/capstone/back/app.js"}
 
-Now let's update the display with `SurveyStats`, `ChooseRange`, and `DataDisplay`,
+Now let's update the display with `SurveyStats`, `ChooseRange`, `DataChart`, and `DataDisplay`,
 which are all stateless components
 (i.e., they display things but don't change anything):
 
 ```js
   render = () => {
+    const tableStyle = {overflow: 'scroll', height: '200px'}
     return (
       <div>
         <h1>Creatures</h1>
@@ -358,15 +360,24 @@ which are all stateless components
           start={this.state.start} onStart={this.onStart}
           end={this.state.end} onEnd={this.onEnd}
           onNewRange={this.onNewRange} />
-        <DataDisplay data={this.state.data} />
+        <DataChart data={this.state.data} />
+        <div style={tableStyle}>
+          <DataDisplay data={this.state.data} />
+        </div>
       </div>
     )
   }
 ```
 {: title="src/capstone/back/app.js"}
 
-We will display survey stats as a table,
+## The Tables {#s:capstone-tables}
+
+We will display survey stats as tables,
 with a paragraph fallback when there's no data.
+
+First, we display summary statistics for the whole data set
+(as returned by the `GET /survey/stats` query we wrote a handler for earlier)
+as a table at the top of the page.
 (Again, we need parentheses around the HTML fragment so that it will parse properly.)
 
 ```js
@@ -391,7 +402,54 @@ export default SurveyStats
 ```
 {: title="src/capstone/front/SurveyStats.js"}
 
-The other components are similar to those we have seen before.
+Next, we display aggregated statistics for a given range of years
+(the `GET /survey/:start/:end` query)
+in another table.
+
+```js
+import React from 'react'
+
+const DataDisplay = ({data}) => {
+
+  if (! data) {
+    return (<p>no data</p>)
+  }
+
+  const columns = [
+    'year',
+    'min_hindfoot_length',
+    'ave_hindfoot_length',
+    'max_hindfoot_length',
+    'min_weight',
+    'ave_weight',
+    'max_weight'
+  ]
+
+  return (
+    <table>
+      <tbody>
+        <tr>{columns.map((c) => (<th>{c}</th>))}</tr>
+        {data.filter(r => r).map((record) => {
+          return (<tr>{columns.map((c) => (<td>{record[c]}</td>))}</tr>)
+        })}
+      </tbody>
+    </table>
+  )
+}
+
+export default DataDisplay
+```
+{: title="src/capstone/front/DataDisplay.js"}
+
+Like `SurveyStats`, `DataDisplay` returns a table listing the results returned from the server.
+Unlike `SurveyStats`,
+this component needs to check whether each record is exists before it builds the table row.
+Remember that,
+when we defined how the year range query is handled in `DataManager` earlier,
+we told it to only return record objects for those years that have data.
+We add `.filter(r => r)` before mapping the data to the callback here
+to ensure that `DataDisplay` will only try to make `tr` elements from non-`null` records.
+We do the same when plotting the data.
 
 ## The Chart {#s:capstone-chart}
 
@@ -404,7 +462,7 @@ which proved easier to use.
 The steps are:
 
 1. Create a paragraph placeholder if there's no data.
-2. Re-organize the data into the form the chart needs.
+2. Re-organize non-`null` data into the form the chart needs.
 3. Construct a spec like the ones we have seen before.
 4. Create options to turn off the annoying links (also seen before).
 5. Return an instance of the `VegaLite` component.
@@ -418,7 +476,7 @@ const DataChart = ({data}) => {
     return (<p>no data</p>)
   }
 
-  const values = data.map((rec) => ({x: rec.hindfoot_avg, y: rec.weight_avg}))
+  const values = data.filter(r => r).map(r => ({x: r.ave_hindfoot_length, y: r.ave_weight}))
   let spec = {
     '$schema': 'https://vega.github.io/schema/vega-lite/v2.0.json',
     'description': 'Mean Weight vs Mean Hindfoot Length',
@@ -444,6 +502,8 @@ const DataChart = ({data}) => {
 export default DataChart
 ```
 {: title="src/capstone/front/DataChart.js"}
+
+The other components are similar to those we have seen before.
 
 ## Running It {#s:capstone-run}
 
@@ -477,7 +537,7 @@ which displays:
 > js-vs-ds@0.1.0 dev /Users/stj/js-vs-ds
 > parcel serve -p 4000 "src/capstone/front/index.html"
 
-Server running at http://localhost:4000 
+Server running at http://localhost:4000
 ✨  Built in 20.15s.
 ```
 
@@ -519,11 +579,11 @@ let dataManager = null
 const app = express()
 app.use(cors())                       // added
 
-app.get('/survey/stats', (req, res, next) => {...as before...}
+app.get('/survey/stats', (req, res, next) => {...as before...})
 
-app.get('/survey/:start/:end', (req, res, next) => {...as before...}
+app.get('/survey/:start/:end', (req, res, next) => {...as before...})
 
-app.use((req, res, next) => {...as before...}
+app.use((req, res, next) => {...as before...})
 
 module.exports = (dbm) => {...as before...}
 ```
@@ -539,19 +599,27 @@ node src/capstone/back/driver-1.js src/capstone/back/test-data.csv
 
 and then re-launch our application:
 
+<figure id="f:capstone-second-attempt">
+  <figcaption>Second Attempt at Viewing Capstone Project</figcaption>
+  <img src="../../files/capstone-second-attempt.png" />
+</figure>
+
+Much better!
+Now we can type some dates into the "start" and "end" boxes and,
+after we press "update",
+we get a chart and table of the aggregated statistics for the year range given:
+
+<figure id="f:capstone-complete">
+  <figcaption>Completed Capstone Project</figcaption>
+  <img src="../../files/capstone-complete.png" />
+</figure>
+
+We've built an interface,
+used it to submit queries that are then handled by a server,
+which returns data that can be converted to content by our React components,
+and our capstone project is complete.
+
 ## Exercises {#s:capstone-exercises}
-
-### Well, That Didn't Work
-
-In an early version of the server,
-we chained the `setHeader` call with the `status` and `send` calls like this:
-
-```js
-res.setHeader('Content-Type', 'application/json').status(200).send(data)
-```
-
-That looks like it ought to work, but it doesn't.
-Why not?
 
 ### Reporting Other Data
 
