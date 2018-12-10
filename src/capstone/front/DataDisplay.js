@@ -22,7 +22,6 @@ const DataDisplay = ({data}) => {
         <tr>{columns.map((c) => (<th>{c}</th>))}</tr>
         {data.map((record) => {
             if (record) {
-                console.log(typeof toString(record.year))
                 return (<tr>{columns.map((c) => (<td>{record[c]}</td>))}</tr>)
             }
         })}
