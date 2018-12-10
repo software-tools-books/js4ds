@@ -15,12 +15,16 @@ const DataDisplay = ({data}) => {
     'ave_weight',
     'max_weight'
   ]
+
   return (
     <table>
       <tbody>
         <tr>{columns.map((c) => (<th>{c}</th>))}</tr>
         {data.map((record) => {
-          return (<tr key={record['year']}>{columns.map((c) => (<td>{record[c]}</td>))}</tr>)
+            if (record) {
+                console.log(typeof toString(record.year))
+                return (<tr>{columns.map((c) => (<td>{record[c]}</td>))}</tr>)
+            }
         })}
       </tbody>
     </table>

@@ -31,15 +31,18 @@ class DataManager {
       .map((v, i) => minYear + i)
       .map(year => {
 	const subset = this.data.filter(r => r.year === year)
-	return {
-	  year : year,
-	  min_hindfoot_length : this._get(subset, 'hindfoot_length', Math.min),
-	  ave_hindfoot_length : this._get(subset, 'hindfoot_length', _average),
-	  max_hindfoot_length : this._get(subset, 'hindfoot_length', Math.max),
-	  min_weight : this._get(subset, 'weight', Math.min),
-	  ave_weight : this._get(subset, 'weight', _average),
-	  max_weight : this._get(subset, 'weight', Math.max)
-	}
+    if (subset.length) {
+    	return {
+          key  : toString(year),
+    	  year : year,
+    	  min_hindfoot_length : this._get(subset, 'hindfoot_length', Math.min),
+    	  ave_hindfoot_length : this._get(subset, 'hindfoot_length', _average),
+    	  max_hindfoot_length : this._get(subset, 'hindfoot_length', Math.max),
+    	  min_weight : this._get(subset, 'weight', Math.min),
+    	  ave_weight : this._get(subset, 'weight', _average),
+    	  max_weight : this._get(subset, 'weight', Math.max)
+    	}
+    }
       })
   }
 
