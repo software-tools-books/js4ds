@@ -447,8 +447,9 @@ this component needs to check whether each record is exists before it builds the
 Remember that,
 when we defined how the year range query is handled in `DataManager` earlier,
 we told it to only return record objects for those years that have data.
-We add `if (record) { ... }` here to ensure that `DataDisplay` will only try to make
-`tr` elements from non-`null` records. We do the same when plotting the data.
+We add `.filter(r => r)` before mapping the data to the callback here
+to ensure that `DataDisplay` will only try to make `tr` elements from non-`null` records.
+We do the same when plotting the data.
 
 ## The Chart {#s:capstone-chart}
 
