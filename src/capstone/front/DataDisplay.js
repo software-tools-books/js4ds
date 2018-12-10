@@ -20,10 +20,8 @@ const DataDisplay = ({data}) => {
     <table>
       <tbody>
         <tr>{columns.map((c) => (<th>{c}</th>))}</tr>
-        {data.map((record) => {
-            if (record) {
-                return (<tr>{columns.map((c) => (<td>{record[c]}</td>))}</tr>)
-            }
+        {data.filter(r => r).map((record) => {
+          return (<tr>{columns.map((c) => (<td>{record[c]}</td>))}</tr>)
         })}
       </tbody>
     </table>
