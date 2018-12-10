@@ -27,32 +27,90 @@ but will mostly recapitulate what's come before.
 
 ## Data Manager {#s:capstone-data}
 
-The data manager is exactly [the one we built earlier](../data/).
+The data manager is exactly the same as
+[the one we built earlier](../dataman/).
+As a reminder,
+the key class is:
+
+```js
+class DataManager {
+
+  constructor (filename) {
+    ...read and store data from CSV file...
+  }
+
+  getSurveyStats () {...return summary statistics...}
+
+  getSurveyRange (minYear, maxYear) {...return slice of data...}
+}
+```
+{: title="src/capstone/back/data-manager.js"}
 
 ## Server {#s:capstone-server}
 
-The server is almost the same as [the previous one](../server/):
+The server is going to be almost the same as [the previous one](../server/).
+However, we need to connect it to the data manager class.
+We'll do this by having the driver create a data manager,
+and then pass that data manager to the server as the latter is being created:
+
+```js
+const DataManager = require('./data-manager')
+const server = require('./server-0')
+
+const PORT = 3418
+
+const filename = process.argv[2]
+const db = new DataManager(filename)
+const app = server(db)
+app.listen(PORT, () => {
+  console.log(`listening on port ${PORT}...`)
+})
+```
+{: title="src/capstone/back/driver-0.js"}
+
+As you can probably guess from the fact that we've called it `driver-0`,
+we're going to be making some changes down the road...
+
+Here's the start of the server it works with:
 
 ```js
 const express = require('express')
-const bodyParser = require('body-parser')
 
-// Main server object and database object.
-// db is provided during load.
-let db = null
+// 'dataManager' is a global variable that refers to our database.
+// It must be set when the server is created.
+let dataManager = null
+
+// Main server object.
 const app = express()
-app.use(bodyParser.json())
 
-...handle actual queries...
+...handle requests...
 
-module.exports = (databaseHandler) => {
-  db = databaseHandler
+module.exports = (dbm) => {
+  dataManager = dbm
   return app
 }
 ```
 {: title="src/capstone/back/server-0.js"}
 
-The next step is to decide what our URLs will look like.
+We'll look at handling requests for data in the next section.
+The most important thing for now is the way we manage the connection to the data manager.
+Down at the bottom of `server-0.js`,
+we export a function that assigns its single argument to a variable called `dataManager`.
+Inside the methods that handle requests,
+we'll be able to send database queries to `dataManager`.
+
+This variable is global within this file,
+but since it's not exported,
+it's invisible outside.
+Variables like this are called [module variables](#g:module-variable),
+and give us a way to share information among the functions in a module
+without giving anything outside the module a way to cause (direct) harm to that information.
+
+## API {#s:capstone-api}
+
+The next step is to decide what our server's API will be,
+i.e.,
+what URLs it will understand and what data they will fetch.
 `GET /survey/stats` will get summary statistics as a single JSON record,
 and `GET /survey/:start/:end` gets aggregate values for a range of years.
 (We will add error checking on the year range as an exercise.)
@@ -63,22 +121,30 @@ The server functions are:
 ```js
 // Get survey statistics.
 app.get('/survey/stats', (req, res, next) => {
-  const data = db.getSurveyStats()
-  res.status(200).json(data)
+  const data = dataManager.getSurveyStats()
+  res.setHeader('Content-Type', 'application/json')
+  res.status(200).send(data)
 })
 
 // Get a slice of the survey data.
 app.get('/survey/:start/:end', (req, res, next) => {
   const start = parseInt(req.params.start)
   const end = parseInt(req.params.end)
-  const data = db.getSurveyRange(start, end)
-  res.status(200).json(data)
+  const data = dataManager.getSurveyRange(start, end)
+  res.setHeader('Content-Type', 'application/json')
+  res.status(200).send(data)
 })
+```
+{: title="src/capstone/back/server-0.js"}
 
+We also write an error handling function:
+
+```js
 // Nothing else worked.
 app.use((req, res, next) => {
   page = `<html><body><p>error: "${req.url}" not found</p></body></html>`
-  res.status(404).send(page)
+  res.status(404)
+     .send(page)
 })
 ```
 {: title="src/capstone/back/server-0.js"}
@@ -107,6 +173,13 @@ Now let's write our first test:
 
 Note that the range of years is 1979-2000,
 which is *not* the range in the full dataset.
+We run this with:
+
+```sh
+npm test -- src/capstone/back/test-server.js
+```
+
+and it passes.
 
 ## The Display {#s:capstone-display}
 
@@ -177,7 +250,7 @@ ReactDOM.render(
 ```
 {: title="src/capstone/back/app.js"}
 
-The constructor defines URL for the data source and sets up the initial state,
+The constructor defines the URL for the data source and sets up the initial state,
 which has summary data,
 start and end years,
 and data for those years:
@@ -196,13 +269,9 @@ and data for those years:
 ```
 {: title="src/capstone/back/app.js"}
 
-We have to wait until our component has been mounted before we can fetch our summary data:
-we can't do this in the constructor because
-we have no control over the order in which bits of display are initialized.
-On the upside,
-we can use `response.json()` directly because we know the source is returning JSON data.
-This method is the only place where the summary is updated,
-since the data isn't changing underneath us:
+The method `componentDidMount` is new:
+it fetches data for the very first time
+so that the user sees something useful on the page when they first load it.
 
 ```js
   componentDidMount = () => {
@@ -217,6 +286,16 @@ since the data isn't changing underneath us:
   }
 ```
 {: title="src/capstone/back/app.js"}
+
+We don't call this method ourselves;
+instead,
+React automatically calls it once our application and its children have been loaded and initialized.
+We can't fetch the initial data in the application's constructor because
+we have no control over the order in which bits of display are initialized.
+On the upside,
+we can use `response.json()` directly because we know the source is returning JSON data.
+This method is the only place where the summary is updated,
+since the data isn't changing underneath us:
 
 Next up we need to handle typing in the "start" and "end" boxes.
 The HTML controls in the web page will capture the characters without our help,
@@ -266,12 +345,13 @@ and the second `then` callback when the data has been converted to JSON.
 ```
 {: title="src/capstone/back/app.js"}
 
-Now let's update the display with `SurveyStats`, `ChooseRange`, and `DataDisplay`,
+Now let's update the display with `SurveyStats`, `ChooseRange`, `DataChart`, and `DataDisplay`,
 which are all stateless components
 (i.e., they display things but don't change anything):
 
 ```js
   render = () => {
+    const tableStyle = {overflow: 'scroll', height: '200px'}
     return (
       <div>
         <h1>Creatures</h1>
@@ -280,15 +360,24 @@ which are all stateless components
           start={this.state.start} onStart={this.onStart}
           end={this.state.end} onEnd={this.onEnd}
           onNewRange={this.onNewRange} />
-        <DataDisplay data={this.state.data} />
+        <DataChart data={this.state.data} />
+        <div style={tableStyle}>
+          <DataDisplay data={this.state.data} />
+        </div>
       </div>
     )
   }
 ```
 {: title="src/capstone/back/app.js"}
 
-We will display survey stats as a table,
+## The Tables {#s:capstone-tables}
+
+We will display survey stats as tables,
 with a paragraph fallback when there's no data.
+
+First, we display summary statistics for the whole data set
+(as returned by the `GET /survey/stats` query we wrote a handler for earlier)
+as a table at the top of the page.
 (Again, we need parentheses around the HTML fragment so that it will parse properly.)
 
 ```js
@@ -313,7 +402,54 @@ export default SurveyStats
 ```
 {: title="src/capstone/front/SurveyStats.js"}
 
-The other components are similar to those we have seen before.
+Next, we display aggregated statistics for a given range of years
+(the `GET /survey/:start/:end` query)
+in another table.
+
+```js
+import React from 'react'
+
+const DataDisplay = ({data}) => {
+
+  if (! data) {
+    return (<p>no data</p>)
+  }
+
+  const columns = [
+    'year',
+    'min_hindfoot_length',
+    'ave_hindfoot_length',
+    'max_hindfoot_length',
+    'min_weight',
+    'ave_weight',
+    'max_weight'
+  ]
+
+  return (
+    <table>
+      <tbody>
+        <tr>{columns.map((c) => (<th>{c}</th>))}</tr>
+        {data.filter(r => r).map((record) => {
+          return (<tr>{columns.map((c) => (<td>{record[c]}</td>))}</tr>)
+        })}
+      </tbody>
+    </table>
+  )
+}
+
+export default DataDisplay
+```
+{: title="src/capstone/front/DataDisplay.js"}
+
+Like `SurveyStats`, `DataDisplay` returns a table listing the results returned from the server.
+Unlike `SurveyStats`,
+this component needs to check whether each record is exists before it builds the table row.
+Remember that,
+when we defined how the year range query is handled in `DataManager` earlier,
+we told it to only return record objects for those years that have data.
+We add `.filter(r => r)` before mapping the data to the callback here
+to ensure that `DataDisplay` will only try to make `tr` elements from non-`null` records.
+We do the same when plotting the data.
 
 ## The Chart {#s:capstone-chart}
 
@@ -326,7 +462,7 @@ which proved easier to use.
 The steps are:
 
 1. Create a paragraph placeholder if there's no data.
-2. Re-organize the data into the form the chart needs.
+2. Re-organize non-`null` data into the form the chart needs.
 3. Construct a spec like the ones we have seen before.
 4. Create options to turn off the annoying links (also seen before).
 5. Return an instance of the `VegaLite` component.
@@ -340,7 +476,7 @@ const DataChart = ({data}) => {
     return (<p>no data</p>)
   }
 
-  const values = data.map((rec) => ({x: rec.hindfoot_avg, y: rec.weight_avg}))
+  const values = data.filter(r => r).map(r => ({x: r.ave_hindfoot_length, y: r.ave_weight}))
   let spec = {
     '$schema': 'https://vega.github.io/schema/vega-lite/v2.0.json',
     'description': 'Mean Weight vs Mean Hindfoot Length',
@@ -367,9 +503,121 @@ export default DataChart
 ```
 {: title="src/capstone/front/DataChart.js"}
 
+The other components are similar to those we have seen before.
+
 ## Running It {#s:capstone-run}
 
-FIXME: describe the parceling and how to run.
+In order to test our application,
+we need to run a data server,
+and then launch our application with Parcel.
+The easiest way to do that is to open two windows on our computer
+and make each half the width (or height) of our screen
+so that we can see messages from both halves of what we're doing.
+
+In one window,
+we run:
+
+```sh
+node src/capstone/back/driver-0.js src/capstone/back/test-data.csv
+```
+
+Note that we *don't* use `npm run dev` to trigger Parcel:
+this is running on the server,
+so no bundling is necessary.
+In our other window,
+we run:
+
+```sh
+npm run dev src/capstone/front/index.html
+```
+
+which displays:
+
+```text
+> js-vs-ds@0.1.0 dev /Users/stj/js-vs-ds
+> parcel serve -p 4000 "src/capstone/front/index.html"
+
+Server running at http://localhost:4000
+✨  Built in 20.15s.
+```
+
+We then open `http://localhost:4000` in our browser and see this:
+
+<figure id="f:capstone-first-attempt">
+  <figcaption>First Attempt at Viewing Capstone Project</figcaption>
+  <img src="../../files/capstone-first-attempt.png" />
+</figure>
+
+That's unexpected: we should see the initial data displayed.
+If we open the console in the browser and reload the page,
+we see this error message:
+
+```text
+Cross-Origin Request Blocked:
+The Same Origin Policy disallows reading the remote resource at http://localhost:3418/survey/stats.
+(Reason: CORS header ‘Access-Control-Allow-Origin’ missing).
+```
+
+The "Learn More" link given with the error message takes us to [this page][cors-docs],
+which uses many science words we don't know.
+A web search turns up [this article on Wikipedia][cors-wikipedia],
+which tells us that [Cross-origin resource sharing](../gloss/#g:cors) (CORS)
+is a security mechanism.
+If a page loads some JavaScript,
+and that JavaScript is allowed to send requests to servers other than the one that the page came from,
+then villains would be able to do things like send passwords saved in the browser to themselves.
+The details are too complex for this tutorial;
+the good news is that they've been wrapped up in a Node library called `cors`,
+which we can add to our server with just a couple of lines of code:
+
+```js
+const express = require('express')
+const cors = require('cors')          // added
+
+let dataManager = null
+
+const app = express()
+app.use(cors())                       // added
+
+app.get('/survey/stats', (req, res, next) => {...as before...})
+
+app.get('/survey/:start/:end', (req, res, next) => {...as before...})
+
+app.use((req, res, next) => {...as before...})
+
+module.exports = (dbm) => {...as before...}
+```
+{: title="src/capstone/back/server-1.js"}
+
+Since this code is saved in `server-1.js`,
+we need to create a copy of the driver called `driver-1.js` that invokes it.
+Let's run that:
+
+```sh
+node src/capstone/back/driver-1.js src/capstone/back/test-data.csv
+```
+
+and then re-launch our application:
+
+<figure id="f:capstone-second-attempt">
+  <figcaption>Second Attempt at Viewing Capstone Project</figcaption>
+  <img src="../../files/capstone-second-attempt.png" />
+</figure>
+
+Much better!
+Now we can type some dates into the "start" and "end" boxes and,
+after we press "update",
+we get a chart and table of the aggregated statistics for the year range given:
+
+<figure id="f:capstone-complete">
+  <figcaption>Completed Capstone Project</figcaption>
+  <img src="../../files/capstone-complete.png" />
+</figure>
+
+We've built an interface,
+used it to submit queries that are then handled by a server,
+which returns data that can be converted to content by our React components,
+and our capstone project is complete.
 
 ## Exercises {#s:capstone-exercises}
 
