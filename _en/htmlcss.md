@@ -576,14 +576,9 @@ Inside that container is a row with two columns,
 one 4/12 as wide as the row and the other 8/12 as wide.
 (Bootstrap uses a 12-column system because 12 has lots of divisors.)
 
-The names `col-sm-4` and `col-sm-8` deserve some explanation.
 Bootstrap is [responsive](../gloss/#g:responsive-design):
 elements change size as the page grows narrower,
 and are then stacked when the screen becomes too small to display them side by side.
-The `-sm-` means "do this for small devices";
-we can also define behavior for medium-sized screens with `-med-`.
-The rules are rather complicated,
-and are out of the scope of this tutorial.
 
 We've left out many other aspects of HTML and CSS as well,
 such as figure captions,
