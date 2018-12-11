@@ -41,9 +41,6 @@ check :
 	@echo "Glossary"
 	@make lang=${lang} checkgloss
 	@echo
-	@echo "Labels"
-	@make lang=${lang} checklabels
-	@echo
 	@echo "Table of Contents"
 	@make lang=${lang} checktoc
 
@@ -55,13 +52,13 @@ checkchars :
 checkgloss :
 	@bin/checkgloss.py ${ALL_MD}
 
-## checklabels : make sure all labels conform to standards.
-checklabels : ${CHAPTERS_TEX}
-	@bin/checklabels.py ${CHAPTERS_TEX}
-
 ## checktoc    : check consistency of tables of contents.
 checktoc :
 	@bin/checktoc.py _config.yml ${DIR_TEX}/book.tex ${ALL_MD}
+
+## showlinks   : show all links in source Markdown
+showlinks :
+	@bin/showlinks.py ${ALL_MD}
 
 ## ----------------------------------------
 
