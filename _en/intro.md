@@ -55,19 +55,18 @@ Sumi
 
 ## Setting Up {#s:intro-setup}
 
-You can do the exercises in the first part of this course online,
-but will need to install some software on your own computer
-to do the later ones.
-
-For small exercises as you're getting started,
-you can use an online service like [RunKit][runkit],
+The exercises at the end of each chapter include new information
+that you will need later in the book,
+and are therefore not optional.
+You can do the first few online,
+using a service like [RunKit][runkit],
 which gives you an interactive JavaScript playground in your browser.
 For larger things,
 and for chapters starting with the one on [creating dynamic web pages](../dynamic/),
 you should [download and install][node-download] the latest Long-term Support (LTS) versions of Node and NPM.
 
-`node` is a command-line interpreter for JavaScript
-like those for languages such as Python and R.
+[Node](../gloss/#g:node-js) an open source implementation of JavaScript
+that includes a command-line interpreter like those for languages such as Python and R.
 The command `node` on its own starts a [read-evaluate-print loop](../gloss/#g:repl)
 that executes commands as they are typed in and displays their output.
 The command `node filename.js` reads and runs the commands in `filename.js`;

@@ -121,7 +121,7 @@ the type of some text is string
 ```
 
 Functions are also a type of data,
-a fact whose implications we will explore in [the next lesson](./callbacks/):
+a fact whose implications we will explore in [the next lesson](../callbacks/):
 
 ```js
 console.log('the type of', console.log, 'is', typeof console.log)
@@ -324,7 +324,7 @@ console.log(JSON.stringify(creature))
 
 Here,
 "JSON" stands for "JavaScript Object Notation";
-we will learn more about it [later](../data/).
+we will learn more about it [later](../dataman/).
 
 ## Functions {#s:core-functions}
 
