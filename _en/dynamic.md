@@ -354,7 +354,7 @@ It's very common to put tasks like "run my application" into NPM's `package.json
 just as older programmers would put frequently-used commands into a project's Makefile.
 Look for the section in `package.json` whose key is `"scripts"` and add this:
 
-```json
+```js
   "scripts": {
     "dev": "parcel serve -p 4000",
     ...

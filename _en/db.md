@@ -352,7 +352,7 @@ since we will eventually want to compare them or return them to a server rather 
 ```js
 class Database {
 
-  ...
+  // ...as before...
 
   getAll (args) {
     this.db.all(Q_WORKSHOP_GET_ALL, [], (err, rows) => {
@@ -361,7 +361,7 @@ class Database {
     })
   }
 
-  ...
+  // ...as before...
 }
 ```
 {: title="src/db/separate-database.js"}
@@ -414,7 +414,7 @@ The solution is to give the `get` methods a callback of their own:
 ```js
 class Database {
 
-  ...
+  // ...as before...
 
   getAll (callback, args) {
     this.db.all(Q_WORKSHOP_GET_ALL, [], (err, rows) => {
@@ -423,7 +423,7 @@ class Database {
     })
   }
 
-  ...
+  // ...as before...
 }
 ```
 {: title="src/db/callback-database.js"}
@@ -528,10 +528,10 @@ we couldn't modify it.
 Let's add a bit more to our database class to support [mutation](../gloss/#g:mutation):
 
 ```js
-...imports as before...
+// ...imports as before...
 
-const Q_WORKSHOP_GET_ALL = ...as before...
-const Q_WORKSHOP_GET_ONE = ...as before...
+const Q_WORKSHOP_GET_ALL = // ...as before...
+const Q_WORKSHOP_GET_ONE = // ...as before...
 
 const Q_WORKSHOP_ADD = `
 insert into Workshop(name, duration) values(?, ?);
@@ -543,9 +543,15 @@ delete from Workshop where ident = ?;
 
 class Database {
 
-  constructor (mode, arg) {...as before...}
-  getAll (args, callback) {...as before...}
-  getOne (args, callback) {...as before...}
+  constructor (mode, arg) {
+    // ...as before...
+  }
+  getAll (args, callback) {
+    // ...as before...
+  }
+  getOne (args, callback) {
+    // ...as before...
+  }
 
   addOne (args, callback) {
     this.db.run(Q_WORKSHOP_ADD, args, function (err, rows) {
@@ -561,9 +567,15 @@ class Database {
     })
   }
 
-  fail (msg) {...as before...}
-  _inMemory (script) {...as before...}
-  _inFile (path) {...as before...}
+  fail (msg) {
+    // ...as before...
+  }
+  _inMemory (script) {
+    // ...as before...
+  }
+  _inFile (path) {
+    // ...as before...
+  }
 }
 
 module.exports = Database
@@ -579,9 +591,9 @@ Testing involves a little more typing,
 since want to check that the database is in the right state after the operation:
 
 ```js
-...imports as before...
+// ...imports as before...
 
-const FIXTURE = ...as before...
+const FIXTURE = // ...as before...
 
 describe('mutating database', () => {
 
