@@ -55,14 +55,13 @@ Sumi
 
 ## Setting Up {#s:intro-setup}
 
-You can do the exercises in the first part of this course online,
-but will need to install some software on your own computer
-to do the later ones.
-
-For small exercises as you're getting started,
-you can use an online service like [RunKit][runkit],
+The exercises at the end of each chapter include new information
+that you will need later in the book,
+and are therefore not optional.
+You can do the first few online,
+using a service like [RunKit][runkit],
 which gives you an interactive JavaScript playground in your browser.
-For larger things,
+For larger ones,
 and for chapters starting with the one on [creating dynamic web pages](../dynamic/),
 you should [download and install][node-download] the latest Long-term Support (LTS) versions of Node and NPM.
 
