@@ -328,4 +328,12 @@ Do you think this is because they just haven't gotten around to it yet,
 or is there something about that plot or transformation
 that doesn't lend itself to Vega-Lite's declarative model?
 
+### Working With Arrays
+
+Vega-Lite is built on top of a visualization toolkit called [D3][d3],
+which includes [a library for manipulating arrays][d3-array].
+Write a small application that generates 1000 random values using `Math.random`
+and reports the mean, standard deviation, and quartiles.
+(You may also want to create a histogram showing the distribution of values.)
+
 {% include links.md %}
