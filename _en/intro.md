@@ -65,8 +65,8 @@ For larger ones,
 and for chapters starting with the one on [creating dynamic web pages](../dynamic/),
 you should [download and install][node-download] the latest Long-term Support (LTS) versions of Node and NPM.
 
-`node` is a command-line interpreter for JavaScript
-like those for languages such as Python and R.
+[Node](../gloss/#g:node-js) an open source implementation of JavaScript
+that includes a command-line interpreter like those for languages such as Python and R.
 The command `node` on its own starts a [read-evaluate-print loop](../gloss/#g:repl)
 that executes commands as they are typed in and displays their output.
 The command `node filename.js` reads and runs the commands in `filename.js`;
