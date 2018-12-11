@@ -27,7 +27,7 @@ but object-oriented programming can help.
 
 ## Doing It By Hand {#s:oop-manual}
 
-As we saw [earlier](../core/),
+As we saw [earlier](../basics/),
 an object in JavaScript is a set of key-value pairs.
 Since functions are just another kind of data,
 an object's values can be functions,
