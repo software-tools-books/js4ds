@@ -102,7 +102,7 @@ we'll be able to send database queries to `dataManager`.
 This variable is global within this file,
 but since it's not exported,
 it's invisible outside.
-Variables like this are called [module variables](#g:module-variable),
+Variables like this are called [module variables](../gloss/#g:module-variable),
 and give us a way to share information among the functions in a module
 without giving anything outside the module a way to cause (direct) harm to that information.
 
