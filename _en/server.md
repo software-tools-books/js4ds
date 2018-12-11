@@ -331,6 +331,18 @@ Error: ENOENT: no such file or directory, open 'web-dir/missing.html'
 
 We will see in the exercises how to add proper error handling to our server.
 
+> **Favorites and Icons**
+>
+> If we use a browser to request a page such as `title.html`,
+> the browser may actually make two requests:
+> one for the page,
+> and one for a file called `favicon.ico`.
+> Browsers do this automatically,
+> then display that file in tabs, bookmark lists, and so on.
+> Despite its `.ico` suffix,
+> the file is (usually) a small PNG-formatted image,
+> and must be placed in the root directory of the website.
+
 ## Content Types {#s:server-content-types}
 
 So far we have only served HTML,
