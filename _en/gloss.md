@@ -22,7 +22,7 @@ because the Greek letter lambda is used for them in mathematics.
 see [parameter](#g:parameter).
 
 **array**{:#g:array}:
-a collection of values stored in a particular ordered and indexed numerically.
+a collection of values stored in a particular order and indexed numerically.
 Arrays are written as comma-separated values in square brackets,
 such as `['a', 'b', 'c']`.
 The term [list](#g:list) is often used synonymously.
@@ -84,7 +84,7 @@ a new [class](#g:class) that [extends](#g:extend) an existing class
 
 **child node**{:#g:child-node}:
 a [node](#g:node) in a [tree](#g:tree) that is below some other node
-(which is call the child node's [parent](#g:parent-node)).
+(which is called the child node's [parent](#g:parent-node)).
 
 **class**{:#g:class}:
 a programming structure that defines
@@ -110,7 +110,10 @@ whose existence has been preserved after that scope has ended.
 Closures are one of the trickiest ideas in programming.
 
 **connection manager**{:#g:connection-manager}:
-FIME
+an object that maintains a connection to a database.
+When the code is finished working with the databse, the connection manager
+ensures that the connection is closed gracefully, which helps to avoid
+the corruption of data.
 
 **Content Delivery Network**{:#g:cdn} (CDN):
 a geographically distributed set of servers
@@ -166,7 +169,7 @@ every database comes with drivers that (theoretically) allow other programs to t
 an individual component of a web page.
 In HTML, elements are enclosed in matching `<tag>` and `</tag>` pairs,
 or written as `<tag/>` if they contain no content.
-Elements are represents as [nodes](#g:node) in the [DOM](#g:dom).
+Elements are represented as [nodes](#g:node) in the [DOM](#g:dom).
 
 **entry point**{:#g:entry-point}:
 a function with a known name and [signature](#g:signature)
@@ -383,7 +386,7 @@ an open source implementation of JavaScript for use outside the browser.
 
 **node**{:#g:node}:
 an in-memory representation of an element in an HTML page.
-See also [DOM](#g:dom).
+See also [DOM](#g:dom). Not to be confused with [Node.js](#g:nodejs).
 
 **NoSQL database**{:#g:nosql-database}:
 any database that doesn't use the [relational](#g:relational-database) model.
@@ -416,7 +419,7 @@ The most widely used package manager for JavaScript is called NPM;
 it does its best,
 but really,
 without proper discipline on the part of programmers,
-it's like Boromir trying hold back the orcs
+it's like Boromir trying to hold back the orcs
 or a kindergarten teacher trying to keep everyone's shirt clean during finger-painting.
 
 **parameter**{:#g:parameter}:
@@ -620,7 +623,7 @@ a set of [unit tests](#g:unit-test),
 usually stored in files that follow a prescribed naming convention.
 
 **throw**{:#g:throw}:
-to signal that something unexpecte or unusual has happened in a program
+to signal that something unexpected or unusual has happened in a program
 by creating an [exception](#g:exception)
 and handing it to the error-handling system,
 which then tries to find a point in the program that will [catch](#g:catch) it.
@@ -628,7 +631,7 @@ which then tries to find a point in the program that will [catch](#g:catch) it.
 
 **tree**{:#g:tree}:
 a data structure containing strictly-nested [nodes](#g:node).
-Every node except the [root-node](#g:root-node) must have exactly one [parent node](#g:parent-node),
+Every node except the [root node](#g:root-node) must have exactly one [parent node](#g:parent-node),
 but each node may have zero or more [children](#g:child-node).
 
 **truthy**{:#g:truthy}:

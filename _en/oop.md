@@ -144,7 +144,7 @@ class Square {
 (Class names are written in CamelCase by convention.)
 We can then create a specific square by using the class's name as if it were a function:
 
-```
+```js
 const sq = Square(3)
 console.log(`sq name ${sq.name} and area ${sq.area()}`)
 ```
@@ -162,7 +162,8 @@ the object being operated on is referred to by the pronoun `this`.
 
 Inside the class,
 methods are defined with classic syntax rather than the [fat arrows](../gloss/#g:fat-arrow) we have been using.
-This is what current version of Node prefer;
+The inconsistency is unfortunate
+but this way of defining methods is what the current version of Node prefers;
 we will explore this topic further in the [discussion of visualization](../vis/).
 
 Classes defined this way support polymorphism:
@@ -262,7 +263,7 @@ This tells us that a `Scientist` is a `Person` who:
 - Has an area of specialization as well as a name.
 - Says hello in a slightly longer way
 - Says goodbye in the same way as a `Person`
-  (since `Scientist` *doesn't* define its own `farewell method)
+  (since `Scientist` *doesn't* define its own `farewell` method)
 
 The word `super` is used in two ways here:
 
@@ -489,7 +490,7 @@ If any of the components' `call` methods returns `null`,
 ```js
 const example = new Pipeline(new Filter('a', 'e', 'i', 'o', 'u'), new Delay('a'))
 for (let value of ['a' ,'b', 'c', 'd', 'e']) {
-  console.log(value, '->', example.call(value)
+  console.log(value, '->', example.call(value))
 }
 ```
 ```text

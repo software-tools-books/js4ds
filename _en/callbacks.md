@@ -327,26 +327,26 @@ Here's how they work:
 ```js
 const data = ['this', 'is', 'a', 'test']
 console.log('some longer than 3:', data.some((x) => { return x.length > 3 }))
-console.log('all greater than 3:', data.every((x) => { return x.length > 3 }))
+console.log('all longer than 3:', data.every((x) => { return x.length > 3 }))
 ```
 {: title="src/callbacks/some-every.js"}
 ```text
 some longer than 3: true
-all greater than 3: false
+all longer than 3: false
 ```
 
 `Array.filter` creates a new array containing only values that pass a test:
 
 ```js
 const data = ['this', 'is', 'a', 'test']
-console.log('those greater than 3:', data.filter((x) => { return x.length > 3 }))
+console.log('those longer than 3:', data.filter((x) => { return x.length > 3 }))
 ```
 {: title="src/callbacks/filter.js"}
 ```text
-those greater than 3: [ 'this', 'test' ]
+those longer than 3: [ 'this', 'test' ]
 ```
 
-- So do all of the element with more than 3 characters start with a 't'?
+- So do all of the elements with more than 3 characters start with a 't'?
 
 ```js
 const data = ['this', 'is', 'a', 'test']
@@ -394,7 +394,7 @@ acronym = data.reduce((accum, next) => {
 }, '')
 console.log('all in one step:', acronym)
 ```
-{: title="src/callback/reduce.js"}
+{: title="src/callbacks/reduce.js"}
 ```text
 acronym of this,is,a,test is tiat
 all in one step: tiat
@@ -539,13 +539,14 @@ someArray.forEach((value, location, container) => {
   // 'value' is the value in 'someArray'
   // 'location' is the index of that value
   // 'container' is the containing array (in this case, 'someArray')
-}
+})
 ```
 
 If you only need the value,
 you can provide a callback that only takes one parameter;
 if you only need the value and its location,
 you can provide a callback that takes two.
+
 Use this to write a function `doubleInPlace`
 that doubles all the values in an array in place:
 

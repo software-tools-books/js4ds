@@ -62,7 +62,7 @@ and are therefore not optional.
 You can do the first few online,
 using a service like [RunKit][runkit],
 which gives you an interactive JavaScript playground in your browser.
-For larger ones,
+For larger things,
 and for chapters starting with the one on [creating dynamic web pages](../dynamic/),
 you should [download and install][node-download] the latest Long-term Support (LTS) versions of Node and NPM.
 
