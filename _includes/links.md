@@ -19,6 +19,7 @@ definitions if that's done.
 [cpu-second]: http://exple.tive.org/blarg/2018/08/15/time-dilation/
 
 [d3]: https://d3js.org/
+[d3-array]: https://github.com/d3/d3-array
 [draw-io]: https://www.draw.io/
 
 [es6-modules]: http://2ality.com/2014/09/es6-modules-final.html
