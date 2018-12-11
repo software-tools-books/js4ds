@@ -83,6 +83,35 @@ Local installation is usually a better idea,
 since it isolates projects from one another;
 we will explore this [later](../display/) when we look at how to create projects.
 
+## Who We Are {#s:intro-contributors}
+
+<div class="row">
+  <div class="offset-md-1 col-md-3">
+    <p><img src="../../files/toby-hodges.jpg" alt="Greg Wilson" width="80%" /></p>
+  </div>
+  <div class="col-md-6">
+    <p>
+      <strong>Toby Hodges</strong>
+    </p>
+  </div>
+</div>
+<div class="row">
+  <div class="offset-md-1 col-md-3">
+    <p><img src="../../files/greg-wilson.jpg" alt="Greg Wilson" width="80%" /></p>
+  </div>
+  <div class="col-md-6">
+    <p>
+      <strong>Greg Wilson</strong> has worked for 35 years in both industry and
+      academia, and is the author or editor of several books on computing and
+      two for children. He is best known as the co-founder of <a
+      href="http://carpentries.org">Software Carpentry</a>, a non-profit
+      organization that teaches basic computing skills to researchers, and is
+      now part of the education team at <a
+      href="http://rstudio.com">RStudio</a>.
+    </p>
+  </div>
+</div>
+
 ## Exercises {#s:intro-exercises}
 
 ### Setting Up
