@@ -18,7 +18,7 @@ keypoints:
 - "Use dynamic loading to support plugin extensions."
 ---
 
-Now that we have [a data manager](../data/),
+Now that we have [a data manager](../dataman/),
 the next step is to create a server to share our data with the world,
 which we will build using a library called [Express][express].
 Before we start writing code,
