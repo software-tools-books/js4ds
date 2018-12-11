@@ -16,6 +16,8 @@ keypoints:
 - "Mark functions that can be waited on with `async`."
 ---
 
+By now we have got used to providing callback functions as arguments to other
+functions.
 Callbacks quickly become complicated because of:
 
 - Nesting: a delayed calculation may need the result of a delayed calculation that needs...
@@ -26,7 +28,8 @@ For example,
 suppose we want to turn a set of CSV files into HTML pages.
 The inputs to our function are the name of a directory that contains one or more CSV files
 and the name of an output directory;
-the desired results are that the output directory created if it doesn't already exist,
+the desired results are
+that the output directory is created if it doesn't already exist,
 that one HTML file is created for each CSV file,
 that any HTML files in the directory that *don't* correspond to CSV files are removed,
 and that an index page is created with links to all the pages.
@@ -263,6 +266,9 @@ new Promise((resolve, reject) => {
 got HTTP status code 400
 ```
 
+(Note that we didn't assign our Promise object to a variable in the example above.
+We can create promises on the fly if we need them only to define behaviour on
+successful completion/exception and won't need to refer to them again later.)
 What makes this all work is that a promise is an object.
 Here's what's in memory just after this promise has been created:
 
@@ -311,7 +317,7 @@ has been added to JavaScript to hide these details.
 Without this complexity,
 though,
 it's extremely difficult to handle errors from delayed computations.
-If we try this:
+If we try this, using JavaScript's `try {...} catch {...}` syntax for handling exceptions:
 
 ```js
 const fetch = require('node-fetch')
@@ -328,7 +334,7 @@ catch (err) {
 then the error message won't appear
 because the call to `fetch` doesn't raise an exception right away.
 
-Going back to the `fs-exta.stat` example above,
+Going back to the `fs-extra.stat` example above,
 what if we want to process multiple files,
 e.g.,
 calculate their total size?
@@ -337,8 +343,8 @@ We could write a loop:
 ```js
 const fs = require('fs-extra')
 
-var total_size = 0
-var files = ['jane-eyre.txt', 'moby-dick.txt', 'life-of-frederick-douglass.txt']
+let total_size = 0
+const files = ['jane-eyre.txt', 'moby-dick.txt', 'life-of-frederick-douglass.txt']
 for (let fileName of files) {
   fs.stat(fileName).then((stats) => {
     total_size += stats.size
@@ -349,7 +355,7 @@ console.log(total_size)
 {: title="src/promises/promise-loop.js"}
 
 but this doesn't work:
-the `fs.stat` in each iteration is executed asynchronously,
+the `stat` in each iteration is executed asynchronously,
 so the loop finishes and the script prints a total size of zero
 before any of the promised code has run.
 
@@ -359,7 +365,7 @@ to ensure that each executes only after the last has resolved:
 ```js
 const fs = require('fs-extra')
 
-var total_size = 0
+let total_size = 0
 new Promise((resolve, reject) => {
   fs.stat('jane-eyre.txt').then((jeStats) => {
     fs.stat('moby-dick.txt').then((mdStats) => {
@@ -386,8 +392,8 @@ which makes processing straightforward:
 ```js
 const fs = require('fs-extra')
 
-var total_size = 0
-var files = ['jane-eyre.txt', 'moby-dick.txt', 'life-of-frederick-douglass.txt']
+let total_size = 0
+const files = ['jane-eyre.txt', 'moby-dick.txt', 'life-of-frederick-douglass.txt']
 Promise.all(files.map(f => fs.stat(f))).
   then(stats => stats.reduce((total, s) => {return total + s.size}, 0)).
   then(console.log)
@@ -405,6 +411,7 @@ which takes an array of promises and returns the result of the first one to comp
 Promises don't really make sense until we start to use them,
 so let's try counting the number of lines in a set of files
 that are larger than a specified threshold.
+This is a slightly complex example but we will go through and build it up step-by-step.
 Step 1 is to find the input files:
 
 ```js
@@ -472,7 +479,7 @@ In step 4,
 we remember that we need to keep track of the names of the files we are looking at,
 so we need to write our own function that returns an object with two keys
 (one for the filename, and one for the stats).
-As described [previous](../pages/),
+As described [previously](../pages/),
 the notation `{a, b}` produces an object `{"a": a, "b", b}`:
 
 ```js
@@ -545,6 +552,14 @@ glob(`${srcDir}/**/*.txt`)
 lengths [ 2654, 21063, 4105, 22334, 13028, 3584 ]
 ```
 
+There's a lot going on in the example above
+but the important points are:
+
+- Promises always return another `Promise` object.
+- This allows us to chain multiple `then` calls.
+- This chain is formed of processes that will each wait to run until their predecessor has completed.
+- A single `catch` method works to handle exceptions raised by *any* of the previous steps.
+
 ## `async` and `await` {#s:promises-async-await}
 
 Programmers are never content to leave well enough alone,
@@ -553,7 +568,7 @@ As we saw above,
 the result of `Promise.then` is another promise,
 which allows us to create long chains of `.then(...).then(...).then(...)` calls.
 It works,
-but it isn't the most readable of notations.
+but it isn't the most readable of notations and has been known to create a feeling of being trapped.
 
 We can avoid this using two new keywords, `async` and `await`.
 `async` tells JavaScript that a function is asynchronous,
@@ -567,7 +582,7 @@ We use the two together like this:
 const fs = require('fs-extra')
 
 const statPairAsync = async (filename) => {
-  var stats = await fs.stat(filename)
+  const stats = await fs.stat(filename)
   return {filename, stats}
 }
 
@@ -586,7 +601,7 @@ const fs = require('fs-extra')
 const glob = require('glob-promise')
 
 const statPairAsync = async (filename) => {
-  var stats = await fs.stat(filename)
+  const stats = await fs.stat(filename)
   return {filename, stats}
 }
 
@@ -595,11 +610,11 @@ const countLines = (text) => {
 }
 
 const processFiles = async (globpath) => {
-  var filenames = await glob(globpath)
-  var pairs = await Promise.all(filenames.map(f => statPairAsync(f)))
-  var filtered = pairs.filter(pair => pair.stats.size > 100000)
-  var contents = await Promise.all(filtered.map(f => fs.readFile(f.filename, 'utf8')))
-  var lengths = contents.map(c => countLines(c))
+  const filenames = await glob(globpath)
+  const pairs = await Promise.all(filenames.map(f => statPairAsync(f)))
+  const filtered = pairs.filter(pair => pair.stats.size > 100000)
+  const contents = await Promise.all(filtered.map(f => fs.readFile(f.filename, 'utf8')))
+  const lengths = contents.map(c => countLines(c))
   console.log(lengths)
 }
 
@@ -608,6 +623,7 @@ const srcDir = process.argv[2]
 processFiles(`${srcDir}/**/*.txt`)
   .catch(e => console.log(e.message))
 ```
+{: title="src/promises/async-await-example.js"}
 
 Using `async` and `await` lets us avoid long `then` chains;
 unless and until JavaScript allows us to define operators like R's `%>%` pipe operator,
