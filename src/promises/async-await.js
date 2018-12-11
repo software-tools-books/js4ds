@@ -1,7 +1,7 @@
 const fs = require('fs-extra')
 
 const statPairAsync = async (filename) => {
-  var stats = await fs.stat(filename)
+  const stats = await fs.stat(filename)
   return {filename, stats}
 }
 

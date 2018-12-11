@@ -60,7 +60,7 @@ which lowers the cost of providing data.
 Many, many JavaScript frameworks for client-side page generation have been created,
 and more are probably being developed right now.
 We have chosen [React][react] because it is freely available,
-Widely used,
+widely used,
 well documented,
 simpler than many alternatives,
 and has a cool logo.
@@ -310,7 +310,7 @@ and to run a [local server](../gloss/#g:local-server) to preview our application
 However,
 this solution brings with it another problem:
 which bundler to choose?
-As with front-end framework,
+As with front-end frameworks,
 there are many to choose from,
 and new ones are being added almost weekly.
 [Webpack][webpack] is probably the most widely used,
@@ -332,7 +332,7 @@ we can tell it to run one of our test pages like this:
 node_modules/.bin/parcel serve -p 4000 src/dynamic/pass-parameters.html
 ```
 ```text
-Server running at http://localhost:4000 
+Server running at http://localhost:4000
 + Built in 128ms.
 ```
 
@@ -409,7 +409,7 @@ ReactDOM.render(
   <p>Rendered by React</p>,
   document.getElementById("app")
 )
-``
+```
 {: title="src/dynamic/hello-separate/app.js"}
 
 When we load this page we get the `h1` title but *not* the paragraph.
@@ -420,8 +420,10 @@ we see the message:
 Error: _registerComponent(...): Target container is not a DOM element.
 ```
 
-This is the same race condition that has bitten us before,
-so to keep things simple,
+This is the same race condition that has bitten us before.
+After sighing in frustration and making ourselves another cup of tea,
+we decide that,
+to keep things simple,
 we will load the script in the body of the page:
 
 ```js

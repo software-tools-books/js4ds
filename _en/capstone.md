@@ -102,7 +102,7 @@ we'll be able to send database queries to `dataManager`.
 This variable is global within this file,
 but since it's not exported,
 it's invisible outside.
-Variables like this are called [module variables](#g:module-variable),
+Variables like this are called [module variables](../gloss/#g:module-variable),
 and give us a way to share information among the functions in a module
 without giving anything outside the module a way to cause (direct) harm to that information.
 
@@ -248,7 +248,7 @@ ReactDOM.render(
   document.getElementById("app")
 )
 ```
-{: title="src/capstone/back/app.js"}
+{: title="src/capstone/front/app.js"}
 
 The constructor defines the URL for the data source and sets up the initial state,
 which has summary data,
@@ -267,7 +267,7 @@ and data for those years:
     }
   }
 ```
-{: title="src/capstone/back/app.js"}
+{: title="src/capstone/front/app.js"}
 
 The method `componentDidMount` is new:
 it fetches data for the very first time
@@ -285,7 +285,7 @@ so that the user sees something useful on the page when they first load it.
     })
   }
 ```
-{: title="src/capstone/back/app.js"}
+{: title="src/capstone/front/app.js"}
 
 We don't call this method ourselves;
 instead,
@@ -314,7 +314,7 @@ but we need those values in our state variables:
     })
   }
 ```
-{: title="src/capstone/back/app.js"}
+{: title="src/capstone/front/app.js"}
 
 When the button is clicked,
 we send a request for JSON data to the appropriate URL
@@ -343,7 +343,7 @@ and the second `then` callback when the data has been converted to JSON.
     })
   }
 ```
-{: title="src/capstone/back/app.js"}
+{: title="src/capstone/front/app.js"}
 
 Now let's update the display with `SurveyStats`, `ChooseRange`, `DataChart`, and `DataDisplay`,
 which are all stateless components
@@ -368,7 +368,7 @@ which are all stateless components
     )
   }
 ```
-{: title="src/capstone/back/app.js"}
+{: title="src/capstone/front/app.js"}
 
 ## The Tables {#s:capstone-tables}
 
@@ -443,11 +443,11 @@ export default DataDisplay
 
 Like `SurveyStats`, `DataDisplay` returns a table listing the results returned from the server.
 Unlike `SurveyStats`,
-this component needs to check whether each record is exists before it builds the table row.
+this component needs to check whether each record exists before it builds the table row.
 Remember that,
 when we defined how the year range query is handled in `DataManager` earlier,
 we told it to only return record objects for those years that have data.
-We add `.filter(r => r)` before mapping the data to the callback here
+Here, we add `.filter(r => r)` before mapping the data to the callback
 to ensure that `DataDisplay` will only try to make `tr` elements from non-`null` records.
 We do the same when plotting the data.
 

@@ -17,8 +17,10 @@ definitions if that's done.
 [cors-wikipedia]: https://en.wikipedia.org/wiki/Cross-origin_resource_sharing
 [covenant]: https://www.contributor-covenant.org
 [cpu-second]: http://exple.tive.org/blarg/2018/08/15/time-dilation/
+[css-precedence]: https://www.w3schools.com/css/css_specificity.asp
 
 [d3]: https://d3js.org/
+[d3-array]: https://github.com/d3/d3-array
 [draw-io]: https://www.draw.io/
 
 [es6-modules]: http://2ality.com/2014/09/es6-modules-final.html
