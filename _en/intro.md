@@ -63,7 +63,7 @@ For small exercises as you're getting started,
 you can use an online service like [RunKit][runkit],
 which gives you an interactive JavaScript playground in your browser.
 For larger things,
-and for chapters starting with the one on [creating dynamic web pages](../display/),
+and for chapters starting with the one on [creating dynamic web pages](../dynamic/),
 you should [download and install][node-download] the latest Long-term Support (LTS) versions of Node and NPM.
 
 `node` is a command-line interpreter for JavaScript
@@ -71,7 +71,7 @@ like those for languages such as Python and R.
 The command `node` on its own starts a [read-evaluate-print loop](../gloss/#g:repl)
 that executes commands as they are typed in and displays their output.
 The command `node filename.js` reads and runs the commands in `filename.js`;
-we will see [later](../display/) how to run JavaScript in a browser.
+we will see [later](../pages/) how to run JavaScript in a browser.
 
 `npm` the Node [Package Manager](../gloss/#g:package-manager),
 a command-line tool for finding, installing, and updating JavaScript libraries.
@@ -80,8 +80,7 @@ installs a library [globally](../gloss/#g:global-intallation) so that all projec
 while <code>npm install --save <em>library-name</em></code> installs the library [locally](../gloss/#g:local-installation)
 (i.e., in the current project folder).
 Local installation is usually a better idea,
-since it isolates projects from one another;
-we will explore this [later](../display/) when we look at how to create projects.
+since it isolates projects from one another.
 
 ## Exercises {#s:intro-exercises}
 
