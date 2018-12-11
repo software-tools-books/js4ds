@@ -17,7 +17,7 @@ keypoints:
 - "Use callbacks to handle the results of queries."
 ---
 
-Our [data manager](../data/) got information from a single CSV file.
+Our [data manager](../dataman/) got information from a single CSV file.
 That's fine for testing purposes,
 but real applications almost always use a database of some kind.
 There are many options these days for what kind,
@@ -63,7 +63,7 @@ and then put a web service on top of it.
 ## Starting Point {#s:db-start}
 
 Our class, imaginatively named `Database`,
-tkaes the path to the SQLite database file as a constructor parameter
+takes the path to the SQLite database file as a constructor parameter
 and creates a [connection manager](../gloss/#g:connection-manager)
 through which we can send queries and get results.
 We will create one method for each query we want to run,

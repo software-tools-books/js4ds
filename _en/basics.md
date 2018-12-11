@@ -50,7 +50,7 @@ functions,
 and modules.
 All of these concepts should be familiar if you have programmed before.
 
-## Hello, World {#s:core-hello-world}
+## Hello, World {#s:basics-hello-world}
 
 Use your favorite text editor to put the following line in a file called `hello.js`:
 
@@ -79,7 +79,7 @@ $ node src/basics/hello.js
 hello, world
 ```
 
-## Basic Data Types {#s:core-data-types}
+## Basic Data Types {#s:basics-data-types}
 
 JavaScript has the usual datatypes,
 though unlike C, Python, and many other languages,
@@ -121,7 +121,7 @@ the type of some text is string
 ```
 
 Functions are also a type of data,
-a fact whose implications we will explore in [the next lesson](./callbacks/):
+a fact whose implications we will explore in [the next lesson](../callbacks/):
 
 ```js
 console.log('the type of', console.log, 'is', typeof console.log)
@@ -166,7 +166,7 @@ though we will see below that other things can be treated as Booleans.
 `undefined` means "hasn't been given a value",
 while `null` means "has a value, which is nothing".
 
-## Control Flow {#s:core-control-flow}
+## Control Flow {#s:basics-control-flow}
 
 We have already seen `for` loops and flat arrays,
 so let's have a look at conditionals and nested arrays:
@@ -228,7 +228,7 @@ not called like a function.)
 > `==` and `!=` do type conversion,
 > which can produce some [ugly surprises](../legacy/#s:legacy-equality).
 
-## Formatting Strings {#s:core-formatting}
+## Formatting Strings {#s:basics-formatting}
 
 Rather than printing multiple strings and expressions,
 we can [interpolate](../gloss/#g:string-interpolation) values into a back-quoted string.
@@ -252,7 +252,7 @@ color is green and capitalized is GREEN
 color is blue and capitalized is BLUE
 ```
 
-## Objects {#s:core-objects}
+## Objects {#s:basics-objects}
 
 An [object](../gloss/#g:object) in JavaScript is a collection of key-value pairs,
 and is equivalent in simple cases to what Python would call a dictionary.
@@ -324,9 +324,9 @@ console.log(JSON.stringify(creature))
 
 Here,
 "JSON" stands for "JavaScript Object Notation";
-we will learn more about it [later](../data/).
+we will learn more about it [later](../dataman/).
 
-## Functions {#s:core-functions}
+## Functions {#s:basics-functions}
 
 Functions make it possible for mere mortals to understand programs
 by allowing us to think about them one piece at a time.
@@ -421,7 +421,7 @@ We will discuss scope in more detail [later](../callbacks/).
 > Here and elsewhere,
 > we will see how a language's history and the way it is used shape its evolution.
 
-## Modules {#s:core-modules}
+## Modules {#s:basics-modules}
 
 As our programs grow larger,
 we will want to put code in multiple files.
@@ -498,7 +498,7 @@ we must then call our function as `utilities.clip`.
 We use a relative path starting with `./` or `../` to import local files;
 paths that start with names are taken from installed Node libraries.
 
-## Exercises {#s:core-exercises}
+## Exercises {#s:basics-exercises}
 
 ### Typeof
 

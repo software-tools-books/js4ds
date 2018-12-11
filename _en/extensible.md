@@ -8,7 +8,7 @@ keypoints:
 - "Dynamically loading modules is a security risk."
 ---
 
-Suppose we want to extend our [server](../server) in some way.
+Suppose we want to extend our [server](../server/) in some way.
 We could edit the source file and add some more URL handlers,
 or we could have it load JavaScript dynamically and run that.
 

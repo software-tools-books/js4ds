@@ -211,8 +211,6 @@ we might as well define it and call it immediately without giving it a name:
 }(actual_value)
 ```
 
-The `()` before the fat arrow means "this function doesn't take any parameters".
-The second `()` after the closing curly brace means "call the function".
 However,
 this doesn't reliably work as written;
 in order to make JavaScript happy,
@@ -225,6 +223,8 @@ so that it's clear exactly what's being called:
 })(actual_value)
 ```
 
+`()` before the fat arrow means "this function doesn't take any parameters".
+The second `()` after the closing curly brace means "call the function".
 If the function doesn't take any arguments,
 this becomes:
 
@@ -442,7 +442,7 @@ that returns a negative number, 0, or a positive number to show whether its `lef
 equal to,
 or greater than its `right` argument.
 We use the `textContent` member of the node to get the text it contains,
-and the string object's `locateCompare` to get a -1/0/1 result.
+and the string object's `localeCompare` to get a -1/0/1 result.
 All of this was discovered by searching online,
 primarily on the [W3Schools][w3schools] site.
 
@@ -724,7 +724,7 @@ to remind us just how quickly life is passing by.
 2. Write a second function called `showWords` that uses the first to find the number of words,
    then displays that number in a paragraph whose ID is `wordcount`.
 
-## Removing Text Nodes
+### Removing Text Nodes
 
 In the example that sorts the items in lists,
 we remove all the text nodes from the list of child nodes before sorting.
@@ -735,12 +735,12 @@ What happens if remove the line:
           .filter(c => c.nodeName !== '#text')
 ```
 
-## A More Robust Table of Contents
+### A More Robust Table of Contents
 
 Modify the table of contents example so that if an `h2` heading doesn't have an `id`,
 it is still included in the table of contents.
 
-## Explicitly Creating Nodes
+### Explicitly Creating Nodes
 
 Find documentation online for `document.createElement` and `document.createTextNode`,
 then rewrite the table of contents example to use these methods
