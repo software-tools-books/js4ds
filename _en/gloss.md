@@ -378,6 +378,9 @@ the ambiguity that arises when two or more things in a program that have the sam
 are active at the same time.
 The [call stack](#g:call-stack) was invented in part to address this problem.
 
+**Node**{:#g:node-js}:
+an open source implementation of JavaScript for use outside the browser.
+
 **node**{:#g:node}:
 an in-memory representation of an element in an HTML page.
 See also [DOM](#g:dom).
