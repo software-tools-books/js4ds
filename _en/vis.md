@@ -12,7 +12,7 @@ keypoints:
 - "Some applications will use `require` for server-side code and `import` for client-side code."
 ---
 
-Tables are great, but visualizations are often more effective---if
+Tables and lists are great, but visualizations are often more effective---if
 they're well designed and your audience is sighted, that is.
 There are even more ways to visualize data in the browser
 than there are front-end toolkits for JavaScript.
@@ -31,7 +31,7 @@ Let's start by creating a skeleton web page to hold our visualization.
 For now, we will load Vega, Vega-Lite, and Vega-Embed from the web;
 we'll worry about local installation later.
 We will create a `div` to be filled in by the visualization---we
-don't have to give it the ID `vis`, but it's common to do so---ad
+don't have to give it the ID `vis`, but it's common to do so---and
 we will leave space for the script.
 Our skeleton looks like this:
 
@@ -53,7 +53,7 @@ Our skeleton looks like this:
 </body>
 </html>
 ```
-{: title="src/viz/vega-skeleton.html" }
+{: title="src/vis/vega-skeleton.html" }
 
 We can now start filling in the script with the beginning of a visualization specification.
 This is a blob of [JSON](../gloss/#g:json) with certain required fields:
@@ -61,6 +61,31 @@ This is a blob of [JSON](../gloss/#g:json) with certain required fields:
 - `$schema` identifies the version of the spec being used (as a URL).
 - `description` is a comment to remind us what we thought we were doing when we created this.
 - `data` is the actual data.
+
+```
+...rest of page as before...
+  <script type="text/javascript">
+    let spec = {
+      "$schema": "https://vega.github.io/schema/vega-lite/v2.0.json",
+      "description": "Create data array but do not display anything.",
+      "data": {
+        "values": [
+          {"a": "A", "b": 28},
+          {"a": "B", "b": 55},
+          {"a": "C", "b": 43},
+          {"a": "D", "b": 91},
+          {"a": "E", "b": 81},
+          {"a": "F", "b": 53},
+          {"a": "G", "b": 19},
+          {"a": "H", "b": 87},
+          {"a": "I", "b": 52}
+        ]
+      }
+    }
+  </script>
+...rest of page as before...
+```
+{: title="src/vis/vega-values-only.html"}
 
 In this case,
 we represent a two-dimensional data table as objects with explicit indices `"a"` and `"b"`.
@@ -85,7 +110,7 @@ and some options (which for now we will leave empty):
     }
     vegaEmbed("#vis", spec, {})
 ```
-{: title="src/viz/vega-values-only.html"}
+{: title="src/vis/vega-values-only.html"}
 
 When we open the page, though, nothing appears,
 because we haven't told Vega-Lite *how* to display the data.
@@ -114,7 +139,7 @@ Here's our updated spec:
     }
     vegaEmbed("#vis", spec, {})
 ```
-{: title="src/viz/vega-mark-encoding.html"}
+{: title="src/vis/vega-mark-encoding.html"}
 
 When we open the page now,
 we see a bar chart,
@@ -145,17 +170,13 @@ We can fill in the options argument to `vegaEmbed` to turn those off:
     }
     vegaEmbed("#vis", spec, options)
 ```
-{: title="src/viz/vega-disable-controls.html"}
+{: title="src/vis/vega-disable-controls.html"}
 
 We now have the visualization we wanted:
 
 <figure id="f:vis-disable-controls">
   <figcaption>Without Controls</figcaption>
-<<<<<<< HEAD
-  <img src="../../files/vis-disable-controls.png" />
-=======
   <img id="f:vis-disable-controls" src="../../files/vis-disable-controls.png" alt="Without Controls" />
->>>>>>> master
 </figure>
 
 Vega-Lite has a *lot* of options:
@@ -196,15 +217,11 @@ which is set to `"average"`:
     }
     vegaEmbed("#vis", spec, options)
 ```
-{: title="src/viz/vega-aggregate-points.html"}
+{: title="src/vis/vega-aggregate-points.html"}
 
 <figure id="f:vis-aggregate-points">
   <figcaption>Aggregating and Using Points</figcaption>
-<<<<<<< HEAD
-  <img src="../../files/vis-aggregate-points.png" />
-=======
   <img id="f:vis-aggregate-points" src="../../files/vis-aggregate-points.png" alt="Aggregating and Using Points" />
->>>>>>> master
 </figure>
 
 ## Local Installation {#s:vis-vega-local}
