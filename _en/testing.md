@@ -165,7 +165,7 @@ app.get('/', (req, res, next) => {
   res.status(200).send('<html><body><h1>Home</h1></body></html>')
 })
 
-...as before...
+// ...as before...
 
 module.exports = app
 ```
@@ -249,7 +249,7 @@ Excellent: let's add some more tests.
 describe('server', () => {
 
   it('should return HTML with expected title', (done) => {
-    ...
+    // ...as before...
   })
 
   it('should return asteroids page as HTML with expected title', (done) => {

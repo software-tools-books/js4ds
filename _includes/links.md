@@ -19,6 +19,7 @@ definitions if that's done.
 [cpu-second]: http://exple.tive.org/blarg/2018/08/15/time-dilation/
 
 [d3]: https://d3js.org/
+[draw-io]: https://www.draw.io/
 
 [es6-modules]: http://2ality.com/2014/09/es6-modules-final.html
 [event-loop]: https://nodejs.org/en/docs/guides/event-loop-timers-and-nexttick/
@@ -26,7 +27,7 @@ definitions if that's done.
 
 [github]: http://github.com/
 
-[jeykll]: https://jekyllrb.com/
+[jekyll]: https://jekyllrb.com/
 [jsx]: https://reactjs.org/docs/introducing-jsx.html
 
 [mocha]: https://mochajs.org/

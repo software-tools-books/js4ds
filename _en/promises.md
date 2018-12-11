@@ -431,7 +431,7 @@ Step 2 is to get the status of each file.
 This approach doesn't work because `fs.stat` is delayed:
 
 ```js
-...imports and arguments as before...
+// ...imports and arguments as before...
 
 glob(`${srcDir}/**/*.txt`)
   .then(files => files.map(f => fs.stat(f)))
@@ -451,7 +451,7 @@ glob + files.map/stat [ Promise { <pending> },
 Step 3 is to use `Promise.all` to wait for all these promises to resolve:
 
 ```js
-...imports and arguments as before...
+// ...imports and arguments as before...
 
 glob(`${srcDir}/**/*.txt`)
   .then(files => Promise.all(files.map(f => fs.stat(f))))
@@ -476,7 +476,7 @@ As described [previous](../pages/),
 the notation `{a, b}` produces an object `{"a": a, "b", b}`:
 
 ```js
-...imports and arguments as before...
+// ...imports and arguments as before...
 
 const statPair = (filename) => {
   return new Promise((resolve, reject) => {
@@ -508,7 +508,7 @@ Step 5 is to make sure that
 we're only working with files more than 100,000 characters long:
 
 ```js
-...imports and arguments as before...
+// ...imports and arguments as before...
 
 glob(`${srcDir}/**/*.txt`)
   .then(files => Promise.all(files.map(f => statPair(f))))
@@ -526,7 +526,7 @@ In step 6,
 we split each file's content into lines and count:
 
 ```js
-...imports and arguments as before...
+// ...imports and arguments as before...
 
 const countLines = (text) => {
   return text.split('\n').length

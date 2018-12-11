@@ -340,7 +340,7 @@ For example,
 let's serve some JSON data:
 
 ```js
-...as before...
+// ...as before...
 
 app.use((req, res, next) => {
   const actual = path.join(root, req.url)
