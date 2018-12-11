@@ -63,7 +63,7 @@ and then put a web service on top of it.
 ## Starting Point {#s:db-start}
 
 Our class, imaginatively named `Database`,
-tkaes the path to the SQLite database file as a constructor parameter
+takes the path to the SQLite database file as a constructor parameter
 and creates a [connection manager](../gloss/#g:connection-manager)
 through which we can send queries and get results.
 We will create one method for each query we want to run,
