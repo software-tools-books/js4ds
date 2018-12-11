@@ -120,9 +120,9 @@ When we open the page now,
 we see a bar chart,
 and feel very proud of ourselves.
 
-<figure id="f:vis-vega-mark-encoding">
+<figure id="f:vis-mark-encoding">
   <figcaption>Mark and Encoding</figcaption>
-  <img id="f:vis-mark-encoding" src="../../files/vis-mark-encoding.png" alt="Mark and Encoding" />
+  <img src="../../files/vis-mark-encoding.png" />
 </figure>
 
 There are also some poorly-styled links for various controls that we're not going to use.
@@ -149,9 +149,13 @@ We can fill in the options argument to `vegaEmbed` to turn those off:
 
 We now have the visualization we wanted:
 
-<figure id="f:vis-vega-disable-controls">
+<figure id="f:vis-disable-controls">
   <figcaption>Without Controls</figcaption>
+<<<<<<< HEAD
+  <img src="../../files/vis-disable-controls.png" />
+=======
   <img id="f:vis-disable-controls" src="../../files/vis-disable-controls.png" alt="Without Controls" />
+>>>>>>> master
 </figure>
 
 Vega-Lite has a *lot* of options:
@@ -194,9 +198,13 @@ which is set to `"average"`:
 ```
 {: title="src/viz/vega-aggregate-points.html"}
 
-<figure id="f:vis-vega-aggregate-points">
+<figure id="f:vis-aggregate-points">
   <figcaption>Aggregating and Using Points</figcaption>
+<<<<<<< HEAD
+  <img src="../../files/vis-aggregate-points.png" />
+=======
   <img id="f:vis-aggregate-points" src="../../files/vis-aggregate-points.png" alt="Aggregating and Using Points" />
+>>>>>>> master
 </figure>
 
 ## Local Installation {#s:vis-vega-local}

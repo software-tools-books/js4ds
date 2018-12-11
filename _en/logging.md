@@ -53,58 +53,41 @@ const app = express()
 // Handle all requests.
 app.use((req, res, next) => {
   const actual = path.join(root, req.url)
-
-  if (actual.endsWith('.js')) {
-    const libName = './'.concat(actual.slice(0, -3))
-    winston.debug('Loading "${libName}"')
-    const dynamic = require(libName)
-    const data = dynamic.page()
-    res.status(200).send(data)
-  }
-
-  else {
-    winston.debug('Reading "${actual}"')
-    const data = fs.readFileSync(actual, 'utf-8')
-    res.status(200).send(data)
-  }
+  fs.stat(actual, (err, stats) => {
+    if (err) {
+      winston.error(`Unable to find "${actual}"`)
+      res.status(404).send(`<html><body><p>cannot read ${actual}</p></body></html>`)
+    } else if (!stats.isFile()) {
+      winston.error(`"${actual}" is not a file`)
+      res.status(404).send(`<html><body><p>cannot read ${actual}</p></body></html>`)
+    } else {
+      winston.debug(`Serving "${actual}"`)
+      fs.readFile(actual, 'utf-8', (err, data) => {
+	res.status(200).send(data)
+      })
+    }
+  })
 })
 
 app.listen(PORT, () => {
-  winston.info('Running on port ${PORT} with root ${root}')
+  winston.info(`Running on port ${PORT} with root ${root}`)
 })
 ```
-{: title="src/server/logging.js"}
+{: title="src/logging/logging-server.js"}
 
 In the script above,
 we set the logging level with an extra command-line parameter.
 If we run the script with the `'debug'` level, all messages appear.
-If we run it with the `'info'` level, only the startup message appears,
-and if we run it with the level `'warning'`,
-no messages appear
-because none are deemed important enough.
+If we run it with the `'info'` level,
+the startup message and the 404 error messages appear,
+and if we run it with the level `'error'` only the latter appear.
 
-FIXME: We will use `bodyParser` because we're always serving JSON.
-
-FIXME: a library called `express-winston` to log all requests:
-
-```js
-// Main server object and database object.
-// db is provided during load.
-let db = null
-const app = express()
-app.use(bodyParser.json())
-
-// Set up logging.
-app.use(expressWinston.logger({
-  transports: [
-    new winston.transports.Console({
-      json: false,
-      colorize: true
-    })
-  ],
-  meta: false,
-  msg: "HTTP {{res.statusCode}} {{req.method}} {{req.url}}"
-}))
+```shell
+$ node src/logging/logging-server.js src/logging/web-dir/ info
+```
+```text
+{"message":"Running on port 3418 with root src/logging/web-dir/","level":"info"}
+{"message":"Unable to find \"src/logging/web-dir/missing.html\"","level":"error"}
 ```
 
 {% include links.md %}

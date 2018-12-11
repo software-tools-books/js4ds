@@ -188,7 +188,7 @@ After loading the library and reading our test data file a couple of times,
 we break down and read the documentation,
 then come up with this as the first version of our data manager:
 
-```
+```js
 const fs = require('fs')
 const papa = require('papaparse')
 
@@ -282,7 +282,7 @@ Thus,
 "select the specified field from each record in `this.data` to create an array of fields,
 then pass all of those values as arguments to `func`.
 We include an underscore to the start of the name of `_get` to indicate that we
-intend it to be used only inside `getSurveyStats` and not to be called elsewhere.
+intend it to be used only inside `DataManager` and not to be called elsewhere.
 
 Adding the method to get weight and hindfoot length for a range of years
 is comparatively straightforward.
@@ -304,21 +304,40 @@ It would be more natural for `_average` to take an array rather than a variable 
 but we want to be able to use it in the same way that we use `Math.min` and `Math.max`,
 so we have to conform to their signature.
 
+After some thought we realise that it's possible for `subset` to be empty -
+that is, it's possible that there are years that have no data in our data set.
+We should filter these out,
+to prevent unnecessary effort being made to render summary statistics with `NaN` values.
+Remembering that [empty arrays are not falsy in JavaScript](../basics/),
+we decide to test that the `subset` returned by filtering for each year
+contains at least one entry.
+
+The last thing that we need to ensure is that each data object has a unique key,
+which will make it much easier for React to efficiently update the display of
+the data when we are ready to render it.
+
 The method to get the values for a range of years is now:
 
 ```js
   getSurveyRange (minYear, maxYear) {
-    const subset = this.data.filter(r => ((minYear <= r.year) && (r.year <= maxYear)))
-    return {
-      min_year : minYear,
-      max_year : maxYear,
-      min_hindfoot_length : this._get(subset, 'hindfoot_length', Math.min),
-      ave_hindfoot_length : this._get(subset, 'hindfoot_length', _average),
-      max_hindfoot_length : this._get(subset, 'hindfoot_length', Math.max),
-      min_weight : this._get(subset, 'weight', Math.min),
-      ave_weight : this._get(subset, 'weight', _average),
-      max_weight : this._get(subset, 'weight', Math.max)
-    }
+    return Array(1 + maxYear - minYear)
+      .fill(0)
+      .map((v, i) => minYear + i)
+      .map(year => {
+    const subset = this.data.filter(r => r.year === year)
+      if (subset.length) {
+        return {
+          key  : toString(year),
+          year : year,
+          min_hindfoot_length : this._get(subset, 'hindfoot_length', Math.min),
+          ave_hindfoot_length : this._get(subset, 'hindfoot_length', _average),
+          max_hindfoot_length : this._get(subset, 'hindfoot_length', Math.max),
+          min_weight : this._get(subset, 'weight', Math.min),
+          ave_weight : this._get(subset, 'weight', _average),
+          max_weight : this._get(subset, 'weight', Math.max)
+        }
+      }
+    })
   }
 ```
 {: title="src/dataman/data-manager.js"}
