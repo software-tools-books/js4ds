@@ -324,7 +324,7 @@ console.log(JSON.stringify(creature))
 
 Here,
 "JSON" stands for "JavaScript Object Notation";
-we will learn more about it [later](../data/).
+we will learn more about it [later](../dataman/).
 
 ## Functions {#s:core-functions}
 
