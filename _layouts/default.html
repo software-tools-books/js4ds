@@ -17,7 +17,6 @@
         </div>
         <div class="col-md-10 main">
           <h1>{% if page.root %}{{site.title}}{% else %}{{page.title}}{% endif %}</h1>
-          {% include disclaimer.html %}
           {% include listblock.html title=translations.questions items=page.questions %}
           <div class="listblock headings"></div>
           {{content}}
