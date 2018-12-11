@@ -176,7 +176,7 @@ We now have the visualization we wanted:
 
 <figure id="f:vis-disable-controls">
   <figcaption>Without Controls</figcaption>
-  <img id="f:vis-disable-controls" src="../../files/vis-disable-controls.png" alt="Without Controls" />
+  <img src="../../files/vis-disable-controls.png" />
 </figure>
 
 Vega-Lite has a *lot* of options:
@@ -221,7 +221,7 @@ which is set to `"average"`:
 
 <figure id="f:vis-aggregate-points">
   <figcaption>Aggregating and Using Points</figcaption>
-  <img id="f:vis-aggregate-points" src="../../files/vis-aggregate-points.png" alt="Aggregating and Using Points" />
+  <img src="../../files/vis-aggregate-points.png" />
 </figure>
 
 ## Local Installation {#s:vis-vega-local}
