@@ -5,30 +5,18 @@ endif
 
 # Tools.
 JEKYLL=jekyll
-LATEX=pdflatex
-BIBTEX=bibtex
-PANDOC=pandoc
-PANDOC_FLAGS=--from=markdown --to=latex
-REPO=FIXME
 
 # Language-dependent settings.
 DIR_MD=_${lang}
 DIR_TEX=tex/${lang}
-DIR_INC=${DIR_TEX}/inc
 DIR_WEB=_site/${lang}
-WORDS_SRC=misc/${lang}.txt
 
 # Filesets.
 ALL_MD=$(wildcard ${DIR_MD}/*.md)
-BIB_SRC=${DIR_TEX}/book.bib
 CHAPTERS_MD=$(filter-out ${DIR_MD}/bib.md ${DIR_MD}/index.md,${ALL_MD})
-CHAPTERS_TEX=$(patsubst ${DIR_MD}/%.md,${DIR_INC}/%.tex,${CHAPTERS_MD})
-ALL_TEX=${CHAPTERS_TEX} ${DIR_TEX}/book.tex ${DIR_TEX}/frontmatter.tex
 CHAPTERS_HTML=$(patsubst ${DIR_MD}/%.md,${DIR_WEB}/%.html,${ALL_MD})
-ALL_HTML=all-${lang}.html
 
 # Controls
-.PHONY : commands serve site bib clean
 all : commands
 
 ## commands    : show all commands.
@@ -43,64 +31,25 @@ serve :
 site :
 	${JEKYLL} build
 
-## single      : regenerate all-in-one version of book.
-single : ${ALL_HTML}
-
-${ALL_HTML} : _config.yml bin/mergebook.py
-	bin/mergebook.py ${lang} _config.yml files/crossref.js ${DIR_WEB} > $@
-
-## pdf         : build PDF version of book.
-pdf : ${DIR_TEX}/book.pdf
-
-## tex         : generate LaTeX for book, but don't compile to PDF.
-tex : ${CHAPTERS_TEX}
-
-${DIR_TEX}/book.pdf : ${ALL_TEX} ${BIB_SRC}
-	@cd ${DIR_TEX} \
-	&& ${LATEX} book \
-	&& ${BIBTEX} book \
-	&& ${LATEX} book \
-	&& ${LATEX} book \
-	&& ${LATEX} book
-
-${DIR_INC}/%.tex : ${DIR_MD}/%.md _config.yml bin/texpre.py bin/texpost.py _includes/links.md
-	mkdir -p ${DIR_INC} && \
-	cat $< \
-	| bin/texpre.py _config.yml \
-	| ${PANDOC} ${PANDOC_FLAGS} -o - \
-	| bin/texpost.py _includes/links.md \
-	> $@
-
-## bib         : rebuild Markdown bibliography from BibTeX source.
-bib : ${DIR_MD}/bib.md
-
-${DIR_MD}/bib.md : ${BIB_SRC} bin/bib2md.py
-	bin/bib2md.py ${lang} < $< > $@
-
-## crossref    : rebuild cross-reference file.
-crossref : files/crossref.js
-
-files/crossref.js : bin/crossref.py _config.yml ${ALL_MD}
-	bin/crossref.py ${DIR_MD} < _config.yml > files/crossref.js
-
 ## ----------------------------------------
 
 ## check       : check everything.
 check :
+	@echo "Characters"
 	@make lang=${lang} checkchars
-	@make lang=${lang} checkcites
+	@echo
+	@echo "Glossary"
 	@make lang=${lang} checkgloss
+	@echo
+	@echo "Labels"
 	@make lang=${lang} checklabels
-	@make lang=${lang} checklinks
+	@echo
+	@echo "Table of Contents"
 	@make lang=${lang} checktoc
 
 ## checkchars  : look for non-ASCII characters.
 checkchars :
 	@bin/checkchars.py ${ALL_MD}
-
-## checkcites  : list all missing bibliography entries.
-checkcites : ${BIB_SRC} ${CHAPTERS_TEX}
-	@bin/checkcites.py --missing ${BIB_SRC} ${CHAPTERS_TEX}
 
 ## checkgloss  : check that all glossary entries are defined and used.
 checkgloss :
@@ -110,77 +59,22 @@ checkgloss :
 checklabels : ${CHAPTERS_TEX}
 	@bin/checklabels.py ${CHAPTERS_TEX}
 
-## checklinks  : check that all links in source Markdown resolve.
-checklinks :
-	@bin/checklinks.py _includes/links.md ${ALL_MD}
-
 ## checktoc    : check consistency of tables of contents.
 checktoc :
 	@bin/checktoc.py _config.yml ${DIR_TEX}/book.tex ${ALL_MD}
 
 ## ----------------------------------------
 
-## authors     : list all authors.
-authors :
-	@bin/authors.py ${BIB_SRC}
-
-## issues      : create single-page view of all GitHub issues.
-issues :
-	@bin/issues.py ${REPO} | ${PANDOC} -o issues.html -
-
-## pages       : count pages per chapter.
-pages : ${DIR_TEX}/book.toc
-	@bin/pages.py < ${DIR_TEX}/book.toc
-
-## publishers  : list all publishers.
-publishers :
-	@bin/fields.py ${BIB_SRC} publisher
-
-## spelling    : check spelling.
-spelling :
-	@grep bibnote ${BIB_SRC} \
-	| cat - ${CHAPTERS_MD} \
-	| aspell --mode=tex list \
-	| sort \
-	| uniq \
-	| comm -2 -3 - ${WORDS_SRC}
-
-## unused      : list all unused bibliography entries.
-unused :
-	@bin/checkcites.py --unused ${BIB_SRC} ${CHAPTERS_TEX}
-
-## words       : count words per chapter.
-words :
-	@wc -w ${CHAPTERS_MD} | sort -n -r
-
-## years       : CSV histogram of publication years.
-years :
-	@bin/years.py ${BIB_SRC}
-
-## ----------------------------------------
-
 ## clean       : clean up junk files.
 clean :
-	@rm -r -f _site dist ${CHAPTERS_TEX} */*.aux */*.bbl */*.blg */*.log */*.out */*.toc
+	@rm -r -f _site dist bin/__pycache__
 	@find . -name '*~' -delete
 	@find . -name .DS_Store -prune -delete
-	@find . -name '__pycache__' -prune -delete
-	@rm -r -f ${DIR_INC}
 
 ## settings    : show macro values.
 settings :
 	@echo "JEKYLL=${JEKYLL}"
-	@echo "LATEX=${LATEX}"
-	@echo "BIBTEX=${BIBTEX}"
-	@echo "PANDOC=${PANDOC}"
-	@echo "PANDOC_FLAGS=${PANDOC_FLAGS}"
-	@echo "REPO=${REPO}"
 	@echo "DIR_MD=${DIR_MD}"
-	@echo "DIR_TEX=${DIR_TEX}"
-	@echo "DIR_INC=${DIR_INC}"
 	@echo "DIR_WEB=${DIR_WEB}"
-	@echo "BIB_SRC=${BIB_SRC}"
-	@echo "WORDS_SRC=${WORDS_SRC}"
 	@echo "CHAPTERS_MD=${CHAPTERS_MD}"
-	@echo "CHAPTERS_TEX=${CHAPTERS_TEX}"
 	@echo "CHAPTERS_HTML=${CHAPTERS_HTML}"

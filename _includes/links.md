@@ -26,7 +26,7 @@ definitions if that's done.
 
 [github]: http://github.com/
 
-[jeykll]: https://jekyllrb.com/
+[jekyll]: https://jekyllrb.com/
 [jsx]: https://reactjs.org/docs/introducing-jsx.html
 
 [mocha]: https://mochajs.org/

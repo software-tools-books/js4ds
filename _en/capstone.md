@@ -538,7 +538,7 @@ which displays:
 > parcel serve -p 4000 "src/capstone/front/index.html"
 
 Server running at http://localhost:4000
-✨  Built in 20.15s.
++  Built in 20.15s.
 ```
 
 We then open `http://localhost:4000` in our browser and see this:
@@ -555,7 +555,7 @@ we see this error message:
 ```text
 Cross-Origin Request Blocked:
 The Same Origin Policy disallows reading the remote resource at http://localhost:3418/survey/stats.
-(Reason: CORS header ‘Access-Control-Allow-Origin’ missing).
+(Reason: CORS header 'Access-Control-Allow-Origin' missing).
 ```
 
 The "Learn More" link given with the error message takes us to [this page][cors-docs],
