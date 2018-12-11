@@ -22,7 +22,7 @@ it's both usable and powerful.
 Our journey doesn't stop here, though.
 The appendices explore some next steps,
 such as [logging what our server does](../logging/)
-and [using a relational database](../database/) instead of a text file
+and [using a relational database](../db/) instead of a text file
 as a data store.
 Beyond that,
 you could look at using the full power of the [D3][d3] library for interactive visualization,

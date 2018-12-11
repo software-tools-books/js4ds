@@ -1,6 +1,6 @@
 const fs = require('fs-extra')
 
-var total_size = 0
+let total_size = 0
 new Promise((resolve, reject) => {
   fs.stat('jane-eyre.txt').then((jeStats) => {
     fs.stat('moby-dick.txt').then((mdStats) => {
