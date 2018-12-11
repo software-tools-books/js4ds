@@ -305,7 +305,7 @@ The steps in handling a request are:
    so that our server is more responsive.
 4. Once the file has been read, we return it with a status code of 200.
 
-If a sub-directory call `web-dir` holds a file called `title.html`,
+If a sub-directory called `web-dir` holds a file called `title.html`,
 and we run the server as:
 
 ```sh
