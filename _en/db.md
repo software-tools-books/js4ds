@@ -17,7 +17,7 @@ keypoints:
 - "Use callbacks to handle the results of queries."
 ---
 
-Our [data manager](../data/) got information from a single CSV file.
+Our [data manager](../dataman/) got information from a single CSV file.
 That's fine for testing purposes,
 but real applications almost always use a database of some kind.
 There are many options these days for what kind,
