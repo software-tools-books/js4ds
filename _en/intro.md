@@ -116,6 +116,10 @@ since it isolates projects from one another.
   </div>
 </div>
 
+## Acknowledgments {#s:intro-acknowledgments}
+
+Greg would like to thank everyone at [Rangle](https://rangle.io/) who was so patient with him when he was learning JavaScript.
+
 ## Exercises {#s:intro-exercises}
 
 ### Setting Up
