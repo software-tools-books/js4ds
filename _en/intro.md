@@ -85,11 +85,17 @@ since it isolates projects from one another.
 
 <div class="row">
   <div class="offset-md-1 col-md-3">
-    <p><img src="../../files/toby-hodges.jpg" alt="Greg Wilson" width="80%" /></p>
+    <p><img src="../../files/toby-hodges.jpg" alt="Toby Hodges" width="80%" /></p>
   </div>
   <div class="col-md-6">
     <p>
-      <strong>Toby Hodges</strong>
+      <strong>Toby Hodges</strong> is a bioinformatician turned community
+      coordinator, working on the <a
+      href="https://bio-it.embl.de"> Bio-IT Project</a>
+      at <a href="https://www.embl.de">EMBL</a>. He teaches a lot of courses in computing,
+      organises a lot of community-building events,
+      listens to a lot of punk rock,
+      and occasionally still finds time to write code and ride his bike.
     </p>
   </div>
 </div>
