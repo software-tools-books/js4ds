@@ -756,7 +756,7 @@ Now adapt the function so that it returns only `2`.
 ### `async`, Therefore I Am
 
 Using `async` and `await`,
-convert the function below into an asynchronous function with the same behaviour and output.
+convert the completed function above into an asynchronous function with the same behaviour and output.
 Do you find your solution easier to read and follow than the original version?
 Do you think that that is only because you wrote this version?
 
