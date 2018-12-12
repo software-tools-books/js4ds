@@ -1,6 +1,7 @@
 # Check that language is set.  Do NOT set 'LANG', as that would override the platform's LANG setting.
 ifndef lang
-$(error Must set 'lang' with 'lang=en' or similar.)
+$(warning Please set 'lang' with 'lang=en' or similar.)
+lang=en
 endif
 
 # Tools.
@@ -56,9 +57,9 @@ checkgloss :
 checktoc :
 	@bin/checktoc.py _config.yml ${DIR_TEX}/book.tex ${ALL_MD}
 
-## showlinks   : show all links in source Markdown
-showlinks :
-	@bin/showlinks.py ${ALL_MD}
+## listinc     : list file inclusions.
+listinc :
+	@for i in $$(find src -name '*.js') $$(find ex -name '*.js'); do echo $$(grep $$i _en/*.md | wc -l) $$i; done | sort -n -r
 
 ## ----------------------------------------
 

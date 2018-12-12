@@ -386,7 +386,7 @@ an open source implementation of JavaScript for use outside the browser.
 
 **node**{:#g:node}:
 an in-memory representation of an element in an HTML page.
-See also [DOM](#g:dom). Not to be confused with [Node.js](#g:nodejs).
+See also [DOM](#g:dom). Not to be confused with [Node.js](#g:node-js).
 
 **NoSQL database**{:#g:nosql-database}:
 any database that doesn't use the [relational](#g:relational-database) model.
