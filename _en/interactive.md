@@ -163,7 +163,7 @@ import ReactDOM from 'react-dom'
 class Counter extends React.Component {
 
   constructor (props) {
-    ...as before...
+    // ...as before...
   }
 
   increment = (event) => {
@@ -171,7 +171,7 @@ class Counter extends React.Component {
   }
 
   render = () => {
-    ...as before...
+    // ...as before...
   }
 }
 
@@ -209,7 +209,7 @@ and fat arrow methods weren't included in JavaScript at that point.
 All right, let's try using "normal" function-style method definitions instead:
 
 ```js
-...imports as before...
+// ...imports as before...
 
 class Counter extends React.Component {
 
@@ -233,7 +233,7 @@ class Counter extends React.Component {
   }
 }
 
-...render as before...
+// ...render as before...
 ```
 {: title="src/interactive/counter-functions/app.js"}
 
@@ -446,14 +446,14 @@ import ReactDOM from "react-dom"
 import {UpAndDown} from "./UpAndDown"
 import {NumberDisplay} from "./NumberDisplay"
 
-...script body...
+// ...script body...
 ```
 
 Finally,
 we can render the application with `ReactDOM` as before:
 
 ```js
-...script body...
+// ...script body...
 
 const mount = document.getElementById("app")
 ReactDOM.render(<App/>, mount)
@@ -570,7 +570,7 @@ class App extends React.Component {
     }
   }
 
-  ...
+  // ...other code...
 }
 ```
 {: title="src/interactive/asteroids/app.js"}
@@ -606,7 +606,7 @@ we will make a reusable component whose caller will pass in:
 - another function to call when a button is clicked to submit.
 
 ```js
-...imports as before...
+// ...imports as before...
 
 const DateSubmit = ({label, value, onChange, onCommit}) => {
   return (
@@ -618,7 +618,7 @@ const DateSubmit = ({label, value, onChange, onCommit}) => {
   )
 }
 
-...export as before...
+// ...export as before...
 ```
 {: title="src/interactive/asteroids/DateSubmit.js"}
 
@@ -637,7 +637,7 @@ but React and the browser work together to minimize recalculation.
 Now let's go back and re-work our application:
 
 ```js
-...imports as before...
+// ...imports as before...
 
 class App extends React.Component {
 
@@ -673,7 +673,7 @@ class App extends React.Component {
   }
 }
 
-...mount as before...
+// ...mount as before...
 ```
 {: title="src/interactive/asteroids/app.js"}
 

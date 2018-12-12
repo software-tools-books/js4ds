@@ -93,6 +93,7 @@ check :
 	@make lang=${lang} checklabels
 	@make lang=${lang} checklinks
 	@make lang=${lang} checktoc
+	@make lang=${lang} checkinc
 
 ## checkchars  : look for non-ASCII characters.
 checkchars :
@@ -117,6 +118,10 @@ checklinks :
 ## checktoc    : check consistency of tables of contents.
 checktoc :
 	@bin/checktoc.py _config.yml ${DIR_TEX}/book.tex ${ALL_MD}
+
+## checkinc    : check file inclusions.
+checkinc :
+	@for i in $$(find src -name '*.js') $$(find ex -name '*.js'); do echo $$(grep $$i _en/*.md | wc -l) $$i; done | sort -n -r
 
 ## ----------------------------------------
 
