@@ -348,6 +348,24 @@ Our first attempt uses this as the HTML page:
 </html>
 ```
 
+and this as the script:
+
+```js
+const sortLists = () => {
+  const allLists = Array.from(document.querySelectorAll('#sorted'))
+  lists.forEach((list) => {
+    const children = Array.from(list.childNodes)
+          .filter(c => c.nodeName !== '#text')
+    children.sort((left, right) => left.textContent.localeCompare(right.textContent))
+    while (list.firstChild) {
+      list.removeChild(list.firstChild)
+    }
+    children.forEach(c => list.appendChild(c))
+  })
+}
+```
+{: title="src/pages/sort-lists.js"}
+
 When we load the page,
 though,
 the items aren't sorted.

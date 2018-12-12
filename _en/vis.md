@@ -104,7 +104,7 @@ and some options (which for now we will leave empty):
       "description": "Create data array but do not display anything.",
       "data": {
         "values": [
-          ...as above...
+          // ...as above...
         ]
       }
     }
@@ -128,7 +128,7 @@ Here's our updated spec:
       "description": "Add mark and encoding for data.",
       "data": {
         "values": [
-          ...as above...
+          // ...as above...
         ]
       },
       "mark": "bar",
@@ -158,7 +158,7 @@ We can fill in the options argument to `vegaEmbed` to turn those off:
       "$schema": "https://vega.github.io/schema/vega-lite/v2.0.json",
       "description": "Disable control links.",
       "data": {
-        ...as before...
+        // ...as before...
       }
     }
     let options = {
@@ -255,11 +255,11 @@ we `npm install vega vega-lite vega-embed` and `require('vega-embed')` in `app.j
 const vegaEmbed = require('vega-embed')
 
 const spec = {
-  ...as before...
+  // ...as before...
 }
 
 const options = {
-  ...as before...
+  // ...as before...
 }
 
 vegaEmbed("#vis", spec, options)
@@ -296,7 +296,7 @@ we decide to make the fix as the library is loaded:
 ```
 const vegaEmbed = require('vega-embed').default
 
-...everything else as before...
+// ...as before...
 ```
 {: title="src/vis/react-02/app.js"}
 
@@ -308,7 +308,7 @@ but we will stick to `vegaEmbed` for consistency with previous examples:
 ```js
 import vegaEmbed from 'vega-embed'
 
-...everything else as before...
+// ...as before...
 ```
 {: title="src/vis/react-02/app.js"}
 
