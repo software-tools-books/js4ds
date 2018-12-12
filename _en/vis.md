@@ -305,12 +305,12 @@ and fix the `require` statements in the server-side code when Node is upgraded.
 We can call the thing we import anything we want,
 but we will stick to `vegaEmbed` for consistency with previous examples:
 
-```js
+```
 import vegaEmbed from 'vega-embed'
 
 // ...as before...
 ```
-{: title="src/vis/react-02/app.js"}
+{: title="src/vis/react-03/app.js"}
 
 If we do this,
 the bundled file is 74.5K lines of JavaScript,
