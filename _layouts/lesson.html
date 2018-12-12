@@ -1,0 +1,17 @@
+---
+layout: default
+---
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-2 d-print-none toc">
+      {% include toc.html language=page.language %}
+    </div>
+    <div class="col-md-10 main">
+      <h1>{% if page.root %}{{site.title}}{% else %}{{page.title}}{% endif %}</h1>
+      {% include listblock.html title=translations.questions items=page.questions %}
+      <div class="listblock headings"></div>
+      {{content}}
+      {% include listblock.html title=translations.keypoints items=page.keypoints %}
+    </div>
+  </div>
+</div>

@@ -1,16 +1,17 @@
-# Display.
+# Simple values used for display.
+
 title: "JavaScript versus Data Science"
 subtitle: "A Brief Guide for Those Who Regret That This Has Become Necessary"
-author: "Greg Wilson"
+author: "Toby Hodges and Greg Wilson"
 copyrightyear: "2018"
 repo: "https://github.com/software-tools-in-javascript/js-vs-ds/"
 email: "gvwilson@third-bit.com"
 website: "https://software-tools-in-javascript.github.io/js-vs-ds/"
-isbn: "000-0-0000000-0"
-purchase: ""
-paypal: ""
 
-# Order for Table of Contents.
+# Order for table of contents.  Each file is represented by its permalink, and
+# files are divided into three sections (main lessons, the bibliography, and
+# appendices).
+
 toc:
   lessons:
   - /intro/
@@ -43,18 +44,43 @@ toc:
   - /db/
   - /extensible/
 
-# Theme color.
-background: "#e8f8e8"
+# The data source used in the capstone example.
 
-# Data source.
 datasource: "https://figshare.com/articles/Portal_Project_Teaching_Database/1314459"
 
-# Jekyll settings.
+# Tell Jekyll that "en" is a collection (whose files are found in "_en").  This
+# is what allows us to loop over files in various inclusions.  We use "en" to
+# indicate English, and can use other two-letter codes for other languages.
+
+collections:
+  en:
+    output: true
+
+# Specify the use of the "lesson" template for elements of the "en" collection.
+
+defaults:
+  - scope:
+      path: ""
+      type: en
+    values:
+      language: "en"
+      layout: "lesson"
+
+# Translations keyed by language.  This lookup table allows us to put the right
+# titles on inclusion blocks in various languages.
+
+translations:
+  en:
+    generated: "Last generated"
+    questions: "Questions"
+    keypoints: "Key Points"
+    singlepage: "Single page version"
+
+# Standard Jekyll settings.
+
 highlighter: rouge
 plugins:
 - "jekyll-redirect-from"
-
-# Things to ignore
 exclude:
 - BUILD.md
 - CITATION.md
@@ -63,33 +89,4 @@ exclude:
 - Makefile
 - README.md
 - bin
-- misc
 - node_modules
-- requirements.txt
-- tex
-
-# Markers in generated files.
-marker:
-  crossref: "let CROSSREF="
-
-# Collections: one for lessons and one for extras for each language suffix.
-collections:
-  en:
-    output: true
-
-# Set the language for various collections.
-defaults:
-  - scope:
-      path: ""
-      type: en
-    values:
-      language: "en"
-      layout: "default"
-
-# Translations by language.
-translations:
-  en:
-    generated: "Last generated"
-    questions: "Questions"
-    keypoints: "Key Points"
-    singlepage: "Single page version"

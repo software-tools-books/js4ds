@@ -1,4 +1,3 @@
-{% assign translations=site.translations[page.language] %}
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" lang="{{page.language}}">
   <head>
@@ -10,20 +9,7 @@
     {% include js-header.html %}
   </head>
   <body>
-    <div class="container-fluid">
-      <div class="row">
-        <div class="col-md-2 d-print-none toc">
-          {% include toc.html language=page.language translations=translations %}
-        </div>
-        <div class="col-md-10 main">
-          <h1>{% if page.root %}{{site.title}}{% else %}{{page.title}}{% endif %}</h1>
-          {% include listblock.html title=translations.questions items=page.questions %}
-          <div class="listblock headings"></div>
-          {{content}}
-          {% include listblock.html title=translations.keypoints items=page.keypoints %}
-        </div>
-      </div>
-    </div>
+    {{content}}
     {% include js-footer.html %}
   </body>
 </html>

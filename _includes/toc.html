@@ -1,12 +1,37 @@
+{% comment %}
+Display the table of comments.  This is a complicated inclusion, so the steps
+are documented section by section. Parameters are:
+
+- language: the two-letter code for the page language (e.g., 'en' for English).
+- coll: the corresponding collection.
+- class: the CSS class to apply to the list.
+- title: the TOC section title.
+- toc: a section of the table of contents from _config.yml.
+{% endcomment %}
+
+{% comment %}
+Select the entire collection for the language from "_config.yml".  We include
+"um" as a dummy collection to show how to use "elsif" to select a second one.
+{% endcomment %}
 {% if include.language == 'en' %}
   {% assign chapters = site.en %}
 {% elsif include.language == 'um' %}
   {% assign chapters = site.um %}
 {% endif %}
+{% assign translations=site.translations[include.language] %}
+
+{% comment %}
+Set the path to the file containing all lessons in one page and the path to the
+license file.
+{% endcomment %}
 {% assign allpath = '/' | append: include.language | append: '/all/' %}
 {% assign licensepath = '/' | append: include.language | append: '/license/' %}
 
 <nav>
+
+  {% comment %}
+  Put the logo and title at the top of the navigation menu.
+  {% endcomment %}
   <a href={% if page.root %}"./"{% else %}"../"{% endif %}>
     <img src="{{'/files/cthulhu.jpg'|relative_url}}" alt="{{site.title}} logo" width="75%" />
   </a>
@@ -18,21 +43,17 @@
     </em>
   </p>
 
+  {% comment %}
+  Show the lessons, bibliography, and extras in that order using a sub-inclusion.
+  {% endcomment %}
   <hr/>
   {% include toc-section.html language=include.language coll=chapters class="chapter" title="Lessons" toc=site.toc.lessons %}
   {% include toc-bib.html language=include.language coll=chapters toc=site.toc.bib %}
   {% include toc-section.html language=include.language coll=chapters class="appendix" title="Extras" toc=site.toc.extras %}
 
-  {% if site.purchase != "" %}
-  <hr/>
-  <p>
-    <a href="{{site.purchase}}"><img src="{{'/files/lulu.gif'|relative_url}}" border="0" alt="{{include.translations.lulu}}" /></a>
-  </p>
-  <p>
-    {{include.translations.donate | replace: '^1', site.paypal}}
-  </p>
-  {% endif %}
-
+  {% comment %}
+  Show the license, contact info, and GitHub repository.
+  {% endcomment %}
   <hr/>
   <p>
     <a href="{{licensepath|relative_url}}"><img src="{{'/files/cc-by.svg'|relative_url}}" alt="CC-BY License" width="80%" /></a>
@@ -42,6 +63,9 @@
     <a href="{{site.repo}}"><img src="{{'/files/github.svg'|relative_url}}" alt="GitHub" width="20%" /></a>
   </p>
 
+  {% comment %}
+  Show the creation date on the index page only.
+  {% endcomment %}
   {% if page.root %}
   <p>
     <em>{{include.translations.generated}} {{site.time|date: '%Y-%m-%d'}}.</em>
