@@ -15,7 +15,8 @@ keypoints:
 
 ## Who You Are {#s:intro-personas}
 
-Every lesson should aim to [meet the needs of specific learners][t3-process] [[Wils2018](../bib/#Wilson2018)].
+Every lesson should aim to [meet the needs of specific learners][t3-process] [[Wils2018](../bib/#Wils2018)].
+>>>>>>> removing-special-link-fixup
 The three people described below define the intended audience for this one.
 
 Bhadra
@@ -75,11 +76,40 @@ we will see [later](../pages/) how to run JavaScript in a browser.
 `npm` the Node [Package Manager](../gloss/#g:package-manager),
 a command-line tool for finding, installing, and updating JavaScript libraries.
 The command <code>npm install --global <em>library-name</em></code> (without a `.js` extension)
-installs a library [globally](../gloss/#g:global-intallation) so that all projects can use it,
+installs a library [globally](../gloss/#g:global-installation) so that all projects can use it,
 while <code>npm install --save <em>library-name</em></code> installs the library [locally](../gloss/#g:local-installation)
 (i.e., in the current project folder).
 Local installation is usually a better idea,
 since it isolates projects from one another.
+
+## Who We Are {#s:intro-contributors}
+
+<div class="row">
+  <div class="offset-md-1 col-md-3">
+    <p><img src="../../files/toby-hodges.jpg" alt="Greg Wilson" width="80%" /></p>
+  </div>
+  <div class="col-md-6">
+    <p>
+      <strong>Toby Hodges</strong>
+    </p>
+  </div>
+</div>
+<div class="row">
+  <div class="offset-md-1 col-md-3">
+    <p><img src="../../files/greg-wilson.jpg" alt="Greg Wilson" width="80%" /></p>
+  </div>
+  <div class="col-md-6">
+    <p>
+      <strong>Greg Wilson</strong> has worked for 35 years in both industry and
+      academia, and is the author or editor of several books on computing and
+      two for children. He is best known as the co-founder of <a
+      href="http://carpentries.org">Software Carpentry</a>, a non-profit
+      organization that teaches basic computing skills to researchers, and is
+      now part of the education team at <a
+      href="http://rstudio.com">RStudio</a>.
+    </p>
+  </div>
+</div>
 
 ## Exercises {#s:intro-exercises}
 
