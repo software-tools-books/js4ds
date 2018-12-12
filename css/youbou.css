@@ -62,6 +62,11 @@ a {
     color: #6060a0;
 }
 
+/* Style glossary reference links. */
+a[href^="#g:"] {
+    font-weight: bold;
+}
+
 /* Don't indent lists quite so much. */
 ol, ul {
     padding-left: 1.2em;

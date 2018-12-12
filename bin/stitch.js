@@ -13,19 +13,17 @@ layout: plain
 `
 
 const main = () => {
-  const [configFile, rootDir, indexFile, destFile] = process.argv.slice(2)
+  const [configFile, rootDir, language, destFile] = process.argv.slice(2)
   const {config, order} = getConfig(configFile)
-
-  const allFiles = [indexFile]
-	.concat(order.map(key => makeSrcPath(rootDir, key)))
+  const allFiles = [makeSrcPath(rootDir, language, '')]
+	.concat(order.map(key => makeSrcPath(rootDir, language, key)))
   const allChapters = allFiles
 	.map(path => ({path, doc: getDoc(path)}))
 	.map(({path, doc}) => transformHeadings(path, doc))
 	.map(doc => doc.querySelector('html'))
-	.map(doc => transformHrefs(doc))
 	.map(doc => doc.querySelector('div.main'))
+	.map(doc => transformHrefs(doc, language))
 	.map(div => cleanup(div))
-
   const result = HEADER.replace('TITLE', config.title) +
 	allChapters.map(div => div.outerHTML).join('\n')
   fs.writeFileSync(destFile, result, 'utf-8')
@@ -38,8 +36,8 @@ const getConfig = (configFile) => {
   return {config, order}
 }
 
-const makeSrcPath = (rootDir, key) => {
-  return rootDir = path.join(rootDir, key, 'index.html')
+const makeSrcPath = (rootDir, language, key) => {
+  return rootDir = path.join(rootDir, language, key, 'index.html')
 }
 
 const getDoc = (path) => {
@@ -47,13 +45,18 @@ const getDoc = (path) => {
   return new JSDOM(text).window.document
 }
 
-const transformHrefs = (doc) => {
-  const hrefPat = /\.\.\/(.+)\/(#.+)?/
+const transformHrefs = (doc, language) => {
+  const upwardPat = /\.\.\/(.+)\/(#.+)?/
+  const languagePat = new RegExp(`^/${language}/(.+)/`)
   Array.from(doc.querySelectorAll('a')).forEach(node => {
     const href = node.getAttribute('href')
-    const fields = href.match(hrefPat)
-    // no match
+    let fields = href.match(upwardPat)
+    // no match, so try a language replacement
     if (fields === null) {
+      fields = href.match(languagePat)
+      if (fields) {
+	node.setAttribute('href', '#s:' + fields[1])
+      }
     }
     // anchored
     else if (fields[2] !== undefined) {
