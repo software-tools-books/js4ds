@@ -2,8 +2,6 @@
 permalink: "/en/intro/"
 title: "Introduction"
 questions:
-- "Why is this course called 'versus'?"
-- "What are the main topics of this course?"
 - "Is this the right course for me?"
 - "How do I set up my computer to do the exercises?"
 keypoints:
