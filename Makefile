@@ -189,4 +189,3 @@ settings :
 	@echo "CHAPTERS_MD=${CHAPTERS_MD}"
 	@echo "CHAPTERS_TEX=${CHAPTERS_TEX}"
 	@echo "CHAPTERS_HTML=${CHAPTERS_HTML}"
-
