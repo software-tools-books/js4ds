@@ -55,7 +55,7 @@ checkgloss :
 
 ## checktoc    : check consistency of tables of contents.
 checktoc :
-	@bin/checktoc.py _config.yml ${DIR_TEX}/book.tex ${ALL_MD}
+	@bin/checktoc.py _config.yml ${ALL_MD}
 
 ## listinc     : list file inclusions.
 listinc :
