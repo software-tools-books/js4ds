@@ -588,6 +588,7 @@ const statPairAsync = async (filename) => {
 
 statPairAsync('moby-dick.txt').then((white_whale) => console.log(white_whale.stats))
 ```
+{: title="src/promises/async-await.js"}
 
 An `async` function still returns a `Promise`,
 but we can chain those promises together with other `async` functions using `await`,
