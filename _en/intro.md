@@ -82,12 +82,12 @@ since it isolates projects from one another.
 ## Who We Are {#s:intro-contributors}
 
 <div class="row">
-  <div class="offset-md-1 col-md-3">
-    <p><img src="../../files/toby-hodges.jpg" alt="Toby Hodges" width="80%" /></p>
+  <div class="offset-md-1 col-md-2">
+    <p><img src="../../files/toby-hodges.png" alt="Toby Hodges" width="80%" /></p>
   </div>
   <div class="col-md-6">
     <p>
-      <strong>Toby Hodges</strong> is a bioinformatician turned community
+      <strong><a href="https://tbyhdgs.info/">Toby Hodges</a></strong> is a bioinformatician turned community
       coordinator, working on the <a
       href="https://bio-it.embl.de"> Bio-IT Project</a>
       at <a href="https://www.embl.de">EMBL</a>. He teaches a lot of courses in computing,
@@ -98,12 +98,12 @@ since it isolates projects from one another.
   </div>
 </div>
 <div class="row">
-  <div class="offset-md-1 col-md-3">
-    <p><img src="../../files/greg-wilson.jpg" alt="Greg Wilson" width="80%" /></p>
+  <div class="offset-md-1 col-md-2">
+    <p><img src="../../files/greg-wilson.png" alt="Greg Wilson" width="80%" /></p>
   </div>
   <div class="col-md-6">
     <p>
-      <strong>Greg Wilson</strong> has worked for 35 years in both industry and
+      <strong><a href="http://third-bit.com">Greg Wilson</a></strong> has worked for 35 years in both industry and
       academia, and is the author or editor of several books on computing and
       two for children. He is best known as the co-founder of <a
       href="http://carpentries.org">Software Carpentry</a>, a non-profit
