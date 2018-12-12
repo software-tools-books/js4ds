@@ -440,7 +440,7 @@ we will load the script in the body of the page:
   </body>
 </html>
 ```
-{: title="src/dynamic/bottom/hello-bottom.html"}
+{: title="src/dynamic/hello-bottom/index.html"}
 
 More importantly,
 we will rewrite `app.js` so that it loads the libraries it needs,
@@ -455,7 +455,7 @@ ReactDOM.render(
   document.getElementById('app')
 )
 ```
-{: title="src/dynamic/bottom/app.js"}
+{: title="src/dynamic/hello-bottom/app.js"}
 
 We don't have to shut down the server and restart it every time we make changes like this,
 because Parcel watches for changes in files and relaunches itself as needed.
