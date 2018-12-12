@@ -93,7 +93,7 @@ since it isolates projects from one another.
       coordinator, working on the <a
       href="https://bio-it.embl.de"> Bio-IT Project</a>
       at <a href="https://www.embl.de">EMBL</a>. He teaches a lot of courses in computing,
-      organises a lot of community-building events,
+      organizes a lot of community-building events,
       listens to a lot of punk rock,
       and occasionally still finds time to write code and ride his bike.
     </p>
