@@ -19,7 +19,7 @@ he rattles through some truths about the language that may surprise you:
 | ------------------------------ | --------- | -------------------- |
 | empty array plus empty array   | `[] + []` | `""` (empty string)  |
 | empty array plus empty object  | `[] + {}` | `{}` (empty object)  |
-| empty object plus empty array  | `[] + {}` | `0` (number zero)    |
+| empty object plus empty array  | `{} + []` | `0` (number zero)    |
 | empty object plus empty object | `{} + {}` | `NaN` (not a number) |
 
 In order to understand this, we need to know several things
