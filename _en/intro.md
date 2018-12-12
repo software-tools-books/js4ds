@@ -15,7 +15,7 @@ keypoints:
 
 ## Who You Are {#s:intro-personas}
 
-Every lesson should aim to [meet the needs of specific learners][t3-process] [[Wils2018](../bib/#Wilson2018)].
+Every lesson should aim to [meet the needs of specific learners][t3-process] [[Wils2018](../bib/#Wils2018)].
 The three people described below define the intended audience for this one.
 
 Bhadra
@@ -75,7 +75,7 @@ we will see [later](../pages/) how to run JavaScript in a browser.
 `npm` the Node [Package Manager](../gloss/#g:package-manager),
 a command-line tool for finding, installing, and updating JavaScript libraries.
 The command <code>npm install --global <em>library-name</em></code> (without a `.js` extension)
-installs a library [globally](../gloss/#g:global-intallation) so that all projects can use it,
+installs a library [globally](../gloss/#g:global-installation) so that all projects can use it,
 while <code>npm install --save <em>library-name</em></code> installs the library [locally](../gloss/#g:local-installation)
 (i.e., in the current project folder).
 Local installation is usually a better idea,

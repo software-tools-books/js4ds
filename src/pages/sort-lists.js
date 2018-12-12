@@ -1,4 +1,12 @@
 const sortLists = () => {
   const allLists = Array.from(document.querySelectorAll('#sorted'))
-  console.log(`allLists is ${allLists}`)
+  lists.forEach((list) => {
+    const children = Array.from(list.childNodes)
+          .filter(c => c.nodeName !== '#text')
+    children.sort((left, right) => left.textContent.localeCompare(right.textContent))
+    while (list.firstChild) {
+      list.removeChild(list.firstChild)
+    }
+    children.forEach(c => list.appendChild(c))
+  })
 }

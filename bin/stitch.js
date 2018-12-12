@@ -1,56 +1,70 @@
-// Start building utility to stitch together generated pages.
+// Utility to combine all generated HTML files into a single page.
 
 const fs = require('fs')
 const path = require('path')
 const yaml = require('js-yaml')
 const { JSDOM } = require('jsdom')
 
+HEADER = `---
+permalink: /all/
+root: true
+layout: plain
+---
+`
+
 const main = () => {
-    const [configPath, rootDir, indexFile, destFile] = process.argv.slice(2)
-    const {config, order} = getConfig(configPath)
-    const {destDoc, destDiv} = getDest(destFile)
-    prepDest(destDoc, destDiv)
-    const allFiles = [indexFile]
-	  .concat(order.map(key => makeSrcPath(rootDir, key)))
-    allFiles
+  const [configFile, rootDir, indexFile, destFile] = process.argv.slice(2)
+  const {config, order} = getConfig(configFile)
+
+  const allFiles = [indexFile]
+	.concat(order.map(key => makeSrcPath(rootDir, key)))
+  const allChapters = allFiles
 	.map(path => ({path, doc: getDoc(path)}))
 	.map(({path, doc}) => transformHeadings(path, doc))
+	.map(doc => doc.querySelector('html'))
 	.map(doc => transformHrefs(doc))
 	.map(doc => doc.querySelector('div.main'))
-	.forEach(section => moveChildren(destDiv, section))
-    const root = destDoc.querySelector('html')
-    removeAll(root, 'blockquote.disclaimer', 'div.headings')
-    makeTitleAndToc(destDoc)
-    fs.writeFileSync(destFile, root.outerHTML, 'utf-8')
+	.map(div => cleanup(div))
+
+  const result = HEADER.replace('TITLE', config.title) +
+	allChapters.map(div => div.outerHTML).join('\n')
+  fs.writeFileSync(destFile, result, 'utf-8')
 }
 
 const getConfig = (configFile) => {
-    const config = yaml.safeLoad(fs.readFileSync(configFile, 'utf-8'))
-    const toc = config.toc
-    const order = toc.lessons.concat(toc.bib).concat(toc.extras)
-    return {config, order}
-}
-
-const getDest = (destFile) => {
-    const destDoc = getDoc(destFile)
-    const destDiv = destDoc.querySelector('div.main')
-    return {destDoc, destDiv}
-}
-
-const prepDest = (destDoc, destDiv) => {
-    while (destDiv.childNodes.length > 0) {
-	destDiv.removeChild(destDiv.childNodes[0])
-    }
+  const config = yaml.safeLoad(fs.readFileSync(configFile, 'utf-8'))
+  const toc = config.toc
+  const order = toc.lessons.concat(toc.bib).concat(toc.extras)
+  return {config, order}
 }
 
 const makeSrcPath = (rootDir, key) => {
-    return rootDir = path.join(rootDir, key, 'index.html')
+  return rootDir = path.join(rootDir, key, 'index.html')
 }
 
 const getDoc = (path) => {
-    const text = fs.readFileSync(path, 'utf-8')
-    const dom = new JSDOM(text).window.document
-    return dom
+  const text = fs.readFileSync(path, 'utf-8')
+  return new JSDOM(text).window.document
+}
+
+const transformHrefs = (doc) => {
+  const hrefPat = /\.\.\/(.+)\/(#.+)?/
+  Array.from(doc.querySelectorAll('a')).forEach(node => {
+    const href = node.getAttribute('href')
+    const fields = href.match(hrefPat)
+    // no match
+    if (fields === null) {
+    }
+    // anchored
+    else if (fields[2] !== undefined) {
+      node.setAttribute('href', fields[2])
+    }
+    // section
+    else {
+      node.setAttribute('href', '#s:' + fields[1])
+    }
+  })
+  return doc
 }
 
 const transformHeadings = (path, doc) => {
@@ -78,60 +92,25 @@ const transformHeadings = (path, doc) => {
     return doc
 }
 
-const transformHrefs = (doc) => {
-    const hrefPat = /\.\.\/(.+)\/(#.+)?/
-    Array.from(doc.querySelectorAll('a')).forEach(node => {
-	const href = node.getAttribute('href')
-	const fields = href.match(hrefPat)
-	// no match
-	if (fields === null) {
-	}
-	// anchored
-	else if (fields[2] !== undefined) {
-	    node.setAttribute('href', fields[2])
-	}
-	// section
-	else {
-	    node.setAttribute('href', '#s:' + fields[1])
-	}
-    })
-    return doc
-}
-
 const patch = (oldNode, newNode) => {
-    while (oldNode.childNodes.length > 0) {
-	newNode.appendChild(oldNode.childNodes[0])
-    }
-    oldNode.parentNode.replaceChild(newNode, oldNode)
+  while (oldNode.childNodes.length > 0) {
+    newNode.appendChild(oldNode.childNodes[0])
+  }
+  oldNode.parentNode.replaceChild(newNode, oldNode)
 }
 
 const pathToId = (path) => {
-    return 's:' + path.split('/').slice(-2, -1)
+  return 's:' + path.split('/').slice(-2, -1)
 }
 
-const moveChildren = (dest, src) => {
-    while (src.childNodes.length > 0) {
-	const child = src.childNodes[0]
-	src.removeChild(child)
-	dest.appendChild(child)
-    }
-}
-
-const removeAll = (doc, ...selectors) => {
-    selectors.forEach(sel => {
-	Array.from(doc.querySelectorAll(sel)).forEach(node => {
-	    node.parentNode.removeChild(node)
-	})
+const cleanup = (div) => {
+  div.className = 'chapter'
+  for (sel of ['blockquote.disclaimer', 'div.headings']) {
+    Array.from(div.querySelectorAll(sel)).forEach(node => {
+      node.parentNode.removeChild(node)
     })
-}
-
-const makeTitleAndToc = (doc) => {
-    const firstH2 = doc.querySelector('h2')
-    const h1 = doc.createElement('h1')
-    patch(firstH2, h1)
-    const toc = doc.createElement('div')
-    toc.classList.add('listblock', 'headings')
-    h1.after(toc)
+  }
+  return div
 }
 
 main()

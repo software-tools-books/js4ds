@@ -43,7 +43,7 @@ in which case they definitely are:
 "fuchsia",255,0,255
 ```
 
-The first row of a CSV file is often a [header](../gloss/#g:header)
+The first line of a CSV file is often a [header row](../gloss/#g:header-row)
 that defines the names of the columns.
 For example,
 the small table shown above would better be represented as:
@@ -175,7 +175,8 @@ we decide that our data manager will be able to answer two questions:
    for a given range of years?
    This would be very specific to a particular kind of client program;
    a good service would either provide many such specialized queries
-   or (more usefully) provide a way to ask for particular aggregations of particular columns.
+   or provide a way to apply common [aggregation functions](#g:aggregation-function)
+   to particular columns.
 
 We will use [PapaParse][papaparse] to parse our CSV,
 so our first step is to install it:

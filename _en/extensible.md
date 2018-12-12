@@ -69,7 +69,7 @@ we get back a page containing the title "Plugin Content".
 
 This is an example of a very powerful technique.
 Rather than building everything into one program,
-we can provide a [plugin protocol](../gloss/#g:plugin-protocol)
+we can provide a [protocol](../gloss/#g:protocol) for plugins
 so that people can add new functionality without rewriting what's already there.
 Each plugin must have an [entry point](../gloss/#g:entry-point) like the function `page`
 so that the framework knows where to start.
