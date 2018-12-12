@@ -187,7 +187,8 @@ because otherwise averaging doesn't do much.)
 In our revised spec,
 `x` is now `"nominal"` instead of `"ordinal"`
 and `y` has an extra property `"aggregate"`,
-which is set to `"average"`:
+which is set to `"average"`
+(but can be used to specify other [aggregation functions](#g:aggregation-function)):
 
 ```
     let spec = {

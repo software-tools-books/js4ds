@@ -109,6 +109,11 @@ a set of variables defined in the same [scope](#g:scope)
 whose existence has been preserved after that scope has ended.
 Closures are one of the trickiest ideas in programming.
 
+**Comma-Separated Values**{:#g:csv} (CSV):
+a text format for tabular data in which each record is one row
+and fields are separated by commas.
+There are many minor variations, particularly around quoting of strings.
+
 **connection manager**{:#g:connection-manager}:
 an object that maintains a connection to a database.
 When the code is finished working with the databse, the connection manager
@@ -233,7 +238,7 @@ rather than by using control structures such as loops.
 Functional programming in JavaScript relies heavily on [callbacks](#g:callback-function)
 and [higher-order functions](#g:higher-order-function).
 
-**global intallation**{:#g:global-installation}:
+**global installation**{:#g:global-installation}:
 a JavaScript library placed in a location where it can be accessed by all users and projects.
 See also [local installation](#g:local-installation).
 
@@ -241,6 +246,11 @@ See also [local installation](#g:local-installation).
 a variable defined outside any particular function,
 which is therefore visible to all functions.
 See also [local variable](#g:local-variable).
+
+**header row**{:#g:header-row}:
+if present,
+the first of a [CSV](#g:csv) file that defines column names
+(but tragically, not their data types or units).
 
 **heterogeneous**{:#g:heterogeneous}:
 having mixed type.
@@ -441,12 +451,6 @@ Every node has a parent except the [root]{#root-node}.
 to translate the text of a program or web page into a data structure in memory
 that the program can then manipulate.
 
-**plugin protocol**{:#g:plugin-protocol}:
-a set of rules specifying where plugin modules are to be placed,
-how they will be referred to,
-and what [entry points](#g:entry-point) they must contain
-so that they can be used by some generic program like a server.
-
 **polymorphism**{:#g:polymoprhism}:
 literally, "having many forms".
 The term refers to the way in which [objects](#g:object) whose [methods](#g:method) have
@@ -467,6 +471,14 @@ and everything else that programmers write along the way.
 **promise**{:#g:promise}:
 a way to handle delayed computations in JavaScript.
 Promises were supposed to make programmers' lives simpler.
+
+**protocol**{:#g:protocol}:
+a set of rules specifying how two things will interact.
+The HTTP protocol defines the format of [requests](#g:http-request),
+[responses](#g:http-response),
+and [status codes](#g:http-status-code);
+a protocol for application plugins defines how they will be referred to
+and what [entry points](#g:entry-point) they must contain.
 
 **prototype**{:#g:prototype}:
 an idiosyncratic mechanism used in the original definition of JavaScript
