@@ -7,7 +7,7 @@ The `console.log` function we have been using
 is a simple form of [logging](../gloss/#g:logging).
 We can use a library called [Winston][winston] to get more control and structure.
 By control,
-we mean that we candefine levels for messages and a threshold for the logger,
+we mean that we can define levels for messages and a threshold for the logger,
 and only log things that are at least that important.
 This is much better than commenting and uncommenting messages,
 both because it involves less typing

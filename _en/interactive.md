@@ -310,7 +310,7 @@ which makes them easier to re-use.
 Of course,
 no good deed goes unpunished.
 The price that we pay
-for organising our application into separate components
+for organizing our application into separate components
 is that now we must import the dependencies of each component
 and export the component itself within each script.
 

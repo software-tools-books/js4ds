@@ -66,7 +66,7 @@ or the weights in pounds or kilograms.
 
 CSV is good for tabular data,
 but a lot of data doesn't neatly fit into rows and columns.
-A format for hierarhical data that is popular with many programmers is [JSON](../gloss/#g:json),
+A format for hierarchical data that is popular with many programmers is [JSON](../gloss/#g:json),
 which stands for JavaScript Object Notation.
 It supports a subset of the syntax for values, arrays, and objects in JavaScript,
 so that (for example)
@@ -305,7 +305,7 @@ It would be more natural for `_average` to take an array rather than a variable 
 but we want to be able to use it in the same way that we use `Math.min` and `Math.max`,
 so we have to conform to their signature.
 
-After some thought we realise that it's possible for `subset` to be empty -
+After some thought we realize that it's possible for `subset` to be empty -
 that is, it's possible that there are years that have no data in our data set.
 We should filter these out,
 to prevent unnecessary effort being made to render summary statistics with `NaN` values.

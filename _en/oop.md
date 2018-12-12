@@ -94,7 +94,7 @@ circle: area 28.274333882308138 perimeter 18.84955592153876
 
 As long as we only use the value `name` and the functions `area` and `perimeter`
 we don't need to know what kind of shape we have.
-This is called [polymorphism](../gloss/#g:polymoprhism),
+This is called [polymorphism](../gloss/#g:polymorphism),
 and it allows us to add new shapes without changing the code in our loop.
 In other words,
 it allows old code (in this case, the function `show_all`)
@@ -267,7 +267,7 @@ This tells us that a `Scientist` is a `Person` who:
 
 The word `super` is used in two ways here:
 
-- In the construtor for `Scientist`,
+- In the constructor for `Scientist`,
   `super(...)` calls up to the constructor of the parent class `Person`
   so that it can do whatever initialization it does
   before `Scientist` does its own initialization.

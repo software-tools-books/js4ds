@@ -92,7 +92,7 @@ that if there is a variable called `something` and one of the function's paramet
 the function will use the right one.
 The way every modern language implements this is to use a [call stack](../gloss/#g:call-stack).
 Instead of putting all our variables in one big table,
-we have one table for global varibles
+we have one table for global variables
 and one extra table for each function call.
 This means that if we assign 100 to `x`,
 call `oneMore(2 * x + 1)`,

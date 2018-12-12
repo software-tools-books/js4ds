@@ -20,7 +20,7 @@ keypoints:
 - "Use `console.log` to print messages."
 - "Use dotted notation `X.Y` to get part `Y` of object `X`."
 - "Basic data types are Booleans, numbers, and character strings."
-- "Ararys store multiple values in order."
+- "Arrays store multiple values in order."
 - "The special values `null` and `undefined` mean 'no value' and 'does not exist'."
 - "Define constants with `const` and variables with `let`."
 - "`typeof` returns the type of a value."

@@ -10,7 +10,7 @@ keypoints:
 - "Pages are represented in memory using a Document Object Model (DOM)."
 - "The `document` object represents the page a script is in."
 - "Use the `querySelectorAll` method to find DOM nodes that match a condition."
-- "Assign HTML text to a node's `innerHTML` propery to change the node's content."
+- "Assign HTML text to a node's `innerHTML` property to change the node's content."
 - "Use `((params) => {...})(arguments)` to create and call a function in a single step."
 - "An event listener is a function run by the browser when some specific event occurs."
 - "Create an event listener for `'DOMContentLoaded'` to trigger execution of scripts *after* the DOM has been constructed."

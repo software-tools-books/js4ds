@@ -29,7 +29,7 @@ The term [list](#g:list) is often used synonymously.
 
 **ASCII**{:#g:ascii}:
 a widely-used set of numeric codes for representing characters from the Latin alphabet
-and common puncutation symbols,
+and common punctuation symbols,
 now superseded by [Unicode](#g:unicode).
 
 **assertion**{:#g:assertion}:
@@ -116,7 +116,7 @@ There are many minor variations, particularly around quoting of strings.
 
 **connection manager**{:#g:connection-manager}:
 an object that maintains a connection to a database.
-When the code is finished working with the databse, the connection manager
+When the code is finished working with the database, the connection manager
 ensures that the connection is closed gracefully, which helps to avoid
 the corruption of data.
 
@@ -451,7 +451,7 @@ Every node has a parent except the [root]{#root-node}.
 to translate the text of a program or web page into a data structure in memory
 that the program can then manipulate.
 
-**polymorphism**{:#g:polymoprhism}:
+**polymorphism**{:#g:polymorphism}:
 literally, "having many forms".
 The term refers to the way in which [objects](#g:object) whose [methods](#g:method) have
 the same names and [parameters](#g:parameter)

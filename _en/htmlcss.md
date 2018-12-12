@@ -585,7 +585,7 @@ such as figure captions,
 multi-column table cells,
 and why it's so hard to center text vertically within a `div`.
 One thing we will return to [later](../interactive/) is
-how to include interative elements like buttons and forms in a page.
+how to include interactive elements like buttons and forms in a page.
 Handling those is part of why JavaScript was invented in the first place,
 but we need more experience before tackling them.
 

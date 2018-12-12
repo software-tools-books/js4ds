@@ -57,9 +57,15 @@ checkgloss :
 checktoc :
 	@bin/checktoc.py _config.yml ${ALL_MD}
 
+## ----------------------------------------
+
 ## listinc     : list file inclusions.
 listinc :
 	@for i in $$(find src -name '*.js') $$(find ex -name '*.js'); do echo $$(grep $$i _en/*.md | wc -l) $$i; done | sort -n -r
+
+## spelling    : compare words against saved list.
+spelling :
+	@cat ${ALL_MD} | aspell list | sort | uniq | diff - .words
 
 ## ----------------------------------------
 
