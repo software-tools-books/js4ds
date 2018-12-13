@@ -3,6 +3,7 @@ permalink: "/en/bib/"
 title: "Bibliography"
 ---
 
+
 **Davi2018**{:#b:Davi2018}:
 Ashley Davis:
 *[Data Wrangling with JavaScript](https://www.manning.com/books/data-wrangling-with-javascript)*.
@@ -29,7 +30,7 @@ Manning,
 978-1617294488.
 *A comprehensive guide to the D3 visualization framework.*
 
-**Wils2018**{:#Wils2018}:
+**Wils2018**{:#b:Wils2018}:
 Greg Wilson:
 *[Teaching Tech Together](http://teachtogether.tech)*.
 Lulu.com,

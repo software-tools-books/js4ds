@@ -9,13 +9,10 @@ JEKYLL=jekyll
 
 # Language-dependent settings.
 DIR_MD=_${lang}
-DIR_TEX=tex/${lang}
-DIR_WEB=_site/${lang}
 
 # Filesets.
 ALL_MD=$(wildcard ${DIR_MD}/*.md)
-CHAPTERS_MD=$(filter-out ${DIR_MD}/bib.md ${DIR_MD}/index.md,${ALL_MD})
-CHAPTERS_HTML=$(patsubst ${DIR_MD}/%.md,${DIR_WEB}/%.html,${ALL_MD})
+SINGLEPAGE_HTML=./all.html
 
 # Controls
 all : commands
@@ -31,6 +28,10 @@ serve :
 ## site        : build files but do not run a server.
 site :
 	${JEKYLL} build
+
+## singlepage  : build single-page version after rebuilding site.
+singlepage :
+	@node bin/stitch.js _config.yml _site ${lang} ${SINGLEPAGE_HTML}
 
 ## ----------------------------------------
 
@@ -79,6 +80,5 @@ clean :
 settings :
 	@echo "JEKYLL=${JEKYLL}"
 	@echo "DIR_MD=${DIR_MD}"
-	@echo "DIR_WEB=${DIR_WEB}"
-	@echo "CHAPTERS_MD=${CHAPTERS_MD}"
-	@echo "CHAPTERS_HTML=${CHAPTERS_HTML}"
+	@echo "ALL_MD=${ALL_MD}"
+	@echo "SINGLEPAGE_HTML=${SINGLEPAGE_HTML}"
