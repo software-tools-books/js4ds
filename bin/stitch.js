@@ -19,14 +19,13 @@ const main = () => {
 	.concat(order.map(key => makeSrcPath(rootDir, language, key)))
   const allChapters = allFiles
 	.map(path => ({path, doc: getDoc(path)}))
-	.map(({path, doc}) => transformHeadings(path, doc))
-	.map(doc => doc.querySelector('html'))
-	.map(doc => doc.querySelector('div.main'))
-	.map(doc => transformHrefs(doc, language))
-	.map(div => cleanup(div))
-  const result = HEADER.replace('TITLE', config.title) +
-	allChapters.map(div => div.outerHTML).join('\n')
-  fs.writeFileSync(destFile, result, 'utf-8')
+	.map(({path, doc}) => ({path, doc: transformHeadings(path, doc)}))
+	.map(({path, doc}) => ({path, doc: doc.querySelector('html')}))
+	.map(({path, doc}) => ({path, doc: transformHrefs(path, doc, language)}))
+	.map(({path, doc}) => ({path, doc: doc.querySelector('div.main')}))
+	.map(({path, doc}) => ({path, doc: cleanup(path, doc)}))
+	.map(({path, doc}) => doc)
+  writeResult(destFile, config.title, allChapters)
 }
 
 const getConfig = (configFile) => {
@@ -45,7 +44,7 @@ const getDoc = (path) => {
   return new JSDOM(text).window.document
 }
 
-const transformHrefs = (doc, language) => {
+const transformHrefs = (path, doc, language) => {
   const upwardPat = /\.\.\/(.+)\/(#.+)?/
   const languagePat = new RegExp(`^/${language}/(.+)/`)
   Array.from(doc.querySelectorAll('a')).forEach(node => {
@@ -72,27 +71,29 @@ const transformHrefs = (doc, language) => {
 
 const transformHeadings = (path, doc) => {
 
-    // h3 becomes h4 and auto-generated IDs are removed.
-    Array.from(doc.querySelectorAll('h3')).forEach(node => {
-	const h4 = doc.createElement('h4')
-	patch(node, h4)
-    })
+  const topId = pathToId(path)
 
-    // h2 becomes h3.
-    Array.from(doc.querySelectorAll('h2')).forEach(node => {
-	const h3 = doc.createElement('h3')
-	h3.setAttribute('id', node.getAttribute('id'))
-	patch(node, h3)
-    })
+  // h3 becomes h4 and auto-generated IDs are removed.
+  Array.from(doc.querySelectorAll('h3')).forEach(node => {
+    const h4 = doc.createElement('h4')
+    patch(node, h4)
+  })
 
-    // h1 becomes h2 with new ID.
-    Array.from(doc.querySelectorAll('h1')).forEach(node => {
-	const h2 = doc.createElement('h2')
-	h2.setAttribute('id', pathToId(path))
-	patch(node, h2)
-    })
+  // h2 becomes h3.
+  Array.from(doc.querySelectorAll('h2')).forEach(node => {
+    const h3 = doc.createElement('h3')
+    h3.setAttribute('id', node.getAttribute('id'))
+    patch(node, h3)
+  })
 
-    return doc
+  // h1 becomes h2 with new ID.
+  Array.from(doc.querySelectorAll('h1')).forEach(node => {
+    const h2 = doc.createElement('h2')
+    h2.setAttribute('id', topId)
+    patch(node, h2)
+  })
+
+  return doc
 }
 
 const patch = (oldNode, newNode) => {
@@ -106,7 +107,7 @@ const pathToId = (path) => {
   return 's:' + path.split('/').slice(-2, -1)
 }
 
-const cleanup = (div) => {
+const cleanup = (path, div) => {
   div.className = 'chapter'
   for (sel of ['blockquote.disclaimer', 'div.headings']) {
     Array.from(div.querySelectorAll(sel)).forEach(node => {
@@ -114,6 +115,12 @@ const cleanup = (div) => {
     })
   }
   return div
+}
+
+const writeResult = (path, title, chapters) => {
+  const result = HEADER.replace('TITLE', title) +
+	chapters.map(doc => doc.outerHTML).join('\n')
+  fs.writeFileSync(path, result, 'utf-8')
 }
 
 main()
