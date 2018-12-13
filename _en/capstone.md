@@ -9,11 +9,10 @@ keypoints:
 - "Use slices of actual data to test applications."
 - "Test summaries and small cases so that results can be checked by hand."
 - "Store state in a class, use pure functions to display it."
-datasource: "https://figshare.com/articles/Portal_Project_Teaching_Database/1314459"
 ---
 
 It's time to bring everything together in an extended example:
-a (slightly) interactive visualization of species data from <{{page.datasource}}>.
+a (slightly) interactive visualization of species data from <{{site.datasource}}>.
 Our plan is to:
 
 - slice data for testing,

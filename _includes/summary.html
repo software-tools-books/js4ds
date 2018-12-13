@@ -1,3 +1,14 @@
+{% comment %}
+Summarize all header points of one kind from all lessons. This is a complicated
+inclusion, so the steps are documented section by section. Parameters are:
+
+- language: a two-letter language code like "en".
+- h: level of heading, e.g. "h2".
+{% endcomment %}
+
+{% comment %}
+Choose a block of chapters from "_config.yml" based on the language.
+{% endcomment %}
 {% if include.language == 'en' %}
   {% assign chapters = site.en %}
 {% elsif include.language == 'um' %}
@@ -5,6 +16,10 @@
 {% endif %}
 {% assign translations=site.translations[include.language] %}
 
+{% comment %}
+Loop over the table of contents to find this chapter (because Jekyll doesn't
+support lookup by key) and pull the required block out of that lesson's header.
+{% endcomment %}
 {% assign prefix = '/' | append: include.language | append: '/' %}
 {%- for toc_entry in site.toc.lessons -%}
   {%- for lesson in chapters -%}
@@ -18,6 +33,7 @@
       {%- assign which = lesson.keypoints -%}
     {%- endif -%}
 <{{include.h}}><a href="{{lesson.permalink|relative_url}}">{{lesson.title}}</a></{{include.h}}>
+{% comment %}Display those items.{% endcomment %}
 <ul>
 {%- for item in which -%}<li>{{item|markdownify|replace: "<p>", ""|replace: "</p>", ""}}</li>{%- endfor -%}
 </ul>
