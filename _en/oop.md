@@ -145,7 +145,7 @@ class Square {
 We can then create a specific square by using the class's name as if it were a function:
 
 ```js
-const sq = Square(3)
+const sq = new Square(3)
 console.log(`sq name ${sq.name} and area ${sq.area()}`)
 ```
 {: title="src/oop/es6-objects.js"}

@@ -120,6 +120,11 @@ Greg would like to thank everyone at [Rangle](https://rangle.io/) who was so pat
 
 Toby would like to thank his wife for her support and patience while he swore about how annoying JavaScript is to debug.
 
+We are also grateful for fixes from:
+
+- [Stephan Druskat](https://github.com/sdruskat)
+- [Peter Munro](https://github.com/pdm55)
+
 ## Exercises {#s:intro-exercises}
 
 ### Setting Up
