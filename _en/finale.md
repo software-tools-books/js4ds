@@ -25,10 +25,11 @@ such as [logging what our server does](../logging/)
 and [using a relational database](../db/) instead of a text file
 as a data store.
 Beyond that,
-you could look at using the full power of the [D3][d3] library for interactive visualization,
-at building more sophisticated React interfaces with [RxJS][rxjs],
-or at starting over completely the way JavaScript programmers do every eight months
-and rewriting everything with [Web Components][web-components].
+you could look at more advanced techniques in JavaScript [[Have2018](../bib/#Have2018)],
+explore the full power of the [D3][d3] library for interactive visualization [[Meek2017](../bib/#Meek2017)],
+dive into data wrangling [[Davi2018](../bib/#Davi2018)],
+or start over completely the way JavaScript programmers do every eight months
+and rewrite everything with [Web Components][web-components].
 Whatever you do,
 we hope that this tutorial has helped you get started.
 
