@@ -17,7 +17,7 @@ they're well designed and your audience is sighted, that is.
 There are even more ways to visualize data in the browser
 than there are front-end toolkits for JavaScript.
 We have chosen to use [Vega-Lite][vega-lite],
-which is a [declarative](../gloss/#g:declarative-programming) framework:
+which is a [declarative](../gloss/#g:declarative) framework:
 as a user,
 you specify the data and settings,
 and let the library take care of everything else.
@@ -145,10 +145,7 @@ When we open the page now,
 we see a bar chart,
 and feel very proud of ourselves.
 
-<figure id="f:vis-mark-encoding">
-  <figcaption>Mark and Encoding</figcaption>
-  <img src="../../files/vis-mark-encoding.png" />
-</figure>
+<figure id="f:vis-mark-encoding"> <figcaption>Mark and Encoding</figcaption> <img src="../../files/vis-mark-encoding.png" /> </figure>
 
 There are also some poorly-styled links for various controls that we're not going to use.
 We can fill in the options argument to `vegaEmbed` to turn those off:
@@ -174,10 +171,7 @@ We can fill in the options argument to `vegaEmbed` to turn those off:
 
 We now have the visualization we wanted:
 
-<figure id="f:vis-disable-controls">
-  <figcaption>Without Controls</figcaption>
-  <img src="../../files/vis-disable-controls.png" />
-</figure>
+<figure id="f:vis-disable-controls"> <figcaption>Without Controls</figcaption> <img src="../../files/vis-disable-controls.png" /> </figure>
 
 Vega-Lite has a *lot* of options:
 for example,
@@ -220,10 +214,7 @@ which is set to `"average"`
 ```
 {: title="src/vis/vega-aggregate-points.html"}
 
-<figure id="f:vis-aggregate-points">
-  <figcaption>Aggregating and Using Points</figcaption>
-  <img src="../../files/vis-aggregate-points.png" />
-</figure>
+<figure id="f:vis-aggregate-points"> <figcaption>Aggregating and Using Points</figcaption> <img src="../../files/vis-aggregate-points.png" /> </figure>
 
 ## Local Installation {#s:vis-vega-local}
 

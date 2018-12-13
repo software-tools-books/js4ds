@@ -428,10 +428,7 @@ class App extends React.Component {
 ```
 {: title="src/interactive/multi-component/app.js"}
 
-<figure id="f:interactive-objects-dom">
-  <figcaption>React Objects and the DOM</figcaption>
-  <img src="../../files/interactive-objects-dom.svg" />
-</figure>
+<figure id="f:interactive-objects-dom"> <figcaption>React Objects and the DOM</figcaption> <img src="../../files/interactive-objects-dom.svg" /> </figure>
 
 We must import the dependencies as we did with the other components.
 As well as `React` and `ReactDOM`,
@@ -591,10 +588,7 @@ export {DateSubmit}
 
 and run it:
 
-<figure id="f:interactive-asteroids-screenshot">
-  <figcaption>Asteroids Application</figcaption>
-  <img src="../../files/interactive-asteroids-screenshot.png" />
-</figure>
+<figure id="f:interactive-asteroids-screenshot"> <figcaption>Asteroids Application</figcaption> <img src="../../files/interactive-asteroids-screenshot.png" /> </figure>
 
 The next step is to handle date submission.
 Since we're trying to instill good practices,

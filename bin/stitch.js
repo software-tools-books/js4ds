@@ -6,18 +6,18 @@ const yaml = require('js-yaml')
 const { JSDOM } = require('jsdom')
 
 HEADER = `---
-permalink: /all/
+permalink: /LANGUAGE/all/
 root: true
 layout: plain
 ---
 `
 
 const main = () => {
-  const [configFile, rootDir, language, destFile] = process.argv.slice(2)
+  const [configFile, rootDir, language] = process.argv.slice(2)
   const {config, order} = getConfig(configFile)
-  const allFiles = [makeSrcPath(rootDir, language, '')]
+  const allFilenames = [makeSrcPath(rootDir, language, '')]
 	.concat(order.map(key => makeSrcPath(rootDir, language, key)))
-  const allChapters = allFiles
+  const allChapters = allFilenames
 	.map(path => ({path, doc: getDoc(path)}))
 	.map(({path, doc}) => ({path, doc: transformHeadings(path, doc)}))
 	.map(({path, doc}) => ({path, doc: doc.querySelector('html')}))
@@ -25,11 +25,11 @@ const main = () => {
 	.map(({path, doc}) => ({path, doc: doc.querySelector('div.main')}))
 	.map(({path, doc}) => ({path, doc: cleanup(path, doc)}))
 	.map(({path, doc}) => doc)
-  writeResult(destFile, config.title, allChapters)
+  writeResult(language, allChapters)
 }
 
-const getConfig = (configFile) => {
-  const config = yaml.safeLoad(fs.readFileSync(configFile, 'utf-8'))
+const getConfig = (path) => {
+  const config = yaml.safeLoad(fs.readFileSync(path, 'utf-8'))
   const toc = config.toc
   const order = toc.lessons.concat(toc.bib).concat(toc.extras)
   return {config, order}
@@ -44,31 +44,14 @@ const getDoc = (path) => {
   return new JSDOM(text).window.document
 }
 
-const transformHrefs = (path, doc, language) => {
-  const upwardPat = /\.\.\/(.+)\/(#.+)?/
-  const languagePat = new RegExp(`^/${language}/(.+)/`)
-  Array.from(doc.querySelectorAll('a')).forEach(node => {
-    const href = node.getAttribute('href')
-    let fields = href.match(upwardPat)
-    // no match, so try a language replacement
-    if (fields === null) {
-      fields = href.match(languagePat)
-      if (fields) {
-	node.setAttribute('href', '#s:' + fields[1])
-      }
-    }
-    // anchored
-    else if (fields[2] !== undefined) {
-      node.setAttribute('href', fields[2])
-    }
-    // section
-    else {
-      node.setAttribute('href', '#s:' + fields[1])
-    }
+const transformHeadings = (path, doc) => {
+  Array.from(doc.querySelectorAll('h1')).forEach(node => {
+    node.setAttribute('id', pathToId(path))
   })
   return doc
 }
 
+/*
 const transformHeadings = (path, doc) => {
 
   const topId = pathToId(path)
@@ -95,6 +78,32 @@ const transformHeadings = (path, doc) => {
 
   return doc
 }
+*/
+
+const transformHrefs = (path, doc, language) => {
+  const upwardPat = /\.\.\/(.+)\/(#.+)?/
+  const languagePat = new RegExp(`^/${language}/(.+)/`)
+  Array.from(doc.querySelectorAll('a')).forEach(node => {
+    const href = node.getAttribute('href')
+    let fields = href.match(upwardPat)
+    // no match, so try a language replacement
+    if (fields === null) {
+      fields = href.match(languagePat)
+      if (fields) {
+	node.setAttribute('href', '#s:' + fields[1])
+      }
+    }
+    // anchored
+    else if (fields[2] !== undefined) {
+      node.setAttribute('href', fields[2])
+    }
+    // section
+    else {
+      node.setAttribute('href', '#s:' + fields[1])
+    }
+  })
+  return doc
+}
 
 const patch = (oldNode, newNode) => {
   while (oldNode.childNodes.length > 0) {
@@ -117,10 +126,10 @@ const cleanup = (path, div) => {
   return div
 }
 
-const writeResult = (path, title, chapters) => {
-  const result = HEADER.replace('TITLE', title) +
+const writeResult = (language, chapters) => {
+  const result = HEADER.replace('LANGUAGE', language) +
 	chapters.map(doc => doc.outerHTML).join('\n')
-  fs.writeFileSync(path, result, 'utf-8')
+  process.stdout.write(result)
 }
 
 main()

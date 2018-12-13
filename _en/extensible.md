@@ -1,11 +1,6 @@
 ---
 permalink: "/en/extensible/"
 title: "Extensible Servers"
-questions:
-- "How can I extend a server without rewriting it?"
-keypoints:
-- "Servers (and other programs) can dynamically load modules to extend their capabilities."
-- "Dynamically loading modules is a security risk."
 ---
 
 Suppose we want to extend our [server](../server/) in some way.

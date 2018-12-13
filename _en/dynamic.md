@@ -27,7 +27,7 @@ navigation menus, contact info, and so on.
 The nearly universal response was to create a [template](../gloss/#g:template)
 and embed commands to include other snippets of HTML (like headers)
 and loop over data structures to create lists and tables.
-This is called [server-side page generation](../gloss/#g:server-side-page-generation):
+This is called [server-side page generation](../gloss/#g:server-page-gen):
 the HTML is generated on the [server](../gloss/#g:server),
 and it was popular because that's where the data was,
 and that was the only place complex code could be run.
@@ -40,13 +40,10 @@ pages can be compiled once, stored on disk, and served thereafter,
 or each page can be recompiled whenever it's needed
 (which makes it easy to include dynamic elements like today's top news story):
 
-<figure id="f:dynamic-alternatives">
-  <figcaption>Page Generation Alternatives</figcaption>
-  <img src="../../files/dynamic-alternatives.svg" />
-</figure>
+<figure id="f:dynamic-alternatives"> <figcaption>Page Generation Alternatives</figcaption> <img src="../../files/dynamic-alternatives.svg" /> </figure>
 
 As browsers and JavaScript became more powerful,
-the balance shifted toward [client-side page generation](../gloss/#g:client-side-page-generation).
+the balance shifted toward [client-side page generation](../gloss/#g:client-page-gen).
 In this model,
 the browser fetches data from one or more servers
 and feeds that data to a JavaScript library that generates HTML in the browser for display.

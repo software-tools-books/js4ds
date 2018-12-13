@@ -8,6 +8,7 @@ endif
 JEKYLL=jekyll
 PANDOC=pandoc
 LATEX=pdflatex
+CAIROSVG=cairosvg
 
 # Language-dependent settings.
 DIR_MD=_${lang}
@@ -19,6 +20,8 @@ PAGES_MD=$(wildcard ${DIR_MD}/*.md)
 PAGES_MD_CHAP=$(filter-out ${DIR_MD}/index.md,${PAGES_MD})
 PAGES_HTML=${DIR_HTML}/index.html $(patsubst ${DIR_MD}/%.md,${DIR_HTML}/%/index.html,${PAGES_MD_CHAP})
 SINGLEPAGE_HTML=all.html
+FIGURE_SVG=$(wildcard files/*.svg)
+FIGURE_PDF=$(patsubst files/%.svg,files/%.pdf,${FIGURE_SVG})
 
 # Controls
 all : commands
@@ -35,18 +38,59 @@ serve :
 site :
 	${JEKYLL} build
 
+## release     : build a release (all-in-one HTML page + book PDF).
+release :
+	@make lang=${lang} site
+	@make lang=${lang} singlepage
+	@make svg2pdf
+	@make lang=${lang} book
+
 ## singlepage  : build single-page version after rebuilding site.
 singlepage :
-	node bin/stitch.js _config.yml _site ${lang} ${SINGLEPAGE_HTML}
+	node bin/stitch.js _config.yml _site ${lang} > ${SINGLEPAGE_HTML}
 
-## pdf         : build PDF version.
-pdf :
-	${PANDOC} -t latex -o - ${SINGLEPAGE_HTML} \
-	| tail -n +2 \
+## book        : build PDF version.
+book :
+	@make lang=${lang} alltex
+	@make lang=${lang} pdf
+
+# Create the unified LaTeX file (separate target to simplify testing).
+# + 'sed' to pull glossary entry IDs out into '==g==' blocks (because Pandoc throws them away).
+# + 'sed' to pull bibliography entry IDs out into '==b==' blocks (because Pandoc throws them away).
+# + 'sed' to stash figure information (because Pandoc...).
+# ! Pandoc
+# - 'tail' to strip out YAML header.
+# - 'sed' to restore figures.
+# - 'sed' to turn SVG inclusions into PDF inclusions.
+# - 'sed' to convert '====' blocks into LaTeX labels.
+# - 'sed' to bump section headings back up.
+alltex :
+	cat ${SINGLEPAGE_HTML} \
+	| sed -E -e 's!<strong id="(g:[^"]+)">([^<]+)</strong>!<strong>==g==\1==g==\2==g==</strong>!' \
+	| sed -E -e 's!<strong id="(b:[^"]+)">([^<]+)</strong>!<strong>==b==\1==b==\2==b==</strong>!' \
+	| sed -E -e 's!<figure +id="(.+)"> *<figcaption>(.+)</figcaption> *<img +src="(.+)"> *</figure>!==f==\1==\2==\3==!' \
+	| ${PANDOC} --wrap=preserve -f html -t latex -o - \
+	| tail -n +6 \
+	| sed -E -e 's!==f==([^=]+)==([^=]+)==([^=]+)==!\\begin{figure}\\label{\1}\\caption{\2}\\includegraphics{\3}\\end{figure}!' \
+	| sed -E -e 's!\.svg}!\.pdf}!' \
+	| sed -E -e 's!==b==([^=]+)==b==([^=]+)==b==!\\hypertarget{\1}{\2}\\label{\1}!' \
+	| sed -E -e 's!==g==([^=]+)==g==([^=]+)==g==!\\hypertarget{\1}{\2}\\label{\1}!' \
+	| sed -E -e 's:\\section:\\chapter:' \
+	| sed -E -e 's:\\subsection:\\section:' \
+	| sed -E -e 's:\\subsubsection:\\subsection:' \
 	> ${DIR_TEX}/all.tex
-	@cd ${DIR_TEX} \
+
+# Generate the PDF (separate target to simplify testing).
+pdf :
+	cd ${DIR_TEX} \
 	&& ${LATEX} book \
 	&& ${LATEX} book
+
+## svg2pdf     : convert SVG figures to PDF
+svg2pdf : ${FIGURE_PDF}
+
+files/%.pdf : files/%.svg
+	cairosvg $< -o $@
 
 ## ----------------------------------------
 
@@ -87,7 +131,8 @@ spelling :
 
 ## clean       : clean up junk files.
 clean :
-	@rm -r -f _site dist bin/__pycache__
+	@rm -r -f _site dist bin/__pycache__ files/*.pdf
+	@rm -r -f tex/*/all.tex tex/*/*.aux tex/*/*.bbl tex/*/*.blg tex/*/*.log tex/*/*.out tex/*/*.toc
 	@find . -name '*~' -delete
 	@find . -name .DS_Store -prune -delete
 
@@ -99,3 +144,5 @@ settings :
 	@echo "PAGES_MD_CHAP=${PAGES_MD_CHAP}"
 	@echo "PAGES_HTML=${PAGES_HTML}"
 	@echo "SINGLEPAGE_HTML=${SINGLEPAGE_HTML}"
+	@echo "FIGURE_SVG=${FIGURE_SVG}"
+	@echo "FIGURE_PDF=${FIGURE_PDF}"

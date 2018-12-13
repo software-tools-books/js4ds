@@ -6,7 +6,7 @@ Jekyll because they space the items in strange ways.)
 
 {% if include.items %}
 <div class="listblock">
-  <p><strong>{{include.title}}</strong></p>
+  <h2>{{include.title}}</h2>
   <ul>
     {% for item in include.items %}<li>{{item|markdownify|replace: "<p>", ""|replace: "</p>", ""}}</li>{% endfor %}
   </ul>
