@@ -35,6 +35,8 @@ how they exchange data,
 and so on.
 The diagram below shows this cycle in action for a page that includes one image:
 
+<figure id="f:server-cycle"> <img src="../../files/server-cycle.svg" /> <figcaption>HTTP Request/Response Cycle</figcaption> </figure>
+
 1.  The client (a browser or some other program) makes a connection to a server.
 2.  It then sends a blob of text specifying what it's asking for.
 3.  The server replies with a blob of text and the HTML.
@@ -43,8 +45,6 @@ The diagram below shows this cycle in action for a page that includes one image:
 6.  It sends another blob of text to the server asking for that image.
 7.  The server replies with a blob of text and the contents of the image file.
 8.  The connection is closed.
-
-<figure id="f:server-cycle"> <img src="../../files/server-cycle.svg" /> <figcaption>HTTP Request/Response Cycle</figcaption> </figure>
 
 This cycle might be repeated many times to display a single web page,
 since a separate request has to be made for every image,

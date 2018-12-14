@@ -6159,6 +6159,8 @@ how they exchange data,
 and so on.
 The diagram below shows this cycle in action for a page that includes one image:</p>
 
+<figure id="f:server-cycle"> <img src="../../files/server-cycle.svg"> <figcaption>HTTP Request/Response Cycle</figcaption> </figure>
+
 <ol>
   <li>The client (a browser or some other program) makes a connection to a server.</li>
   <li>It then sends a blob of text specifying what it’s asking for.</li>
@@ -6169,8 +6171,6 @@ The diagram below shows this cycle in action for a page that includes one image:
   <li>The server replies with a blob of text and the contents of the image file.</li>
   <li>The connection is closed.</li>
 </ol>
-
-<figure id="f:server-cycle"> <img src="../../files/server-cycle.svg"> <figcaption>HTTP Request/Response Cycle</figcaption> </figure>
 
 <p>This cycle might be repeated many times to display a single web page,
 since a separate request has to be made for every image,
