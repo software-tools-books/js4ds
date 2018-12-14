@@ -54,8 +54,10 @@ book :
 # + 'sed' to pull glossary entry IDs out into '==g==' blocks (because Pandoc throws them away).
 # + 'sed' to pull bibliography entry IDs out into '==b==' blocks (because Pandoc throws them away).
 # + 'sed' to stash figure information (because Pandoc...).
+# + 'sed' to un-comment embedded LaTeX commands '<!-- == command -->' before Pandoc erases them.
 # ! Pandoc
 # - 'tail' to strip out YAML header.
+# - 'sed' to restore embedded LaTeX commands (need to strip out the newline Pandoc introduces after the command).
 # - 'sed' to restore figures.
 # - 'sed' to turn SVG inclusions into PDF inclusions.
 # - 'sed' to convert '====' blocks into LaTeX labels.
@@ -65,15 +67,17 @@ alltex :
 	| sed -E -e 's!<strong id="(g:[^"]+)">([^<]+)</strong>!<strong>==g==\1==g==\2==g==</strong>!' \
 	| sed -E -e 's!<strong id="(b:[^"]+)">([^<]+)</strong>!<strong>==b==\1==b==\2==b==</strong>!' \
 	| sed -E -e 's!<figure +id="(.+)"> *<img +src="(.+)"> *<figcaption>(.+)</figcaption> *</figure>!==f==\1==\2==\3==!' \
+	| sed -E -e 's/<!-- +== +(.+) +-->/==c==\1==/' \
 	| ${PANDOC} --wrap=preserve -f html -t latex -o - \
 	| tail -n +6 \
+	| sed -E -e '/==c==.+==/{N;s/\n/ /;}' -E -e 's!==c==(.+)==!\1!' -e s'!\\textbackslash{}!\\!' \
 	| sed -E -e 's!==f==([^=]+)==([^=]+)==([^=]+)==!\\begin{figure}\\label{\1}\\includegraphics{\2}\\caption{\3}\\end{figure}!' \
 	| sed -E -e 's!\.svg}!\.pdf}!' \
 	| sed -E -e 's!==b==([^=]+)==b==([^=]+)==b==!\\hypertarget{\1}{\2}\\label{\1}!' \
 	| sed -E -e 's!==g==([^=]+)==g==([^=]+)==g==!\\hypertarget{\1}{\2}\\label{\1}!' \
-	| sed -E -e 's:\\section:\\chapter:' \
-	| sed -E -e 's:\\subsection:\\section:' \
-	| sed -E -e 's:\\subsubsection:\\subsection:' \
+	| sed -E -e 's!\\section!\\chapter!' \
+	| sed -E -e 's!\\subsection!\\section!' \
+	| sed -E -e 's!\\subsubsection!\\subsection!' \
 	> ${DIR_TEX}/all.tex
 
 # Generate the PDF (separate target to simplify testing).

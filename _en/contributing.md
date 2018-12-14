@@ -39,6 +39,11 @@ title: "Contributing"
   - `g:slug` for glossary references
   - `b:item` for bibliography references
 
+- If you need to embed a one-line LaTeX command in a Markdown file and have it passed through,
+  format it like `<!-- == \noindent -->`
+  (i.e., as an HTML comment with a double equals sign and then the command).
+  Note that these comments will appear in the generated HTML as well.
+
 The [Jekyll][jekyll] template used in this tutorial can support multiple languages.
 We encourage translations;
 if you would like to take this on,
