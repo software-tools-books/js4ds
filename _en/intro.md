@@ -63,14 +63,14 @@ For larger things,
 and for chapters starting with the one on [creating dynamic web pages](../dynamic/),
 you should [download and install][node-download] the latest Long-term Support (LTS) versions of Node and NPM.
 
-[Node](../gloss/#g:node-js) an open source implementation of JavaScript
+[Node](../gloss/#g:node-js) is an open source implementation of JavaScript
 that includes a command-line interpreter like those for languages such as Python and R.
 The command `node` on its own starts a [read-evaluate-print loop](../gloss/#g:repl)
 that executes commands as they are typed in and displays their output.
 The command `node filename.js` reads and runs the commands in `filename.js`;
 we will see [later](../pages/) how to run JavaScript in a browser.
 
-`npm` the Node [Package Manager](../gloss/#g:package-manager),
+`npm` is the Node [Package Manager](../gloss/#g:package-manager),
 a command-line tool for finding, installing, and updating JavaScript libraries.
 The command <code>npm install --global <em>library-name</em></code> (without a `.js` extension)
 installs a library [globally](../gloss/#g:global-installation) so that all projects can use it,
