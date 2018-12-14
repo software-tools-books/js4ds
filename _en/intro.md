@@ -81,38 +81,21 @@ since it isolates projects from one another.
 
 ## Who We Are {#s:intro-contributors}
 
-<div class="row">
-  <div class="offset-md-1 col-md-2">
-    <p><img src="../../files/toby-hodges.png" alt="Toby Hodges" width="80%" /></p>
-  </div>
-  <div class="col-md-6">
-    <p>
-      <strong><a href="https://tbyhdgs.info/">Toby Hodges</a></strong> is a bioinformatician turned community
-      coordinator, working on the <a
-      href="https://bio-it.embl.de"> Bio-IT Project</a>
-      at <a href="https://www.embl.de">EMBL</a>. He teaches a lot of courses in computing,
-      organizes a lot of community-building events,
-      listens to a lot of punk rock,
-      and occasionally still finds time to write code and ride his bike.
-    </p>
-  </div>
-</div>
-<div class="row">
-  <div class="offset-md-1 col-md-2">
-    <p><img src="../../files/greg-wilson.png" alt="Greg Wilson" width="80%" /></p>
-  </div>
-  <div class="col-md-6">
-    <p>
-      <strong><a href="http://third-bit.com">Greg Wilson</a></strong> has worked for 35 years in both industry and
-      academia, and is the author or editor of several books on computing and
-      two for children. He is best known as the co-founder of <a
-      href="http://carpentries.org">Software Carpentry</a>, a non-profit
-      organization that teaches basic computing skills to researchers, and is
-      now part of the education team at <a
-      href="http://rstudio.com">RStudio</a>.
-    </p>
-  </div>
-</div>
+<img src="../../files/toby-hodges.png" alt="Toby Hodges" width="200" />
+
+**[Toby Hodges][hodges-toby]** is a bioinformatician turned community
+coordinator, working on the [Bio-IT Project](https://bio-it.embl.de) at
+[EMBL](https://www.embl.de). He teaches a lot of courses in computing, organizes
+a lot of community-building events, listens to a lot of punk rock, and
+occasionally still finds time to write code and ride his bike.
+
+<img src="../../files/greg-wilson.png" alt="Greg Wilson" width="200" />
+
+**[Greg Wilson][wilson-greg]** has worked for 35 years in both industry and
+academia, and is the author or editor of several books on computing and two for
+children. He co-founded of [Software Carpentry][carpentries], a non-profit
+organization that teaches basic computing skills to researchers, and is now part
+of the education team at [RStudio](http://rstudio.com).
 
 ## Acknowledgments {#s:intro-acknowledgments}
 

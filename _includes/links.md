@@ -12,6 +12,7 @@ definitions if that's done.
 [bernhardt-wat]: https://www.destroyallsoftware.com/talks/wat
 [bootstrap]: https://getbootstrap.com/
 
+[carpentries]: http://carpentries.org
 [cheerio]: https://cheerio.js.org/
 [cors-docs]: https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS/Errors/CORSMissingAllowOrigin
 [cors-wikipedia]: https://en.wikipedia.org/wiki/Cross-origin_resource_sharing
@@ -28,6 +29,8 @@ definitions if that's done.
 [express]: https://expressjs.org/
 
 [github]: http://github.com/
+
+[hodges-toby]: https://tbyhdgs.info/
 
 [jekyll]: https://jekyllrb.com/
 [jsx]: https://reactjs.org/docs/introducing-jsx.html
@@ -60,4 +63,5 @@ definitions if that's done.
 [w3schools]: https://www.w3schools.com/
 [web-components]: https://developer.mozilla.org/en-US/docs/Web/Web_Components
 [webpack]: https://webpack.js.org/
+[wilson-greg]: http://third-bit.com/
 [winston]: https://github.com/winstonjs/winston
