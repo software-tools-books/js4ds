@@ -4,6 +4,9 @@ $(warning Please set 'lang' with 'lang=en' or similar.)
 lang=en
 endif
 
+# Project stem.
+STEM=js-vs-ds
+
 # Tools.
 JEKYLL=jekyll
 PANDOC=pandoc
@@ -35,7 +38,7 @@ serve :
 site :
 	${JEKYLL} build
 
-## release     : build a release (all-in-one HTML page + book PDF).
+## release     : build a release (all-in-one HTML page + PDF).
 release :
 	@make lang=${lang} site
 	@make lang=${lang} allhtml
@@ -87,8 +90,8 @@ alltex :
 ## pdf         : generate PDF from LaTeX source.
 pdf :
 	cd ${DIR_TEX} \
-	&& ${LATEX} book \
-	&& ${LATEX} book
+	&& ${LATEX} ${STEM} \
+	&& ${LATEX} ${STEM}
 
 ## ----------------------------------------
 
@@ -129,7 +132,7 @@ spelling :
 
 ## clean       : clean up junk files.
 clean :
-	@rm -r -f _site dist bin/__pycache__ files/*.pdf
+	@rm -r -f _site dist bin/__pycache__
 	@rm -r -f tex/*/all.tex tex/*/*.aux tex/*/*.bbl tex/*/*.blg tex/*/*.log tex/*/*.out tex/*/*.toc
 	@find . -name '*~' -delete
 	@find . -name .DS_Store -prune -delete
