@@ -849,7 +849,7 @@ it allocates a block of memory big enough for four characters
 and stores a reference to that block of characters in the variable <code class="highlighter-rouge">name</code>.
 We can show this by drawing a <a href="#g:memory-diagram">memory diagram</a>:</p>
 
-<figure id="f:callbacks-name-value"> <figcaption>Name and Value</figcaption> <img src="../../files/callbacks-name-value.svg"> </figure>
+<figure id="f:callbacks-name-value"> <img src="../../files/callbacks-name-value.svg"> <figcaption>Name and Value</figcaption> </figure>
 
 <p>When we write:</p>
 
@@ -862,7 +862,7 @@ We can show this by drawing a <a href="#g:memory-diagram">memory diagram</a>:</p
 translates the text of the function into instructions,
 and stores a reference to those instructions in the variable <code class="highlighter-rouge">oneMore</code>:</p>
 
-<figure id="f:callbacks-one-more"> <figcaption>Functions in Memory</figcaption> <img src="../../files/callbacks-one-more.svg"> </figure>
+<figure id="f:callbacks-one-more"> <img src="../../files/callbacks-one-more.svg"> <figcaption>Functions in Memory</figcaption> </figure>
 
 <p>The only difference between these two cases is what’s on the other end of the reference:
 four characters or a bunch of instructions that add one to a number.
@@ -879,7 +879,7 @@ just as we would assign a number:</p>
 as the memory diagram below shows,
 it creates a second name that refers to the same block of instructions.</p>
 
-<figure id="f:callbacks-alias-function"> <figcaption>Aliasing a Function</figcaption> <img src="../../files/callbacks-alias-function.svg"> </figure>
+<figure id="f:callbacks-alias-function"> <img src="../../files/callbacks-alias-function.svg"> <figcaption>Aliasing a Function</figcaption> </figure>
 
 <p>As explained in <a href="#s:basics">the previous lesson</a>,
 when JavaScript calls a function it assigns the arguments in the call to the function’s parameters.
@@ -897,7 +897,7 @@ call <code class="highlighter-rouge">oneMore(2 * x + 1)</code>,
 and look at memory in the middle of that call,
 we will find this:</p>
 
-<figure id="f:callbacks-call-stack"> <figcaption>The Call Stack</figcaption> <img src="../../files/callbacks-call-stack.svg"> </figure>
+<figure id="f:callbacks-call-stack"> <img src="../../files/callbacks-call-stack.svg"> <figcaption>The Call Stack</figcaption> </figure>
 
 <h2 id="s:callbacks-func">Functions of Functions</h2>
 
@@ -926,7 +926,7 @@ hello
 <p>Again,
 this is clearer when we look at the state of memory while <code class="highlighter-rouge">doTwice</code> is running:</p>
 
-<figure id="f:callbacks-do-twice"> <figcaption>Functions of Functions</figcaption> <img src="../../files/callbacks-do-twice.svg"> </figure>
+<figure id="f:callbacks-do-twice"> <img src="../../files/callbacks-do-twice.svg"> <figcaption>Functions of Functions</figcaption> </figure>
 
 <p>This becomes more useful when the function or functions passed in have parameters of their own.
 For example,
@@ -959,7 +959,7 @@ and another function that replaces spaces with dots:</p>
 but before a value has been returned to be assigned to <code class="highlighter-rouge">temp</code>,
 memory looks like this:</p>
 
-<figure id="f:callbacks-pipeline"> <figcaption>Implementing a Pipeline</figcaption> <img src="../../files/callbacks-pipeline.svg"> </figure>
+<figure id="f:callbacks-pipeline"> <img src="../../files/callbacks-pipeline.svg"> <figcaption>Implementing a Pipeline</figcaption> </figure>
 
 <p>Reversing the order of the functions changes the result:</p>
 
@@ -1191,16 +1191,16 @@ which is annoying.</p>
 <p>The best way to understand what’s going on is to draw a step-by-step memory diagram.
 In step 1, we call <code class="highlighter-rouge">adder(1)</code>:</p>
 
-<figure id="f:callbacks-adder-1"> <figcaption>Creating an Adder (Step 1)</figcaption> <img src="../../files/callbacks-adder-1.svg"> </figure>
+<figure id="f:callbacks-adder-1"> <img src="../../files/callbacks-adder-1.svg"> <figcaption>Creating an Adder (Step 1)</figcaption> </figure>
 
 <p><code class="highlighter-rouge">adder</code> creates a new function that includes a reference to that 1 we just passed in:</p>
 
-<figure id="f:callbacks-adder-2"> <figcaption>Creating an Adder (Step 2)</figcaption> <img src="../../files/callbacks-adder-2.svg"> </figure>
+<figure id="f:callbacks-adder-2"> <img src="../../files/callbacks-adder-2.svg"> <figcaption>Creating an Adder (Step 2)</figcaption> </figure>
 
 <p>In step 3,
 <code class="highlighter-rouge">adder</code> returns that function, which is assigned to <code class="highlighter-rouge">add_1</code>:</p>
 
-<figure id="f:callbacks-adder-3"> <figcaption>Creating an Adder (Step 3)</figcaption> <img src="../../files/callbacks-adder-3.svg"> </figure>
+<figure id="f:callbacks-adder-3"> <img src="../../files/callbacks-adder-3.svg"> <figcaption>Creating an Adder (Step 3)</figcaption> </figure>
 
 <p>Crucially,
 the function that <code class="highlighter-rouge">add_1</code> refers to still has a reference to the value 1,
@@ -1210,7 +1210,7 @@ even though that value isn’t referred to any longer by anyone else.</p>
 we repeat these three steps to create another function that has a reference to the value 2,
 and assign that function to <code class="highlighter-rouge">add_2</code>:</p>
 
-<figure id="f:callbacks-adder-4"> <figcaption>Creating an Adder (Steps 4-6)</figcaption> <img src="../../files/callbacks-adder-4.svg"> </figure>
+<figure id="f:callbacks-adder-4"> <img src="../../files/callbacks-adder-4.svg"> <figcaption>Creating an Adder (Steps 4-6)</figcaption> </figure>
 
 <p>When we now call <code class="highlighter-rouge">add_1</code> or <code class="highlighter-rouge">add_2</code>,
 they add the value passed in and the value they’ve kept a reference to.</p>
@@ -1623,7 +1623,7 @@ to see if a function is there.</li>
 and finds the function it’s looking for.</li>
 </ul>
 
-<figure id="f:oop-inheritance"> <figcaption>Object-Oriented Inheritance</figcaption> <img src="../../files/oop-inheritance.svg"> </figure>
+<figure id="f:oop-inheritance"> <img src="../../files/oop-inheritance.svg"> <figcaption>Object-Oriented Inheritance</figcaption> </figure>
 
 <h2 id="s:oop-protocols">Protocols</h2>
 
@@ -3356,7 +3356,7 @@ pages can be compiled once, stored on disk, and served thereafter,
 or each page can be recompiled whenever it’s needed
 (which makes it easy to include dynamic elements like today’s top news story):</p>
 
-<figure id="f:dynamic-alternatives"> <figcaption>Page Generation Alternatives</figcaption> <img src="../../files/dynamic-alternatives.svg"> </figure>
+<figure id="f:dynamic-alternatives"> <img src="../../files/dynamic-alternatives.svg"> <figcaption>Page Generation Alternatives</figcaption> </figure>
 
 <p>As browsers and JavaScript became more powerful,
 the balance shifted toward <a href="#g:client-page-gen">client-side page generation</a>.
@@ -3999,7 +3999,7 @@ we need to add two more fields to the spec:</p>
 we see a bar chart,
 and feel very proud of ourselves.</p>
 
-<figure id="f:vis-mark-encoding"> <figcaption>Mark and Encoding</figcaption> <img src="../../files/vis-mark-encoding.png"> </figure>
+<figure id="f:vis-mark-encoding"> <img src="../../files/vis-mark-encoding.png"> <figcaption>Mark and Encoding</figcaption> </figure>
 
 <p>There are also some poorly-styled links for various controls that we’re not going to use.
 We can fill in the options argument to <code class="highlighter-rouge">vegaEmbed</code> to turn those off:</p>
@@ -4023,7 +4023,7 @@ We can fill in the options argument to <code class="highlighter-rouge">vegaEmbed
 
 <p>We now have the visualization we wanted:</p>
 
-<figure id="f:vis-disable-controls"> <figcaption>Without Controls</figcaption> <img src="../../files/vis-disable-controls.png"> </figure>
+<figure id="f:vis-disable-controls"> <img src="../../files/vis-disable-controls.png"> <figcaption>Without Controls</figcaption> </figure>
 
 <p>Vega-Lite has a <em>lot</em> of options:
 for example,
@@ -4064,7 +4064,7 @@ which is set to <code class="highlighter-rouge">"average"</code>
     vegaEmbed("#vis", spec, options)
 </code></pre></div></div>
 
-<figure id="f:vis-aggregate-points"> <figcaption>Aggregating and Using Points</figcaption> <img src="../../files/vis-aggregate-points.png"> </figure>
+<figure id="f:vis-aggregate-points"> <img src="../../files/vis-aggregate-points.png"> <figcaption>Aggregating and Using Points</figcaption> </figure>
 
 <h2 id="s:vis-vega-local">Local Installation</h2>
 
@@ -4326,7 +4326,7 @@ inside timer handler for 500
 
 <p>Here’s what the run queue looks like just before the program prints <code class="highlighter-rouge">...finishing</code>:</p>
 
-<figure id="f:promises-queue"> <figcaption>Run Queue</figcaption> <img src="../../files/promises-queue.svg"> </figure>
+<figure id="f:promises-queue"> <img src="../../files/promises-queue.svg"> <figcaption>Run Queue</figcaption> </figure>
 
 <p>We can use <code class="highlighter-rouge">setTimeout</code> to build a generic non-blocking function:</p>
 
@@ -4456,7 +4456,7 @@ successful completion/exception and won’t need to refer to them again later.)
 What makes this all work is that a promise is an object.
 Here’s what’s in memory just after this promise has been created:</p>
 
-<figure id="f:promises-object-a"> <figcaption>Promises as Objects (after creation)</figcaption> <img src="../../files/promises-object-a.svg"> </figure>
+<figure id="f:promises-object-a"> <img src="../../files/promises-object-a.svg"> <figcaption>Promises as Objects (after creation)</figcaption> </figure>
 
 <p>There are a lot of arrows in this diagram,
 but they all serve a purpose:</p>
@@ -4477,7 +4477,7 @@ This happens <em>before</em> the callback passed to the constructor
 (i.e., the initial action) is executed,
 and leaves the promise in this state:</p>
 
-<figure id="f:promises-object-b"> <figcaption>Promises as Objects (after then and catch)</figcaption> <img src="../../files/promises-object-b.svg"> </figure>
+<figure id="f:promises-object-b"> <img src="../../files/promises-object-b.svg"> <figcaption>Promises as Objects (after then and catch)</figcaption> </figure>
 
 <p>Calling <code class="highlighter-rouge">then</code> and <code class="highlighter-rouge">catch</code> assigns callbacks to the success action and error action members of the promise object.
 Those methods are then passed into the initial action callback as <code class="highlighter-rouge">resolve</code> and <code class="highlighter-rouge">reject</code>,
@@ -5341,7 +5341,7 @@ using those elements:</p>
 <span class="p">}</span>
 </code></pre></div></div>
 
-<figure id="f:interactive-objects-dom"> <figcaption>React Objects and the DOM</figcaption> <img src="../../files/interactive-objects-dom.svg"> </figure>
+<figure id="f:interactive-objects-dom"> <img src="../../files/interactive-objects-dom.svg"> <figcaption>React Objects and the DOM</figcaption> </figure>
 
 <p>We must import the dependencies as we did with the other components.
 As well as <code class="highlighter-rouge">React</code> and <code class="highlighter-rouge">ReactDOM</code>,
@@ -5493,7 +5493,7 @@ that we can then pass in:</p>
 
 <p>and run it:</p>
 
-<figure id="f:interactive-asteroids-screenshot"> <figcaption>Asteroids Application</figcaption> <img src="../../files/interactive-asteroids-screenshot.png"> </figure>
+<figure id="f:interactive-asteroids-screenshot"> <img src="../../files/interactive-asteroids-screenshot.png"> <figcaption>Asteroids Application</figcaption> </figure>
 
 <p>The next step is to handle date submission.
 Since we’re trying to instill good practices,
@@ -6144,7 +6144,7 @@ The diagram below shows this cycle in action for a page that includes one image:
   <li>The connection is closed.</li>
 </ol>
 
-<figure id="f:server-cycle"> <figcaption>HTTP Request/Response Cycle</figcaption> <img src="../../files/server-cycle.svg"> </figure>
+<figure id="f:server-cycle"> <img src="../../files/server-cycle.svg"> <figcaption>HTTP Request/Response Cycle</figcaption> </figure>
 
 <p>This cycle might be repeated many times to display a single web page,
 since a separate request has to be made for every image,
@@ -6181,7 +6181,7 @@ If a body is present,
 the request must contain the <code class="highlighter-rouge">Content-Length</code> header
 so that the server knows how much data to read.</p>
 
-<figure id="f:server-request"> <figcaption>Structure of an HTTP Request</figcaption> <img src="../../files/server-request.svg"> </figure>
+<figure id="f:server-request"> <img src="../../files/server-request.svg"> <figcaption>Structure of an HTTP Request</figcaption> </figure>
 
 <p>The headers and body in an HTTP response have the same form, and mean the same thing.
 Crucially,
@@ -7479,7 +7479,7 @@ Server running at http://localhost:4000
 
 <p>We then open <code class="highlighter-rouge">http://localhost:4000</code> in our browser and see this:</p>
 
-<figure id="f:capstone-first-attempt"> <figcaption>First Attempt at Viewing Capstone Project</figcaption> <img src="../../files/capstone-first-attempt.png"> </figure>
+<figure id="f:capstone-first-attempt"> <img src="../../files/capstone-first-attempt.png"> <figcaption>First Attempt at Viewing Capstone Project</figcaption> </figure>
 
 <p>That’s unexpected: we should see the initial data displayed.
 If we open the console in the browser and reload the page,
@@ -7528,14 +7528,14 @@ Let’s run that:</p>
 
 <p>and then re-launch our application:</p>
 
-<figure id="f:capstone-second-attempt"> <figcaption>Second Attempt at Viewing Capstone Project</figcaption> <img src="../../files/capstone-second-attempt.png"> </figure>
+<figure id="f:capstone-second-attempt"> <img src="../../files/capstone-second-attempt.png"> <figcaption>Second Attempt at Viewing Capstone Project</figcaption> </figure>
 
 <p>Much better!
 Now we can type some dates into the “start” and “end” boxes and,
 after we press “update”,
 we get a chart and table of the aggregated statistics for the year range given:</p>
 
-<figure id="f:capstone-complete"> <figcaption>Completed Capstone Project</figcaption> <img src="../../files/capstone-complete.png"> </figure>
+<figure id="f:capstone-complete"> <img src="../../files/capstone-complete.png"> <figcaption>Completed Capstone Project</figcaption> </figure>
 
 <p>We’ve built an interface,
 used it to submit queries that are then handled by a server,
@@ -7935,7 +7935,10 @@ use <code class="highlighter-rouge">// ...comment...</code> (i.e., a double-slas
 please edit the XML file in <code class="highlighter-rouge">./files/</code> corresponding to the chapter
 using <a href="https://www.draw.io/">draw.io</a>,
 then select the drawing and export as SVG with a 4-pixel boundary and transparency turned on,
-but <em>without</em> including the diagram source in the exported SVG.</p>
+but <em>without</em> including the diagram source in the exported SVG.
+You will also have to export as PDF:
+we have tried automating the SVG-to-PDF conversion with various tools,
+but the results have been unsatisfying.</p>
   </li>
   <li>
     <p>The <a href="https://jekyllrb.com/">Jekyll</a> template used in this tutorial can support multiple languages.
@@ -9011,7 +9014,7 @@ then create a function <code class="highlighter-rouge">Cone</code> that creates 
 <div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>initial flavor "mustard" and size "large"
 </code></pre></div></div>
 
-<figure id="f:legacy-prototype"> <figcaption>Prototypes</figcaption> <img src="../../files/legacy-prototype.svg"> </figure>
+<figure id="f:legacy-prototype"> <img src="../../files/legacy-prototype.svg"> <figcaption>Prototypes</figcaption> </figure>
 
 <p>If we change the <code class="highlighter-rouge">size</code> of our dessert,
 lookup finds the object’s property before looking up the chain to find the parent object’s:</p>

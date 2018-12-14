@@ -44,7 +44,7 @@ The diagram below shows this cycle in action for a page that includes one image:
 7.  The server replies with a blob of text and the contents of the image file.
 8.  The connection is closed.
 
-<figure id="f:server-cycle"> <figcaption>HTTP Request/Response Cycle</figcaption> <img src="../../files/server-cycle.svg" /> </figure>
+<figure id="f:server-cycle"> <img src="../../files/server-cycle.svg" /> <figcaption>HTTP Request/Response Cycle</figcaption> </figure>
 
 This cycle might be repeated many times to display a single web page,
 since a separate request has to be made for every image,
@@ -77,7 +77,7 @@ If a body is present,
 the request must contain the `Content-Length` header
 so that the server knows how much data to read.
 
-<figure id="f:server-request"> <figcaption>Structure of an HTTP Request</figcaption> <img src="../../files/server-request.svg" /> </figure>
+<figure id="f:server-request"> <img src="../../files/server-request.svg" /> <figcaption>Structure of an HTTP Request</figcaption> </figure>
 
 The headers and body in an HTTP response have the same form, and mean the same thing.
 Crucially,

@@ -542,7 +542,7 @@ Server running at http://localhost:4000
 
 We then open `http://localhost:4000` in our browser and see this:
 
-<figure id="f:capstone-first-attempt"> <figcaption>First Attempt at Viewing Capstone Project</figcaption> <img src="../../files/capstone-first-attempt.png" /> </figure>
+<figure id="f:capstone-first-attempt"> <img src="../../files/capstone-first-attempt.png" /> <figcaption>First Attempt at Viewing Capstone Project</figcaption> </figure>
 
 That's unexpected: we should see the initial data displayed.
 If we open the console in the browser and reload the page,
@@ -595,14 +595,14 @@ node src/capstone/back/driver-1.js src/capstone/back/test-data.csv
 
 and then re-launch our application:
 
-<figure id="f:capstone-second-attempt"> <figcaption>Second Attempt at Viewing Capstone Project</figcaption> <img src="../../files/capstone-second-attempt.png" /> </figure>
+<figure id="f:capstone-second-attempt"> <img src="../../files/capstone-second-attempt.png" /> <figcaption>Second Attempt at Viewing Capstone Project</figcaption> </figure>
 
 Much better!
 Now we can type some dates into the "start" and "end" boxes and,
 after we press "update",
 we get a chart and table of the aggregated statistics for the year range given:
 
-<figure id="f:capstone-complete"> <figcaption>Completed Capstone Project</figcaption> <img src="../../files/capstone-complete.png" /> </figure>
+<figure id="f:capstone-complete"> <img src="../../files/capstone-complete.png" /> <figcaption>Completed Capstone Project</figcaption> </figure>
 
 We've built an interface,
 used it to submit queries that are then handled by a server,

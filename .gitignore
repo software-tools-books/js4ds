@@ -10,7 +10,6 @@
 __pycache__
 _site
 dist
-files/*.pdf
 node_modules
 package-lock.json
 tex/*/*.pdf

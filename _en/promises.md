@@ -125,7 +125,7 @@ inside timer handler for 500
 
 Here's what the run queue looks like just before the program prints `...finishing`:
 
-<figure id="f:promises-queue"> <figcaption>Run Queue</figcaption> <img src="../../files/promises-queue.svg" /> </figure>
+<figure id="f:promises-queue"> <img src="../../files/promises-queue.svg" /> <figcaption>Run Queue</figcaption> </figure>
 
 We can use `setTimeout` to build a generic non-blocking function:
 
@@ -269,7 +269,7 @@ successful completion/exception and won't need to refer to them again later.)
 What makes this all work is that a promise is an object.
 Here's what's in memory just after this promise has been created:
 
-<figure id="f:promises-object-a"> <figcaption>Promises as Objects (after creation)</figcaption> <img src="../../files/promises-object-a.svg" /> </figure>
+<figure id="f:promises-object-a"> <img src="../../files/promises-object-a.svg" /> <figcaption>Promises as Objects (after creation)</figcaption> </figure>
 
 There are a lot of arrows in this diagram,
 but they all serve a purpose:
@@ -288,7 +288,7 @@ This happens *before* the callback passed to the constructor
 (i.e., the initial action) is executed,
 and leaves the promise in this state:
 
-<figure id="f:promises-object-b"> <figcaption>Promises as Objects (after then and catch)</figcaption> <img src="../../files/promises-object-b.svg" /> </figure>
+<figure id="f:promises-object-b"> <img src="../../files/promises-object-b.svg" /> <figcaption>Promises as Objects (after then and catch)</figcaption> </figure>
 
 Calling `then` and `catch` assigns callbacks to the success action and error action members of the promise object.
 Those methods are then passed into the initial action callback as `resolve` and `reject`,

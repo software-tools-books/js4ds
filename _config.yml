@@ -90,3 +90,4 @@ exclude:
 - README.md
 - bin
 - node_modules
+- tex
