@@ -40,7 +40,10 @@ title: "Contributing"
   - `b:item` for bibliography references
 
 - If you need to embed a one-line LaTeX command in a Markdown file and have it passed through,
-  format it like `<!-- == \noindent -->`
+  format it thusly:
+
+      <!-- == \noindent -->
+
   (i.e., as an HTML comment with a double equals sign and then the command).
   Note that these comments will appear in the generated HTML as well.
 

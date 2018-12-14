@@ -136,9 +136,10 @@ React will only actually redraw as little as it can.
 If we try running this little application from the command line with Parcel:
 
 ```sh
-npm run dev -- src/interactive/display-counter.html
+$ npm run dev -- src/interactive/display-counter.html
 ```
 
+<!-- == \noindent -->
 everything works as planned.
 But now try taking the code out of the web page and putting it in its own file:
 
@@ -185,7 +186,7 @@ ReactDOM.render(
 Let's try running this:
 
 ```sh
-npm run dev -- src/interactive/counter/index.html
+$ npm run dev -- src/interactive/counter/index.html
 ```
 
 ```text
@@ -586,6 +587,7 @@ export {DateSubmit}
 ```
 {: title="src/interactive/asteroids/DateSubmit.js"}
 
+<!-- == \noindent -->
 and run it:
 
 <figure id="f:interactive-asteroids-screenshot"> <img src="../../files/interactive-asteroids-screenshot.png" /> <figcaption>Asteroids Application</figcaption> </figure>

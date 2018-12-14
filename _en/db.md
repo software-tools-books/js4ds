@@ -168,7 +168,7 @@ But before then,
 let's try running this:
 
 ```sh
-node database-initial.js fixture.db getAll
+$ node database-initial.js fixture.db getAll
 ```
 ```text
 { workshopId: 1,
@@ -247,7 +247,7 @@ With these changes in place,
 we can run a query to get details of the second workshop like this:
 
 ```sh
-node database-mode.js memory fixture.sql getOne 2
+$ node database-mode.js memory fixture.sql getOne 2
 ```
 ```text
 { workshopId: 2,
@@ -380,7 +380,7 @@ main()
 Let's try running it:
 
 ```sh
-node separate-driver.js file fixture.db getAll
+$ node separate-driver.js file fixture.db getAll
 ```
 ```text
   for (let r of rows) {

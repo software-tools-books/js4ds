@@ -168,6 +168,7 @@ centers the `h1` heading on the page, while:
 <p class="disclaimer">This planet provided as-is.</p>
 ```
 
+<!-- == \noindent -->
 marks this paragraph as a disclaimer.
 That doesn't mean anything special to HTML,
 but as we'll see later,
@@ -315,11 +316,16 @@ and we can use `<br/>` to force a line break in text
 ```
 {: title="src/htmlcss/links.html"}
 
-<a href="https://nodejs.org/">Node.js</a>
-<br/>
-<a href="https://facebook.github.io/react/">React</a>
-<br/>
-<a href="../index.html">home page (relative path)</a>
+This appears as:
+
+```
+Node.js
+React
+home page (relative path)
+```
+
+<!-- == \noindent -->
+with the usual clickability.
 
 ## Images {#s:htmlcss-images}
 
@@ -485,6 +491,7 @@ if we create a page that gives two spans unique IDs:
 ```
 {: title="src/htmlcss/selectors.html"}
 
+<!-- == \noindent -->
 then we can style those spans like this:
 
 ```css

@@ -261,7 +261,7 @@ vegaEmbed("#vis", spec, options)
 We launch this with Parcel via our saved `npm run` command:
 
 ```sh
-npm run dev -- src/vis/react-01/index.html
+$ npm run dev -- src/vis/react-01/index.html
 ```
 
 But nothing appears when we open `http://localhost:4000` in our browser.

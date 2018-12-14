@@ -175,9 +175,10 @@ which is *not* the range in the full dataset.
 We run this with:
 
 ```sh
-npm test -- src/capstone/back/test-server.js
+$ npm test -- src/capstone/back/test-server.js
 ```
 
+<!-- == \noindent -->
 and it passes.
 
 ## The Display {#s:capstone-display}
@@ -517,7 +518,7 @@ In one window,
 we run:
 
 ```sh
-node src/capstone/back/driver-0.js src/capstone/back/test-data.csv
+$ node src/capstone/back/driver-0.js src/capstone/back/test-data.csv
 ```
 
 Note that we *don't* use `npm run dev` to trigger Parcel:
@@ -527,9 +528,10 @@ In our other window,
 we run:
 
 ```sh
-npm run dev src/capstone/front/index.html
+$ npm run dev src/capstone/front/index.html
 ```
 
+<!-- == \noindent -->
 which displays:
 
 ```text
@@ -590,7 +592,7 @@ we need to create a copy of the driver called `driver-1.js` that invokes it.
 Let's run that:
 
 ```sh
-node src/capstone/back/driver-1.js src/capstone/back/test-data.csv
+$ node src/capstone/back/driver-1.js src/capstone/back/test-data.csv
 ```
 
 and then re-launch our application:

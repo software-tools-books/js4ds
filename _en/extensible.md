@@ -59,6 +59,7 @@ If we run the server:
 node src/extensible/dynamic.js
 ```
 
+<!-- == \noindent -->
 and then go to `http://localhost:4000/plugin.js`,
 we get back a page containing the title "Plugin Content".
 

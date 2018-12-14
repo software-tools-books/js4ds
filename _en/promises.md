@@ -322,6 +322,7 @@ catch (err) {
 ```
 {: title="src/promises/try-catch.js"}
 
+<!-- == \noindent -->
 then the error message won't appear
 because the call to `fetch` doesn't raise an exception right away.
 
@@ -345,6 +346,7 @@ console.log(total_size)
 ```
 {: title="src/promises/promise-loop.js"}
 
+<!-- == \noindent -->
 but this doesn't work:
 the `stat` in each iteration is executed asynchronously,
 so the loop finishes and the script prints a total size of zero
@@ -369,6 +371,7 @@ new Promise((resolve, reject) => {
 ```
 {: title="src/promises/promise-nest.js"}
 
+<!-- == \noindent -->
 but this obviously doesn't handle an arbitrary number of files,
 since we have to write one level of nesting for each file.
 It's also potentially inefficient,
@@ -640,6 +643,7 @@ This code runs fine:
 })
 ```
 
+<!-- == \noindent -->
 but this code fails:
 
 ```js
