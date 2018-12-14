@@ -6,8 +6,8 @@ redirect_from: "/"
 
 We were going to call this book *JavaScript for Scientists and Engineers*,
 but [David Beazley][beazley] thought that "versus" would make a better title.
-That one-word change sums up how many people view the language,
-but we hope we can convince you that modern JavaScript is usable as well as useful.
+While that one-word change sums up how many people view the language,
+we hope we can convince you that modern JavaScript is usable as well as useful.
 We changed the second half of the title because hey, data science.
 We also hope that these lessons will help librarians,
 digital humanists,
