@@ -96,7 +96,7 @@ We can run our tests from the shell by invoking `mocha`
 and giving it the path to the file that contains the tests:
 
 ```sh
-./node_modules/.bin/mocha path/to/test.js
+$ ./node_modules/.bin/mocha path/to/test.js
 ```
 ```text
   first test
@@ -123,10 +123,11 @@ After we add this:
 ```
 {: title="package.json"}
 
+<!-- == \noindent -->
 to `package.json`, our command becomes:
 
 ```sh
-npm test -- path/to/test.js
+$ npm test -- path/to/test.js
 ```
 
 (Again, everything after `--` is passed to the script itself.)
@@ -175,7 +176,7 @@ Before going any further,
 we can check that we haven't broken anything by running:
 
 ```sh
-node standalone.js
+$ node standalone.js
 ```
 
 ## Testing the Server {#s:testing-server}

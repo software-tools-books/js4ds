@@ -107,6 +107,7 @@ This one:
 http://example.org:1234/some/path?value=deferred&limit=200
 ```
 
+<!-- == \noindent -->
 has five parts:
 
 - The protocol `http`, which specifies what rules are going to be used to exchange data.
@@ -190,7 +191,7 @@ while the callback tells it to print a message as it starts running.
 When we run this, we see:
 
 ```sh
-node static-page.js
+$ node static-page.js
 ```
 ```text
 listening...
@@ -303,9 +304,10 @@ If a sub-directory called `web-dir` holds a file called `title.html`,
 and we run the server as:
 
 ```sh
-node serve-pages.js ./web-dir
+$ node serve-pages.js ./web-dir
 ```
 
+<!-- == \noindent -->
 we can then ask for `http://localhost:3418/title.html`
 and get the content of `web-dir/title.html`.
 Notice that the directory `./web-dir` doesn't appear in the URL:

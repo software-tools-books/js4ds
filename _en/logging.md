@@ -63,7 +63,7 @@ app.use((req, res, next) => {
     } else {
       winston.debug(`Serving "${actual}"`)
       fs.readFile(actual, 'utf-8', (err, data) => {
-	res.status(200).send(data)
+        res.status(200).send(data)
       })
     }
   })
@@ -82,7 +82,7 @@ If we run it with the `'info'` level,
 the startup message and the 404 error messages appear,
 and if we run it with the level `'error'` only the latter appear.
 
-```shell
+```sh
 $ node src/logging/logging-server.js src/logging/web-dir/ info
 ```
 ```text

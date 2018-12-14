@@ -45,6 +45,7 @@ const square = {
 ```
 {: title="src/oop/clumsy-objects.js"}
 
+<!-- == \noindent -->
 and then pass the object itself into each of its own functions:
 
 ```js
@@ -71,6 +72,7 @@ const circle = {
 ```
 {: title="src/oop/clumsy-objects.js"}
 
+<!-- == \noindent -->
 and then put all of these different objects in an array
 and operate on them in the same way
 without knowing precisely what kind of object we're dealing with:
@@ -141,6 +143,7 @@ class Square {
 ```
 {: title="src/oop/es6-objects.js"}
 
+<!-- == \noindent -->
 (Class names are written in CamelCase by convention.)
 We can then create a specific square by using the class's name as if it were a function:
 
@@ -525,6 +528,7 @@ class Active {
 ```
 {: title="ex/oop/observe.js"}
 
+<!-- == \noindent -->
 and this program that uses it:
 
 ```js

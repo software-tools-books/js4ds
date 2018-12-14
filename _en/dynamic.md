@@ -319,14 +319,14 @@ which is younger and therefore not yet bloated
 To install Parcel, run:
 
 ```sh
-npm install parcel-bundler
+$ npm install parcel-bundler
 ```
 
 Once it's in place,
 we can tell it to run one of our test pages like this:
 
 ```sh
-node_modules/.bin/parcel serve -p 4000 src/dynamic/pass-parameters.html
+$ node_modules/.bin/parcel serve -p 4000 src/dynamic/pass-parameters.html
 ```
 ```text
 Server running at http://localhost:4000

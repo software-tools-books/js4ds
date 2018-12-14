@@ -140,12 +140,12 @@ fs.writeFileSync(outputFile, header + '\n' + sample.join('\n'))
 We run this on the command line:
 
 ```sh
-node select-random.js ../surveys.csv 10 slice.csv
+$ node select-random.js ../surveys.csv 10 slice.csv
 ```
 
 and get this:
 
-```sh
+```text
 record_id,month,day,year,plot_id,species_id,sex,hindfoot_length,weight
 18501,3,14,1991,13,OT,M,21,28
 2283,1,15,1980,11,OL,M,21,23
@@ -182,7 +182,7 @@ We will use [PapaParse][papaparse] to parse our CSV,
 so our first step is to install it:
 
 ```sh
-npm install papaparse
+$ npm install papaparse
 ```
 
 After loading the library and reading our test data file a couple of times,
@@ -255,6 +255,7 @@ The output of `papa.parse` looks like this:
         'weight' ] } }
 ```
 
+<!-- == \noindent -->
 so using `papa.parse(raw, options).data` gets the data we want as JSON.
 Let's write a method to get some overall statistics:
 
@@ -387,6 +388,7 @@ Modify `getSurveyRange` so that it can be called like this:
 getSurveyRange(minYear, maxYear, 'hindfoot_length', 'weight')
 ```
 
+<!-- == \noindent -->
 i.e., so that the names of the fields whose minimum, average, and maximum values are wanted
 can be passed as strings,
 and the method will automatically create the right names and values in its result.

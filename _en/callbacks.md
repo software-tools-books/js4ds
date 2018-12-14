@@ -286,6 +286,7 @@ const impure = (values) => {
 ```
 {: title="src/callbacks/impure.js"}
 
+<!-- == \noindent -->
 and would politely, even patiently, suggest that it be rewritten like this:
 
 ```js
@@ -328,7 +329,7 @@ console.log('those longer than 3:', data.filter((x) => { return x.length > 3 }))
 those longer than 3: [ 'this', 'test' ]
 ```
 
-- So do all of the elements with more than 3 characters start with a 't'?
+So do all of the elements with more than 3 characters start with a 't'?
 
 ```js
 const data = ['this', 'is', 'a', 'test']
@@ -546,6 +547,7 @@ data = [
 ]
 ```
 
+<!-- == \noindent -->
 write a function that returns a new array of objects like this:
 
 ```js

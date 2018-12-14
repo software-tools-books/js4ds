@@ -234,6 +234,7 @@ this becomes:
 })()
 ```
 
+<!-- == \noindent -->
 which is a lot of parentheses in a row,
 but that's what people write.
 
@@ -307,6 +308,7 @@ so that if the author writes:
 </ul>
 ```
 
+<!-- == \noindent -->
 we will automatically rearrange the items to be:
 
 ```html
@@ -348,6 +350,7 @@ Our first attempt uses this as the HTML page:
 </html>
 ```
 
+<!-- == \noindent -->
 and this as the script:
 
 ```js
@@ -389,6 +392,7 @@ we go back to this:
 </html>
 ```
 
+<!-- == \noindent -->
 and write our JavaScript like this:
 
 ```js
@@ -485,6 +489,7 @@ we'd like to find links like this:
 <a href="#b">key1, key2</a>
 ```
 
+<!-- == \noindent -->
 and turn them into this:
 
 ```html
@@ -522,6 +527,7 @@ Here's our test page:
 ```
 {: title="src/pages/citations.html"}
 
+<!-- == \noindent -->
 and here's our function
 (which we'll call from an event listener as before):
 
@@ -573,6 +579,7 @@ One option would be to create a two-element array for each:
     .map(link => [link, link.textContent.whatever])
 ```
 
+<!-- == \noindent -->
 but it's more readable to create an object so that each component has a name:
 
 ```js
