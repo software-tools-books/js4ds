@@ -534,7 +534,7 @@ for (let line of table) {
   console.log(line)
 }
 ```
-{: title="ex/basics/table-of-squares.js"}
+{: title="src/basics/table-of-squares.js"}
 ```text
 square of 4 is 16
 square of 3 is 9
@@ -572,7 +572,7 @@ for (let d of second) {
 }
 console.log(total)
 ```
-{: title="ex/basics/aggregating.js"}
+{: title="src/basics/aggregating.js"}
 
 ### What Does This Do?
 
@@ -584,7 +584,7 @@ const species = 'Jacchus'
 const creature = {genus, species}
 console.log(creature)
 ```
-{: title="ex/basics/implied.js"}
+{: title="src/basics/implied.js"}
 ```text
 { genus: 'Callithrix', species: 'Jacchus' }
 ```
@@ -604,7 +604,7 @@ const {genus, species} = creature
 console.log(`genus is ${genus}`)
 console.log(`species is ${species}`)
 ```
-{: title="ex/basics/destructuring.js"}
+{: title="src/basics/destructuring.js"}
 
 ### Return To Me, For My Heart Wants You Only
 

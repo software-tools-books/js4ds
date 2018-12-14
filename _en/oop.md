@@ -526,7 +526,7 @@ class Active {
   }
 }
 ```
-{: title="ex/oop/observe.js"}
+{: title="src/oop/observe.js"}
 
 <!-- == \noindent -->
 and this program that uses it:
@@ -543,7 +543,7 @@ right.subscribe(final)
 
 start.update(123)
 ```
-{: title="ex/oop/observe.js"}
+{: title="src/oop/observe.js"}
 
 1. Trace what happens when the last line of the program is called.
 2. Modify `Active` so that it calls `transform` *if* that function was provided,
