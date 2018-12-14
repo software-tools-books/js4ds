@@ -7973,684 +7973,504 @@ please <a href="mailto:gvwilson@third-bit.com">email us</a>.</p>
 
 
       
-      <p><strong id="g:absolute-path">absolute path</strong>:
-a path that points to the same location in the filesystem regardless of where it’s evaluated.
-An absolute path is the equivalent of latitude and longitude in geography.
-See also <a href="#g:relative-path">relative path</a>.</p>
-
-<p><strong id="g:aggregation-function">aggregation function</strong>:
-a function that combines many values into one,
-such as <code class="highlighter-rouge">sum</code> or <code class="highlighter-rouge">max</code>.</p>
-
-<p><strong id="g:anonymous-function">anonymous function</strong>:
-a function that is defined without giving it a name,
-such as a callback defined where it is used.
-Anonymous functions are sometimes called <em>lambda functions</em>
-because the Greek letter lambda is used for them in mathematics.</p>
-
-<p><strong id="g:argument">argument</strong>:
-see <a href="#g:parameter">parameter</a>.</p>
-
-<p><strong id="g:array">array</strong>:
-a collection of values stored in a particular order and indexed numerically.
-Arrays are written as comma-separated values in square brackets,
-such as <code class="highlighter-rouge">['a', 'b', 'c']</code>.
-The term <a href="#g:list">list</a> is often used synonymously.</p>
-
-<p><strong id="g:ascii">ASCII</strong>:
-a widely-used set of numeric codes for representing characters from the Latin alphabet
-and common punctuation symbols,
-now superseded by <a href="#g:unicode">Unicode</a>.</p>
-
-<p><strong id="g:assertion">assertion</strong>:
-a statement that something is true at a certain point in a program.
-Assertions are often used to define tests,
-but are also used in <a href="#g:production-code">production code</a>
-to check that software is behaving as it should.</p>
-
-<p><strong id="g:attribute">attribute</strong>:
-a named property attached to an HTML <a href="#g:element">element</a>.</p>
-
-<p><strong id="g:backward-compatible">backward-compatible</strong>:
-able to work consistently with older systems.</p>
-
-<p><strong id="g:http-body">body</strong> (of an HTTP message):
-any optional data sent after the message’s headers.</p>
-
-<p><strong id="g:bundler">bundler</strong>:
-a tool that combines JavaScript files, web pages, images, and other assets
-into a single bundle for deployment.</p>
-
-<p><strong id="g:cache">cache</strong>:
-a place where copies of recently-used values are stored for quicker access.</p>
-
-<p><strong id="g:call-stack">call stack</strong>:
-a data structure that stores information about function calls that are currently in progress.
-Each function call adds another table of variable-value pairs to the top of the stack;
-when the function completes,
-that table is discarded.
-See also <a href="#g:closure">closure</a>.</p>
-
-<p><strong id="g:callback-function">callback function</strong>:
-a function A that is passed to another function B
-for B to call at a later time.
-Callback functions are used to implement delayed actions,
-such as what to do when data arrives in response to a network request.</p>
-
-<p><strong id="g:css">Cascading Style Sheets</strong> (CSS):
-a way to describe how HTML should be rendered.</p>
-
-<p><strong id="g:catch">catch</strong>:
-to take responsibility for handling an <a href="#g:exception">exception</a>.
-Catch is the counterpart of <a href="#g:throw">throw</a>.</p>
-
-<p><strong id="g:character-encoding">character encoding</strong>:
-a specification of how characters are stored as bytes.
-The most commonly-used encoding today is <a href="#g:utf-8">UTF-8</a>.</p>
-
-<p><strong id="g:child-class">child class</strong>:
-a new <a href="#g:class">class</a> that <a href="#g:extend">extends</a> an existing class
-(called the <a href="#g:parent-class">parent class</a>).</p>
-
-<p><strong id="g:child-node">child node</strong>:
-a <a href="#g:node">node</a> in a <a href="#g:tree">tree</a> that is below some other node
-(which is called the child node’s <a href="#g:parent-node">parent</a>).</p>
-
-<p><strong id="g:class">class</strong>:
-a programming structure that defines
-the properties and behavior of a family of related <a href="#g:object">objects</a>.
-Classes can <a href="#g:inherit">inherit</a> from other classes
-to specify or change behavior incrementally.</p>
-
-<p><strong id="g:client">client</strong>:
-a program such as a browser that sends requests to a <a href="#g:server">server</a>
-and does something with the response.
-It is sometimes helpful to think of clients as sorcerors
-petitioning ancient gods for favors.
-Sometimes.</p>
-
-<p><strong id="g:client-page-gen">client-side page generation</strong>:
-to create an HTML page within a <a href="#g:client">client</a>
-using data provided by a <a href="#g:server">server</a>.
-See also <a href="#g:server-page-gen">server-side page generation</a>.</p>
-
-<p><strong id="g:closure">closure</strong>:
-a set of variables defined in the same <a href="#g:scope">scope</a>
-whose existence has been preserved after that scope has ended.
-Closures are one of the trickiest ideas in programming.</p>
-
-<p><strong id="g:csv">Comma-Separated Values</strong> (CSV):
-a text format for tabular data in which each record is one row
-and fields are separated by commas.
-There are many minor variations, particularly around quoting of strings.</p>
-
-<p><strong id="g:connection-manager">connection manager</strong>:
-an object that maintains a connection to a database.
-When the code is finished working with the database, the connection manager
-ensures that the connection is closed gracefully, which helps to avoid
-the corruption of data.</p>
-
-<p><strong id="g:cdn">Content Delivery Network</strong> (CDN):
-a geographically distributed set of servers
-that store commonly-used or recently-used data such as web pages
-so that they can be served more quickly.</p>
-
-<p><strong id="g:constant">constant</strong>:
-a variable whose value cannot be changed.
-Note that the value itself might be changed:
-for example,
-after the statement <code class="highlighter-rouge">const v = ['a', 'b']</code>,
-the name <code class="highlighter-rouge">v</code> will always refer to the same array,
-but the array’s contents can be changed.</p>
-
-<p><strong id="g:cors">Cross-Origin Resource Sharing</strong> (CORS):
-a way to control requests made for data and other resources
-that aren’t served by the site that gave the browser the original page.</p>
-
-<p><strong id="g:declarative">declarative programming</strong>:
-a style of programming in which the user specifies what they want,
-and the computer figures out how to deliver it.</p>
-
-<p><strong id="g:destructuring">destructuring</strong>:
-a form of assignment that unpacks a data structure in one step,
-such as <code class="highlighter-rouge">[a, b] = [1, 2]</code> or
-<code class="highlighter-rouge">{left, right} = {left: 1, right: 2}</code>.</p>
-
-<p><strong id="g:dns">Domain Name System</strong> (DNS):
-a decentralized naming system for computers
-that translates logical names such as <code class="highlighter-rouge">third-bit.com</code>
-into the addresses of particular computers.</p>
-
-<p><strong id="g:document">document</strong>:
-an entire HTML page.</p>
-
-<p><strong id="g:dom">Document Object Model</strong> (DOM):
-a standard way to represent HTML in memory.
-The <a href="#g:element">elements</a> and <a href="#g:attribute">attributes</a> of the page,
-along with its text,
-are stored as <a href="#g:node">nodes</a> organized in a tree.</p>
-
-<p><strong id="g:dotted-notation">dotted notation</strong>:
-a common way to refer to the parts of structures in programming languages.
-<code class="highlighter-rouge">whole.part</code> means “the thing called <code class="highlighter-rouge">part</code> belonging to <code class="highlighter-rouge">whole</code>”.</p>
-
-<p><strong id="g:driver">driver</strong>:
-a program that provides a standard interface through which to communicate with
-another piece of hardware or software.
-Every graphics card has a driver that translates generic drawing commands into card-specific operations;
-every database comes with drivers that (theoretically) allow other programs to talk to them all in the same way.</p>
-
-<p><strong id="g:element">element</strong>:
-an individual component of a web page.
-In HTML, elements are enclosed in matching <code class="highlighter-rouge">&lt;tag&gt;</code> and <code class="highlighter-rouge">&lt;/tag&gt;</code> pairs,
-or written as <code class="highlighter-rouge">&lt;tag/&gt;</code> if they contain no content.
-Elements are represented as <a href="#g:node">nodes</a> in the <a href="#g:dom">DOM</a>.</p>
-
-<p><strong id="g:entry-point">entry point</strong>:
-a function with a known name and <a href="#g:signature">signature</a>
-that a framework requires every plugin or other dynamically-loaded content to have.
-The entry point is (as the name suggests) how the framework gets into the plugin.</p>
-
-<p><strong id="g:escape-sequence">escape sequence</strong>:
-a sequence of characters used to represent some other character
-that would otherwise have a special meaning.
-For example, the escape sequence <code class="highlighter-rouge">\"</code> is used to represent a double-quote character
-inside a double-quoted string.</p>
-
-<p><strong id="g:event-handler">event handler</strong>:
-a <a href="#g:callback-function">callback function</a> that does something
-in response to a particular interaction with a browser,
-such as a key being pressed or a link being clicked.</p>
-
-<p><strong id="g:event-listener">event listener</strong>:
-see <a href="#g:event-handler">event handler</a>.</p>
-
-<p><strong id="g:event-loop">event loop</strong>:
-the fundamental processing cycle in JavaScript
-that takes the next task from a list and runs it,
-possibly adding more tasks to the list as it does so.</p>
-
-<p><strong id="g:event-object">event object</strong>:
-an <a href="#g:object">object</a> that the system passes to an <a href="#g:event-handler">event handler</a>
-that contains information about the event,
-such as which key was pressed.</p>
-
-<p><strong id="g:exception">exception</strong>:
-an object that stores information about an error
-or other unusual event in a program.
-One part of a program will create and <a href="#g:throw">throw</a> an exception
-to signal that something unexpected has happened;
-another part will <a href="#g:catch">catch</a> it.</p>
-
-<p><strong id="g:extend">extend</strong>:
-to create a new class from an existing class.
-We say that the new class <a href="#g:inherit">inherits</a> from the old one.</p>
-
-<p><strong id="g:falsy">falsy</strong>:
-a horrible neologism meaning “equivalent to false”.
-See also the equally horrible <a href="#g:truthy">truthy</a>.</p>
-
-<p><strong id="g:fat-arrow">fat arrow function</strong>:
-a JavaScript function defined using the syntax <code class="highlighter-rouge">(...parameters...) =&gt; {...body...}</code>.
-Fat arrow functions treat the special value <code class="highlighter-rouge">this</code> in a less inconsistent way
-than their older equivalents.</p>
-
-<p><strong id="g:field">field</strong>:
-a named part of a <a href="#g:record">record</a> in a <a href="#g:relational-database">relational database</a>.
-Fields are typically shown as columns in a <a href="#g:table">table</a>.</p>
-
-<p><strong id="g:fixture">fixture</strong>:
-the data on which a <a href="#g:unit-test">unit test</a> is run.</p>
-
-<p><strong id="g:functional-programming">functional programming</strong>:
-a style of programming in which data is transformed through successive application of functions,
-rather than by using control structures such as loops.
-Functional programming in JavaScript relies heavily on <a href="#g:callback-function">callbacks</a>
-and <a href="#g:higher-order-function">higher-order functions</a>.</p>
-
-<p><strong id="g:global-installation">global installation</strong>:
-a JavaScript library placed in a location where it can be accessed by all users and projects.
-See also <a href="#g:local-installation">local installation</a>.</p>
-
-<p><strong id="g:global-variable">global variable</strong>:
-a variable defined outside any particular function,
-which is therefore visible to all functions.
-See also <a href="#g:local-variable">local variable</a>.</p>
-
-<p><strong id="g:header-row">header row</strong>:
-if present,
-the first of a <a href="#g:csv">CSV</a> file that defines column names
-(but tragically, not their data types or units).</p>
-
-<p><strong id="g:heterogeneous">heterogeneous</strong>:
-having mixed type.
-For example,
-an <a href="#g:array">array</a> is said to be heterogeneous
-if it contains a mix of numbers, character strings, and values of other types.
-See also <a href="#g:homogeneous">homogeneous</a>.</p>
-
-<p><strong id="g:higher-order-function">higher-order function</strong>:
-a function that operates on other functions.
-For example, the higher-order function <code class="highlighter-rouge">forEach</code> executes a given function once
-on each value in an <a href="#g:array">array</a>.
-Higher-order functions are heavily used in <a href="#g:functional-programming">functional programming</a>.</p>
-
-<p><strong id="g:homogeneous">homogeneous</strong>:
-having a single type.
-For example,
-an <a href="#g:array">array</a> is said to be homogeneous
-if it contains only numbers or only character strings,
-but not a mix of the two.</p>
-
-<p><strong id="g:hostname">hostname</strong>:
-the part of a URL that specifies the computer to talk to.
-In <code class="highlighter-rouge">http://example.com/something/</code>, the hostname is <code class="highlighter-rouge">example.com</code>;
-in <code class="highlighter-rouge">http://localhost:1234/</code>, it is <code class="highlighter-rouge">localhost</code>.</p>
-
-<p><strong id="g:http">HTTP</strong>:
-the HyperText Transfer Protocol used to exchange information between browsers and websites,
-and more generally between other <a href="#g:client">clients</a> and <a href="#g:server">servers</a>.
-HTTP is a <a href="#g:stateless">stateless</a> protocol
-in which communication consists of <a href="#g:http-request">requests</a> and <a href="#g:http-response">responses</a>.</p>
-
-<p><strong id="g:http-header">HTTP header</strong>:
-a name-value pair at the start of an HTTP <a href="#g:http-request">request</a> or <a href="#g:http-response">response</a>.
-Headers are used to specify what data formats the sender can handle,
-the date and time the message was sent,
-and so on.</p>
-
-<p><strong id="g:http-method">HTTP method</strong>:
-the verb in an <a href="#g:http-request">HTTP request</a> that defines what the client wants to do.
-Common methods are <code class="highlighter-rouge">GET</code> (to get data) and <code class="highlighter-rouge">POST</code> (to submit data).</p>
-
-<p><strong id="g:http-request">HTTP request</strong>:
-a precisely-formatted block of text sent from a <a href="#g:client">client</a> (such as a browser)
-to a <a href="#g:server">server</a>
-that specifies what resource is being requested,
-what data formats the client will accept,
-and so on.</p>
-
-<p><strong id="g:http-response">HTTP response</strong>:
-a precisely-formatted block of text sent from a <a href="#g:server">server</a> back to a <a href="#g:client">client</a>
-in reply to a <a href="#g:http-request">request</a>.</p>
-
-<p><strong id="g:http-status-code">HTTP status code</strong>:
-a numerical code that indicates what happened when an <a href="#g:http-request">HTTP request</a> was processed,
-such as 200 (OK),
-404 (not found),
-or 500 (internal server error).</p>
-
-<p><strong id="g:in-memory-database">in-memory database</strong>:
-a database that is stored in memory rather than in permanent storage.
-In-memory databases are often used for testing.</p>
-
-<p><strong id="g:inherit">inherit</strong>:
-to acquire properties and methods from a parent class.
-See also <a href="#g:extend">extend</a>.</p>
-
-<p><strong id="g:internal-style-sheet">internal style sheet</strong>:
-a set of <a href="#g:css">CSS</a> definitions placed inside a web page rather than in an external file.</p>
-
-<p><strong id="g:json">JSON</strong>:
-a way to represent data by combining basic values like numbers and character strings
-in <a href="#g:array">arrays</a> and name/value structures.
-The acronym stands for “JavaScript Object Notation”;
-unlike better-defined standards like <a href="#g:xml">XML</a>,
-it is unencumbered by a syntax for comments
-or ways to define <a href="#g:schema">schemas</a>.</p>
-
-<p><strong id="g:library">library</strong>:
-see <a href="#g:module">module</a>.</p>
-
-<p><strong id="g:list">list</strong>:
-see <a href="#g:array">array</a>.</p>
-
-<p><strong id="g:local-installation">local installation</strong>:
-a JavaScript library placed inside a particular project, and only accessible within that project.
-See also <a href="#g:global-installation">global installation</a>.</p>
-
-<p><strong id="g:local-server">local server</strong>:
-a <a href="#g:server">server</a> run on the user’s own computer,
-usually for testing purposes during development.</p>
-
-<p><strong id="g:local-variable">local variable</strong>:
-a variable defined inside a function
-which is only visible within that function.
-See also <a href="#g:global-variable">global variable</a> and <a href="#g:closure">closure</a>.</p>
-
-<p><strong id="g:logging">logging</strong>:
-to record information about a program’s execution in a structured way.</p>
-
-<p><strong id="g:logging-transport">logging transport</strong>:
-a channel through which <a href="#g:logging">logging</a> messages are sent,
-such as standard output (for the user’s screen) or a database connection.</p>
-
-<p><strong id="g:member-variable">member variable</strong>:
-see <a href="#g:property">property</a>.</p>
-
-<p><strong id="g:memory-diagram">memory diagram</strong>:
-a picture showing the variables a program contains and the data they refer to.</p>
-
-<p><strong id="g:method">method</strong>:
-a function attached to an <a href="#g:object">object</a>,
-typically called using <a href="#g:dotted-notation">dotted notation</a>.
-In JavaScript and many other languages,
-a special variable called <code class="highlighter-rouge">this</code> is provided to methods
-to refer to the particular object for which the method is being called.</p>
-
-<p><strong id="g:minimization">minimization</strong>:
-to remove spaces and other extraneous characters from source files
-(and possibly even rename variables).
-This makes those files smaller and faster to deploy at the expense of readability.</p>
-
-<p><strong id="g:module">module</strong>:
-a set of variables, functions, and/or classes grouped together for easier management
-(typically but not always in a single file).
-Modules are sometimes also called <a href="#g:library">libraries</a>.</p>
-
-<p><strong id="g:module-variable">module variable</strong>:
-a variable that is visible within a module but not outside it.
-See <a href="#g:scope">scope</a>.</p>
-
-<p><strong id="g:mutation">mutation</strong>:
-changing data in place,
-such as modifying an element of an array or adding a record to a database.</p>
-
-<p><strong id="g:name-collision">name collision</strong>:
-the ambiguity that arises when two or more things in a program that have the same name
-are active at the same time.
-The <a href="#g:call-stack">call stack</a> was invented in part to address this problem.</p>
-
-<p><strong id="g:node-js">Node</strong>:
-an open source implementation of JavaScript for use outside the browser.</p>
-
-<p><strong id="g:node">node</strong>:
-an in-memory representation of an element in an HTML page.
-See also <a href="#g:dom">DOM</a>. Not to be confused with <a href="#g:node-js">Node.js</a>.</p>
-
-<p><strong id="g:nosql-database">NoSQL database</strong>:
-any database that doesn’t use the <a href="#g:relational-database">relational</a> model.
-The awkward name comes from the fact that such databases don’t use <a href="#g:sql">SQL</a> as a query language.</p>
-
-<p><strong id="g:object">object</strong>:
-a clump of variables and/or <a href="#g:method">methods</a> grouped together in a program.
-In most languages,
-objects can only be created as instances of <a href="#g:class">classes</a>,
-but JavaScript calls anything created using <code class="highlighter-rouge">{...}</code> an object.
-Do not seek to walk in the footsteps of the sages;
-seek rather what they sought.</p>
-
-<p><strong id="g:observer-observable">observer-observable</strong>:
-a widely-used programming pattern in which some <a href="#g:object">objects</a>
-are notified and take action when other objects change state or take action.</p>
-
-<p><strong id="g:override-method">override</strong>:
-to replace a definition of a [method] in a <a href="#g:parent-class">parent-class</a>
-with a new definition in a <a href="#g:child-class">child class</a>.</p>
-
-<p><strong id="g:query-parameter">query parameter</strong>:
-a placeholder in an <a href="#g:sql">SQL</a> query
-that must be filled in with an actual value in order for the query to run.</p>
-
-<p><strong id="g:package-manager">package manager</strong>:
-a program that does its best to keep track of the bits and bobs of software
-installed on a computer.
-The most widely used package manager for JavaScript is called NPM;
-it does its best,
-but really,
-without proper discipline on the part of programmers,
-it’s like Boromir trying to hold back the orcs
-or a kindergarten teacher trying to keep everyone’s shirt clean during finger-painting.</p>
-
-<p><strong id="g:parameter">parameter</strong>:
-a variable whose value is passed into a function when the function is called.
-Some writers distinguish parameters (the variables)
-from <a href="#g:argument">arguments</a> (the values passed in),
-but others use the terms in the opposite sense.
-It’s all very confusing.</p>
-
-<p><strong id="g:parent-class">parent class</strong>:
-an existing <a href="#g:class">class</a> that has been <a href="#g:extend">extended</a> to create a new class.
-(The new class is called the <a href="#g:child-class">child class</a>.)</p>
-
-<p><strong id="g:parent-node">parent node</strong>:
-the <a href="#g:node">node</a> in a <a href="#g:tree">tree</a> that is above some other node.
-Every node has a parent except the [root]{#root-node}.</p>
-
-<p><strong id="g:parse">parse</strong>:
-to translate the text of a program or web page into a data structure in memory
-that the program can then manipulate.</p>
-
-<p><strong id="g:polymorphism">polymorphism</strong>:
-literally, “having many forms”.
-The term refers to the way in which <a href="#g:object">objects</a> whose <a href="#g:method">methods</a> have
-the same names and <a href="#g:parameter">parameters</a>
-can be used interchangeably.</p>
-
-<p><strong id="g:port">port</strong>:
-a logical endpoint for communication, corresponding to a phone number in an office building.
-In a URL such as <code class="highlighter-rouge">http://example.com:8081/something</code>, the port is <code class="highlighter-rouge">8081</code>.
-Only one program may use a port at any time.</p>
-
-<p><strong id="g:production-code">production code</strong>:
-software that is delivered to an end user.
-The term is used to distinguish such code from test code,
-deployment infrastructure,
-and everything else that programmers write along the way.</p>
-
-<p><strong id="g:promise">promise</strong>:
-a way to handle delayed computations in JavaScript.
-Promises were supposed to make programmers’ lives simpler.</p>
-
-<p><strong id="g:protocol">protocol</strong>:
-a set of rules specifying how two things will interact.
-The HTTP protocol defines the format of <a href="#g:http-request">requests</a>,
-<a href="#g:http-response">responses</a>,
-and <a href="#g:http-status-code">status codes</a>;
-a protocol for application plugins defines how they will be referred to
-and what <a href="#g:entry-point">entry points</a> they must contain.</p>
-
-<p><strong id="g:prototype">prototype</strong>:
-an idiosyncratic mechanism used in the original definition of JavaScript
-for sharing properties between objects
-that we unfortunately still have to cope with.</p>
-
-<p><strong id="g:property">property</strong>:
-a variable associated with an <a href="#g:object">object</a>.
-The term is used to distinguish an object’s passive data
-from its executable <a href="#g:method">methods</a>.
-Properties are sometimes called <a href="#g:member-variable">member variables</a>.</p>
-
-<p><strong id="g:pseudo-random-number">pseudo-random number</strong>:
-a value generated in a repeatable way that has the properties of being truly random.</p>
-
-<p><strong id="g:prng">pseudo-random number generator</strong> (PRNG):
-a function that can generate a series of <a href="#g:pseudo-random-number">pseudo-random numbers</a>
-after being initialized with a <a href="#g:seed">seed</a>.</p>
-
-<p><strong id="g:race-condition">race condition</strong>:
-a situation in which the result of a computation can vary
-due to operations being performed in different orders.</p>
-
-<p><strong id="g:raise">raise</strong>:
-see <a href="#g:throw">throw</a>.</p>
-
-<p><strong id="g:repl">read-evaluate-print loop</strong> (REPL):
-an interactive program that reads a command typed in by a user,
-executes it,
-prints the result,
-and then waits patiently for the next command.
-REPLs are often used to explore new ideas or for debugging.</p>
-
-<p><strong id="g:record">record</strong>:
-a set of related values.
-In a <a href="#g:relational-database">relational database</a>,
-a record is typically shown as a single row in a <a href="#g:table">table</a>.
-See also <a href="#g:field">field</a>.</p>
-
-<p><strong id="g:regular-expression">regular expression</strong>:
-a pattern for matching text.</p>
-
-<p><strong id="g:relational-database">relational database</strong>:
-a database that organizes information into <a href="#g:table">tables</a>,
-each of which has a fixed set of named <a href="#g:field">fields</a> (shown as columns)
-and a variable number of <a href="#g:record">records</a> (shown as rows).
-See also <a href="#g:sql">SQL</a>.</p>
-
-<p><strong id="g:relative-path">relative path</strong>:
-a path whose destination is interpreted relative to some other location,
-such as the current directory.
-A relative path is the equivalent of giving directions using terms like “straight” and “left”.
-See also <a href="#g:absolute-path">absolute path</a>.</p>
-
-<p><strong id="g:responsive-design">responsive design</strong>:
-an approach to building web pages and other applications
-that resizes and reorganizes things smoothly
-for different sizes of screens.</p>
-
-<p><strong id="g:rgb">RGB</strong>:
-a way to represent colors as triples of red, green, and blue intensities,
-each of which ranges from 0 to 255.
-RGB is often augmented in modern systems to create RGBA,
-where the fourth component is the pixel’s transparency.</p>
-
-<p><strong id="g:root-node">root</strong>:
-the only node in a <a href="#g:tree">tree</a> that <em>doesn’t</em> have a <a href="#g:parent-node">parent</a>.</p>
-
-<p><strong id="g:root-directory">root directory</strong>:
-the directory that contains everything else, directly or indirectly.
-The root directory is written <code class="highlighter-rouge">/</code> (a bare forward slash).</p>
-
-<p><strong id="g:root-element">root element</strong>:
-the <a href="#g:element">element</a> in a document that contains every other element.
-The root element of a web page is the <code class="highlighter-rouge">html</code> element.</p>
-
-<p><strong id="g:schema">schema</strong>:
-a specification of the “shape” of data,
-such as the <a href="#g:field">fields</a> making up a database table
-or the ways in which structures can be nested in <a href="#g:json">JSON</a>.</p>
-
-<p><strong id="g:scope">scope</strong>:
-the portion of a program within which a definition can be seen and used.
-See <a href="#g:global-variable">global-variable</a>,
-<a href="#g:local-variable">local-variable</a>,
-<a href="#g:module-variable">module-variable</a>,
-and (if you are brave) <a href="#g:closure">closure</a>.</p>
-
-<p><strong id="g:seed">seed</strong>:
-a value used to initialize a <a href="#g:prng">pseudo-random number generator</a>.</p>
-
-<p><strong id="g:selector">selector</strong>:
-a way to identify elements within an HTML document.
-The selector <code class="highlighter-rouge">h2#contents</code>,
-for example,
-means “the <code class="highlighter-rouge">h2</code> element with the ID <code class="highlighter-rouge">contents</code>”.</p>
-
-<p><strong id="g:server">server</strong>:
-a program that waits for requests from <a href="#g:client">clients</a> and sends them data in response.
-It is sometimes helpful to think of servers as harassed parents
-trying to babysit a room full of unruly children.</p>
-
-<p><strong id="g:server-page-gen">server-side page generation</strong>:
-to create an HTML page on a server.
-That HTML is then delivered as-is to a browser for display.
-See also <a href="#g:client-page-gen">client-side page generation</a>.</p>
-
-<p><strong id="g:sql">SQL</strong>:
-the language used for writing queries for <a href="#g:relational-database">relational databases</a>.
-The term was originally an acronym for Structured Query Language.</p>
-
-<p><strong id="g:signature">signature</strong>:
-the ordered list of argument data types required by a function or <a href="#g:method">method</a>.
-If two functions or methods have the same signature,
-they can be called in the same way.</p>
-
-<p><strong id="g:stateful">stateful</strong>:
-to retain information from one operation to the next.</p>
-
-<p><strong id="g:stateless">stateless</strong>:
-to <em>not</em> retain information from one operation to the next.</p>
-
-<p><strong id="g:string">string</strong>:
-a block of text in a program.
-The term is short for “character string”.</p>
-
-<p><strong id="g:string-interpolation">string interpolation</strong>:
-the process of inserting text corresponding to specified values into a string,
-usually to make output human-readable.</p>
-
-<p><strong id="g:table">table</strong>:
-a set of uniformly-formatted <a href="#g:record">records</a>
-in a <a href="#g:relational-database">relational database</a>.
-Tables are usually drawn with rows (each of which represents one record)
-and columns (each of which represents a <a href="#g:field">field</a>).</p>
-
-<p><strong id="g:tag">tag</strong>:
-a short textual label identifying a kind of element in an HTML page.
-Commonly-used tags include <code class="highlighter-rouge">p</code> (for a paragraph)
-and <code class="highlighter-rouge">h1</code> (for a level-1 heading).</p>
-
-<p><strong id="g:template">template</strong>:
-a document with some placeholders that can be filled in with specific values.
+      <dl>
+  <dt><strong id="g:absolute-path">absolute path</strong>:</dt>
+  <dd>a path that points to the same location in the filesystem regardless of where
+it’s evaluated.  An absolute path is the equivalent of latitude and longitude
+in geography.  See also <a href="#g:relative-path">relative path</a>.</dd>
+  <dt><strong id="g:aggregation-function">aggregation function</strong>:</dt>
+  <dd>a function that combines many values into one, such as <code class="highlighter-rouge">sum</code> or <code class="highlighter-rouge">max</code>.</dd>
+  <dt><strong id="g:anonymous-function">anonymous function</strong>:</dt>
+  <dd>a function that is defined without giving it a name, such as a callback
+defined where it is used.  Anonymous functions are sometimes called <em>lambda
+functions</em> because the Greek letter lambda is used for them in mathematics.</dd>
+  <dt><strong id="g:argument">argument</strong>:</dt>
+  <dd>see <a href="#g:parameter">parameter</a>.</dd>
+  <dt><strong id="g:array">array</strong>:</dt>
+  <dd>a collection of values stored in a particular order and indexed numerically.
+Arrays are written as comma-separated values in square brackets, such as
+<code class="highlighter-rouge">['a', 'b', 'c']</code>.  The term <a href="#g:list">list</a> is often used synonymously.</dd>
+  <dt><strong id="g:ascii">ASCII</strong>:</dt>
+  <dd>a widely-used set of numeric codes for representing characters from the Latin
+alphabet and common punctuation symbols, now superseded by
+<a href="#g:unicode">Unicode</a>.</dd>
+  <dt><strong id="g:assertion">assertion</strong>:</dt>
+  <dd>a statement that something is true at a certain point in a program.
+Assertions are often used to define tests, but are also used in <a href="#g:production-code">production
+code</a> to check that software is behaving as it should.</dd>
+  <dt><strong id="g:attribute">attribute</strong>:</dt>
+  <dd>a named property attached to an HTML <a href="#g:element">element</a>.</dd>
+  <dt><strong id="g:backward-compatible">backward-compatible</strong>:</dt>
+  <dd>able to work consistently with older systems.</dd>
+  <dt><strong id="g:http-body">body</strong> (of an HTTP message):</dt>
+  <dd>any optional data sent after the message’s headers.</dd>
+  <dt><strong id="g:bundler">bundler</strong>:</dt>
+  <dd>a tool that combines JavaScript files, web pages, images, and other assets
+into a single bundle for deployment.</dd>
+  <dt><strong id="g:cache">cache</strong>:</dt>
+  <dd>a place where copies of recently-used values are stored for quicker access.</dd>
+  <dt><strong id="g:call-stack">call stack</strong>:</dt>
+  <dd>a data structure that stores information about function calls that are
+currently in progress.  Each function call adds another table of
+variable-value pairs to the top of the stack; when the function completes,
+that table is discarded.  See also <a href="#g:closure">closure</a>.</dd>
+  <dt><strong id="g:callback-function">callback function</strong>:</dt>
+  <dd>a function A that is passed to another function B for B to call at a later
+time.  Callback functions are used to implement delayed actions, such as what
+to do when data arrives in response to a network request.</dd>
+  <dt><strong id="g:css">Cascading Style Sheets</strong> (CSS):</dt>
+  <dd>a way to describe how HTML should be rendered.</dd>
+  <dt><strong id="g:catch">catch</strong>:</dt>
+  <dd>to take responsibility for handling an <a href="#g:exception">exception</a>.  Catch is
+the counterpart of <a href="#g:throw">throw</a>.</dd>
+  <dt><strong id="g:character-encoding">character encoding</strong>:</dt>
+  <dd>a specification of how characters are stored as bytes.  The most commonly-used
+encoding today is <a href="#g:utf-8">UTF-8</a>.</dd>
+  <dt><strong id="g:child-class">child class</strong>:</dt>
+  <dd>a new <a href="#g:class">class</a> that <a href="#g:extend">extends</a> an existing class (called
+the <a href="#g:parent-class">parent class</a>).</dd>
+  <dt><strong id="g:child-node">child node</strong>:</dt>
+  <dd>a <a href="#g:node">node</a> in a <a href="#g:tree">tree</a> that is below some other node (which is
+called the child node’s <a href="#g:parent-node">parent</a>).</dd>
+  <dt><strong id="g:class">class</strong>:</dt>
+  <dd>a programming structure that defines the properties and behavior of a family
+of related <a href="#g:object">objects</a>.  Classes can <a href="#g:inherit">inherit</a> from other
+classes to specify or change behavior incrementally.</dd>
+  <dt><strong id="g:client">client</strong>:</dt>
+  <dd>a program such as a browser that sends requests to a <a href="#g:server">server</a> and
+does something with the response.  It is sometimes helpful to think of clients
+as sorcerors petitioning ancient gods for favors.  Sometimes.</dd>
+  <dt><strong id="g:client-page-gen">client-side page generation</strong>:</dt>
+  <dd>to create an HTML page within a <a href="#g:client">client</a> using data provided by a
+<a href="#g:server">server</a>.  See also <a href="#g:server-page-gen">server-side page
+generation</a>.</dd>
+  <dt><strong id="g:closure">closure</strong>:</dt>
+  <dd>a set of variables defined in the same <a href="#g:scope">scope</a> whose existence has
+been preserved after that scope has ended.  Closures are one of the trickiest
+ideas in programming.</dd>
+  <dt><strong id="g:csv">Comma-Separated Values</strong> (CSV):</dt>
+  <dd>a text format for tabular data in which each record is one row and fields are
+separated by commas.  There are many minor variations, particularly around
+quoting of strings.</dd>
+  <dt><strong id="g:connection-manager">connection manager</strong>:</dt>
+  <dd>an object that maintains a connection to a database.  When the code is
+finished working with the database, the connection manager ensures that the
+connection is closed gracefully, which helps to avoid the corruption of data.</dd>
+  <dt><strong id="g:cdn">Content Delivery Network</strong> (CDN):</dt>
+  <dd>a geographically distributed set of servers that store commonly-used or
+recently-used data such as web pages so that they can be served more quickly.</dd>
+  <dt><strong id="g:constant">constant</strong>:</dt>
+  <dd>a variable whose value cannot be changed.  Note that the value itself might be
+changed: for example, after the statement <code class="highlighter-rouge">const v = ['a', 'b']</code>, the name <code class="highlighter-rouge">v</code>
+will always refer to the same array, but the array’s contents can be changed.</dd>
+  <dt><strong id="g:cors">Cross-Origin Resource Sharing</strong> (CORS):</dt>
+  <dd>a way to control requests made for data and other resources that aren’t served
+by the site that gave the browser the original page.</dd>
+  <dt><strong id="g:declarative">declarative programming</strong>:</dt>
+  <dd>a style of programming in which the user specifies what they want, and the
+computer figures out how to deliver it.</dd>
+  <dt><strong id="g:destructuring">destructuring</strong>:</dt>
+  <dd>a form of assignment that unpacks a data structure in one step, such as <code class="highlighter-rouge">[a,
+b] = [1, 2]</code> or <code class="highlighter-rouge">{left, right} = {left: 1, right: 2}</code>.</dd>
+  <dt><strong id="g:dns">Domain Name System</strong> (DNS):</dt>
+  <dd>a decentralized naming system for computers that translates logical names such
+as <code class="highlighter-rouge">third-bit.com</code> into the addresses of particular computers.</dd>
+  <dt><strong id="g:document">document</strong>:</dt>
+  <dd>an entire HTML page.</dd>
+  <dt><strong id="g:dom">Document Object Model</strong> (DOM):</dt>
+  <dd>a standard way to represent HTML in memory.  The <a href="#g:element">elements</a> and
+<a href="#g:attribute">attributes</a> of the page, along with its text, are stored as
+<a href="#g:node">nodes</a> organized in a tree.</dd>
+  <dt><strong id="g:dotted-notation">dotted notation</strong>:</dt>
+  <dd>a common way to refer to the parts of structures in programming languages.
+<code class="highlighter-rouge">whole.part</code> means “the thing called <code class="highlighter-rouge">part</code> belonging to <code class="highlighter-rouge">whole</code>”.</dd>
+  <dt><strong id="g:driver">driver</strong>:</dt>
+  <dd>a program that provides a standard interface through which to communicate with
+another piece of hardware or software.  Every graphics card has a driver that
+translates generic drawing commands into card-specific operations; every
+database comes with drivers that (theoretically) allow other programs to talk
+to them all in the same way.</dd>
+  <dt><strong id="g:element">element</strong>:</dt>
+  <dd>an individual component of a web page.  In HTML, elements are enclosed in
+matching <code class="highlighter-rouge">&lt;tag&gt;</code> and <code class="highlighter-rouge">&lt;/tag&gt;</code> pairs, or written as <code class="highlighter-rouge">&lt;tag/&gt;</code> if they contain no
+content.  Elements are represented as <a href="#g:node">nodes</a> in the <a href="#g:dom">DOM</a>.</dd>
+  <dt><strong id="g:entry-point">entry point</strong>:</dt>
+  <dd>a function with a known name and <a href="#g:signature">signature</a> that a framework
+requires every plugin or other dynamically-loaded content to have.  The entry
+point is (as the name suggests) how the framework gets into the plugin.</dd>
+  <dt><strong id="g:escape-sequence">escape sequence</strong>:</dt>
+  <dd>a sequence of characters used to represent some other character that would
+otherwise have a special meaning.  For example, the escape sequence <code class="highlighter-rouge">\"</code> is
+used to represent a double-quote character inside a double-quoted string.</dd>
+  <dt><strong id="g:event-handler">event handler</strong>:</dt>
+  <dd>a <a href="#g:callback-function">callback function</a> that does something in response to
+a particular interaction with a browser, such as a key being pressed or a link
+being clicked.</dd>
+  <dt><strong id="g:event-listener">event listener</strong>:</dt>
+  <dd>see <a href="#g:event-handler">event handler</a>.</dd>
+  <dt><strong id="g:event-loop">event loop</strong>:</dt>
+  <dd>the fundamental processing cycle in JavaScript that takes the next task from a
+list and runs it, possibly adding more tasks to the list as it does so.</dd>
+  <dt><strong id="g:event-object">event object</strong>:</dt>
+  <dd>an <a href="#g:object">object</a> that the system passes to an <a href="#g:event-handler">event
+handler</a> that contains information about the event, such as
+which key was pressed.</dd>
+  <dt><strong id="g:exception">exception</strong>:</dt>
+  <dd>an object that stores information about an error or other unusual event in a
+program.  One part of a program will create and <a href="#g:throw">throw</a> an exception
+to signal that something unexpected has happened; another part will
+<a href="#g:catch">catch</a> it.</dd>
+  <dt><strong id="g:extend">extend</strong>:</dt>
+  <dd>to create a new class from an existing class.  We say that the new class
+<a href="#g:inherit">inherits</a> from the old one.</dd>
+  <dt><strong id="g:falsy">falsy</strong>:</dt>
+  <dd>a horrible neologism meaning “equivalent to false”.  See also the equally
+horrible <a href="#g:truthy">truthy</a>.</dd>
+  <dt><strong id="g:fat-arrow">fat arrow function</strong>:</dt>
+  <dd>a JavaScript function defined using the syntax <code class="highlighter-rouge">(...parameters...) =&gt;
+{...body...}</code>.  Fat arrow functions treat the special value <code class="highlighter-rouge">this</code> in a less
+inconsistent way than their older equivalents.</dd>
+  <dt><strong id="g:field">field</strong>:</dt>
+  <dd>a named part of a <a href="#g:record">record</a> in a <a href="#g:relational-database">relational
+database</a>.  Fields are typically shown as columns in a
+<a href="#g:table">table</a>.</dd>
+  <dt><strong id="g:fixture">fixture</strong>:</dt>
+  <dd>the data on which a <a href="#g:unit-test">unit test</a> is run.</dd>
+  <dt><strong id="g:functional-programming">functional programming</strong>:</dt>
+  <dd>a style of programming in which data is transformed through successive
+application of functions, rather than by using control structures such as
+loops.  Functional programming in JavaScript relies heavily on
+<a href="#g:callback-function">callbacks</a> and <a href="#g:higher-order-function">higher-order
+functions</a>.</dd>
+  <dt><strong id="g:global-installation">global installation</strong>:</dt>
+  <dd>a JavaScript library placed in a location where it can be accessed by all
+users and projects.  See also <a href="#g:local-installation">local installation</a>.</dd>
+  <dt><strong id="g:global-variable">global variable</strong>:</dt>
+  <dd>a variable defined outside any particular function, which is therefore visible
+to all functions.  See also <a href="#g:local-variable">local variable</a>.</dd>
+  <dt><strong id="g:header-row">header row</strong>:</dt>
+  <dd>if present, the first of a <a href="#g:csv">CSV</a> file that defines column names (but
+tragically, not their data types or units).</dd>
+  <dt><strong id="g:heterogeneous">heterogeneous</strong>:</dt>
+  <dd>having mixed type.  For example, an <a href="#g:array">array</a> is said to be
+heterogeneous if it contains a mix of numbers, character strings, and values
+of other types.  See also <a href="#g:homogeneous">homogeneous</a>.</dd>
+  <dt><strong id="g:higher-order-function">higher-order function</strong>:</dt>
+  <dd>a function that operates on other functions.  For example, the higher-order
+function <code class="highlighter-rouge">forEach</code> executes a given function once on each value in an
+<a href="#g:array">array</a>.  Higher-order functions are heavily used in <a href="#g:functional-programming">functional
+programming</a>.</dd>
+  <dt><strong id="g:homogeneous">homogeneous</strong>:</dt>
+  <dd>having a single type.  For example, an <a href="#g:array">array</a> is said to be
+homogeneous if it contains only numbers or only character strings, but not a
+mix of the two.</dd>
+  <dt><strong id="g:hostname">hostname</strong>:</dt>
+  <dd>the part of a URL that specifies the computer to talk to.  In
+<code class="highlighter-rouge">http://example.com/something/</code>, the hostname is <code class="highlighter-rouge">example.com</code>; in
+<code class="highlighter-rouge">http://localhost:1234/</code>, it is <code class="highlighter-rouge">localhost</code>.</dd>
+  <dt><strong id="g:http">HTTP</strong>:</dt>
+  <dd>the HyperText Transfer Protocol used to exchange information between browsers
+and websites, and more generally between other <a href="#g:client">clients</a> and
+<a href="#g:server">servers</a>.  HTTP is a <a href="#g:stateless">stateless</a> protocol in which
+communication consists of <a href="#g:http-request">requests</a> and
+<a href="#g:http-response">responses</a>.</dd>
+  <dt><strong id="g:http-header">HTTP header</strong>:</dt>
+  <dd>a name-value pair at the start of an HTTP <a href="#g:http-request">request</a> or
+<a href="#g:http-response">response</a>.  Headers are used to specify what data formats
+the sender can handle, the date and time the message was sent, and so on.</dd>
+  <dt><strong id="g:http-method">HTTP method</strong>:</dt>
+  <dd>the verb in an <a href="#g:http-request">HTTP request</a> that defines what the client
+wants to do.  Common methods are <code class="highlighter-rouge">GET</code> (to get data) and <code class="highlighter-rouge">POST</code> (to submit
+data).</dd>
+  <dt><strong id="g:http-request">HTTP request</strong>:</dt>
+  <dd>a precisely-formatted block of text sent from a <a href="#g:client">client</a> (such as a
+browser) to a <a href="#g:server">server</a> that specifies what resource is being
+requested, what data formats the client will accept, and so on.</dd>
+  <dt><strong id="g:http-response">HTTP response</strong>:</dt>
+  <dd>a precisely-formatted block of text sent from a <a href="#g:server">server</a> back to a
+<a href="#g:client">client</a> in reply to a <a href="#g:http-request">request</a>.</dd>
+  <dt><strong id="g:http-status-code">HTTP status code</strong>:</dt>
+  <dd>a numerical code that indicates what happened when an <a href="#g:http-request">HTTP
+request</a> was processed, such as 200 (OK), 404 (not found), or
+500 (internal server error).</dd>
+  <dt><strong id="g:in-memory-database">in-memory database</strong>:</dt>
+  <dd>a database that is stored in memory rather than in permanent storage.
+In-memory databases are often used for testing.</dd>
+  <dt><strong id="g:inherit">inherit</strong>:</dt>
+  <dd>to acquire properties and methods from a parent class.  See also
+<a href="#g:extend">extend</a>.</dd>
+  <dt><strong id="g:internal-style-sheet">internal style sheet</strong>:</dt>
+  <dd>a set of <a href="#g:css">CSS</a> definitions placed inside a web page rather than in an
+external file.</dd>
+  <dt><strong id="g:json">JSON</strong>:</dt>
+  <dd>a way to represent data by combining basic values like numbers and character
+strings in <a href="#g:array">arrays</a> and name/value structures.  The acronym stands
+for “JavaScript Object Notation”; unlike better-defined standards like
+<a href="#g:xml">XML</a>, it is unencumbered by a syntax for comments or ways to define
+<a href="#g:schema">schemas</a>.</dd>
+  <dt><strong id="g:library">library</strong>:</dt>
+  <dd>see <a href="#g:module">module</a>.</dd>
+  <dt><strong id="g:list">list</strong>:</dt>
+  <dd>see <a href="#g:array">array</a>.</dd>
+  <dt><strong id="g:local-installation">local installation</strong>:</dt>
+  <dd>a JavaScript library placed inside a particular project, and only accessible
+within that project.  See also <a href="#g:global-installation">global installation</a>.</dd>
+  <dt><strong id="g:local-server">local server</strong>:</dt>
+  <dd>a <a href="#g:server">server</a> run on the user’s own computer, usually for testing
+purposes during development.</dd>
+  <dt><strong id="g:local-variable">local variable</strong>:</dt>
+  <dd>a variable defined inside a function which is only visible within that
+function.  See also <a href="#g:global-variable">global variable</a> and
+<a href="#g:closure">closure</a>.</dd>
+  <dt><strong id="g:logging">logging</strong>:</dt>
+  <dd>to record information about a program’s execution in a structured way.</dd>
+  <dt><strong id="g:logging-transport">logging transport</strong>:</dt>
+  <dd>a channel through which <a href="#g:logging">logging</a> messages are sent, such as
+standard output (for the user’s screen) or a database connection.</dd>
+  <dt><strong id="g:member-variable">member variable</strong>:</dt>
+  <dd>see <a href="#g:property">property</a>.</dd>
+  <dt><strong id="g:memory-diagram">memory diagram</strong>:</dt>
+  <dd>a picture showing the variables a program contains and the data they refer to.</dd>
+  <dt><strong id="g:method">method</strong>:</dt>
+  <dd>a function attached to an <a href="#g:object">object</a>, typically called using <a href="#g:dotted-notation">dotted
+notation</a>.  In JavaScript and many other languages, a
+special variable called <code class="highlighter-rouge">this</code> is provided to methods to refer to the
+particular object for which the method is being called.</dd>
+  <dt><strong id="g:minimization">minimization</strong>:</dt>
+  <dd>to remove spaces and other extraneous characters from source files (and
+possibly even rename variables).  This makes those files smaller and faster to
+deploy at the expense of readability.</dd>
+  <dt><strong id="g:module">module</strong>:</dt>
+  <dd>a set of variables, functions, and/or classes grouped together for easier
+management (typically but not always in a single file).  Modules are sometimes
+also called <a href="#g:library">libraries</a>.</dd>
+  <dt><strong id="g:module-variable">module variable</strong>:</dt>
+  <dd>a variable that is visible within a module but not outside it.  See
+<a href="#g:scope">scope</a>.</dd>
+  <dt><strong id="g:mutation">mutation</strong>:</dt>
+  <dd>changing data in place, such as modifying an element of an array or adding a
+record to a database.</dd>
+  <dt><strong id="g:name-collision">name collision</strong>:</dt>
+  <dd>the ambiguity that arises when two or more things in a program that have the
+same name are active at the same time.  The <a href="#g:call-stack">call stack</a> was
+invented in part to address this problem.</dd>
+  <dt><strong id="g:node-js">Node</strong>:</dt>
+  <dd>an open source implementation of JavaScript for use outside the browser.</dd>
+  <dt><strong id="g:node">node</strong>:</dt>
+  <dd>an in-memory representation of an element in an HTML page.  See also
+<a href="#g:dom">DOM</a>. Not to be confused with <a href="#g:node-js">Node.js</a>.</dd>
+  <dt><strong id="g:nosql-database">NoSQL database</strong>:</dt>
+  <dd>any database that doesn’t use the <a href="#g:relational-database">relational</a> model.
+The awkward name comes from the fact that such databases don’t use
+<a href="#g:sql">SQL</a> as a query language.</dd>
+  <dt><strong id="g:object">object</strong>:</dt>
+  <dd>a clump of variables and/or <a href="#g:method">methods</a> grouped together in a
+program.  In most languages, objects can only be created as instances of
+<a href="#g:class">classes</a>, but JavaScript calls anything created using <code class="highlighter-rouge">{...}</code> an
+object.  Do not seek to walk in the footsteps of the sages; seek rather what
+they sought.</dd>
+  <dt><strong id="g:observer-observable">observer-observable</strong>:</dt>
+  <dd>a widely-used programming pattern in which some <a href="#g:object">objects</a> are
+notified and take action when other objects change state or take action.</dd>
+  <dt><strong id="g:override-method">override</strong>:</dt>
+  <dd>to replace a definition of a [method] in a <a href="#g:parent-class">parent-class</a>
+with a new definition in a <a href="#g:child-class">child class</a>.</dd>
+  <dt><strong id="g:query-parameter">query parameter</strong>:</dt>
+  <dd>a placeholder in an <a href="#g:sql">SQL</a> query that must be filled in with an actual
+value in order for the query to run.</dd>
+  <dt><strong id="g:package-manager">package manager</strong>:</dt>
+  <dd>a program that does its best to keep track of the bits and bobs of software
+installed on a computer.  The most widely used package manager for JavaScript
+is called NPM; it does its best, but really, without proper discipline on the
+part of programmers, it’s like Boromir trying to hold back the orcs or a
+kindergarten teacher trying to keep everyone’s shirt clean during
+finger-painting.</dd>
+  <dt><strong id="g:parameter">parameter</strong>:</dt>
+  <dd>a variable whose value is passed into a function when the function is called.
+Some writers distinguish parameters (the variables) from
+<a href="#g:argument">arguments</a> (the values passed in), but others use the terms in
+the opposite sense.  It’s all very confusing.</dd>
+  <dt><strong id="g:parent-class">parent class</strong>:</dt>
+  <dd>an existing <a href="#g:class">class</a> that has been <a href="#g:extend">extended</a> to create a
+new class.  (The new class is called the <a href="#g:child-class">child class</a>.)</dd>
+  <dt><strong id="g:parent-node">parent node</strong>:</dt>
+  <dd>the <a href="#g:node">node</a> in a <a href="#g:tree">tree</a> that is above some other node.  Every
+node has a parent except the [root]{#root-node}.</dd>
+  <dt><strong id="g:parse">parse</strong>:</dt>
+  <dd>to translate the text of a program or web page into a data structure in memory
+that the program can then manipulate.</dd>
+  <dt><strong id="g:polymorphism">polymorphism</strong>:</dt>
+  <dd>literally, “having many forms”.  The term refers to the way in which
+<a href="#g:object">objects</a> whose <a href="#g:method">methods</a> have the same names and
+<a href="#g:parameter">parameters</a> can be used interchangeably.</dd>
+  <dt><strong id="g:port">port</strong>:</dt>
+  <dd>a logical endpoint for communication, corresponding to a phone number in an
+office building.  In a URL such as <code class="highlighter-rouge">http://example.com:8081/something</code>, the
+port is <code class="highlighter-rouge">8081</code>.  Only one program may use a port at any time.</dd>
+  <dt><strong id="g:production-code">production code</strong>:</dt>
+  <dd>software that is delivered to an end user.  The term is used to distinguish
+such code from test code, deployment infrastructure, and everything else that
+programmers write along the way.</dd>
+  <dt><strong id="g:promise">promise</strong>:</dt>
+  <dd>a way to handle delayed computations in JavaScript.  Promises were supposed to
+make programmers’ lives simpler.</dd>
+  <dt><strong id="g:protocol">protocol</strong>:</dt>
+  <dd>a set of rules specifying how two things will interact.  The HTTP protocol
+defines the format of <a href="#g:http-request">requests</a>,
+<a href="#g:http-response">responses</a>, and <a href="#g:http-status-code">status codes</a>; a
+protocol for application plugins defines how they will be referred to and what
+<a href="#g:entry-point">entry points</a> they must contain.</dd>
+  <dt><strong id="g:prototype">prototype</strong>:</dt>
+  <dd>an idiosyncratic mechanism used in the original definition of JavaScript for
+sharing properties between objects that we unfortunately still have to cope
+with.</dd>
+  <dt><strong id="g:property">property</strong>:</dt>
+  <dd>a variable associated with an <a href="#g:object">object</a>.  The term is used to
+distinguish an object’s passive data from its executable <a href="#g:method">methods</a>.
+Properties are sometimes called <a href="#g:member-variable">member variables</a>.</dd>
+  <dt><strong id="g:pseudo-random-number">pseudo-random number</strong>:</dt>
+  <dd>a value generated in a repeatable way that has the properties of being truly
+random.</dd>
+  <dt><strong id="g:prng">pseudo-random number generator</strong> (PRNG):</dt>
+  <dd>a function that can generate a series of <a href="#g:pseudo-random-number">pseudo-random
+numbers</a> after being initialized with a
+<a href="#g:seed">seed</a>.</dd>
+  <dt><strong id="g:race-condition">race condition</strong>:</dt>
+  <dd>a situation in which the result of a computation can vary due to operations
+being performed in different orders.</dd>
+  <dt><strong id="g:raise">raise</strong>:</dt>
+  <dd>see <a href="#g:throw">throw</a>.</dd>
+  <dt><strong id="g:repl">read-evaluate-print loop</strong> (REPL):</dt>
+  <dd>an interactive program that reads a command typed in by a user, executes it,
+prints the result, and then waits patiently for the next command.  REPLs are
+often used to explore new ideas or for debugging.</dd>
+  <dt><strong id="g:record">record</strong>:</dt>
+  <dd>a set of related values.  In a <a href="#g:relational-database">relational database</a>,
+a record is typically shown as a single row in a <a href="#g:table">table</a>.  See also
+<a href="#g:field">field</a>.</dd>
+  <dt><strong id="g:regular-expression">regular expression</strong>:</dt>
+  <dd>a pattern for matching text.</dd>
+  <dt><strong id="g:relational-database">relational database</strong>:</dt>
+  <dd>a database that organizes information into <a href="#g:table">tables</a>, each of which
+has a fixed set of named <a href="#g:field">fields</a> (shown as columns) and a variable
+number of <a href="#g:record">records</a> (shown as rows).  See also <a href="#g:sql">SQL</a>.</dd>
+  <dt><strong id="g:relative-path">relative path</strong>:</dt>
+  <dd>a path whose destination is interpreted relative to some other location, such
+as the current directory.  A relative path is the equivalent of giving
+directions using terms like “straight” and “left”.  See also <a href="#g:absolute-path">absolute
+path</a>.</dd>
+  <dt><strong id="g:responsive-design">responsive design</strong>:</dt>
+  <dd>an approach to building web pages and other applications that resizes and
+reorganizes things smoothly for different sizes of screens.</dd>
+  <dt><strong id="g:rgb">RGB</strong>:</dt>
+  <dd>a way to represent colors as triples of red, green, and blue intensities, each
+of which ranges from 0 to 255.  RGB is often augmented in modern systems to
+create RGBA, where the fourth component is the pixel’s transparency.</dd>
+  <dt><strong id="g:root-node">root</strong>:</dt>
+  <dd>the only node in a <a href="#g:tree">tree</a> that <em>doesn’t</em> have a <a href="#g:parent-node">parent</a>.</dd>
+  <dt><strong id="g:root-directory">root directory</strong>:</dt>
+  <dd>the directory that contains everything else, directly or indirectly.  The root
+directory is written <code class="highlighter-rouge">/</code> (a bare forward slash).</dd>
+  <dt><strong id="g:root-element">root element</strong>:</dt>
+  <dd>the <a href="#g:element">element</a> in a document that contains every other element.
+The root element of a web page is the <code class="highlighter-rouge">html</code> element.</dd>
+  <dt><strong id="g:schema">schema</strong>:</dt>
+  <dd>a specification of the “shape” of data, such as the <a href="#g:field">fields</a> making
+up a database table or the ways in which structures can be nested in
+<a href="#g:json">JSON</a>.</dd>
+  <dt><strong id="g:scope">scope</strong>:</dt>
+  <dd>the portion of a program within which a definition can be seen and used.  See
+<a href="#g:global-variable">global-variable</a>, <a href="#g:local-variable">local-variable</a>,
+<a href="#g:module-variable">module-variable</a>, and (if you are brave)
+<a href="#g:closure">closure</a>.</dd>
+  <dt><strong id="g:seed">seed</strong>:</dt>
+  <dd>a value used to initialize a <a href="#g:prng">pseudo-random number generator</a>.</dd>
+  <dt><strong id="g:selector">selector</strong>:</dt>
+  <dd>a way to identify elements within an HTML document.  The selector
+<code class="highlighter-rouge">h2#contents</code>, for example, means “the <code class="highlighter-rouge">h2</code> element with the ID <code class="highlighter-rouge">contents</code>”.</dd>
+  <dt><strong id="g:server">server</strong>:</dt>
+  <dd>a program that waits for requests from <a href="#g:client">clients</a> and sends them
+data in response.  It is sometimes helpful to think of servers as harassed
+parents trying to babysit a room full of unruly children.</dd>
+  <dt><strong id="g:server-page-gen">server-side page generation</strong>:</dt>
+  <dd>to create an HTML page on a server.  That HTML is then delivered as-is to a
+browser for display.  See also <a href="#g:client-page-gen">client-side page
+generation</a>.</dd>
+  <dt><strong id="g:sql">SQL</strong>:</dt>
+  <dd>the language used for writing queries for <a href="#g:relational-database">relational
+databases</a>.  The term was originally an acronym for
+Structured Query Language.</dd>
+  <dt><strong id="g:signature">signature</strong>:</dt>
+  <dd>the ordered list of argument data types required by a function or
+<a href="#g:method">method</a>.  If two functions or methods have the same signature,
+they can be called in the same way.</dd>
+  <dt><strong id="g:stateful">stateful</strong>:</dt>
+  <dd>to retain information from one operation to the next.</dd>
+  <dt><strong id="g:stateless">stateless</strong>:</dt>
+  <dd>to <em>not</em> retain information from one operation to the next.</dd>
+  <dt><strong id="g:string">string</strong>:</dt>
+  <dd>a block of text in a program.  The term is short for “character string”.</dd>
+  <dt><strong id="g:string-interpolation">string interpolation</strong>:</dt>
+  <dd>the process of inserting text corresponding to specified values into a string,
+usually to make output human-readable.</dd>
+  <dt><strong id="g:table">table</strong>:</dt>
+  <dd>a set of uniformly-formatted <a href="#g:record">records</a> in a <a href="#g:relational-database">relational
+database</a>.  Tables are usually drawn with rows (each
+of which represents one record) and columns (each of which represents a
+<a href="#g:field">field</a>).</dd>
+  <dt><strong id="g:tag">tag</strong>:</dt>
+  <dd>a short textual label identifying a kind of element in an HTML page.
+Commonly-used tags include <code class="highlighter-rouge">p</code> (for a paragraph) and <code class="highlighter-rouge">h1</code> (for a level-1
+heading).</dd>
+  <dt><strong id="g:template">template</strong>:</dt>
+  <dd>a document with some placeholders that can be filled in with specific values.
 Templates are often used to create personalized email messages and web pages,
-though their efficacy is predicated upon
-relentless commercialization and devaluation
-of modern society’s sense of what constitutes “personal”.</p>
-
-<p><strong id="g:test-runner">test runner</strong>:
-a program that finds and runs <a href="#g:unit-test">unit tests</a> and reports their results.</p>
-
-<p><strong id="g:test-suite">test suite</strong>:
-a set of <a href="#g:unit-test">unit tests</a>,
-usually stored in files that follow a prescribed naming convention.</p>
-
-<p><strong id="g:throw">throw</strong>:
-to signal that something unexpected or unusual has happened in a program
-by creating an <a href="#g:exception">exception</a>
-and handing it to the error-handling system,
-which then tries to find a point in the program that will <a href="#g:catch">catch</a> it.
-(Some languages call this <em><a href="#g:raise">raising</a></em> an exception.)</p>
-
-<p><strong id="g:tree">tree</strong>:
-a data structure containing strictly-nested <a href="#g:node">nodes</a>.
-Every node except the <a href="#g:root-node">root node</a> must have exactly one <a href="#g:parent-node">parent node</a>,
-but each node may have zero or more <a href="#g:child-node">children</a>.</p>
-
-<p><strong id="g:truthy">truthy</strong>:
-a truly horrible neologism meaning “not equivalent to false”.
-See also <a href="#g:falsy">falsy</a>,
-but only if you are able to set aside your respect for the English language.</p>
-
-<p><strong id="g:unicode">Unicode</strong>:
-a standard that defines numeric codes for many thousands of characters and symbols.
-Unicode does <em>not</em> define how those numbers are stored;
-that is done by standards like <a href="#g:utf-8">UTF-8</a>.</p>
-
-<p><strong id="g:unit-test">unit test</strong>:
-a test that exercises one property or expected behavior of a system.</p>
-
-<p><strong id="g:url">URL</strong> (Uniform Resource Locator):
-a multi-part identifier that specifies something on a computer network.
-A URL may contain a protocol (such as <code class="highlighter-rouge">http</code>),
-a hostname (such as <code class="highlighter-rouge">example.com</code>),
-a port (such as <code class="highlighter-rouge">80</code>),
-a path (such as <code class="highlighter-rouge">/homepage.html</code>),
-and <a href="#g:query-parameter">query parameters</a></p>
-
-<p><strong id="g:utf-8">UTF-8</strong>:
-a way to store the numeric codes representing Unicode characters in memory
-that is <a href="#g:backward-compatible">backward-compatible</a> with the older <a href="#g:ascii">ASCII</a> standard.</p>
-
-<p><strong id="g:variable">variable</strong>:
-a name in a program that has some data associated with it.
-A variable’s value can be changed after definition.
-See also <a href="#g:constant">constant</a>.</p>
-
-<p><strong id="g:xml">XML</strong>:
-a set of rules for defining HTML-like tags
-and using them to format documents (typically data).
-XML achieved license plate popularity in the early 2000s,
-but its complexity led many programmers to adopt <a href="#g:json">JSON</a> instead.</p>
+though their efficacy is predicated upon relentless commercialization and
+devaluation of modern society’s sense of what constitutes “personal”.</dd>
+  <dt><strong id="g:test-runner">test runner</strong>:</dt>
+  <dd>a program that finds and runs <a href="#g:unit-test">unit tests</a> and reports their
+results.</dd>
+  <dt><strong id="g:test-suite">test suite</strong>:</dt>
+  <dd>a set of <a href="#g:unit-test">unit tests</a>, usually stored in files that follow a
+prescribed naming convention.</dd>
+  <dt><strong id="g:throw">throw</strong>:</dt>
+  <dd>to signal that something unexpected or unusual has happened in a program by
+creating an <a href="#g:exception">exception</a> and handing it to the error-handling
+system, which then tries to find a point in the program that will
+<a href="#g:catch">catch</a> it.  (Some languages call this <em><a href="#g:raise">raising</a></em> an
+exception.)</dd>
+  <dt><strong id="g:tree">tree</strong>:</dt>
+  <dd>a data structure containing strictly-nested <a href="#g:node">nodes</a>.  Every node
+except the <a href="#g:root-node">root node</a> must have exactly one <a href="#g:parent-node">parent
+node</a>, but each node may have zero or more
+<a href="#g:child-node">children</a>.</dd>
+  <dt><strong id="g:truthy">truthy</strong>:</dt>
+  <dd>a truly horrible neologism meaning “not equivalent to false”.  See also
+<a href="#g:falsy">falsy</a>, but only if you are able to set aside your respect for the
+English language.</dd>
+  <dt><strong id="g:unicode">Unicode</strong>:</dt>
+  <dd>a standard that defines numeric codes for many thousands of characters and
+symbols.  Unicode does <em>not</em> define how those numbers are stored; that is done
+by standards like <a href="#g:utf-8">UTF-8</a>.</dd>
+  <dt><strong id="g:unit-test">unit test</strong>:</dt>
+  <dd>a test that exercises one property or expected behavior of a system.</dd>
+  <dt><strong id="g:url">URL</strong> (Uniform Resource Locator):</dt>
+  <dd>a multi-part identifier that specifies something on a computer network.  A URL
+may contain a protocol (such as <code class="highlighter-rouge">http</code>), a hostname (such as <code class="highlighter-rouge">example.com</code>), a
+port (such as <code class="highlighter-rouge">80</code>), a path (such as <code class="highlighter-rouge">/homepage.html</code>), and <a href="#g:query-parameter">query
+parameters</a></dd>
+  <dt><strong id="g:utf-8">UTF-8</strong>:</dt>
+  <dd>a way to store the numeric codes representing Unicode characters in memory
+that is <a href="#g:backward-compatible">backward-compatible</a> with the older
+<a href="#g:ascii">ASCII</a> standard.</dd>
+  <dt><strong id="g:variable">variable</strong>:</dt>
+  <dd>a name in a program that has some data associated with it.  A variable’s value
+can be changed after definition.  See also <a href="#g:constant">constant</a>.</dd>
+  <dt><strong id="g:xml">XML</strong>:</dt>
+  <dd>a set of rules for defining HTML-like tags and using them to format documents
+(typically data).  XML achieved license plate popularity in the early 2000s,
+but its complexity led many programmers to adopt <a href="#g:json">JSON</a> instead.</dd>
+</dl>
 
 
       
