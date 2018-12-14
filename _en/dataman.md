@@ -140,7 +140,7 @@ fs.writeFileSync(outputFile, header + '\n' + sample.join('\n'))
 We run this on the command line:
 
 ```sh
-$ node select-random.js ../surveys.csv 10 slice.csv
+$ node select-random.js ../../data/surveys.csv 10 slice.csv
 ```
 
 and get this:
