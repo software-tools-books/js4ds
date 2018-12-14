@@ -52,6 +52,11 @@ license file.
   {% include toc-section.html language=include.language coll=chapters class="appendix" title="Extras" toc=site.toc.extras %}
 
   {% comment %}
+  Show the link to the single-page version.
+  {% endcomment %}
+  <p><strong><a href="{{allpath}}">{{translations.singlepage}}</a></strong></p>
+
+  {% comment %}
   Show the license, contact info, and GitHub repository.
   {% endcomment %}
   <hr/>
@@ -68,7 +73,7 @@ license file.
   {% endcomment %}
   {% if page.root %}
   <p>
-    <em>{{include.translations.generated}} {{site.time|date: '%Y-%m-%d'}}.</em>
+    <em>{{translations.generated}} {{site.time|date: '%Y-%m-%d'}}.</em>
   </p>
   {% endif %}
 </nav>
