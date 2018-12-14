@@ -37,10 +37,7 @@ it allocates a block of memory big enough for four characters
 and stores a reference to that block of characters in the variable `name`.
 We can show this by drawing a [memory diagram](../gloss/#g:memory-diagram):
 
-<figure id="f:callbacks-name-value">
-  <figcaption>Name and Value</figcaption>
-  <img src ="../../files/callbacks-name-value.svg" />
-</figure>
+<figure id="f:callbacks-name-value"> <figcaption>Name and Value</figcaption> <img src ="../../files/callbacks-name-value.svg" /> </figure>
 
 When we write:
 
@@ -55,10 +52,7 @@ JavaScript allocates a block of memory big enough to store several instructions,
 translates the text of the function into instructions,
 and stores a reference to those instructions in the variable `oneMore`:
 
-<figure id="f:callbacks-one-more">
-  <figcaption>Functions in Memory</figcaption>
-  <img src="../../files/callbacks-one-more.svg" />
-</figure>
+<figure id="f:callbacks-one-more"> <figcaption>Functions in Memory</figcaption> <img src="../../files/callbacks-one-more.svg" /> </figure>
 
 The only difference between these two cases is what's on the other end of the reference:
 four characters or a bunch of instructions that add one to a number.
@@ -78,10 +72,7 @@ Doing this does *not* call the function:
 as the memory diagram below shows,
 it creates a second name that refers to the same block of instructions.
 
-<figure id="f:callbacks-alias-function">
-  <figcaption>Aliasing a Function</figcaption>
-  <img src="../../files/callbacks-alias-function.svg" />
-</figure>
+<figure id="f:callbacks-alias-function"> <figcaption>Aliasing a Function</figcaption> <img src="../../files/callbacks-alias-function.svg" /> </figure>
 
 As explained in [the previous lesson](../basics/),
 when JavaScript calls a function it assigns the arguments in the call to the function's parameters.
@@ -99,10 +90,7 @@ call `oneMore(2 * x + 1)`,
 and look at memory in the middle of that call,
 we will find this:
 
-<figure id="f:callbacks-call-stack">
-  <figcaption>The Call Stack</figcaption>
-  <img src="../../files/callbacks-call-stack.svg" />
-</figure>
+<figure id="f:callbacks-call-stack"> <figcaption>The Call Stack</figcaption> <img src="../../files/callbacks-call-stack.svg" /> </figure>
 
 ## Functions of Functions {#s:callbacks-func}
 
@@ -134,10 +122,7 @@ hello
 Again,
 this is clearer when we look at the state of memory while `doTwice` is running:
 
-<figure id="f:callbacks-do-twice">
-  <figcaption>Functions of Functions</figcaption>
-  <img src="../../files/callbacks-do-twice.svg" />
-</figure>
+<figure id="f:callbacks-do-twice"> <figcaption>Functions of Functions</figcaption> <img src="../../files/callbacks-do-twice.svg" /> </figure>
 
 This becomes more useful when the function or functions passed in have parameters of their own.
 For example,
@@ -175,10 +160,7 @@ During the call to `temp = first(initial)`,
 but before a value has been returned to be assigned to `temp`,
 memory looks like this:
 
-<figure id="f:callbacks-pipeline">
-  <figcaption>Implementing a Pipeline</figcaption>
-  <img src="../../files/callbacks-pipeline.svg" />
-</figure>
+<figure id="f:callbacks-pipeline"> <figcaption>Implementing a Pipeline</figcaption> <img src="../../files/callbacks-pipeline.svg" /> </figure>
 
 Reversing the order of the functions changes the result:
 
@@ -451,25 +433,16 @@ add_1(100) is 101 and add_2(100) is 102
 The best way to understand what's going on is to draw a step-by-step memory diagram.
 In step 1, we call `adder(1)`:
 
-<figure id="f:callbacks-adder-1">
-  <figcaption>Creating an Adder (Step 1)</figcaption>
-  <img src="../../files/callbacks-adder-1.svg" />
-</figure>
+<figure id="f:callbacks-adder-1"> <figcaption>Creating an Adder (Step 1)</figcaption> <img src="../../files/callbacks-adder-1.svg" /> </figure>
 
 `adder` creates a new function that includes a reference to that 1 we just passed in:
 
-<figure id="f:callbacks-adder-2">
-  <figcaption>Creating an Adder (Step 2)</figcaption>
-  <img src="../../files/callbacks-adder-2.svg" />
-</figure>
+<figure id="f:callbacks-adder-2"> <figcaption>Creating an Adder (Step 2)</figcaption> <img src="../../files/callbacks-adder-2.svg" /> </figure>
 
 In step 3,
 `adder` returns that function, which is assigned to `add_1`:
 
-<figure id="f:callbacks-adder-3">
-  <figcaption>Creating an Adder (Step 3)</figcaption>
-  <img src="../../files/callbacks-adder-3.svg" />
-</figure>
+<figure id="f:callbacks-adder-3"> <figcaption>Creating an Adder (Step 3)</figcaption> <img src="../../files/callbacks-adder-3.svg" /> </figure>
 
 Crucially,
 the function that `add_1` refers to still has a reference to the value 1,
@@ -479,10 +452,7 @@ In steps 4-6,
 we repeat these three steps to create another function that has a reference to the value 2,
 and assign that function to `add_2`:
 
-<figure id="f:callbacks-adder-4">
-  <figcaption>Creating an Adder (Steps 4-6)</figcaption>
-  <img src="../../files/callbacks-adder-4.svg" />
-</figure>
+<figure id="f:callbacks-adder-4"> <figcaption>Creating an Adder (Steps 4-6)</figcaption> <img src="../../files/callbacks-adder-4.svg" /> </figure>
 
 When we now call `add_1` or `add_2`,
 they add the value passed in and the value they've kept a reference to.

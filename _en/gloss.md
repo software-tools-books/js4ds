@@ -99,10 +99,10 @@ It is sometimes helpful to think of clients as sorcerors
 petitioning ancient gods for favors.
 Sometimes.
 
-**client-side page generation**{:#g:client-side-page-generation}:
+**client-side page generation**{:#g:client-page-gen}:
 to create an HTML page within a [client](#g:client)
 using data provided by a [server](#g:server).
-See also [server-side page generation](#g:server-side-page-generation).
+See also [server-side page generation](#g:server-page-gen).
 
 **closure**{:#g:closure}:
 a set of variables defined in the same [scope](#g:scope)
@@ -137,7 +137,7 @@ but the array's contents can be changed.
 a way to control requests made for data and other resources
 that aren't served by the site that gave the browser the original page.
 
-**declarative programming**{:#g:declarative-programming}:
+**declarative programming**{:#g:declarative}:
 a style of programming in which the user specifies what they want,
 and the computer figures out how to deliver it.
 
@@ -581,10 +581,10 @@ a program that waits for requests from [clients](#g:client) and sends them data 
 It is sometimes helpful to think of servers as harassed parents
 trying to babysit a room full of unruly children.
 
-**server-side page generation**{:#g:server-side-page-generation}:
+**server-side page generation**{:#g:server-page-gen}:
 to create an HTML page on a server.
 That HTML is then delivered as-is to a browser for display.
-See also [client-side page generation](#g:client-side-page-generation).
+See also [client-side page generation](#g:client-page-gen).
 
 **SQL**{:#g:sql}:
 the language used for writing queries for [relational databases](#g:relational-database).

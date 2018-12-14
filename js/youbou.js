@@ -8,7 +8,7 @@ const makeTableOfContents = () => {
   const items = headings
         .map((h) => '<li><a href="#' + h.id + '">' + h.innerHTML + '</a></li>')
         .join('\n')
-  container.innerHTML = '<p><strong>Contents</strong></p><ul>\n' + items + '</ul>'
+  container.innerHTML = '<h2>Contents</h2><ul>\n' + items + '</ul>'
 }
 
 // Add Bootstrap striped table classes to all tables.
