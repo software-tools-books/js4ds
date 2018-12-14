@@ -1065,6 +1065,7 @@ a true believer in functional programming would be saddened by this:</p>
 <span class="p">}</span>
 </code></pre></div></div>
 
+<!-- == \noindent -->
 <p>and would politely, even patiently, suggest that it be rewritten like this:</p>
 
 <div title="src/callbacks/pure.js" class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">pure</span> <span class="o">=</span> <span class="p">(</span><span class="nx">values</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="p">{</span>
@@ -1099,9 +1100,7 @@ all longer than 3: false
 <div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>those longer than 3: [ 'this', 'test' ]
 </code></pre></div></div>
 
-<ul>
-  <li>So do all of the elements with more than 3 characters start with a ‘t’?</li>
-</ul>
+<p>So do all of the elements with more than 3 characters start with a ‘t’?</p>
 
 <div title="src/callbacks/filter-every.js" class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">data</span> <span class="o">=</span> <span class="p">[</span><span class="s1">'this'</span><span class="p">,</span> <span class="s1">'is'</span><span class="p">,</span> <span class="s1">'a'</span><span class="p">,</span> <span class="s1">'test'</span><span class="p">]</span>
 <span class="kd">const</span> <span class="nx">result</span> <span class="o">=</span> <span class="nx">data</span>
@@ -1295,6 +1294,7 @@ that doubles all the values in an array in place:</p>
 <span class="p">]</span>
 </code></pre></div></div>
 
+<!-- == \noindent -->
 <p>write a function that returns a new array of objects like this:</p>
 
 <div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">newData</span> <span class="o">=</span> <span class="p">[</span>
@@ -1383,6 +1383,7 @@ we can create an object to represent a square:</p>
 <span class="p">}</span>
 </code></pre></div></div>
 
+<!-- == \noindent -->
 <p>and then pass the object itself into each of its own functions:</p>
 
 <div title="src/oop/clumsy-objects.js" class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">a</span> <span class="o">=</span> <span class="nx">square</span><span class="p">.</span><span class="nx">area</span><span class="p">(</span><span class="nx">square</span><span class="p">)</span>
@@ -1404,6 +1405,7 @@ we can create another object to represent a circle:</p>
 <span class="p">}</span>
 </code></pre></div></div>
 
+<!-- == \noindent -->
 <p>and then put all of these different objects in an array
 and operate on them in the same way
 without knowing precisely what kind of object we’re dealing with:</p>
@@ -1466,6 +1468,7 @@ without actually creating any specific squares:</p>
 <span class="p">}</span>
 </code></pre></div></div>
 
+<!-- == \noindent -->
 <p>(Class names are written in CamelCase by convention.)
 We can then create a specific square by using the class’s name as if it were a function:</p>
 
@@ -1827,6 +1830,7 @@ e -&gt; null
 <span class="p">}</span>
 </code></pre></div></div>
 
+<!-- == \noindent -->
 <p>and this program that uses it:</p>
 
 <div title="ex/oop/observe.js" class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">start</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Active</span><span class="p">(</span><span class="s1">'start'</span><span class="p">,</span> <span class="p">(</span><span class="nx">x</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="nb">Math</span><span class="p">.</span><span class="nx">min</span><span class="p">(</span><span class="nx">x</span><span class="p">,</span> <span class="mi">10</span><span class="p">))</span>
@@ -2065,6 +2069,7 @@ For example:</p>
 <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&lt;p class="disclaimer"&gt;This planet provided as-is.&lt;/p&gt;
 </code></pre></div></div>
 
+<!-- == \noindent -->
 <p>marks this paragraph as a disclaimer.
 That doesn’t mean anything special to HTML,
 but as we’ll see later,
@@ -2208,11 +2213,15 @@ and we can use <code class="highlighter-rouge">&lt;br/&gt;</code> to force a lin
 <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">"../index.html"</span><span class="nt">&gt;</span>home page (relative path)<span class="nt">&lt;/a&gt;</span>
 </code></pre></div></div>
 
-<p><a href="https://nodejs.org/">Node.js</a>
-<br>
-<a href="https://facebook.github.io/react/">React</a>
-<br>
-<a href="../index.html">home page (relative path)</a></p>
+<p>This appears as:</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Node.js
+React
+home page (relative path)
+</code></pre></div></div>
+
+<!-- == \noindent -->
+<p>with the usual clickability.</p>
 
 <h2 id="s:htmlcss-images">Images</h2>
 
@@ -2369,6 +2378,7 @@ if we create a page that gives two spans unique IDs:</p>
 <span class="nt">&lt;/html&gt;</span>
 </code></pre></div></div>
 
+<!-- == \noindent -->
 <p>then we can style those spans like this:</p>
 
 <div title="src/htmlcss/selector-style.css" class="language-css highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nf">#major</span> <span class="p">{</span>
@@ -2786,6 +2796,7 @@ this becomes:</p>
 <span class="p">})()</span>
 </code></pre></div></div>
 
+<!-- == \noindent -->
 <p>which is a lot of parentheses in a row,
 but that’s what people write.</p>
 
@@ -2857,6 +2868,7 @@ so that if the author writes:</p>
 <span class="nt">&lt;/ul&gt;</span>
 </code></pre></div></div>
 
+<!-- == \noindent -->
 <p>we will automatically rearrange the items to be:</p>
 
 <div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;ul&gt;</span>
@@ -2896,6 +2908,7 @@ so that if the author writes:</p>
 <span class="nt">&lt;/html&gt;</span>
 </code></pre></div></div>
 
+<!-- == \noindent -->
 <p>and this as the script:</p>
 
 <div title="src/pages/sort-lists.js" class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">sortLists</span> <span class="o">=</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
@@ -2934,6 +2947,7 @@ we go back to this:</p>
 <span class="nt">&lt;/html&gt;</span>
 </code></pre></div></div>
 
+<!-- == \noindent -->
 <p>and write our JavaScript like this:</p>
 
 <div title="src/pages/sort-lists-event.js" class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">sortLists</span> <span class="o">=</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
@@ -3027,6 +3041,7 @@ we’d like to find links like this:</p>
 <div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">"#b"</span><span class="nt">&gt;</span>key1, key2<span class="nt">&lt;/a&gt;</span>
 </code></pre></div></div>
 
+<!-- == \noindent -->
 <p>and turn them into this:</p>
 
 <div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code>[<span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">"../bib/#key1"</span><span class="nt">&gt;</span>key1<span class="nt">&lt;/a&gt;</span>, <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">"../bib/#key2"</span><span class="nt">&gt;</span>key2<span class="nt">&lt;/a&gt;</span>]
@@ -3061,6 +3076,7 @@ and get on with learning JavaScript for now.</p>
 <span class="nt">&lt;/html&gt;</span>
 </code></pre></div></div>
 
+<!-- == \noindent -->
 <p>and here’s our function
 (which we’ll call from an event listener as before):</p>
 
@@ -3105,6 +3121,7 @@ One option would be to create a two-element array for each:</p>
 <div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    <span class="p">.</span><span class="nx">map</span><span class="p">(</span><span class="nx">link</span> <span class="o">=&gt;</span> <span class="p">[</span><span class="nx">link</span><span class="p">,</span> <span class="nx">link</span><span class="p">.</span><span class="nx">textContent</span><span class="p">.</span><span class="nx">whatever</span><span class="p">])</span>
 </code></pre></div></div>
 
+<!-- == \noindent -->
 <p>but it’s more readable to create an object so that each component has a name:</p>
 
 <div title="src/pages/citations.js" class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    <span class="p">.</span><span class="nx">map</span><span class="p">(</span><span class="nx">link</span> <span class="o">=&gt;</span> <span class="p">({</span><span class="na">node</span><span class="p">:</span> <span class="nx">link</span><span class="p">,</span>
@@ -3627,13 +3644,13 @@ which is younger and therefore not yet bloated
 
 <p>To install Parcel, run:</p>
 
-<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>npm <span class="nb">install </span>parcel-bundler
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>npm <span class="nb">install </span>parcel-bundler
 </code></pre></div></div>
 
 <p>Once it’s in place,
 we can tell it to run one of our test pages like this:</p>
 
-<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>node_modules/.bin/parcel serve <span class="nt">-p</span> 4000 src/dynamic/pass-parameters.html
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>node_modules/.bin/parcel serve <span class="nt">-p</span> 4000 src/dynamic/pass-parameters.html
 </code></pre></div></div>
 <div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Server running at http://localhost:4000
 + Built in 128ms.
@@ -4107,7 +4124,7 @@ we <code class="highlighter-rouge">npm install vega vega-lite vega-embed</code> 
 
 <p>We launch this with Parcel via our saved <code class="highlighter-rouge">npm run</code> command:</p>
 
-<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>npm run dev <span class="nt">--</span> src/vis/react-01/index.html
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>npm run dev <span class="nt">--</span> src/vis/react-01/index.html
 </code></pre></div></div>
 
 <p>But nothing appears when we open <code class="highlighter-rouge">http://localhost:4000</code> in our browser.
@@ -4510,6 +4527,7 @@ If we try this, using JavaScript’s <code class="highlighter-rouge">try {...} c
 <span class="p">}</span>
 </code></pre></div></div>
 
+<!-- == \noindent -->
 <p>then the error message won’t appear
 because the call to <code class="highlighter-rouge">fetch</code> doesn’t raise an exception right away.</p>
 
@@ -4531,6 +4549,7 @@ We could write a loop:</p>
 <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">total_size</span><span class="p">)</span>
 </code></pre></div></div>
 
+<!-- == \noindent -->
 <p>but this doesn’t work:
 the <code class="highlighter-rouge">stat</code> in each iteration is executed asynchronously,
 so the loop finishes and the script prints a total size of zero
@@ -4553,6 +4572,7 @@ to ensure that each executes only after the last has resolved:</p>
 <span class="p">}).</span><span class="nx">then</span><span class="p">((</span><span class="nx">total</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">total</span><span class="p">))</span>
 </code></pre></div></div>
 
+<!-- == \noindent -->
 <p>but this obviously doesn’t handle an arbitrary number of files,
 since we have to write one level of nesting for each file.
 It’s also potentially inefficient,
@@ -4800,6 +4820,7 @@ we cannot use them interactively unless we wrap whatever we want to do in a wee 
 <span class="p">})</span>
 </code></pre></div></div>
 
+<!-- == \noindent -->
 <p>but this code fails:</p>
 
 <div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">'starting...'</span><span class="p">)</span>
@@ -5068,9 +5089,10 @@ React will only actually redraw as little as it can.</p>
 
 <p>If we try running this little application from the command line with Parcel:</p>
 
-<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>npm run dev <span class="nt">--</span> src/interactive/display-counter.html
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>npm run dev <span class="nt">--</span> src/interactive/display-counter.html
 </code></pre></div></div>
 
+<!-- == \noindent -->
 <p>everything works as planned.
 But now try taking the code out of the web page and putting it in its own file:</p>
 
@@ -5112,7 +5134,7 @@ But now try taking the code out of the web page and putting it in its own file:<
 
 <p>Let’s try running this:</p>
 
-<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>npm run dev <span class="nt">--</span> src/interactive/counter/index.html
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>npm run dev <span class="nt">--</span> src/interactive/counter/index.html
 </code></pre></div></div>
 
 <div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&gt; js-vs-ds@0.1.0 dev /Users/stj/js-vs-ds
@@ -5492,6 +5514,7 @@ that we can then pass in:</p>
 <span class="k">export</span> <span class="p">{</span><span class="nx">DateSubmit</span><span class="p">}</span>
 </code></pre></div></div>
 
+<!-- == \noindent -->
 <p>and run it:</p>
 
 <figure id="f:interactive-asteroids-screenshot"> <img src="../../files/interactive-asteroids-screenshot.png"> <figcaption>Asteroids Application</figcaption> </figure>
@@ -5836,12 +5859,12 @@ we will do something simple:</p>
 
 <p>We run this on the command line:</p>
 
-<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>node <span class="k">select</span><span class="nt">-random</span>.js ../surveys.csv 10 slice.csv
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>node <span class="k">select</span><span class="nt">-random</span>.js ../surveys.csv 10 slice.csv
 </code></pre></div></div>
 
 <p>and get this:</p>
 
-<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>record_id,month,day,year,plot_id,species_id,sex,hindfoot_length,weight
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>record_id,month,day,year,plot_id,species_id,sex,hindfoot_length,weight
 18501,3,14,1991,13,OT,M,21,28
 2283,1,15,1980,11,OL,M,21,23
 19941,5,2,1992,1,PP,M,22,13
@@ -5878,7 +5901,7 @@ to particular columns.</li>
 <p>We will use <a href="https://www.papaparse.com/">PapaParse</a> to parse our CSV,
 so our first step is to install it:</p>
 
-<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>npm <span class="nb">install </span>papaparse
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>npm <span class="nb">install </span>papaparse
 </code></pre></div></div>
 
 <p>After loading the library and reading our test data file a couple of times,
@@ -5948,6 +5971,7 @@ The output of <code class="highlighter-rouge">papa.parse</code> looks like this:
         <span class="s1">'weight'</span> <span class="p">]</span> <span class="p">}</span> <span class="p">}</span>
 </code></pre></div></div>
 
+<!-- == \noindent -->
 <p>so using <code class="highlighter-rouge">papa.parse(raw, options).data</code> gets the data we want as JSON.
 Let’s write a method to get some overall statistics:</p>
 
@@ -6075,6 +6099,7 @@ Write a small command-line JavaScript program that:</p>
 <div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">getSurveyRange</span><span class="p">(</span><span class="nx">minYear</span><span class="p">,</span> <span class="nx">maxYear</span><span class="p">,</span> <span class="s1">'hindfoot_length'</span><span class="p">,</span> <span class="s1">'weight'</span><span class="p">)</span>
 </code></pre></div></div>
 
+<!-- == \noindent -->
 <p>i.e., so that the names of the fields whose minimum, average, and maximum values are wanted
 can be passed as strings,
 and the method will automatically create the right names and values in its result.</p>
@@ -6268,6 +6293,7 @@ This one:</p>
 <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>http://example.org:1234/some/path?value=deferred&amp;limit=200
 </code></pre></div></div>
 
+<!-- == \noindent -->
 <p>has five parts:</p>
 
 <ul>
@@ -6352,7 +6378,7 @@ the last line of this script tells our application to listen on the specified po
 while the callback tells it to print a message as it starts running.
 When we run this, we see:</p>
 
-<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>node static-page.js
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>node static-page.js
 </code></pre></div></div>
 <div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>listening...
 </code></pre></div></div>
@@ -6461,9 +6487,10 @@ so that our server is more responsive.</li>
 <p>If a sub-directory called <code class="highlighter-rouge">web-dir</code> holds a file called <code class="highlighter-rouge">title.html</code>,
 and we run the server as:</p>
 
-<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>node serve-pages.js ./web-dir
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>node serve-pages.js ./web-dir
 </code></pre></div></div>
 
+<!-- == \noindent -->
 <p>we can then ask for <code class="highlighter-rouge">http://localhost:3418/title.html</code>
 and get the content of <code class="highlighter-rouge">web-dir/title.html</code>.
 Notice that the directory <code class="highlighter-rouge">./web-dir</code> doesn’t appear in the URL:
@@ -6679,7 +6706,7 @@ so Mocha needs to know when each one completes.</p>
 <p>We can run our tests from the shell by invoking <code class="highlighter-rouge">mocha</code>
 and giving it the path to the file that contains the tests:</p>
 
-<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>./node_modules/.bin/mocha path/to/test.js
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>./node_modules/.bin/mocha path/to/test.js
 </code></pre></div></div>
 <div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  first test
     + should run without errors
@@ -6703,9 +6730,10 @@ After we add this:</p>
 <span class="p">}</span>
 </code></pre></div></div>
 
+<!-- == \noindent -->
 <p>to <code class="highlighter-rouge">package.json</code>, our command becomes:</p>
 
-<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>npm <span class="nb">test</span> <span class="nt">--</span> path/to/test.js
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>npm <span class="nb">test</span> <span class="nt">--</span> path/to/test.js
 </code></pre></div></div>
 
 <p>(Again, everything after <code class="highlighter-rouge">--</code> is passed to the script itself.)</p>
@@ -6751,7 +6779,7 @@ so that we can test it:</p>
 <p>Before going any further,
 we can check that we haven’t broken anything by running:</p>
 
-<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>node standalone.js
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>node standalone.js
 </code></pre></div></div>
 
 <h2 id="s:testing-server">Testing the Server</h2>
@@ -7134,9 +7162,10 @@ The server functions are:</p>
 which is <em>not</em> the range in the full dataset.
 We run this with:</p>
 
-<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>npm <span class="nb">test</span> <span class="nt">--</span> src/capstone/back/test-server.js
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>npm <span class="nb">test</span> <span class="nt">--</span> src/capstone/back/test-server.js
 </code></pre></div></div>
 
+<!-- == \noindent -->
 <p>and it passes.</p>
 
 <h2 id="s:capstone-display">The Display</h2>
@@ -7457,7 +7486,7 @@ so that we can see messages from both halves of what we’re doing.</p>
 <p>In one window,
 we run:</p>
 
-<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>node src/capstone/back/driver-0.js src/capstone/back/test-data.csv
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>node src/capstone/back/driver-0.js src/capstone/back/test-data.csv
 </code></pre></div></div>
 
 <p>Note that we <em>don’t</em> use <code class="highlighter-rouge">npm run dev</code> to trigger Parcel:
@@ -7466,9 +7495,10 @@ so no bundling is necessary.
 In our other window,
 we run:</p>
 
-<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>npm run dev src/capstone/front/index.html
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>npm run dev src/capstone/front/index.html
 </code></pre></div></div>
 
+<!-- == \noindent -->
 <p>which displays:</p>
 
 <div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&gt; js-vs-ds@0.1.0 dev /Users/stj/js-vs-ds
@@ -7524,7 +7554,7 @@ which we can add to our server with just a couple of lines of code:</p>
 we need to create a copy of the driver called <code class="highlighter-rouge">driver-1.js</code> that invokes it.
 Let’s run that:</p>
 
-<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>node src/capstone/back/driver-1.js src/capstone/back/test-data.csv
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>node src/capstone/back/driver-1.js src/capstone/back/test-data.csv
 </code></pre></div></div>
 
 <p>and then re-launch our application:</p>
@@ -7954,10 +7984,16 @@ can find and translate the elements correctly.</li>
       <li><code class="highlighter-rouge">b:item</code> for bibliography references</li>
     </ul>
   </li>
-  <li>If you need to embed a one-line LaTeX command in a Markdown file and have it passed through,
-format it like <code class="highlighter-rouge">&lt;!-- == \noindent --&gt;</code>
-(i.e., as an HTML comment with a double equals sign and then the command).
-Note that these comments will appear in the generated HTML as well.</li>
+  <li>
+    <p>If you need to embed a one-line LaTeX command in a Markdown file and have it passed through,
+format it thusly:</p>
+
+    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&lt;!-- == \noindent --&gt;
+</code></pre></div>    </div>
+
+    <p>(i.e., as an HTML comment with a double equals sign and then the command).
+Note that these comments will appear in the generated HTML as well.</p>
+  </li>
 </ul>
 
 <p>The <a href="https://jekyllrb.com/">Jekyll</a> template used in this tutorial can support multiple languages.
@@ -8969,7 +9005,7 @@ and yes, that took a couple of minutes to figure out…</p>
     <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
       <span class="nx">winston</span><span class="p">.</span><span class="nx">debug</span><span class="p">(</span><span class="s2">`Serving "</span><span class="p">${</span><span class="nx">actual</span><span class="p">}</span><span class="s2">"`</span><span class="p">)</span>
       <span class="nx">fs</span><span class="p">.</span><span class="nx">readFile</span><span class="p">(</span><span class="nx">actual</span><span class="p">,</span> <span class="s1">'utf-8'</span><span class="p">,</span> <span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">data</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
-	<span class="nx">res</span><span class="p">.</span><span class="nx">status</span><span class="p">(</span><span class="mi">200</span><span class="p">).</span><span class="nx">send</span><span class="p">(</span><span class="nx">data</span><span class="p">)</span>
+        <span class="nx">res</span><span class="p">.</span><span class="nx">status</span><span class="p">(</span><span class="mi">200</span><span class="p">).</span><span class="nx">send</span><span class="p">(</span><span class="nx">data</span><span class="p">)</span>
       <span class="p">})</span>
     <span class="p">}</span>
   <span class="p">})</span>
@@ -8987,7 +9023,7 @@ If we run it with the <code class="highlighter-rouge">'info'</code> level,
 the startup message and the 404 error messages appear,
 and if we run it with the level <code class="highlighter-rouge">'error'</code> only the latter appear.</p>
 
-<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>node src/logging/logging-server.js src/logging/web-dir/ info
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>node src/logging/logging-server.js src/logging/web-dir/ info
 </code></pre></div></div>
 <div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>{"message":"Running on port 3418 with root src/logging/web-dir/","level":"info"}
 {"message":"Unable to find \"src/logging/web-dir/missing.html\"","level":"error"}
@@ -9162,7 +9198,7 @@ We really should try to do better…</p>
 <p>But before then,
 let’s try running this:</p>
 
-<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>node database-initial.js fixture.db getAll
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>node database-initial.js fixture.db getAll
 </code></pre></div></div>
 <div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>{ workshopId: 1,
   workshopName: 'Building Community',
@@ -9235,7 +9271,7 @@ we can use destructuring to handle command-line arguments in the driver:</p>
 With these changes in place,
 we can run a query to get details of the second workshop like this:</p>
 
-<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>node database-mode.js memory fixture.sql getOne 2
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>node database-mode.js memory fixture.sql getOne 2
 </code></pre></div></div>
 <div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>{ workshopId: 2,
   workshopName: 'ENIAC Programming',
@@ -9356,7 +9392,7 @@ since we will eventually want to compare them or return them to a server rather 
 
 <p>Let’s try running it:</p>
 
-<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>node separate-driver.js file fixture.db getAll
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>node separate-driver.js file fixture.db getAll
 </code></pre></div></div>
 <div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  for (let r of rows) {
               ^
@@ -9715,6 +9751,7 @@ We can create a very simple plugin like this:</p>
 <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>node src/extensible/dynamic.js
 </code></pre></div></div>
 
+<!-- == \noindent -->
 <p>and then go to <code class="highlighter-rouge">http://localhost:4000/plugin.js</code>,
 we get back a page containing the title “Plugin Content”.</p>
 
