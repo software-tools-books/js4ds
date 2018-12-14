@@ -72,7 +72,7 @@ alltex :
 	| ${PANDOC} --wrap=preserve -f html -t latex -o - \
 	| tail -n +6 \
 	| sed -E -e '/==c==.+==/{N;s/\n/ /;}' -E -e 's!==c==(.+)==!\1!' -e s'!\\textbackslash{}!\\!' \
-	| sed -E -e 's!==f==([^=]+)==([^=]+)==([^=]+)==!\\begin{figure}[H]\\label{\1}\\includegraphics{\2}\\caption{\3}\\end{figure}!' \
+	| sed -E -e 's!==f==([^=]+)==([^=]+)==([^=]+)==!\\begin{figure}[H]\\label{\1}\\centering\\includegraphics{\2}\\caption{\3}\\end{figure}!' \
 	| sed -E -e 's!\.svg}!\.pdf}!' \
 	| sed -E -e 's!==b==([^=]+)==b==([^=]+)==b==!\\hypertarget{\1}{\2}\\label{\1}!' \
 	| sed -E -e 's!==g==([^=]+)==g==([^=]+)==g==!\\hypertarget{\1}{\2}\\label{\1}!' \
