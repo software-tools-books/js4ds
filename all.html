@@ -12,8 +12,8 @@ layout: plain
       
       <p>We were going to call this book <em>JavaScript for Scientists and Engineers</em>,
 but <a href="https://www.dabeaz.com/">David Beazley</a> thought that “versus” would make a better title.
-That one-word change sums up how many people view the language,
-but we hope we can convince you that modern JavaScript is usable as well as useful.
+While that one-word change sums up how many people view the language,
+we hope we can convince you that modern JavaScript is usable as well as useful.
 We changed the second half of the title because hey, data science.
 We also hope that these lessons will help librarians,
 digital humanists,
@@ -683,7 +683,7 @@ at <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference">h
   <li>What does <code class="highlighter-rouge">Array.reverse</code> do, and what does it return?</li>
 </ol>
 
-<div title="ex/basics/table-of-squares.js" class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">let</span> <span class="nx">current</span> <span class="o">=</span> <span class="mi">0</span>
+<div title="src/basics/table-of-squares.js" class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">let</span> <span class="nx">current</span> <span class="o">=</span> <span class="mi">0</span>
 <span class="kd">let</span> <span class="nx">table</span> <span class="o">=</span> <span class="p">[]</span>
 <span class="k">while</span> <span class="p">(</span><span class="nx">current</span> <span class="o">&lt;</span> <span class="mi">5</span><span class="p">)</span> <span class="p">{</span>
   <span class="kd">const</span> <span class="nx">entry</span> <span class="o">=</span> <span class="s2">`square of </span><span class="p">${</span><span class="nx">current</span><span class="p">}</span><span class="s2"> is </span><span class="p">${</span><span class="nx">current</span> <span class="o">*</span> <span class="nx">current</span><span class="p">}</span><span class="s2">`</span>
@@ -714,7 +714,7 @@ and <code class="highlighter-rouge">false</code> for everything it considers <co
 Try running it and see whether the results match your expectations.
 What are the implications of this behavior when working with real-world data?</p>
 
-<div title="ex/basics/aggregating.js" class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">first</span> <span class="o">=</span> <span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span>
+<div title="src/basics/aggregating.js" class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">first</span> <span class="o">=</span> <span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span>
 <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">`aggregating </span><span class="p">${</span><span class="nx">first</span><span class="p">}</span><span class="s2">`</span><span class="p">)</span>
 <span class="kd">let</span> <span class="nx">total</span> <span class="o">=</span> <span class="mi">0</span>
 <span class="k">for</span> <span class="p">(</span><span class="kd">let</span> <span class="nx">d</span> <span class="k">of</span> <span class="nx">first</span><span class="p">)</span> <span class="p">{</span>
@@ -735,7 +735,7 @@ What are the implications of this behavior when working with real-world data?</p
 
 <p>Explain what is happening in the assignment statement that creates the constant <code class="highlighter-rouge">creature</code>.</p>
 
-<div title="ex/basics/implied.js" class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">genus</span> <span class="o">=</span> <span class="s1">'Callithrix'</span>
+<div title="src/basics/implied.js" class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">genus</span> <span class="o">=</span> <span class="s1">'Callithrix'</span>
 <span class="kd">const</span> <span class="nx">species</span> <span class="o">=</span> <span class="s1">'Jacchus'</span>
 <span class="kd">const</span> <span class="nx">creature</span> <span class="o">=</span> <span class="p">{</span><span class="nx">genus</span><span class="p">,</span> <span class="nx">species</span><span class="p">}</span>
 <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">creature</span><span class="p">)</span>
@@ -749,7 +749,7 @@ What are the implications of this behavior when working with real-world data?</p
 Use this technique to rewrite <code class="highlighter-rouge">src/basics/import.js</code>
 so that <code class="highlighter-rouge">clip</code> can be called directly as <code class="highlighter-rouge">clip(...)</code> rather than <code class="highlighter-rouge">utilities.clip(...)</code>.</p>
 
-<div title="ex/basics/destructuring.js" class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">creature</span> <span class="o">=</span> <span class="p">{</span>
+<div title="src/basics/destructuring.js" class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">creature</span> <span class="o">=</span> <span class="p">{</span>
   <span class="na">genus</span><span class="p">:</span> <span class="s1">'Callithrix'</span><span class="p">,</span>
   <span class="na">species</span><span class="p">:</span> <span class="s1">'Jacchus'</span>
 <span class="p">}</span>
@@ -1809,7 +1809,7 @@ e -&gt; null
 
 <p>Consider this class:</p>
 
-<div title="ex/oop/observe.js" class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">class</span> <span class="nx">Active</span> <span class="p">{</span>
+<div title="src/oop/observe.js" class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">class</span> <span class="nx">Active</span> <span class="p">{</span>
   <span class="kd">constructor</span> <span class="p">(</span><span class="nx">name</span><span class="p">,</span> <span class="nx">transform</span><span class="p">)</span> <span class="p">{</span>
     <span class="k">this</span><span class="p">.</span><span class="nx">name</span> <span class="o">=</span> <span class="nx">name</span>
     <span class="k">this</span><span class="p">.</span><span class="nx">transform</span> <span class="o">=</span> <span class="nx">transform</span>
@@ -1833,7 +1833,7 @@ e -&gt; null
 <!-- == \noindent -->
 <p>and this program that uses it:</p>
 
-<div title="ex/oop/observe.js" class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">start</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Active</span><span class="p">(</span><span class="s1">'start'</span><span class="p">,</span> <span class="p">(</span><span class="nx">x</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="nb">Math</span><span class="p">.</span><span class="nx">min</span><span class="p">(</span><span class="nx">x</span><span class="p">,</span> <span class="mi">10</span><span class="p">))</span>
+<div title="src/oop/observe.js" class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">start</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Active</span><span class="p">(</span><span class="s1">'start'</span><span class="p">,</span> <span class="p">(</span><span class="nx">x</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="nb">Math</span><span class="p">.</span><span class="nx">min</span><span class="p">(</span><span class="nx">x</span><span class="p">,</span> <span class="mi">10</span><span class="p">))</span>
 <span class="kd">const</span> <span class="nx">left</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Active</span><span class="p">(</span><span class="s1">'left'</span><span class="p">,</span> <span class="p">(</span><span class="nx">x</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="mi">2</span> <span class="o">*</span> <span class="nx">x</span><span class="p">)</span>
 <span class="kd">const</span> <span class="nx">right</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Active</span><span class="p">(</span><span class="s1">'right'</span><span class="p">,</span> <span class="p">(</span><span class="nx">x</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="nx">x</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
 <span class="kd">const</span> <span class="kr">final</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Active</span><span class="p">(</span><span class="s1">'final'</span><span class="p">,</span> <span class="p">(</span><span class="nx">x</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="nx">x</span><span class="p">)</span>
@@ -5859,7 +5859,7 @@ we will do something simple:</p>
 
 <p>We run this on the command line:</p>
 
-<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>node <span class="k">select</span><span class="nt">-random</span>.js ../surveys.csv 10 slice.csv
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>node <span class="k">select</span><span class="nt">-random</span>.js ../../data/surveys.csv 10 slice.csv
 </code></pre></div></div>
 
 <p>and get this:</p>
@@ -9748,7 +9748,7 @@ We can create a very simple plugin like this:</p>
 
 <p>If we run the server:</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>node src/extensible/dynamic.js
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>node src/extensible/dynamic.js
 </code></pre></div></div>
 
 <!-- == \noindent -->

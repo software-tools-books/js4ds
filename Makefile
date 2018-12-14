@@ -38,11 +38,11 @@ site :
 ## release     : build a release (all-in-one HTML page + book PDF).
 release :
 	@make lang=${lang} site
-	@make lang=${lang} singlepage
+	@make lang=${lang} allhtml
 	@make lang=${lang} book
 
-## singlepage  : build single-page version after rebuilding site.
-singlepage :
+## allhtml     : build single-page version after rebuilding site.
+allhtml :
 	node bin/stitch.js _config.yml _site ${lang} > ${SINGLEPAGE_HTML}
 
 ## book        : build PDF version.
@@ -50,6 +50,7 @@ book :
 	@make lang=${lang} alltex
 	@make lang=${lang} pdf
 
+## alltex      : build single-page LaTeX file from single-page HTML version.
 # Create the unified LaTeX file (separate target to simplify testing).
 # + 'sed' to pull glossary entry IDs out into '==g==' blocks (because Pandoc throws them away).
 # + 'sed' to pull bibliography entry IDs out into '==b==' blocks (because Pandoc throws them away).
@@ -71,7 +72,7 @@ alltex :
 	| ${PANDOC} --wrap=preserve -f html -t latex -o - \
 	| tail -n +6 \
 	| sed -E -e '/==c==.+==/{N;s/\n/ /;}' -E -e 's!==c==(.+)==!\1!' -e s'!\\textbackslash{}!\\!' \
-	| sed -E -e 's!==f==([^=]+)==([^=]+)==([^=]+)==!\\begin{figure}\\label{\1}\\includegraphics{\2}\\caption{\3}\\end{figure}!' \
+	| sed -E -e 's!==f==([^=]+)==([^=]+)==([^=]+)==!\\begin{figure}[H]\\label{\1}\\includegraphics{\2}\\caption{\3}\\end{figure}!' \
 	| sed -E -e 's!\.svg}!\.pdf}!' \
 	| sed -E -e 's!==b==([^=]+)==b==([^=]+)==b==!\\hypertarget{\1}{\2}\\label{\1}!' \
 	| sed -E -e 's!==g==([^=]+)==g==([^=]+)==g==!\\hypertarget{\1}{\2}\\label{\1}!' \
@@ -80,7 +81,7 @@ alltex :
 	| sed -E -e 's!\\subsubsection!\\subsection!' \
 	> ${DIR_TEX}/all.tex
 
-# Generate the PDF (separate target to simplify testing).
+## pdf         : generate PDF from LaTeX source.
 pdf :
 	cd ${DIR_TEX} \
 	&& ${LATEX} book \
