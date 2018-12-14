@@ -63,6 +63,7 @@ book :
 # - 'sed' to turn SVG inclusions into PDF inclusions.
 # - 'sed' to convert '====' blocks into LaTeX labels.
 # - 'sed' to bump section headings back up.
+# - 'sed' (twice) to convert 'verbatim' environments
 alltex :
 	cat ${SINGLEPAGE_HTML} \
 	| sed -E -e 's!<strong id="(g:[^"]+)">([^<]+)</strong>!<strong>==g==\1==g==\2==g==</strong>!' \
@@ -79,6 +80,8 @@ alltex :
 	| sed -E -e 's!\\section!\\chapter!' \
 	| sed -E -e 's!\\subsection!\\section!' \
 	| sed -E -e 's!\\subsubsection!\\subsection!' \
+	| sed -E -e 's!\\begin{verbatim}!\\begin{Verbatim}[fontsize=\\small]!' \
+	| sed -E -e 's!\\end{verbatim}!\\end{Verbatim}!' \
 	> ${DIR_TEX}/all.tex
 
 ## pdf         : generate PDF from LaTeX source.
