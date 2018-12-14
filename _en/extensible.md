@@ -55,8 +55,8 @@ module.exports = {
 
 If we run the server:
 
-```
-node src/extensible/dynamic.js
+```sh
+$ node src/extensible/dynamic.js
 ```
 
 <!-- == \noindent -->
