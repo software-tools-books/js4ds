@@ -14,14 +14,12 @@ LATEX=pdflatex
 
 # Language-dependent settings.
 DIR_MD=_${lang}
-DIR_HTML=_site/${lang}
-DIR_TEX=tex/${lang}
-
-# Filesets.
 PAGES_MD=$(wildcard ${DIR_MD}/*.md)
-PAGES_MD_CHAP=$(filter-out ${DIR_MD}/index.md,${PAGES_MD})
-PAGES_HTML=${DIR_HTML}/index.html $(patsubst ${DIR_MD}/%.md,${DIR_HTML}/%/index.html,${PAGES_MD_CHAP})
-SINGLEPAGE_HTML=all.html
+DIR_HTML=_site/${lang}
+PAGES_HTML=${DIR_HTML}/index.html $(patsubst ${DIR_MD}/%.md,${DIR_HTML}/%/index.html,$(filter-out ${DIR_MD}/index.md,${PAGES_MD}))
+DIR_TEX=tex/${lang}
+ALL_TEX=${DIR_TEX}/all.tex
+BOOK_PDF=${DIR_TEX}/js-vs-ds.pdf
 
 # Controls
 all : commands
@@ -44,16 +42,14 @@ release :
 	@make lang=${lang} allhtml
 	@make lang=${lang} book
 
-## allhtml     : build single-page version after rebuilding site.
-allhtml :
-	node bin/stitch.js _config.yml _site ${lang} > ${SINGLEPAGE_HTML}
+## pdf         : generate PDF from LaTeX source.
+pdf : ${BOOK_PDF}
 
-## book        : build PDF version.
-book :
-	@make lang=${lang} alltex
-	@make lang=${lang} pdf
+${BOOK_PDF} : ${ALL_TEX}
+	cd ${DIR_TEX} \
+	&& ${LATEX} ${STEM} \
+	&& ${LATEX} ${STEM}
 
-## alltex      : build single-page LaTeX file from single-page HTML version.
 # Create the unified LaTeX file (separate target to simplify testing).
 # + 'sed' to pull glossary entry IDs out into '==g==' blocks (because Pandoc throws them away).
 # + 'sed' to pull bibliography entry IDs out into '==b==' blocks (because Pandoc throws them away).
@@ -70,8 +66,8 @@ book :
 # - 'sed' to bump section headings back up.
 # - 'sed' to suppress indentation inside quotes (so that callout boxes format correctly).
 # - 'sed' (twice) to convert 'verbatim' environments
-alltex :
-	cat ${SINGLEPAGE_HTML} \
+${ALL_TEX} : ${PAGES_HTML}
+	node js/stitch.js _config.yml _site ${lang} \
 	| sed -E -e 's!<strong id="(g:[^"]+)">([^<]+)</strong>!<strong>==g==\1==g==\2==g==</strong>!' \
 	| sed -E -e 's!<strong id="(b:[^"]+)">([^<]+)</strong>!<strong>==b==\1==b==\2==b==</strong>!' \
 	| sed -E -e 's!<figure +id="(.+)"> *<img +src="(.+)"> *<figcaption>(.+)</figcaption> *</figure>!==f==\1==\2==\3==!' \
@@ -95,11 +91,7 @@ alltex :
 	| sed -E -e 's!\\subsubsection!\\subsection!' \
 	> ${DIR_TEX}/all.tex
 
-## pdf         : generate PDF from LaTeX source.
-pdf :
-	cd ${DIR_TEX} \
-	&& ${LATEX} ${STEM} \
-	&& ${LATEX} ${STEM}
+${PAGES_HTML} : ${PAGES_MD}
 
 ## ----------------------------------------
 
@@ -150,6 +142,8 @@ settings :
 	@echo "JEKYLL=${JEKYLL}"
 	@echo "DIR_MD=${DIR_MD}"
 	@echo "PAGES_MD=${PAGES_MD}"
-	@echo "PAGES_MD_CHAP=${PAGES_MD_CHAP}"
+	@echo "DIR_HTML=${DIR_HTML}"
 	@echo "PAGES_HTML=${PAGES_HTML}"
-	@echo "SINGLEPAGE_HTML=${SINGLEPAGE_HTML}"
+	@echo "DIR_TEX=${DIR_TEX}"
+	@echo "ALL_TEX=${ALL_TEX}"
+	@echo "BOOK_PDF=${BOOK_PDF}"

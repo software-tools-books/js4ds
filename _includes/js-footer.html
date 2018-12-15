@@ -1,4 +1,10 @@
 {% comment %}
 Include JavaScript files in the foot of the page for delayed execution.
+Only include the all-in-one scripts if requested.
+*Cannot* call the key LANGUAGE because that's reserved.
 {% endcomment %}
 <script src="{{'/js/site.js'|relative_url}}" ROOT="{{page.root}}"></script>
+{% if page.aio %}
+<script src="{{'/js/concatenate.js'|relative_url}}"></script>
+<script src="{{'/js/all-in-one.js'|relative_url}}" LANG="{{page.language}}"></script>
+{% endif %}

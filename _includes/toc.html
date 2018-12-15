@@ -24,8 +24,8 @@ Select the entire collection for the language from "_config.yml".  We include
 Set the path to the file containing all lessons in one page and the path to the
 license file.
 {% endcomment %}
-{% assign allpath = '/' | append: include.language | append: '/all/' %}
-{% assign licensepath = '/' | append: include.language | append: '/license/' %}
+{% assign allpath = site.github.url | append: '/' | append: include.language | append: '/all/' %}
+{% assign licensepath = site.github.url | append: '/' | append: include.language | append: '/license/' %}
 
 <nav>
 

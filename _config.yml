@@ -79,6 +79,7 @@ translations:
 
 # Standard Jekyll settings.
 
+repository: <USERNAME>/<PROJECT>
 highlighter: rouge
 plugins:
 - "jekyll-redirect-from"
