@@ -68,6 +68,7 @@ book :
 # - 'sed' to turn SVG inclusions into PDF inclusions.
 # - 'sed' to convert '====' blocks into LaTeX labels.
 # - 'sed' to bump section headings back up.
+# - 'sed' to suppress indentation inside quotes (so that callout boxes format correctly).
 # - 'sed' (twice) to convert 'verbatim' environments
 alltex :
 	cat ${SINGLEPAGE_HTML} \
@@ -88,6 +89,7 @@ alltex :
 	| sed -E -e 's!\.svg}!\.pdf}!' \
 	| sed -E -e 's!==b==([^=]+)==b==([^=]+)==b==!\\hypertarget{\1}{\2}\\label{\1}!' \
 	| sed -E -e 's!==g==([^=]+)==g==([^=]+)==g==!\\hypertarget{\1}{\2}\\label{\1}!' \
+	| sed -E -e 's!\\begin{quote}!\\begin{quote}\\setlength{\\parindent}{0pt}!' \
 	| sed -E -e 's!\\section!\\chapter!' \
 	| sed -E -e 's!\\subsection!\\section!' \
 	| sed -E -e 's!\\subsubsection!\\subsection!' \
