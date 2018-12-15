@@ -79,7 +79,8 @@ alltex :
 	| ${PANDOC} --wrap=preserve -f html -t latex -o - \
 	| tail -n +6 \
 	| sed -E -e '/==l==.+==/{N;N;s/\n/ /g;}' \
-	| sed -E -e 's!==l==(text|css)== *\\begin\{verbatim\}!\\begin{lstlisting}!' \
+	| sed -E -e 's!==l==(css)== *\\begin\{verbatim\}!\\begin{lstlisting}!' \
+	| sed -E -e 's!==l==(text)== *\\begin\{verbatim\}!\\begin{lstlisting}[backgroundcolor=\\color{verylightgray}]!' \
 	| sed -E -e 's!==l==([^=]+)== *\\begin\{verbatim\}!\\begin{lstlisting}[language=\1]!' \
 	| sed -E -e 's!\\end{verbatim}!\\end{lstlisting}!' \
 	| sed -E -e '/==c==.+==/{N;s/\n/ /;}' -e 's!==c==(.+)==!\1!' -e s'!\\textbackslash{}!\\!' \
