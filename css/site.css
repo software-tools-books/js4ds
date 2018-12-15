@@ -11,7 +11,6 @@ div.toc {
     min-height: 100vh;
     padding-top: 0.5em;
     font-size: 80%;
-    background-color: {{site.background}};
 }
 
 /* Less space between titles and bullet lists in ToC and objectives/keypoints boxes. */
@@ -44,7 +43,6 @@ pre.highlight {
     border-style: solid;
     border-width: 2px;
     padding: 0.5em;
-    border-color: {{site.background}};
 }
 
 /* Make inline code darker than Bootstrap default. */
@@ -89,8 +87,7 @@ ol.appendix {
 figure {
     border-style: solid;
     border-width: 1px;
-    border-color: #000000;
-    background-color: {{site.background}};
+    border-color: #808080;
     padding: 2px;
     text-align: center;
 }
@@ -102,17 +99,9 @@ figcaption {
 
 /* Mark quotations. */
 blockquote {
-    background-color: {{site.background}};
-    padding-left: 0.5em;
+    padding-left: 2em;
+    padding-right: 2em;
     font-style: italic;
-}
-
-/* Mark callouts. */
-blockquote.callout {
-    border-width: 1px;
-    border-color: #000000;
-    border-style: solid;
-    padding: 5px;
 }
 
 /* Make h3 more distinct from h2. */
