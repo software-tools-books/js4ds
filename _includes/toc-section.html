@@ -19,7 +19,7 @@ Display a section of the table of contents.
       {% comment %}If there's a match, add a link to the generated ToC.{% endcomment %}
       {%- if toc_entry == key -%}
   <li>{% if page.permalink == item.permalink %}<strong>{% endif %}
-      <a href="{{item.permalink | relative_url}}">{{item.title}}</a>
+      <a href="{{item.permalink | relative_url}}" class="toc">{{item.title}}</a>
       {% if page.permalink == item.permalink %}</strong>{% endif %}
   </li>
         {% break %}
