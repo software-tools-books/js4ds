@@ -7,6 +7,7 @@ copyrightyear: "2018"
 repo: "https://github.com/software-tools-in-javascript/js-vs-ds/"
 email: "gvwilson@third-bit.com"
 website: "https://software-tools-in-javascript.github.io/js-vs-ds/"
+isbn: "978-0-9881137-1-8"
 
 # Order for table of contents.  Each file is represented by its permalink, and
 # files are divided into three sections (main lessons, the bibliography, and
