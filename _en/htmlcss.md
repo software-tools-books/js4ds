@@ -164,7 +164,7 @@ For example:
 
 centers the `h1` heading on the page, while:
 
-```
+```html
 <p class="disclaimer">This planet provided as-is.</p>
 ```
 
@@ -318,7 +318,7 @@ and we can use `<br/>` to force a line break in text
 
 This appears as:
 
-```
+```text
 Node.js
 React
 home page (relative path)

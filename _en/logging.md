@@ -82,7 +82,7 @@ If we run it with the `'info'` level,
 the startup message and the 404 error messages appear,
 and if we run it with the level `'error'` only the latter appear.
 
-```sh
+```shell
 $ node src/logging/logging-server.js src/logging/web-dir/ info
 ```
 ```text

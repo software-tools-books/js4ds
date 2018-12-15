@@ -103,7 +103,7 @@ Some of the more common are:
 One final thing we need to understand is the structure and interpretation of URLs.
 This one:
 
-```
+```text
 http://example.org:1234/some/path?value=deferred&limit=200
 ```
 
@@ -190,7 +190,7 @@ the last line of this script tells our application to listen on the specified po
 while the callback tells it to print a message as it starts running.
 When we run this, we see:
 
-```sh
+```shell
 $ node static-page.js
 ```
 ```text
@@ -303,7 +303,7 @@ The steps in handling a request are:
 If a sub-directory called `web-dir` holds a file called `title.html`,
 and we run the server as:
 
-```sh
+```shell
 $ node serve-pages.js ./web-dir
 ```
 

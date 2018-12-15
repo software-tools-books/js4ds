@@ -135,7 +135,7 @@ React will only actually redraw as little as it can.
 
 If we try running this little application from the command line with Parcel:
 
-```sh
+```shell
 $ npm run dev -- src/interactive/display-counter.html
 ```
 
@@ -185,7 +185,7 @@ ReactDOM.render(
 
 Let's try running this:
 
-```sh
+```shell
 $ npm run dev -- src/interactive/counter/index.html
 ```
 

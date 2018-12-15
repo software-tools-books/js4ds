@@ -661,7 +661,7 @@ Why?
 Insert `console.log('This is a sharp Medicine, but it is a Physician for all diseases and miseries.')`
 in the appropriate place in the code block below so that the output reads
 
-```
+```text
 Waiting...
 This is a sharp Medicine, but it is a Physician for all diseases and miseries.
 Waiting...

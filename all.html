@@ -268,7 +268,7 @@ and semi-colons at the ends of statements are now (mostly) optional.</p>
 type <code>node <em>program_name.js</em></code> at the command line.
 (We will preface shell commands with <code class="highlighter-rouge">$</code> to make them easier to spot.)</p>
 
-<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>node src/basics/hello.js
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>node src/basics/hello.js
 </code></pre></div></div>
 <div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>hello, world
 </code></pre></div></div>
@@ -988,9 +988,9 @@ memory looks like this:</p>
 
 <p>and then try it out:</p>
 
-<div title="src/callbacks/general-pipeline.js" class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>const original = ' some text '
-const final = pipeline(original, [double, trim, dot])
-console.log(`|${original}| -&gt; |${final}|`)
+<div title="src/callbacks/general-pipeline.js" class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">original</span> <span class="o">=</span> <span class="s1">' some text '</span>
+<span class="kd">const</span> <span class="kr">final</span> <span class="o">=</span> <span class="nx">pipeline</span><span class="p">(</span><span class="nx">original</span><span class="p">,</span> <span class="p">[</span><span class="kr">double</span><span class="p">,</span> <span class="nx">trim</span><span class="p">,</span> <span class="nx">dot</span><span class="p">])</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">`|</span><span class="p">${</span><span class="nx">original</span><span class="p">}</span><span class="s2">| -&gt; |</span><span class="p">${</span><span class="kr">final</span><span class="p">}</span><span class="s2">|`</span><span class="p">)</span>
 </code></pre></div></div>
 <div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>| some text | -&gt; |some.text..some.text|
 </code></pre></div></div>
@@ -1039,8 +1039,8 @@ so let’s define it on the fly:</p>
 <div title="src/callbacks/transform.js" class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">result</span> <span class="o">=</span> <span class="nx">transform</span><span class="p">(</span><span class="nx">data</span><span class="p">,</span> <span class="p">(</span><span class="nx">x</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span><span class="k">return</span> <span class="nx">x</span> <span class="o">+</span> <span class="mi">1</span><span class="p">})</span>
 <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">result</span><span class="p">)</span>
 </code></pre></div></div>
-<pre><code class="language-test">[ 11, 21, 31 ]
-</code></pre>
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>[ 11, 21, 31 ]
+</code></pre></div></div>
 
 <p>A function that is created this way is sometimes called an <a href="#g:anonymous-function">anonymous function</a>,
 since its creator doesn’t give it a name.
@@ -2066,7 +2066,7 @@ For example:</p>
 
 <p>centers the <code class="highlighter-rouge">h1</code> heading on the page, while:</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&lt;p class="disclaimer"&gt;This planet provided as-is.&lt;/p&gt;
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;p</span> <span class="na">class=</span><span class="s">"disclaimer"</span><span class="nt">&gt;</span>This planet provided as-is.<span class="nt">&lt;/p&gt;</span>
 </code></pre></div></div>
 
 <!-- == \noindent -->
@@ -2215,7 +2215,7 @@ and we can use <code class="highlighter-rouge">&lt;br/&gt;</code> to force a lin
 
 <p>This appears as:</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Node.js
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Node.js
 React
 home page (relative path)
 </code></pre></div></div>
@@ -3644,13 +3644,13 @@ which is younger and therefore not yet bloated
 
 <p>To install Parcel, run:</p>
 
-<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>npm <span class="nb">install </span>parcel-bundler
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>npm <span class="nb">install </span>parcel-bundler
 </code></pre></div></div>
 
 <p>Once it’s in place,
 we can tell it to run one of our test pages like this:</p>
 
-<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>node_modules/.bin/parcel serve <span class="nt">-p</span> 4000 src/dynamic/pass-parameters.html
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>node_modules/.bin/parcel serve <span class="nt">-p</span> 4000 src/dynamic/pass-parameters.html
 </code></pre></div></div>
 <div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Server running at http://localhost:4000
 + Built in 128ms.
@@ -3911,7 +3911,7 @@ don’t have to give it the ID <code class="highlighter-rouge">vis</code>, but i
 we will leave space for the script.
 Our skeleton looks like this:</p>
 
-<div title="src/vis/vega-skeleton.html" class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">&lt;!DOCTYPE html&gt;</span>
+<div title="src/vis/vega-skeleton.html" class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">&lt;!DOCTYPE html&gt;</span>
 <span class="nt">&lt;html&gt;</span>
 <span class="nt">&lt;head&gt;</span>
   <span class="nt">&lt;title&gt;</span>Embedding Vega-Lite<span class="nt">&lt;/title&gt;</span>
@@ -3938,26 +3938,26 @@ This is a blob of <a href="#g:json">JSON</a> with certain required fields:</p>
   <li><code class="highlighter-rouge">data</code> is the actual data.</li>
 </ul>
 
-<div title="src/vis/vega-values-only.html" class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>...rest of page as before...
-  &lt;script type="text/javascript"&gt;
-    let spec = {
-      "$schema": "https://vega.github.io/schema/vega-lite/v2.0.json",
-      "description": "Create data array but do not display anything.",
-      "data": {
-        "values": [
-          {"a": "A", "b": 28},
-          {"a": "B", "b": 55},
-          {"a": "C", "b": 43},
-          {"a": "D", "b": 91},
-          {"a": "E", "b": 81},
-          {"a": "F", "b": 53},
-          {"a": "G", "b": 19},
-          {"a": "H", "b": 87},
-          {"a": "I", "b": 52}
-        ]
-      }
-    }
-  &lt;/script&gt;
+<div title="src/vis/vega-values-only.html" class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code>...rest of page as before...
+  <span class="nt">&lt;script </span><span class="na">type=</span><span class="s">"text/javascript"</span><span class="nt">&gt;</span>
+    <span class="kd">let</span> <span class="nx">spec</span> <span class="o">=</span> <span class="p">{</span>
+      <span class="s2">"$schema"</span><span class="p">:</span> <span class="s2">"https://vega.github.io/schema/vega-lite/v2.0.json"</span><span class="p">,</span>
+      <span class="s2">"description"</span><span class="p">:</span> <span class="s2">"Create data array but do not display anything."</span><span class="p">,</span>
+      <span class="s2">"data"</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s2">"values"</span><span class="p">:</span> <span class="p">[</span>
+          <span class="p">{</span><span class="s2">"a"</span><span class="p">:</span> <span class="s2">"A"</span><span class="p">,</span> <span class="s2">"b"</span><span class="p">:</span> <span class="mi">28</span><span class="p">},</span>
+          <span class="p">{</span><span class="s2">"a"</span><span class="p">:</span> <span class="s2">"B"</span><span class="p">,</span> <span class="s2">"b"</span><span class="p">:</span> <span class="mi">55</span><span class="p">},</span>
+          <span class="p">{</span><span class="s2">"a"</span><span class="p">:</span> <span class="s2">"C"</span><span class="p">,</span> <span class="s2">"b"</span><span class="p">:</span> <span class="mi">43</span><span class="p">},</span>
+          <span class="p">{</span><span class="s2">"a"</span><span class="p">:</span> <span class="s2">"D"</span><span class="p">,</span> <span class="s2">"b"</span><span class="p">:</span> <span class="mi">91</span><span class="p">},</span>
+          <span class="p">{</span><span class="s2">"a"</span><span class="p">:</span> <span class="s2">"E"</span><span class="p">,</span> <span class="s2">"b"</span><span class="p">:</span> <span class="mi">81</span><span class="p">},</span>
+          <span class="p">{</span><span class="s2">"a"</span><span class="p">:</span> <span class="s2">"F"</span><span class="p">,</span> <span class="s2">"b"</span><span class="p">:</span> <span class="mi">53</span><span class="p">},</span>
+          <span class="p">{</span><span class="s2">"a"</span><span class="p">:</span> <span class="s2">"G"</span><span class="p">,</span> <span class="s2">"b"</span><span class="p">:</span> <span class="mi">19</span><span class="p">},</span>
+          <span class="p">{</span><span class="s2">"a"</span><span class="p">:</span> <span class="s2">"H"</span><span class="p">,</span> <span class="s2">"b"</span><span class="p">:</span> <span class="mi">87</span><span class="p">},</span>
+          <span class="p">{</span><span class="s2">"a"</span><span class="p">:</span> <span class="s2">"I"</span><span class="p">,</span> <span class="s2">"b"</span><span class="p">:</span> <span class="mi">52</span><span class="p">}</span>
+        <span class="p">]</span>
+      <span class="p">}</span>
+    <span class="p">}</span>
+  <span class="nt">&lt;/script&gt;</span>
 ...rest of page as before...
 </code></pre></div></div>
 
@@ -3972,16 +3972,16 @@ we can call <code class="highlighter-rouge">vegaEmbed</code> with the ID of the 
 the spec,
 and some options (which for now we will leave empty):</p>
 
-<div title="src/vis/vega-values-only.html" class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    let spec = {
-      "$schema": "https://vega.github.io/schema/vega-lite/v2.0.json",
-      "description": "Create data array but do not display anything.",
-      "data": {
-        "values": [
-          // ...as above...
-        ]
-      }
-    }
-    vegaEmbed("#vis", spec, {})
+<div title="src/vis/vega-values-only.html" class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    <span class="kd">let</span> <span class="nx">spec</span> <span class="o">=</span> <span class="p">{</span>
+      <span class="s2">"$schema"</span><span class="p">:</span> <span class="s2">"https://vega.github.io/schema/vega-lite/v2.0.json"</span><span class="p">,</span>
+      <span class="s2">"description"</span><span class="p">:</span> <span class="s2">"Create data array but do not display anything."</span><span class="p">,</span>
+      <span class="s2">"data"</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s2">"values"</span><span class="p">:</span> <span class="p">[</span>
+          <span class="c1">// ...as above...</span>
+        <span class="p">]</span>
+      <span class="p">}</span>
+    <span class="p">}</span>
+    <span class="nx">vegaEmbed</span><span class="p">(</span><span class="s2">"#vis"</span><span class="p">,</span> <span class="nx">spec</span><span class="p">,</span> <span class="p">{})</span>
 </code></pre></div></div>
 
 <p>When we open the page, though, nothing appears,
@@ -3996,21 +3996,21 @@ we need to add two more fields to the spec:</p>
 
 <p>Here’s our updated spec:</p>
 
-<div title="src/vis/vega-mark-encoding.html" class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    let spec = {
-      "$schema": "https://vega.github.io/schema/vega-lite/v2.0.json",
-      "description": "Add mark and encoding for data.",
-      "data": {
-        "values": [
-          // ...as above...
-        ]
-      },
-      "mark": "bar",
-      "encoding": {
-        "x": {"field": "a", "type": "ordinal"},
-        "y": {"field": "b", "type": "quantitative"}
-      }
-    }
-    vegaEmbed("#vis", spec, {})
+<div title="src/vis/vega-mark-encoding.html" class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    <span class="kd">let</span> <span class="nx">spec</span> <span class="o">=</span> <span class="p">{</span>
+      <span class="s2">"$schema"</span><span class="p">:</span> <span class="s2">"https://vega.github.io/schema/vega-lite/v2.0.json"</span><span class="p">,</span>
+      <span class="s2">"description"</span><span class="p">:</span> <span class="s2">"Add mark and encoding for data."</span><span class="p">,</span>
+      <span class="s2">"data"</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s2">"values"</span><span class="p">:</span> <span class="p">[</span>
+          <span class="c1">// ...as above...</span>
+        <span class="p">]</span>
+      <span class="p">},</span>
+      <span class="s2">"mark"</span><span class="p">:</span> <span class="s2">"bar"</span><span class="p">,</span>
+      <span class="s2">"encoding"</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s2">"x"</span><span class="p">:</span> <span class="p">{</span><span class="s2">"field"</span><span class="p">:</span> <span class="s2">"a"</span><span class="p">,</span> <span class="s2">"type"</span><span class="p">:</span> <span class="s2">"ordinal"</span><span class="p">},</span>
+        <span class="s2">"y"</span><span class="p">:</span> <span class="p">{</span><span class="s2">"field"</span><span class="p">:</span> <span class="s2">"b"</span><span class="p">,</span> <span class="s2">"type"</span><span class="p">:</span> <span class="s2">"quantitative"</span><span class="p">}</span>
+      <span class="p">}</span>
+    <span class="p">}</span>
+    <span class="nx">vegaEmbed</span><span class="p">(</span><span class="s2">"#vis"</span><span class="p">,</span> <span class="nx">spec</span><span class="p">,</span> <span class="p">{})</span>
 </code></pre></div></div>
 
 <p>When we open the page now,
@@ -4022,21 +4022,21 @@ and feel very proud of ourselves.</p>
 <p>There are also some poorly-styled links for various controls that we’re not going to use.
 We can fill in the options argument to <code class="highlighter-rouge">vegaEmbed</code> to turn those off:</p>
 
-<div title="src/vis/vega-disable-controls.html" class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    let spec = {
-      "$schema": "https://vega.github.io/schema/vega-lite/v2.0.json",
-      "description": "Disable control links.",
-      "data": {
-        // ...as before...
-      }
-    }
-    let options = {
-      "actions": {
-        "export": false,
-        "source": false,
-        "editor": false
-      }
-    }
-    vegaEmbed("#vis", spec, options)
+<div title="src/vis/vega-disable-controls.html" class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    <span class="kd">let</span> <span class="nx">spec</span> <span class="o">=</span> <span class="p">{</span>
+      <span class="s2">"$schema"</span><span class="p">:</span> <span class="s2">"https://vega.github.io/schema/vega-lite/v2.0.json"</span><span class="p">,</span>
+      <span class="s2">"description"</span><span class="p">:</span> <span class="s2">"Disable control links."</span><span class="p">,</span>
+      <span class="s2">"data"</span><span class="p">:</span> <span class="p">{</span>
+        <span class="c1">// ...as before...</span>
+      <span class="p">}</span>
+    <span class="p">}</span>
+    <span class="kd">let</span> <span class="nx">options</span> <span class="o">=</span> <span class="p">{</span>
+      <span class="s2">"actions"</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s2">"export"</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span>
+        <span class="s2">"source"</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span>
+        <span class="s2">"editor"</span><span class="p">:</span> <span class="kc">false</span>
+      <span class="p">}</span>
+    <span class="p">}</span>
+    <span class="nx">vegaEmbed</span><span class="p">(</span><span class="s2">"#vis"</span><span class="p">,</span> <span class="nx">spec</span><span class="p">,</span> <span class="nx">options</span><span class="p">)</span>
 </code></pre></div></div>
 
 <p>We now have the visualization we wanted:</p>
@@ -4054,32 +4054,32 @@ and <code class="highlighter-rouge">y</code> has an extra property <code class="
 which is set to <code class="highlighter-rouge">"average"</code>
 (but can be used to specify other <a href="#g:aggregation-function">aggregation functions</a>):</p>
 
-<div title="src/vis/vega-aggregate-points.html" class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    let spec = {
-      "$schema": "https://vega.github.io/schema/vega-lite/v2.0.json",
-      "description": "Disable control links.",
-      "data": {
-        "values": [
-          {"a": "P", "b": 19},
-          {"a": "P", "b": 28},
-          {"a": "P", "b": 91},
-          {"a": "Q", "b": 55},
-          {"a": "Q", "b": 81},
-          {"a": "Q", "b": 87},
-          {"a": "R", "b": 43},
-          {"a": "R", "b": 52},
-          {"a": "R", "b": 53}
-        ]
-      },
-      "mark": "point",
-      "encoding": {
-        "x": {"field": "a", "type": "nominal"},
-        "y": {"field": "b", "type": "quantitative", "aggregate": "average"}
-      }
-    }
-    let options = {
-      ...disable controls as before...
-    }
-    vegaEmbed("#vis", spec, options)
+<div title="src/vis/vega-aggregate-points.html" class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    <span class="kd">let</span> <span class="nx">spec</span> <span class="o">=</span> <span class="p">{</span>
+      <span class="s2">"$schema"</span><span class="p">:</span> <span class="s2">"https://vega.github.io/schema/vega-lite/v2.0.json"</span><span class="p">,</span>
+      <span class="s2">"description"</span><span class="p">:</span> <span class="s2">"Disable control links."</span><span class="p">,</span>
+      <span class="s2">"data"</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s2">"values"</span><span class="p">:</span> <span class="p">[</span>
+          <span class="p">{</span><span class="s2">"a"</span><span class="p">:</span> <span class="s2">"P"</span><span class="p">,</span> <span class="s2">"b"</span><span class="p">:</span> <span class="mi">19</span><span class="p">},</span>
+          <span class="p">{</span><span class="s2">"a"</span><span class="p">:</span> <span class="s2">"P"</span><span class="p">,</span> <span class="s2">"b"</span><span class="p">:</span> <span class="mi">28</span><span class="p">},</span>
+          <span class="p">{</span><span class="s2">"a"</span><span class="p">:</span> <span class="s2">"P"</span><span class="p">,</span> <span class="s2">"b"</span><span class="p">:</span> <span class="mi">91</span><span class="p">},</span>
+          <span class="p">{</span><span class="s2">"a"</span><span class="p">:</span> <span class="s2">"Q"</span><span class="p">,</span> <span class="s2">"b"</span><span class="p">:</span> <span class="mi">55</span><span class="p">},</span>
+          <span class="p">{</span><span class="s2">"a"</span><span class="p">:</span> <span class="s2">"Q"</span><span class="p">,</span> <span class="s2">"b"</span><span class="p">:</span> <span class="mi">81</span><span class="p">},</span>
+          <span class="p">{</span><span class="s2">"a"</span><span class="p">:</span> <span class="s2">"Q"</span><span class="p">,</span> <span class="s2">"b"</span><span class="p">:</span> <span class="mi">87</span><span class="p">},</span>
+          <span class="p">{</span><span class="s2">"a"</span><span class="p">:</span> <span class="s2">"R"</span><span class="p">,</span> <span class="s2">"b"</span><span class="p">:</span> <span class="mi">43</span><span class="p">},</span>
+          <span class="p">{</span><span class="s2">"a"</span><span class="p">:</span> <span class="s2">"R"</span><span class="p">,</span> <span class="s2">"b"</span><span class="p">:</span> <span class="mi">52</span><span class="p">},</span>
+          <span class="p">{</span><span class="s2">"a"</span><span class="p">:</span> <span class="s2">"R"</span><span class="p">,</span> <span class="s2">"b"</span><span class="p">:</span> <span class="mi">53</span><span class="p">}</span>
+        <span class="p">]</span>
+      <span class="p">},</span>
+      <span class="s2">"mark"</span><span class="p">:</span> <span class="s2">"point"</span><span class="p">,</span>
+      <span class="s2">"encoding"</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s2">"x"</span><span class="p">:</span> <span class="p">{</span><span class="s2">"field"</span><span class="p">:</span> <span class="s2">"a"</span><span class="p">,</span> <span class="s2">"type"</span><span class="p">:</span> <span class="s2">"nominal"</span><span class="p">},</span>
+        <span class="s2">"y"</span><span class="p">:</span> <span class="p">{</span><span class="s2">"field"</span><span class="p">:</span> <span class="s2">"b"</span><span class="p">,</span> <span class="s2">"type"</span><span class="p">:</span> <span class="s2">"quantitative"</span><span class="p">,</span> <span class="s2">"aggregate"</span><span class="p">:</span> <span class="s2">"average"</span><span class="p">}</span>
+      <span class="p">}</span>
+    <span class="p">}</span>
+    <span class="kd">let</span> <span class="nx">options</span> <span class="o">=</span> <span class="p">{</span>
+      <span class="p">...</span><span class="nx">disable</span> <span class="nx">controls</span> <span class="k">as</span> <span class="nx">before</span><span class="p">...</span>
+    <span class="p">}</span>
+    <span class="nx">vegaEmbed</span><span class="p">(</span><span class="s2">"#vis"</span><span class="p">,</span> <span class="nx">spec</span><span class="p">,</span> <span class="nx">options</span><span class="p">)</span>
 </code></pre></div></div>
 
 <figure id="f:vis-aggregate-points"> <img src="../../files/vis-aggregate-points.png"> <figcaption>Aggregating and Using Points</figcaption> </figure>
@@ -4124,7 +4124,7 @@ we <code class="highlighter-rouge">npm install vega vega-lite vega-embed</code> 
 
 <p>We launch this with Parcel via our saved <code class="highlighter-rouge">npm run</code> command:</p>
 
-<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>npm run dev <span class="nt">--</span> src/vis/react-01/index.html
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>npm run dev <span class="nt">--</span> src/vis/react-01/index.html
 </code></pre></div></div>
 
 <p>But nothing appears when we open <code class="highlighter-rouge">http://localhost:4000</code> in our browser.
@@ -4148,9 +4148,9 @@ These choices are also annoying,
 but after a bit of fiddling and cursing,
 we decide to make the fix as the library is loaded:</p>
 
-<div title="src/vis/react-02/app.js" class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>const vegaEmbed = require('vega-embed').default
+<div title="src/vis/react-02/app.js" class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">vegaEmbed</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'vega-embed'</span><span class="p">).</span><span class="k">default</span>
 
-// ...as before...
+<span class="c1">// ...as before...</span>
 </code></pre></div></div>
 
 <p>The third option is to use <code class="highlighter-rouge">import</code> where we can
@@ -4158,9 +4158,9 @@ and fix the <code class="highlighter-rouge">require</code> statements in the ser
 We can call the thing we import anything we want,
 but we will stick to <code class="highlighter-rouge">vegaEmbed</code> for consistency with previous examples:</p>
 
-<div title="src/vis/react-03/app.js" class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>import vegaEmbed from 'vega-embed'
+<div title="src/vis/react-03/app.js" class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">import</span> <span class="nx">vegaEmbed</span> <span class="k">from</span> <span class="s1">'vega-embed'</span>
 
-// ...as before...
+<span class="c1">// ...as before...</span>
 </code></pre></div></div>
 
 <p>If we do this,
@@ -4837,7 +4837,7 @@ we cannot use them interactively unless we wrap whatever we want to do in a wee 
 <p>Insert <code class="highlighter-rouge">console.log('This is a sharp Medicine, but it is a Physician for all diseases and miseries.')</code>
 in the appropriate place in the code block below so that the output reads</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Waiting...
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Waiting...
 This is a sharp Medicine, but it is a Physician for all diseases and miseries.
 Waiting...
 Finished.
@@ -5089,7 +5089,7 @@ React will only actually redraw as little as it can.</p>
 
 <p>If we try running this little application from the command line with Parcel:</p>
 
-<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>npm run dev <span class="nt">--</span> src/interactive/display-counter.html
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>npm run dev <span class="nt">--</span> src/interactive/display-counter.html
 </code></pre></div></div>
 
 <!-- == \noindent -->
@@ -5134,7 +5134,7 @@ But now try taking the code out of the web page and putting it in its own file:<
 
 <p>Let’s try running this:</p>
 
-<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>npm run dev <span class="nt">--</span> src/interactive/counter/index.html
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>npm run dev <span class="nt">--</span> src/interactive/counter/index.html
 </code></pre></div></div>
 
 <div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&gt; js-vs-ds@0.1.0 dev /Users/stj/js-vs-ds
@@ -5859,7 +5859,7 @@ we will do something simple:</p>
 
 <p>We run this on the command line:</p>
 
-<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>node <span class="k">select</span><span class="nt">-random</span>.js ../../data/surveys.csv 10 slice.csv
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>node <span class="k">select</span><span class="nt">-random</span>.js ../../data/surveys.csv 10 slice.csv
 </code></pre></div></div>
 
 <p>and get this:</p>
@@ -5901,7 +5901,7 @@ to particular columns.</li>
 <p>We will use <a href="https://www.papaparse.com/">PapaParse</a> to parse our CSV,
 so our first step is to install it:</p>
 
-<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>npm <span class="nb">install </span>papaparse
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>npm <span class="nb">install </span>papaparse
 </code></pre></div></div>
 
 <p>After loading the library and reading our test data file a couple of times,
@@ -6290,7 +6290,7 @@ Some of the more common are:</p>
 <p>One final thing we need to understand is the structure and interpretation of URLs.
 This one:</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>http://example.org:1234/some/path?value=deferred&amp;limit=200
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>http://example.org:1234/some/path?value=deferred&amp;limit=200
 </code></pre></div></div>
 
 <!-- == \noindent -->
@@ -6378,7 +6378,7 @@ the last line of this script tells our application to listen on the specified po
 while the callback tells it to print a message as it starts running.
 When we run this, we see:</p>
 
-<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>node static-page.js
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>node static-page.js
 </code></pre></div></div>
 <div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>listening...
 </code></pre></div></div>
@@ -6487,7 +6487,7 @@ so that our server is more responsive.</li>
 <p>If a sub-directory called <code class="highlighter-rouge">web-dir</code> holds a file called <code class="highlighter-rouge">title.html</code>,
 and we run the server as:</p>
 
-<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>node serve-pages.js ./web-dir
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>node serve-pages.js ./web-dir
 </code></pre></div></div>
 
 <!-- == \noindent -->
@@ -6706,7 +6706,7 @@ so Mocha needs to know when each one completes.</p>
 <p>We can run our tests from the shell by invoking <code class="highlighter-rouge">mocha</code>
 and giving it the path to the file that contains the tests:</p>
 
-<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>./node_modules/.bin/mocha path/to/test.js
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>./node_modules/.bin/mocha path/to/test.js
 </code></pre></div></div>
 <div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  first test
     + should run without errors
@@ -6733,7 +6733,7 @@ After we add this:</p>
 <!-- == \noindent -->
 <p>to <code class="highlighter-rouge">package.json</code>, our command becomes:</p>
 
-<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>npm <span class="nb">test</span> <span class="nt">--</span> path/to/test.js
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>npm <span class="nb">test</span> <span class="nt">--</span> path/to/test.js
 </code></pre></div></div>
 
 <p>(Again, everything after <code class="highlighter-rouge">--</code> is passed to the script itself.)</p>
@@ -6779,7 +6779,7 @@ so that we can test it:</p>
 <p>Before going any further,
 we can check that we haven’t broken anything by running:</p>
 
-<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>node standalone.js
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>node standalone.js
 </code></pre></div></div>
 
 <h2 id="s:testing-server">Testing the Server</h2>
@@ -7162,7 +7162,7 @@ The server functions are:</p>
 which is <em>not</em> the range in the full dataset.
 We run this with:</p>
 
-<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>npm <span class="nb">test</span> <span class="nt">--</span> src/capstone/back/test-server.js
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>npm <span class="nb">test</span> <span class="nt">--</span> src/capstone/back/test-server.js
 </code></pre></div></div>
 
 <!-- == \noindent -->
@@ -7486,7 +7486,7 @@ so that we can see messages from both halves of what we’re doing.</p>
 <p>In one window,
 we run:</p>
 
-<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>node src/capstone/back/driver-0.js src/capstone/back/test-data.csv
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>node src/capstone/back/driver-0.js src/capstone/back/test-data.csv
 </code></pre></div></div>
 
 <p>Note that we <em>don’t</em> use <code class="highlighter-rouge">npm run dev</code> to trigger Parcel:
@@ -7495,7 +7495,7 @@ so no bundling is necessary.
 In our other window,
 we run:</p>
 
-<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>npm run dev src/capstone/front/index.html
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>npm run dev src/capstone/front/index.html
 </code></pre></div></div>
 
 <!-- == \noindent -->
@@ -7554,7 +7554,7 @@ which we can add to our server with just a couple of lines of code:</p>
 we need to create a copy of the driver called <code class="highlighter-rouge">driver-1.js</code> that invokes it.
 Let’s run that:</p>
 
-<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>node src/capstone/back/driver-1.js src/capstone/back/test-data.csv
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>node src/capstone/back/driver-1.js src/capstone/back/test-data.csv
 </code></pre></div></div>
 
 <p>and then re-launch our application:</p>
@@ -7986,16 +7986,10 @@ can find and translate the elements correctly.</li>
       <li><code class="highlighter-rouge">b:item</code> for bibliography references</li>
     </ul>
   </li>
-  <li>
-    <p>If you need to embed a one-line LaTeX command in a Markdown file and have it passed through,
-format it thusly:</p>
-
-    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&lt;!-- == \noindent --&gt;
-</code></pre></div>    </div>
-
-    <p>(i.e., as an HTML comment with a double equals sign and then the command).
-Note that these comments will appear in the generated HTML as well.</p>
-  </li>
+  <li>If you need to embed a one-line LaTeX command in a Markdown file and have it passed through,
+format it as an HTML comment with a double equals sign and then the command.
+(We do not include one here because it will be interpreted literally,
+this mechanism being rather crude…)</li>
 </ul>
 
 <p>The <a href="https://jekyllrb.com/">Jekyll</a> template used in this tutorial can support multiple languages.
@@ -9025,7 +9019,7 @@ If we run it with the <code class="highlighter-rouge">'info'</code> level,
 the startup message and the 404 error messages appear,
 and if we run it with the level <code class="highlighter-rouge">'error'</code> only the latter appear.</p>
 
-<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>node src/logging/logging-server.js src/logging/web-dir/ info
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>node src/logging/logging-server.js src/logging/web-dir/ info
 </code></pre></div></div>
 <div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>{"message":"Running on port 3418 with root src/logging/web-dir/","level":"info"}
 {"message":"Unable to find \"src/logging/web-dir/missing.html\"","level":"error"}
@@ -9200,7 +9194,7 @@ We really should try to do better…</p>
 <p>But before then,
 let’s try running this:</p>
 
-<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>node database-initial.js fixture.db getAll
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>node database-initial.js fixture.db getAll
 </code></pre></div></div>
 <div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>{ workshopId: 1,
   workshopName: 'Building Community',
@@ -9273,7 +9267,7 @@ we can use destructuring to handle command-line arguments in the driver:</p>
 With these changes in place,
 we can run a query to get details of the second workshop like this:</p>
 
-<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>node database-mode.js memory fixture.sql getOne 2
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>node database-mode.js memory fixture.sql getOne 2
 </code></pre></div></div>
 <div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>{ workshopId: 2,
   workshopName: 'ENIAC Programming',
@@ -9394,7 +9388,7 @@ since we will eventually want to compare them or return them to a server rather 
 
 <p>Let’s try running it:</p>
 
-<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>node separate-driver.js file fixture.db getAll
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>node separate-driver.js file fixture.db getAll
 </code></pre></div></div>
 <div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  for (let r of rows) {
               ^
@@ -9750,7 +9744,7 @@ We can create a very simple plugin like this:</p>
 
 <p>If we run the server:</p>
 
-<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>node src/extensible/dynamic.js
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>node src/extensible/dynamic.js
 </code></pre></div></div>
 
 <!-- == \noindent -->

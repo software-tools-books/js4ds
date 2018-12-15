@@ -139,7 +139,7 @@ fs.writeFileSync(outputFile, header + '\n' + sample.join('\n'))
 
 We run this on the command line:
 
-```sh
+```shell
 $ node select-random.js ../../data/surveys.csv 10 slice.csv
 ```
 
@@ -181,7 +181,7 @@ we decide that our data manager will be able to answer two questions:
 We will use [PapaParse][papaparse] to parse our CSV,
 so our first step is to install it:
 
-```sh
+```shell
 $ npm install papaparse
 ```
 

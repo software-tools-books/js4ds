@@ -95,7 +95,7 @@ so Mocha needs to know when each one completes.
 We can run our tests from the shell by invoking `mocha`
 and giving it the path to the file that contains the tests:
 
-```sh
+```shell
 $ ./node_modules/.bin/mocha path/to/test.js
 ```
 ```text
@@ -126,7 +126,7 @@ After we add this:
 <!-- == \noindent -->
 to `package.json`, our command becomes:
 
-```sh
+```shell
 $ npm test -- path/to/test.js
 ```
 
@@ -175,7 +175,7 @@ module.exports = app
 Before going any further,
 we can check that we haven't broken anything by running:
 
-```sh
+```shell
 $ node standalone.js
 ```
 

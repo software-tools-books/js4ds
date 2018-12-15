@@ -72,7 +72,7 @@ To run a program,
 type <code>node <em>program_name.js</em></code> at the command line.
 (We will preface shell commands with `$` to make them easier to spot.)
 
-```sh
+```shell
 $ node src/basics/hello.js
 ```
 ```text

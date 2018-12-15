@@ -174,7 +174,7 @@ Note that the range of years is 1979-2000,
 which is *not* the range in the full dataset.
 We run this with:
 
-```sh
+```shell
 $ npm test -- src/capstone/back/test-server.js
 ```
 
@@ -517,7 +517,7 @@ so that we can see messages from both halves of what we're doing.
 In one window,
 we run:
 
-```sh
+```shell
 $ node src/capstone/back/driver-0.js src/capstone/back/test-data.csv
 ```
 
@@ -527,7 +527,7 @@ so no bundling is necessary.
 In our other window,
 we run:
 
-```sh
+```shell
 $ npm run dev src/capstone/front/index.html
 ```
 
@@ -591,7 +591,7 @@ Since this code is saved in `server-1.js`,
 we need to create a copy of the driver called `driver-1.js` that invokes it.
 Let's run that:
 
-```sh
+```shell
 $ node src/capstone/back/driver-1.js src/capstone/back/test-data.csv
 ```
 

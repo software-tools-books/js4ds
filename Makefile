@@ -59,8 +59,10 @@ book :
 # + 'sed' to pull bibliography entry IDs out into '==b==' blocks (because Pandoc throws them away).
 # + 'sed' to stash figure information (because Pandoc...).
 # + 'sed' to un-comment embedded LaTeX commands '<!-- == command -->' before Pandoc erases them.
+# + 'sed' to insert text signalling language type of code listing.
 # ! Pandoc
 # - 'tail' to strip out YAML header.
+# - 'sed' to add language type flag to code listing environment.
 # - 'sed' to restore embedded LaTeX commands (need to strip out the newline Pandoc introduces after the command).
 # - 'sed' to restore figures.
 # - 'sed' to turn SVG inclusions into PDF inclusions.
@@ -73,9 +75,14 @@ alltex :
 	| sed -E -e 's!<strong id="(b:[^"]+)">([^<]+)</strong>!<strong>==b==\1==b==\2==b==</strong>!' \
 	| sed -E -e 's!<figure +id="(.+)"> *<img +src="(.+)"> *<figcaption>(.+)</figcaption> *</figure>!==f==\1==\2==\3==!' \
 	| sed -E -e 's/<!-- +== +(.+) +-->/==c==\1==/' \
+	| sed -E -e 's!(<div.+class="language-([^ ]+))!==l==\2==\1!' \
 	| ${PANDOC} --wrap=preserve -f html -t latex -o - \
 	| tail -n +6 \
-	| sed -E -e '/==c==.+==/{N;s/\n/ /;}' -E -e 's!==c==(.+)==!\1!' -e s'!\\textbackslash{}!\\!' \
+	| sed -E -e '/==l==.+==/{N;N;s/\n/ /g;}' \
+	| sed -E -e 's!==l==(text|css)== *\\begin\{verbatim\}!\\begin{lstlisting}!' \
+	| sed -E -e 's!==l==([^=]+)== *\\begin\{verbatim\}!\\begin{lstlisting}[language=\1]!' \
+	| sed -E -e 's!\\end{verbatim}!\\end{lstlisting}!' \
+	| sed -E -e '/==c==.+==/{N;s/\n/ /;}' -e 's!==c==(.+)==!\1!' -e s'!\\textbackslash{}!\\!' \
 	| sed -E -e 's!==f==([^=]+)==([^=]+)==([^=]+)==!\\begin{figure}[H]\\label{\1}\\centering\\includegraphics{\2}\\caption{\3}\\end{figure}!' \
 	| sed -E -e 's!\.svg}!\.pdf}!' \
 	| sed -E -e 's!==b==([^=]+)==b==([^=]+)==b==!\\hypertarget{\1}{\2}\\label{\1}!' \
@@ -83,8 +90,6 @@ alltex :
 	| sed -E -e 's!\\section!\\chapter!' \
 	| sed -E -e 's!\\subsection!\\section!' \
 	| sed -E -e 's!\\subsubsection!\\subsection!' \
-	| sed -E -e 's!\\begin{verbatim}!\\begin{Verbatim}[fontsize=\\small]!' \
-	| sed -E -e 's!\\end{verbatim}!\\end{Verbatim}!' \
 	> ${DIR_TEX}/all.tex
 
 ## pdf         : generate PDF from LaTeX source.

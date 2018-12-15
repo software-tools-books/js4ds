@@ -35,7 +35,7 @@ don't have to give it the ID `vis`, but it's common to do so---and
 we will leave space for the script.
 Our skeleton looks like this:
 
-```
+```html
 <!DOCTYPE html>
 <html>
 <head>
@@ -62,7 +62,7 @@ This is a blob of [JSON](../gloss/#g:json) with certain required fields:
 - `description` is a comment to remind us what we thought we were doing when we created this.
 - `data` is the actual data.
 
-```
+```html
 ...rest of page as before...
   <script type="text/javascript">
     let spec = {
@@ -98,7 +98,7 @@ we can call `vegaEmbed` with the ID of the element that will hold the visualizat
 the spec,
 and some options (which for now we will leave empty):
 
-```
+```js
     let spec = {
       "$schema": "https://vega.github.io/schema/vega-lite/v2.0.json",
       "description": "Create data array but do not display anything.",
@@ -122,7 +122,7 @@ we need to add two more fields to the spec:
 
 Here's our updated spec:
 
-```
+```js
     let spec = {
       "$schema": "https://vega.github.io/schema/vega-lite/v2.0.json",
       "description": "Add mark and encoding for data.",
@@ -150,7 +150,7 @@ and feel very proud of ourselves.
 There are also some poorly-styled links for various controls that we're not going to use.
 We can fill in the options argument to `vegaEmbed` to turn those off:
 
-```
+```js
     let spec = {
       "$schema": "https://vega.github.io/schema/vega-lite/v2.0.json",
       "description": "Disable control links.",
@@ -184,7 +184,7 @@ and `y` has an extra property `"aggregate"`,
 which is set to `"average"`
 (but can be used to specify other [aggregation functions](#g:aggregation-function)):
 
-```
+```js
     let spec = {
       "$schema": "https://vega.github.io/schema/vega-lite/v2.0.json",
       "description": "Disable control links.",
@@ -260,7 +260,7 @@ vegaEmbed("#vis", spec, options)
 
 We launch this with Parcel via our saved `npm run` command:
 
-```sh
+```shell
 $ npm run dev -- src/vis/react-01/index.html
 ```
 
@@ -285,7 +285,7 @@ These choices are also annoying,
 but after a bit of fiddling and cursing,
 we decide to make the fix as the library is loaded:
 
-```
+```js
 const vegaEmbed = require('vega-embed').default
 
 // ...as before...
@@ -297,7 +297,7 @@ and fix the `require` statements in the server-side code when Node is upgraded.
 We can call the thing we import anything we want,
 but we will stick to `vegaEmbed` for consistency with previous examples:
 
-```
+```js
 import vegaEmbed from 'vega-embed'
 
 // ...as before...

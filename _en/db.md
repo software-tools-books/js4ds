@@ -167,7 +167,7 @@ We really should try to do better...
 But before then,
 let's try running this:
 
-```sh
+```shell
 $ node database-initial.js fixture.db getAll
 ```
 ```text
@@ -246,7 +246,7 @@ Here, the expression `...args` means
 With these changes in place,
 we can run a query to get details of the second workshop like this:
 
-```sh
+```shell
 $ node database-mode.js memory fixture.sql getOne 2
 ```
 ```text
@@ -379,7 +379,7 @@ main()
 
 Let's try running it:
 
-```sh
+```shell
 $ node separate-driver.js file fixture.db getAll
 ```
 ```text

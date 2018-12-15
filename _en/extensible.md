@@ -55,7 +55,7 @@ module.exports = {
 
 If we run the server:
 
-```sh
+```shell
 $ node src/extensible/dynamic.js
 ```
 

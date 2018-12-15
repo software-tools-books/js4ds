@@ -195,7 +195,7 @@ const double = (text) => { return text + text }
 
 and then try it out:
 
-```
+```js
 const original = ' some text '
 const final = pipeline(original, [double, trim, dot])
 console.log(`|${original}| -> |${final}|`)
@@ -257,7 +257,7 @@ result = transform(data, (x) => {return x + 1})
 console.log(result)
 ```
 {: title="src/callbacks/transform.js"}
-```test
+```text
 [ 11, 21, 31 ]
 ```
 
