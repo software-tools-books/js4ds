@@ -159,7 +159,7 @@ What's going on here is that an instance of a class is just a special kind of ob
 and we can always look up an object's fields by name using `object[name]`,
 so if the string `action` (taken from the command-line argument) is `getAll` or `getOne`,
 then `database[action](args)` is either `database.getAll(args)` or database.getOne(args)`.
-This is lever,
+This is clever,
 but if we ask for an action like `show` or `help` or `GetOne` (with an upper-case 'G'),
 then `database[action]` doesn't exist and we get a very confusing error message.
 We really should try to do better...
