@@ -1,5 +1,5 @@
 ---
-layout: plain
+layout: default
 permalink: "/"
 title: "Home Page"
 ---
