@@ -311,7 +311,7 @@ const creature = {
 ```
 
 `[object Object]` is not particularly useful output when we want to see what an object contains.
-To get a ore helpful string representation,
+To get a more helpful string representation,
 use `JSON.stringify(object)`:
 
 ```js
