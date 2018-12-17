@@ -79,6 +79,7 @@ ${ALL_TEX} : ${PAGES_HTML}
 	| sed -E -e 's!==l==(css)== *\\begin\{verbatim\}!\\begin{lstlisting}!' \
 	| sed -E -e 's!==l==(text)== *\\begin\{verbatim\}!\\begin{lstlisting}[backgroundcolor=\\color{verylightgray}]!' \
 	| sed -E -e 's!==l==([^=]+)== *\\begin\{verbatim\}!\\begin{lstlisting}[language=\1]!' \
+	| sed -E -e 's!\\begin{verbatim}!\\begin{lstlisting}!' \
 	| sed -E -e 's!\\end{verbatim}!\\end{lstlisting}!' \
 	| sed -E -e '/==c==.+==/{N;s/\n/ /;}' -e 's!==c==(.+)==!\1!' -e s'!\\textbackslash{}!\\!' \
 	| sed -E -e 's!==f==([^=]+)==([^=]+)==([^=]+)==!\\begin{figure}[H]\\label{\1}\\centering\\includegraphics{\2}\\caption{\3}\\end{figure}!' \
@@ -92,6 +93,7 @@ ${ALL_TEX} : ${PAGES_HTML}
 	> ${DIR_TEX}/all.tex
 
 ${PAGES_HTML} : ${PAGES_MD}
+	${JEKYLL} build
 
 ## ----------------------------------------
 
