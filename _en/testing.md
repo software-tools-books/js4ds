@@ -219,8 +219,8 @@ Going through this line by line:
 2. `.get('/')` specifies the path in the URL we are sending.
 3. `.expect(200)` checks that the return code is 200 (OK).
 4. `.expect('Content-Type', /html/)`
-   checks the content type in the returned value against a regular expression
-   (discussed briefly at the end of this section).
+   checks the content type in the returned value against
+   a [regular expression](../gloss/#g:regular-expression).
 5. `.end` is called when the whole response has been received,
    i.e., when we can start looking at the content of the page or data
    that the server has sent.
