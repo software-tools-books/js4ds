@@ -46,6 +46,7 @@ definitions if that's done.
 
 [react]: https://reactjs.org/
 [react-keys]: https://stackoverflow.com/questions/28329382/understanding-unique-keys-for-array-children-in-react-js
+[regexp-docs]: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Regular_Expressions
 [runkit]: https://runkit.com/
 [rxjs]: https://rxjs-dev.firebaseapp.com/
 

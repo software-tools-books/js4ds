@@ -484,7 +484,9 @@ title: "Glossary"
   [field](#g:field).
 
 **regular expression**{:#g:regular-expression}:
-: a pattern for matching text.
+: a pattern for matching text, written as text itself.  Regular expressions
+  are sometimes called "regexp", "regex", or "RE", and are as powerful as
+  they are cryptic.  See [this documentation][regexp-docs] for more details.
 
 **relational database**{:#g:relational-database}:
 : a database that organizes information into [tables](#g:table), each of which
