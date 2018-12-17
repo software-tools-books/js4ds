@@ -107,6 +107,7 @@ he was learning JavaScript.
 We are also grateful for fixes from:
 
 - [Stephan Druskat](https://github.com/sdruskat)
+- [Eric Leung](https://erictleung.com/)
 - [Peter Munro](https://github.com/pdm55)
 
 ## Exercises {#s:intro-exercises}
