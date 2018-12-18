@@ -161,7 +161,7 @@ This may be different from the language that you're used to.
 
 After all this,
 the types themselves are somewhat anticlimactic.
-JavaScript's `boolean` type can be either `true` and `false`,
+JavaScript's `boolean` type can be either `true` or `false`,
 though we will see below that other things can be treated as Booleans.
 `undefined` means "hasn't been given a value",
 while `null` means "has a value, which is nothing".
