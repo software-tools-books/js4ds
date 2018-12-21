@@ -6,6 +6,11 @@
     }
 }
 
+/* Highlight pages that haven't been done. */
+.undone {
+    background-color: #F0FFFF;
+}
+
 /* Table of Contents sidebar. */
 div.toc {
     min-height: 100vh;
