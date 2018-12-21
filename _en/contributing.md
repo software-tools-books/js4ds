@@ -34,10 +34,17 @@ title: "Contributing"
      can find and translate the elements correctly.
 
 - The naming conventions for labels are:
-  - `s:chapter-section` for section labels
-  - `f:chapter-slug` for figure labels
-  - `g:slug` for glossary references
-  - `b:item` for bibliography references
+  - `s:chapter-section` for section labels.
+  - `f:chapter-slug` for figure labels.
+  - `g:slug` for glossary references.
+  - `b:item` for bibliography references.
+
+- Use `[Name1900](#BIB)` to cite a bibliography entry,
+  i.e., the key without the leading `b:` as the text of the link
+  and `#BIB` as the link;
+  the JavaScript in `js/site.js` will do the rest.
+  If you want to cite multiple items at once,
+  put them together like `[Name1900,Enam2000](#BIB)`.
 
 - If you need to embed a one-line LaTeX command in a Markdown file and have it passed through,
   format it as an HTML comment with a double equals sign and then the command.

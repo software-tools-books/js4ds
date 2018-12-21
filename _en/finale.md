@@ -25,9 +25,9 @@ such as [logging what our server does](../logging/)
 and [using a relational database](../db/) instead of a text file
 as a data store.
 Beyond that,
-you could look at more advanced techniques in JavaScript [[Have2018](../bib/#b:Have2018)],
-explore the full power of the [D3][d3] library for interactive visualization [[Meek2017](../bib/#b:Meek2017)],
-dive into data wrangling [[Davi2018](../bib/#b:Davi2018)],
+you could look at more advanced techniques in JavaScript [Have2018](#BIB),
+explore the full power of the [D3][d3] library for interactive visualization [Meek2017](#BIB),
+dive into data wrangling [Davi2018](#BIB),
 or start over completely the way JavaScript programmers do every eight months
 and rewrite everything with [Web Components][web-components].
 Whatever you do,
