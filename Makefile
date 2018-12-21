@@ -11,6 +11,7 @@ STEM=js-vs-ds
 JEKYLL=jekyll
 PANDOC=pandoc
 LATEX=pdflatex
+PYTHON=python
 
 # Language-dependent settings.
 DIR_MD=_${lang}
@@ -63,10 +64,11 @@ ${BOOK_PDF} : ${ALL_TEX}
 # - 'sed' to restore figures.
 # - 'sed' to turn SVG inclusions into PDF inclusions.
 # - 'sed' to convert '====' blocks into LaTeX labels.
-# - 'sed' to bump section headings back up.
+# - 'python' to convert bibliography citations (because 'sed' can't handle multiple keys).
 # - 'sed' to suppress indentation inside quotes (so that callout boxes format correctly).
+# - 'sed' to bump section headings back up.
 # - 'sed' (twice) to convert 'verbatim' environments
-${ALL_TEX} : ${PAGES_HTML}
+${ALL_TEX} : ${PAGES_HTML} Makefile
 	node js/stitch.js _config.yml _site ${lang} \
 	| sed -E -e 's!<strong id="(g:[^"]+)">([^<]+)</strong>!<strong>==g==\1==g==\2==g==</strong>!' \
 	| sed -E -e 's!<strong id="(b:[^"]+)">([^<]+)</strong>!<strong>==b==\1==b==\2==b==</strong>!' \
@@ -86,6 +88,7 @@ ${ALL_TEX} : ${PAGES_HTML}
 	| sed -E -e 's!\.svg}!\.pdf}!' \
 	| sed -E -e 's!==b==([^=]+)==b==([^=]+)==b==!\\hypertarget{\1}{\2}\\label{\1}!' \
 	| sed -E -e 's!==g==([^=]+)==g==([^=]+)==g==!\\hypertarget{\1}{\2}\\label{\1}!' \
+	| ${PYTHON} bin/cites.py \
 	| sed -E -e 's!\\begin{quote}!\\begin{quote}\\setlength{\\parindent}{0pt}!' \
 	| sed -E -e 's!\\section!\\chapter!' \
 	| sed -E -e 's!\\subsection!\\section!' \
