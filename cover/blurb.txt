@@ -1,28 +1,19 @@
-The collection, availability, and  analysis of data now influences almost every aspect
-of modern life and the importance of data is likely only to increase for the foreseeable
-future. Concurrently and for many of the same reasons, the importance of "traditional" media
-is being undermined and replaced by online platforms. It is vital that those with the skills 
-to extract knowledge from data are also able to publish those insights and the accompanying 
-data online.
+Collecting and analyzing data is now as important to research as telescopes and test tubes,
+and the importance of data is only going to increase.  At the same time, traditional print
+media are being supplanted by dynamic online delivery.  Researchers who can turn data into
+insight need to be able to publish their discoveries and the data that back them up online.
 
-Aided by easily-accessible tools and learning resources for modern programming languages such as
-R and Python, data scientists have gained many of the skills necessary to handle, analyse, and 
-interpret data sets. However, there exist considerably fewer resources that can help them to
-independently and quickly publish their data and present their results on the web in such a way
-that enables their target audience to find, interrogate, and interpret it. 
-This book is an attempt to bridge the gap between data science and web publishing.
+This book is an attempt to bridge the gap between data science and web publishing.  It uses
+JavaScript because it is the one unavoidable language for sharing, reporting, visualizing,
+and interacting online.  *JavaScript versus Data Science* introduces readers to its power
+and ideosyncracies, guiding them through the key features of modern JavaScript and the tools
+and libraries needed to serve data to the browser and then present, explore, and interact with
+it. The book places equal focus on both client- and server-side programming, and introduces
+the reader to generating interactive web content, building and testing data services, and
+visualizing data in the browser.
 
-As our lives are spent online, JavaScript is becoming the one unavoidable programming language 
-for scientists, engineers, librarians, digital humanists, and anyone else using computing in 
-their research. *JavaScript versus Data Science* introduces the reader to this powerful and 
-ideosyncratic language, guiding them through the key features of modern JS and the tools and 
-libraries required to serve data to the browser, then present, explore, and interact with it. 
-The book places equal focus on both client- and server-side programming, providing the reader
-with an introduction to generating interactive web content, building and testing data
-services, and visualizing data in the browser.
-
-You can share and remix this material under the Creative Commons - Attribution 4.0 (CC-BY) license.
-Please see:
+You can share and remix this material under the Creative Commons - Attribution 4.0 (CC-BY)
+license. Please see:
 
                https://software-tools-in-javascript.github.io/js-vs-ds/
 
