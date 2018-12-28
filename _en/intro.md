@@ -96,7 +96,7 @@ JavaScript is to debug.
 
 **[Greg Wilson][wilson-greg]** has worked for 35 years in both industry and
 academia, and is the author or editor of several books on computing and two for
-children. He co-founded of [Software Carpentry][carpentries], a non-profit
+children. He co-founded [Software Carpentry][carpentries], a non-profit
 organization that teaches basic computing skills to researchers, and is now part
 of the education team at [RStudio](http://rstudio.com).  Greg would like to
 thank everyone at [Rangle](https://rangle.io/) who was so patient with him when
