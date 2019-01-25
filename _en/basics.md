@@ -488,8 +488,8 @@ console.log(`clip(${data}, 5) -> ${utilities.clip(data, 5)}`)
 ```
 {: title="src/basics/import.js"}
 ```text
-clip(-1,5,3,0,10) -> 0,1,2,3
-clip(-1,5,3,0,10, 5) -> 0,1,2,3,4
+clip(-1,5,3,0,10) -> -1,3,0
+clip(-1,5,3,0,10, 5) -> -1,5,3,0
 ```
 
 `require` returns the object that was assigned to `module.exports`,
