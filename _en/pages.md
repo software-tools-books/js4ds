@@ -453,7 +453,7 @@ The exercises will explore why we remove the top-level text nodes with
 > We could check `c.nodeType` instead of `c.nodeName` to spot text nodes,
 > but we felt that `nodeName` made the code easier to understand.
 > Note that we use `!==` for the comparison
-> in order to prevent [unpleasant surprises](../legacy/#s:legacy-equality).
+> in order to prevent unpleasant surprises ([s:legacy-equality](#REF)).
 
 Now that we have an array of the `li` elements to be sorted,
 we can use `Array.sort` to order them.

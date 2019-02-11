@@ -124,7 +124,7 @@ inside timer handler for 500
 
 Here's what the run queue looks like just before the program prints `...finishing`:
 
-<figure id="f:promises-queue"> <img src="../../files/promises-queue.svg" /> <figcaption>Run Queue</figcaption> </figure>
+{% include figure.html id="f:promises-queue" src="../../files/promises-queue.svg" caption="Run Queue" %}
 
 We can use `setTimeout` to build a generic non-blocking function:
 
@@ -268,7 +268,7 @@ successful completion/exception and won't need to refer to them again later.)
 What makes this all work is that a promise is an object.
 Here's what's in memory just after this promise has been created:
 
-<figure id="f:promises-object-a"> <img src="../../files/promises-object-a.svg" /> <figcaption>Promises as Objects (after creation)</figcaption> </figure>
+{% include figure.html id="f:promises-object-a" src="../../files/promises-object-a.svg" caption="Promises as Objects (after creation)" %}
 
 There are a lot of arrows in this diagram,
 but they all serve a purpose:
@@ -287,7 +287,7 @@ This happens *before* the callback passed to the constructor
 (i.e., the initial action) is executed,
 and leaves the promise in this state:
 
-<figure id="f:promises-object-b"> <img src="../../files/promises-object-b.svg" /> <figcaption>Promises as Objects (after then and catch)</figcaption> </figure>
+{% include figure.html id="f:promises-object-b" src="../../files/promises-object-b.svg" caption="Promises as Objects (after then and catch)" %}
 
 Calling `then` and `catch` assigns callbacks to the success action and error action members of the promise object.
 Those methods are then passed into the initial action callback as `resolve` and `reject`,
@@ -472,7 +472,7 @@ In step 4,
 we remember that we need to keep track of the names of the files we are looking at,
 so we need to write our own function that returns an object with two keys
 (one for the filename, and one for the stats).
-As described [previously](../pages/),
+As described in [s:pages](#REF),
 the notation `{a, b}` produces an object `{"a": a, "b", b}`:
 
 ```js

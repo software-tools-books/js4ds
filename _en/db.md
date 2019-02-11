@@ -2,7 +2,7 @@
 title: "Using a Database"
 ---
 
-Our [data manager](../dataman/) got information from a single CSV file.
+Our data manager ([s:dataman](#REF)) got information from a single CSV file.
 That's fine for testing purposes,
 but real applications almost always use a database of some kind.
 There are many options these days for what kind,
@@ -508,7 +508,7 @@ and `done` to signal that the test has completed.
 
 ## Updating the Database {#s:db-mutate}
 
-The [data manager we built earlier](../dataman/) only let us read data;
+The data manager we built in [s:dataman](#REF) only let us read data;
 we couldn't modify it.
 Let's add a bit more to our database class to support [mutation](#g:mutation):
 
@@ -683,6 +683,6 @@ and handle however it wants.
 
 ### Using a Database with a Server
 
-Rewrite the [capstone project](../capstone/) to use a database instead of a file for data storage.
+Rewrite the capstone project in [s:capstone](#REF) to use a database instead of a file for data storage.
 
 {% include links.md %}

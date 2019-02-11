@@ -2,7 +2,7 @@
 title: "Extensible Servers"
 ---
 
-Suppose we want to extend our [server](../server/) in some way.
+Suppose we want to extend the server from [s:server](#REF) in some way.
 We could edit the source file and add some more URL handlers,
 or we could have it load JavaScript dynamically and run that.
 

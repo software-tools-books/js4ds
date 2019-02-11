@@ -25,8 +25,7 @@ but will mostly recapitulate what's come before.
 
 ## Data Manager {#s:capstone-data}
 
-The data manager is exactly the same as
-[the one we built earlier](../dataman/).
+The data manager is exactly the same as the one we built in [s:dataman](#REF).
 As a reminder,
 the key class is:
 
@@ -46,7 +45,7 @@ class DataManager {
 
 ## Server {#s:capstone-server}
 
-The server is going to be almost the same as [the previous one](../server/).
+The server is going to be almost the same as the one in [s:server](#REF).
 However, we need to connect it to the data manager class.
 We'll do this by having the driver create a data manager,
 and then pass that data manager to the server as the latter is being created:
@@ -543,7 +542,7 @@ Server running at http://localhost:4000
 
 We then open `http://localhost:4000` in our browser and see this:
 
-<figure id="f:capstone-first-attempt"> <img src="../../files/capstone-first-attempt.png" /> <figcaption>First Attempt at Viewing Capstone Project</figcaption> </figure>
+{% include figure.html id="f:capstone-first-attempt" src="../../files/capstone-first-attempt.png" caption="First Attempt at Viewing Capstone Project" %}
 
 That's unexpected: we should see the initial data displayed.
 If we open the console in the browser and reload the page,
@@ -596,14 +595,14 @@ $ node src/capstone/back/driver-1.js src/capstone/back/test-data.csv
 
 and then re-launch our application:
 
-<figure id="f:capstone-second-attempt"> <img src="../../files/capstone-second-attempt.png" /> <figcaption>Second Attempt at Viewing Capstone Project</figcaption> </figure>
+{% include figure.html id="f:capstone-second-attempt" src="../../files/capstone-second-attempt.png" caption="Second Attempt at Viewing Capstone Project" %}
 
 Much better!
 Now we can type some dates into the "start" and "end" boxes and,
 after we press "update",
 we get a chart and table of the aggregated statistics for the year range given:
 
-<figure id="f:capstone-complete"> <img src="../../files/capstone-complete.png" /> <figcaption>Completed Capstone Project</figcaption> </figure>
+{% include figure.html id="f:capstone-complete" src="../../files/capstone-complete.png" caption="Completed Capstone Project" %}
 
 We've built an interface,
 used it to submit queries that are then handled by a server,

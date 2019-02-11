@@ -120,7 +120,7 @@ the type of some text is string
 ```
 
 Functions are also a type of data,
-a fact whose implications we will explore in [the next lesson](../callbacks/):
+a fact whose implications we will explore in [s:callbacks](#REF):
 
 ```js
 console.log('the type of', console.log, 'is', typeof console.log)
@@ -153,7 +153,7 @@ put values separated by commas inside `[]` to create an [array](#g:array),
 and use `for...of` to loop over the values in that array.
 Note that we use `let` rather than the older `var` and `of` and not `in`:
 the latter returns the indexes of the collection (e.g., 0, 1, 2),
-which has some [traps for the unwary](../legacy/#s:legacy-iteration).
+which has some traps for the unwary ((s:legacy-iteration)[#REF)).
 Note also that indexing starts from 0 rather than 1,
 and that indentation is optional and for readability purposes only.
 This may be different from the language that you're used to.
@@ -225,7 +225,7 @@ not called like a function.)
 >
 > Always use `===` (triple equals) and `!==` when testing for equality and inequality in JavaScript.
 > `==` and `!=` do type conversion,
-> which can produce some [ugly surprises](../legacy/#s:legacy-equality).
+> which can produce some ugly surprises ([s:legacy-equality](#REF)).
 
 ## Formatting Strings {#s:basics-formatting}
 
@@ -323,7 +323,7 @@ console.log(JSON.stringify(creature))
 
 Here,
 "JSON" stands for "JavaScript Object Notation";
-we will learn more about it [later](../dataman/).
+we will learn more about it in [s:dataman](#REF).
 
 ## Functions {#s:basics-functions}
 
@@ -381,7 +381,7 @@ limits of 3,apple,sub-array are 3,3
 
 Programmers generally don't write functions this way any longer,
 since it interacts in odd ways with other features of the language;
-the [section on legacy issues](../legacy/#s:legacy-prototypes) explains why and how in more detail.
+[s:legacy-prototypes](#REF) explains why and how in more detail.
 Instead,
 most programmers now write [fat arrow functions](#g:fat-arrow)
 consisting of a parameter list,
@@ -409,7 +409,7 @@ const limits = (values) => {
 No matter how functions are defined,
 each one is a [scope](#g:scope),
 which means its parameters and any variables created inside it are [local](#g:local-variable) to the function.
-We will discuss scope in more detail [later](../callbacks/).
+We will discuss scope in more detail in [s:callbacks](#REF).
 
 > **Stuck in the Past**
 >

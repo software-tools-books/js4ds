@@ -59,7 +59,7 @@ You can do the first few online,
 using a service like [RunKit][runkit],
 which gives you an interactive JavaScript playground in your browser.
 For larger things,
-and for chapters starting with the one on [creating dynamic web pages](../dynamic/),
+and for chapters starting with the one on creating dynamic web pages ([s:dynamic](#REF)),
 you should [download and install][node-download] the latest Long-term Support (LTS) versions of Node and NPM.
 
 [Node](#g:node-js) is an open source implementation of JavaScript
@@ -67,7 +67,7 @@ that includes a command-line interpreter like those for languages such as Python
 The command `node` on its own starts a [read-evaluate-print loop](#g:repl)
 that executes commands as they are typed in and displays their output.
 The command `node filename.js` reads and runs the commands in `filename.js`;
-we will see [later](../pages/) how to run JavaScript in a browser.
+we will see in [s:pages](#REF) how to run JavaScript in a browser.
 
 `npm` is the Node [Package Manager](#g:package-manager),
 a command-line tool for finding, installing, and updating JavaScript libraries.

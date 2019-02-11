@@ -28,7 +28,7 @@ Let's switch back to single-page examples for a moment
 to show how we pass a callback function as
 a specifically-named property of the thing whose behavior we are specifying.
 (Don't forget to load the required libraries in the HTML header, like we did
-[earlier](../dynamic/).)
+in [s:dynamic](#REF).)
 
 ```js
   <body>
@@ -124,7 +124,7 @@ but a class with three parts:
 
 React calls each component's `render` method each time `setState` is used to update the component's state;
 this is an example of a protocol,
-which was described [earlier](../oop/#s:oop-protocols).
+which was described in [s:oop-protocols](#REF).
 Behind the scenes,
 React does some thinking to minimize how much redrawing takes place:
 while it may look as though the paragraph, button, and current count are all being redrawn each time,
@@ -242,7 +242,7 @@ but clicking on the button doesn't change the display.
 Despair is once again our friend---our *only* friend---but we persevere.
 When we open the debugging console in the browser,
 we see the message `TypeError: this is undefined`.
-The appendix [explains in detail](../legacy/#s:legacy-prototypes) why this happens;
+[s:legacy-prototypes](#REF) explains in detail why this happens;
 for now, suffice to say that some poor choices were made early in JavaScript's development about variable scoping.
 
 At this point it appears that we can compile but not run, or not bundle files together.
@@ -428,7 +428,7 @@ class App extends React.Component {
 ```
 {: title="interactive/multi-component/app.js"}
 
-<figure id="f:interactive-objects-dom"> <img src="../../files/interactive-objects-dom.svg" /> <figcaption>React Objects and the DOM</figcaption> </figure>
+{% include figure.html id="f:interactive-objects-dom" src="../../files/interactive-objects-dom.svg" caption="React Objects and the DOM" %}
 
 We must import the dependencies as we did with the other components.
 As well as `React` and `ReactDOM`,
@@ -589,7 +589,7 @@ export {DateSubmit}
 <!-- == \noindent -->
 and run it:
 
-<figure id="f:interactive-asteroids-screenshot"> <img src="../../files/interactive-asteroids-screenshot.png" /> <figcaption>Asteroids Application</figcaption> </figure>
+{% include figure.html id="f:interactive-asteroids-screenshot" src="../../files/interactive-asteroids-screenshot.png" caption="Asteroids Application" %}
 
 The next step is to handle date submission.
 Since we're trying to instill good practices,
@@ -618,7 +618,7 @@ const DateSubmit = ({label, value, onChange, onCommit}) => {
 {: title="interactive/asteroids/DateSubmit.js"}
 
 Note the use of destructuring in `DateSubmit`'s parameter list;
-this was introduced [earlier](../pages/#s:pages-citations)
+this was introduced in [s:pages-citations](#REF)
 and is an easy way to pull values out of the `props` parameter.
 
 It's important to understand the order of operations in the example above.
@@ -682,7 +682,7 @@ and we would blithely try to process it.
 
 It's now time to get real data,
 which we will do using `fetch` with a URL.
-This returns a [promise](../promises/),
+This returns a promise ([s:promises](#REF)),
 so we'll handle the result of the fetch in the promise's `then` method,
 and then chain another `then` method to transform the data into what we need:
 
@@ -709,7 +709,7 @@ the steps are:
 2. Start to fetch data from that URL
 3. Give a callback to execute when the data arrives
 4. Give another callback to use when the data has been converted from text to JSON
-   (which we will look at in more detail [soon](../dataman/)).
+   (which we will look at in more detail in [s:dataman](#REF)).
 5. Transform that data from its raw form into the objects we need
 6. Set state
 

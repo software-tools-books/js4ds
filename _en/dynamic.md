@@ -39,7 +39,7 @@ pages can be compiled once, stored on disk, and served thereafter,
 or each page can be recompiled whenever it's needed
 (which makes it easy to include dynamic elements like today's top news story):
 
-<figure id="f:dynamic-alternatives"> <img src="../../files/dynamic-alternatives.svg" /> <figcaption>Page Generation Alternatives</figcaption> </figure>
+{% include figure.html id="f:dynamic-alternatives" src="../../files/dynamic-alternatives.svg" caption="Page Generation Alternatives" %}
 
 As browsers and JavaScript became more powerful,
 the balance shifted toward [client-side page generation](#g:client-page-gen).

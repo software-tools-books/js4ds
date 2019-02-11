@@ -26,7 +26,7 @@ but object-oriented programming can help.
 
 ## Doing It By Hand {#s:oop-manual}
 
-As we saw [earlier](../basics/),
+As we saw in [s:basics](REF),
 an object in JavaScript is a set of key-value pairs.
 Since functions are just another kind of data,
 an object's values can be functions,
@@ -123,7 +123,7 @@ rectangle: area 6 perimeter 10
 
 Building every object by hand and calling `thing.function(thing)` is clumsy.
 JavaScript solved these problems using [prototypes](#g:prototype),
-which also turned out to be [clumsy](../legacy/#s:legacy-prototypes).
+which also turned out to be clumsy ([s:legacy-prototypes](#REF)).
 Most object-oriented languages use [classes](#g:class) instead;
 these were added to JavaScript in ES6,
 and we will use them instead of prototypes throughout.
@@ -166,7 +166,7 @@ Inside the class,
 methods are defined with classic syntax rather than the [fat arrows](#g:fat-arrow) we have been using.
 The inconsistency is unfortunate
 but this way of defining methods is what the current version of Node prefers;
-we will explore this topic further in the [discussion of visualization](../vis/).
+we will explore this topic further in [s:vis](#REF).
 
 Classes defined this way support polymorphism:
 if two or more classes have some methods with the same names
@@ -308,7 +308,7 @@ when `child.farewell()` is called:
 - There isn't, so it follows the link from `Scientist` to the parent class `Person`
   and finds the function it's looking for.
 
-<figure id="f:oop-inheritance"> <img src="../../files/oop-inheritance.svg" /> <figcaption>Object-Oriented Inheritance</figcaption> </figure>
+{% include figure.html id="f:oop-inheritance" src="../../files/oop-inheritance.svg" caption="Object-Oriented Inheritance" %}
 
 ## Protocols {#s:oop-protocols}
 
@@ -424,7 +424,7 @@ in spring: penguin looks for food,,penguin is nesting
 
 Different random numbers produce different behaviors,
 which makes testing hard:
-we'll see how to address this [later](../testing/)
+we'll see how to address this in [s:testing](#REF).
 The main idea,
 though,
 is how old code can use new code:

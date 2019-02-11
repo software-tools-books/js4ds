@@ -329,7 +329,7 @@ with the usual clickability.
 ## Images {#s:htmlcss-images}
 
 Images can be stored inside HTML pages in two ways:
-by using SVG (which we will discuss [later](../vis/)
+by using SVG (which we will discuss in [s:vis](#REF))
 or by encoding the image as text and including that text in the body of the page,
 which is clever,
 but makes the source of the pages very hard to read.
@@ -364,7 +364,7 @@ Two things are worth noting here:
    it's interpreted starting from where the web page is located;
    if it's an absolute path,
    it's interpreted relative to wherever the web browser thinks the [root directory](#g:root-directory) of the filesystem is.
-   As we will see [later](../server/),
+   As we will see in [s:server](#REF),
    this can change from one installation to the next,
    so you should always try to use relative paths,
    except where you can't.
@@ -590,7 +590,7 @@ We've left out many other aspects of HTML and CSS as well,
 such as figure captions,
 multi-column table cells,
 and why it's so hard to center text vertically within a `div`.
-One thing we will return to [later](../interactive/) is
+One thing we will return to in [s:interactive](#REF) is
 how to include interactive elements like buttons and forms in a page.
 Handling those is part of why JavaScript was invented in the first place,
 but we need more experience before tackling them.

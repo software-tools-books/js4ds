@@ -17,7 +17,7 @@ keypoints:
 - "Use dynamic loading to support plugin extensions."
 ---
 
-Now that we have [a data manager](../dataman/),
+Now that we have a data manager ([s:dataman](#REF))
 the next step is to create a server to share our data with the world,
 which we will build using a library called [Express][express].
 Before we start writing code,
@@ -34,7 +34,7 @@ how they exchange data,
 and so on.
 The diagram below shows this cycle in action for a page that includes one image:
 
-<figure id="f:server-cycle"> <img src="../../files/server-cycle.svg" /> <figcaption>HTTP Request/Response Cycle</figcaption> </figure>
+{% include figure.html id="f:server-cycle" src="../../files/server-cycle.svg" caption="HTTP Request/Response Cycle" %}
 
 1.  The client (a browser or some other program) makes a connection to a server.
 2.  It then sends a blob of text specifying what it's asking for.
@@ -76,7 +76,7 @@ If a body is present,
 the request must contain the `Content-Length` header
 so that the server knows how much data to read.
 
-<figure id="f:server-request"> <img src="../../files/server-request.svg" /> <figcaption>Structure of an HTTP Request</figcaption> </figure>
+{% include figure.html id="f:server-request" src="../../files/server-request.svg" caption="Structure of an HTTP Request" %}
 
 The headers and body in an HTTP response have the same form, and mean the same thing.
 Crucially,

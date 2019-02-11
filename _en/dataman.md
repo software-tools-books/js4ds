@@ -22,7 +22,7 @@ but experience teaches that it's better to create one for each
 so that they are easier to understand, test, and maintain.
 After tossing a coin,
 we decide to start with the data store;
-the [next lesson](../server/) will look at how to build a server.
+[s:server](#REF) will look at how to build a server.
 
 ## Data Formats {#s:dataman-formats}
 
@@ -309,7 +309,7 @@ After some thought we realize that it's possible for `subset` to be empty -
 that is, it's possible that there are years that have no data in our data set.
 We should filter these out,
 to prevent unnecessary effort being made to render summary statistics with `NaN` values.
-Remembering that [empty arrays are not falsy in JavaScript](../basics/),
+Remembering that empty arrays are not falsy in JavaScript ([s:basics](#REF)),
 we decide to test that the `subset` returned by filtering for each year
 contains at least one entry.
 
