@@ -1,5 +1,4 @@
 ---
-permalink: "/en/db/"
 title: "Using a Database"
 ---
 
@@ -7,14 +6,14 @@ Our [data manager](../dataman/) got information from a single CSV file.
 That's fine for testing purposes,
 but real applications almost always use a database of some kind.
 There are many options these days for what kind,
-but [relational databases](../gloss/#g:relational-database) continue to be
+but [relational databases](#g:relational-database) continue to be
 the workhorses of the web.
 
-Relational databases are manipulated using a language called [SQL](../gloss/#g:sql),
+Relational databases are manipulated using a language called [SQL](#g:sql),
 which originally stood for "Structured Query Language"
 and is pronounced "sequel" or "ess cue ell" depending on whether the speaker is
 left or right handed.
-(Alternatives are collectively known as [NoSQL databases](../gloss/#g:nosql-database),
+(Alternatives are collectively known as [NoSQL databases](#g:nosql-database),
 and use many different storage models.)
 We will use a SQL database because it's still the most common choice,
 but we won't try to introduce SQL itself:
@@ -23,9 +22,9 @@ see [this short tutorial][sql-tutorial].
 
 As an example problem,
 we will store information about workshops.
-Our database begins with a single [table](../gloss/#g:table)
-with three [fields](../gloss/#g:field)
-and two [records](../gloss/#g:record):
+Our database begins with a single [table](#g:table)
+with three [fields](#g:field)
+and two [records](#g:record):
 
 ```sql
 drop table if exists Workshop;
@@ -39,7 +38,7 @@ create table Workshop(
 insert into Workshop values(1, "Building Community", 60);
 insert into Workshop values(2, "ENIAC Programming", 150);
 ```
-{: title="src/db/fixture.sql"}
+{: title="db/fixture.sql"}
 
 In the rest of this tutorial,
 we will build a class to handle our interactions with a SQLite database,
@@ -50,11 +49,11 @@ and then put a web service on top of it.
 
 Our class, imaginatively named `Database`,
 takes the path to the SQLite database file as a constructor parameter
-and creates a [connection manager](../gloss/#g:connection-manager)
+and creates a [connection manager](#g:connection-manager)
 through which we can send queries and get results.
 We will create one method for each query we want to run,
 and one helper method to display query results.
-We will give all of the query methods the same [signature](../gloss/#g:signature)
+We will give all of the query methods the same [signature](#g:signature)
 so that can be handled interchangeably.
 The whole thing looks like this:
 
@@ -95,7 +94,7 @@ class Database {
   }
 }
 ```
-{: title="src/db/database-initial.js"}
+{: title="db/database-initial.js"}
 
 This makes a lot more sense once we see what the queries look like:
 
@@ -120,7 +119,7 @@ where
   Workshop.ident = ?
 `
 ```
-{: title="src/db/database-initial.js"}
+{: title="db/database-initial.js"}
 
 It's easy to overlook,
 but the query to get details of one workshop has a question mark `?` as the value of `Workshop.ident`.
@@ -133,7 +132,7 @@ it's also why `getAll` takes an `args` parameter,
 but ignores it and always passed `[]` (no extra values) to `db.all` when running the query.
 
 All right:
-what does the [driver](../gloss/#g:driver) look like?
+what does the [driver](#g:driver) look like?
 
 ```js
 function main () {
@@ -146,7 +145,7 @@ function main () {
 
 main()
 ```
-{: title="src/db/database-initial.js"}
+{: title="db/database-initial.js"}
 
 This is simple enough:
 it gets the path to the database file,
@@ -189,7 +188,7 @@ whose names are the derived in an obvious way from the names of the columns.
 
 The previous example always manipulates database on disk.
 For testing purposes,
-it's faster and safer to use an [in-memory database](../gloss/#g:in-memory-database).
+it's faster and safer to use an [in-memory database](#g:in-memory-database).
 Let's modify the constructor of `Database` to set this up:
 
 ```js
@@ -218,7 +217,7 @@ Let's modify the constructor of `Database` to set this up:
     }
   }
 ```
-{: title="src/db/database-mode.js"}
+{: title="db/database-mode.js"}
 
 If the `mode` parameter is the string `"memory"`,
 we create an in-memory database and initialize it by executing
@@ -239,7 +238,7 @@ function main () {
   database[action](args)
 }
 ```
-{: title="src/db/database-mode.js"}
+{: title="db/database-mode.js"}
 
 Here, the expression `...args` means
 "take anything left over after the fixed names have been matched and put it in an array called `args`".
@@ -287,7 +286,7 @@ Here are the changes to the constructor:
     }
   }
 ```
-{: title="src/db/database-mixed.js"}
+{: title="db/database-mixed.js"}
 
 And here are the supporting methods:
 
@@ -307,7 +306,7 @@ And here are the supporting methods:
     })
   }
 ```
-{: title="src/db/database-mixed.js"}
+{: title="db/database-mixed.js"}
 
 We also need to change the driver
 (and check, finally, that the requested action is actually supported):
@@ -325,7 +324,7 @@ function main () {
   database[action](args)
 }
 ```
-{: title="src/db/database-mixed.js"}
+{: title="db/database-mixed.js"}
 
 ## Making It Testable {#s:db-testable}
 
@@ -350,7 +349,7 @@ class Database {
   // ...as before...
 }
 ```
-{: title="src/db/separate-database.js"}
+{: title="db/separate-database.js"}
 
 The driver then looks like this:
 
@@ -375,7 +374,7 @@ const main = () => {
 
 main()
 ```
-{: title="src/db/separate-driver.js"}
+{: title="db/separate-driver.js"}
 
 Let's try running it:
 
@@ -412,7 +411,7 @@ class Database {
   // ...as before...
 }
 ```
-{: title="src/db/callback-database.js"}
+{: title="db/callback-database.js"}
 
 We then change the driver to pass `display` to the database method it's calling:
 
@@ -436,7 +435,7 @@ const main = () => {
 
 main()
 ```
-{: title="src/db/callback-driver.js"}
+{: title="db/callback-driver.js"}
 
 This looks strange the first few (dozen) times,
 but it's the way JavaScript works:
@@ -497,7 +496,7 @@ describe('database', () => {
 
 })
 ```
-{: title="src/db/basic-tests.js"}
+{: title="db/basic-tests.js"}
 
 Each test has the same structure:
 we define the expected result,
@@ -511,7 +510,7 @@ and `done` to signal that the test has completed.
 
 The [data manager we built earlier](../dataman/) only let us read data;
 we couldn't modify it.
-Let's add a bit more to our database class to support [mutation](../gloss/#g:mutation):
+Let's add a bit more to our database class to support [mutation](#g:mutation):
 
 ```js
 // ...imports as before...
@@ -566,7 +565,7 @@ class Database {
 
 module.exports = Database
 ```
-{: title="src/db/mutate-database.js"}
+{: title="db/mutate-database.js"}
 
 The additions are straightforward:
 the query that does the work is passed to `this.db.run` along with the incoming arguments
@@ -617,7 +616,7 @@ describe('mutating database', () => {
   })
 })
 ```
-{: title="src/db/mutate-test.js"}
+{: title="db/mutate-test.js"}
 
 ## Exercises {#s:db-exercises}
 
@@ -674,9 +673,9 @@ Can you write a test that provides more useful feedback than this?
 The `Database` class prints a message and exits when it detects an error.
 This is bad practice,
 and I should be ashamed of having done it.
-The right thing to do is to [throw](../gloss/#g:throw)
-an [exception](../gloss/#g:exception)
-that main program can [catch](../gloss/#g:catch)
+The right thing to do is to [throw](#g:throw)
+an [exception](#g:exception)
+that main program can [catch](#g:catch)
 and handle however it wants.
 
 1. Modify the code to do this.

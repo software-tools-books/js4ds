@@ -1,5 +1,4 @@
 ---
-permalink: "/en/promises/"
 title: "Promises"
 questions:
 - "How does JavaScript implement delayed computation?"
@@ -44,7 +43,7 @@ We can also try doing it with callbacks, but:
 - we can't generate the index page until the CSV files have been processed.
 
 Instead of a tangled nest of callbacks,
-it's better to use [promises](../gloss/#g:promise),
+it's better to use [promises](#g:promise),
 and then to use `async` and `await` to make things even easier.
 JavaScript offers three mechanisms because
 its developers have invented better ways to do things as the language has evolved,
@@ -54,7 +53,7 @@ but the simple high-level ideas often don't make sense unless you understand how
 ## The Execution Queue {#s:promises-queue}
 
 In order for any of what follows to make sense,
-it's vital to understand JavaScript's [event loop](../gloss/#g:event-loop),
+it's vital to understand JavaScript's [event loop](#g:event-loop),
 a full explanation of which can be found [here][event-loop].
 Most functions execute in order:
 
@@ -63,7 +62,7 @@ Most functions execute in order:
   console.log(t)
 })
 ```
-{: title="src/promises/not-callbacks-alone.js"}
+{: title="promises/not-callbacks-alone.js"}
 ```text
 1000
 1500
@@ -87,7 +86,7 @@ Here it is in operation:
   setTimeout(() => {console.log(`inside timer handler for ${t}`)}, t)
 })
 ```
-{: title="src/promises/callbacks-with-timeouts.js"}
+{: title="promises/callbacks-with-timeouts.js"}
 ```text
 about to setTimeout for 1000
 about to setTimeout for 1500
@@ -111,7 +110,7 @@ values.forEach(t => {
 })
 console.log('...finishing')
 ```
-{: title="src/promises/callbacks-with-zero-timeouts.js"}
+{: title="promises/callbacks-with-zero-timeouts.js"}
 ```text
 starting...
 about to setTimeout for 1000
@@ -139,7 +138,7 @@ const nonBlocking = (callback) => {
   nonBlocking(() => console.log(`inside callback for ${val}`))
 })
 ```
-{: title="src/promises/non-blocking.js"}
+{: title="promises/non-blocking.js"}
 ```text
 about to do nonBlocking for a
 about to do nonBlocking for b
@@ -172,7 +171,7 @@ You should probably not use it.)
   setImmediate(() => console.log(`inside immediate handler for ${val}`))
 })
 ```
-{: title="src/promises/set-immediate.js"}
+{: title="promises/set-immediate.js"}
 ```text
 about to do setImmediate for a
 about to do setImmediate for b
@@ -184,7 +183,7 @@ inside immediate handler for c
 
 ## Promises {#s:promises-promises}
 
-Recent versions of JavaScript encourage programmers to use [promises](../gloss/#g:promise)
+Recent versions of JavaScript encourage programmers to use [promises](#g:promise)
 to manage delayed actions.
 For example,
 if we want to find the size of a file,
@@ -194,7 +193,7 @@ we can write this:
 const fs = require('fs-extra')
 fs.stat('moby-dick.txt').then((stats) => console.log(stats.size))
 ```
-{: title="src/promises/promise-stats.js"}
+{: title="promises/promise-stats.js"}
 ```text
 1276201
 ```
@@ -222,7 +221,7 @@ const prom = new Promise((resolve, reject) => {
   })
 }).then((message) => console.log(message))
 ```
-{: title="src/promises/nasa-fetch.js"}
+{: title="promises/nasa-fetch.js"}
 
 This code constructs a new `Promise` object.
 The constructor takes one argument;
@@ -258,7 +257,7 @@ new Promise((resolve, reject) => {
 }).then((message) => console.log(message))
 .catch((error) => console.log(error.message))
 ```
-{: title="src/promises/nasa-catch.js"}
+{: title="promises/nasa-catch.js"}
 ```text
 got HTTP status code 400
 ```
@@ -320,7 +319,7 @@ catch (err) {
   console.log(err)
 }
 ```
-{: title="src/promises/try-catch.js"}
+{: title="promises/try-catch.js"}
 
 <!-- == \noindent -->
 then the error message won't appear
@@ -344,7 +343,7 @@ for (let fileName of files) {
 }
 console.log(total_size)
 ```
-{: title="src/promises/promise-loop.js"}
+{: title="promises/promise-loop.js"}
 
 <!-- == \noindent -->
 but this doesn't work:
@@ -369,7 +368,7 @@ new Promise((resolve, reject) => {
   })
 }).then((total) => console.log(total))
 ```
-{: title="src/promises/promise-nest.js"}
+{: title="promises/promise-nest.js"}
 
 <!-- == \noindent -->
 but this obviously doesn't handle an arbitrary number of files,
@@ -392,7 +391,7 @@ Promise.all(files.map(f => fs.stat(f))).
   then(stats => stats.reduce((total, s) => {return total + s.size}, 0)).
   then(console.log)
 ```
-{: title="src/promises/promise-all.js"}
+{: title="promises/promise-all.js"}
 ```text
 2594901
 ```
@@ -418,7 +417,7 @@ glob(`${srcDir}/**/*.txt`)
   .then(files => console.log('glob', files))
   .catch(error => console.error(error))
 ```
-{: title="src/promises/step-01.js"}
+{: title="promises/step-01.js"}
 ```text
 glob [ './common-sense.txt',
   './jane-eyre.txt',
@@ -439,7 +438,7 @@ glob(`${srcDir}/**/*.txt`)
   .then(files => console.log('glob + files.map/stat', files))
   .catch(error => console.error(error))
 ```
-{: title="src/promises/step-02.js"}
+{: title="promises/step-02.js"}
 ```text
 glob + files.map/stat [ Promise { <pending> },
   Promise { <pending> },
@@ -459,7 +458,7 @@ glob(`${srcDir}/**/*.txt`)
   .then(files => console.log('glob + Promise.all(files.map/stat)', files))
   .catch(error => console.error(error))
 ```
-{: title="src/promises/step-03.js"}
+{: title="promises/step-03.js"}
 ```text
 glob + Promise.all(files.map/stat) [ Stats {
     dev: 16777220,
@@ -492,7 +491,7 @@ glob(`${srcDir}/**/*.txt`)
   .then(files => console.log('glob + Promise.all(files.map/statPair)', files))
   .catch(error => console.error(error))
 ```
-{: title="src/promises/step-04.js"}
+{: title="promises/step-04.js"}
 ```text
 glob + Promise.all(files.map/statPair) [ { filename: './common-sense.txt',
     stats:
@@ -518,7 +517,7 @@ glob(`${srcDir}/**/*.txt`)
   .then(contents => console.log('...readFile', contents.map(c => c.length)))
   .catch(error => console.error(error))
 ```
-{: title="src/promises/step-05.js"}
+{: title="promises/step-05.js"}
 ```text
 ...readFile [ 148134, 1070331, 248369, 1276201, 706124, 204492 ]
 ```
@@ -541,7 +540,7 @@ glob(`${srcDir}/**/*.txt`)
   .then(lengths => console.log('lengths', lengths))
   .catch(error => console.error(error))
 ```
-{: title="src/promises/step-06.js"}
+{: title="promises/step-06.js"}
 ```text
 lengths [ 2654, 21063, 4105, 22334, 13028, 3584 ]
 ```
@@ -582,7 +581,7 @@ const statPairAsync = async (filename) => {
 
 statPairAsync('moby-dick.txt').then((white_whale) => console.log(white_whale.stats))
 ```
-{: title="src/promises/async-await.js"}
+{: title="promises/async-await.js"}
 
 An `async` function still returns a `Promise`,
 but we can chain those promises together with other `async` functions using `await`,
@@ -618,7 +617,7 @@ const srcDir = process.argv[2]
 processFiles(`${srcDir}/**/*.txt`)
   .catch(e => console.log(e.message))
 ```
-{: title="src/promises/async-await-example.js"}
+{: title="promises/async-await-example.js"}
 
 Using `async` and `await` lets us avoid long `then` chains;
 unless and until JavaScript allows us to define operators like R's `%>%` pipe operator,

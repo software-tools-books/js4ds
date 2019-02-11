@@ -1,5 +1,4 @@
 # Simple values used for display.
-
 title: "JavaScript versus Data Science"
 subtitle: "A Brief Guide for Those Who Regret That This Has Become Necessary"
 author: "Toby Hodges and Greg Wilson"
@@ -12,52 +11,50 @@ isbn: "978-0-9881137-1-8"
 # Order for table of contents.  Each file is represented by its permalink, and
 # files are divided into three sections (main lessons, the bibliography, and
 # appendices).
-
 toc:
   lessons:
-  - /intro/
-  - /basics/
-  - /callbacks/
-  - /oop/
-  - /htmlcss/
-  - /pages/
-  - /dynamic/
-  - /vis/
-  - /promises/
-  - /interactive/
-  - /dataman/
-  - /server/
-  - /testing/
-  - /capstone/
-  - /finale/
+  - intro
+  - basics
+  - callbacks
+  - oop
+  - htmlcss
+  - pages
+  - dynamic
+  - vis
+  - promises
+  - interactive
+  - dataman
+  - server
+  - testing
+  - capstone
+  - finale
   bib:
-  - /bib/
+  - bib
   extras:
-  - /license/
-  - /conduct/
-  - /citation/
-  - /contributing/
-  - /gloss/
-  - /keypoints/
-  - /legacy/
-  - /logging/
-  - /db/
-  - /extensible/
+  - license
+  - conduct
+  - citation
+  - contributing
+  - gloss
+  - keypoints
+  - legacy
+  - logging
+  - db
+  - extensible
 
 # The data source used in the capstone example.
-
 datasource: "https://figshare.com/articles/Portal_Project_Teaching_Database/1314459"
+
+#-------------------------------------------------------------------------------
 
 # Tell Jekyll that "en" is a collection (whose files are found in "_en").  This
 # is what allows us to loop over files in various inclusions.  We use "en" to
 # indicate English, and can use other two-letter codes for other languages.
-
 collections:
   en:
     output: true
 
 # Specify the use of the "lesson" template for elements of the "en" collection.
-
 defaults:
   - scope:
       path: ""
@@ -68,7 +65,6 @@ defaults:
 
 # Translations keyed by language.  This lookup table allows us to put the right
 # titles on inclusion blocks in various languages.
-
 translations:
   en:
     generated: "Last generated"
@@ -77,7 +73,6 @@ translations:
     singlepage: "Single page version"
 
 # Standard Jekyll settings.
-
 repository: <USERNAME>/<PROJECT>
 highlighter: rouge
 plugins:

@@ -1,5 +1,4 @@
 ---
-permalink: "/en/pages/"
 title: "Manipulating Pages"
 questions:
 - "How can I find things in pages?"
@@ -65,12 +64,12 @@ Let's begin by counting the number of paragraphs in a page:
   </body>
 </html>
 ```
-{: title="src/pages/count-paragraphs.html"}
+{: title="pages/count-paragraphs.html"}
 
 This page has three main parts:
 
 1. The `head` contains a `meta` tag that specifies the page's
-   [character encoding](../gloss/#g:character-encoding),
+   [character encoding](#g:character-encoding),
    i.e.,
    the scheme used to represent characters
    not found on a standard American keyboard in the 1970s.
@@ -93,7 +92,7 @@ This page has three main parts:
 > If we put the `script` tag and its contents at the top of the page,
 > the browser might run our JavaScript *after* the page has been read
 > but *before* its elements and text have been parsed and stored in memory.
-> [Race conditions](../gloss/#g:race-condition) like this bedevil web programming;
+> [Race conditions](#g:race-condition) like this bedevil web programming;
 > we will see more robust ways to deal with them later.
 
 Inside the `script` tag,
@@ -161,7 +160,7 @@ and add it to the in-memory structure that represents the page.
 ...at which point some magic happens behind the scenes.
 The browser stores the elements and text of the current page in a data structure called
 the Document Object Model,
-or more commonly, the [DOM](../gloss/#g:dom).
+or more commonly, the [DOM](#g:dom).
 Any time the browser detects a change to the DOM,
 it automatically refreshes just as much of its display as it needs to.
 We can insert or remove text,
@@ -189,7 +188,7 @@ which takes only a little more code than what we've already seen:
   container.innerHTML = '<ul>' + items + '</ul>'
 })()
 ```
-{: title="src/pages/create-toc.html"}
+{: title="pages/create-toc.html"}
 
 Let's start with the first and last lines,
 since they demonstrate a commonly-used idiom.
@@ -367,7 +366,7 @@ const sortLists = () => {
   })
 }
 ```
-{: title="src/pages/sort-lists.js"}
+{: title="pages/sort-lists.js"}
 
 When we load the page,
 though,
@@ -404,9 +403,9 @@ document.addEventListener("DOMContentLoaded", (event) => {
   sortLists()
 })
 ```
-{: title="src/pages/sort-lists-event.js"}
+{: title="pages/sort-lists-event.js"}
 
-An [event listener](../gloss/#g:event-listener) is a function that the browser calls
+An [event listener](#g:event-listener) is a function that the browser calls
 when some kind of event occurs.
 In our example,
 the event we care about is "DOM content has been loaded".
@@ -432,7 +431,7 @@ const sortLists = () => {
   })
 }
 ```
-{: title="src/pages/sort-lists-events.js"}
+{: title="pages/sort-lists-event.js"}
 
 As before,
 it starts by creating an array containing the nodes we want to operate on.
@@ -525,7 +524,7 @@ Here's our test page:
   </body>
 </html>
 ```
-{: title="src/pages/citations.html"}
+{: title="pages/citations.html"}
 
 <!-- == \noindent -->
 and here's our function
@@ -548,7 +547,7 @@ const citations = () => {
     })
 }
 ```
-{: title="src/pages/citations.js"}
+{: title="pages/citations.js"}
 
 There is a lot going on here,
 but it all uses patterns we have seen before.
@@ -558,7 +557,7 @@ It starts by building an array of all the links in the document
 ```js
   Array.from(document.querySelectorAll('a'))
 ```
-{: title="src/pages/citations.js"}
+{: title="pages/citations.js"}
 
 We then filter this array to find the links pointing at `#b`,
 which is what we're using to signal citations:
@@ -566,7 +565,7 @@ which is what we're using to signal citations:
 ```js
     .filter(link => link.getAttribute('href') === '#b')
 ```
-{: title="src/pages/citations.js"}
+{: title="pages/citations.js"}
 
 We now have a problem.
 We could use a `map` call to get the text out of each link and process it,
@@ -586,7 +585,7 @@ but it's more readable to create an object so that each component has a name:
     .map(link => ({node: link,
                    text: link.textContent.split(',').map(s => s.trim())}))
 ```
-{: title="src/pages/citations.js"}
+{: title="pages/citations.js"}
 
 Here,
 we are turning each link into an object whose `"node"` key has the link's DOM node as its value,
@@ -613,7 +612,7 @@ the next stage of the pipeline is almost a relief:
     .map(({node, text}) => ({node,
                              text: text.map(cite => `<a href="../bib/#${cite}">${cite}</a>`)}))
 ```
-{: title="src/pages/citations.js"}
+{: title="pages/citations.js"}
 
 All right,
 that's not actually much of a relief,
@@ -623,7 +622,7 @@ if we have an object whose keys are called `a` and `b`,
 then the call `f({a, b})` means,
 "Match the value of key `a` to a parameter called `a`
 and the value of key `b` to a parameter called `b`."
-This is called [destructuring](../gloss/#g:destructuring),
+This is called [destructuring](#g:destructuring),
 and can save a lot of wear and tear on our keyboard and eyes.
 
 Second,
@@ -651,7 +650,7 @@ with commas between the entries:
     .map(({node, text}) => ({node,
                              text: `[${text.join(', ')}]`}))
 ```
-{: title="src/pages/citations.js"}
+{: title="pages/citations.js"}
 
 The last stage in our pipeline uses `forEach` instead of `map`
 because we want to do something for each element of the array,
@@ -665,7 +664,7 @@ but don't need a value returned
       node.parentNode.replaceChild(span, node)
     })
 ```
-{: title="src/pages/citations.js"}
+{: title="pages/citations.js"}
 
 This is the point at which carrying the node itself forward through the pipeline pays off.
 We create a `span` element,
@@ -706,7 +705,7 @@ but hints at the possibilities to come:
   </body>
 </html>
 ```
-{: title="src/pages/clock.html"}
+{: title="pages/clock.html"}
 
 Defining a function: check.
 Calling that function when the DOM is ready: check.

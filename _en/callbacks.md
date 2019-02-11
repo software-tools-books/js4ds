@@ -1,5 +1,4 @@
 ---
-permalink: "/en/callbacks/"
 title: "Callbacks"
 questions:
 - "What happens when a function is defined?"
@@ -22,7 +21,7 @@ keypoints:
 - "A closure is a set of variables captured during the definition of a function."
 ---
 
-JavaScript relies heavily on [callback functions](../gloss/#g:callback-function):
+JavaScript relies heavily on [callback functions](#g:callback-function):
 Instead of a function giving us a result immediately,
 we give it another function that tells it what to do next.
 Many other languages use them as well,
@@ -32,10 +31,10 @@ we must first understand what actually happens when functions are defined and ca
 
 ## The Call Stack {#s:callbacks-callstack}
 
-When JavaScript [parses](../gloss/#g:parse) the expression `let name = "text"`,
+When JavaScript [parses](#g:parse) the expression `let name = "text"`,
 it allocates a block of memory big enough for four characters
 and stores a reference to that block of characters in the variable `name`.
-We can show this by drawing a [memory diagram](../gloss/#g:memory-diagram):
+We can show this by drawing a [memory diagram](#g:memory-diagram):
 
 <figure id="f:callbacks-name-value"> <img src ="../../files/callbacks-name-value.svg" /> <figcaption>Name and Value</figcaption> </figure>
 
@@ -46,7 +45,7 @@ oneMore = (x) => {
   return x + 1
 }
 ```
-{: title="src/callbacks/one-more.js"}
+{: title="callbacks/one-more.js"}
 
 JavaScript allocates a block of memory big enough to store several instructions,
 translates the text of the function into instructions,
@@ -63,7 +62,7 @@ just as we would assign a number:
 const anotherName = oneMore
 console.log(anotherName(5))
 ```
-{: title="src/callbacks/one-more.js"}
+{: title="callbacks/one-more.js"}
 ```text
 6
 ```
@@ -77,11 +76,11 @@ it creates a second name that refers to the same block of instructions.
 As explained in [the previous lesson](../basics/),
 when JavaScript calls a function it assigns the arguments in the call to the function's parameters.
 In order for this to be safe,
-we need to ensure that there are no [name collisions](../gloss/#g:name-collision),
+we need to ensure that there are no [name collisions](#g:name-collision),
 i.e.,
 that if there is a variable called `something` and one of the function's parameters is also called `something`,
 the function will use the right one.
-The way every modern language implements this is to use a [call stack](../gloss/#g:call-stack).
+The way every modern language implements this is to use a [call stack](#g:call-stack).
 Instead of putting all our variables in one big table,
 we have one table for global variables
 and one extra table for each function call.
@@ -113,7 +112,7 @@ const hello = () => {
 
 doTwice(hello)
 ```
-{: title="src/callbacks/do-twice.js"}
+{: title="callbacks/do-twice.js"}
 ```text
 hello
 hello
@@ -136,7 +135,7 @@ const pipeline = (initial, first, second) => {
   return second(temp)
 }
 ```
-{: title="src/callbacks/two-functions.js"}
+{: title="callbacks/two-functions.js"}
 
 Let's use this to combine
 a function that trims blanks off the starts and ends of strings
@@ -151,7 +150,7 @@ const original = '  this example uses text  '
 const trimThenDot = pipeline(original, trim, dot)
 console.log(`trim then dot: |${trimThenDot}|`)
 ```
-{: title="src/callbacks/two-functions.js"}
+{: title="callbacks/two-functions.js"}
 ```text
 trim then dot: |this.example.uses.text|
 ```
@@ -168,7 +167,7 @@ Reversing the order of the functions changes the result:
 const dotThenTrim = pipeline(original, dot, trim)
 console.log(`dot then trim: |${dotThenTrim}|`)
 ```
-{: title="src/callbacks/two-functions.js"}
+{: title="callbacks/two-functions.js"}
 ```text
 dot then trim: |..this.example.uses.text..|
 ```
@@ -184,14 +183,14 @@ const pipeline = (initial, operations) => {
   return current
 }
 ```
-{: title="src/callbacks/general-pipeline.js"}
+{: title="callbacks/general-pipeline.js"}
 
 Let's add a function `double` to our suite of text manglers:
 
 ```js
 const double = (text) => { return text + text }
 ```
-{: title="src/callbacks/general-pipeline.js"}
+{: title="callbacks/general-pipeline.js"}
 
 and then try it out:
 
@@ -200,7 +199,7 @@ const original = ' some text '
 const final = pipeline(original, [double, trim, dot])
 console.log(`|${original}| -> |${final}|`)
 ```
-{: title="src/callbacks/general-pipeline.js"}
+{: title="callbacks/general-pipeline.js"}
 ```text
 | some text | -> |some.text..some.text|
 ```
@@ -217,7 +216,7 @@ oneMore = (x) => {
 
 console.log(oneMore(3 * 2))
 ```
-{: title="src/callbacks/on-the-fly.js"}
+{: title="callbacks/on-the-fly.js"}
 ```text
 7
 ```
@@ -244,7 +243,7 @@ const data = [10, 20, 30]
 const result = transform(data, oneMore)
 console.log(result)
 ```
-{: title="src/callbacks/transform.js"}
+{: title="callbacks/transform.js"}
 ```text
 [ 11, 21, 31 ]
 ```
@@ -256,20 +255,20 @@ so let's define it on the fly:
 result = transform(data, (x) => {return x + 1})
 console.log(result)
 ```
-{: title="src/callbacks/transform.js"}
+{: title="callbacks/transform.js"}
 ```text
 [ 11, 21, 31 ]
 ```
 
-A function that is created this way is sometimes called an [anonymous function](../gloss/#g:anonymous-function),
+A function that is created this way is sometimes called an [anonymous function](#g:anonymous-function),
 since its creator doesn't give it a name.
 When JavaScript programmers use the term "callback function",
 they usually mean a function defined and used like this.
 
 ## Functional Programming {#s:callbacks-functional}
 
-[Functional programming](../gloss/#g:functional-programming) is a style of programming
-that relies heavily on [higher-order functions](../gloss/#g:higher-order-function) like `pipeline`
+[Functional programming](#g:functional-programming) is a style of programming
+that relies heavily on [higher-order functions](#g:higher-order-function) like `pipeline`
 that take other functions as parameters.
 In addition,
 functional programming expects that functions won't modify data in place,
@@ -284,7 +283,7 @@ const impure = (values) => {
   }
 }
 ```
-{: title="src/callbacks/impure.js"}
+{: title="callbacks/impure.js"}
 
 <!-- == \noindent -->
 and would politely, even patiently, suggest that it be rewritten like this:
@@ -298,7 +297,7 @@ const pure = (values) -> {
   return result
 }
 ```
-{: title="src/callbacks/pure.js"}
+{: title="callbacks/pure.js"}
 
 JavaScript arrays provide several methods to support functional programming.
 For example,
@@ -312,7 +311,7 @@ const data = ['this', 'is', 'a', 'test']
 console.log('some longer than 3:', data.some((x) => { return x.length > 3 }))
 console.log('all longer than 3:', data.every((x) => { return x.length > 3 }))
 ```
-{: title="src/callbacks/some-every.js"}
+{: title="callbacks/some-every.js"}
 ```text
 some longer than 3: true
 all longer than 3: false
@@ -324,7 +323,7 @@ all longer than 3: false
 const data = ['this', 'is', 'a', 'test']
 console.log('those longer than 3:', data.filter((x) => { return x.length > 3 }))
 ```
-{: title="src/callbacks/filter.js"}
+{: title="callbacks/filter.js"}
 ```text
 those longer than 3: [ 'this', 'test' ]
 ```
@@ -338,7 +337,7 @@ const result = data
                .every((x) => { return x[0] === 't' })
 console.log(`all longer than 3 start with t: ${result}`)
 ```
-{: title="src/callbacks/filter-every.js"}
+{: title="callbacks/filter-every.js"}
 ```text
 all longer than 3 start with t: true
 ```
@@ -349,7 +348,7 @@ all longer than 3 start with t: true
 const data = ['this', 'is', 'a', 'test']
 console.log('shortened', data.map((x) => { return x.slice(0, 2) }))
 ```
-{: title="src/callbacks/map.js"}
+{: title="callbacks/map.js"}
 ```text
 shortened [ 'th', 'is', 'a', 'te' ]
 ```
@@ -377,7 +376,7 @@ acronym = data.reduce((accum, next) => {
 }, '')
 console.log('all in one step:', acronym)
 ```
-{: title="src/callbacks/reduce.js"}
+{: title="callbacks/reduce.js"}
 ```text
 acronym of this,is,a,test is tiat
 all in one step: tiat
@@ -389,7 +388,7 @@ but this is the style the JavaScript community has settled on.
 ## Closures {#s:callbacks-closures}
 
 The last tool we need to introduce is an extremely useful side-effect of the way memory is handled
-called a [closure](../gloss/#g:closure).
+called a [closure](#g:closure).
 The easiest way to explain it is by example.
 We have already defined a function called `pipeline` that chains any number of other functions together:
 
@@ -402,7 +401,7 @@ const pipeline = (initial, operations) => {
   return current
 }
 ```
-{: title="src/callbacks/general-pipeline.js"}
+{: title="callbacks/general-pipeline.js"}
 
 However,
 `pipeline` only works if each function in the array `operations` has a single parameter.
@@ -426,7 +425,7 @@ const add_1 = adder(1)
 const add_2 = adder(2)
 console.log(`add_1(100) is ${add_1(100)} and add_2(100) is ${add_2(100)}`)
 ```
-{: title="src/callbacks/adder.js"}
+{: title="callbacks/adder.js"}
 ```text
 add_1(100) is 101 and add_2(100) is 102
 ```
@@ -459,7 +458,7 @@ When we now call `add_1` or `add_2`,
 they add the value passed in and the value they've kept a reference to.
 
 This trick of capturing a reference to a value inside something else
-is called a [closure](../gloss/#g:closure).
+is called a [closure](#g:closure).
 It works because JavaScript holds on to values as long as anything,
 anywhere,
 still refers to them.
@@ -471,7 +470,7 @@ and give them extra data to work with:
 const result = pipeline(100, [adder(1), adder(2)])
 console.log(`adding 1 and 2 to 100 -> ${result}`)
 ```
-{: title="src/callbacks/closure.js"}
+{: title="callbacks/closure.js"}
 ```text
 adding 1 and 2 to 100 -> 103
 ```
@@ -485,7 +484,7 @@ Programmers often go one step further and define little functions like this inli
 const result = pipeline(100, [(x) => x + 1, (x) => x + 2])
 console.log(`adding 1 and 2 to 100 -> ${result}`)
 ```
-{: title="src/callbacks/closure-inline.js"}
+{: title="callbacks/closure-inline.js"}
 ```text
 adding 1 and 2 to 100 -> 103
 ```

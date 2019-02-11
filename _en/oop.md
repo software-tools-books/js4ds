@@ -1,5 +1,4 @@
 ---
-permalink: "/en/oop/"
 title: "Objects and Classes"
 questions:
 - "How can I use classes to keep code and data together?"
@@ -43,7 +42,7 @@ const square = {
   perimeter: (it) => { return 4 * it.size }
 }
 ```
-{: title="src/oop/clumsy-objects.js"}
+{: title="oop/clumsy-objects.js"}
 
 <!-- == \noindent -->
 and then pass the object itself into each of its own functions:
@@ -52,7 +51,7 @@ and then pass the object itself into each of its own functions:
 const a = square.area(square)
 console.log(`area of square is ${a}`)
 ```
-{: title="src/oop/clumsy-objects.js"}
+{: title="oop/clumsy-objects.js"}
 ```text
 area of square is 25
 ```
@@ -70,7 +69,7 @@ const circle = {
   perimeter: (it) => { return 2 * Math.PI * it.radius }
 }
 ```
-{: title="src/oop/clumsy-objects.js"}
+{: title="oop/clumsy-objects.js"}
 
 <!-- == \noindent -->
 and then put all of these different objects in an array
@@ -88,7 +87,7 @@ const show_all = (shapes) => {
 
 show_all([square, circle])
 ```
-{: title="src/oop/clumsy-objects.js"}
+{: title="oop/clumsy-objects.js"}
 ```text
 square: area 25 perimeter 20
 circle: area 28.274333882308138 perimeter 18.84955592153876
@@ -96,7 +95,7 @@ circle: area 28.274333882308138 perimeter 18.84955592153876
 
 As long as we only use the value `name` and the functions `area` and `perimeter`
 we don't need to know what kind of shape we have.
-This is called [polymorphism](../gloss/#g:polymorphism),
+This is called [polymorphism](#g:polymorphism),
 and it allows us to add new shapes without changing the code in our loop.
 In other words,
 it allows old code (in this case, the function `show_all`)
@@ -113,7 +112,7 @@ const rectangle = {
 
 show_all([square, circle, rectangle])
 ```
-{: title="src/oop/clumsy-objects.js"}
+{: title="oop/clumsy-objects.js"}
 ```text
 square: area 25 perimeter 20
 circle: area 28.274333882308138 perimeter 18.84955592153876
@@ -123,9 +122,9 @@ rectangle: area 6 perimeter 10
 ## Classes {#s:oop-classes}
 
 Building every object by hand and calling `thing.function(thing)` is clumsy.
-JavaScript solved these problems using [prototypes](../gloss/#g:prototype),
+JavaScript solved these problems using [prototypes](#g:prototype),
 which also turned out to be [clumsy](../legacy/#s:legacy-prototypes).
-Most object-oriented languages use [classes](../gloss/#g:class) instead;
+Most object-oriented languages use [classes](#g:class) instead;
 these were added to JavaScript in ES6,
 and we will use them instead of prototypes throughout.
 Here's how we create a class that defines the properties of a square,
@@ -141,7 +140,7 @@ class Square {
   perimeter () { return 4 * this.size }
 }
 ```
-{: title="src/oop/es6-objects.js"}
+{: title="oop/es6-objects.js"}
 
 <!-- == \noindent -->
 (Class names are written in CamelCase by convention.)
@@ -151,20 +150,20 @@ We can then create a specific square by using the class's name as if it were a f
 const sq = new Square(3)
 console.log(`sq name ${sq.name} and area ${sq.area()}`)
 ```
-{: title="src/oop/es6-objects.js"}
+{: title="oop/es6-objects.js"}
 ```text
 sq name square and area 9
 ```
 
 `new ClassName(...)` creates a new blank object
 and inserts a (hidden) reference to the class
-so that the object can find its [methods](../gloss/#g:method).
+so that the object can find its [methods](#g:method).
 `new` then calls the specially-named method `constructor` to initialize the object's state.
 Inside the constructor and other methods,
 the object being operated on is referred to by the pronoun `this`.
 
 Inside the class,
-methods are defined with classic syntax rather than the [fat arrows](../gloss/#g:fat-arrow) we have been using.
+methods are defined with classic syntax rather than the [fat arrows](#g:fat-arrow) we have been using.
 The inconsistency is unfortunate
 but this way of defining methods is what the current version of Node prefers;
 we will explore this topic further in the [discussion of visualization](../vis/).
@@ -208,7 +207,7 @@ for (let thing of everything) {
   console.log(`${thing.name}: area ${a} perimeter ${p}`)
 }
 ```
-{: title="src/oop/es6-objects.js"}
+{: title="oop/es6-objects.js"}
 ```text
 square: area 12.25 perimeter 14
 circle: area 19.634954084936208 perimeter 15.707963267948966
@@ -217,7 +216,7 @@ rectangle: area 0.75 perimeter 4
 
 ## Inheritance {#s:oop-inheritance}
 
-We can build new classes from old ones by adding or [overriding](../gloss/#g:override-method) methods.
+We can build new classes from old ones by adding or [overriding](#g:override-method) methods.
 To show this,
 we'll start by defining a person:
 
@@ -240,12 +239,12 @@ class Person {
   }
 }
 ```
-{: title="src/oop/override.js"}
+{: title="oop/override.js"}
 
-We can now [extend](../gloss/#g:extend) `Person` to create a new class `Scientist`,
-in which case we say that `Scientist` [inherits](../gloss/#g:inherit) from `Person`,
-or that `Person` is a [parent class](../gloss/#g:parent-class) of `Scientist`
-and `Scientist` is a [child class](../gloss/#g:child-class) of `Person`.
+We can now [extend](#g:extend) `Person` to create a new class `Scientist`,
+in which case we say that `Scientist` [inherits](#g:inherit) from `Person`,
+or that `Person` is a [parent class](#g:parent-class) of `Scientist`
+and `Scientist` is a [child class](#g:child-class) of `Person`.
 
 ```js
 class Scientist extends Person {
@@ -259,7 +258,7 @@ class Scientist extends Person {
   }
 }
 ```
-{: title="src/oop/override.js"}
+{: title="oop/override.js"}
 
 This tells us that a `Scientist` is a `Person` who:
 
@@ -291,7 +290,7 @@ console.log(`parent: ${parent.greeting(true)} - ${parent.farewell()}`)
 const child = new Scientist('Bhadra', 'microbiology')
 console.log(`child: ${child.greeting(false)} - ${child.farewell()}`)
 ```
-{: title="src/oop/override.js"}
+{: title="oop/override.js"}
 ```text
 parent: Hello, my name is Hakim - Goodbye
 child: Hi, I'm Bhadra. Let me tell you about microbiology... - Goodbye
@@ -313,7 +312,7 @@ when `child.farewell()` is called:
 
 ## Protocols {#s:oop-protocols}
 
-A common way to use object-oriented programming is to define a [protocol](../gloss/#g:protocol).
+A common way to use object-oriented programming is to define a [protocol](#g:protocol).
 The parent defines a method that invokes other methods at specific times or in a specific order.
 Users then derive classes from the parent that implement those methods
 to do those specific things.
@@ -357,7 +356,7 @@ class Bird {
   }
 }
 ```
-{: title="src/oop/protocol.js"}
+{: title="oop/protocol.js"}
 
 A specific kind of bird,
 such as a penguin,
@@ -390,7 +389,7 @@ class Penguin extends Bird {
   }
 }
 ```
-{: title="src/oop/protocol.js"}
+{: title="oop/protocol.js"}
 
 `Penguin` has some extra state (the variable `this.hasEgg`),
 and calls its parent's constructor before setting this up.
@@ -406,7 +405,7 @@ for (let season of seasons) {
   console.log(`in ${season}: ${bird.daily(season)}`)
 }
 ```
-{: title="src/oop/protocol.js"}
+{: title="oop/protocol.js"}
 ```text
 in summer: penguin looks for food,,
 in fall: penguin looks for food,penguin looks for a mate,
@@ -453,7 +452,7 @@ c -> b
 d -> c
 ```
 
-A class like `Delay` is sometimes called [stateful](../gloss/#g:stateful),
+A class like `Delay` is sometimes called [stateful](#g:stateful),
 since it remembers its state from call to call.
 
 ### Filtering
@@ -476,7 +475,7 @@ d -> d
 e -> null
 ```
 
-A class like `Filter` is sometimes called [stateless](../gloss/#g:stateless),
+A class like `Filter` is sometimes called [stateless](#g:stateless),
 since it does not remember its state from call to call.
 
 ### Pipelines
@@ -526,7 +525,7 @@ class Active {
   }
 }
 ```
-{: title="src/oop/observe.js"}
+{: title="oop/observe.js"}
 
 <!-- == \noindent -->
 and this program that uses it:
@@ -543,7 +542,7 @@ right.subscribe(final)
 
 start.update(123)
 ```
-{: title="src/oop/observe.js"}
+{: title="oop/observe.js"}
 
 1. Trace what happens when the last line of the program is called.
 2. Modify `Active` so that it calls `transform` *if* that function was provided,
@@ -551,6 +550,6 @@ start.update(123)
 3. Create a new class `Delay` whose `transform` method always returns the previous value.
    (Its constructor will need to take an initial value as a parameter.)
 
-This pattern is called [observer/observable](../gloss/#g:observer-observable).
+This pattern is called [observer/observable](#g:observer-observable).
 
 {% include links.md %}

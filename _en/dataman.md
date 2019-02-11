@@ -1,5 +1,4 @@
 ---
-permalink: "/en/dataman/"
 title: "Managing Data"
 questions:
 - "What formats are commonly used for small scientific datasets?"
@@ -25,10 +24,10 @@ After tossing a coin,
 we decide to start with the data store;
 the [next lesson](../server/) will look at how to build a server.
 
-## Data Formats {#s:data-formats}
+## Data Formats {#s:dataman-formats}
 
 The most widely used text format for tabular data is undoubtedly
-[comma-separated values](../gloss/#g:csv) or CSV.
+[comma-separated values](#g:csv) or CSV.
 Each row of the table is a line in the file;
 the values within each row---i.e., the columns---are separated by commas.
 Numbers appear as themselves;
@@ -43,7 +42,7 @@ in which case they definitely are:
 "fuchsia",255,0,255
 ```
 
-The first line of a CSV file is often a [header row](../gloss/#g:header-row)
+The first line of a CSV file is often a [header row](#g:header-row)
 that defines the names of the columns.
 For example,
 the small table shown above would better be represented as:
@@ -66,7 +65,7 @@ or the weights in pounds or kilograms.
 
 CSV is good for tabular data,
 but a lot of data doesn't neatly fit into rows and columns.
-A format for hierarchical data that is popular with many programmers is [JSON](../gloss/#g:json),
+A format for hierarchical data that is popular with many programmers is [JSON](#g:json),
 which stands for JavaScript Object Notation.
 It supports a subset of the syntax for values, arrays, and objects in JavaScript,
 so that (for example)
@@ -105,7 +104,7 @@ Repeating field names like this is wasteful compared to listing them once at the
 but it does mean that the fields within rows can be accessed directly
 using expressions like `colors[1].red`.
 
-## Slicing Data {#s:data-slicing}
+## Slicing Data {#s:dataman-slicing}
 
 The data we will use as an example is available in a variety of formats from <{{site.datasource}}>.
 We will focus on `surveys.csv`,
@@ -135,7 +134,7 @@ const sample = lines.slice(1)
     .map(pair => pair[1])
 fs.writeFileSync(outputFile, header + '\n' + sample.join('\n'))
 ```
-{: title="src/dataman/select-random.js"}
+{: title="dataman/select-random.js"}
 
 We run this on the command line:
 
@@ -163,7 +162,7 @@ Running it again will probably generate a different data slice,
 since we're not specifying a random number generation seed.
 We are bad people, and will fix this in the exercises.
 
-## Data Manager {#s:data-manager}
+## Data Manager {#s:dataman-manager}
 
 Rather arbitrarily,
 we decide that our data manager will be able to answer two questions:
@@ -204,7 +203,7 @@ class DataManager {
 
 module.exports = DataManager
 ```
-{: title="src/dataman/data-manager.js"}
+{: title="dataman/data-manager.js"}
 
 What our hubris made us miss in our first couple of attempts was that
 the `options` object controls how the parser behaves.
@@ -272,7 +271,7 @@ Let's write a method to get some overall statistics:
     return func(...this.data.map(rec => rec[field]))
   }
 ```
-{: title="src/dataman/data-manager.js"}
+{: title="dataman/data-manager.js"}
 
 Functions like `Math.min` and `Math.max` take any number of scalar values as arguments,
 but do not directly process arrays.
@@ -300,7 +299,7 @@ const _average = (...values) => {
   return sum / values.length
 }
 ```
-{: title="src/dataman/data-manager.js"}
+{: title="dataman/data-manager.js"}
 
 It would be more natural for `_average` to take an array rather than a variable number of arguments,
 but we want to be able to use it in the same way that we use `Math.min` and `Math.max`,
@@ -342,9 +341,9 @@ The method to get the values for a range of years is now:
     })
   }
 ```
-{: title="src/dataman/data-manager.js"}
+{: title="dataman/data-manager.js"}
 
-## Exercises {#s:data-exercises}
+## Exercises {#s:dataman-exercises}
 
 ### Tracing Data
 
@@ -356,9 +355,9 @@ explaining what is passed into each of the chained methods calls.
 Programs that rely on random numbers are impossible to test
 because there's (deliberately) no way to predict their output.
 Luckily, computer programs don't actually use random numbers:
-they use [pseudo-random numbers](../gloss/#g:pseudo-random-number)
+they use [pseudo-random numbers](#g:pseudo-random-number)
 that are generated in a repeatable but unpredictable way.
-Given the same initial [seed](../gloss/#g:seed),
+Given the same initial [seed](#g:seed),
 a pseudo-random number generator will always produce the same sequence of values.
 
 There is no way to set a seed for `Math.random` out of the box,

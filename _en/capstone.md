@@ -1,6 +1,5 @@
 ---
-permalink: "/en/capstone/"
-title: Capstone Project
+title: "Capstone Project"
 questions:
 - "How can I set up test data to use during development?"
 - "What tests are most cost-effective when testing this kind of application?"
@@ -43,7 +42,7 @@ class DataManager {
   getSurveyRange (minYear, maxYear) {...return slice of data...}
 }
 ```
-{: title="src/capstone/back/data-manager.js"}
+{: title="capstone/back/data-manager.js"}
 
 ## Server {#s:capstone-server}
 
@@ -65,7 +64,7 @@ app.listen(PORT, () => {
   console.log(`listening on port ${PORT}...`)
 })
 ```
-{: title="src/capstone/back/driver-0.js"}
+{: title="capstone/back/driver-0.js"}
 
 As you can probably guess from the fact that we've called it `driver-0`,
 we're going to be making some changes down the road...
@@ -89,7 +88,7 @@ module.exports = (dbm) => {
   return app
 }
 ```
-{: title="src/capstone/back/server-0.js"}
+{: title="capstone/back/server-0.js"}
 
 We'll look at handling requests for data in the next section.
 The most important thing for now is the way we manage the connection to the data manager.
@@ -101,7 +100,7 @@ we'll be able to send database queries to `dataManager`.
 This variable is global within this file,
 but since it's not exported,
 it's invisible outside.
-Variables like this are called [module variables](../gloss/#g:module-variable),
+Variables like this are called [module variables](#g:module-variable),
 and give us a way to share information among the functions in a module
 without giving anything outside the module a way to cause (direct) harm to that information.
 
@@ -134,7 +133,7 @@ app.get('/survey/:start/:end', (req, res, next) => {
   res.status(200).send(data)
 })
 ```
-{: title="src/capstone/back/server-0.js"}
+{: title="capstone/back/server-0.js"}
 
 We also write an error handling function:
 
@@ -146,7 +145,7 @@ app.use((req, res, next) => {
      .send(page)
 })
 ```
-{: title="src/capstone/back/server-0.js"}
+{: title="capstone/back/server-0.js"}
 
 Now let's write our first test:
 
@@ -168,7 +167,7 @@ Now let's write our first test:
       })
   })
 ```
-{: title="src/capstone/back/test-server.js"}
+{: title="capstone/back/test-server.js"}
 
 Note that the range of years is 1979-2000,
 which is *not* the range in the full dataset.
@@ -199,7 +198,7 @@ There is a single HTML page called `index.html`:
   </body>
 </html>
 ```
-{: title="src/capstone/front/index.html"}
+{: title="capstone/front/index.html"}
 
 The main application in `app.js` imports components to display summary statistics,
 choose a range of years,
@@ -248,7 +247,7 @@ ReactDOM.render(
   document.getElementById("app")
 )
 ```
-{: title="src/capstone/front/app.js"}
+{: title="capstone/front/app.js"}
 
 The constructor defines the URL for the data source and sets up the initial state,
 which has summary data,
@@ -267,7 +266,7 @@ and data for those years:
     }
   }
 ```
-{: title="src/capstone/front/app.js"}
+{: title="capstone/front/app.js"}
 
 The method `componentDidMount` is new:
 it fetches data for the very first time
@@ -285,7 +284,7 @@ so that the user sees something useful on the page when they first load it.
     })
   }
 ```
-{: title="src/capstone/front/app.js"}
+{: title="capstone/front/app.js"}
 
 We don't call this method ourselves;
 instead,
@@ -314,7 +313,7 @@ but we need those values in our state variables:
     })
   }
 ```
-{: title="src/capstone/front/app.js"}
+{: title="capstone/front/app.js"}
 
 When the button is clicked,
 we send a request for JSON data to the appropriate URL
@@ -343,7 +342,7 @@ and the second `then` callback when the data has been converted to JSON.
     })
   }
 ```
-{: title="src/capstone/front/app.js"}
+{: title="capstone/front/app.js"}
 
 Now let's update the display with `SurveyStats`, `ChooseRange`, `DataChart`, and `DataDisplay`,
 which are all stateless components
@@ -368,7 +367,7 @@ which are all stateless components
     )
   }
 ```
-{: title="src/capstone/front/app.js"}
+{: title="capstone/front/app.js"}
 
 ## The Tables {#s:capstone-tables}
 
@@ -400,7 +399,7 @@ const SurveyStats = ({data}) => {
 
 export default SurveyStats
 ```
-{: title="src/capstone/front/SurveyStats.js"}
+{: title="capstone/front/SurveyStats.js"}
 
 Next, we display aggregated statistics for a given range of years
 (the `GET /survey/:start/:end` query)
@@ -439,7 +438,7 @@ const DataDisplay = ({data}) => {
 
 export default DataDisplay
 ```
-{: title="src/capstone/front/DataDisplay.js"}
+{: title="capstone/front/DataDisplay.js"}
 
 Like `SurveyStats`, `DataDisplay` returns a table listing the results returned from the server.
 Unlike `SurveyStats`,
@@ -501,7 +500,7 @@ const DataChart = ({data}) => {
 
 export default DataChart
 ```
-{: title="src/capstone/front/DataChart.js"}
+{: title="capstone/front/DataChart.js"}
 
 The other components are similar to those we have seen before.
 
@@ -559,7 +558,7 @@ The Same Origin Policy disallows reading the remote resource at http://localhost
 The "Learn More" link given with the error message takes us to [this page][cors-docs],
 which uses many science words we don't know.
 A web search turns up [this article on Wikipedia][cors-wikipedia],
-which tells us that [Cross-origin resource sharing](../gloss/#g:cors) (CORS)
+which tells us that [Cross-origin resource sharing](#g:cors) (CORS)
 is a security mechanism.
 If a page loads some JavaScript,
 and that JavaScript is allowed to send requests to servers other than the one that the page came from,
@@ -585,7 +584,7 @@ app.use((req, res, next) => {...as before...})
 
 module.exports = (dbm) => {...as before...}
 ```
-{: title="src/capstone/back/server-1.js"}
+{: title="capstone/back/server-1.js"}
 
 Since this code is saved in `server-1.js`,
 we need to create a copy of the driver called `driver-1.js` that invokes it.

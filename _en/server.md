@@ -1,5 +1,4 @@
 ---
-permalink: "/en/server/"
 title: "Creating a Server"
 questions:
 - "How do browsers and servers communicate?"
@@ -27,9 +26,9 @@ we need to understand how computers talk to each other.
 
 ## HTTP {#s:server-http}
 
-Almost everything on the web communicates via [HTTP](../gloss/#g:http),
+Almost everything on the web communicates via [HTTP](#g:http),
 which stands for HyperText Transfer Protocol.
-The core of HTTP is a [request](../gloss/#g:http-request)/[response](../gloss/#g:http-response) cycle
+The core of HTTP is a [request](#g:http-request)/[response](#g:http-response) cycle
 that specifies the kinds of requests applications can make of servers,
 how they exchange data,
 and so on.
@@ -52,16 +51,16 @@ every CSS or JavaScript file,
 and so on.
 In practice,
 a lot of behind-the-scenes engineering is done to keep connections alive as long as they're needed,
-and to [cache](../gloss/#g:cache) items that are likely to be re-used.
+and to [cache](#g:cache) items that are likely to be re-used.
 
 An HTTP request is just a block of text with two important parts:
 
-- The [method](../gloss/#g:http-method) is almost always either `GET` (to get data) or `POST` (to submit data).
-- The [URL](../gloss/#g:url) is typically a path to a file,
+- The [method](#g:http-method) is almost always either `GET` (to get data) or `POST` (to submit data).
+- The [URL](#g:url) is typically a path to a file,
   but as we'll see below,
   it's completely up to the server to interpret it.
 
-The request can also contain [headers](../gloss/#g:http-header),
+The request can also contain [headers](#g:http-header),
 which are key-value pairs with more information about what the client wants.
 Some examples include:
 
@@ -71,7 +70,7 @@ Some examples include:
 
 (Unlike a dictionary, a key may appear any number of times,
 which allows a request to do things like specify that it's willing to accept several types of content.
-The [body](../gloss/#g:http-body) of the request is any extra data associated with it,
+The [body](#g:http-body) of the request is any extra data associated with it,
 such as files that are being uploaded.
 If a body is present,
 the request must contain the `Content-Length` header
@@ -111,18 +110,18 @@ http://example.org:1234/some/path?value=deferred&limit=200
 has five parts:
 
 - The protocol `http`, which specifies what rules are going to be used to exchange data.
-- The [hostname](../gloss/#g:hostname) `example.org`, which tells the client where to find the server.
+- The [hostname](#g:hostname) `example.org`, which tells the client where to find the server.
   If we are running a server on our own computer for testing,
   we can use the name `localhost` to connect to it.
-  (Computers rely on a service called [DNS](../gloss/#g:dns)
+  (Computers rely on a service called [DNS](#g:dns)
   to find the machines associated with human-readable hostnames,
   but its operation is out of scope for this tutorial.)
-- The [port](../gloss/#g:port) `1234`, which tells the client where to call the service it wants.
+- The [port](#g:port) `1234`, which tells the client where to call the service it wants.
   (If a host is like an office building, a port is like a phone number in that building.
   The fact that we think of phone numbers as having physical locations
   says something about our age...)
 - The path `/some/path` tells the server what the client wants.
-- The [query parameters](../gloss/#g:query-parameter) `value=deferred` and `limit=200`.
+- The [query parameters](#g:query-parameter) `value=deferred` and `limit=200`.
   These come after a question mark and are separated by ampersands,
   and are used to provide extra information.
 
@@ -164,7 +163,7 @@ app.get('/', (req, res, next) => {
 
 app.listen(PORT, () => { console.log('listening...') })
 ```
-{: title="src/server/static-page.js"}
+{: title="server/static-page.js"}
 
 The first line of code loads the Express library.
 The next defines the port we will listen on,
@@ -233,7 +232,7 @@ app.use((req, res, next) => {
 
 app.listen(PORT, () => { console.log('listening...') })
 ```
-{: title="src/server/multiple-paths.js"}
+{: title="server/multiple-paths.js"}
 
 The first few lines are the same as before.
 We then specify handlers for the paths `/` and `/asteroids`,
@@ -287,7 +286,7 @@ app.use((req, res, next) => {
 
 app.listen(PORT, () => { console.log('listening...') })
 ```
-{: title="src/server/serve-pages.js"}
+{: title="server/serve-pages.js"}
 
 The steps in handling a request are:
 
@@ -366,7 +365,7 @@ app.use((req, res, next) => {
   }
 })
 ```
-{: title="src/server/data-server.js"}
+{: title="server/data-server.js"}
 
 What's different here is that when the requested path ends with `.json`
 we explicitly set the `Content-Type` header to `application/json`

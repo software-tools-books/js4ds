@@ -1,5 +1,4 @@
 ---
-permalink: "/en/dynamic/"
 title: "Dynamic Pages"
 questions:
 - "What JavaScript libraries should I use to create a web pages?"
@@ -24,11 +23,11 @@ In the beginning,
 people created HTML pages by typing them in (just as we have been doing).
 They quickly realized that a lot of pages share a lot of content:
 navigation menus, contact info, and so on.
-The nearly universal response was to create a [template](../gloss/#g:template)
+The nearly universal response was to create a [template](#g:template)
 and embed commands to include other snippets of HTML (like headers)
 and loop over data structures to create lists and tables.
-This is called [server-side page generation](../gloss/#g:server-page-gen):
-the HTML is generated on the [server](../gloss/#g:server),
+This is called [server-side page generation](#g:server-page-gen):
+the HTML is generated on the [server](#g:server),
 and it was popular because that's where the data was,
 and that was the only place complex code could be run.
 (This tutorial uses a templating tool called [Jekyll][jekyll].
@@ -43,11 +42,11 @@ or each page can be recompiled whenever it's needed
 <figure id="f:dynamic-alternatives"> <img src="../../files/dynamic-alternatives.svg" /> <figcaption>Page Generation Alternatives</figcaption> </figure>
 
 As browsers and JavaScript became more powerful,
-the balance shifted toward [client-side page generation](../gloss/#g:client-page-gen).
+the balance shifted toward [client-side page generation](#g:client-page-gen).
 In this model,
 the browser fetches data from one or more servers
 and feeds that data to a JavaScript library that generates HTML in the browser for display.
-This allows the [client](../gloss/#g:client) to decide how best to render data,
+This allows the [client](#g:client) to decide how best to render data,
 which is increasingly important as phones and tablets take over
 from desktop and laptop computers.
 It also moves the computational burden off the server
@@ -95,7 +94,7 @@ Let's begin by saying hello:
   </body>
 </html>
 ```
-{: title="src/dynamic/hello-react.html"}
+{: title="dynamic/hello-react.html"}
 
 The `head` of the page loads two React libraries from the web;
 we will use locally-installed libraries later.
@@ -152,7 +151,7 @@ the mechanism is surprisingly easy to use:
     </script>
   </body>
 ```
-{: title="src/dynamic/stylish.html"}
+{: title="dynamic/stylish.html"}
 
 ## JSX {#s:dynamic-jsx}
 
@@ -184,7 +183,7 @@ Here's an example:
   </body>
 </html>
 ```
-{: title="src/dynamic/hello-jsx.html"}
+{: title="dynamic/hello-jsx.html"}
 
 Along with the two React libraries,
 this page includes a tool called [Babel][babel]
@@ -212,7 +211,7 @@ so we can (for example) use `map` to turn a list of strings into an HTML list:
     </script>
   </body>
 ```
-{: title="src/dynamic/jsx-list.html"}
+{: title="dynamic/jsx-list.html"}
 
 We have to use `map` rather than a loop because whatever code we run has to return something
 that can be inserted into the DOM,
@@ -259,7 +258,7 @@ just as we would put an `h1` or `p`:
     </script>
   </body>
 ```
-{: title="src/dynamic/create-components.html"}
+{: title="dynamic/create-components.html"}
 
 What we really want to do,
 though,
@@ -287,7 +286,7 @@ are passed to our function in a single `props` object:
     </script>
   </body>
 ```
-{: title="src/dynamic/pass-parameters.html"}
+{: title="dynamic/pass-parameters.html"}
 
 If you look carefully,
 you'll see that the `name` attribute passed to the use of `ListElement`
@@ -302,8 +301,8 @@ And what about `require` statements?
 The browser will try to load the required files when those statements run,
 but who is going to serve them?
 
-The solution is use a [bundler](../gloss/#g:bundler) to combine everything into one big file,
-and to run a [local server](../gloss/#g:local-server) to preview our application during development.
+The solution is use a [bundler](#g:bundler) to combine everything into one big file,
+and to run a [local server](#g:local-server) to preview our application during development.
 However,
 this solution brings with it another problem:
 which bundler to choose?
@@ -396,7 +395,7 @@ let's move our JSX into `app.js` and load that in the `head` of the page:
   </body>
 </html>
 ```
-{: title="src/dynamic/hello-separate/index.html"}
+{: title="dynamic/hello-separate/index.html"}
 
 For now,
 the JavaScript in `app.js` is:
@@ -407,7 +406,7 @@ ReactDOM.render(
   document.getElementById("app")
 )
 ```
-{: title="src/dynamic/hello-separate/app.js"}
+{: title="dynamic/hello-separate/app.js"}
 
 When we load this page we get the `h1` title but *not* the paragraph.
 When we look in the browser console,
@@ -437,7 +436,7 @@ we will load the script in the body of the page:
   </body>
 </html>
 ```
-{: title="src/dynamic/hello-bottom/index.html"}
+{: title="dynamic/hello-bottom/index.html"}
 
 More importantly,
 we will rewrite `app.js` so that it loads the libraries it needs,
@@ -452,7 +451,7 @@ ReactDOM.render(
   document.getElementById('app')
 )
 ```
-{: title="src/dynamic/hello-bottom/app.js"}
+{: title="dynamic/hello-bottom/app.js"}
 
 We don't have to shut down the server and restart it every time we make changes like this,
 because Parcel watches for changes in files and relaunches itself as needed.
@@ -478,7 +477,7 @@ which tells the browser not to do anything with the JavaScript until the page ha
   </body>
 </html>
 ```
-{: title="src/dynamic/hello-parcel/index.html"}
+{: title="dynamic/hello-parcel/index.html"}
 
 ## Exercises {#s:dynamic-exercises}
 

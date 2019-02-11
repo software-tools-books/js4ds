@@ -1,5 +1,4 @@
 ---
-permalink: "/en/interactive/"
 title: "Interactive Sites"
 questions:
 - "How do I tell the browser what to do when someone clicks a button?"
@@ -17,11 +16,11 @@ keypoints:
 - "Modern JavaScript uses promises to manage asynchronous activities."
 ---
 
-Browsers allow us to define [event handlers](../gloss/#g:event-handler)
+Browsers allow us to define [event handlers](#g:event-handler)
 to specify what to do in response to an externally-triggered action,
 such as a page loading or a user pressing a button.
 These event handlers are just callback functions
-that are (usually) given an [event object](../gloss/#g:event-object) containing information about what happened,
+that are (usually) given an [event object](#g:event-object) containing information about what happened,
 and while we can write them in pure JavaScript,
 they're even easier to build in React.
 
@@ -48,7 +47,7 @@ a specifically-named property of the thing whose behavior we are specifying.
     </script>
   </body>
 ```
-{: title="src/interactive/hello-button.html"}
+{: title="interactive/hello-button.html"}
 
 As its name suggests,
 a button's `onClick` handler is called whenever the button is clicked.
@@ -95,7 +94,7 @@ and then use a method as the event handler:
   </body>
 </html>
 ```
-{: title="src/interactive/display-counter.html"}
+{: title="interactive/display-counter.html"}
 
 Working from bottom to top,
 the `ReactDOM.render` call inserts whatever HTML is produced by `<Counter />`
@@ -155,7 +154,7 @@ But now try taking the code out of the web page and putting it in its own file:
   </body>
 </html>
 ```
-{: title="src/interactive/counter/index.html"}
+{: title="interactive/counter/index.html"}
 
 ```js
 import React from 'react'
@@ -181,7 +180,7 @@ ReactDOM.render(
   document.getElementById('app')
 )
 ```
-{: title="src/interactive/counter/app.js"}
+{: title="interactive/counter/app.js"}
 
 Let's try running this:
 
@@ -236,7 +235,7 @@ class Counter extends React.Component {
 
 // ...render as before...
 ```
-{: title="src/interactive/counter-functions/app.js"}
+{: title="interactive/counter-functions/app.js"}
 
 Parcel runs this without complaint,
 but clicking on the button doesn't change the display.
@@ -332,7 +331,7 @@ The whole page is:
   </body>
 </html>
 ```
-{: title="src/interactive/multi-component/index.html"}
+{: title="interactive/multi-component/index.html"}
 
 The `NumberDisplay` class takes a label and a value and puts them in a paragraph
 (remember, the label and value will appear in our function as properties of the `props` parameter):
@@ -342,7 +341,7 @@ const NumberDisplay = (props) => {
   return (<p>{props.label}: {props.value}</p>)
 }
 ```
-{: title="src/interactive/multi-component/NumberDisplay.js"}
+{: title="interactive/multi-component/NumberDisplay.js"}
 
 Similarly,
 `UpAndDown` expects two functions as its `up` and `down` properties,
@@ -358,7 +357,7 @@ const UpAndDown = (props) => {
   )
 }
 ```
-{: title="src/interactive/multi-component/UpAndDown.js"}
+{: title="interactive/multi-component/UpAndDown.js"}
 
 Both of these components will use React and ReactDOM when they are rendered
 so we must import these.
@@ -368,7 +367,7 @@ We do this by adding import statements to the beginning of both components:
 import React from "react"
 import ReactDOM from "react-dom"
 ```
-{: title="src/interactive/multi-component/NumberDisplay.js"}
+{: title="interactive/multi-component/NumberDisplay.js"}
 
 Similarly, our application will need to import the
 `UpAndDown` and `NumberDisplay` components,
@@ -427,7 +426,7 @@ class App extends React.Component {
   }
 }
 ```
-{: title="src/interactive/multi-component/app.js"}
+{: title="interactive/multi-component/app.js"}
 
 <figure id="f:interactive-objects-dom"> <img src="../../files/interactive-objects-dom.svg" /> <figcaption>React Objects and the DOM</figcaption> </figure>
 
@@ -508,7 +507,7 @@ class App extends React.Component {
 const mount = document.getElementById("app")
 ReactDOM.render(<App/>, mount)
 ```
-{: title="src/interactive/asteroids/app.js"}
+{: title="interactive/asteroids/app.js"}
 
 We'll test it by displaying asteroids using fake data;
 as in our first example,
@@ -541,7 +540,7 @@ const AsteroidList = (props) => {
 
 export {AsteroidList}
 ```
-{: title="src/interactive/asteroids/AsteroidList.js"}
+{: title="interactive/asteroids/AsteroidList.js"}
 
 `React` will complain if we don't provide a unique key
 to distinguish elements that we create,
@@ -571,7 +570,7 @@ class App extends React.Component {
   // ...other code...
 }
 ```
-{: title="src/interactive/asteroids/app.js"}
+{: title="interactive/asteroids/app.js"}
 
 Let's also create a placeholder for `DateSubmit`:
 
@@ -585,7 +584,7 @@ const DateSubmit = (props) => {
 
 export {DateSubmit}
 ```
-{: title="src/interactive/asteroids/DateSubmit.js"}
+{: title="interactive/asteroids/DateSubmit.js"}
 
 <!-- == \noindent -->
 and run it:
@@ -616,7 +615,7 @@ const DateSubmit = ({label, value, onChange, onCommit}) => {
 
 // ...export as before...
 ```
-{: title="src/interactive/asteroids/DateSubmit.js"}
+{: title="interactive/asteroids/DateSubmit.js"}
 
 Note the use of destructuring in `DateSubmit`'s parameter list;
 this was introduced [earlier](../pages/#s:pages-citations)
@@ -671,7 +670,7 @@ class App extends React.Component {
 
 // ...mount as before...
 ```
-{: title="src/interactive/asteroids/app.js"}
+{: title="interactive/asteroids/app.js"}
 
 It's safe to pass `this.state.newDate` to `value`
 because we're re-drawing each time there's a change;
@@ -701,7 +700,7 @@ and then chain another `then` method to transform the data into what we need:
     })
   }
 ```
-{: title="src/interactive/asteroids/app.js"}
+{: title="interactive/asteroids/app.js"}
 
 Line by line,
 the steps are:
@@ -733,7 +732,7 @@ the method to transform the data NASA gives us is:
     return result
   }
 ```
-{: title="src/interactive/asteroids/app.js"}
+{: title="interactive/asteroids/app.js"}
 
 We built this by looking at the structure of the JSON that NASA returned
 and figuring out how to index the fields we need.
