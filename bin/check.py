@@ -11,18 +11,22 @@ import re
 import json
 import yaml
 from collections import Counter
-from util import get_crossref, report
+from util import CHARACTERS, \
+    CONFIG_FILE, \
+    get_all_docs, \
+    get_crossref, \
+    get_doc, \
+    get_funcs, \
+    get_toc, \
+    report
 
 
-CHARACTERS = "éëö"                      # non-7-bit characters that are translated
 CHECK_PREFIX = 'check_'                 # prefix for all checking function names
-CONFIG_FILE = '_config.yml'             # Jekyll configuration file
 CROSSREF_FMT = '_data/{}_toc.json'      # cross-reference file (%language)
 FIGURE_DIR = 'figures'                  # where figure source is stored
 LINK_FILE = '_includes/links.md'        # link definition file
 NOT_ALL = {'check_all'}                 # functions to ignore when running all
 PROSE_DIR_FMT = '_{}'                   # lesson or appendix directory (%language)
-PROSE_FILE_FMT = '_{}/{}.md'            # lesson or appendix (%language, %slug)
 SOURCE_DIR = 'src'                      # source code inclusions
 
 
@@ -31,20 +35,19 @@ def main(language, verb):
     Find and call the function the caller wants.
     '''
     verb = CHECK_PREFIX + verb
-    names = _get_checker_names()
-    if verb not in names:
+    funcs = get_funcs(sys.modules['__main__'], CHECK_PREFIX)
+    if verb not in funcs:
         _usage()
-    verb = globals()[verb]
-    verb(language)
+    funcs[verb](language)
 
 
 def check_all(language):
     '''
     Check everything.
     '''
-    for name in _get_checker_names():
+    funcs = get_funcs(sys.modules['__main__'], CHECK_PREFIX)
+    for (name, func) in funcs.items():
         if name not in NOT_ALL:
-            func = globals()[name]
             func(language)
 
     
@@ -55,7 +58,7 @@ def check_anchors(language):
     header_pat = re.compile(r'^##\s+[^{]+{([^}]+)}\s*$')
     target_pat = re.compile(r'#s:([^-]+)')
     result = set()
-    for (slug, filename, body, lines) in _get_all(language):
+    for (slug, filename, body, lines) in get_all_docs(CONFIG_FILE, language):
         for line in lines:
             anchor = header_pat.search(line)
             if not anchor:
@@ -70,11 +73,12 @@ def check_chars(language):
     '''
     Find and report non-7-bit characters that aren't translated.
     '''
+    allowed = set(CHARACTERS.keys())
     result = set()
-    for (slug, filename, body, lines) in _get_all(language):
+    for (slug, filename, body, lines) in get_all_docs(CONFIG_FILE, language):
         for (i, line) in enumerate(lines):
             for (j, char) in enumerate(line):
-                if (ord(char) > 127) and (char not in CHARACTERS):
+                if (ord(char) > 127) and (char not in allowed):
                     result.add('{} {} {}: {}'.format(filename, i+1, j+1, char))
     report('Characters', 'non-ascii', result)
 
@@ -83,7 +87,7 @@ def check_cites(language):
     '''
     Check for unused and undefined citations.
     '''
-    content = _get_all(language)
+    content = get_all_docs(CONFIG_FILE, language)
     used = _match_lines(content, r'\[([^\]]+)\]\(#BIB\)', flatten=',')
     defined = _match_lines(content, r'{:#b:([^}]+)}')
     report('Citations', 'unused', defined - used)
@@ -94,7 +98,7 @@ def check_crossref(language):
     '''
     Check cross-references.
     '''
-    content = _get_all(language)
+    content = get_all_docs(CONFIG_FILE, language)
     used = _match_lines(content, r'\[([^\]]+)\]\(#REF\)')
     defined = set(get_crossref(CROSSREF_FMT.format(language)).keys())
     report('Cross References', 'missing', used - defined)
@@ -113,7 +117,7 @@ def check_figures(language):
         return filename.endswith('.png') and \
             filename.replace('.png', '.svg') in defined
 
-    content = _get_all(language)
+    content = get_all_docs(CONFIG_FILE, language)
     used = _match_lines(content, r'{%\s+include\s+figure.html[^%]+src=".+/figures/([^"]+)"')
     defined = {f for f in os.listdir(FIGURE_DIR) if not _ignore(f)}
     defined -= {f for f in defined if _redundant(f, defined)}
@@ -125,7 +129,7 @@ def check_gloss(language):
     '''
     Check for unused and undefined glossary entries.
     '''
-    content = _get_all(language)
+    content = get_all_docs(CONFIG_FILE, language)
     used = _match_body(content, r'\[.+?\]\(#(g:.+?)\)')
     defined = _match_lines(content, r'\*\*.+?\*\*{:#(g:.+?)}')
     report('Glossary Entries', 'undefined', defined - used)
@@ -136,7 +140,7 @@ def check_langs(language):
     '''
     Check that every fenced code block specifies a language.
     '''
-    content = _get_all(language)
+    content = get_all_docs(CONFIG_FILE, language)
     result = set()
     for (slug, filename, body, lines) in content:
         in_block = False
@@ -156,7 +160,7 @@ def check_links(language):
     '''
     Check that external links are defined and used.
     '''
-    content = _get_all(language)
+    content = get_all_docs(CONFIG_FILE, language)
     used = _match_body(content, r'\[.+?\]\[(.+?)\]')
     with open(LINK_FILE, 'r') as reader:
         body = reader.read()
@@ -178,14 +182,11 @@ def check_src(language):
     def _unprefix(filename):
         return filename[prefix_len:]
 
-    def _ignore(x):
-        return x.endswith('~') or ('__pycache__' in x)
-
-    content = _get_all(language, remove_code_blocks=False)
+    content = get_all_docs(CONFIG_FILE, language, remove_code_blocks=False)
     referenced = _match_body(content, r'{:\s+title="([^"]+)\s*"}')
     actual = {_unprefix(filename)
               for filename in glob.iglob('{}/**/*.*'.format(SOURCE_DIR), recursive=True)
-              if not _ignore(filename)}
+              if not _ignore_file(filename)}
     report('Source Files', 'unused', actual - referenced)
     report('Source Files', 'missing', referenced - actual)
 
@@ -194,10 +195,12 @@ def check_toc(language):
     '''
     Check that filenames in configuration match actual files.
     '''
-    toc = _get_toc()
+    toc = get_toc(CONFIG_FILE)
     defined = {slug for section in toc for slug in toc[section]}
     defined.add('index')
-    actual = {filename.replace('.md', '') for filename in os.listdir(PROSE_DIR_FMT.format(language))}
+    actual = {filename.replace('.md', '')
+              for filename in os.listdir(PROSE_DIR_FMT.format(language))
+              if not _ignore_file(filename)}
     report('Table of Contents', 'unused', actual - defined)
     report('Table of Contents', 'missing', defined - actual)
 
@@ -205,41 +208,8 @@ def check_toc(language):
 #-------------------------------------------------------------------------------
 
     
-def _get_all(language, with_index=True, remove_code_blocks=True):
-    '''
-    Return a list of (slug, filename, body, lines) tuples from the table of contents,
-    including ('index', 'lang/index.md', lines) unless told not to.
-    '''
-    result = []
-    if with_index:
-        result.append(_get_one(language, 'index'))
-    toc = _get_toc()
-    for section in toc:
-        result.extend([_get_one(language, s) for s in toc[section]])
-    return result
-
-
-def _get_checker_names():
-    return [name for name in sys.modules['__main__'].__dict__.keys()
-            if name.startswith(CHECK_PREFIX)]
-
-
-def _get_one(language, slug, remove_code_blocks=True):
-    filename = PROSE_FILE_FMT.format(language, slug)
-    with open(filename, 'r') as reader:
-        body = reader.read()
-    lines = body.split('\n')
-    if remove_code_blocks:
-        body = re.sub(r'```.+?```', '', body, flags=re.DOTALL)
-    return (slug, filename, body, lines)
-
-
-def _get_toc():
-    '''
-    Read the table of contents and return ToC section.
-    '''
-    with open(CONFIG_FILE, 'r') as reader:
-        return yaml.load(reader)['toc']
+def _ignore_file(x):
+    return x.endswith('~') or ('__pycache__' in x)
 
 
 def _match_body(content, pattern, flatten=None):
@@ -278,8 +248,8 @@ def _match_flatten(matches, splitter):
 
 def _usage(status=1):
     print('usage: check.py language verb')
-    for name in _get_checker_names():
-        func = globals()[name]
+    funcs = _get_funcs(CHECK_PREFIX)
+    for (name, func) in funcs.items():
         print('{:10s}: {}'.format(name.replace(CHECK_PREFIX, ''), func.__doc__.strip()))
     sys.exit(status)
 
