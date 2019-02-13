@@ -82,6 +82,7 @@ exclude:
 - BUILD.md
 - CITATION.md
 - CONDUCT.md
+- DESIGN.md
 - LICENSE.md
 - Makefile
 - README.md
