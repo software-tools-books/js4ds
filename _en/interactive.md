@@ -428,7 +428,7 @@ class App extends React.Component {
 ```
 {: title="interactive/multi-component/app.js"}
 
-{% include figure.html id="f:interactive-objects-dom" src="../../files/interactive-objects-dom.svg" caption="React Objects and the DOM" %}
+{% include figure.html id="f:interactive-objects-dom" src="../../figures/interactive-objects-dom.svg" caption="React Objects and the DOM" %}
 
 We must import the dependencies as we did with the other components.
 As well as `React` and `ReactDOM`,
@@ -589,7 +589,7 @@ export {DateSubmit}
 <!-- == \noindent -->
 and run it:
 
-{% include figure.html id="f:interactive-asteroids-screenshot" src="../../files/interactive-asteroids-screenshot.png" caption="Asteroids Application" %}
+{% include figure.html id="f:interactive-asteroids-screenshot" src="../../figures/interactive-asteroids-screenshot.png" caption="Asteroids Application" %}
 
 The next step is to handle date submission.
 Since we're trying to instill good practices,

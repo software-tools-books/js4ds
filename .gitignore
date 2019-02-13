@@ -3,6 +3,7 @@
 *.blg
 *.log
 *.out
+*.pyg
 *.toc
 *~
 .cache

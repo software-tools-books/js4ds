@@ -80,7 +80,7 @@ since it isolates projects from one another.
 
 ## Who We Are {#s:intro-contributors}
 
-<img src="../../files/hodges-toby.png" alt="Toby Hodges" width="100" />
+<img src="../../figures/hodges-toby.png" alt="Toby Hodges" width="100" />
 
 **[Toby Hodges][hodges-toby]** is a bioinformatician turned community
 coordinator, working on the [Bio-IT Project](https://bio-it.embl.de) at
@@ -91,7 +91,7 @@ to thank his wife for her support and patience while he swore about how annoying
 JavaScript is to debug.
 
 <!-- == \noindent -->
-<img src="../../files/wilson-greg.png" alt="Greg Wilson" width="100" />
+<img src="../../figures/wilson-greg.png" alt="Greg Wilson" width="100" />
 
 **[Greg Wilson][wilson-greg]** has worked for 35 years in both industry and
 academia, and is the author or editor of several books on computing and two for

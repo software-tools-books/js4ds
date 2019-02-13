@@ -34,7 +34,7 @@ how they exchange data,
 and so on.
 The diagram below shows this cycle in action for a page that includes one image:
 
-{% include figure.html id="f:server-cycle" src="../../files/server-cycle.svg" caption="HTTP Request/Response Cycle" %}
+{% include figure.html id="f:server-cycle" src="../../figures/server-cycle.svg" caption="HTTP Request/Response Cycle" %}
 
 1.  The client (a browser or some other program) makes a connection to a server.
 2.  It then sends a blob of text specifying what it's asking for.
@@ -76,7 +76,7 @@ If a body is present,
 the request must contain the `Content-Length` header
 so that the server knows how much data to read.
 
-{% include figure.html id="f:server-request" src="../../files/server-request.svg" caption="Structure of an HTTP Request" %}
+{% include figure.html id="f:server-request" src="../../figures/server-request.svg" caption="Structure of an HTTP Request" %}
 
 The headers and body in an HTTP response have the same form, and mean the same thing.
 Crucially,

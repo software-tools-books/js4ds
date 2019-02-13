@@ -144,7 +144,7 @@ When we open the page now,
 we see a bar chart,
 and feel very proud of ourselves.
 
-{% include figure.html id="f:vis-mark-encoding" src="../../files/vis-mark-encoding.png" caption="Mark and Encoding" %}
+{% include figure.html id="f:vis-mark-encoding" src="../../figures/vis-mark-encoding.png" caption="Mark and Encoding" %}
 
 There are also some poorly-styled links for various controls that we're not going to use.
 We can fill in the options argument to `vegaEmbed` to turn those off:
@@ -170,7 +170,7 @@ We can fill in the options argument to `vegaEmbed` to turn those off:
 
 We now have the visualization we wanted:
 
-{% include figure.html id="f:vis-disable-controls" src="../../files/vis-disable-controls.png" caption="Without Controls" %}
+{% include figure.html id="f:vis-disable-controls" src="../../figures/vis-disable-controls.png" caption="Without Controls" %}
 
 Vega-Lite has a *lot* of options:
 for example,
@@ -213,7 +213,7 @@ which is set to `"average"`
 ```
 {: title="vis/vega-aggregate-points.html"}
 
-{% include figure.html id="f:vis-aggregate-points" src="../../files/vis-aggregate-points.png" title="Aggregating and Using Points" %}
+{% include figure.html id="f:vis-aggregate-points" src="../../figures/vis-aggregate-points.png" title="Aggregating and Using Points" %}
 
 ## Local Installation {#s:vis-vega-local}
 

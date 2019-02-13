@@ -308,7 +308,7 @@ when `child.farewell()` is called:
 - There isn't, so it follows the link from `Scientist` to the parent class `Person`
   and finds the function it's looking for.
 
-{% include figure.html id="f:oop-inheritance" src="../../files/oop-inheritance.svg" caption="Object-Oriented Inheritance" %}
+{% include figure.html id="f:oop-inheritance" src="../../figures/oop-inheritance.svg" caption="Object-Oriented Inheritance" %}
 
 ## Protocols {#s:oop-protocols}
 

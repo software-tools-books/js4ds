@@ -54,6 +54,7 @@ datasource: "https://figshare.com/articles/Portal_Project_Teaching_Database/1314
 collections:
   en:
     output: true
+    permalink: /:collection/:title/
 
 # Specify the use of the "lesson" template for elements of the "en" collection.
 defaults:

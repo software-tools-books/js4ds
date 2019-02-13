@@ -542,7 +542,7 @@ Server running at http://localhost:4000
 
 We then open `http://localhost:4000` in our browser and see this:
 
-{% include figure.html id="f:capstone-first-attempt" src="../../files/capstone-first-attempt.png" caption="First Attempt at Viewing Capstone Project" %}
+{% include figure.html id="f:capstone-first-attempt" src="../../figures/capstone-first-attempt.png" caption="First Attempt at Viewing Capstone Project" %}
 
 That's unexpected: we should see the initial data displayed.
 If we open the console in the browser and reload the page,
@@ -595,14 +595,14 @@ $ node src/capstone/back/driver-1.js src/capstone/back/test-data.csv
 
 and then re-launch our application:
 
-{% include figure.html id="f:capstone-second-attempt" src="../../files/capstone-second-attempt.png" caption="Second Attempt at Viewing Capstone Project" %}
+{% include figure.html id="f:capstone-second-attempt" src="../../figures/capstone-second-attempt.png" caption="Second Attempt at Viewing Capstone Project" %}
 
 Much better!
 Now we can type some dates into the "start" and "end" boxes and,
 after we press "update",
 we get a chart and table of the aggregated statistics for the year range given:
 
-{% include figure.html id="f:capstone-complete" src="../../files/capstone-complete.png" caption="Completed Capstone Project" %}
+{% include figure.html id="f:capstone-complete" src="../../figures/capstone-complete.png" caption="Completed Capstone Project" %}
 
 We've built an interface,
 used it to submit queries that are then handled by a server,
