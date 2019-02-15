@@ -11,6 +11,11 @@
     background-color: #F0FFFF;
 }
 
+/* Highlight a block. */
+div.highlight {
+    background-color: #F0F0F0;
+}
+
 /* Table of Contents sidebar. */
 div.toc {
     min-height: 100vh;
@@ -55,9 +60,14 @@ code.highlighter-rouge {
     color: #a06060;
 }
 
-/* Make output distinct. */
-div.language-text {
+/* Disclaimer. */
+div.disclaimer {
+    font-style: italic;
     font-weight: bold;
+    border-style: solid;
+    border-width: 2px;
+    padding: 0.5em;
+    margin-bottom: 0.5em;
 }
 
 /* Make keyboard items a little less stark */
@@ -71,7 +81,7 @@ a {
 }
 
 /* Style glossary reference links. */
-a[href^="#g:"] {
+a.gloss {
     font-weight: bold;
 }
 

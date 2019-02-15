@@ -1,5 +1,4 @@
 ---
-permalink: "/en/keypoints/"
 title: "Key Points"
 ---
 

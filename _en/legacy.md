@@ -1,5 +1,4 @@
 ---
-permalink: "/en/legacy/"
 title: "Legacy JavaScript Issues"
 ---
 
@@ -70,7 +69,7 @@ for (let key in things) {
   console.log(key)
 }
 ```
-{: title="src/legacy/for-loops.js"}
+{: title="legacy/for-loops.js"}
 ```text
 0
 1
@@ -126,7 +125,7 @@ element 2 of x,y,z is z
 ## Prototypes {#s:legacy-prototypes}
 
 We come finally to an aspect of JavaScript that has been the cause of a great deal of confusion: prototypes.
-Every JavaScript object has an internal property called its [prototype](../gloss/#g:prototype).
+Every JavaScript object has an internal property called its [prototype](#g:prototype).
 If you try to access some property of an object and it's not found,
 JavaScript automatically looks in the object that the first object's prototype refers to.
 If the desired property isn't there,
@@ -153,7 +152,7 @@ const Cone = function(f) {
 
 Cone.prototype = iceCream
 ```
-{: title="src/legacy/prototypes.js"}
+{: title="legacy/prototypes.js"}
 
 We can now create a cone and look at its properties:
 
@@ -161,12 +160,12 @@ We can now create a cone and look at its properties:
 const dessert = new Cone('mustard')
 console.log(`initial flavor "${dessert.flavor}" and size "${dessert.size}"`)
 ```
-{: title="src/legacy/prototypes.js"}
+{: title="legacy/prototypes.js"}
 ```text
 initial flavor "mustard" and size "large"
 ```
 
-<figure id="f:legacy-prototype"> <img src="../../files/legacy-prototype.svg" /> <figcaption>Prototypes</figcaption> </figure>
+{% include figure.html id="f:legacy-prototype" src="../../figures/legacy-prototype.svg" caption="Prototypes" %}
 
 If we change the `size` of our dessert,
 lookup finds the object's property before looking up the chain to find the parent object's:
@@ -175,7 +174,7 @@ lookup finds the object's property before looking up the chain to find the paren
 dessert.size = 'extra-large'
 console.log(`modified flavor "${dessert.flavor}" and size "${dessert.size}"`)
 ```
-{: title="src/legacy/prototypes.js"}
+{: title="legacy/prototypes.js"}
 ```text
 modified flavor "mustard" and size "extra-large"
 ```

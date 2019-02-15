@@ -1,5 +1,4 @@
 ---
-permalink: "/en/basics/"
 title: Basic Features
 questions:
 - "How can I execute short snippets of JavaScript interactively?"
@@ -57,14 +56,14 @@ Use your favorite text editor to put the following line in a file called `hello.
 ```js
 console.log('hello, world')
 ```
-{: title="src/basics/hello.js"}
+{: title="basics/hello.js"}
 
-`console` is a built-in [module](../gloss/#g:module) that provides basic printing services
+`console` is a built-in [module](#g:module) that provides basic printing services
 (among other things).
 As in many languages,
-we use the [dotted notation](../gloss/#g:dotted-notation) `X.Y` to get part `Y` of thing `X`---in this case,
+we use the [dotted notation](#g:dotted-notation) `X.Y` to get part `Y` of thing `X`---in this case,
 to get `console`'s `log` function.
-[Character strings](../gloss/#g:string) like `'hello, world'` can be written with either single quotes or double quotes,
+[Character strings](#g:string) like `'hello, world'` can be written with either single quotes or double quotes,
 so long as the quotation marks match,
 and semi-colons at the ends of statements are now (mostly) optional.
 
@@ -94,7 +93,7 @@ and which returns a string:
 const aNumber = 123.45
 console.log('the type of', aNumber, 'is', typeof aNumber)
 ```
-{: title="src/basics/types.js"}
+{: title="basics/types.js"}
 ```text
 the type of 123.45 is number
 ```
@@ -103,30 +102,30 @@ the type of 123.45 is number
 const anInteger = 123
 console.log('the type of', anInteger, 'is', typeof anInteger)
 ```
-{: title="src/basics/types.js"}
+{: title="basics/types.js"}
 ```text
 the type of 123 is number
 ```
 
 We have already met strings,
-which may contain any [Unicode](../gloss/#g:unicode) character:
+which may contain any [Unicode](#g:unicode) character:
 
 ```js
 const aString = 'some text'
 console.log('the type of', aString, 'is', typeof aString)
 ```
-{: title="src/basics/types.js"}
+{: title="basics/types.js"}
 ```text
 the type of some text is string
 ```
 
 Functions are also a type of data,
-a fact whose implications we will explore in [the next lesson](../callbacks/):
+a fact whose implications we will explore in [s:callbacks](#REF):
 
 ```js
 console.log('the type of', console.log, 'is', typeof console.log)
 ```
-{: title="src/basics/types.js"}
+{: title="basics/types.js"}
 ```text
 the type of function () { [native code] } is function
 ```
@@ -140,7 +139,7 @@ for (let value of otherValues) {
   console.log('the type of', value, 'is', typeof value)
 }
 ```
-{: title="src/basics/types.js"}
+{: title="basics/types.js"}
 ```text
 the type of true is boolean
 the type of undefined is undefined
@@ -148,13 +147,13 @@ the type of null is object
 ```
 
 As the example above shows,
-we use `let` to define a [variable](../gloss/#g:variable)
-and `const` to define a [constant](../gloss/#g:constant),
-put values separated by commas inside `[]` to create an [array](../gloss/#g:array),
+we use `let` to define a [variable](#g:variable)
+and `const` to define a [constant](#g:constant),
+put values separated by commas inside `[]` to create an [array](#g:array),
 and use `for...of` to loop over the values in that array.
 Note that we use `let` rather than the older `var` and `of` and not `in`:
 the latter returns the indexes of the collection (e.g., 0, 1, 2),
-which has some [traps for the unwary](../legacy/#s:legacy-iteration).
+which has some traps for the unwary ((s:legacy-iteration)[#REF)).
 Note also that indexing starts from 0 rather than 1,
 and that indentation is optional and for readability purposes only.
 This may be different from the language that you're used to.
@@ -183,7 +182,7 @@ for (let pair of values) {
   }
 }
 ```
-{: title="src/basics/control-flow.js"}
+{: title="basics/control-flow.js"}
 ```text
 0 of type number is falsy
 1 of type number is truthy
@@ -195,14 +194,14 @@ null of type object is falsy
 2,3 of type object is truthy
 ```
 
-This example shows that arrays are [heterogeneous](../gloss/#g:heterogeneous),
+This example shows that arrays are [heterogeneous](#g:heterogeneous),
 i.e.,
 that they can contain values of many different types
 (including other arrays).
 It also shows that `if` and `else` work as they do in other languages:
 it's the truthiness of things that may be different.
 For numbers,
-0 is [falsy](../gloss/#g:falsy), all others are [truthy](../gloss/#g:truthy);
+0 is [falsy](#g:falsy), all others are [truthy](#g:truthy);
 Similarly,
 the empty string is falsy and all other strings are truthy.
 `undefined` and `null` are both falsy,
@@ -216,8 +215,8 @@ it just happens to be empty,
 but this behavior is still a common cause of bugs.
 When testing an array,
 check that `Array.length` is zero.
-(Note that this is a [property](../gloss/#g:property),
-not a [method](../gloss/#g:method),
+(Note that this is a [property](#g:property),
+not a [method](#g:method),
 i.e.,
 it should be treated as a variable,
 not called like a function.)
@@ -226,12 +225,12 @@ not called like a function.)
 >
 > Always use `===` (triple equals) and `!==` when testing for equality and inequality in JavaScript.
 > `==` and `!=` do type conversion,
-> which can produce some [ugly surprises](../legacy/#s:legacy-equality).
+> which can produce some ugly surprises ([s:legacy-equality](#REF)).
 
 ## Formatting Strings {#s:basics-formatting}
 
 Rather than printing multiple strings and expressions,
-we can [interpolate](../gloss/#g:string-interpolation) values into a back-quoted string.
+we can [interpolate](#g:string-interpolation) values into a back-quoted string.
 (We have to use back quotes because this feature was added to JavaScript
 long after the language was first created.)
 As the example below shows,
@@ -245,7 +244,7 @@ for (let color of ['red', 'green', 'blue']) {
   console.log(message, `and capitalized is ${color.toUpperCase()}`)
 }
 ```
-{: title="src/basics/formatting.js"}
+{: title="basics/formatting.js"}
 ```text
 color is red and capitalized is RED
 color is green and capitalized is GREEN
@@ -254,7 +253,7 @@ color is blue and capitalized is BLUE
 
 ## Objects {#s:basics-objects}
 
-An [object](../gloss/#g:object) in JavaScript is a collection of key-value pairs,
+An [object](#g:object) in JavaScript is a collection of key-value pairs,
 and is equivalent in simple cases to what Python would call a dictionary.
 The keys do not have to be strings,
 but almost always are;
@@ -277,7 +276,7 @@ for (let key in creature) {
   console.log(`creature[${key}] is ${creature[key]}`)
 }
 ```
-{: title="src/basics/objects.js"}
+{: title="basics/objects.js"}
 ```text
 creature is [object Object]
 creature.genus is Callithrix
@@ -317,14 +316,14 @@ use `JSON.stringify(object)`:
 ```js
 console.log(JSON.stringify(creature))
 ```
-{: title="src/basics/objects.js"}
+{: title="basics/objects.js"}
 ```text
 {"order":"Primates","family":"Callitrichidae","genus":"Callithrix","species":"Jacchus"}
 ```
 
 Here,
 "JSON" stands for "JavaScript Object Notation";
-we will learn more about it [later](../dataman/).
+we will learn more about it in [s:dataman](#REF).
 
 ## Functions {#s:basics-functions}
 
@@ -346,11 +345,11 @@ function limits (values) {
   return [low, high]
 }
 ```
-{: title="src/basics/functions-classic.js"}
+{: title="basics/functions-classic.js"}
 
 Its definition consists of the keyword `function`,
 its name,
-a parameterized list of [parameters](../gloss/#g:parameter) (which might be empty),
+a parameterized list of [parameters](#g:parameter) (which might be empty),
 and its body.
 We can use `return` to explicitly return a value at any time;
 if nothing is returned,
@@ -371,7 +370,7 @@ for (let test of allTests) {
   console.log(`limits of ${test} are ${limits(test)}`)
 }
 ```
-{: title="src/basics/functions-classic.js"}
+{: title="basics/functions-classic.js"}
 ```text
 limits of  are ,
 limits of 9 are 9,9
@@ -382,9 +381,9 @@ limits of 3,apple,sub-array are 3,3
 
 Programmers generally don't write functions this way any longer,
 since it interacts in odd ways with other features of the language;
-the [section on legacy issues](../legacy/#s:legacy-prototypes) explains why and how in more detail.
+[s:legacy-prototypes](#REF) explains why and how in more detail.
 Instead,
-most programmers now write [fat arrow functions](../gloss/#g:fat-arrow)
+most programmers now write [fat arrow functions](#g:fat-arrow)
 consisting of a parameter list,
 the `=>` symbol,
 and a body.
@@ -405,12 +404,12 @@ const limits = (values) => {
   return [low, high]
 }
 ```
-{: title="src/basics/functions-modern.js"}
+{: title="basics/functions-modern.js"}
 
 No matter how functions are defined,
-each one is a [scope](../gloss/#g:scope),
-which means its parameters and any variables created inside it are [local](../gloss/#g:local-variable) to the function.
-We will discuss scope in more detail [later](../callbacks/).
+each one is a [scope](#g:scope),
+which means its parameters and any variables created inside it are [local](#g:local-variable) to the function.
+We will discuss scope in more detail in [s:callbacks](#REF).
 
 > **Stuck in the Past**
 >
@@ -458,7 +457,7 @@ module.exports = {
   clip: clip
 }
 ```
-{: title="src/basics/utilities.js"}
+{: title="basics/utilities.js"}
 
 The function definition is straightforward;
 as you may have guessed, `bound = DEFAULT_BOUND` sets a default value for that parameter
@@ -486,7 +485,7 @@ const data = [-1, 5, 3, 0, 10]
 console.log(`clip(${data}) -> ${utilities.clip(data)}`)
 console.log(`clip(${data}, 5) -> ${utilities.clip(data, 5)}`)
 ```
-{: title="src/basics/import.js"}
+{: title="basics/import.js"}
 ```text
 clip(-1,5,3,0,10) -> -1,3,0
 clip(-1,5,3,0,10, 5) -> -1,5,3,0
@@ -534,7 +533,7 @@ for (let line of table) {
   console.log(line)
 }
 ```
-{: title="src/basics/table-of-squares.js"}
+{: title="basics/table-of-squares.js"}
 ```text
 square of 4 is 16
 square of 3 is 9
@@ -572,7 +571,7 @@ for (let d of second) {
 }
 console.log(total)
 ```
-{: title="src/basics/aggregating.js"}
+{: title="basics/aggregating.js"}
 
 ### What Does This Do?
 
@@ -584,7 +583,7 @@ const species = 'Jacchus'
 const creature = {genus, species}
 console.log(creature)
 ```
-{: title="src/basics/implied.js"}
+{: title="basics/implied.js"}
 ```text
 { genus: 'Callithrix', species: 'Jacchus' }
 ```
@@ -604,7 +603,7 @@ const {genus, species} = creature
 console.log(`genus is ${genus}`)
 console.log(`species is ${species}`)
 ```
-{: title="src/basics/destructuring.js"}
+{: title="basics/destructuring.js"}
 
 ### Return To Me, For My Heart Wants You Only
 

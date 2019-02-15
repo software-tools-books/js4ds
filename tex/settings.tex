@@ -116,36 +116,5 @@
 
 %----------------------------------------
 
-% Syntax highlighting.
-\usepackage{xcolor}
-\definecolor{verylightgray}{gray}{0.95}
-\usepackage{listings}
-\lstset{basicstyle=\small,showstringspaces=false}
-
-% From https://github.com/ghammock/LaTeX_Listings_JavaScript_ES6
-\lstdefinelanguage{js}{
-  % Original keywords.
-  morekeywords=[1]{break, continue, delete, else, for, function, if, in,
-    new, return, this, typeof, var, void, while, with,
-  % ES6 keywords
-    await, async, case, catch, class, const, default, do,
-    enum, export, extends, finally, from, implements, import, instanceof,
-    let, static, super, switch, throw, try},
-  % Literals, primitive types, and reference types.
-  morekeywords=[2]{false, null, true, boolean, number, undefined,
-    Array, Boolean, Date, Math, Number, String, Object},
-  % Built-ins.
-  morekeywords=[3]{eval, parseInt, parseFloat, escape, unescape},
-  sensitive,
-  morecomment=[s]{/*}{*/},
-  morecomment=[l]//,
-  morecomment=[s]{/**}{*/}, % JavaDoc style comments
-  morestring=[b]',
-  morestring=[b]",
-  morestring=[b]`           % ES6 interpolation strings.
-}[keywords, comments, strings]
-
-% Aliases to match language keywords from Markdown.
-\lstalias{html}{HTML}
-\lstalias{shell}{bash}
-\lstalias{sql}{SQL}
+% Syntax highlighting with minted <http://mirror.its.dal.ca/ctan/macros/latex/contrib/minted/minted.pdf>
+\usepackage{minted}

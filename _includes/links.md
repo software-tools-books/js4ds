@@ -7,6 +7,9 @@ file is a Markdown file because Jekyll doesn't expand the link
 definitions if that's done.
 {% endcomment %}
 
+[config-email]: mailto:{{site.email}}
+[config-repo]: {{site.repo}}
+
 [babel]: https://babeljs.io/
 [beazley]: https://www.dabeaz.com/
 [bernhardt-wat]: https://www.destroyallsoftware.com/talks/wat
@@ -22,7 +25,6 @@ definitions if that's done.
 
 [d3]: https://d3js.org/
 [d3-array]: https://github.com/d3/d3-array
-[draw-io]: https://www.draw.io/
 
 [es6-modules]: http://2ality.com/2014/09/es6-modules-final.html
 [event-loop]: https://nodejs.org/en/docs/guides/event-loop-timers-and-nexttick/
@@ -48,7 +50,6 @@ definitions if that's done.
 [react-keys]: https://stackoverflow.com/questions/28329382/understanding-unique-keys-for-array-children-in-react-js
 [regexp-docs]: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Regular_Expressions
 [runkit]: https://runkit.com/
-[rxjs]: https://rxjs-dev.firebaseapp.com/
 
 [seedrandom]: https://www.npmjs.com/package/seedrandom
 [spolsky-unicode]: https://www.joelonsoftware.com/2003/10/08/the-absolute-minimum-every-software-developer-absolutely-positively-must-know-about-unicode-and-character-sets-no-excuses/

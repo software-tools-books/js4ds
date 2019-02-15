@@ -1,5 +1,4 @@
 ---
-permalink: "/en/intro/"
 title: "Introduction"
 questions:
 - "Is this the right course for me?"
@@ -60,28 +59,28 @@ You can do the first few online,
 using a service like [RunKit][runkit],
 which gives you an interactive JavaScript playground in your browser.
 For larger things,
-and for chapters starting with the one on [creating dynamic web pages](../dynamic/),
+and for chapters starting with the one on creating dynamic web pages ([s:dynamic](#REF)),
 you should [download and install][node-download] the latest Long-term Support (LTS) versions of Node and NPM.
 
-[Node](../gloss/#g:node-js) is an open source implementation of JavaScript
+[Node](#g:node-js) is an open source implementation of JavaScript
 that includes a command-line interpreter like those for languages such as Python and R.
-The command `node` on its own starts a [read-evaluate-print loop](../gloss/#g:repl)
+The command `node` on its own starts a [read-evaluate-print loop](#g:repl)
 that executes commands as they are typed in and displays their output.
 The command `node filename.js` reads and runs the commands in `filename.js`;
-we will see [later](../pages/) how to run JavaScript in a browser.
+we will see in [s:pages](#REF) how to run JavaScript in a browser.
 
-`npm` is the Node [Package Manager](../gloss/#g:package-manager),
+`npm` is the Node [Package Manager](#g:package-manager),
 a command-line tool for finding, installing, and updating JavaScript libraries.
 The command <code>npm install --global <em>library-name</em></code> (without a `.js` extension)
-installs a library [globally](../gloss/#g:global-installation) so that all projects can use it,
-while <code>npm install --save <em>library-name</em></code> installs the library [locally](../gloss/#g:local-installation)
+installs a library [globally](#g:global-installation) so that all projects can use it,
+while <code>npm install --save <em>library-name</em></code> installs the library [locally](#g:local-installation)
 (i.e., in the current project folder).
 Local installation is usually a better idea,
 since it isolates projects from one another.
 
 ## Who We Are {#s:intro-contributors}
 
-<img src="../../files/hodges-toby.png" alt="Toby Hodges" width="100" />
+<img src="../../figures/hodges-toby.png" alt="Toby Hodges" width="100" />
 
 **[Toby Hodges][hodges-toby]** is a bioinformatician turned community
 coordinator, working on the [Bio-IT Project](https://bio-it.embl.de) at
@@ -92,7 +91,7 @@ to thank his wife for her support and patience while he swore about how annoying
 JavaScript is to debug.
 
 <!-- == \noindent -->
-<img src="../../files/wilson-greg.png" alt="Greg Wilson" width="100" />
+<img src="../../figures/wilson-greg.png" alt="Greg Wilson" width="100" />
 
 **[Greg Wilson][wilson-greg]** has worked for 35 years in both industry and
 academia, and is the author or editor of several books on computing and two for

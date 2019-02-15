@@ -3,11 +3,13 @@
 *.blg
 *.log
 *.out
+*.pyg
 *.toc
 *~
 .cache
 .jekyll-metadata
 __pycache__
+_minted-*
 _site
 dist
 node_modules

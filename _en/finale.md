@@ -1,5 +1,4 @@
 ---
-permalink: "/en/finale/"
 title: "Conclusion"
 questions:
 - "What have we learned?"
@@ -8,7 +7,7 @@ keypoints:
 - "Contributions are very welcome."
 ---
 
-We have come a long way since `console.log('hello, world')` in [the first lesson](../basics/).
+We have come a long way since `console.log('hello, world')` in [s:basics](#REF).
 Callbacks and promises,
 JSON and web servers,
 packaging, unit tests, and visualization:
@@ -16,13 +15,13 @@ every modern language can do them,
 but JavaScript is an increasingly popular choice.
 Yes,
 it has its flaws,
-but if we avoid some of its [legacy features](../legacy/),
+but if we avoid some of the legacy features in [s:legacy](#REF)
 it's both usable and powerful.
 
 Our journey doesn't stop here, though.
 The appendices explore some next steps,
-such as [logging what our server does](../logging/)
-and [using a relational database](../db/) instead of a text file
+such as logging what our server does ([s:logging](#REF))
+and using a relational database ([s:db](#REF)) instead of a text file
 as a data store.
 Beyond that,
 you could look at more advanced techniques in JavaScript [Have2018](#BIB),

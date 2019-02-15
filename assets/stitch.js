@@ -10,7 +10,7 @@ const concatenate = require('./concatenate')
 HEADER = `---
 permalink: /LANGUAGE/all/
 root: true
-layout: plain
+layout: default
 ---
 `
 

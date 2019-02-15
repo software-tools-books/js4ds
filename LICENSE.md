@@ -1,7 +1,7 @@
 # License
 
-> *This is a human-readable summary of (and not a substitute for) the license.
-> Please see <https://creativecommons.org/licenses/by/4.0/legalcode> for the full legal text.*
+*This is a human-readable summary of (and not a substitute for) the license.
+Please see <https://creativecommons.org/licenses/by/4.0/legalcode> for the full legal text.*
 
 This work is licensed under the Creative Commons Attribution 4.0
 International license (CC-BY-4.0).

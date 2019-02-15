@@ -26,7 +26,7 @@ We will cover:
 - Data visualization
 - Combining everything to create a three-tier web application
 
-## Intended Audience {#s:intro-audience}
+## Intended Audience {#s:index-audience}
 
 We assume that you:
 
@@ -41,7 +41,7 @@ if you want to know more,
 there are many other free tutorials you can dive into once you've mastered the basics,
 some of which are both up-to-date and well designed.
 
-## Contributing {#s:intro-contrib}
+## Contributing {#s:index-contrib}
 
 {% include contributing.md %}
 
