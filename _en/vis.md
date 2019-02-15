@@ -142,7 +142,8 @@ Here's our updated spec:
 
 When we open the page now,
 we see a bar chart,
-and feel very proud of ourselves.
+and feel very proud of ourselves
+([f:vis-mark-encoding](#FIG)).
 
 {% include figure.html id="f:vis-mark-encoding" src="../../figures/vis-mark-encoding.png" caption="Mark and Encoding" %}
 
@@ -168,7 +169,8 @@ We can fill in the options argument to `vegaEmbed` to turn those off:
 ```
 {: title="vis/vega-disable-controls.html"}
 
-We now have the visualization we wanted:
+We now have the visualization we wanted
+([f:vis-disable-controls](#FIG)).
 
 {% include figure.html id="f:vis-disable-controls" src="../../figures/vis-disable-controls.png" caption="Without Controls" %}
 
@@ -213,7 +215,9 @@ which is set to `"average"`
 ```
 {: title="vis/vega-aggregate-points.html"}
 
-{% include figure.html id="f:vis-aggregate-points" src="../../figures/vis-aggregate-points.png" title="Aggregating and Using Points" %}
+[f:vis-aggregate-points](#FIG) shows the result.
+
+{% include figure.html id="f:vis-aggregate-points" src="../../figures/vis-aggregate-points.png" caption="Aggregating and Using Points" %}
 
 ## Local Installation {#s:vis-vega-local}
 

@@ -540,10 +540,9 @@ Server running at http://localhost:4000
 +  Built in 20.15s.
 ```
 
-We then open `http://localhost:4000` in our browser and see this:
-
 {% include figure.html id="f:capstone-first-attempt" src="../../figures/capstone-first-attempt.png" caption="First Attempt at Viewing Capstone Project" %}
 
+We then open `http://localhost:4000` in our browser and see [f:capstone-first-attempt](#FIG).
 That's unexpected: we should see the initial data displayed.
 If we open the console in the browser and reload the page,
 we see this error message:
@@ -593,14 +592,15 @@ Let's run that:
 $ node src/capstone/back/driver-1.js src/capstone/back/test-data.csv
 ```
 
-and then re-launch our application:
+and then re-launch our application to get [f:capstone-second-attempt](#FIG).
 
 {% include figure.html id="f:capstone-second-attempt" src="../../figures/capstone-second-attempt.png" caption="Second Attempt at Viewing Capstone Project" %}
 
 Much better!
 Now we can type some dates into the "start" and "end" boxes and,
 after we press "update",
-we get a chart and table of the aggregated statistics for the year range given:
+we get a chart and table of the aggregated statistics for the year range given
+([f:capstone-complete](#FIG)).
 
 {% include figure.html id="f:capstone-complete" src="../../figures/capstone-complete.png" caption="Completed Capstone Project" %}
 

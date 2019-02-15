@@ -34,7 +34,8 @@ we must first understand what actually happens when functions are defined and ca
 When JavaScript [parses](#g:parse) the expression `let name = "text"`,
 it allocates a block of memory big enough for four characters
 and stores a reference to that block of characters in the variable `name`.
-We can show this by drawing a [memory diagram](#g:memory-diagram):
+We can show this by drawing a [memory diagram](#g:memory-diagram)
+like the one in [f:callbacks-name-value](#FIG).
 
 {% include figure.html id="f:callbacks-name-value" src="../../figures/callbacks-name-value.svg" caption="Name and Value" %}
 
@@ -49,7 +50,8 @@ oneMore = (x) => {
 
 JavaScript allocates a block of memory big enough to store several instructions,
 translates the text of the function into instructions,
-and stores a reference to those instructions in the variable `oneMore`:
+and stores a reference to those instructions in the variable `oneMore`
+([f:callbacks-one-more](#FIG)).
 
 {% include figure.html id="f:callbacks-one-more" src="../../figures/callbacks-one-more.svg" caption="Functions in Memory" %}
 
@@ -68,7 +70,7 @@ console.log(anotherName(5))
 ```
 
 Doing this does *not* call the function:
-as the memory diagram below shows,
+as [f:callbacks-alias-function](#FIG) shows,
 it creates a second name that refers to the same block of instructions.
 
 {% include figure.html id="f:callbacks-alias-function" src="../../figures/callbacks-alias-function.svg" caption="Aliasing a Function" %}
@@ -87,7 +89,7 @@ and one extra table for each function call.
 This means that if we assign 100 to `x`,
 call `oneMore(2 * x + 1)`,
 and look at memory in the middle of that call,
-we will find this:
+we will see what's in [f:callbacks-call-stack](#FIG).
 
 {% include figure.html id="f:callbacks-call-stack" src="../../figures/callbacks-call-stack.svg" caption="The Call Stack" %}
 
@@ -119,7 +121,8 @@ hello
 ```
 
 Again,
-this is clearer when we look at the state of memory while `doTwice` is running:
+this is clearer when we look at the state of memory while `doTwice` is running
+([f:callbacks-do-twice](#FIG)).
 
 {% include figure.html id="f:callbacks-do-twice" src="../../figures/callbacks-do-twice.svg" caption="Functions of Functions" %}
 
@@ -157,7 +160,7 @@ trim then dot: |this.example.uses.text|
 
 During the call to `temp = first(initial)`,
 but before a value has been returned to be assigned to `temp`,
-memory looks like this:
+memory looks like [f:callbacks-pipeline](#FIG).
 
 {% include figure.html id="f:callbacks-pipeline" src="../../figures/callbacks-pipeline.svg" caption="Implementing a Pipeline" %}
 
@@ -431,16 +434,19 @@ add_1(100) is 101 and add_2(100) is 102
 ```
 
 The best way to understand what's going on is to draw a step-by-step memory diagram.
-In step 1, we call `adder(1)`:
+In step 1, we call `adder(1)`
+([f:callbacks-adder-1](#FIG)).
 
 {% include figure.html id="f:callbacks-adder-1" src="../../figures/callbacks-adder-1.svg" caption="Creating an Adder (Step 1)" %}
 
-`adder` creates a new function that includes a reference to that 1 we just passed in:
+`adder` creates a new function that includes a reference to that 1 we just passed in
+([f:callbacks-adder-2](#FIG)).
 
 {% include figure.html id="f:callbacks-adder-2" src="../../figures/callbacks-adder-2.svg" caption="Creating an Adder (Step 2)" %}
 
 In step 3,
-`adder` returns that function, which is assigned to `add_1`:
+`adder` returns that function, which is assigned to `add_1`
+([f:callbacks-adder-3](#FIG)).
 
 {% include figure.html id="f:callbacks-adder-3" src="../../figures/callbacks-adder-3.svg" caption="Creating an Adder (Step 3)" %}
 
@@ -450,7 +456,8 @@ even though that value isn't referred to any longer by anyone else.
 
 In steps 4-6,
 we repeat these three steps to create another function that has a reference to the value 2,
-and assign that function to `add_2`:
+and assign that function to `add_2`
+([f:callbacks-adder-4](#FIG)).
 
 {% include figure.html id="f:callbacks-adder-4" src="../../figures/callbacks-adder-4.svg" caption="Creating an Adder (Steps 4-6)" %}
 

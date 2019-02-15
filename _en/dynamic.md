@@ -36,8 +36,9 @@ It's clumsy and limited, but it's the default on [GitHub][github].)
 Server-side generation can be done statically or dynamically,
 i.e.,
 pages can be compiled once, stored on disk, and served thereafter,
-or each page can be recompiled whenever it's needed
-(which makes it easy to include dynamic elements like today's top news story):
+or each page can be recompiled whenever it's needed,
+which makes it easy to include dynamic elements like today's top news story
+([f:dynamic-alternatives](#FIG)).
 
 {% include figure.html id="f:dynamic-alternatives" src="../../figures/dynamic-alternatives.svg" caption="Page Generation Alternatives" %}
 

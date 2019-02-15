@@ -154,7 +154,8 @@ Cone.prototype = iceCream
 ```
 {: title="legacy/prototypes.js"}
 
-We can now create a cone and look at its properties:
+We can now create a cone and look at its properties
+([f:legacy-prototype](#FIG)):
 
 ```js
 const dessert = new Cone('mustard')

@@ -32,7 +32,7 @@ The core of HTTP is a [request](#g:http-request)/[response](#g:http-response) cy
 that specifies the kinds of requests applications can make of servers,
 how they exchange data,
 and so on.
-The diagram below shows this cycle in action for a page that includes one image:
+[f:server-cycle](#FIG) shows this cycle in action for a page that includes one image.
 
 {% include figure.html id="f:server-cycle" src="../../figures/server-cycle.svg" caption="HTTP Request/Response Cycle" %}
 
@@ -74,7 +74,8 @@ The [body](#g:http-body) of the request is any extra data associated with it,
 such as files that are being uploaded.
 If a body is present,
 the request must contain the `Content-Length` header
-so that the server knows how much data to read.
+so that the server knows how much data to read
+([f:server-request](#FIG)).
 
 {% include figure.html id="f:server-request" src="../../figures/server-request.svg" caption="Structure of an HTTP Request" %}
 

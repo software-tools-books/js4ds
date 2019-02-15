@@ -67,7 +67,7 @@ const fixCrossRefs = () => {
   const prefix = document.currentScript.getAttribute('ROOT') != '' ? '.' : '..'
   const crossref = JSON.parse(document.currentScript.getAttribute('CROSSREF'))
   Array.from(document.querySelectorAll('a'))
-    .filter(e => (e.getAttribute('href') == '#REF'))
+    .filter(e => ((e.getAttribute('href') == '#REF') || (e.getAttribute('href') == '#FIG')))
     .forEach(e => {
       const key = e.textContent
       const entry = crossref[key]
@@ -78,6 +78,44 @@ const fixCrossRefs = () => {
     })
 }
 
+// Fix figure captions.
+const fixCaptions = () => {
+  const prefix = document.currentScript.getAttribute('ROOT') != '' ? '.' : '..'
+  const crossref = JSON.parse(document.currentScript.getAttribute('CROSSREF'))
+  Array.from(document.querySelectorAll('figure'))
+    .forEach(e => {
+      const figureId = e.getAttribute('id')
+      const figureNum = crossref[figureId].value
+      const caption = e.querySelector('figcaption')
+      caption.innerHTML = `Figure ${figureNum}: ` + caption.innerHTML
+    })
+}
+
+// Fix up solutions.
+const fixSolutions = () => {
+  Array.from(document.querySelectorAll('aside'))
+    .forEach((e, i) => {
+      const solutionId = `solution-${i}`
+      e.setAttribute('id', solutionId)
+      e.style.display = 'none'
+      const button = document.createElement('p')
+      button.innerHTML = '<span class="solution">solution</span>'
+      button.classList.add('solution')
+      button.setAttribute('onclick', `showHideSolutions('${solutionId}')`)
+      e.parentNode.insertBefore(button, e)
+    })
+}
+
+// Show/hide solutions when button clicked.
+const showHideSolutions = (id) => {
+  const e = document.getElementById(id)
+  if (e.style.display == 'none') {
+    e.style.display = 'block'
+  } else {
+    e.style.display = 'none'
+  }
+}
+
 // Perform transformations on load (which is why this script is included at the
 // bottom of the page).
 (function(){
@@ -86,4 +124,6 @@ const fixCrossRefs = () => {
   fixBibRefs()
   fixGlossRefs()
   fixCrossRefs()
+  fixCaptions()
+  fixSolutions()
 })()

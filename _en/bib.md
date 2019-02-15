@@ -4,7 +4,7 @@ title: "Bibliography"
 
 **Davi2018**{:#b:Davi2018}: Ashley Davis: *Data Wrangling with JavaScript*. Manning, 2018, <https://www.manning.com/books/data-wrangling-with-javascript>. *A step-by-step guide to managing data with JavaScript.*
 
-**Have2018**{:#b:Have2018}: Martijn Haverbeke: *Eloquent Javascript*. No Starch Press, 2018, <https://eloquentjavascript.net/>. *The best all-around guide to JavaScript on the market today.*
+**Have2018**{:#b:Have2018}: Martijn Haverbeke: *Eloquent Javascript*. No Starch Press, 2018, <https://eloquentjavascript.net/>. *A widely-used programmer-oriented guide to modern JavaScript.*
 
 **Meek2017**{:#b:Meek2017}: Elijah Meeks: *D3.js in Action*. Manning, 2017, <https://www.manning.com/books/d3js-in-action-second-edition>. *A comprehensive guide to the D3 visualization framework.*
 

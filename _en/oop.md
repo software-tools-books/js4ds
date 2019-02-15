@@ -296,7 +296,7 @@ parent: Hello, my name is Hakim - Goodbye
 child: Hi, I'm Bhadra. Let me tell you about microbiology... - Goodbye
 ```
 
-The diagram below shows what memory looks like after these classes have been defined
+[f:oop-inheritance](#FIG) shows what memory looks like after these classes have been defined
 and the objects `parent` and `child` have been created.
 It looks complex at first,
 but allows us to see how JavaScript finds the right method

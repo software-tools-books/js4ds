@@ -122,10 +122,9 @@ inside timer handler for 1500
 inside timer handler for 500
 ```
 
-Here's what the run queue looks like just before the program prints `...finishing`:
-
 {% include figure.html id="f:promises-queue" src="../../figures/promises-queue.svg" caption="Run Queue" %}
 
+[f:promises-queue](#FIG) shows what the run queue looks like just before the program prints `...finishing`.
 We can use `setTimeout` to build a generic non-blocking function:
 
 ```js
@@ -266,10 +265,10 @@ got HTTP status code 400
 We can create promises on the fly if we need them only to define behaviour on
 successful completion/exception and won't need to refer to them again later.)
 What makes this all work is that a promise is an object.
-Here's what's in memory just after this promise has been created:
 
 {% include figure.html id="f:promises-object-a" src="../../figures/promises-object-a.svg" caption="Promises as Objects (after creation)" %}
 
+[f:promises-object-a](#FIG) shows what's in memory just after this promise has been created.
 There are a lot of arrows in this diagram,
 but they all serve a purpose:
 
@@ -285,7 +284,7 @@ the program calls its `then` and `catch` methods in that order,
 giving each a callback.
 This happens *before* the callback passed to the constructor
 (i.e., the initial action) is executed,
-and leaves the promise in this state:
+and leaves the promise in the state shown in [f:promises-object-b](#FIG):
 
 {% include figure.html id="f:promises-object-b" src="../../figures/promises-object-b.svg" caption="Promises as Objects (after then and catch)" %}
 

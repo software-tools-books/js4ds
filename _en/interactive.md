@@ -398,7 +398,8 @@ We are now ready to build the overall application.
 It creates a `state` containing a counter
 and defines methods to increment or decrement the counter's value.
 Its `render` method then lays out the buttons and the current state
-using those elements:
+using those elements
+([f:interactive-objects-dom](#FIG)):
 
 ```js
 class App extends React.Component {
@@ -587,7 +588,7 @@ export {DateSubmit}
 {: title="interactive/asteroids/DateSubmit.js"}
 
 <!-- == \noindent -->
-and run it:
+and run it to get [f:interactive-asteroids-screenshot](#FIG).
 
 {% include figure.html id="f:interactive-asteroids-screenshot" src="../../figures/interactive-asteroids-screenshot.png" caption="Asteroids Application" %}
 

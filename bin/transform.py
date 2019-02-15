@@ -45,6 +45,46 @@ class Base(object):
         return [s.replace(before, after) for s in lines]
 
 
+class ExerciseAndSolution(Base):
+    '''
+    Turn <section>...<h3>exercise title</h3>...<aside>...</aside>...</section> into section and subsection markers.
+    '''
+
+    def pre(self, lines):
+        change = False
+        result = []
+        pat = re.compile(r'<h3[^>]*>(.+)</h3>')
+        for line in lines:
+            if '<section>' in line:
+                change = True
+            elif change and ('<h3' in line):
+                m = pat.search(line)
+                result.append('==exercise=={}=='.format(m.group(1)))
+                change = False
+            elif '<aside>' in line:
+                result.append('==solution==')
+            elif '</aside>' in line:
+                pass
+            elif '</section>' in line:
+                pass
+            else:
+                result.append(line)
+        return result
+
+    def post(self, lines):
+        result = []
+        pat = re.compile(r'==exercise==(.+)==')
+        for line in lines:
+            if '==exercise==' in line:
+                m = pat.search(line)
+                result.append('\\subsubsection*{{{}}}'.format(m.group(1)))
+            elif '==solution==' in line:
+                result.append('\\paragraph{Solution}\n')
+            else:
+                result.append(line)
+        return result
+
+
 class ReplaceInclusion(Base):
     '''
     HTML file inclusion marker: <div markdown="1" replacement="path-to-file.tex">...</div>
@@ -94,7 +134,7 @@ class PdfToSvg(Base):
     def post(self, lines):
         return self._regexp(lines,
                             r'/figures/(.+)\.svg}',
-                            r'/figures/{{{0}}}.pdf}}')
+                            r'/figures/{0}.pdf}}')
 
 
 class SpecialCharacters(Base):
@@ -221,12 +261,22 @@ class Figure(BaseRegexp):
     '''
     HTML figure: <figure id="f:LABEL"> <img src="PATH"> <figcaption>TEXT</figcaption> </figure>
     =>
-    LaTeX: \begin{figure}[H]\label{f:LABEL}\centering\includegraphics{PATH}\caption{TEXT}\end{figure}
+    LaTeX: \begin{figure}\label{f:LABEL}\centering\includegraphics{PATH}\caption{TEXT}\end{figure}
     '''
-    MATCH_HTML = r'<figure +id="(f:.+)"> *<img +src="(.+)"> *<figcaption>(.+)</figcaption> *</figure>'
-    WRITE_TEMP = r'<strong>==figure=={0}=={1}=={2}==</strong>'
-    MATCH_TEMP = r'==figure==([^=]+)==([^=]+)==([^=]+)=='
-    WRITE_LATEX = r'\begin{figure}[H]\label{{{0}}}\centering\includegraphics{{{1}}}\caption{{{2}}}\end{figure}'
+    MATCH_HTML = r'<figure\s+id="(f:.+)">\s*<img\s+src="(.+)"\s*/>\s*<figcaption>(.+)</figcaption>\s*</figure>'
+    WRITE_TEMP = r'==figure=={0}=={1}=={2}=='
+    MATCH_TEMP = r'==figure==(.+)==(.+)==(.+)=='
+    WRITE_LATEX = '\\begin{{figure}}\n\\centering\n\\includegraphics{{{1}}}\n\\caption{{{2}}}\n\\label{{{0}}}\n\\end{{figure}}'
+
+
+class FigureRef(BaseRegexp):
+    '''
+    References to figures.
+    '''
+    MATCH_HTML = r'<a href="#FIG">(f:[^<]+)</a>'
+    WRITE_TEMP = r'==figureref=={0}=='
+    MATCH_TEMP = r'==figureref==([^=]+)=='
+    WRITE_LATEX = r'Figure~\ref{{{0}}}'
 
 
 class Noindent(BaseRegexp):
@@ -280,9 +330,10 @@ class FrontMatter(BaseStringMatch):
 class MainMatter(BaseStringMatch):
     '''
     LaTeX: add \mainmatter command.
+    See https://tex.stackexchange.com/questions/369854/memoir-chapter-based-figure-numbering
     '''
     MATCH_TEMP = '==mainmatter=='
-    WRITE_LATEX = '\\mainmatter'
+    WRITE_LATEX = '\\mainmatter\n\\counterwithout{figure}{chapter}'
 
 
 class Midpoint(BaseStringMatch):
@@ -328,10 +379,12 @@ class Newline(BaseStringMatch):
 
 # All handlers.
 HANDLERS = [
+    ExerciseAndSolution,
     ReplaceInclusion,
     GlossaryEntry,
     CrossRef,
     Figure,
+    FigureRef,
     Noindent,
     CodeBlock,
     Citation,
