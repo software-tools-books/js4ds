@@ -1,10 +1,9 @@
 ---
-permalink: "/en/logging/"
 title: "Logging"
 ---
 
 The `console.log` function we have been using
-is a simple form of [logging](../gloss/#g:logging).
+is a simple form of [logging](#g:logging).
 We can use a library called [Winston][winston] to get more control and structure.
 By control,
 we mean that we can define levels for messages and a threshold for the logger,
@@ -26,7 +25,7 @@ or even define some custom format,
 though doing that will make everyone's life more difficult.
 
 Whatever format we choose,
-we have to create and add a [transport](../gloss/#g:logging-transport) to tell Winston where messages should go.
+we have to create and add a [transport](#g:logging-transport) to tell Winston where messages should go.
 We will use one called `Console` that sends messages to the screen;
 we can also send messages to files, to remote logging servers, and so on.
 Note that we do *not* create a variable called `console` for the transport,
@@ -73,7 +72,7 @@ app.listen(PORT, () => {
   winston.info(`Running on port ${PORT} with root ${root}`)
 })
 ```
-{: title="src/logging/logging-server.js"}
+{: title="logging/logging-server.js"}
 
 In the script above,
 we set the logging level with an extra command-line parameter.

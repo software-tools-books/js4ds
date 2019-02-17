@@ -1,5 +1,4 @@
 ---
-permalink: "/en/vis/"
 title: "Visualizing Data"
 questions:
 - "How can I visualize data on the web?"
@@ -17,7 +16,7 @@ they're well designed and your audience is sighted, that is.
 There are even more ways to visualize data in the browser
 than there are front-end toolkits for JavaScript.
 We have chosen to use [Vega-Lite][vega-lite],
-which is a [declarative](../gloss/#g:declarative) framework:
+which is a [declarative](#g:declarative) framework:
 as a user,
 you specify the data and settings,
 and let the library take care of everything else.
@@ -53,10 +52,10 @@ Our skeleton looks like this:
 </body>
 </html>
 ```
-{: title="src/vis/vega-skeleton.html" }
+{: title="vis/vega-skeleton.html" }
 
 We can now start filling in the script with the beginning of a visualization specification.
-This is a blob of [JSON](../gloss/#g:json) with certain required fields:
+This is a blob of [JSON](#g:json) with certain required fields:
 
 - `$schema` identifies the version of the spec being used (as a URL).
 - `description` is a comment to remind us what we thought we were doing when we created this.
@@ -85,7 +84,7 @@ This is a blob of [JSON](../gloss/#g:json) with certain required fields:
   </script>
 ...rest of page as before...
 ```
-{: title="src/vis/vega-values-only.html"}
+{: title="vis/vega-values-only.html"}
 
 In this case,
 we represent a two-dimensional data table as objects with explicit indices `"a"` and `"b"`.
@@ -110,7 +109,7 @@ and some options (which for now we will leave empty):
     }
     vegaEmbed("#vis", spec, {})
 ```
-{: title="src/vis/vega-values-only.html"}
+{: title="vis/vega-values-only.html"}
 
 When we open the page, though, nothing appears,
 because we haven't told Vega-Lite *how* to display the data.
@@ -139,13 +138,14 @@ Here's our updated spec:
     }
     vegaEmbed("#vis", spec, {})
 ```
-{: title="src/vis/vega-mark-encoding.html"}
+{: title="vis/vega-mark-encoding.html"}
 
 When we open the page now,
 we see a bar chart,
-and feel very proud of ourselves.
+and feel very proud of ourselves
+([f:vis-mark-encoding](#FIG)).
 
-<figure id="f:vis-mark-encoding"> <img src="../../files/vis-mark-encoding.png" /> <figcaption>Mark and Encoding</figcaption> </figure>
+{% include figure.html id="f:vis-mark-encoding" src="../../figures/vis-mark-encoding.png" caption="Mark and Encoding" %}
 
 There are also some poorly-styled links for various controls that we're not going to use.
 We can fill in the options argument to `vegaEmbed` to turn those off:
@@ -167,11 +167,12 @@ We can fill in the options argument to `vegaEmbed` to turn those off:
     }
     vegaEmbed("#vis", spec, options)
 ```
-{: title="src/vis/vega-disable-controls.html"}
+{: title="vis/vega-disable-controls.html"}
 
-We now have the visualization we wanted:
+We now have the visualization we wanted
+([f:vis-disable-controls](#FIG)).
 
-<figure id="f:vis-disable-controls"> <img src="../../files/vis-disable-controls.png" /> <figcaption>Without Controls</figcaption> </figure>
+{% include figure.html id="f:vis-disable-controls" src="../../figures/vis-disable-controls.png" caption="Without Controls" %}
 
 Vega-Lite has a *lot* of options:
 for example,
@@ -212,13 +213,15 @@ which is set to `"average"`
     }
     vegaEmbed("#vis", spec, options)
 ```
-{: title="src/vis/vega-aggregate-points.html"}
+{: title="vis/vega-aggregate-points.html"}
 
-<figure id="f:vis-aggregate-points"> <img src="../../files/vis-aggregate-points.png" /> <figcaption>Aggregating and Using Points</figcaption> </figure>
+[f:vis-aggregate-points](#FIG) shows the result.
+
+{% include figure.html id="f:vis-aggregate-points" src="../../figures/vis-aggregate-points.png" caption="Aggregating and Using Points" %}
 
 ## Local Installation {#s:vis-vega-local}
 
-Loading Vega from a [Content Delivery Network](../gloss/#g:cdn) (CDN) reduces the load on our server,
+Loading Vega from a [Content Delivery Network](#g:cdn) (CDN) reduces the load on our server,
 but prevents offline development.
 Since we want to be able to work when we're disconnected,
 let's load from local files.
@@ -238,7 +241,7 @@ Step 1 is to slim down our HTML file so that it only loads our application:
   </body>
 </html>
 ```
-{: title="src/vis/react-01/index.html"}
+{: title="vis/react-01/index.html"}
 
 In step 2,
 we `npm install vega vega-lite vega-embed` and `require('vega-embed')` in `app.js`:
@@ -256,7 +259,7 @@ const options = {
 
 vegaEmbed("#vis", spec, options)
 ```
-{: title="src/vis/react-01/app.js"}
+{: title="vis/react-01/app.js"}
 
 We launch this with Parcel via our saved `npm run` command:
 
@@ -290,7 +293,7 @@ const vegaEmbed = require('vega-embed').default
 
 // ...as before...
 ```
-{: title="src/vis/react-02/app.js"}
+{: title="vis/react-02/app.js"}
 
 The third option is to use `import` where we can
 and fix the `require` statements in the server-side code when Node is upgraded.
@@ -302,7 +305,7 @@ import vegaEmbed from 'vega-embed'
 
 // ...as before...
 ```
-{: title="src/vis/react-03/app.js"}
+{: title="vis/react-03/app.js"}
 
 If we do this,
 the bundled file is 74.5K lines of JavaScript,

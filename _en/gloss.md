@@ -1,5 +1,4 @@
 ---
-permalink: "/en/gloss/"
 title: "Glossary"
 ---
 

@@ -4,151 +4,189 @@ $(warning Please set 'lang' with 'lang=en' or similar.)
 lang=en
 endif
 
-# Project stem.
-STEM=js-vs-ds
+# Pick up project-specific setting for STEM.
+include site.mk
 
 # Tools.
 JEKYLL=jekyll
 PANDOC=pandoc
 LATEX=pdflatex
+BIBTEX=bibtex
 PYTHON=python
 
 # Language-dependent settings.
+CONFIG_YML=_config.yml
 DIR_MD=_${lang}
 PAGES_MD=$(wildcard ${DIR_MD}/*.md)
+BIB_MD=${DIR_MD}/bib.md
+TOC_JSON=_data/${lang}_toc.json
 DIR_HTML=_site/${lang}
 PAGES_HTML=${DIR_HTML}/index.html $(patsubst ${DIR_MD}/%.md,${DIR_HTML}/%/index.html,$(filter-out ${DIR_MD}/index.md,${PAGES_MD}))
 DIR_TEX=tex/${lang}
+BIB_TEX=${DIR_TEX}/book.bib
 ALL_TEX=${DIR_TEX}/all.tex
-BOOK_PDF=${DIR_TEX}/js-vs-ds.pdf
+BOOK_PDF=${DIR_TEX}/${STEM}.pdf
 
 # Controls
 all : commands
 
-## commands    : show all commands.
+## commands       : show all commands.
 commands :
-	@grep -h -E '^##' Makefile | sed -e 's/## //g'
+	@grep -h -E '^##' ${MAKEFILE_LIST} | sed -e 's/## //g'
 
-## serve       : run a local server.
-serve :
+## serve          : run a local server.
+serve : ${CONFIG_YML} ${TOC_JSON}
 	${JEKYLL} serve -I
 
-## site        : build files but do not run a server.
-site :
+## site           : build files but do not run a server.
+site : ${CONFIG_YML} ${TOC_JSON}
 	${JEKYLL} build
 
-## release     : build a release (all-in-one HTML page + PDF).
-release :
-	@make lang=${lang} site
-	@make lang=${lang} allhtml
-	@make lang=${lang} book
-
-## pdf         : generate PDF from LaTeX source.
+## pdf            : generate PDF from LaTeX source.
 pdf : ${BOOK_PDF}
 
-${BOOK_PDF} : ${ALL_TEX}
+## bib            : regenerate the Markdown bibliography from the BibTeX file.
+bib : ${BIB_MD}
+
+## config         : regenerate Jekyll configuration from .config.yml and site.yml
+config : ${CONFIG_YML}
+
+## toc            : regenerate the table of contents JSON file.
+toc : ${TOC_JSON}
+
+# ----------------------------------------
+
+# Regenerate PDF once 'all.tex' has been created.
+${BOOK_PDF} : ${ALL_TEX} tex/settings.tex ${DIR_TEX}/book.tex ${BIB_TEX}
 	cd ${DIR_TEX} \
-	&& ${LATEX} ${STEM} \
-	&& ${LATEX} ${STEM}
+	&& ${LATEX} --shell-escape -jobname=${STEM} book \
+	&& ${BIBTEX} ${STEM} \
+	&& ${LATEX} --shell-escape -jobname=${STEM} book \
+	&& ${LATEX} --shell-escape -jobname=${STEM} book
 
 # Create the unified LaTeX file (separate target to simplify testing).
-# + 'sed' to pull glossary entry IDs out into '==g==' blocks (because Pandoc throws them away).
-# + 'sed' to pull bibliography entry IDs out into '==b==' blocks (because Pandoc throws them away).
-# + 'sed' to stash figure information (because Pandoc...).
-# + 'sed' to un-comment embedded LaTeX commands '<!-- == command -->' before Pandoc erases them.
-# + 'sed' to insert text signalling language type of code listing.
-# ! Pandoc
-# - 'tail' to strip out YAML header.
-# - 'sed' to add language type flag to code listing environment.
-# - 'sed' to restore embedded LaTeX commands (need to strip out the newline Pandoc introduces after the command).
-# - 'sed' to restore figures.
-# - 'sed' to turn SVG inclusions into PDF inclusions.
-# - 'sed' to convert '====' blocks into LaTeX labels.
-# - 'python' to convert bibliography citations (because 'sed' can't handle multiple keys).
-# - 'sed' to suppress indentation inside quotes (so that callout boxes format correctly).
-# - 'sed' to bump section headings back up.
-# - 'sed' (twice) to convert 'verbatim' environments
-${ALL_TEX} : ${PAGES_HTML} Makefile
-	node js/stitch.js _config.yml _site ${lang} \
-	| sed -E -e 's!<strong id="(g:[^"]+)">([^<]+)</strong>!<strong>==g==\1==g==\2==g==</strong>!' \
-	| sed -E -e 's!<strong id="(b:[^"]+)">([^<]+)</strong>!<strong>==b==\1==b==\2==b==</strong>!' \
-	| sed -E -e 's!<figure +id="(.+)"> *<img +src="(.+)"> *<figcaption>(.+)</figcaption> *</figure>!==f==\1==\2==\3==!' \
-	| sed -E -e 's/<!-- +== +(.+) +-->/==c==\1==/' \
-	| sed -E -e 's!(<div.+class="language-([^ ]+))!==l==\2==\1!' \
+${ALL_TEX} : ${PAGES_HTML} bin/get_body.py bin/transform.py ${TOC_JSON}
+	${PYTHON} bin/get_body.py _config.yml ${DIR_HTML} \
+	| ${PYTHON} bin/transform.py --pre ${lang} _includes \
 	| ${PANDOC} --wrap=preserve -f html -t latex -o - \
-	| tail -n +6 \
-	| sed -E -e '/==l==.+==/{N;N;s/\n/ /g;}' \
-	| sed -E -e 's!==l==(css)== *\\begin\{verbatim\}!\\begin{lstlisting}!' \
-	| sed -E -e 's!==l==(text)== *\\begin\{verbatim\}!\\begin{lstlisting}[backgroundcolor=\\color{verylightgray}]!' \
-	| sed -E -e 's!==l==([^=]+)== *\\begin\{verbatim\}!\\begin{lstlisting}[language=\1]!' \
-	| sed -E -e 's!\\begin{verbatim}!\\begin{lstlisting}!' \
-	| sed -E -e 's!\\end{verbatim}!\\end{lstlisting}!' \
-	| sed -E -e '/==c==.+==/{N;s/\n/ /;}' -e 's!==c==(.+)==!\1!' -e s'!\\textbackslash{}!\\!' \
-	| sed -E -e 's!==f==([^=]+)==([^=]+)==([^=]+)==!\\begin{figure}[H]\\label{\1}\\centering\\includegraphics{\2}\\caption{\3}\\end{figure}!' \
-	| sed -E -e 's!\.svg}!\.pdf}!' \
-	| sed -E -e 's!==b==([^=]+)==b==([^=]+)==b==!\\hypertarget{\1}{\2}\\label{\1}!' \
-	| sed -E -e 's!==g==([^=]+)==g==([^=]+)==g==!\\hypertarget{\1}{\2}\\label{\1}!' \
-	| ${PYTHON} bin/cites.py \
-	| sed -E -e 's!\\begin{quote}!\\begin{quote}\\setlength{\\parindent}{0pt}!' \
-	| sed -E -e 's!\\section!\\chapter!' \
-	| sed -E -e 's!\\subsection!\\section!' \
-	| sed -E -e 's!\\subsubsection!\\subsection!' \
-	> ${DIR_TEX}/all.tex
+	| ${PYTHON} bin/transform.py --post ${lang} _includes \
+	> ${ALL_TEX}
 
-${PAGES_HTML} : ${PAGES_MD}
+# Pre-process (for debugging purposes).
+test-pre:
+	${PYTHON} bin/get_body.py _config.yml ${DIR_HTML} \
+	| ${PYTHON} bin/transform.py --pre ${TOC_JSON} _includes
+
+# Pre-process with Pandoc (for debugging purposes).
+test-pandoc:
+	${PYTHON} bin/get_body.py _config.yml ${DIR_HTML} \
+	| ${PYTHON} bin/transform.py --pre ${TOC_JSON} _includes \
+	| ${PANDOC} --wrap=preserve -f html -t latex -o -
+
+# Create all the HTML pages once the Markdown files are up to date.
+${PAGES_HTML} : ${PAGES_MD} ${BIB_MD} ${CONFIG_YML} ${TOC_JSON}
 	${JEKYLL} build
 
-## ----------------------------------------
+# Create the Jekyll configuration file.
+${CONFIG_YML}: site.yml .config.yml
+	cat $^ > $@
 
-## check       : check everything.
-check :
-	@echo "Characters"
-	@make lang=${lang} checkchars
-	@echo
-	@echo "Glossary"
-	@make lang=${lang} checkgloss
-	@echo
-	@echo "Table of Contents"
-	@make lang=${lang} checktoc
+# Create the bibliography Markdown file from the BibTeX file.
+${BIB_MD} : ${BIB_TEX} bin/bib2md.py
+	bin/bib2md.py ${lang} < ${DIR_TEX}/book.bib > ${DIR_MD}/bib.md
 
-## checkchars  : look for non-ASCII characters.
-checkchars :
-	bin/checkchars.py ${PAGES_MD}
+# Create the JSON table of contents.
+${TOC_JSON} : ${PAGES_MD} bin/make_toc.py
+	bin/make_toc.py _config.yml ${DIR_MD} > ${TOC_JSON}
 
-## checkgloss  : check that all glossary entries are defined and used.
-checkgloss :
-	bin/checkgloss.py ${PAGES_MD}
-
-## checktoc    : check consistency of tables of contents.
-checktoc :
-	bin/checktoc.py _config.yml ${PAGES_MD}
+# Dependencies with HTML file inclusions.
+${DIR_HTML}/%/index.html : $(wildcard _includes/%/*.*)
 
 ## ----------------------------------------
 
-## listinc     : list file inclusions.
-listinc :
-	for i in $$(find src -name '*.js') $$(find ex -name '*.js'); do echo $$(grep $$i _en/*.md | wc -l) $$i; done | sort -n -r
+## check          : check everything.
+check : ${CONFIG_YML} ${BIB_MD} ${TOC_JSON}
+	@bin/check.py ${lang} all
 
-## spelling    : compare words against saved list.
+## check_anchors  : list all incorrectly-formatted H2 anchors.
+check_anchors : ${CONFIG_YML}
+	@bin/check.py ${lang} anchors
+
+## check_chars     : look for non-ASCII characters.
+check_chars :
+	@bin/check.py ${lang} chars
+
+## check_cites    : list all missing or unused bibliography entries.
+check_cites : ${CONFIG_YML} ${BIB_MD}
+	@bin/check.py ${lang} cites
+
+## check_crossref : find all missing cross-references.
+check_crossref : ${CONFIG_YML} ${TOC_JSON}
+	@bin/check.py ${lang} crossref
+
+## check_figref   : check all figure cross-references.
+check_figref : ${CONFIG_YML} ${TOC_JSON}
+	@bin/check.py ${lang} figref
+
+## check_figures  : list all missing or unused figures.
+check_figures : ${CONFIG_YML}
+	@bin/check.py ${lang} figures
+
+## check_gloss    : check that all glossary entries are defined and used.
+check_gloss : ${CONFIG_YML}
+	@bin/check.py ${lang} gloss
+
+## check_langs    : check that all fenced code blocks have language types.
+check_langs : ${CONFIG_YML}
+	@bin/check.py ${lang} langs
+
+## check_links    : check that all external links are defined and used.
+check_links : ${CONFIG_YML}
+	@bin/check.py ${lang} links
+
+## check_src      : check source file inclusion references.
+check_src : ${CONFIG_YML}
+	@bin/check.py ${lang} src
+
+## check_toc      : check consistency of tables of contents.
+check_toc : ${CONFIG_YML}
+	@bin/check.py ${lang} toc
+
+## stats          : report summary statistics of completed chapters.
+stats : ${CONFIG_YML}
+	@bin/stats.py ${lang}
+
+## ----------------------------------------
+
+## spelling       : compare words against saved list.
 spelling :
-	cat ${PAGES_MD} | aspell list | sort | uniq | diff - .words
+	@cat ${PAGES_MD} | bin/uncode.py | aspell list | sort | uniq | comm -2 -3 - .words
+
+## undone         : which files have not yet been done?
+undone :
+	@grep -l 'undone: true' _en/*.md
 
 ## ----------------------------------------
 
-## clean       : clean up junk files.
+## clean          : clean up junk files.
 clean :
-	@rm -r -f _site dist bin/__pycache__
-	@rm -r -f tex/*/all.tex tex/*/*.aux tex/*/*.bbl tex/*/*.blg tex/*/*.log tex/*/*.out tex/*/*.toc
+	@rm -r -f _config.yml _site dist
 	@find . -name '*~' -delete
-	@find . -name .DS_Store -prune -delete
+	@find . -name __pycache__ -prune -exec rm -r "{}" \;
+	@find . -name '_minted-*' -prune -exec rm -r "{}" \;
+	@rm -r -f tex/*/all.tex tex/*/*.aux tex/*/*.bbl tex/*/*.blg tex/*/*.log tex/*/*.out tex/*/*.toc
+	@find . -name .DS_Store -prune -exec rm -r "{}" \;
 
-## settings    : show macro values.
+## settings       : show macro values.
 settings :
+	@echo "CONFIG_YML=${CONFIG_YML}"
 	@echo "JEKYLL=${JEKYLL}"
 	@echo "DIR_MD=${DIR_MD}"
 	@echo "PAGES_MD=${PAGES_MD}"
+	@echo "BIB_MD=${BIB_MD}"
 	@echo "DIR_HTML=${DIR_HTML}"
 	@echo "PAGES_HTML=${PAGES_HTML}"
 	@echo "DIR_TEX=${DIR_TEX}"
+	@echo "BIB_TEX=${BIB_TEX}"
 	@echo "ALL_TEX=${ALL_TEX}"
 	@echo "BOOK_PDF=${BOOK_PDF}"

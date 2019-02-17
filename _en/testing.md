@@ -1,5 +1,4 @@
 ---
-permalink: "/en/testing/"
 title: "Testing"
 questions:
 - "How should software components be tested?"
@@ -25,14 +24,14 @@ because we have been writing code without testing it.
 In this lesson we will redeem ourselves (partially)
 by correcting that (also partially).
 
-JavaScript uses the same pattern for [unit testing](../gloss/#g:unit-test) as most other modern languages.
+JavaScript uses the same pattern for [unit testing](#g:unit-test) as most other modern languages.
 Each test is written as a function,
 and each of those functions tests one particular aspect of the code.
-A standalone program called a [test runner](../gloss/#g:test-runner)
+A standalone program called a [test runner](#g:test-runner)
 finds test functions,
 runs them,
 and reports the results.
-Any setup code that needs to be run before each test to create a [fixture](../gloss/#g:fixture)
+Any setup code that needs to be run before each test to create a [fixture](#g:fixture)
 is put in a function of its own.
 Similarly (but less frequently),
 if some teardown needs to be done *after* each test,
@@ -44,14 +43,14 @@ Each unit test can have one of three results:
 - fail: the system being tested didn't do what was expected
 - error: something went wrong with the test itself
 
-We can combine tests into [test suites](../gloss/#g:test-suite)
+We can combine tests into [test suites](#g:test-suite)
 (and test suites into larger suites, and so on)
 so that we can more easily run related sets of tests.
 This makes testing during development faster,
 which in turn makes it more likely that we'll actually do it.
 
 Finally,
-we write the tests themselves using [assertions](../gloss/#g:assertion):
+we write the tests themselves using [assertions](#g:assertion):
 statements that check whether or not some condition holds
 and generate an error if it doesn't.
 Node provides an `assert` library with some useful functions for asserting various things;
@@ -77,7 +76,7 @@ describe('first test', () => {
   })
 })
 ```
-{: title="src/testing/hello-test.js"}
+{: title="testing/hello-test.js"}
 
 As this example shows,
 `describe`'s arguments are an explanatory string and a callback function.
@@ -121,7 +120,6 @@ After we add this:
   }
 }
 ```
-{: title="package.json"}
 
 <!-- == \noindent -->
 to `package.json`, our command becomes:
@@ -150,7 +148,7 @@ const server = require('./server')
 const PORT = 3418
 server.listen(PORT, () => { console.log(`listening on port ${PORT}...`) })
 ```
-{: title="src/testing/standalone.js"}
+{: title="testing/standalone.js"}
 
 And here is the application code we've extracted into `server.js`
 so that we can test it:
@@ -170,7 +168,7 @@ app.get('/', (req, res, next) => {
 
 module.exports = app
 ```
-{: title="src/testing/server.js"}
+{: title="testing/server.js"}
 
 Before going any further,
 we can check that we haven't broken anything by running:
@@ -211,7 +209,7 @@ describe('server', () => {
   })
 })
 ```
-{: title="src/testing/request-test.js"}
+{: title="testing/request-test.js"}
 
 Going through this line by line:
 
@@ -220,7 +218,7 @@ Going through this line by line:
 3. `.expect(200)` checks that the return code is 200 (OK).
 4. `.expect('Content-Type', /html/)`
    checks the content type in the returned value against
-   a [regular expression](../gloss/#g:regular-expression).
+   a [regular expression](#g:regular-expression).
 5. `.end` is called when the whole response has been received,
    i.e., when we can start looking at the content of the page or data
    that the server has sent.
@@ -275,7 +273,7 @@ describe('server', () => {
   })
 })
 ```
-{: title="src/testing/request-test.js"}
+{: title="testing/request-test.js"}
 ```text
   server
     + should return HTML with expected title (42ms)
@@ -330,7 +328,7 @@ describe('server', () => {
   })
 })
 ```
-{: title="src/testing/dom-test.js"}
+{: title="testing/dom-test.js"}
 ```text
   server
     + should have the correct headings (67ms)

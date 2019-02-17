@@ -1,5 +1,4 @@
 ---
-permalink: "/en/htmlcss/"
 title: "HTML and CSS"
 questions:
 - "Where did HTML come from?"
@@ -33,14 +32,14 @@ we need to understand a little of both.
 
 ## Formatting {#s:htmlcss-formatting}
 
-An HTML [document](../gloss/#g:document) contains [elements](../gloss/#g:element) and text
+An HTML [document](#g:document) contains [elements](#g:element) and text
 (and possibly other things that we will ignore for now).
-Elements are shown using [tags](../gloss/#g:tag):
+Elements are shown using [tags](#g:tag):
 an opening tag `<tagname>` shows where the element begins,
 and a corresponding closing tag `</tagname>` (with a leading slash) shows where it ends.
 If there's nothing between the two, we can write `<tagname/>` (with a trailing slash).
 
-A document's elements must form a [tree](../gloss/#g:tree),
+A document's elements must form a [tree](#g:tree),
 i.e.,
 they must be strictly nested.
 This means that if Y starts inside X,
@@ -48,7 +47,7 @@ Y must end before X ends,
 so `<X>...<Y>...</Y></X>` is legal,
 but `<X>...<Y>...</X></Y>` is not.
 Finally,
-every document should have a single [root element](../gloss/#g:root-element) that encloses everything else,
+every document should have a single [root element](#g:root-element) that encloses everything else,
 although browsers aren't strict about enforcing this.
 In fact,
 most browsers are pretty relaxed about enforcing any kind of rules at all,
@@ -59,7 +58,7 @@ since most people don't obey them anyway.
 The text in an HTML page is normal printable text.
 However,
 since `<` and `>` are used to show where tags start and end,
-we must use [escape sequences](../gloss/#g:escape-sequence) to represent them,
+we must use [escape sequences](#g:escape-sequence) to represent them,
 just as we use `\"` to represented a literal double-quote character
 inside a double-quoted string in JavaScript.
 In HTML,
@@ -116,7 +115,7 @@ Here's an empty HTML page with the structure described above:
   </body>
 </html>
 ```
-{: title="src/htmlcss/empty-page.html"}
+{: title="htmlcss/empty-page.html"}
 
 Nothing shows up if we open this in a browser,
 so let's add a little content:
@@ -136,7 +135,7 @@ so let's add a little content:
   </body>
 </html>
 ```
-{: title="src/htmlcss/first-page.html"}
+{: title="htmlcss/first-page.html"}
 
 - The `title` element inside `head` gives the page a title.
   This is displayed in the browser bar when the page is open,
@@ -154,7 +153,7 @@ so let's add a little content:
 
 ## Attributes {#s:htmlcss-attributes}
 
-Elements can be customized by giving them [attributes](../gloss/#g:attribute),
+Elements can be customized by giving them [attributes](#g:attribute),
 which are written as `name="value"` pairs inside the element's opening tag.
 For example:
 
@@ -283,7 +282,7 @@ or `th` (for "table heading").
   <tr> <td>Sodium</td>   <td>Argon</td>     </tr>
 </table>
 ```
-{: title="src/htmlcss/table.html"}
+{: title="htmlcss/table.html"}
 
 <table>
   <tr> <th>Alkali</th>   <th>Noble Gas</th> </tr>
@@ -314,7 +313,7 @@ and we can use `<br/>` to force a line break in text
 <br/>
 <a href="../index.html">home page (relative path)</a>
 ```
-{: title="src/htmlcss/links.html"}
+{: title="htmlcss/links.html"}
 
 This appears as:
 
@@ -330,7 +329,7 @@ with the usual clickability.
 ## Images {#s:htmlcss-images}
 
 Images can be stored inside HTML pages in two ways:
-by using SVG (which we will discuss [later](../vis/)
+by using SVG (which we will discuss in [s:vis](#REF))
 or by encoding the image as text and including that text in the body of the page,
 which is clever,
 but makes the source of the pages very hard to read.
@@ -349,7 +348,7 @@ and an `alt` attribute with some descriptive text to aid accessibility and searc
 <img src="https://github.com/software-tools-in-javascript/js-vs-rc/blob/master/src/htmlcss/html5.png"
      title="HTML5 Logo" alt="Display the HTML5 logo using a URL" />
 ```
-{: title="src/htmlcss/images.html"}
+{: title="htmlcss/images.html"}
 
 Two things are worth noting here:
 
@@ -360,12 +359,12 @@ Two things are worth noting here:
    Browsers will understand this,
    but some software packages will complain.
 2. If an image file is referred to using a path rather than a URL,
-   that path can be either [relative](../gloss/#g:relative-path) or [absolute](../gloss/#g:absolute-path).
+   that path can be either [relative](#g:relative-path) or [absolute](#g:absolute-path).
    If it's a relative path,
    it's interpreted starting from where the web page is located;
    if it's an absolute path,
-   it's interpreted relative to wherever the web browser thinks the [root directory](../gloss/#g:root-directory) of the filesystem is.
-   As we will see [later](../server/),
+   it's interpreted relative to wherever the web browser thinks the [root directory](#g:root-directory) of the filesystem is.
+   As we will see in [s:server](#REF),
    this can change from one installation to the next,
    so you should always try to use relative paths,
    except where you can't.
@@ -386,10 +385,10 @@ When HTML first appeared, people styled elements by setting their attributes:
   </body>
 </html>
 ```
-{: title="src/htmlcss/style-with-attributes.html"}
+{: title="htmlcss/style-with-attributes.html"}
 
 Many still do,
-but a better way is to use [Cascading Style Sheets](../gloss/#g:css) (CSS).
+but a better way is to use [Cascading Style Sheets](#g:css) (CSS).
 These allow us to define a style once and use it many times,
 which makes it much easier to maintain consistency.
 (I was going to say "...and keep pages readable",
@@ -411,7 +410,7 @@ Here's a page that uses CSS instead of direct styling:
   </body>
 </html>
 ```
-{: title="src/htmlcss/style-with-css.html"}
+{: title="htmlcss/style-with-css.html"}
 
 The `head` contains a link to a CSS file stored in the same directory as the page itself;
 we could use a URL here instead of a relative path,
@@ -432,7 +431,7 @@ span.keyword {
   color: coral;
 }
 ```
-{: title="src/htmlcss/simple-style.css"}
+{: title="htmlcss/simple-style.css"}
 
 Each entry has the form `tag.class` followed by a group of properties inside curly braces,
 and each property is a key-value pair.
@@ -470,7 +469,7 @@ likely to work often with stylesheets read (and consider bookmarking)
 
 One other thing CSS can do is match specific elements.
 We can label particular elements uniquely within a page using the `id` attribute,
-then refer to those elements using `#name` as a [selector](../gloss/#g:selector).
+then refer to those elements using `#name` as a [selector](#g:selector).
 For example,
 if we create a page that gives two spans unique IDs:
 
@@ -489,7 +488,7 @@ if we create a page that gives two spans unique IDs:
   </body>
 </html>
 ```
-{: title="src/htmlcss/selectors.html"}
+{: title="htmlcss/selectors.html"}
 
 <!-- == \noindent -->
 then we can style those spans like this:
@@ -502,7 +501,7 @@ then we can style those spans like this:
   text-decoration: overline blue;
 }
 ```
-{: title="src/htmlcss/selector-style.css"}
+{: title="htmlcss/selector-style.css"}
 
 > **Internal Links**
 >
@@ -559,14 +558,14 @@ to create a two-column layout with a banner at the top:
   </body>
 </html>
 ```
-{: title="src/htmlcss/bootstrap.html"}
+{: title="htmlcss/bootstrap.html"}
 
 The page opens by loading Bootstrap from the web;
 we can also download `bootstrap.min.css` and refer to it with a local path.
-(The `.min` in the file's name signals that the file has been [minimized](../gloss/#g:minimization)
+(The `.min` in the file's name signals that the file has been [minimized](#g:minimization)
 so that it will load more quickly.)
 
-The page then uses a `style` element to create an [internal style sheet](../gloss/#g:internal-style-sheet)
+The page then uses a `style` element to create an [internal style sheet](#g:internal-style-sheet)
 to put a solid one-pixel border around every `div`
 so that we can see the regions of the page more clearly.
 Defining styles in the page header is generally a bad idea,
@@ -583,7 +582,7 @@ Inside that container is a row with two columns,
 one 4/12 as wide as the row and the other 8/12 as wide.
 (Bootstrap uses a 12-column system because 12 has lots of divisors.)
 
-Bootstrap is [responsive](../gloss/#g:responsive-design):
+Bootstrap is [responsive](#g:responsive-design):
 elements change size as the page grows narrower,
 and are then stacked when the screen becomes too small to display them side by side.
 
@@ -591,7 +590,7 @@ We've left out many other aspects of HTML and CSS as well,
 such as figure captions,
 multi-column table cells,
 and why it's so hard to center text vertically within a `div`.
-One thing we will return to [later](../interactive/) is
+One thing we will return to in [s:interactive](#REF) is
 how to include interactive elements like buttons and forms in a page.
 Handling those is part of why JavaScript was invented in the first place,
 but we need more experience before tackling them.
@@ -638,7 +637,7 @@ Why do web developers still use FORTRAN-style names in the 21st Century?
 ### Color
 
 HTML and CSS define names for a small number of colors.
-All other colors must be specified using [RGB](../gloss/#g:rgb) values.
+All other colors must be specified using [RGB](#g:rgb) values.
 Write a small JavaScript program that creates an HTML page
 that displays the word `color` in 100 different randomly-generated colors.
 Compare this to the color scheme used in your departmental website.

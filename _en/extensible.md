@@ -1,9 +1,8 @@
 ---
-permalink: "/en/extensible/"
 title: "Extensible Servers"
 ---
 
-Suppose we want to extend our [server](../server/) in some way.
+Suppose we want to extend the server from [s:server](#REF) in some way.
 We could edit the source file and add some more URL handlers,
 or we could have it load JavaScript dynamically and run that.
 
@@ -31,7 +30,7 @@ app.use((req, res, next) => {
 
 app.listen(PORT, () => { console.log(`listening on port ${PORT}...`) })
 ```
-{: title="src/extensible/dynamic.js"}
+{: title="extensible/dynamic.js"}
 
 This simple server checks whether the path specified in the URL ends with `.js`.
 If so,
@@ -51,7 +50,7 @@ module.exports = {
   page: page
 }
 ```
-{: title="src/extensible/plugin.js"}
+{: title="extensible/plugin.js"}
 
 If we run the server:
 
@@ -65,7 +64,7 @@ we get back a page containing the title "Plugin Content".
 
 This is an example of a very powerful technique.
 Rather than building everything into one program,
-we can provide a [protocol](../gloss/#g:protocol) for plugins
+we can provide a [protocol](#g:protocol) for plugins
 so that people can add new functionality without rewriting what's already there.
-Each plugin must have an [entry point](../gloss/#g:entry-point) like the function `page`
+Each plugin must have an [entry point](#g:entry-point) like the function `page`
 so that the framework knows where to start.

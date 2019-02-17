@@ -31,8 +31,8 @@ div.listblock p ~ ul {
 /* Outlines for objectives, contents, and key points. */
 div.listblock {
     border-style: solid;
-    border-width: 1px;
-    border-color: #000000;
+    border-width: 2px;
+    border-color: #C0C0C0;
     padding-left: 0.5em;
     padding-top: 0.5em;
     margin-bottom: 1em;
@@ -43,11 +43,42 @@ div.listblock h2 {
     font-size: 1.5em;
 }
 
+/* Add a bit of space above and to the left of exercises. */
+section {
+    border-top-left-radius: 25px;
+    border-bottom-left-radius: 25px;
+    padding-bottom: 0.5em;
+    margin-top: 1em;
+    border-left: solid;
+    padding-left: 1em;
+    border-width: 5px;
+    border-color: #C0C0C0;
+    margin-bottom: 1em;
+}
+
+/* Highlight solutions a little. */
+aside {
+    margin-top: 0.5em;
+    background-color: #FAFAFA;
+}
+
+/* Clickable link for solutions. */
+span.solution {
+    padding-left: 5px;
+    padding-right: 5px;
+    font-weight: bold;
+    border-style: solid;
+    border-width: 1px;
+    cursor: pointer;
+}
+
 /* Outlines for code samples. */
 pre.highlight {
     border-style: solid;
     border-width: 2px;
+    border-color: #C0C0C0;
     padding: 0.5em;
+    background-color: #F8F8F8;
 }
 
 /* Make inline code darker than Bootstrap default. */
@@ -55,9 +86,14 @@ code.highlighter-rouge {
     color: #a06060;
 }
 
-/* Make output distinct. */
-div.language-text {
+/* Disclaimer. */
+div.disclaimer {
+    font-style: italic;
     font-weight: bold;
+    border-style: solid;
+    border-width: 2px;
+    padding: 0.5em;
+    margin-bottom: 0.5em;
 }
 
 /* Make keyboard items a little less stark */
@@ -71,7 +107,7 @@ a {
 }
 
 /* Style glossary reference links. */
-a[href^="#g:"] {
+a.gloss {
     font-weight: bold;
 }
 
@@ -91,8 +127,8 @@ ol.appendix {
 /* Center figures. */
 figure {
     border-style: solid;
-    border-width: 1px;
-    border-color: #808080;
+    border-width: 2px;
+    border-color: #C0C0C0;
     padding: 2px;
     text-align: center;
 }
@@ -104,9 +140,14 @@ figcaption {
 
 /* Mark quotations. */
 blockquote {
-    padding-left: 2em;
-    padding-right: 2em;
-    font-style: italic;
+    border-radius: 25px;
+    padding: 1em;
+    padding-bottom: 1px;
+    margin-top: 0.5em;
+    background-color: #F0F0F0;
+    border-style: solid;
+    border-width: 1px;
+    border-color: #C0C0C0;
 }
 
 /* Make h3 more distinct from h2. */
