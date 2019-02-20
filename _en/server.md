@@ -85,20 +85,24 @@ the response also includes a status code to indicate what happened:
 200 for OK, 404 for "page not found", and so on.
 Some of the more common are:
 
-| Code | Name                  | Meaning                                                              |
-| ---- | --------------------- | -------------------------------------------------------------------- |
-| 100  | Continue              | The client should continue sending data                              |
-| 200  | OK                    | The request has succeeded                                            |
-| 204  | No Content            | The server completed the request but doesn't need to return any data |
-| 301  | Moved Permanently     | The requested resource has moved to a new permanent location         |
-| 307  | Temporary Redirect    | The requested resource is temporarily at a different location        |
-| 400  | Bad Request           | The request is badly formatted                                       |
-| 401  | Unauthorized          | The request requires authentication                                  |
-| 404  | Not Found             | The requested resource could not be found                            |
-| 408  | Timeout               | The server gave up waiting for the client                            |
-| 418  | I'm a Teapot          | Originally an April Fool's joke, now used to identify devices        |
-| 500  | Internal Server Error | An error occurred in the server while trying to handle the request   |
-| 601  | Connection Timed Out  | The server did not respond before the connection timed out           |
+<div markdown="1" replacement="server/statuscodes.tex">
+
+| Code | Name                  | Meaning                                                    |
+| ---- | --------------------- | -----------------------------------------------------------|
+| 100  | Continue              | The client should continue sending data                    |
+| 200  | OK                    | The request has succeeded                                  |
+| 204  | No Content            | The server completed the request but there is no data      |
+| 301  | Moved Permanently     | The resource has moved to a new permanent location         |
+| 307  | Temporary Redirect    | The resource is temporarily at a different location        |
+| 400  | Bad Request           | The request is badly formatted                             |
+| 401  | Unauthorized          | The request requires authentication                        |
+| 404  | Not Found             | The requested resource could not be found                  |
+| 408  | Timeout               | The server gave up waiting for the client                  |
+| 418  | I'm a Teapot          | An April Fool's joke                                       |
+| 500  | Internal Server Error | A server error occurred while handling the request         |
+| 601  | Connection Timed Out  | The server did not respond before the connection timed out |
+
+</div>
 
 One final thing we need to understand is the structure and interpretation of URLs.
 This one:
@@ -107,7 +111,7 @@ This one:
 http://example.org:1234/some/path?value=deferred&limit=200
 ```
 
-<!-- == \noindent -->
+<!-- == noindent -->
 has five parts:
 
 - The protocol `http`, which specifies what rules are going to be used to exchange data.
@@ -228,7 +232,9 @@ app.get('/asteroids', (req, res, next) => {
 
 // Nothing else worked.
 app.use((req, res, next) => {
-  res.status(404).send(`<html><body><h1>ERROR</h1><p>URL "${req.url}" not found</p></body></html>`)
+  res
+    .status(404)
+    .send(`<html><body><p>ERROR: ${req.url} not found</p></body></html>`)
 })
 
 app.listen(PORT, () => { console.log('listening...') })
@@ -307,15 +313,14 @@ and we run the server as:
 $ node serve-pages.js ./web-dir
 ```
 
-<!-- == \noindent -->
+<!-- == noindent -->
 we can then ask for `http://localhost:3418/title.html`
 and get the content of `web-dir/title.html`.
 Notice that the directory `./web-dir` doesn't appear in the URL:
 our server interprets all paths as if the directory we've given it
 is the root of the filesystem.
 
-If we ask for a page that doesn't exist,
-such as `http://localhost:3418/missing.html`,
+If we ask for a nonexistent page like `http://localhost:3418/missing.html`
 we get this:
 
 ```text
@@ -400,7 +405,13 @@ Modify the callback given to `app.use` so that it uses `fs.readFile` with a call
 
 ### Using Query Parameters
 
-URLs can contain query parameters in the form `http://site.edu?first=1&second=b`.
+URLs can contain query parameters in the form:
+
+```text
+http://site.edu?first=123&second=beta
+```
+
+<!-- == noindent -->
 Read the online documentation for [Express][express] to find out
 how to access them in a server,
 and then write a server to do simple arithmetic:

@@ -13,5 +13,5 @@ const statPair = (filename) => {
 
 glob(`${srcDir}/**/*.txt`)
   .then(files => Promise.all(files.map(f => statPair(f))))
-  .then(files => console.log('glob + Promise.all(files.map/statPair)', files))
+  .then(files => console.log('glob + Promise.all(...)', files))
   .catch(error => console.error(error))

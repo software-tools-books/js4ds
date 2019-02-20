@@ -121,7 +121,7 @@ After we add this:
 }
 ```
 
-<!-- == \noindent -->
+<!-- == noindent -->
 to `package.json`, our command becomes:
 
 ```shell
@@ -146,7 +146,8 @@ Here's the file `standalone.js` that actually launches a server:
 ```js
 const server = require('./server')
 const PORT = 3418
-server.listen(PORT, () => { console.log(`listening on port ${PORT}...`) })
+server.listen(PORT,
+              () => { console.log(`listening on port ${PORT}...`) })
 ```
 {: title="testing/standalone.js"}
 
@@ -251,7 +252,7 @@ describe('server', () => {
     // ...as before...
   })
 
-  it('should return asteroids page as HTML with expected title', (done) => {
+  it('should return page as HTML with expected title', (done) => {
     request(server)
       .get('/asteroids')
       .expect(200)

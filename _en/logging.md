@@ -55,10 +55,12 @@ app.use((req, res, next) => {
   fs.stat(actual, (err, stats) => {
     if (err) {
       winston.error(`Unable to find "${actual}"`)
-      res.status(404).send(`<html><body><p>cannot read ${actual}</p></body></html>`)
+      res.status(404).send(
+        `<html><body><p>cannot read ${actual}</p></body></html>`)
     } else if (!stats.isFile()) {
       winston.error(`"${actual}" is not a file`)
-      res.status(404).send(`<html><body><p>cannot read ${actual}</p></body></html>`)
+      res.status(404).send(
+        `<html><body><p>cannot read ${actual}</p></body></html>`)
     } else {
       winston.debug(`Serving "${actual}"`)
       fs.readFile(actual, 'utf-8', (err, data) => {
@@ -85,8 +87,10 @@ and if we run it with the level `'error'` only the latter appear.
 $ node src/logging/logging-server.js src/logging/web-dir/ info
 ```
 ```text
-{"message":"Running on port 3418 with root src/logging/web-dir/","level":"info"}
-{"message":"Unable to find \"src/logging/web-dir/missing.html\"","level":"error"}
+{"message":"Running on port 3418 with root src/logging/web-dir/",
+ "level":"info"}
+{"message":"Unable to find \"src/logging/web-dir/missing.html\"",
+ "level":"error"}
 ```
 
 {% include links.md %}

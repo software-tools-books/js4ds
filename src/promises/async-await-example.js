@@ -12,9 +12,12 @@ const countLines = (text) => {
 
 const processFiles = async (globpath) => {
   const filenames = await glob(globpath)
-  const pairs = await Promise.all(filenames.map(f => statPairAsync(f)))
-  const filtered = pairs.filter(pair => pair.stats.size > 100000)
-  const contents = await Promise.all(filtered.map(f => fs.readFile(f.filename, 'utf8')))
+  const pairs = await Promise.all(
+    filenames.map(f => statPairAsync(f)))
+  const filtered = pairs.filter(
+    pair => pair.stats.size > 100000)
+  const contents = await Promise.all(
+    filtered.map(f => fs.readFile(f.filename, 'utf8')))
   const lengths = contents.map(c => countLines(c))
   console.log(lengths)
 }

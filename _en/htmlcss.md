@@ -167,7 +167,7 @@ centers the `h1` heading on the page, while:
 <p class="disclaimer">This planet provided as-is.</p>
 ```
 
-<!-- == \noindent -->
+<!-- == noindent -->
 marks this paragraph as a disclaimer.
 That doesn't mean anything special to HTML,
 but as we'll see later,
@@ -323,7 +323,7 @@ React
 home page (relative path)
 ```
 
-<!-- == \noindent -->
+<!-- == noindent -->
 with the usual clickability.
 
 ## Images {#s:htmlcss-images}
@@ -342,10 +342,13 @@ as with the `href` attribute of an `a` element,
 this can be either a URL or a local path.
 Every `img` should also include a `title` attribute (whose purpose is self-explanatory)
 and an `alt` attribute with some descriptive text to aid accessibility and search engines.
+(Again, we have wrapped and broken lines so that they will display nicely in the printed version.)
 
 ```html
-<img src="./html5.png" title="HTML5 Logo" alt="Displays the HTML5 logo using a local path" />
-<img src="https://github.com/software-tools-in-javascript/js-vs-rc/blob/master/src/htmlcss/html5.png"
+<img src="./html5.png" title="HTML5 Logo"
+     alt="Displays the HTML5 logo using a local path" />
+<img src="https://github.com/software-tools-in-javascript/js-vs-rc\
+          /blob/master/src/htmlcss/html5.png"
      title="HTML5 Logo" alt="Display the HTML5 logo using a URL" />
 ```
 {: title="htmlcss/images.html"}
@@ -490,7 +493,7 @@ if we create a page that gives two spans unique IDs:
 ```
 {: title="htmlcss/selectors.html"}
 
-<!-- == \noindent -->
+<!-- == noindent -->
 then we can style those spans like this:
 
 ```css
@@ -526,7 +529,9 @@ to create a two-column layout with a banner at the top:
 ```html
 <html>
   <head>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+    <link rel="stylesheet"
+          href="https://stackpath.bootstrapcdn.com/bootstrap/\
+                4.1.3/css/bootstrap.min.css">
     <style>
       div {
         border: solid 1px;
@@ -537,7 +542,7 @@ to create a two-column layout with a banner at the top:
 
     <div class="jumbotron text-center">
       <h1>Page Title</h1>
-      <p>Resize this page to see how the layout adjusts dynamically.</p>
+      <p>Resize this page to see the layout adjust dynamically.</p>
     </div>
 
     <div class="container">

@@ -23,7 +23,7 @@ class Scientist extends Person {
   }
 
   greeting (formal) {
-    return `${super.greeting(formal)}. Let me tell you about ${this.area}...`
+    return `${super.greeting(formal)}. Let's talk about ${this.area}...`
   }
 }
 

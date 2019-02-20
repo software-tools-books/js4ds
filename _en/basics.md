@@ -168,10 +168,13 @@ while `null` means "has a value, which is nothing".
 ## Control Flow {#s:basics-control-flow}
 
 We have already seen `for` loops and flat arrays,
-so let's have a look at conditionals and nested arrays:
+so let's have a look at conditionals and nested arrays.
+(Here and elsewhere we will wrap lines to make them fit cleanly on the page
+in the printed version.)
 
 ```js
-const values = [[0, 1], ['', 'text'], [undefined, null], [[], [2, 3]]]
+const values = [[0, 1], ['', 'text'], [undefined, null],
+                [[], [2, 3]]]
 for (let pair of values) {
   for (let element of pair) {
     if (element) {
@@ -318,7 +321,8 @@ console.log(JSON.stringify(creature))
 ```
 {: title="basics/objects.js"}
 ```text
-{"order":"Primates","family":"Callitrichidae","genus":"Callithrix","species":"Jacchus"}
+{"order":"Primates","family":"Callitrichidae",
+ "genus":"Callithrix","species":"Jacchus"}
 ```
 
 Here,

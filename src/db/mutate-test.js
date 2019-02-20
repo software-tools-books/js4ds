@@ -24,11 +24,15 @@ describe('mutating database', () => {
       assert.equal(lastID, 3, 'Got the correct last ID after adding')
       db.getAll([], (results) => {
         expected = [
-          { workshopName: 'Building Community', workshopDuration: 60, workshopId: 1 },
-          { workshopName: 'ENIAC Programming', workshopDuration: 150, workshopId: 2 },
-          { workshopName: name, workshopDuration: duration, workshopId: 3 }
+          { workshopName: 'Building Community',
+            workshopDuration: 60, workshopId: 1 },
+          { workshopName: 'ENIAC Programming',
+            workshopDuration: 150, workshopId: 2 },
+          { workshopName: name,
+            workshopDuration: duration, workshopId: 3 }
         ]
-        assert.deepEqual(results, expected, 'Got expected workshops after add')
+        assert.deepEqual(results, expected,
+                         'Got expected workshops after add')
         done()
       })
     })
@@ -41,9 +45,11 @@ describe('mutating database', () => {
       assert.deepEqual(results, [], 'Got empty list as result when deleting')
       db.getAll([], (results) => {
         expected = [
-          { workshopName: 'ENIAC Programming', workshopDuration: 150, workshopId: 2 }
+          { workshopName: 'ENIAC Programming',
+            workshopDuration: 150, workshopId: 2 }
         ]
-        assert.deepEqual(results, expected, 'Got expected workshops after delete')
+        assert.deepEqual(results, expected,
+                         'Got expected workshops after delete')
         done()
       })
     })

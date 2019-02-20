@@ -63,11 +63,17 @@ class Database {
   }
 
   _inMemory (script) {
-    this.db = new sqlite3.Database(':memory:', sqlite3.OPEN_READWRITE, (err) => {
-      if (err) this.fail(`In-memory database open error "${err}"`)
+    this.db = new sqlite3.Database(':memory:', sqlite3.OPEN_READWRITE,
+      (err) => {
+        if (err) {
+          this.fail(`In-memory database open error "${err}"`)
+        }
     })
-    this.db.exec(script, (err) => {
-      if (err) this.fail(`Unable to initialize in-memory database from "${script}"`)
+    this.db.exec(script,
+      (err) => {
+        if (err) {
+          this.fail(`Unable to initialize in-memory database from "${script}"`)
+        }
     })
   }
 

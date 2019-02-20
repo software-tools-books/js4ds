@@ -17,7 +17,9 @@ app.get('/asteroids', (req, res, next) => {
 
 // Nothing else worked.
 app.use((req, res, next) => {
-  res.status(404).send(`<html><body><h1>ERROR</h1><p>URL "${req.url}" not found</p></body></html>`)
+  res
+    .status(404)
+    .send(`<html><body><p>ERROR: ${req.url} not found</p></body></html>`)
 })
 
 app.listen(PORT, () => { console.log('listening...') })

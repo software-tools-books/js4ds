@@ -254,7 +254,7 @@ The output of `papa.parse` looks like this:
         'weight' ] } }
 ```
 
-<!-- == \noindent -->
+<!-- == noindent -->
 so using `papa.parse(raw, options).data` gets the data we want as JSON.
 Let's write a method to get some overall statistics:
 
@@ -330,9 +330,12 @@ The method to get the values for a range of years is now:
         return {
           key  : toString(year),
           year : year,
-          min_hindfoot_length : this._get(subset, 'hindfoot_length', Math.min),
-          ave_hindfoot_length : this._get(subset, 'hindfoot_length', _average),
-          max_hindfoot_length : this._get(subset, 'hindfoot_length', Math.max),
+          min_hindfoot_length :this._get(subset,
+                                         'hindfoot_length', Math.min),
+          ave_hindfoot_length : this._get(subset,
+                                          'hindfoot_length', _average),
+          max_hindfoot_length : this._get(subset,
+                                          'hindfoot_length', Math.max),
           min_weight : this._get(subset, 'weight', Math.min),
           ave_weight : this._get(subset, 'weight', _average),
           max_weight : this._get(subset, 'weight', Math.max)
@@ -387,7 +390,7 @@ Modify `getSurveyRange` so that it can be called like this:
 getSurveyRange(minYear, maxYear, 'hindfoot_length', 'weight')
 ```
 
-<!-- == \noindent -->
+<!-- == noindent -->
 i.e., so that the names of the fields whose minimum, average, and maximum values are wanted
 can be passed as strings,
 and the method will automatically create the right names and values in its result.

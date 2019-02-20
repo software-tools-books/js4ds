@@ -15,7 +15,7 @@ describe('server', () => {
       })
   })
 
-  it('should return asteroids page as HTML with expected title', (done) => {
+  it('should return page as HTML with expected title', (done) => {
     request(server)
       .get('/asteroids')
       .expect(200)

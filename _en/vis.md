@@ -32,16 +32,20 @@ we'll worry about local installation later.
 We will create a `div` to be filled in by the visualization---we
 don't have to give it the ID `vis`, but it's common to do so---and
 we will leave space for the script.
-Our skeleton looks like this:
+Our skeleton looks like this
+(with lines broken for the benefit of the printed version):
 
 ```html
 <!DOCTYPE html>
 <html>
 <head>
   <title>Embedding Vega-Lite</title>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/vega/3.0.7/vega.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/vega-lite/2.0.1/vega-lite.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/vega-embed/3.0.0-rc7/vega-embed.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs\
+               /vega/3.0.7/vega.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs\
+               /vega-lite/2.0.1/vega-lite.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs\
+               /vega-embed/3.0.0-rc7/vega-embed.js"></script>
 </head>
 <body>
 
@@ -278,7 +282,7 @@ The new standard is `import`,
 which allows a module to define a default value so that `import 'something'` gets a function, a class, or whatever.
 This is really handy, but `require` doesn't work that way.
 
-Using Node on the command line, we can either add the `--experimental-modules` flag
+We can either add the `--experimental-modules` flag when using Node on the command line, 
 or rename our files with a `.mjs` extension,
 both of which are annoying.
 Alternatively,

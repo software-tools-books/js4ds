@@ -2,8 +2,9 @@
 title: "Citation"
 ---
 
-Please cite this work as:
-
-> Toby Hodges and Greg Wilson: "{{site.title}}: {{site.subtitle}}".  <{{site.website}}>, {{site.copyrightyear}}.
+Toby Hodges and Greg Wilson:
+*{{site.title}}: {{site.subtitle}}*
+Lulu.com, 978-0-9881137-1-8, {{site.copyrightyear}},
+<{{site.website}}>.
 
 {% include links.md %}

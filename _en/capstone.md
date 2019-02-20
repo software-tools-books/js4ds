@@ -176,7 +176,7 @@ We run this with:
 $ npm test -- src/capstone/back/test-server.js
 ```
 
-<!-- == \noindent -->
+<!-- == noindent -->
 and it passes.
 
 ## The Display {#s:capstone-display}
@@ -474,7 +474,9 @@ const DataChart = ({data}) => {
     return (<p>no data</p>)
   }
 
-  const values = data.filter(r => r).map(r => ({x: r.ave_hindfoot_length, y: r.ave_weight}))
+  const values = data
+        .filter(r => r)
+        .map(r => ({x: r.ave_hindfoot_length, y: r.ave_weight}))
   let spec = {
     '$schema': 'https://vega.github.io/schema/vega-lite/v2.0.json',
     'description': 'Mean Weight vs Mean Hindfoot Length',
@@ -529,7 +531,7 @@ we run:
 $ npm run dev src/capstone/front/index.html
 ```
 
-<!-- == \noindent -->
+<!-- == noindent -->
 which displays:
 
 ```text
@@ -549,7 +551,8 @@ we see this error message:
 
 ```text
 Cross-Origin Request Blocked:
-The Same Origin Policy disallows reading the remote resource at http://localhost:3418/survey/stats.
+The Same Origin Policy disallows reading the remote resource \
+  at http://localhost:3418/survey/stats.
 (Reason: CORS header 'Access-Control-Allow-Origin' missing).
 ```
 

@@ -206,13 +206,17 @@ the remembered callback is called,
 and passed yet another object with statistics about the file (including its size).
 
 To understand this a little better,
-let's create our own promise to fetch a file from the web:
+let's create our own promise to fetch a file from the web.
+(We have broken the URL over two lines using string concatenation
+so that it will print nicely.)
 
 ```js
 const fetch = require('node-fetch')
 
+url = 'https://api.nasa.gov/neo/rest/v1/feed' +
+      '?api_key=DEMO_KEY&start_date=2018-08-20'
 const prom = new Promise((resolve, reject) => {
-  fetch('https://api.nasa.gov/neo/rest/v1/feed?api_key=DEMO_KEY&start_date=2018-08-20')
+  fetch(url)
   .then((response) => {
     if (response.status === 200) {
       resolve('fetched page successfully')
@@ -243,8 +247,10 @@ that will report something sensible if we mis-type a year as `2108`:
 ```js
 const fetch = require('node-fetch')
 
+url = 'https://api.nasa.gov/neo/rest/v1/feed' +
+      '?api_key=DEMO_KEY&start_date=2018-08-20'
 new Promise((resolve, reject) => {
-  fetch('https://api.nasa.gov/neo/rest/v1/feed?api_key=DEMO_KEY&start_date=20-08-2108')
+  fetch(url)
   .then((response) => {
     if (response.status === 200) {
       resolve('fetched page successfully')
@@ -311,8 +317,10 @@ If we try this, using JavaScript's `try {...} catch {...}` syntax for handling e
 ```js
 const fetch = require('node-fetch')
 
+url = 'https://api.nasa.gov/neo/rest/v1/feed' +
+      '?api_key=DEMO_KEY&start_date=2018-08-20'
 try {
-  fetch('https://api.nasa.gov/neo/rest/v1/feed?api_key=DEMO_KEY&start_date=20-08-2108')
+  fetch(url)
 }
 catch (err) {
   console.log(err)
@@ -320,7 +328,7 @@ catch (err) {
 ```
 {: title="promises/try-catch.js"}
 
-<!-- == \noindent -->
+<!-- == noindent -->
 then the error message won't appear
 because the call to `fetch` doesn't raise an exception right away.
 
@@ -334,7 +342,8 @@ We could write a loop:
 const fs = require('fs-extra')
 
 let total_size = 0
-const files = ['jane-eyre.txt', 'moby-dick.txt', 'life-of-frederick-douglass.txt']
+const files = ['jane-eyre.txt', 'moby-dick.txt',
+               'life-of-frederick-douglass.txt']
 for (let fileName of files) {
   fs.stat(fileName).then((stats) => {
     total_size += stats.size
@@ -344,7 +353,7 @@ console.log(total_size)
 ```
 {: title="promises/promise-loop.js"}
 
-<!-- == \noindent -->
+<!-- == noindent -->
 but this doesn't work:
 the `stat` in each iteration is executed asynchronously,
 so the loop finishes and the script prints a total size of zero
@@ -369,7 +378,7 @@ new Promise((resolve, reject) => {
 ```
 {: title="promises/promise-nest.js"}
 
-<!-- == \noindent -->
+<!-- == noindent -->
 but this obviously doesn't handle an arbitrary number of files,
 since we have to write one level of nesting for each file.
 It's also potentially inefficient,
@@ -385,7 +394,8 @@ which makes processing straightforward:
 const fs = require('fs-extra')
 
 let total_size = 0
-const files = ['jane-eyre.txt', 'moby-dick.txt', 'life-of-frederick-douglass.txt']
+const files = ['jane-eyre.txt', 'moby-dick.txt',
+               'life-of-frederick-douglass.txt']
 Promise.all(files.map(f => fs.stat(f))).
   then(stats => stats.reduce((total, s) => {return total + s.size}, 0)).
   then(console.log)
@@ -454,12 +464,12 @@ Step 3 is to use `Promise.all` to wait for all these promises to resolve:
 
 glob(`${srcDir}/**/*.txt`)
   .then(files => Promise.all(files.map(f => fs.stat(f))))
-  .then(files => console.log('glob + Promise.all(files.map/stat)', files))
+  .then(files => console.log('glob + Promise.all(...)', files))
   .catch(error => console.error(error))
 ```
 {: title="promises/step-03.js"}
 ```text
-glob + Promise.all(files.map/stat) [ Stats {
+glob + Promise.all(...) [ Stats {
     dev: 16777220,
     mode: 33188,
     ...more information... },
@@ -487,12 +497,12 @@ const statPair = (filename) => {
 
 glob(`${srcDir}/**/*.txt`)
   .then(files => Promise.all(files.map(f => statPair(f))))
-  .then(files => console.log('glob + Promise.all(files.map/statPair)', files))
+  .then(files => console.log('glob + Promise.all(...)', files))
   .catch(error => console.error(error))
 ```
 {: title="promises/step-04.js"}
 ```text
-glob + Promise.all(files.map/statPair) [ { filename: './common-sense.txt',
+glob + Promise.all(...) [ { filename: './common-sense.txt',
     stats:
      Stats {
        dev: 16777220,
@@ -578,7 +588,8 @@ const statPairAsync = async (filename) => {
   return {filename, stats}
 }
 
-statPairAsync('moby-dick.txt').then((white_whale) => console.log(white_whale.stats))
+statPairAsync('moby-dick.txt').then(
+  (white_whale) => console.log(white_whale.stats))
 ```
 {: title="promises/async-await.js"}
 
@@ -604,9 +615,12 @@ const countLines = (text) => {
 
 const processFiles = async (globpath) => {
   const filenames = await glob(globpath)
-  const pairs = await Promise.all(filenames.map(f => statPairAsync(f)))
-  const filtered = pairs.filter(pair => pair.stats.size > 100000)
-  const contents = await Promise.all(filtered.map(f => fs.readFile(f.filename, 'utf8')))
+  const pairs = await Promise.all(
+    filenames.map(f => statPairAsync(f)))
+  const filtered = pairs.filter(
+    pair => pair.stats.size > 100000)
+  const contents = await Promise.all(
+    filtered.map(f => fs.readFile(f.filename, 'utf8')))
   const lengths = contents.map(c => countLines(c))
   console.log(lengths)
 }
@@ -641,7 +655,7 @@ This code runs fine:
 })
 ```
 
-<!-- == \noindent -->
+<!-- == noindent -->
 but this code fails:
 
 ```js
@@ -656,8 +670,8 @@ Why?
 
 ### A Stay of Execution
 
-Insert `console.log('This is a sharp Medicine, but it is a Physician for all diseases and miseries.')`
-in the appropriate place in the code block below so that the output reads
+Insert a call to `console.log` in the appropriate place in the code block below
+so that the output reads
 
 ```text
 Waiting...
@@ -739,7 +753,8 @@ const makePromise = (someInteger) => {
     setTimeout(___(someInteger), someInteger * 1000)
   })
 }
-Promise.___([makePromise(7), makePromise(___), makePromise(2), makePromise(6), makePromise(5)]).then(
+Promise.___([makePromise(7), makePromise(___), makePromise(2),
+             makePromise(6), makePromise(5)]).then(
   numbers => ___(numbers))
 ```
 

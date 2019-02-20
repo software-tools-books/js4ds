@@ -197,22 +197,30 @@ Let's modify the constructor of `Database` to set this up:
     switch (mode) {
     case 'memory' :
       const setup = fs.readFileSync(this.path, 'utf-8')
-      this.db = new sqlite3.Database(':memory:', sqlite3.OPEN_READWRITE, (err) => {
-        if (err) this.fail(`IN-MEMORY DATABASE OPEN ERROR "${err}"`)
+      this.db = new sqlite3.Database(':memory:', sqlite3.OPEN_READWRITE,
+        (err) => {
+          if (err) {
+            this.fail(`In-memory database open error "${err}"`)
+          }
       })
-      this.db.exec(setup, (err) => {
-        if (err) this.fail(`UNABLE TO INITIALIZE IN-MEMORY DATABASE FROM "${this.path}"`)
+      this.db.exec(setup,(err) => {
+        if (err) {
+          this.fail(`Cannot initialize in-memory database from "${this.path}"`)
+        }
       })
       break
 
     case 'file' :
-      this.db = new sqlite3.Database(this.path, sqlite3.OPEN_READWRITE, (err) => {
-        if (err) this.fail(`DATABASE OPEN ERROR ${err} for "${path}"`)
+      this.db = new sqlite3.Database(this.path, sqlite3.OPEN_READWRITE,
+        (err) => {
+          if (err) {
+            this.fail(`Database open error ${err} for "${path}"`)
+          }
       })
       break
 
     default :
-      this.fail(`UNKNOWN MODE "${mode}"`)
+      this.fail(`Unknown mode "${mode}"`)
       break
     }
   }
@@ -292,11 +300,17 @@ And here are the supporting methods:
 
 ```js
   _inMemory (script) {
-    this.db = new sqlite3.Database(':memory:', sqlite3.OPEN_READWRITE, (err) => {
-      if (err) this.fail(`In-memory database open error "${err}"`)
+    this.db = new sqlite3.Database(':memory:', sqlite3.OPEN_READWRITE,
+      (err) => {
+        if (err) {
+          this.fail(`In-memory database open error "${err}"`)
+        }
     })
-    this.db.exec(script, (err) => {
-      if (err) this.fail(`Unable to initialize in-memory database from "${script}"`)
+    this.db.exec(script,
+      (err) => {
+        if (err) {
+          this.fail(`Unable to initialize in-memory database from "${script}"`)
+        }
     })
   }
 
@@ -468,28 +482,34 @@ describe('database', () => {
 
   it('should return all workshops', (done) => {
     expected = [
-      { workshopName: 'Building Community', workshopDuration: 60, workshopId: 1 },
-      { workshopName: 'ENIAC Programming', workshopDuration: 150, workshopId: 2 }
+      { workshopName: 'Building Community',
+        workshopDuration: 60, workshopId: 1 },
+      { workshopName: 'ENIAC Programming',
+        workshopDuration: 150, workshopId: 2 }
     ]
     new Database('direct', FIXTURE).getAll([], (results) => {
-      assert.deepEqual(results, expected, 'Got expected workshops')
+      assert.deepEqual(results, expected,
+                       'Got expected workshops')
       done()
     })
   })
 
   it('should return one workshop', (done) => {
     expected = [
-      { workshopName: 'Building Community', workshopDuration: 60, workshopId: 1 }
+      { workshopName: 'Building Community',
+        workshopDuration: 60, workshopId: 1 }
     ]
     new Database('direct', FIXTURE).getOne(1, (results) => {
-      assert.deepEqual(results, expected, 'Got single expected workshop')
+      assert.deepEqual(results, expected,
+                       'Got single expected workshop')
       done()
     })
   })
 
   it('can only get workshops that exist', (done) => {
     new Database('direct', FIXTURE).getOne(99, (results) => {
-      assert.deepEqual(results, [], 'Got no workshops matching nonexistent key')
+      assert.deepEqual(results, [],
+                       'Got no workshops matching nonexistent key')
       done()
     })
   })
@@ -590,11 +610,15 @@ describe('mutating database', () => {
       assert.equal(lastID, 3, 'Got the correct last ID after adding')
       db.getAll([], (results) => {
         expected = [
-          { workshopName: 'Building Community', workshopDuration: 60, workshopId: 1 },
-          { workshopName: 'ENIAC Programming', workshopDuration: 150, workshopId: 2 },
-          { workshopName: name, workshopDuration: duration, workshopId: 3 }
+          { workshopName: 'Building Community',
+            workshopDuration: 60, workshopId: 1 },
+          { workshopName: 'ENIAC Programming',
+            workshopDuration: 150, workshopId: 2 },
+          { workshopName: name,
+            workshopDuration: duration, workshopId: 3 }
         ]
-        assert.deepEqual(results, expected, 'Got expected workshops after add')
+        assert.deepEqual(results, expected,
+                         'Got expected workshops after add')
         done()
       })
     })
@@ -607,9 +631,11 @@ describe('mutating database', () => {
       assert.deepEqual(results, [], 'Got empty list as result when deleting')
       db.getAll([], (results) => {
         expected = [
-          { workshopName: 'ENIAC Programming', workshopDuration: 150, workshopId: 2 }
+          { workshopName: 'ENIAC Programming',
+            workshopDuration: 150, workshopId: 2 }
         ]
-        assert.deepEqual(results, expected, 'Got expected workshops after delete')
+        assert.deepEqual(results, expected,
+                         'Got expected workshops after delete')
         done()
       })
     })

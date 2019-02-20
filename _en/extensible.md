@@ -24,7 +24,8 @@ app.use((req, res, next) => {
   }
 
   else {
-    res.status(404).send(`<html><body><p>"${req.url}" not found</p></body></html>`)
+    res.status(404).send(
+      `<html><body><p>"${req.url}" not found</p></body></html>`)
   }
 })
 
@@ -58,7 +59,7 @@ If we run the server:
 $ node src/extensible/dynamic.js
 ```
 
-<!-- == \noindent -->
+<!-- == noindent -->
 and then go to `http://localhost:4000/plugin.js`,
 we get back a page containing the title "Plugin Content".
 

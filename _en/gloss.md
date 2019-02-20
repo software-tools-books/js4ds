@@ -426,9 +426,9 @@ title: "Glossary"
   [parameters](#g:parameter) can be used interchangeably.
 
 **port**{:#g:port}:
-: a logical endpoint for communication, corresponding to a phone number in an
-  office building.  In a URL such as `http://example.com:8081/something`, the
-  port is `8081`.  Only one program may use a port at any time.
+: a logical endpoint for communication, like a phone number in an office
+  building.  In the URL `http://example.com:8081/something`, the port is `8081`.
+  Only one program may use a port at any time.
 
 **production code**{:#g:production-code}:
 : software that is delivered to an end user.  The term is used to distinguish

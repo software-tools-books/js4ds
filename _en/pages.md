@@ -233,7 +233,7 @@ this becomes:
 })()
 ```
 
-<!-- == \noindent -->
+<!-- == noindent -->
 which is a lot of parentheses in a row,
 but that's what people write.
 
@@ -307,7 +307,7 @@ so that if the author writes:
 </ul>
 ```
 
-<!-- == \noindent -->
+<!-- == noindent -->
 we will automatically rearrange the items to be:
 
 ```html
@@ -349,7 +349,7 @@ Our first attempt uses this as the HTML page:
 </html>
 ```
 
-<!-- == \noindent -->
+<!-- == noindent -->
 and this as the script:
 
 ```js
@@ -358,7 +358,8 @@ const sortLists = () => {
   lists.forEach((list) => {
     const children = Array.from(list.childNodes)
           .filter(c => c.nodeName !== '#text')
-    children.sort((left, right) => left.textContent.localeCompare(right.textContent))
+    children.sort((left, right) =>
+                  left.textContent.localeCompare(right.textContent))
     while (list.firstChild) {
       list.removeChild(list.firstChild)
     }
@@ -391,7 +392,7 @@ we go back to this:
 </html>
 ```
 
-<!-- == \noindent -->
+<!-- == noindent -->
 and write our JavaScript like this:
 
 ```js
@@ -411,7 +412,8 @@ In our example,
 the event we care about is "DOM content has been loaded".
 When that occurs,
 the browser will call `sortLists()`.
-(The `event` parameter to our function will be given an object that stores details about what precisely happened.
+(The `event` parameter to our function will be given an object
+that stores details about what precisely happened.
 We don't need that information now,
 but will use it later when we start handling button clicks and the like.)
 
@@ -423,7 +425,8 @@ const sortLists = () => {
   lists.forEach((list) => {
     const children = Array.from(list.childNodes)
           .filter(c => c.nodeName !== '#text')
-    children.sort((left, right) => left.textContent.localeCompare(right.textContent))
+    children.sort((left, right) =>
+                  left.textContent.localeCompare(right.textContent))
     while (list.firstChild) {
       list.removeChild(list.firstChild)
     }
@@ -488,7 +491,7 @@ we'd like to find links like this:
 <a href="#b">key1, key2</a>
 ```
 
-<!-- == \noindent -->
+<!-- == noindent -->
 and turn them into this:
 
 ```html
@@ -519,27 +522,38 @@ Here's our test page:
   <body>
 
     <p>As <a href="#b">Moreau1896</a> shows...</p>
-    <p>We can look to <a href="#b">Brundle1982, Brundle1984</a> for answers.</p>
+    <p>
+      We can look to <a href="#b">Brundle1982, Brundle1984</a>
+      for answers.
+    </p>
 
   </body>
 </html>
 ```
 {: title="pages/citations.html"}
 
-<!-- == \noindent -->
+<!-- == noindent -->
 and here's our function
-(which we'll call from an event listener as before):
+(which we'll call from an event listener as before---again,
+the line breaks in the second call to `map` are there
+so that the printed version will fit the page):
 
 ```js
 const citations = () => {
   Array.from(document.querySelectorAll('a'))
     .filter(link => link.getAttribute('href') === '#b')
-    .map(link => ({node: link,
-                   text: link.textContent.split(',').map(s => s.trim())}))
-    .map(({node, text}) => ({node,
-                             text: text.map(cite => `<a href="../bib/#${cite}">${cite}</a>`)}))
-    .map(({node, text}) => ({node,
-                             text: `[${text.join(', ')}]`}))
+    .map(link => (
+      {node: link,
+       text: link.textContent.split(',').map(s => s.trim())}
+    ))
+    .map(({node, text}) => (
+      {node,
+       text: text.map(cite => `<a href="../bib/#${cite}">${cite}</a>`)}
+    ))
+    .map(({node, text}) => (
+      {node,
+      text: `[${text.join(', ')}]`}
+    ))
     .forEach(({node, text}) => {
       const span = document.createElement('span')
       span.innerHTML = text
@@ -578,12 +592,14 @@ One option would be to create a two-element array for each:
     .map(link => [link, link.textContent.whatever])
 ```
 
-<!-- == \noindent -->
+<!-- == noindent -->
 but it's more readable to create an object so that each component has a name:
 
 ```js
-    .map(link => ({node: link,
-                   text: link.textContent.split(',').map(s => s.trim())}))
+    .map(link => (
+      {node: link,
+       text: link.textContent.split(',').map(s => s.trim())}
+    ))
 ```
 {: title="pages/citations.js"}
 
@@ -609,8 +625,10 @@ After all of this,
 the next stage of the pipeline is almost a relief:
 
 ```js
-    .map(({node, text}) => ({node,
-                             text: text.map(cite => `<a href="../bib/#${cite}">${cite}</a>`)}))
+    .map(({node, text}) => (
+      {node,
+       text: text.map(cite => `<a href="../bib/#${cite}">${cite}</a>`)}
+    ))
 ```
 {: title="pages/citations.js"}
 
@@ -647,8 +665,10 @@ which simply joins the string in `text` together to create a single string
 with commas between the entries:
 
 ```js
-    .map(({node, text}) => ({node,
-                             text: `[${text.join(', ')}]`}))
+    .map(({node, text}) => (
+      {node,
+      text: `[${text.join(', ')}]`}
+    ))
 ```
 {: title="pages/citations.js"}
 
@@ -766,7 +786,8 @@ it is still included in the table of contents.
 
 ### Explicitly Creating Nodes
 
-Find documentation online for `document.createElement` and `document.createTextNode`,
+Find documentation online for the two function
+`document.createElement` and `document.createTextNode`,
 then rewrite the table of contents example to use these methods
 (and any others like them that you need)
 instead of assigning to a node's `innerHTML` property.

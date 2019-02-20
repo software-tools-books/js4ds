@@ -204,7 +204,8 @@ so we can (for example) use `map` to turn a list of strings into an HTML list:
     <h1>JSX List</h1>
     <div id="app"></div>
     <script type="text/babel">
-      const allNames = ['McNulty', 'Jennings', 'Snyder', 'Meltzer', 'Bilas', 'Lichterman']
+      const allNames = ['McNulty', 'Jennings', 'Snyder',
+                        'Meltzer', 'Bilas', 'Lichterman']
       ReactDOM.render(
         <ul>{allNames.map((name) => <li>{name}</li> )}</ul>,
         document.getElementById('app')
@@ -246,7 +247,8 @@ just as we would put an `h1` or `p`:
     <h1>Create Component</h1>
     <div id="app"></div>
     <script type="text/babel">
-      const allNames = ['McNulty', 'Jennings', 'Snyder', 'Meltzer', 'Bilas', 'Lichterman']
+      const allNames = ['McNulty', 'Jennings', 'Snyder',
+                        'Meltzer', 'Bilas', 'Lichterman']
 
       const ListOfNames = () => {
         return (<ul>{allNames.map((name) => <li>{name}</li> )}</ul>)
@@ -276,9 +278,11 @@ are passed to our function in a single `props` object:
     <h1>Pass Parameters</h1>
     <div id="app"></div>
     <script type="text/babel">
-      const allNames = ['McNulty', 'Jennings', 'Snyder', 'Meltzer', 'Bilas', 'Lichterman']
+      const allNames = ['McNulty', 'Jennings', 'Snyder',
+                        'Meltzer', 'Bilas', 'Lichterman']
 
-      const ListElement = (props) => (<li id="{props.name}"><em>{props.name}</em></li>)
+      const ListElement = (props) =>
+            (<li id="{props.name}"><em>{props.name}</em></li>)
 
       ReactDOM.render(
         <ul>{allNames.map((name) => <ListElement name={name} /> )}</ul>,
@@ -287,7 +291,7 @@ are passed to our function in a single `props` object:
     </script>
   </body>
 ```
-{: title="dynamic/pass-parameters.html"}
+{: title="dynamic/pass-params.html"}
 
 If you look carefully,
 you'll see that the `name` attribute passed to the use of `ListElement`
@@ -326,7 +330,7 @@ Once it's in place,
 we can tell it to run one of our test pages like this:
 
 ```shell
-$ node_modules/.bin/parcel serve -p 4000 src/dynamic/pass-parameters.html
+$ node_modules/.bin/parcel serve -p 4000 src/dynamic/pass-params.html
 ```
 ```text
 Server running at http://localhost:4000
@@ -358,7 +362,7 @@ Look for the section in `package.json` whose key is `"scripts"` and add this:
   },
 ```
 
-We can now use `npm run dev -- src/dynamic/pass-parameters.html`,
+We can now use `npm run dev -- src/dynamic/pass-params.html`,
 since everything after `--` is passed to the script being run.
 This doesn't just save us typing;
 it also gives other developers a record of how to use the project.

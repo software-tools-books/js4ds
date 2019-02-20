@@ -288,7 +288,7 @@ const impure = (values) => {
 ```
 {: title="callbacks/impure.js"}
 
-<!-- == \noindent -->
+<!-- == noindent -->
 and would politely, even patiently, suggest that it be rewritten like this:
 
 ```js
@@ -311,8 +311,10 @@ Here's how they work:
 
 ```js
 const data = ['this', 'is', 'a', 'test']
-console.log('some longer than 3:', data.some((x) => { return x.length > 3 }))
-console.log('all longer than 3:', data.every((x) => { return x.length > 3 }))
+console.log('some longer than 3:',
+            data.some((x) => { return x.length > 3 }))
+console.log('all longer than 3:',
+            data.every((x) => { return x.length > 3 }))
 ```
 {: title="callbacks/some-every.js"}
 ```text
@@ -324,7 +326,8 @@ all longer than 3: false
 
 ```js
 const data = ['this', 'is', 'a', 'test']
-console.log('those longer than 3:', data.filter((x) => { return x.length > 3 }))
+console.log('those longer than 3:',
+            data.filter((x) => { return x.length > 3 }))
 ```
 {: title="callbacks/filter.js"}
 ```text
@@ -426,33 +429,30 @@ const adder = (increment) => {
 
 const add_1 = adder(1)
 const add_2 = adder(2)
-console.log(`add_1(100) is ${add_1(100)} and add_2(100) is ${add_2(100)}`)
+console.log(`add_1(100) is ${add_1(100)}, add_2(100) is ${add_2(100)}`)
 ```
 {: title="callbacks/adder.js"}
 ```text
-add_1(100) is 101 and add_2(100) is 102
+add_1(100) is 101, add_2(100) is 102
 ```
 
 The best way to understand what's going on is to draw a step-by-step memory diagram.
 In step 1, we call `adder(1)`
 ([f:callbacks-adder-1](#FIG)).
-
-{% include figure.html id="f:callbacks-adder-1" src="../../figures/callbacks-adder-1.svg" caption="Creating an Adder (Step 1)" %}
-
 `adder` creates a new function that includes a reference to that 1 we just passed in
 ([f:callbacks-adder-2](#FIG)).
-
-{% include figure.html id="f:callbacks-adder-2" src="../../figures/callbacks-adder-2.svg" caption="Creating an Adder (Step 2)" %}
-
 In step 3,
 `adder` returns that function, which is assigned to `add_1`
 ([f:callbacks-adder-3](#FIG)).
-
-{% include figure.html id="f:callbacks-adder-3" src="../../figures/callbacks-adder-3.svg" caption="Creating an Adder (Step 3)" %}
-
 Crucially,
 the function that `add_1` refers to still has a reference to the value 1,
 even though that value isn't referred to any longer by anyone else.
+
+{% include figure.html id="f:callbacks-adder-1" src="../../figures/callbacks-adder-1.svg" caption="Creating an Adder (Step 1)" %}
+
+{% include figure.html id="f:callbacks-adder-2" src="../../figures/callbacks-adder-2.svg" caption="Creating an Adder (Step 2)" %}
+
+{% include figure.html id="f:callbacks-adder-3" src="../../figures/callbacks-adder-3.svg" caption="Creating an Adder (Step 3)" %}
 
 In steps 4-6,
 we repeat these three steps to create another function that has a reference to the value 2,
@@ -553,7 +553,7 @@ data = [
 ]
 ```
 
-<!-- == \noindent -->
+<!-- == noindent -->
 write a function that returns a new array of objects like this:
 
 ```js
