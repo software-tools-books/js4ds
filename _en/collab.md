@@ -139,7 +139,7 @@ Similarly,
 having a Code of Conduct like [s:conduct](#REF) for your project
 reduces the uncertainty that participants face about what is acceptable and unacceptable behavior.
 You might think this is obvious,
-but long experience shows that articulating it clearly and concisely reduces problems caused by have different expectations,
+but long experience shows that articulating it clearly and concisely reduces problems caused by having different expectations,
 particularly when people from very different cultural backgrounds are trying to collaborate.
 An explicit Code of Conduct is particularly helpful for newcomers,
 so having one can help your project grow
