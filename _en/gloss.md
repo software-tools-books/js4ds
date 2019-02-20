@@ -67,6 +67,10 @@ title: "Glossary"
 : to take responsibility for handling an [exception](#g:exception).  Catch is
   the counterpart of [throw](#g:throw).
 
+**Creative Commons - Attribution License**{:#g:cc-by} (CC-BY)
+:   a license that allows people to re-use work as long as they cite its
+    original source.
+
 **character encoding**{:#g:character-encoding}:
 : a specification of how characters are stored as bytes.  The most commonly-used
   encoding today is [UTF-8](#g:utf-8).
@@ -230,6 +234,10 @@ title: "Glossary"
 : a variable defined outside any particular function, which is therefore visible
   to all functions.  See also [local variable](#g:local-variable).
 
+**GNU Public License**{:#g:gpl} (GPL)
+:   a license that allows people to re-use software as long as they distribute
+    the source of their changes.
+
 **header row**{:#g:header-row}:
 : if present, the first of a [CSV](#g:csv) file that defines column names (but
   tragically, not their data types or units).
@@ -347,6 +355,9 @@ title: "Glossary"
 : to remove spaces and other extraneous characters from source files (and
   possibly even rename variables).  This makes those files smaller and faster to
   deploy at the expense of readability.
+
+**MIT License**{:#g:mit-license}
+:   a license that allows people to re-use software with no restrictions.
 
 **module**{:#g:module}:
 : a set of variables, functions, and/or classes grouped together for easier
@@ -467,6 +478,10 @@ title: "Glossary"
 : a function that can generate a series of [pseudo-random
   numbers](#g:pseudo-random-number) after being initialized with a
   [seed](#g:seed).
+
+**public domain license**{:#g:cc-0} (CC-0)
+:   a license that allow people to re-use material however they want
+    with no restrictions and no requirement of attribution.
 
 **race condition**{:#g:race-condition}:
 : a situation in which the result of a computation can vary due to operations

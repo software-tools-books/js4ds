@@ -30,7 +30,7 @@ keypoints:
 - "An object is a collection of name/value pairs written in `{...}`."
 - "`object[key]` or `object.key` gets a value from an object."
 - "Functions are objects that can be assigned to variables, stored in lists, etc."
-- "`function (...parameters...) {...body...}` is the old way to define a function."
+- "`function name(...parameters...) {...body...}` is the old way to define a function."
 - "`name = (...parameters...) => {...body...}` is the new way to define a function."
 - "Use `return` inside a function body to return a value at any point."
 - "Use modules to divide code between multiple files for re-use."
