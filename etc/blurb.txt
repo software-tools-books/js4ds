@@ -1,0 +1,20 @@
+Collecting and analyzing data is now as important to research as telescopes and
+test tubes. At the same time, traditional print media are being supplanted by
+dynamic online delivery. Researchers who can turn data into insight need to be
+able to publish their discoveries and the data that back them up online.
+
+This book introduces data scientists to these topics using JavaScript, the one
+unavoidable language for sharing, reporting, visualizing, and interacting online.
+It introduces readers to its power and ideosyncracies, and guides them through
+the key features of modern JavaScript and the tools and libraries. The book
+places equal focus on client- and server-side programming, and shows the reader
+how to create interactive web content, build and test data services, and visualize
+data in the browser.
+
+  You can share and remix this material under the Creative Commons - Attribution
+  (CC-BY) license. Please see:
+
+        https://software-tools-in-javascript.github.io/js-vs-ds/
+
+  to download a digital version, purchase a printed copy, or suggest corrections
+  or additions.
