@@ -8,6 +8,6 @@ title: "Bibliography"
 
 **Meek2017**{:#b:Meek2017}: Elijah Meeks: *D3.js in Action*. Manning, 2017, <https://www.manning.com/books/d3js-in-action-second-edition>. *A comprehensive guide to the D3 visualization framework.*
 
-**Wils2018}**{:#b:Wils2018}}: Greg Wilson: *Teaching Tech Together*. Lulu.com, 2018, <http://teachtogether.tech>. *How to create and deliver lessons that work and build a teaching community around them.*
+**Wils2018**{:#b:Wils2018}: Greg Wilson: *Teaching Tech Together*. Lulu.com, 2018, <http://teachtogether.tech>. *How to create and deliver lessons that work and build a teaching community around them.*
 
 {% include links.md %}
