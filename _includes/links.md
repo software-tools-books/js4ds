@@ -17,10 +17,12 @@ definitions if that's done.
 
 [carpentries]: http://carpentries.org
 [cheerio]: https://cheerio.js.org/
+[choose-license]: http://choosealicense.com/
 [cors-docs]: https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS/Errors/CORSMissingAllowOrigin
 [cors-wikipedia]: https://en.wikipedia.org/wiki/Cross-origin_resource_sharing
 [covenant]: https://www.contributor-covenant.org
 [cpu-second]: http://exple.tive.org/blarg/2018/08/15/time-dilation/
+[creative-commons]: https://creativecommons.org/
 [css-precedence]: https://www.w3schools.com/css/css_specificity.asp
 
 [d3]: https://d3js.org/
@@ -30,7 +32,9 @@ definitions if that's done.
 [event-loop]: https://nodejs.org/en/docs/guides/event-loop-timers-and-nexttick/
 [express]: https://expressjs.org/
 
+[geek-feminism]: http://geekfeminism.wikia.com/
 [github]: http://github.com/
+[glitch]: https://glitch.com/
 
 [hodges-toby]: https://tbyhdgs.info/
 
@@ -38,8 +42,11 @@ definitions if that's done.
 [jsx]: https://reactjs.org/docs/introducing-jsx.html
 
 [mocha]: https://mochajs.org/
+[model-coc]: http://geekfeminism.wikia.com/wiki/Conference_anti-harassment/Policy
 
 [node-download]: https://nodejs.org/en/download/
+
+[osi-license-list]: http://opensource.org/licenses
 
 [papaparse]: https://www.papaparse.com/
 [parcel]: https://parceljs.org/
@@ -59,7 +66,9 @@ definitions if that's done.
 [swc]: http://software-carpentry.org/
 
 [t3-process]: http://teachtogether.tech/en/process/
+[tldr-gpl]: https://tldrlegal.com/license/gnu-general-public-license-v3-(gpl-3)
 
+[vanderplas-licensing]: http://www.astrobetter.com/blog/2014/03/10/the-whys-and-hows-of-licensing-scientific-code/
 [vega-lite]: http://vega.github.io/
 
 [w3schools]: https://www.w3schools.com/

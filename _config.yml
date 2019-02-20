@@ -38,10 +38,12 @@ toc:
   - contributing
   - gloss
   - keypoints
+  - collab
   - legacy
   - logging
-  - db
   - extensible
+  - db
+  - deploy
 
 # The data source used in the capstone example.
 datasource: "https://figshare.com/articles/Portal_Project_Teaching_Database/1314459"
