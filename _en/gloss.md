@@ -130,6 +130,9 @@ title: "Glossary"
 : a style of programming in which the user specifies what they want, and the
   computer figures out how to deliver it.
 
+**deployment**{:#g:deployment}:
+: the act of making software available for others to use.
+
 **destructuring**{:#g:destructuring}:
 : a form of assignment that unpacks a data structure in one step, such as `[a,
   b] = [1, 2]` or `{left, right} = {left: 1, right: 2}`.

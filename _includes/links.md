@@ -34,6 +34,7 @@ definitions if that's done.
 
 [geek-feminism]: http://geekfeminism.wikia.com/
 [github]: http://github.com/
+[glitch]: https://glitch.com/
 
 [hodges-toby]: https://tbyhdgs.info/
 
