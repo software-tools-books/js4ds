@@ -11,7 +11,7 @@ Display the table of comments.  Parameters are:
 <nav>
 
   {% comment %} Put the logo at the top of the navigation menu. {% endcomment %}
-  <a href="{{'/'|append: include.language|append: '/'|relative_url}}"><img src="{{'/assets/logo.svg'|relative_url}}" alt="{{site.title}} logo" width="75%" /></a>
+  <a href="{{'/'|append: include.language|append: '/'|relative_url}}"><img src="{{'/assets/logo.png'|relative_url}}" alt="{{site.title}} logo" width="75%" /></a>
 
   {% comment %} Download PDF and EPUB versions. {% endcomment %}
   <hr/>
@@ -38,8 +38,8 @@ Display the table of comments.  Parameters are:
 
   {% comment %} Show footer links. {% endcomment %}
   <hr/>
-  <p><a href="{{'/'|append: include.language|append: '/license/'|relative_url}}"><img src="{{'/assets/cc-by.svg'|relative_url}}" alt="CC-BY License" width="80%" /></a></p>
   <p>
+    <a href="{{'/'|append: include.language|append: '/license/'|relative_url}}"><img src="{{'/assets/cc-by.svg'|relative_url}}" alt="CC-BY License" width="50%" /></a>
     <a href="mailto:{{site.email}}"><img src="{{'/assets/email.svg'|relative_url}}" alt="Email" width="20%" /></a>
     <a href="{{site.repo}}"><img src="{{'/assets/github.svg'|relative_url}}" alt="GitHub" width="20%" /></a>
   </p>
