@@ -1,4 +1,5 @@
-const values = [[0, 1], ['', 'text'], [undefined, null], [[], [2, 3]]]
+const values = [[0, 1], ['', 'text'], [undefined, null],
+                [[], [2, 3]]]
 for (let pair of values) {
   for (let element of pair) {
     if (element) {

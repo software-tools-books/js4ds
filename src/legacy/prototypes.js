@@ -9,7 +9,7 @@ const Cone = function(f) {
 Cone.prototype = iceCream
 
 const dessert = new Cone('mustard')
-console.log(`initial flavor "${dessert.flavor}" and size "${dessert.size}"`)
+console.log(`flavor "${dessert.flavor}" size "${dessert.size}"`)
 
 dessert.size = 'extra-large'
-console.log(`modified flavor "${dessert.flavor}" and size "${dessert.size}"`)
+console.log(`new flavor "${dessert.flavor}" size "${dessert.size}"`)

@@ -11,10 +11,10 @@ places equal focus on client- and server-side programming, and shows the reader
 how to create interactive web content, build and test data services, and visualize
 data in the browser.
 
-  You can share and remix this material under the Creative Commons - Attribution
-  (CC-BY) license. Please see:
+You can share and remix this material under the Creative Commons - Attribution
+(CC-BY) license. Please see:
 
         https://software-tools-in-javascript.github.io/js-vs-ds/
 
-  to download a digital version, purchase a printed copy, or suggest corrections
-  or additions.
+to download a digital version, purchase a printed copy, or suggest corrections
+or additions.

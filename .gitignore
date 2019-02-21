@@ -16,5 +16,4 @@ _site
 dist
 node_modules
 package-lock.json
-tex/*/*.pdf
 tex/*/all.tex

@@ -80,8 +80,10 @@ since it isolates projects from one another.
 
 ## Who We Are {#s:intro-contributors}
 
+<!-- == noindent -->
 <img src="../../figures/hodges-toby.png" alt="Toby Hodges" width="100" />
 
+<!-- == noindent -->
 **[Toby Hodges][hodges-toby]** is a bioinformatician turned community
 coordinator, working on the [Bio-IT Project](https://bio-it.embl.de) at
 [EMBL](https://www.embl.de). He teaches a lot of courses in computing, organizes
@@ -90,9 +92,10 @@ occasionally still finds time to write code and ride his bike.  Toby would like
 to thank his wife for her support and patience while he swore about how annoying
 JavaScript is to debug.
 
-<!-- == \noindent -->
+<!-- == noindent -->
 <img src="../../figures/wilson-greg.png" alt="Greg Wilson" width="100" />
 
+<!-- == noindent -->
 **[Greg Wilson][wilson-greg]** has worked for 35 years in both industry and
 academia, and is the author or editor of several books on computing and two for
 children. He co-founded [Software Carpentry][carpentries], a non-profit

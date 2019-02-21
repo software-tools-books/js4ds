@@ -114,7 +114,9 @@
 % Use smaller font for verbatim environments.
 \usepackage{fancyvrb}
 
-%----------------------------------------
-
 % Syntax highlighting with minted <http://mirror.its.dal.ca/ctan/macros/latex/contrib/minted/minted.pdf>
 \usepackage{minted}
+
+% https://tex.stackexchange.com/questions/14166/red-box-drawn-around-question-mark-operator-in-minted-erlang-code
+\AtBeginEnvironment{minted}{%
+  \renewcommand{\fcolorbox}[4][]{#4}}

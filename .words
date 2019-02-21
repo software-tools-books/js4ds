@@ -61,6 +61,7 @@ Lindberg
 ListElement
 ListOfNames
 Lite's
+MByte
 MDN
 Makefile
 Martijn
@@ -82,6 +83,7 @@ PNG
 PRNG
 PapaParse
 Piotr
+README
 READWRITE
 REPL
 REPLs
@@ -187,6 +189,7 @@ deleteOne
 destructuring
 dev
 dir
+dirname
 dns
 doTwice
 dom
@@ -198,6 +201,7 @@ ds
 dynamicTyping
 else's
 encodings
+env
 ess
 eyre
 falsy
@@ -375,6 +379,7 @@ startTime
 statPair
 statPairAsync
 stateful
+statuscodes
 stj
 stringify
 stylesheet
@@ -395,6 +400,7 @@ te
 teardown
 templating
 testability
+tex
 textContent
 tiat
 tl

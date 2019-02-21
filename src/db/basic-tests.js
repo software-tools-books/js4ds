@@ -18,28 +18,34 @@ describe('database', () => {
 
   it('should return all workshops', (done) => {
     expected = [
-      { workshopName: 'Building Community', workshopDuration: 60, workshopId: 1 },
-      { workshopName: 'ENIAC Programming', workshopDuration: 150, workshopId: 2 }
+      { workshopName: 'Building Community',
+        workshopDuration: 60, workshopId: 1 },
+      { workshopName: 'ENIAC Programming',
+        workshopDuration: 150, workshopId: 2 }
     ]
     new Database('direct', FIXTURE).getAll([], (results) => {
-      assert.deepEqual(results, expected, 'Got expected workshops')
+      assert.deepEqual(results, expected,
+                       'Got expected workshops')
       done()
     })
   })
 
   it('should return one workshop', (done) => {
     expected = [
-      { workshopName: 'Building Community', workshopDuration: 60, workshopId: 1 }
+      { workshopName: 'Building Community',
+        workshopDuration: 60, workshopId: 1 }
     ]
     new Database('direct', FIXTURE).getOne(1, (results) => {
-      assert.deepEqual(results, expected, 'Got single expected workshop')
+      assert.deepEqual(results, expected,
+                       'Got single expected workshop')
       done()
     })
   })
 
   it('can only get workshops that exist', (done) => {
     new Database('direct', FIXTURE).getOne(99, (results) => {
-      assert.deepEqual(results, [], 'Got no workshops matching nonexistent key')
+      assert.deepEqual(results, [],
+                       'Got no workshops matching nonexistent key')
       done()
     })
   })

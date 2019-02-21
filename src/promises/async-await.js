@@ -5,4 +5,5 @@ const statPairAsync = async (filename) => {
   return {filename, stats}
 }
 
-statPairAsync('moby-dick.txt').then((white_whale) => console.log(white_whale.stats))
+statPairAsync('moby-dick.txt').then(
+  (white_whale) => console.log(white_whale.stats))

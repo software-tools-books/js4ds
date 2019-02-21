@@ -159,11 +159,11 @@ We can now create a cone and look at its properties
 
 ```js
 const dessert = new Cone('mustard')
-console.log(`initial flavor "${dessert.flavor}" and size "${dessert.size}"`)
+console.log(`flavor "${dessert.flavor}" size "${dessert.size}"`)
 ```
 {: title="legacy/prototypes.js"}
 ```text
-initial flavor "mustard" and size "large"
+flavor "mustard" size "large"
 ```
 
 {% include figure.html id="f:legacy-prototype" src="../../figures/legacy-prototype.svg" caption="Prototypes" %}
@@ -173,11 +173,11 @@ lookup finds the object's property before looking up the chain to find the paren
 
 ```js
 dessert.size = 'extra-large'
-console.log(`modified flavor "${dessert.flavor}" and size "${dessert.size}"`)
+console.log(`new flavor "${dessert.flavor}" size "${dessert.size}"`)
 ```
 {: title="legacy/prototypes.js"}
 ```text
-modified flavor "mustard" and size "extra-large"
+new flavor "mustard" size "extra-large"
 ```
 
 Prototypes are a way to implement inheritance for object-oriented programming;

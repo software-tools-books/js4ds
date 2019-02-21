@@ -2,14 +2,14 @@
 title: "License"
 ---
 
-> *This is a human-readable summary of (and not a substitute for) the license.
-> Please see <https://creativecommons.org/licenses/by/4.0/legalcode> for the full legal text.*
+*This is a human-readable summary of (and not a substitute for) the license.
+Please see <https://creativecommons.org/licenses/by/4.0/legalcode> for the full legal text.*
 
-<!-- == \bigskip -->
-
+<!-- == noindent -->
 This work is licensed under the Creative Commons Attribution 4.0
 International license (CC-BY-4.0).
 
+<!-- == noindent -->
 **You are free to:**
 
 - **Share**---copy and redistribute the material in any medium or
@@ -21,6 +21,7 @@ International license (CC-BY-4.0).
 The licensor cannot revoke these freedoms as long as you follow the
 license terms.
 
+<!-- == noindent -->
 **Under the following terms:**
 
 - **Attribution**---You must give appropriate credit, provide a link
@@ -32,6 +33,7 @@ license terms.
   technological measures that legally restrict others from doing
   anything the license permits.
 
+<!-- == noindent -->
 **Notices:**
 
 You do not have to comply with the license for elements of the

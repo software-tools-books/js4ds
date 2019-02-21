@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Pass Parameters</title>
+    <script src="https://fb.me/react-15.0.1.js"></script>
+    <script src="https://fb.me/react-dom-15.0.1.js"></script>
+    <script src="https://unpkg.com/babel-standalone@6/babel.js"></script>
+  </head>
+  <body>
+    <h1>Pass Parameters</h1>
+    <div id="app"></div>
+    <script type="text/babel">
+      const allNames = ['McNulty', 'Jennings', 'Snyder',
+                        'Meltzer', 'Bilas', 'Lichterman']
+
+      const ListElement = (props) =>
+            (<li id={props.name}><em>{props.name}</em></li>)
+
+      ReactDOM.render(
+        <ul>{allNames.map((name) => <ListElement name={name} /> )}</ul>,
+        document.getElementById('app')
+      )
+    </script>
+  </body>
+</html>

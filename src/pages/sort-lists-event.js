@@ -3,7 +3,8 @@ const sortLists = () => {
   lists.forEach((list) => {
     const children = Array.from(list.childNodes)
           .filter(c => c.nodeName !== '#text')
-    children.sort((left, right) => left.textContent.localeCompare(right.textContent))
+    children.sort((left, right) =>
+                  left.textContent.localeCompare(right.textContent))
     while (list.firstChild) {
       list.removeChild(list.firstChild)
     }

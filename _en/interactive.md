@@ -20,7 +20,8 @@ Browsers allow us to define [event handlers](#g:event-handler)
 to specify what to do in response to an externally-triggered action,
 such as a page loading or a user pressing a button.
 These event handlers are just callback functions
-that are (usually) given an [event object](#g:event-object) containing information about what happened,
+that are (usually) given an [event object](#g:event-object)
+containing information about what happened,
 and while we can write them in pure JavaScript,
 they're even easier to build in React.
 
@@ -138,7 +139,7 @@ If we try running this little application from the command line with Parcel:
 $ npm run dev -- src/interactive/display-counter.html
 ```
 
-<!-- == \noindent -->
+<!-- == noindent -->
 everything works as planned.
 But now try taking the code out of the web page and putting it in its own file:
 
@@ -193,7 +194,8 @@ $ npm run dev -- src/interactive/counter/index.html
 > parcel serve -p 4000 "src/interactive/counter/index.html"
 
 Server running at http://localhost:4000
-!!  /Users/stj/js-vs-ds/src/interactive/counter/app.js:11:12: Unexpected token (11:12)
+!!  /Users/stj/js-vs-ds/src/interactive/counter/app.js:11:12: \
+  Unexpected token (11:12)
    9 |   }
   10 |
 > 11 |   increment = (event) => {
@@ -248,7 +250,14 @@ for now, suffice to say that some poor choices were made early in JavaScript's d
 At this point it appears that we can compile but not run, or not bundle files together.
 But wait:
 when we used an in-page script, we specified the type as `text/babel`
-and loaded `https://unpkg.com/babel-standalone@6/babel.js` in the page header along with React.
+and loaded:
+
+```text
+https://unpkg.com/babel-standalone@6/babel.js
+```
+
+<!-- == noindent -->
+in the page header along with React.
 Can Babel save us?
 
 The answer is "yes",
@@ -523,7 +532,12 @@ const AsteroidList = (props) => {
   return (
     <table>
       <tbody>
-      <tr><th>Name</th><th>Date</th><th>Diameter (m)</th><th>Approach (km)</th></tr>
+      <tr>
+        <th>Name</th>
+        <th>Date</th>
+        <th>Diameter (m)</th>
+        <th>Approach (km)</th>
+      </tr>
       {props.asteroids.map((a) => {
         return (
           <tr key={a.name}>
@@ -561,9 +575,12 @@ class App extends React.Component {
     super(props)
     this.state = {
       asteroids: [
-        {name: 'a30x1000', date: '2017-03-03', diameter: 30, distance: 1000},
-        {name: 'a5x500', date: '2017-05-05', diameter: 5, distance: 500},
-        {name: 'a2000x200', date: '2017-02-02', diameter: 2000, distance: 200}
+        {name: 'a30x1000', date: '2017-03-03',
+         diameter: 30, distance: 1000},
+        {name: 'a5x500', date: '2017-05-05',
+         diameter: 5, distance: 500},
+        {name: 'a2000x200', date: '2017-02-02',
+         diameter: 2000, distance: 200}
       ]
     }
   }
@@ -587,7 +604,7 @@ export {DateSubmit}
 ```
 {: title="interactive/asteroids/DateSubmit.js"}
 
-<!-- == \noindent -->
+<!-- == noindent -->
 and run it to get [f:interactive-asteroids-screenshot](#FIG).
 
 {% include figure.html id="f:interactive-asteroids-screenshot" src="../../figures/interactive-asteroids-screenshot.png" caption="Asteroids Application" %}
@@ -608,7 +625,8 @@ const DateSubmit = ({label, value, onChange, onCommit}) => {
   return (
     <p>
       {label}:
-      <input type="text" value={value} onChange={(event) => onChange(event.target.value)} />
+      <input type="text" value={value}
+             onChange={(event) => onChange(event.target.value)} />
       <button onClick={(event) => onCommit(value)}>new</button>
     </p>
   )
@@ -689,7 +707,8 @@ and then chain another `then` method to transform the data into what we need:
 
 ```js
   onSubmitNewDate = (text) => {
-    const url = `https://api.nasa.gov/neo/rest/v1/feed?api_key=DEMO_KEY&start_date=${text}`
+    const url = 'https://api.nasa.gov/neo/rest/v1/feed' +
+                `?api_key=DEMO_KEY&start_date=${text}`
     fetch(url).then((response) => {
       return response.json()
     }).then((raw) => {

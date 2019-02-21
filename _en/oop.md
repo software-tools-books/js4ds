@@ -44,7 +44,7 @@ const square = {
 ```
 {: title="oop/clumsy-objects.js"}
 
-<!-- == \noindent -->
+<!-- == noindent -->
 and then pass the object itself into each of its own functions:
 
 ```js
@@ -71,7 +71,7 @@ const circle = {
 ```
 {: title="oop/clumsy-objects.js"}
 
-<!-- == \noindent -->
+<!-- == noindent -->
 and then put all of these different objects in an array
 and operate on them in the same way
 without knowing precisely what kind of object we're dealing with:
@@ -142,7 +142,7 @@ class Square {
 ```
 {: title="oop/es6-objects.js"}
 
-<!-- == \noindent -->
+<!-- == noindent -->
 (Class names are written in CamelCase by convention.)
 We can then create a specific square by using the class's name as if it were a function:
 
@@ -254,7 +254,7 @@ class Scientist extends Person {
   }
 
   greeting (formal) {
-    return `${super.greeting(formal)}. Let me tell you about ${this.area}...`
+    return `${super.greeting(formal)}. Let's talk about ${this.area}...`
   }
 }
 ```
@@ -293,7 +293,7 @@ console.log(`child: ${child.greeting(false)} - ${child.farewell()}`)
 {: title="oop/override.js"}
 ```text
 parent: Hello, my name is Hakim - Goodbye
-child: Hi, I'm Bhadra. Let me tell you about microbiology... - Goodbye
+child: Hi, I'm Bhadra. Let's talk about microbiology... - Goodbye
 ```
 
 [f:oop-inheritance](#FIG) shows what memory looks like after these classes have been defined
@@ -487,7 +487,8 @@ If any of the components' `call` methods returns `null`,
 `Pipeline` stops immediately and returns `null`.
 
 ```js
-const example = new Pipeline(new Filter('a', 'e', 'i', 'o', 'u'), new Delay('a'))
+const example = new Pipeline(new Filter('a', 'e', 'i', 'o', 'u'),
+                             new Delay('a'))
 for (let value of ['a' ,'b', 'c', 'd', 'e']) {
   console.log(value, '->', example.call(value))
 }
@@ -527,7 +528,7 @@ class Active {
 ```
 {: title="oop/observe.js"}
 
-<!-- == \noindent -->
+<!-- == noindent -->
 and this program that uses it:
 
 ```js

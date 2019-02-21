@@ -28,22 +28,30 @@ class Database {
     switch (mode) {
     case 'memory' :
       const setup = fs.readFileSync(this.path, 'utf-8')
-      this.db = new sqlite3.Database(':memory:', sqlite3.OPEN_READWRITE, (err) => {
-        if (err) this.fail(`IN-MEMORY DATABASE OPEN ERROR "${err}"`)
+      this.db = new sqlite3.Database(':memory:', sqlite3.OPEN_READWRITE,
+        (err) => {
+          if (err) {
+            this.fail(`In-memory database open error "${err}"`)
+          }
       })
-      this.db.exec(setup, (err) => {
-        if (err) this.fail(`UNABLE TO INITIALIZE IN-MEMORY DATABASE FROM "${this.path}"`)
+      this.db.exec(setup,(err) => {
+        if (err) {
+          this.fail(`Cannot initialize in-memory database from "${this.path}"`)
+        }
       })
       break
 
     case 'file' :
-      this.db = new sqlite3.Database(this.path, sqlite3.OPEN_READWRITE, (err) => {
-        if (err) this.fail(`DATABASE OPEN ERROR ${err} for "${path}"`)
+      this.db = new sqlite3.Database(this.path, sqlite3.OPEN_READWRITE,
+        (err) => {
+          if (err) {
+            this.fail(`Database open error ${err} for "${path}"`)
+          }
       })
       break
 
     default :
-      this.fail(`UNKNOWN MODE "${mode}"`)
+      this.fail(`Unknown mode "${mode}"`)
       break
     }
   }

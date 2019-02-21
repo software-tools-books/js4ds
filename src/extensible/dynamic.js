@@ -15,7 +15,8 @@ app.use((req, res, next) => {
   }
 
   else {
-    res.status(404).send(`<html><body><p>"${req.url}" not found</p></body></html>`)
+    res.status(404).send(
+      `<html><body><p>"${req.url}" not found</p></body></html>`)
   }
 })
 
