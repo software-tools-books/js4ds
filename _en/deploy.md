@@ -71,3 +71,5 @@ if it doesn't receive any requests for 5 minutes,
 the virtual machine is put to sleep.
 It is automatically restarted the next time a request comes in,
 but there will be a lag as it wakes up.
+
+{% include links.md %}
