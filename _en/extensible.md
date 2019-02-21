@@ -69,3 +69,5 @@ we can provide a [protocol](#g:protocol) for plugins
 so that people can add new functionality without rewriting what's already there.
 Each plugin must have an [entry point](#g:entry-point) like the function `page`
 so that the framework knows where to start.
+
+{% include links.md %}
