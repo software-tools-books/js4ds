@@ -282,7 +282,7 @@ are passed to our function in a single `props` object:
                         'Meltzer', 'Bilas', 'Lichterman']
 
       const ListElement = (props) =>
-            (<li id="{props.name}"><em>{props.name}</em></li>)
+            (<li id={props.name}><em>{props.name}</em></li>)
 
       ReactDOM.render(
         <ul>{allNames.map((name) => <ListElement name={name} /> )}</ul>,
