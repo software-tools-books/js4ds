@@ -168,8 +168,9 @@ spelling :
 	@cat ${PAGES_MD} | bin/uncode.py | aspell list | sort | uniq | comm -2 -3 - .words
 
 ## undone         : which files have not yet been done?
+#  Output is piped to `cat` to prevent error reports if there are no FIXMEs.
 undone :
-	@grep -l 'undone: true' _en/*.md
+	@grep -l 'undone: true' _en/*.md | cat
 
 ## ----------------------------------------
 
