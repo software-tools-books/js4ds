@@ -47,7 +47,7 @@ def align(options, path, included):
 
     result = []
     diffs_found = False
-    fmt = '{{0}} {{1:{}}} || {{2}}'.format(max([len(x) for x in included]))
+    fmt = '{{0}}|{{1:{}}}|{{2}}'.format(max([len(x) for x in included]))
     for i in range(len(matches) - 1):
         diffs_found |= align_one(result, options, fmt, included, actual,
                                  matches[i], matches[i+1])
