@@ -1,3 +1,3 @@
 const data = ['this', 'is', 'a', 'test']
-console.log('those greater than 3:',
+console.log('those longer than 3:',
             data.filter((x) => { return x.length > 3 }))
