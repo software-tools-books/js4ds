@@ -345,11 +345,11 @@ and an `alt` attribute with some descriptive text to aid accessibility and searc
 (Again, we have wrapped and broken lines so that they will display nicely in the printed version.)
 
 ```html
-<img src="./html5.png" title="HTML5 Logo"
-     alt="Displays the HTML5 logo using a local path" />
-<img src="https://github.com/software-tools-in-javascript/js-vs-rc\
-          /blob/master/src/htmlcss/html5.png"
-     title="HTML5 Logo" alt="Display the HTML5 logo using a URL" />
+    <img src="./html5.png" title="HTML5 Logo"
+         alt="Displays the HTML5 logo using a local path" />
+    <img src="https://github.com/software-tools-in-javascript/js-vs-rc/blob/master/src/htmlcss/html5.png"
+         title="HTML5 Logo"
+         alt="Display the HTML5 logo using a URL" />
 ```
 {: title="htmlcss/images.html"}
 

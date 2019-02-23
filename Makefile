@@ -66,7 +66,7 @@ ${BOOK_PDF} : ${ALL_TEX} tex/settings.tex ${DIR_TEX}/book.tex ${BIB_TEX}
 
 # Create the unified LaTeX file (separate target to simplify testing).
 ${ALL_TEX} : ${PAGES_HTML} bin/get_body.py bin/transform.py ${TOC_JSON}
-	${PYTHON} bin/get_body.py _config.yml ${DIR_HTML} \
+	${PYTHON} bin/get_body.py ${DIR_HTML} \
 	| ${PYTHON} bin/transform.py --pre ${lang} _includes \
 	| ${PANDOC} --wrap=preserve -f html -t latex -o - \
 	| ${PYTHON} bin/transform.py --post ${lang} _includes \
@@ -97,7 +97,7 @@ ${BIB_MD} : ${BIB_TEX} bin/bib2md.py
 
 # Create the JSON table of contents.
 ${TOC_JSON} : ${PAGES_MD} bin/make_toc.py
-	bin/make_toc.py _config.yml ${DIR_MD} > ${TOC_JSON}
+	bin/make_toc.py ${lang} > ${TOC_JSON}
 
 # Dependencies with HTML file inclusions.
 ${DIR_HTML}/%/index.html : $(wildcard _includes/%/*.*)
