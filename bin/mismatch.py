@@ -19,21 +19,20 @@ def main(options, single, multi):
     '''
     Display all requested inclusions.
     '''
+    if multi: multi += '/' # to avoid spurious substring matches
+    do_all = not (single or multi)
     content = get_all_docs(options['language'], remove_code_blocks=False)
-    inclusions = {path: body for (path, body) in get_inclusions(content)}
-    if single:
-        align(single, inclusions[single], options)
-    elif multi:
-        multi += '/'
-        for path in sorted(inclusions.keys()):
-            if path.startswith(multi):
-                align(path, inclusions[path], options)
-    else:
-        for path in sorted(inclusions.keys()):
-            align(path, inclusions[path], options)
+
+    todo = [(path, body) for (path, body) in get_inclusions(content) \
+            if (single and (path == single)) or \
+               (multi and path.startswith(multi)) or \
+               do_all]
+
+    for (path, body) in sorted(todo):
+        align(options, path, body)
 
 
-def align(path, included, options):
+def align(options, path, included):
     '''
     Display side by side.
     '''
