@@ -74,8 +74,9 @@ def align_one(result, options, fmt, included, actual, match_prev, match_curr):
 
     included_between = included[included_prev:included_curr]
     actual_between = actual[actual_prev:actual_curr]
-    diffs_found = (len(included_between) > 0) or (len(actual_between) > 0)
-    if not can_collapse_comment(options, included_between):
+    diffs_found = ((len(included_between) > 0) or (len(actual_between) > 0)) and \
+        (not can_collapse(options, included_between))
+    if diffs_found:
         result.extend(stringify(fmt, '*', included_between, actual_between))
 
     included_matching = included[included_curr:included_curr+n_curr]
@@ -92,7 +93,7 @@ def is_simple_inclusion(options, included, actual):
     return (included in actual) and (not options['verbose'])
 
 
-def can_collapse_comment(options, lines):
+def can_collapse(options, lines):
     '''
     Can this difference be collapsed by a comment?
     '''
