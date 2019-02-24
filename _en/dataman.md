@@ -261,14 +261,16 @@ Let's write a method to get some overall statistics:
 ```js
   getSurveyStats () {
     return {
-      minYear : this._get('year', Math.min),
-      maxYear : this._get('year', Math.max),
-      count : this.data.length
+      year_low : this._get(this.data, 'year', Math.min),
+      year_high : this._get(this.data, 'year', Math.max),
+      record_count : this.data.length
     }
   }
 
-  _get(field, func) {
-    return func(...this.data.map(rec => rec[field]))
+  // ...other methods...
+
+  _get(values, field, func) {
+    return func(...values.map(rec => rec[field]).filter(val => !isNaN(val)))
   }
 ```
 {: title="dataman/data-manager.js"}
@@ -325,23 +327,23 @@ The method to get the values for a range of years is now:
       .fill(0)
       .map((v, i) => minYear + i)
       .map(year => {
-    const subset = this.data.filter(r => r.year === year)
-      if (subset.length) {
-        return {
-          key  : toString(year),
-          year : year,
-          min_hindfoot_length :this._get(subset,
-                                         'hindfoot_length', Math.min),
-          ave_hindfoot_length : this._get(subset,
-                                          'hindfoot_length', _average),
-          max_hindfoot_length : this._get(subset,
-                                          'hindfoot_length', Math.max),
-          min_weight : this._get(subset, 'weight', Math.min),
-          ave_weight : this._get(subset, 'weight', _average),
-          max_weight : this._get(subset, 'weight', Math.max)
+        const subset = this.data.filter(r => r.year === year)
+        if (subset.length) {
+          return {
+            key  : toString(year),
+            year : year,
+            min_hindfoot_length :this._get(subset,
+                                           'hindfoot_length', Math.min),
+            ave_hindfoot_length : this._get(subset,
+                                            'hindfoot_length', _average),
+            max_hindfoot_length : this._get(subset,
+                                            'hindfoot_length', Math.max),
+            min_weight : this._get(subset, 'weight', Math.min),
+            ave_weight : this._get(subset, 'weight', _average),
+            max_weight : this._get(subset, 'weight', Math.max)
+          }
         }
-      }
-    })
+      })
   }
 ```
 {: title="dataman/data-manager.js"}
