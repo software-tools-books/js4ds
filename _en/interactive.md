@@ -659,7 +659,9 @@ class App extends React.Component {
     super(props)
     this.state = {
       newDate: '',
-      asteroids: [...]
+      asteroids: [
+        //...data as before...
+      ]
     }
   }
 
