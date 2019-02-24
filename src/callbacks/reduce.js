@@ -3,9 +3,11 @@ const data = ['this', 'is', 'a', 'test']
 const concatFirst = (accumulator, nextValue) => {
   return accumulator + nextValue[0]
 }
-const acronym = data.reduce(concatFirst, '')
+let acronym = data.reduce(concatFirst, '')
 console.log(`acronym of ${data} is ${acronym}`)
 
-console.log('in one step', data.reduce((accum, next) => {
+// In one step.
+acronym = data.reduce((accum, next) => {
   return accum + next[0]
-}, ''))
+}, '')
+console.log('all in one step:', acronym)

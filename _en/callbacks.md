@@ -134,8 +134,7 @@ and returns the final result:
 
 ```js
 const pipeline = (initial, first, second) => {
-  const temp = first(initial)
-  return second(temp)
+  return second(first(initial))
 }
 ```
 {: title="callbacks/two-functions.js"}
@@ -242,25 +241,25 @@ const transform = (values, operation) => {
   return result
 }
 
-const data = [10, 20, 30]
-const result = transform(data, oneMore)
-console.log(result)
+const data = ['one', 'two', 'three']
+const upper = transform(data, (x) => { return x.toUpperCase() })
+console.log(`upper: ${upper}`)
 ```
 {: title="callbacks/transform.js"}
 ```text
-[ 11, 21, 31 ]
+upper: ONE,TWO,THREE
 ```
 
-Adding one to a number is such a simple thing to do that it's hardly worth giving the function a name,
+Taking the first letter of a word is so simple that it's hardly worth giving the function a name,
 so let's define it on the fly:
 
 ```js
-result = transform(data, (x) => {return x + 1})
-console.log(result)
+const first = transform(data, (x) => { return x[0] })
+console.log(`first: ${first}`)
 ```
 {: title="callbacks/transform.js"}
 ```text
-[ 11, 21, 31 ]
+first: o,t,t
 ```
 
 A function that is created this way is sometimes called an [anonymous function](#g:anonymous-function),
