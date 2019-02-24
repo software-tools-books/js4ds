@@ -1,4 +1,4 @@
 ReactDOM.render(
-  <h1>Rendered by React</h1>,
+  <p>Rendered by React</p>,
   document.getElementById("app")
 )
