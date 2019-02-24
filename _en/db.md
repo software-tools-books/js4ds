@@ -415,7 +415,7 @@ class Database {
 
   // ...as before...
 
-  getAll (callback, args) {
+  getAll (args, callback) {
     this.db.all(Q_WORKSHOP_GET_ALL, [], (err, rows) => {
       if (err) this.fail(err)
       callback(rows)
@@ -444,7 +444,7 @@ const main = () => {
   if (!(action in db)) {
     db.fail(`No such operation "${action}"`)
   }
-  db[action](display, args)
+  db[action](args, display)
 }
 
 main()
