@@ -33,12 +33,16 @@ the key class is:
 class DataManager {
 
   constructor (filename) {
-    ...read and store data from CSV file...
+    // ...read and store data from CSV file...
   }
 
-  getSurveyStats () {...return summary statistics...}
+  getSurveyStats () {
+    // ...return summary statistics...
+  }
 
-  getSurveyRange (minYear, maxYear) {...return slice of data...}
+  getSurveyRange (minYear, maxYear) {
+    // ...return slice of data...
+  }
 }
 ```
 {: title="capstone/back/data-manager.js"}
@@ -80,7 +84,7 @@ let dataManager = null
 // Main server object.
 const app = express()
 
-...handle requests...
+// ...handle requests...
 
 module.exports = (dbm) => {
   dataManager = dbm
@@ -149,14 +153,18 @@ app.use((req, res, next) => {
 Now let's write our first test:
 
 ```js
+TEST_DATA_PATH = path.resolve(__dirname, 'test-data.csv')
+
+describe('server', () => {
+
   it('should return statistics about survey data', (done) => {
     expected = {
       minYear: 1979,
       maxYear: 2000,
       count: 10
     }
-    const db = new DataManager('test-data.csv')
-    request(server(db))
+    const db = new DataManager(TEST_DATA_PATH)
+    const server = make_server(db)
       .get('/survey/stats')
       .expect(200)
       .expect('Content-Type', 'application/json')
@@ -165,6 +173,7 @@ Now let's write our first test:
         done()
       })
   })
+})
 ```
 {: title="capstone/back/test-server.js"}
 
@@ -243,7 +252,7 @@ class App extends React.Component {
 
 ReactDOM.render(
   <App />,
-  document.getElementById("app")
+  document.getElementById('app')
 )
 ```
 {: title="capstone/front/app.js"}
@@ -577,13 +586,21 @@ let dataManager = null
 const app = express()
 app.use(cors())                       // added
 
-app.get('/survey/stats', (req, res, next) => {...as before...})
+app.get('/survey/stats', (req, res, next) => {
+  // ...as before...
+})
 
-app.get('/survey/:start/:end', (req, res, next) => {...as before...})
+app.get('/survey/:start/:end', (req, res, next) => {
+  // ...as before...
+})
 
-app.use((req, res, next) => {...as before...})
+app.use((req, res, next) => {
+  // ...as before...
+})
 
-module.exports = (dbm) => {...as before...}
+module.exports = (dbm) => {
+  // ...as before...
+}
 ```
 {: title="capstone/back/server-1.js"}
 
