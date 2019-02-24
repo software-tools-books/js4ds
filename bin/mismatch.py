@@ -23,7 +23,8 @@ def main(options, single, multi):
     do_all = not (single or multi)
     content = get_all_docs(options['language'], remove_code_blocks=False)
 
-    todo = [(path, body) for (path, body) in get_inclusions(content) \
+    inclusions = get_inclusions(content, options['rejoin_lines'])
+    todo = [(path, body) for (path, body) in inclusions \
             if (single and (path == single)) or \
                (multi and path.startswith(multi)) or \
                do_all]
@@ -111,11 +112,12 @@ if __name__ == '__main__':
         'collapse_comments' : True,
         'language' : None,
         'names_only' : False,
+        'rejoin_lines' : True,
         'verbose' : False
     }
-    choices, extras = getopt.getopt(sys.argv[1:], 'aCd:f:nv')
+    choices, extras = getopt.getopt(sys.argv[1:], 'aCd:f:Jnv')
     if len(extras) != 1:
-        usage('mismatch.py [-a | -d dir | -f file] [-C] [-n] [-v] language')
+        usage('mismatch.py [-a | -d dir | -f file] [-C] [-J] [-n] [-v] language')
     options['language'] = extras[0]
     for (opt, arg) in choices:
         if opt == '-a':
@@ -126,6 +128,8 @@ if __name__ == '__main__':
             multi = arg
         elif opt == '-f':
             single = arg
+        elif opt == '-J':
+            options['rejoin_lines'] = False
         elif opt == '-n':
             options['names_only'] = True
         elif opt == '-v':

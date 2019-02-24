@@ -29,13 +29,19 @@ def get_src_file(path):
         return reader.read()
 
 
-def get_inclusions(content):
+def get_inclusions(content, rejoin_lines=True):
     '''
     Get (path, text) pairs for every named file inclusion.
     '''
+    rejoin_pat = re.compile(r'\\\n\s*')
+    def _rejoin(text):
+        if rejoin_lines:
+            text = rejoin_pat.sub('', text)
+        return text
+
     referenced = match_body(content,
                             r'```(.+?)\n(.+?)```\n({:\s+title="([^"]+)\s*"})?')
-    referenced = [(path, inclusion)
+    referenced = [(path, _rejoin(inclusion))
                   for (lang, inclusion, title, path) in referenced
                   if title]
     return referenced
