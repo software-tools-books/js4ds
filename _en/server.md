@@ -383,26 +383,33 @@ rather than displaying the raw text.
 
 ## Exercises {#s:server-exercises}
 
+<section markdown="1">
 ### Report Missing Files
 
 Modify the version of the server that returns files from disk
 to report a 404 error if a file cannot be found.
 What should it return if the file exists but cannot be read
 (e.g., if the server does not have permissions)?
+</section>
 
+<section markdown="1">
 ### Serving Images
 
 Modify the version of the server that returns files from disk
 so that if the file it is asked for has a name ending in `.png` or `.jpg`,
 it is returned with the right `Content-Type` header.
+</section>
 
+<section markdown="1">
 ### Delayed Replies
 
 Our file server uses `fs.readFileSync` to read files,
 which means that it stops each time a file is requested
 rather than handling other queries while waiting for the file to be read.
 Modify the callback given to `app.use` so that it uses `fs.readFile` with a callback instead.
+</section>
 
+<section markdown="1">
 ### Using Query Parameters
 
 URLs can contain query parameters in the form:
@@ -417,5 +424,6 @@ how to access them in a server,
 and then write a server to do simple arithmetic:
 the URL `http://localhost:3654/add?left=1&right=2` should return `3`,
 while the URL `http://localhost:3654/subtract?left=1&right=2` should return `-1`.
+</section>
 
 {% include links.md %}

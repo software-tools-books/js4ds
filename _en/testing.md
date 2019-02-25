@@ -350,10 +350,13 @@ libraries like `cheerio` are there to help.
 
 ## Exercises {#s:testing-exercises}
 
+<section markdown="1">
 ### Not Done
 
 What happens if we forget to call `done()` in a test?
+</section>
 
+<section markdown="1">
 ### Adding Tests
 
 1. What is the most useful test you could add for the asteroids application?
@@ -363,12 +366,15 @@ What happens if we forget to call `done()` in a test?
    Reflect on the fact that this question didn't say "please" either.
    Are you comfortable with the paternalistic power relationship embodied in the absence of that one little word,
    and with the somewhat uncomfortable attempt at ironic humor embodied in this question?
+</section>
 
+<section markdown="1">
 ### Lifecycle
 
 Suppose a JavaScript program contains some JSX expressions that produce HTML
 which is then read and displayed by a browser.
 Draw a diagram to show the form taken by an H1 heading containing the word "data"
 from start to finish.
+</section>
 
 {% include links.md %}
