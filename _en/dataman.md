@@ -348,11 +348,14 @@ The method to get the values for a range of years is now:
 
 ## Exercises {#s:dataman-exercises}
 
+<section markdown="1">
 ### Tracing Data
 
 Trace the execution of the utility program that creates a small sample of the original data,
 explaining what is passed into each of the chained methods calls.
+</section>
 
+<section markdown="1">
 ### Unrandom
 
 Programs that rely on random numbers are impossible to test
@@ -368,7 +371,9 @@ but the [seedrandom][seedrandom] package provides an add-on function for this pu
 Install the package and modify the slice selection utility
 so that it takes a word or phrase as a command-line argument
 and uses it to seed the random number generator.
+</section>
 
+<section markdown="1">
 ### One Record Per Year
 
 Another way to slice the data for testing purposes is to select one record from each year.
@@ -377,11 +382,15 @@ Write a small command-line JavaScript program that:
 1. Reads all the data from the CSV.
 2. Keeps the first record it finds for each year.
 3. Prints these records formatted as SQL `insert` statements.
+</section>
 
+<section markdown="1">
 ### Error Handling
 
 Modify `DataManager`'s constructor so that it checks for errors.
+</section>
 
+<section markdown="1">
 ### Generalization
 
 Modify `getSurveyRange` so that it can be called like this:
@@ -394,5 +403,6 @@ getSurveyRange(minYear, maxYear, 'hindfoot_length', 'weight')
 i.e., so that the names of the fields whose minimum, average, and maximum values are wanted
 can be passed as strings,
 and the method will automatically create the right names and values in its result.
+</section>
 
 {% include links.md %}

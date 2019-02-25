@@ -646,12 +646,15 @@ describe('mutating database', () => {
 
 ## Exercises {#s:db-exercises}
 
+<section markdown="1">
 ### Copying Records
 
 Write a program that copies all the rows
 from the table `Workshop` in a database `source.db`
 to a table with the same name in a new database `backup.db`.
+</section>
 
+<section markdown="1">
 ### Filtering Records
 
 Add a new method to the `Database` class
@@ -668,7 +671,9 @@ assert.deepEqual(rows, [
 Your `Database.getLongerThan` method's SQL query
 will need to use a `where` clause
 that selects specific records.
+</section>
 
+<section markdown="1">
 ### More Filtering
 
 The SQL query encapsulated in the variable below can be used to
@@ -693,7 +698,9 @@ that uses this query, taking arguments from the commandline as before.
 What happens when you provide the wrong number of arguments to this function? Or
 if you provide them in the wrong order?
 Can you write a test that provides more useful feedback than this?
+</section>
 
+<section markdown="1">
 ### Handling Errors
 
 The `Database` class prints a message and exits when it detects an error.
@@ -706,9 +713,12 @@ and handle however it wants.
 
 1. Modify the code to do this.
 2. Modify the tests to check that the right exceptions are thrown when they should be.
+</section>
 
+<section markdown="1">
 ### Using a Database with a Server
 
 Rewrite the capstone project in [s:capstone](#REF) to use a database instead of a file for data storage.
+</section>
 
 {% include links.md %}
