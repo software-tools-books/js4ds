@@ -486,6 +486,7 @@ which tells the browser not to do anything with the JavaScript until the page ha
 
 ## Exercises {#s:dynamic-exercises}
 
+<section markdown="1">
 ### Those Damn Curly Braces
 
 Our list-building example includes this line of code:
@@ -496,7 +497,9 @@ Our list-building example includes this line of code:
 
 Why are the curly braces immediately inside the `<ul>` element necessary?
 What happens if you take them out?
+</section>
 
+<section markdown="1">
 ### Real Data
 
 1. Create a file called `programmers.js` that defines
@@ -508,23 +511,31 @@ What happens if you take them out?
    and modify it to use data from the list `programmers` instead.
 
 Loading constant data like this is a common practice during testing.
+</section>
 
+<section markdown="1">
 ### Ordering
 
 What happens if you change the order in which the JavaScript files
 are loaded in your web page?
 For example,
 what happens if you load `app.js` *before* you load `ListElement.js`?
+</section>
 
+<section markdown="1">
 ### Multiple Targets
 
 What happens if your HTML page contains two `div` elements with `id="app"`?
+</section>
 
+<section markdown="1">
 ### Creating a Component for Names
 
 Create a new React component that renders a name,
 and modify the example to use it instead of always displaying names in `<li>` elements.
+</section>
 
+<section markdown="1">
 ### Striping
 
 Suppose we want to render every second list element in italics.
@@ -537,5 +548,6 @@ even-numbered list elements are `<li>{name}</li>`
 and odd-numbered list elements are `<li><em>{name}</em></li>`.
 (You may want to use the fact that a `map` callback can have two parameters
 instead of one.)
+</section>
 
 {% include links.md %}
