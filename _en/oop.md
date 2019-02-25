@@ -435,6 +435,7 @@ as we build applications using standard libraries.
 
 ## Exercises {#s:oop-exercises}
 
+<section markdown="1">
 ### Delays
 
 Define a class called `Delay` whose `call` method always returns
@@ -454,7 +455,9 @@ d -> c
 
 A class like `Delay` is sometimes called [stateful](#g:stateful),
 since it remembers its state from call to call.
+</section>
 
+<section markdown="1">
 ### Filtering
 
 Define a class called `Filter` whose `call` method returns `null`
@@ -477,7 +480,9 @@ e -> null
 
 A class like `Filter` is sometimes called [stateless](#g:stateless),
 since it does not remember its state from call to call.
+</section>
 
+<section markdown="1">
 ### Pipelines
 
 Define a class called `Pipeline`
@@ -500,7 +505,9 @@ c -> b
 d -> c
 e -> null
 ```
+</section>
 
+<section markdown="1">
 ### Active Expressions
 
 Consider this class:
@@ -552,5 +559,6 @@ start.update(123)
    (Its constructor will need to take an initial value as a parameter.)
 
 This pattern is called [observer/observable](#g:observer-observable).
+</section>
 
 {% include links.md %}

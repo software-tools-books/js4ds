@@ -753,13 +753,16 @@ to remind us just how quickly life is passing by.
 
 ## Exercises {#s:pages-exercises}
 
+<section markdown="1">
 ### What Encoding Is This?
 
 1. Write a function that looks up the character encoding of the page the script is in
    and prints it to the console.
 2. Extend the function to look up all the `meta` tags in the current page
    and print their names and values.
+</section>
 
+<section markdown="1">
 ### Word Count
 
 1. Write a function called `countWords` that finds all the text nodes in a page,
@@ -767,7 +770,9 @@ to remind us just how quickly life is passing by.
    and returns the total number of words in the page.
 2. Write a second function called `showWords` that uses the first to find the number of words,
    then displays that number in a paragraph whose ID is `wordcount`.
+</section>
 
+<section markdown="1">
 ### Removing Text Nodes
 
 In the example that sorts the items in lists,
@@ -778,12 +783,16 @@ What happens if remove the line:
 ```js
           .filter(c => c.nodeName !== '#text')
 ```
+</section>
 
+<section markdown="1">
 ### A More Robust Table of Contents
 
 Modify the table of contents example so that if an `h2` heading doesn't have an `id`,
 it is still included in the table of contents.
+</section>
 
+<section markdown="1">
 ### Explicitly Creating Nodes
 
 Find documentation online for the two function
@@ -791,5 +800,6 @@ Find documentation online for the two function
 then rewrite the table of contents example to use these methods
 (and any others like them that you need)
 instead of assigning to a node's `innerHTML` property.
+</section>
 
 {% include links.md %}
