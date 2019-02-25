@@ -644,6 +644,7 @@ we cannot use them interactively unless we wrap whatever we want to do in a wee 
 
 ## Exercises {#s:promises-exercises}
 
+<section markdown="1">
 ### What's Going On?
 
 This code runs fine:
@@ -667,7 +668,9 @@ console.log('starting...')
 ```
 
 Why?
+</section>
 
+<section markdown="1">
 ### A Stay of Execution
 
 Insert a call to `console.log` in the appropriate place in the code block below
@@ -695,7 +698,9 @@ const swingAxe = () => {
 
 swingAxe()
 ```
+</section>
 
+<section markdown="1">
 ### A Synchronous or Asynchronous?
 
 Which of these functions would you expect to be asynchronous?
@@ -709,7 +714,9 @@ And, if so, what is a good strategy to find out for sure if a function is asynch
 2. `calculateSphereVolume(r)`: calculates and returns the volume of a sphere with radius `r`.
 3. `calculateRoute(A,B)`: returns all possible routes by air between airports `A` and `B`,
    including direct routes and those with no more than 2 transfers.
+</section>
 
+<section markdown="1">
 ### Handling Exceptions
 
 What (if any) output would you expect to see in the console
@@ -741,7 +748,9 @@ new Promise((resolve, reject) => {
 2. blank output
 3. `Blank values are not allowed`
 4. a new `Promise` object
+</section>
 
+<section markdown="1">
 ### Empty Promises
 
 Fill in the blanks (`___`)in the code block below so that
@@ -760,12 +769,15 @@ Promise.___([makePromise(7), makePromise(___), makePromise(2),
 
 Now adapt the function so that it returns only `2`.
 (Hint: you can achieve this by changing only one of the blank fields.)
+</section>
 
+<section markdown="1">
 ### `async`, Therefore I Am
 
 Using `async` and `await`,
 convert the completed function above into an asynchronous function with the same behaviour and output.
 Do you find your solution easier to read and follow than the original version?
 Do you think that that is only because you wrote this version?
+</section>
 
 {% include links.md %}

@@ -631,13 +631,16 @@ and our capstone project is complete.
 
 ## Exercises {#s:capstone-exercises}
 
+<section markdown="1">
 ### Reporting Other Data
 
 A user has asked for the number of male and female animals observed for each year.
 
 1. Should you add this to the existing query for yearly data or create a new API call?
 2. Implement your choice.
+</section>
 
+<section markdown="1">
 ### Error Checking
 
 1. Modify the server to return 400 with an error message
@@ -645,12 +648,16 @@ A user has asked for the number of male and female animals observed for each yea
 2. Compare your implementation to someone else's.
    Did you define "invalid" in the same way?
    I.e., will your programs always return the same status codes for every query?
+</section>
 
+<section markdown="1">
 ### Use All the Data
 
 Create a database using all of the survey data and test the display.
 What bugs or shortcomings do you notice compared to displaying test data?
+</section>
 
+<section markdown="1">
 ### Merging Displays
 
 The `SurveyStats` and `DataDisplay` components in the front end both display tables.
@@ -662,7 +669,9 @@ The `SurveyStats` and `DataDisplay` components in the front end both display tab
 3. Modify your component so that it generates a unique ID for each value in the table.
    (Hint: you may need to pass in a third parameter to each call
    to serve as the root or stem of those unique IDs.)
+</section>
 
+<section markdown="1">
 ### Formatting
 
 Modify `DataDisplay` to format fractional numbers with a single decimal place,
@@ -670,12 +679,15 @@ but leave the integers as they are.
 Ask yourself why,
 seven decades after the invention of digital computers,
 this isn't easier.
+</section>
 
+<section markdown="1">
 ### Data, Data Everywhere
 
 Modify `DataChart` so that the word `data` isn't used in so many different ways.
 Does doing this make you feel better about yourself as a person?
 Modify it again so that the height and width of the chart are passed in as well.
 Did that help?
+</section>
 
 {% include links.md %}

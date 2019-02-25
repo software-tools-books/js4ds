@@ -317,6 +317,7 @@ but at least it's all in one place for distribution.
 
 ## Exercises {#s:vis-exercises}
 
+<section markdown="1">
 ### Binned Scatterplots
 
 Vega-Lite can create
@@ -324,7 +325,9 @@ Vega-Lite can create
 in which the sizes of markers indicate how many values were put in each bin.
 Modify the aggregating scatterplot shown above
 so that values are binned in this way.
+</section>
 
+<section markdown="1">
 ### Grouped Bar Charts
 
 Vega-Lite can display
@@ -333,7 +336,9 @@ as well as simple ones.
 Find or create a simple data set and construct a grouped bar chart.
 How impressed will your supervisor, your committee, or a future employee be
 by your chosen color scheme?
+</section>
 
+<section markdown="1">
 ### Limits of Declarative Programming
 
 Look at Vega-Lite's
@@ -343,7 +348,9 @@ that *isn't* included there.
 Do you think this is because they just haven't gotten around to it yet,
 or is there something about that plot or transformation
 that doesn't lend itself to Vega-Lite's declarative model?
+</section>
 
+<section markdown="1">
 ### Working With Arrays
 
 Vega-Lite is built on top of a visualization toolkit called [D3][d3],
@@ -351,5 +358,6 @@ which includes [a library for manipulating arrays][d3-array].
 Write a small application that generates 1000 random values using `Math.random`
 and reports the mean, standard deviation, and quartiles.
 (You may also want to create a histogram showing the distribution of values.)
+</section>
 
 {% include links.md %}
