@@ -602,6 +602,7 @@ but we need more experience before tackling them.
 
 ## Exercises {#s:htmlcss-exercises}
 
+<section markdown="1">
 ### Cutting Corners
 
 What does your browser display if you forget to close a paragraph or list item tag
@@ -620,7 +621,9 @@ like this:
 
 1. What happens if you don't close a `ul` or `ol` list?
 2. Is that behavior consistent with what happens when you omit `</p>` or `</li>`?
+</section>
 
+<section markdown="1">
 ### Mix and Match
 
 1. Create a page that contains a 2x2 table,
@@ -632,13 +635,17 @@ like this:
    Why do programmers do this to us?
    Why?
    Why why why why why?
+</section>
 
+<section markdown="1">
 ### Naming
 
 What does the `sm` in Bootstrap's `col-sm-4` and `col-sm-8` stand for?
 What other options could you use instead?
 Why do web developers still use FORTRAN-style names in the 21st Century?
+</section>
 
+<section markdown="1">
 ### Color
 
 HTML and CSS define names for a small number of colors.
@@ -647,11 +654,14 @@ Write a small JavaScript program that creates an HTML page
 that displays the word `color` in 100 different randomly-generated colors.
 Compare this to the color scheme used in your departmental website.
 Which one hurts your eyes less?
+</section>
 
+<section markdown="1">
 ### Units
 
 What different units can you use to specify text size in CSS?
 What do they mean?
 What does *anything* mean, when you get right down to it?
+</section>
 
 {% include links.md %}
