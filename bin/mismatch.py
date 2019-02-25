@@ -75,8 +75,7 @@ def align_one(result, options, fmt, included, actual, match_prev, match_curr):
 
     included_between = included[included_prev:included_curr]
     actual_between = actual[actual_prev:actual_curr]
-    diffs_found = ((len(included_between) > 0) or (len(actual_between) > 0)) and \
-        (not can_collapse(options, included_between))
+    diffs_found = (len(included_between) > 0) and (not can_collapse(options, included_between))
     if diffs_found:
         result.extend(stringify(fmt, '*', included_between, actual_between))
 

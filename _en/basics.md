@@ -503,6 +503,7 @@ paths that start with names are taken from installed Node libraries.
 
 ## Exercises {#s:basics-exercises}
 
+<section markdown="1">
 ### Typeof
 
 What kind of thing is `typeof`?
@@ -514,7 +515,9 @@ In such circumstances,
 an internet search engine is your friend,
 as is the Mozilla Developer Network (MDN) JavaScript reference
 at <https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference>.
+</section>
 
+<section markdown="1">
 ### Fill in the Blanks
 
 Answer these questions about the program below:
@@ -545,13 +548,17 @@ square of 2 is 4
 square of 1 is 1
 square of 0 is 0
 ```
+</section>
 
+<section markdown="1">
 ### What Is Truth?
 
 Write a function called `isTruthy` that returns `true` for everything that JavaScript considers truthy,
 and `false` for everything it considers `falsy` *except* empty arrays:
 `isTruthy` should return `false` for those.
+</section>
 
+<section markdown="1">
 ### Combining Different Types
 
 What output would you expect from the code below?
@@ -576,7 +583,9 @@ for (let d of second) {
 console.log(total)
 ```
 {: title="basics/aggregating.js"}
+</section>
 
+<section markdown="1">
 ### What Does This Do?
 
 Explain what is happening in the assignment statement that creates the constant `creature`.
@@ -591,7 +600,9 @@ console.log(creature)
 ```text
 { genus: 'Callithrix', species: 'Jacchus' }
 ```
+</section>
 
+<section markdown="1">
 ### What Does This Code Do?
 
 Explain what is happening in the assignment statement in this program.
@@ -608,7 +619,9 @@ console.log(`genus is ${genus}`)
 console.log(`species is ${species}`)
 ```
 {: title="basics/destructuring.js"}
+</section>
 
+<section markdown="1">
 ### Return To Me, For My Heart Wants You Only
 
 ```js
@@ -629,5 +642,6 @@ What output would you see in the console if you ran the code above?
 2. `Going to add 3 to 6` <br/> `9` <br/> `Finished summing`
 3. `Going to add 3 to 6` <br/> `9`
 4. `Going to add 3 to 6` <br/> `36`
+</section>
 
 {% include links.md %}
