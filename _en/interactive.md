@@ -762,17 +762,22 @@ so we have to use `let...in...` rather than purely `map` or `forEach`.)
 
 ## Exercises {#s:interactive-exercises}
 
+<section markdown="1">
 ### Reset
 
 Add a "reset" button to the counter application that always sets the counter's value to zero.
 Does using it to wipe out every change you've made to the counter
 feel like a metaphor for programming in general?
+</section>
 
+<section markdown="1">
 ### Transform
 
 Modify all of the examples *after* the introduction of Babel
 to use external scripts rather than in-pace scripts.
+</section>
 
+<section markdown="1">
 ### Exports
 
 Are the curly braces necessary when exporting from a component file?
@@ -780,7 +785,9 @@ What happens if you remove them?
 Read this [blogpost][es6-modules] and then consider whether it might
 have been more appropriate to use default exports and imports
 in the examples above.
+</section>
 
+<section markdown="1">
 ### Validation
 
 Modify the application so that if the starting date isn't valid when the button is clicked,
@@ -794,5 +801,6 @@ the application displays a warning message instead of fetching data.
 Once you are done,
 search the Internet for React validation and error messages
 and explore other tools you could use to do this.
+</section>
 
 {% include links.md %}

@@ -502,6 +502,7 @@ it doesn't have to be enclosed in `{...}` and `return` doesn't need to be used.
 
 ## Exercises {#s:callbacks-exercises}
 
+<section markdown="1">
 ### Side Effects With `forEach`
 
 JavaScript arrays have a method called `forEach`,
@@ -535,7 +536,9 @@ console.log(`vals after change: ${vals}`)
 ```text
 vals after change: 2,4,6
 ```
+</section>
 
+<section markdown="1">
 ### Annotating Data
 
 Given an array of objects representing observations of wild animals:
@@ -572,5 +575,6 @@ The changes are:
   (These sequence numbers are 1-based rather than 0-based.)
 
 You will probably want to use `Array.reduce` to generate the sequence numbers.
+</section>
 
 {% include links.md %}
