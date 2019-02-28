@@ -7,7 +7,6 @@ const transform = (values, operation) => {
 }
 
 const data = ['one', 'two', 'three']
-
 const upper = transform(data, (x) => { return x.toUpperCase() })
 console.log(`upper: ${upper}`)
 
