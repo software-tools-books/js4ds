@@ -22,6 +22,7 @@ where
 `
 
 class Database {
+
   constructor (mode, arg) {
     switch (mode) {
       case 'direct' :
