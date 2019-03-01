@@ -12,7 +12,8 @@ This appendix explores three of them.
 Gary Bernhardt's [lightning talk from 2012][bernhardt-wat]
 may be the most-watched presentation on JavaScript ever.
 In it,
-he rattles through some truths about the language that may surprise you:
+he rattles through some truths about the language that may surprise you
+([t:legacy-surprises](#TBL)).
 
 | Operation                      | Code      | Result               |
 | ------------------------------ | --------- | -------------------- |
@@ -20,6 +21,7 @@ he rattles through some truths about the language that may surprise you:
 | empty array plus empty object  | `[] + {}` | `{}` (empty object)  |
 | empty object plus empty array  | `{} + []` | `0` (number zero)    |
 | empty object plus empty object | `{} + {}` | `NaN` (not a number) |
+{: title="Surprising Results" id="t:legacy-surprises"}
 
 In order to understand this, we need to know several things
 (which are laid out in more detail in [this article][suri-wat] by Abhinav Suri):
