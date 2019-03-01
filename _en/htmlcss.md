@@ -65,7 +65,7 @@ In HTML,
 escape sequences are written `&name;`,
 i.e.,
 an ampersand, the name of the character, and a semi-colon.
-A few common escape sequences include:
+A few common escape sequences are shown in [t:htmlcss-escapes](#TBL).
 
 | Name         | Escape Sequence | Character |
 | ------------ | --------------- | --------- |
@@ -75,6 +75,7 @@ A few common escape sequences include:
 | Copyright    | `&copy;`        | &copy;    |
 | Plus/minus   | `&plusmn;`      | &plusmn;  |
 | Micro        | `&micro;`       | &micro;   |
+{: title="HTML Escapes" id="t:htmlcss-escapes"}
 
 The first two are self-explanatory,
 and `&amp;` is needed so that we can write a literal ampersand
