@@ -20,8 +20,7 @@ def main(language):
     result = {}
 
     lessons = config['lessons']
-    figure = 1
-    table = 1
+    counters = {'figure': 1, 'table': 1}
     for (i, slug) in enumerate(lessons):
         key = str(i+1)
         result['s:{}'.format(slug)] = {
@@ -29,7 +28,7 @@ def main(language):
             'text': 'Chapter',
             'value': key
         }
-        figure, table = process(result, source_dir, slug, key, figure, table)
+        process(result, source_dir, slug, key, counters)
 
     extras = config['extras']
     letters = ascii_uppercase[:len(extras)]
@@ -39,38 +38,36 @@ def main(language):
             'text': 'Appendix',
             'value': key
         }
-        figure, table = process(result, source_dir, slug, key, figure, table)
+        process(result, source_dir, slug, key, counters)
 
     json.dump(result, sys.stdout)
 
 
-def process(result, source_dir, slug, base, figure_start, table_start):
+def process(result, source_dir, slug, base, counters):
     filename = os.path.join(source_dir, '{}.md'.format(slug))
     with open(filename, 'r') as reader:
         content = reader.read()
+
     headings = SECTION_PAT.findall(content)
-    for (h, i) in zip(headings, range(1, len(headings) + 1)):
-        result[h] = {
-            'slug': slug,
-            'text': 'Section',
-            'value': '{}.{}'.format(base, i)
-        }
+    fill(result, headings, slug, 1, 'Section', '{base}.{i}', {'base': base})
+
     figures = FIGURE_PAT.findall(content)
-    for (f, i) in zip(figures, range(figure_start, len(figures) + figure_start)):
-        result[f] = {
-            'slug': slug,
-            'text': 'Figure',
-            'value': '{}'.format(i)
-        }
+    fill(result, figures, slug, counters['figure'], 'Figure', '{i}', {})
+    counters['figure'] += len(figures)
+
     tables = TABLE_PAT.findall(content)
-    for (t, i) in zip(tables, range(table_start, len(tables) + table_start)):
-        result[t] = {
+    fill(result, tables, slug, counters['table'], 'Table', '{i}', {})
+    counters['table'] += len(tables)
+
+
+def fill(result, items, slug, start, text, fmt, values):
+    for (k, i) in zip(items, range(start, start + len(items))):
+        values['i'] = i
+        result[k] = {
             'slug': slug,
-            'text': 'Table',
-            'value': '{}'.format(i)
+            'text': text,
+            'value': fmt.format(**values)
         }
-    return figure_start + len(figures), \
-        table_start + len(tables)
 
 
 if __name__ == '__main__':
