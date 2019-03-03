@@ -21,6 +21,7 @@ where
 `
 
 class Database {
+
   constructor (path) {
     this.db = new sqlite3.Database(path, sqlite3.OPEN_READWRITE, (err) => {
       if (err) this.fail(`Database open error ${err} for "${path}"`)

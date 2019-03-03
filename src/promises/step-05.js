@@ -13,7 +13,7 @@ const statPair = (filename) => {
 
 glob(`${srcDir}/**/*.txt`)
   .then(files => Promise.all(files.map(f => statPair(f))))
-  .then(files => files.filter(pair => pair.stats.isFile()))
+  .then(files => files.filter(pair => pair.stats.size > 100000))
   .then(files => Promise.all(files.map(f => fs.readFile(f.filename, 'utf8'))))
   .then(contents => console.log('...readFile', contents.map(c => c.length)))
   .catch(error => console.error(error))

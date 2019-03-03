@@ -552,7 +552,7 @@ const citations = () => {
     ))
     .map(({node, text}) => (
       {node,
-      text: `[${text.join(', ')}]`}
+       text: `[${text.join(', ')}]`}
     ))
     .forEach(({node, text}) => {
       const span = document.createElement('span')
@@ -667,7 +667,7 @@ with commas between the entries:
 ```js
     .map(({node, text}) => (
       {node,
-      text: `[${text.join(', ')}]`}
+       text: `[${text.join(', ')}]`}
     ))
 ```
 {: title="pages/citations.js"}

@@ -29,7 +29,7 @@ app.use((req, res, next) => {
     } else {
       winston.debug(`Serving "${actual}"`)
       fs.readFile(actual, 'utf-8', (err, data) => {
-	res.status(200).send(data)
+        res.status(200).send(data)
       })
     }
   })
