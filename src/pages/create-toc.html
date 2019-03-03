@@ -13,14 +13,14 @@
     <p>stuff</p>
 
     <script>
-      (() => {
-        const container = document.getElementById('fill')
-        const headings = Array.from(document.querySelectorAll('h2'))
-        const items = headings
-              .map((h) => `<li><a href="#${h.id}">${h.innerHTML}</a></li>`)
-              .join('')
-        container.innerHTML = '<ul>' + items + '</ul>'
-      })()
+(() => {
+  const container = document.getElementById('fill')
+  const headings = Array.from(document.querySelectorAll('h2'))
+  const items = headings
+        .map((h) => `<li><a href="#${h.id}">${h.innerHTML}</a></li>`)
+        .join('')
+  container.innerHTML = '<ul>' + items + '</ul>'
+})()
     </script>
   </body>
 </html>

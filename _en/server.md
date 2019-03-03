@@ -83,7 +83,7 @@ The headers and body in an HTTP response have the same form, and mean the same t
 Crucially,
 the response also includes a status code to indicate what happened:
 200 for OK, 404 for "page not found", and so on.
-Some of the more common are:
+Some of the more common are shown in [t:server-codes](#TBL).
 
 <div markdown="1" replacement="server/statuscodes.tex">
 
@@ -101,6 +101,7 @@ Some of the more common are:
 | 418  | I'm a Teapot          | An April Fool's joke                                       |
 | 500  | Internal Server Error | A server error occurred while handling the request         |
 | 601  | Connection Timed Out  | The server did not respond before the connection timed out |
+{: id="t:server-codes" title="HTTP Status Codes"}
 
 </div>
 
