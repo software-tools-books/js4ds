@@ -6,7 +6,7 @@ questions:
 keypoints:
 - "Vega-Lite is a simple way to build common visualizations."
 - "Vega-Lite is declarative: the user creates a data structure describing what they want, and the library creates the visualization."
-- "A Vega-List specification contains a schema identifier, a description, data, marks, and encodings."
+- "A Vega-Lite specification contains a schema identifier, a description, data, marks, and encodings."
 - "The overall layout of a Vega-Lite visualization can be controlled by setting options."
 - "Some applications will use `require` for server-side code and `import` for client-side code."
 ---
