@@ -12,7 +12,11 @@ Subtitle: *A Brief Guide for Those Who Regret That This Has Become Necessary*
 ## Author Data
 
 Dr. Toby Hodges<br/>
-FIXME: ADDRESS
+Karlsruher Strasse 69<br/>
+69126 Heidelberg<br/>
+Baden-Württemberg<br/>
+Germany<br/>
+tbyhdgs@gmail.com
 
 Dr. Greg Wilson<br/>
 65 Highfield Road<br/>
@@ -163,7 +167,9 @@ him when he was learning JavaScript.
 
 ### Author Platform
 
-Toby: FIXME
+Toby: I give at least one conference talk each year, plus seminars at my
+workplace (the European Molecular Biology Laboratory) and at other similar 
+institutes by invitation. I am active on Twitter under the handle @tbyhdgs.
 
 Greg: I give conference presentations once or twice a year, and blog several
 times a month.  I was very active on Twitter for almost a decade, but have
