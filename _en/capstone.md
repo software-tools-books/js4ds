@@ -153,6 +153,12 @@ app.use((req, res, next) => {
 Now let's write our first test:
 
 ```js
+const path = require('path')
+const assert = require('assert')
+const request = require('supertest')
+const DataManager = require('./data-manager')
+const make_server = require('./server-0')
+
 TEST_DATA_PATH = path.resolve(__dirname, 'test-data.csv')
 
 describe('server', () => {
@@ -648,6 +654,18 @@ A user has asked for the number of male and female animals observed for each yea
 2. Compare your implementation to someone else's.
    Did you define "invalid" in the same way?
    I.e., will your programs always return the same status codes for every query?
+</section>
+
+<section markdown="1">
+### Adding More Tests
+
+1. Our updated `server-1.js` doesn't have a test associated with it.
+   Make a copy of `test-server.js` and adjust it to test this version of the
+   server.
+2. What other elements of the application could and should be tested?
+   Try writing tests for those.
+   In doing this, did you discover imperfections in the example code?
+   If so, we'd love to hear about them (see [s:contributing](#REF)).
 </section>
 
 <section markdown="1">
