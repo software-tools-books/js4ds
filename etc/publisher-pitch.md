@@ -20,8 +20,8 @@ tbyhdgs@gmail.com
 
 Dr. Greg Wilson<br/>
 65 Highfield Road<br/>
-Toronto, Ontario M4L 2T9<br/>
-+1 416 435 9779<br/>
+Toronto, Ontario<br/>
+Canada M4L 2T9<br/>
 gvwilson@third-bit.com
 
 ## Book Description
