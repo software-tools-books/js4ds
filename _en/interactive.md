@@ -517,7 +517,7 @@ class App extends React.Component {
 const mount = document.getElementById("app")
 ReactDOM.render(<App/>, mount)
 ```
-{: title="interactive/asteroids/app.js"}
+{: title="interactive/asteroids/app-intermediate-template.js"}
 
 We'll test it by displaying asteroids using fake data;
 as in our first example,
@@ -588,7 +588,7 @@ class App extends React.Component {
   // ...other code...
 }
 ```
-{: title="interactive/asteroids/app.js"}
+{: title="interactive/asteroids/app-intermediate-constructor.js"}
 
 Let's also create a placeholder for `DateSubmit`:
 
@@ -602,7 +602,7 @@ const DateSubmit = (props) => {
 
 export {DateSubmit}
 ```
-{: title="interactive/asteroids/DateSubmit.js"}
+{: title="interactive/asteroids/DateSubmit-intermediate-placeholder.js"}
 
 <!-- == noindent -->
 and run it to get [f:interactive-asteroids-screenshot](#FIG).
@@ -632,7 +632,7 @@ const DateSubmit = ({label, value, onChange, onCommit}) => {
   )
 }
 
-// ...export as before...
+export {DateSubmit}
 ```
 {: title="interactive/asteroids/DateSubmit.js"}
 
@@ -659,7 +659,9 @@ class App extends React.Component {
     super(props)
     this.state = {
       newDate: '',
-      asteroids: [...]
+      asteroids: [
+        //...data as before...
+      ]
     }
   }
 
@@ -689,7 +691,7 @@ class App extends React.Component {
 
 // ...mount as before...
 ```
-{: title="interactive/asteroids/app.js"}
+{: title="interactive/asteroids/app-intermediate-date-handling.js"}
 
 It's safe to pass `this.state.newDate` to `value`
 because we're re-drawing each time there's a change;
@@ -706,6 +708,8 @@ so we'll handle the result of the fetch in the promise's `then` method,
 and then chain another `then` method to transform the data into what we need:
 
 ```js
+// ...previous code as before
+
   onSubmitNewDate = (text) => {
     const url = 'https://api.nasa.gov/neo/rest/v1/feed' +
                 `?api_key=DEMO_KEY&start_date=${text}`
@@ -719,8 +723,10 @@ and then chain another `then` method to transform the data into what we need:
       })
     })
   }
+
+//...render as before
 ```
-{: title="interactive/asteroids/app.js"}
+{: title="interactive/asteroids/app-intermediate-onSubmitNewDate.js"}
 
 Line by line,
 the steps are:
@@ -737,6 +743,8 @@ Finally,
 the method to transform the data NASA gives us is:
 
 ```js
+// ...previous code as before
+
   transform = (raw) => {
     let result = []
     for (let key in raw.near_earth_objects) {
@@ -751,8 +759,10 @@ the method to transform the data NASA gives us is:
     }
     return result
   }
+
+// ...render as before
 ```
-{: title="interactive/asteroids/app.js"}
+{: title="interactive/asteroids/app-intermediate-transform.js"}
 
 We built this by looking at the structure of the JSON that NASA returned
 and figuring out how to index the fields we need.
