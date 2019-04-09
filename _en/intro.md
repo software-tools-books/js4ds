@@ -81,7 +81,7 @@ since it isolates projects from one another.
 ## Who We Are {#s:intro-contributors}
 
 <!-- == noindent -->
-<img src="../../figures/hodges-toby.png" alt="Toby Hodges" width="100" />
+<img src="../figures/hodges-toby.png" alt="Toby Hodges" width="100" />
 
 <!-- == noindent -->
 **[Toby Hodges][hodges-toby]** is a bioinformatician turned community
@@ -93,7 +93,7 @@ to thank his wife for her support and patience while he swore about how annoying
 JavaScript is to debug.
 
 <!-- == noindent -->
-<img src="../../figures/wilson-greg.png" alt="Greg Wilson" width="100" />
+<img src="../figures/wilson-greg.png" alt="Greg Wilson" width="100" />
 
 <!-- == noindent -->
 **[Greg Wilson][wilson-greg]** has worked for 35 years in both industry and

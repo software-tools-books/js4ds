@@ -16,7 +16,7 @@ title: "Bibliography"
 
 **Meek2017**{:#b:Meek2017}: Elijah Meeks: *D3.js in Action*. Manning, 2017, <https://www.manning.com/books/d3js-in-action-second-edition>. *A comprehensive guide to the D3 visualization framework.*
 
-**Mori2012**{:#b:Mori2012}: Andrew Morin and Jennifer Urban AND Piotr Sliz: "A Quick Guide to Software Licensing for the Scientist-Programmer". *PLoS Computational Biology*, 8(7), Jul 2012, <https://doi.org/10.1371/journal.pcbi.1002598>. *A short introduction to software licensing for non-specialists.*
+**Mori2012**{:#b:Mori2012}: Andrew Morin, Jennifer Urban, and Piotr Sliz: "A Quick Guide to Software Licensing for the Scientist-Programmer". *PLoS Computational Biology*, 8(7), Jul 2012, <https://doi.org/10.1371/journal.pcbi.1002598>. *A short introduction to software licensing for non-specialists.*
 
 **Wils2018**{:#b:Wils2018}: Greg Wilson: *Teaching Tech Together*. Lulu.com, 2018, <http://teachtogether.tech>. *How to create and deliver lessons that work and build a teaching community around them.*
 
