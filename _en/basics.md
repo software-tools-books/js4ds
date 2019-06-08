@@ -153,7 +153,7 @@ put values separated by commas inside `[]` to create an [array](#g:array),
 and use `for...of` to loop over the values in that array.
 Note that we use `let` rather than the older `var` and `of` and not `in`:
 the latter returns the indexes of the collection (e.g., 0, 1, 2),
-which has some traps for the unwary ((s:legacy-iteration)[#REF)).
+which has some traps for the unwary ([s:legacy-iteration](#REF)).
 Note also that indexing starts from 0 rather than 1,
 and that indentation is optional and for readability purposes only.
 This may be different from the language that you're used to.
