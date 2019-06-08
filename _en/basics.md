@@ -187,14 +187,14 @@ for (let pair of values) {
 ```
 {: title="basics/control-flow.js"}
 ```text
-0 of type number is falsy
-1 of type number is truthy
+0 'of type' 'number' 'is falsy'
+1 'of type' 'number' 'is truthy'
  of type string is falsy
 text of type string is truthy
-undefined of type undefined is falsy
-null of type object is falsy
- of type object is truthy
-2,3 of type object is truthy
+undefined 'of type' 'undefined' 'is falsy'
+null 'of type' 'object' 'is falsy'
+[] 'of type' 'object' 'is truthy'
+[ 2, 3 ] 'of type' 'object' 'is truthy'
 ```
 
 This example shows that arrays are [heterogeneous](#g:heterogeneous),
