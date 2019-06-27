@@ -1,0 +1,703 @@
+\chapter{Capstone Project}\label{s:capstone}
+
+It's time to bring everything together in an extended example:
+a (slightly) interactive visualization of species data from \url{https://figshare.com/articles/Portal_Project_Teaching_Database/1314459}.
+Our plan is to:
+
+\begin{itemize}
+\item
+  slice data for testing,
+\item
+  write a data server to serve that data,
+\item
+  test the server,
+\item
+  build an interactive tabular display of our data, and
+\item
+  add visualization.
+\end{itemize}
+
+This will require a few new ideas,
+but will mostly recapitulate what's come before.
+
+\section{Data Manager}\label{s:capstone-data}
+
+The data manager is exactly the same as the one we built in \chapref{s:dataman}.
+As a reminder,
+the key class is:
+
+\begin{minted}{js}
+class DataManager {
+
+  constructor (filename) {
+    // ...read and store data from CSV file...
+  }
+
+  getSurveyStats () {
+    // ...return summary statistics...
+  }
+
+  getSurveyRange (minYear, maxYear) {
+    // ...return slice of data...
+  }
+}
+\end{minted}
+
+\section{Server}\label{s:capstone-server}
+
+The server is going to be almost the same as the one in \chapref{s:server}.
+However, we need to connect it to the data manager class.
+We'll do this by having the driver create a data manager,
+and then pass that data manager to the server as the latter is being created:
+
+\begin{minted}{js}
+const DataManager = require('./data-manager')
+const server = require('./server-0')
+
+const PORT = 3418
+
+const filename = process.argv[2]
+const db = new DataManager(filename)
+const app = server(db)
+app.listen(PORT, () => {
+  console.log(`listening on port ${PORT}...`)
+})
+\end{minted}
+
+As you can probably guess from the fact that we've called it \texttt{driver-0},
+we're going to be making some changes down the road\ldots{}
+
+Here's the start of the server it works with:
+
+\begin{minted}{js}
+const express = require('express')
+
+// 'dataManager' is a global variable that refers to our database.
+// It must be set when the server is created.
+let dataManager = null
+
+// Main server object.
+const app = express()
+
+// ...handle requests...
+
+module.exports = (dbm) => {
+  dataManager = dbm
+  return app
+}
+\end{minted}
+
+We'll look at handling requests for data in the next section.
+The most important thing for now is the way we manage the connection to the data manager.
+Down at the bottom of \texttt{server-0.js},
+we export a function that assigns its single argument to a variable called \texttt{dataManager}.
+Inside the methods that handle requests,
+we'll be able to send database queries to \texttt{dataManager}.
+
+This variable is global within this file,
+but since it's not exported,
+it's invisible outside.
+Variables like this are called \gref{g:module-variable}{module variables},
+and give us a way to share information among the functions in a module
+without giving anything outside the module a way to cause (direct) harm to that information.
+
+\section{API}\label{s:capstone-api}
+
+The next step is to decide what our server's API will be,
+i.e.,
+what URLs it will understand and what data they will fetch.
+\texttt{GET\ /survey/stats} will get summary statistics as a single JSON record,
+and \texttt{GET\ /survey/:start/:end} gets aggregate values for a range of years.
+(We will add error checking on the year range as an exercise.)
+Anything else will return a 404 error code and a snippet of HTML telling us we're bad people.
+We will put this code in \texttt{server.js} and a command-line driver in \texttt{driver.js} for testability.
+The server functions are:
+
+\begin{minted}{js}
+// Get survey statistics.
+app.get('/survey/stats', (req, res, next) => {
+  const data = dataManager.getSurveyStats()
+  res.setHeader('Content-Type', 'application/json')
+  res.status(200).send(data)
+})
+
+// Get a slice of the survey data.
+app.get('/survey/:start/:end', (req, res, next) => {
+  const start = parseInt(req.params.start)
+  const end = parseInt(req.params.end)
+  const data = dataManager.getSurveyRange(start, end)
+  res.setHeader('Content-Type', 'application/json')
+  res.status(200).send(data)
+})
+\end{minted}
+
+We also write an error handling function:
+
+\begin{minted}{js}
+// Nothing else worked.
+app.use((req, res, next) => {
+  page = `<html><body><p>error: "${req.url}" not found</p></body></html>`
+  res.status(404)
+     .send(page)
+})
+\end{minted}
+
+Now let's write our first test:
+
+\begin{minted}{js}
+const path = require('path')
+const assert = require('assert')
+const request = require('supertest')
+const DataManager = require('./data-manager')
+const make_server = require('./server-0')
+
+TEST_DATA_PATH = path.resolve(__dirname, 'test-data.csv')
+
+describe('server', () => {
+
+  it('should return statistics about survey data', (done) => {
+    expected = {
+      minYear: 1979,
+      maxYear: 2000,
+      count: 10
+    }
+    const db = new DataManager(TEST_DATA_PATH)
+    const server = make_server(db)
+      .get('/survey/stats')
+      .expect(200)
+      .expect('Content-Type', 'application/json')
+      .end((err, res) => {
+        assert.deepEqual(res.body, expected, '')
+        done()
+      })
+  })
+})
+\end{minted}
+
+Note that the range of years is 1979-2000,
+which is \emph{not} the range in the full dataset.
+We run this with:
+
+\begin{minted}{shell}
+$ npm test -- src/capstone/back/test-server.js
+\end{minted}
+
+\noindent
+and it passes.
+
+\section{The Display}\label{s:capstone-display}
+
+The front end is a straightforward recapitulation of what we've done before.
+There is a single HTML page called \texttt{index.html}:
+
+\begin{minted}{html}
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Creatures</title>
+    <meta charset="utf-8">
+    <script src="app.js" async></script>
+  </head>
+  <body>
+    <div id="app"></div>
+  </body>
+</html>
+\end{minted}
+
+The main application in \texttt{app.js} imports components to display summary statistics,
+choose a range of years,
+and display annual data.
+There is not usually such a close coupling between API calls and components,
+but it's not a bad place to start.
+Note that we are using \texttt{import} because we're trying to be modern,
+even though the back end still needs \texttt{require}.
+
+\begin{minted}{js}
+import React from 'react'
+import ReactDOM from 'react-dom'
+import SurveyStats from './SurveyStats'
+import ChooseRange from './ChooseRange'
+import DataDisplay from './DataDisplay'
+
+class App extends React.Component {
+
+  constructor (props) {
+    // ...constructor...
+  }
+
+  componentDidMount = () => {
+    // ...initialize...
+  }
+
+  onStart = (start) => {
+    // ...update start year...
+  }
+
+  onEnd = (end) => {
+    // ...update end year...
+  }
+
+  onNewRange = () => {
+    // ...handle submission of year range...
+  }
+
+  render = () => {
+    // ...render current application state...
+  }
+}
+
+ReactDOM.render(
+  <App />,
+  document.getElementById('app')
+)
+\end{minted}
+
+The constructor defines the URL for the data source and sets up the initial state,
+which has summary data,
+start and end years,
+and data for those years:
+
+\begin{minted}{js}
+  constructor (props) {
+    super(props)
+    this.baseUrl = 'http://localhost:3418'
+    this.state = {
+      summary: null,
+      start: '',
+      end: '',
+      data: null
+    }
+  }
+\end{minted}
+
+The method \texttt{componentDidMount} is new:
+it fetches data for the very first time
+so that the user sees something useful on the page when they first load it.
+
+\begin{minted}{js}
+  componentDidMount = () => {
+    const url = `${this.baseUrl}/survey/stats`
+    fetch(url).then((response) => {
+      return response.json()
+    }).then((summary) => {
+      this.setState({
+        summary: summary
+      })
+    })
+  }
+\end{minted}
+
+We don't call this method ourselves;
+instead,
+React automatically calls it once our application and its children have been loaded and initialized.
+We can't fetch the initial data in the application's constructor because
+we have no control over the order in which bits of display are initialized.
+On the upside,
+we can use \texttt{response.json()} directly because we know the source is returning JSON data.
+This method is the only place where the summary is updated,
+since the data isn't changing underneath us:
+
+Next up we need to handle typing in the ``start'' and ``end'' boxes.
+The HTML controls in the web page will capture the characters without our help,
+but we need those values in our state variables:
+
+\begin{minted}{js}
+  onStart = (start) => {
+    this.setState({
+      start: start
+    })
+  }
+
+  onEnd = (end) => {
+    this.setState({
+      end: end
+    })
+  }
+\end{minted}
+
+When the button is clicked,
+we send a request for JSON data to the appropriate URL
+and record the result in the application's state.
+React will notice the state change and call \texttt{render} for us.
+More precisely,
+the browser will call the first \texttt{then} callback when the response arrives,
+and the second \texttt{then} callback when the data has been converted to JSON.
+
+\begin{minted}{js}
+  onNewRange = () => {
+    const params = {
+      method: 'GET',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      }
+    }
+    const url = `${this.baseUrl}/survey/${this.state.start}/${this.state.end}`
+    fetch(url, params).then((response) => {
+      return response.json()
+    }).then((data) => {
+      this.setState({
+        data: data
+      })
+    })
+  }
+\end{minted}
+
+Now let's update the display with \texttt{SurveyStats}, \texttt{ChooseRange}, \texttt{DataChart}, and \texttt{DataDisplay},
+which are all stateless components
+(i.e., they display things but don't change anything):
+
+\begin{minted}{js}
+  render = () => {
+    const tableStyle = {overflow: 'scroll', height: '200px'}
+    return (
+      <div>
+        <h1>Creatures</h1>
+        <SurveyStats data={this.state.summary} />
+        <ChooseRange
+          start={this.state.start} onStart={this.onStart}
+          end={this.state.end} onEnd={this.onEnd}
+          onNewRange={this.onNewRange} />
+        <DataChart data={this.state.data} />
+        <div style={tableStyle}>
+          <DataDisplay data={this.state.data} />
+        </div>
+      </div>
+    )
+  }
+\end{minted}
+
+\section{The Tables}\label{s:capstone-tables}
+
+We will display survey stats as tables,
+with a paragraph fallback when there's no data.
+
+First, we display summary statistics for the whole data set
+(as returned by the \texttt{GET\ /survey/stats} query we wrote a handler for earlier)
+as a table at the top of the page.
+(Again, we need parentheses around the HTML fragment so that it will parse properly.)
+
+\begin{minted}{js}
+import React from 'react'
+
+const SurveyStats = ({data}) => {
+  if (data === null) {
+    return (<p>no data</p>)
+  }
+  return (
+    <table>
+      <tbody>
+        <tr><th>record count</th><td>{data.record_count}</td></tr>
+        <tr><th>year low</th><td>{data.year_low}</td></tr>
+        <tr><th>year high</th><td>{data.year_high}</td></tr>
+      </tbody>
+    </table>
+  )
+}
+
+export default SurveyStats
+\end{minted}
+
+Next, we display aggregated statistics for a given range of years
+(the \texttt{GET\ /survey/:start/:end} query)
+in another table.
+
+\begin{minted}{js}
+import React from 'react'
+
+const DataDisplay = ({data}) => {
+
+  if (! data) {
+    return (<p>no data</p>)
+  }
+
+  const columns = [
+    'year',
+    'min_hindfoot_length',
+    'ave_hindfoot_length',
+    'max_hindfoot_length',
+    'min_weight',
+    'ave_weight',
+    'max_weight'
+  ]
+
+  return (
+    <table>
+      <tbody>
+        <tr>{columns.map((c) => (<th>{c}</th>))}</tr>
+        {data.filter(r => r).map((record) => {
+          return (<tr>{columns.map((c) => (<td>{record[c]}</td>))}</tr>)
+        })}
+      </tbody>
+    </table>
+  )
+}
+
+export default DataDisplay
+\end{minted}
+
+Like \texttt{SurveyStats}, \texttt{DataDisplay} returns a table listing the results returned from the server.
+Unlike \texttt{SurveyStats},
+this component needs to check whether each record exists before it builds the table row.
+Remember that,
+when we defined how the year range query is handled in \texttt{DataManager} earlier,
+we told it to only return record objects for those years that have data.
+Here, we add \texttt{.filter(r\ =\textgreater{}\ r)} before mapping the data to the callback
+to ensure that \texttt{DataDisplay} will only try to make \texttt{tr} elements from non-\texttt{null} records.
+We do the same when plotting the data.
+
+\section{The Chart}\label{s:capstone-chart}
+
+We initially tried using Vega-Lite directly for the chart,
+but after a few failures and some googling,
+we switched to \texttt{react-vega-lite}:
+Vega-Lite's \texttt{vega-embed} wants to modify an existing DOM element when called,
+while \texttt{react-vega-lite} constructs an element to be put in place at the right time,
+which proved easier to use.
+The steps are:
+
+\begin{enumerate}
+\item
+  Create a paragraph placeholder if there's no data.
+\item
+  Re-organize non-\texttt{null} data into the form the chart needs.
+\item
+  Construct a spec like the ones we have seen before.
+\item
+  Create options to turn off the annoying links (also seen before).
+\item
+  Return an instance of the \texttt{VegaLite} component.
+\end{enumerate}
+
+\begin{minted}{js}
+import React from 'react'
+import VegaLite from 'react-vega-lite'
+
+const DataChart = ({data}) => {
+  if (! data) {
+    return (<p>no data</p>)
+  }
+
+  const values = data
+        .filter(r => r)
+        .map(r => ({x: r.ave_hindfoot_length, y: r.ave_weight}))
+  let spec = {
+    '$schema': 'https://vega.github.io/schema/vega-lite/v2.0.json',
+    'description': 'Mean Weight vs Mean Hindfoot Length',
+    'mark': 'point',
+    'encoding': {
+      'x': {'field': 'x', 'type': 'quantitative'},
+      'y': {'field': 'y', 'type': 'quantitative'}
+    }
+  }
+  let options = {
+    'actions': {
+      'export': false,
+      'source': false,
+      'editor': false
+    }
+  }
+  let scatterData = {
+    'values': values
+  }
+  return (<VegaLite spec={spec} data={scatterData} options={options}/>)
+}
+
+export default DataChart
+\end{minted}
+
+The other components are similar to those we have seen before.
+
+\section{Running It}\label{s:capstone-run}
+
+In order to test our application,
+we need to run a data server,
+and then launch our application with Parcel.
+The easiest way to do that is to open two windows on our computer
+and make each half the width (or height) of our screen
+so that we can see messages from both halves of what we're doing.
+
+In one window,
+we run:
+
+\begin{minted}{shell}
+$ node src/capstone/back/driver-0.js src/capstone/back/test-data.csv
+\end{minted}
+
+Note that we \emph{don't} use \texttt{npm\ run\ dev} to trigger Parcel:
+this is running on the server,
+so no bundling is necessary.
+In our other window,
+we run:
+
+\begin{minted}{shell}
+$ npm run dev src/capstone/front/index.html
+\end{minted}
+
+\noindent
+which displays:
+
+\begin{minted}{text}
+> js-vs-ds@0.1.0 dev /Users/stj/js-vs-ds
+> parcel serve -p 4000 "src/capstone/front/index.html"
+
+Server running at http://localhost:4000
++  Built in 20.15s.
+\end{minted}
+
+\figpdf{figures/capstone-first-attempt.png}{First Attempt at Viewing Capstone Project}{f:capstone-first-attempt}
+
+We then open \texttt{http://localhost:4000} in our browser and see \figref{f:capstone-first-attempt}.
+That's unexpected: we should see the initial data displayed.
+If we open the console in the browser and reload the page,
+we see this error message:
+
+\begin{minted}{text}
+Cross-Origin Request Blocked:
+The Same Origin Policy disallows reading the remote resource \
+  at http://localhost:3418/survey/stats.
+(Reason: CORS header 'Access-Control-Allow-Origin' missing).
+\end{minted}
+
+The ``Learn More'' link given with the error message takes us to \href{https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS/Errors/CORSMissingAllowOrigin}{this page},
+which uses many science words we don't know.
+A web search turns up \href{https://en.wikipedia.org/wiki/Cross-origin_resource_sharing}{this article on Wikipedia},
+which tells us that \gref{g:cors}{Cross-origin resource sharing} (CORS)
+is a security mechanism.
+If a page loads some JavaScript,
+and that JavaScript is allowed to send requests to servers other than the one that the page came from,
+then villains would be able to do things like send passwords saved in the browser to themselves.
+The details are too complex for this tutorial;
+the good news is that they've been wrapped up in a Node library called \texttt{cors},
+which we can add to our server with just a couple of lines of code:
+
+\begin{minted}{js}
+const express = require('express')
+const cors = require('cors')          // added
+
+let dataManager = null
+
+const app = express()
+app.use(cors())                       // added
+
+app.get('/survey/stats', (req, res, next) => {
+  // ...as before...
+})
+
+app.get('/survey/:start/:end', (req, res, next) => {
+  // ...as before...
+})
+
+app.use((req, res, next) => {
+  // ...as before...
+})
+
+module.exports = (dbm) => {
+  // ...as before...
+}
+\end{minted}
+
+Since this code is saved in \texttt{server-1.js},
+we need to create a copy of the driver called \texttt{driver-1.js} that invokes it.
+Let's run that:
+
+\begin{minted}{shell}
+$ node src/capstone/back/driver-1.js src/capstone/back/test-data.csv
+\end{minted}
+
+and then re-launch our application to get \figref{f:capstone-second-attempt}.
+
+\figpdf{figures/capstone-second-attempt.png}{Second Attempt at Viewing Capstone Project}{f:capstone-second-attempt}
+
+Much better!
+Now we can type some dates into the ``start'' and ``end'' boxes and,
+after we press ``update'',
+we get a chart and table of the aggregated statistics for the year range given
+(\figref{f:capstone-complete}).
+
+\figpdf{figures/capstone-complete.png}{Completed Capstone Project}{f:capstone-complete}
+
+We've built an interface,
+used it to submit queries that are then handled by a server,
+which returns data that can be converted to content by our React components,
+and our capstone project is complete.
+
+\section{Exercises}\label{s:capstone-exercises}
+
+\exercise{Reporting Other Data}
+
+A user has asked for the number of male and female animals observed for each year.
+
+\begin{enumerate}
+\item
+  Should you add this to the existing query for yearly data or create a new API call?
+\item
+  Implement your choice.
+\end{enumerate}
+
+\exercise{Error Checking}
+
+\begin{enumerate}
+\item
+  Modify the server to return 400 with an error message
+  if the range of years requested is invalid
+\item
+  Compare your implementation to someone else's.
+  Did you define ``invalid'' in the same way?
+  I.e., will your programs always return the same status codes for every query?
+\end{enumerate}
+
+\exercise{Adding More Tests}
+
+\begin{enumerate}
+\item
+  Our updated \texttt{server-1.js} doesn't have a test associated with it.
+  Make a copy of \texttt{test-server.js} and adjust it to test this version of the
+  server.
+\item
+  What other elements of the application could and should be tested?
+  Try writing tests for those.
+  In doing this, did you discover imperfections in the example code?
+  If so, we'd love to hear about them (see \appref{s:contributing}).
+\end{enumerate}
+
+\exercise{Use All the Data}
+
+Create a database using all of the survey data and test the display.
+What bugs or shortcomings do you notice compared to displaying test data?
+
+\exercise{Merging Displays}
+
+The \texttt{SurveyStats} and \texttt{DataDisplay} components in the front end both display tables.
+
+\begin{enumerate}
+\item
+  Write a new component \texttt{TableDisplay} that will display an arbitrary table
+  given a list of column names
+  and a list of objects which all have (at least) those fields.
+\item
+  Replace \texttt{SurveyStats} and \texttt{DataDisplay} with your new component.
+\item
+  Modify your component so that it generates a unique ID for each value in the table.
+  (Hint: you may need to pass in a third parameter to each call
+  to serve as the root or stem of those unique IDs.)
+\end{enumerate}
+
+\exercise{Formatting}
+
+Modify \texttt{DataDisplay} to format fractional numbers with a single decimal place,
+but leave the integers as they are.
+Ask yourself why,
+seven decades after the invention of digital computers,
+this isn't easier.
+
+\exercise{Data, Data Everywhere}
+
+Modify \texttt{DataChart} so that the word \texttt{data} isn't used in so many different ways.
+Does doing this make you feel better about yourself as a person?
+Modify it again so that the height and width of the chart are passed in as well.
+Did that help?
+
+\section*{Key Points}
+
+\input{keypoints/capstone}

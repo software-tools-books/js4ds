@@ -1,0 +1,659 @@
+\chapter{Glossary}\label{s:gloss}
+
+\begin{description}
+
+\gitem{g:absolute-path}{absolute path}
+a path that points to the same location in the filesystem regardless of where
+it's evaluated. An absolute path is the equivalent of latitude and longitude
+in geography. See also \grefcross{g:relative-path}{relative path}.
+
+\gitem{g:aggregation-function}{aggregation function}
+a function that combines many values into one, such as \texttt{sum} or \texttt{max}.
+
+\gitem{g:anonymous-function}{anonymous function}
+a function that is defined without giving it a name, such as a callback
+defined where it is used. Anonymous functions are sometimes called \emph{lambda
+functions} because the Greek letter lambda is used for them in mathematics.
+
+\gitem{g:argument}{argument}
+see \grefcross{g:parameter}{parameter}.
+
+\gitem{g:array}{array}
+a collection of values stored in a particular order and indexed numerically.
+Arrays are written as comma-separated values in square brackets, such as
+\texttt{{[}'a',\ 'b',\ 'c'{]}}. The term \grefcross{g:list}{list} is often used synonymously.
+
+\gitem{g:ascii}{ASCII}
+a widely-used set of numeric codes for representing characters from the Latin
+alphabet and common punctuation symbols, now superseded by
+\grefcross{g:unicode}{Unicode}.
+
+\gitem{g:assertion}{assertion}
+a statement that something is true at a certain point in a program.
+Assertions are often used to define tests, but are also used in \grefcross{g:production-code}{production
+code} to check that software is behaving as it should.
+
+\gitem{g:attribute}{attribute}
+a named property attached to an HTML \grefcross{g:element}{element}.
+
+\gitem{g:backward-compatible}{backward-compatible}
+able to work consistently with older systems.
+
+\gitem{g:http-body}{body}
+any optional data sent after the message's headers.
+
+\gitem{g:bundler}{bundler}
+a tool that combines JavaScript files, web pages, images, and other assets
+into a single bundle for deployment.
+
+\gitem{g:cache}{cache}
+a place where copies of recently-used values are stored for quicker access.
+
+\gitem{g:call-stack}{call stack}
+a data structure that stores information about function calls that are
+currently in progress. Each function call adds another table of
+variable-value pairs to the top of the stack; when the function completes,
+that table is discarded. See also \grefcross{g:closure}{closure}.
+
+\gitem{g:callback-function}{callback function}
+a function A that is passed to another function B for B to call at a later
+time. Callback functions are used to implement delayed actions, such as what
+to do when data arrives in response to a network request.
+
+\gitem{g:css}{Cascading Style Sheets}
+a way to describe how HTML should be rendered.
+
+\gitem{g:catch}{catch}
+to take responsibility for handling an \grefcross{g:exception}{exception}. Catch is
+the counterpart of \grefcross{g:throw}{throw}.
+
+\gitem{g:cc-by}{Creative Commons - Attribution License}
+a license that allows people to re-use work as long as they cite its
+original source.
+
+\gitem{g:character-encoding}{character encoding}
+a specification of how characters are stored as bytes. The most commonly-used
+encoding today is \grefcross{g:utf-8}{UTF-8}.
+
+\gitem{g:child-class}{child class}
+a new \grefcross{g:class}{class} that \grefcross{g:extend}{extends} an existing class (called
+the \grefcross{g:parent-class}{parent class}).
+
+\gitem{g:child-node}{child node}
+a \grefcross{g:node}{node} in a \grefcross{g:tree}{tree} that is below some other node (which is
+called the child node's \grefcross{g:parent-node}{parent}).
+
+\gitem{g:class}{class}
+a programming structure that defines the properties and behavior of a family
+of related \grefcross{g:object}{objects}. Classes can \grefcross{g:inherit}{inherit} from other
+classes to specify or change behavior incrementally.
+
+\gitem{g:client}{client}
+a program such as a browser that sends requests to a \grefcross{g:server}{server} and
+does something with the response. It is sometimes helpful to think of clients
+as sorcerors petitioning ancient gods for favors. Sometimes.
+
+\gitem{g:client-page-gen}{client-side page generation}
+to create an HTML page within a \grefcross{g:client}{client} using data provided by a
+\grefcross{g:server}{server}. See also \grefcross{g:server-page-gen}{server-side page
+generation}.
+
+\gitem{g:closure}{closure}
+a set of variables defined in the same \grefcross{g:scope}{scope} whose existence has
+been preserved after that scope has ended. Closures are one of the trickiest
+ideas in programming.
+
+\gitem{g:csv}{Comma-Separated Values}
+a text format for tabular data in which each record is one row and fields are
+separated by commas. There are many minor variations, particularly around
+quoting of strings.
+
+\gitem{g:connection-manager}{connection manager}
+an object that maintains a connection to a database. When the code is
+finished working with the database, the connection manager ensures that the
+connection is closed gracefully, which helps to avoid the corruption of data.
+
+\gitem{g:cdn}{Content Delivery Network}
+a geographically distributed set of servers that store commonly-used or
+recently-used data such as web pages so that they can be served more quickly.
+
+\gitem{g:constant}{constant}
+a variable whose value cannot be changed. Note that the value itself might be
+changed: for example, after the statement \texttt{const\ v\ =\ {[}'a',\ 'b'{]}}, the name \texttt{v}
+will always refer to the same array, but the array's contents can be changed.
+
+\gitem{g:cors}{Cross-Origin Resource Sharing}
+a way to control requests made for data and other resources that aren't served
+by the site that gave the browser the original page.
+
+\gitem{g:declarative}{declarative programming}
+a style of programming in which the user specifies what they want, and the
+computer figures out how to deliver it.
+
+\gitem{g:deployment}{deployment}
+the act of making software available for others to use.
+
+\gitem{g:destructuring}{destructuring}
+a form of assignment that unpacks a data structure in one step, such as \texttt{{[}a,\ b{]}\ =\ {[}1,\ 2{]}} or \texttt{\{left,\ right\}\ =\ \{left:\ 1,\ right:\ 2\}}.
+
+\gitem{g:dns}{Domain Name System}
+a decentralized naming system for computers that translates logical names such
+as \texttt{third-bit.com} into the addresses of particular computers.
+
+\gitem{g:document}{document}
+an entire HTML page.
+
+\gitem{g:dom}{Document Object Model}
+a standard way to represent HTML in memory. The \grefcross{g:element}{elements} and
+\grefcross{g:attribute}{attributes} of the page, along with its text, are stored as
+\grefcross{g:node}{nodes} organized in a tree.
+
+\gitem{g:dotted-notation}{dotted notation}
+a common way to refer to the parts of structures in programming languages.
+\texttt{whole.part} means ``the thing called \texttt{part} belonging to \texttt{whole}''.
+
+\gitem{g:driver}{driver}
+a program that provides a standard interface through which to communicate with
+another piece of hardware or software. Every graphics card has a driver that
+translates generic drawing commands into card-specific operations; every
+database comes with drivers that (theoretically) allow other programs to talk
+to them all in the same way.
+
+\gitem{g:element}{element}
+an individual component of a web page. In HTML, elements are enclosed in
+matching \texttt{{\textless}tag{\textgreater}{}} and \texttt{{\textless}/tag{\textgreater}{}} pairs, or written as \texttt{{\textless}tag/{\textgreater}{}} if they contain no
+content. Elements are represented as \grefcross{g:node}{nodes} in the \grefcross{g:dom}{DOM}.
+
+\gitem{g:entry-point}{entry point}
+a function with a known name and \grefcross{g:signature}{signature} that a framework
+requires every plugin or other dynamically-loaded content to have. The entry
+point is (as the name suggests) how the framework gets into the plugin.
+
+\gitem{g:escape-sequence}{escape sequence}
+a sequence of characters used to represent some other character that would
+otherwise have a special meaning. For example, the escape sequence \texttt{\textbackslash{}"} is
+used to represent a double-quote character inside a double-quoted string.
+
+\gitem{g:event-handler}{event handler}
+a \grefcross{g:callback-function}{callback function} that does something in response to
+a particular interaction with a browser, such as a key being pressed or a link
+being clicked.
+
+\gitem{g:event-listener}{event listener}
+see \grefcross{g:event-handler}{event handler}.
+
+\gitem{g:event-loop}{event loop}
+the fundamental processing cycle in JavaScript that takes the next task from a
+list and runs it, possibly adding more tasks to the list as it does so.
+
+\gitem{g:event-object}{event object}
+an \grefcross{g:object}{object} that the system passes to an \grefcross{g:event-handler}{event
+handler} that contains information about the event, such as
+which key was pressed.
+
+\gitem{g:exception}{exception}
+an object that stores information about an error or other unusual event in a
+program. One part of a program will create and \grefcross{g:throw}{throw} an exception
+to signal that something unexpected has happened; another part will
+\grefcross{g:catch}{catch} it.
+
+\gitem{g:extend}{extend}
+to create a new class from an existing class. We say that the new class
+\grefcross{g:inherit}{inherits} from the old one.
+
+\gitem{g:falsy}{falsy}
+a horrible neologism meaning ``equivalent to false''. See also the equally
+horrible \grefcross{g:truthy}{truthy}.
+
+\gitem{g:fat-arrow}{fat arrow function}
+a JavaScript function defined using the syntax \texttt{(...parameters...)\ ={\textgreater}{}\ \{...body...\}}. Fat arrow functions treat the special value \texttt{this} in a less
+inconsistent way than their older equivalents.
+
+\gitem{g:field}{field}
+a named part of a \grefcross{g:record}{record} in a \grefcross{g:relational-database}{relational
+database}. Fields are typically shown as columns in a
+\grefcross{g:table}{table}.
+
+\gitem{g:fixture}{fixture}
+the data on which a \grefcross{g:unit-test}{unit test} is run.
+
+\gitem{g:functional-programming}{functional programming}
+a style of programming in which data is transformed through successive
+application of functions, rather than by using control structures such as
+loops. Functional programming in JavaScript relies heavily on
+\grefcross{g:callback-function}{callbacks} and \grefcross{g:higher-order-function}{higher-order
+functions}.
+
+\gitem{g:global-installation}{global installation}
+a JavaScript library placed in a location where it can be accessed by all
+users and projects. See also \grefcross{g:local-installation}{local installation}.
+
+\gitem{g:global-variable}{global variable}
+a variable defined outside any particular function, which is therefore visible
+to all functions. See also \grefcross{g:local-variable}{local variable}.
+
+\gitem{g:gpl}{GNU Public License}
+a license that allows people to re-use software as long as they distribute
+the source of their changes.
+
+\gitem{g:header-row}{header row}
+if present, the first of a \grefcross{g:csv}{CSV} file that defines column names (but
+tragically, not their data types or units).
+
+\gitem{g:heterogeneous}{heterogeneous}
+having mixed type. For example, an \grefcross{g:array}{array} is said to be
+heterogeneous if it contains a mix of numbers, character strings, and values
+of other types. See also \grefcross{g:homogeneous}{homogeneous}.
+
+\gitem{g:higher-order-function}{higher-order function}
+a function that operates on other functions. For example, the higher-order
+function \texttt{forEach} executes a given function once on each value in an
+\grefcross{g:array}{array}. Higher-order functions are heavily used in \grefcross{g:functional-programming}{functional
+programming}.
+
+\gitem{g:homogeneous}{homogeneous}
+having a single type. For example, an \grefcross{g:array}{array} is said to be
+homogeneous if it contains only numbers or only character strings, but not a
+mix of the two.
+
+\gitem{g:hostname}{hostname}
+the part of a URL that specifies the computer to talk to. In
+\texttt{http://example.com/something/}, the hostname is \texttt{example.com}; in
+\texttt{http://localhost:1234/}, it is \texttt{localhost}.
+
+\gitem{g:http}{HTTP}
+the HyperText Transfer Protocol used to exchange information between browsers
+and websites, and more generally between other \grefcross{g:client}{clients} and
+\grefcross{g:server}{servers}. HTTP is a \grefcross{g:stateless}{stateless} protocol in which
+communication consists of \grefcross{g:http-request}{requests} and
+\grefcross{g:http-response}{responses}.
+
+\gitem{g:http-header}{HTTP header}
+a name-value pair at the start of an HTTP \grefcross{g:http-request}{request} or
+\grefcross{g:http-response}{response}. Headers are used to specify what data formats
+the sender can handle, the date and time the message was sent, and so on.
+
+\gitem{g:http-method}{HTTP method}
+the verb in an \grefcross{g:http-request}{HTTP request} that defines what the client
+wants to do. Common methods are \texttt{GET} (to get data) and \texttt{POST} (to submit
+data).
+
+\gitem{g:http-request}{HTTP request}
+a precisely-formatted block of text sent from a \grefcross{g:client}{client} (such as a
+browser) to a \grefcross{g:server}{server} that specifies what resource is being
+requested, what data formats the client will accept, and so on.
+
+\gitem{g:http-response}{HTTP response}
+a precisely-formatted block of text sent from a \grefcross{g:server}{server} back to a
+\grefcross{g:client}{client} in reply to a \grefcross{g:http-request}{request}.
+
+\gitem{g:http-status-code}{HTTP status code}
+a numerical code that indicates what happened when an \grefcross{g:http-request}{HTTP
+request} was processed, such as 200 (OK), 404 (not found), or
+500 (internal server error).
+
+\gitem{g:in-memory-database}{in-memory database}
+a database that is stored in memory rather than in permanent storage.
+In-memory databases are often used for testing.
+
+\gitem{g:inherit}{inherit}
+to acquire properties and methods from a parent class. See also
+\grefcross{g:extend}{extend}.
+
+\gitem{g:internal-style-sheet}{internal style sheet}
+a set of \grefcross{g:css}{CSS} definitions placed inside a web page rather than in an
+external file.
+
+\gitem{g:json}{JSON}
+a way to represent data by combining basic values like numbers and character
+strings in \grefcross{g:array}{arrays} and name/value structures. The acronym stands
+for ``JavaScript Object Notation''; unlike better-defined standards like
+\grefcross{g:xml}{XML}, it is unencumbered by a syntax for comments or ways to define
+\grefcross{g:schema}{schemas}.
+
+\gitem{g:library}{library}
+see \grefcross{g:module}{module}.
+
+\gitem{g:list}{list}
+see \grefcross{g:array}{array}.
+
+\gitem{g:local-installation}{local installation}
+a JavaScript library placed inside a particular project, and only accessible
+within that project. See also \grefcross{g:global-installation}{global installation}.
+
+\gitem{g:local-server}{local server}
+a \grefcross{g:server}{server} run on the user's own computer, usually for testing
+purposes during development.
+
+\gitem{g:local-variable}{local variable}
+a variable defined inside a function which is only visible within that
+function. See also \grefcross{g:global-variable}{global variable} and
+\grefcross{g:closure}{closure}.
+
+\gitem{g:logging}{logging}
+to record information about a program's execution in a structured way.
+
+\gitem{g:logging-transport}{logging transport}
+a channel through which \grefcross{g:logging}{logging} messages are sent, such as
+standard output (for the user's screen) or a database connection.
+
+\gitem{g:member-variable}{member variable}
+see \grefcross{g:property}{property}.
+
+\gitem{g:memory-diagram}{memory diagram}
+a picture showing the variables a program contains and the data they refer to.
+
+\gitem{g:method}{method}
+a function attached to an \grefcross{g:object}{object}, typically called using \grefcross{g:dotted-notation}{dotted
+notation}. In JavaScript and many other languages, a
+special variable called \texttt{this} is provided to methods to refer to the
+particular object for which the method is being called.
+
+\gitem{g:minimization}{minimization}
+to remove spaces and other extraneous characters from source files (and
+possibly even rename variables). This makes those files smaller and faster to
+deploy at the expense of readability.
+
+\gitem{g:mit-license}{MIT License}
+a license that allows people to re-use software with no restrictions.
+
+\gitem{g:module}{module}
+a set of variables, functions, and/or classes grouped together for easier
+management (typically but not always in a single file). Modules are sometimes
+also called \grefcross{g:library}{libraries}.
+
+\gitem{g:module-variable}{module variable}
+a variable that is visible within a module but not outside it. See
+\grefcross{g:scope}{scope}.
+
+\gitem{g:mutation}{mutation}
+changing data in place, such as modifying an element of an array or adding a
+record to a database.
+
+\gitem{g:name-collision}{name collision}
+the ambiguity that arises when two or more things in a program that have the
+same name are active at the same time. The \grefcross{g:call-stack}{call stack} was
+invented in part to address this problem.
+
+\gitem{g:node-js}{Node}
+an open source implementation of JavaScript for use outside the browser.
+
+\gitem{g:node}{node}
+an in-memory representation of an element in an HTML page. See also
+\grefcross{g:dom}{DOM}. Not to be confused with \grefcross{g:node-js}{Node.js}.
+
+\gitem{g:nosql-database}{NoSQL database}
+any database that doesn't use the \grefcross{g:relational-database}{relational} model.
+The awkward name comes from the fact that such databases don't use
+\grefcross{g:sql}{SQL} as a query language.
+
+\gitem{g:object}{object}
+a clump of variables and/or \grefcross{g:method}{methods} grouped together in a
+program. In most languages, objects can only be created as instances of
+\grefcross{g:class}{classes}, but JavaScript calls anything created using \texttt{\{...\}} an
+object. Do not seek to walk in the footsteps of the sages; seek rather what
+they sought.
+
+\gitem{g:observer-observable}{observer-observable}
+a widely-used programming pattern in which some \grefcross{g:object}{objects} are
+notified and take action when other objects change state or take action.
+
+\gitem{g:override-method}{override}
+to replace a definition of a {[}method{]} in a \grefcross{g:parent-class}{parent-class}
+with a new definition in a \grefcross{g:child-class}{child class}.
+
+\gitem{g:query-parameter}{query parameter}
+a placeholder in an \grefcross{g:sql}{SQL} query that must be filled in with an actual
+value in order for the query to run.
+
+\gitem{g:package-manager}{package manager}
+a program that does its best to keep track of the bits and bobs of software
+installed on a computer. The most widely used package manager for JavaScript
+is called NPM; it does its best, but really, without proper discipline on the
+part of programmers, it's like Boromir trying to hold back the orcs or a
+kindergarten teacher trying to keep everyone's shirt clean during
+finger-painting.
+
+\gitem{g:parameter}{parameter}
+a variable whose value is passed into a function when the function is called.
+Some writers distinguish parameters (the variables) from
+\grefcross{g:argument}{arguments} (the values passed in), but others use the terms in
+the opposite sense. It's all very confusing.
+
+\gitem{g:parent-class}{parent class}
+an existing \grefcross{g:class}{class} that has been \grefcross{g:extend}{extended} to create a
+new class. (The new class is called the \grefcross{g:child-class}{child class}.)
+
+\gitem{g:parent-node}{parent node}
+the \grefcross{g:node}{node} in a \grefcross{g:tree}{tree} that is above some other node. Every
+node has a parent except the {[}root{]}\{\#root-node\}.
+
+\gitem{g:parse}{parse}
+to translate the text of a program or web page into a data structure in memory
+that the program can then manipulate.
+
+\gitem{g:polymorphism}{polymorphism}
+literally, ``having many forms''. The term refers to the way in which
+\grefcross{g:object}{objects} whose \grefcross{g:method}{methods} have the same names and
+\grefcross{g:parameter}{parameters} can be used interchangeably.
+
+\gitem{g:port}{port}
+a logical endpoint for communication, like a phone number in an office
+building. In the URL \texttt{http://example.com:8081/something}, the port is \texttt{8081}.
+Only one program may use a port at any time.
+
+\gitem{g:production-code}{production code}
+software that is delivered to an end user. The term is used to distinguish
+such code from test code, deployment infrastructure, and everything else that
+programmers write along the way.
+
+\gitem{g:promise}{promise}
+a way to handle delayed computations in JavaScript. Promises were supposed to
+make programmers' lives simpler.
+
+\gitem{g:protocol}{protocol}
+a set of rules specifying how two things will interact. The HTTP protocol
+defines the format of \grefcross{g:http-request}{requests},
+\grefcross{g:http-response}{responses}, and \grefcross{g:http-status-code}{status codes}; a
+protocol for application plugins defines how they will be referred to and what
+\grefcross{g:entry-point}{entry points} they must contain.
+
+\gitem{g:prototype}{prototype}
+an idiosyncratic mechanism used in the original definition of JavaScript for
+sharing properties between objects that we unfortunately still have to cope
+with.
+
+\gitem{g:property}{property}
+a variable associated with an \grefcross{g:object}{object}. The term is used to
+distinguish an object's passive data from its executable \grefcross{g:method}{methods}.
+Properties are sometimes called \grefcross{g:member-variable}{member variables}.
+
+\gitem{g:pseudo-random-number}{pseudo-random number}
+a value generated in a repeatable way that has the properties of being truly
+random.
+
+\gitem{g:prng}{pseudo-random number generator}
+a function that can generate a series of \grefcross{g:pseudo-random-number}{pseudo-random
+numbers} after being initialized with a
+\grefcross{g:seed}{seed}.
+
+\gitem{g:cc-0}{public domain license}
+a license that allow people to re-use material however they want
+with no restrictions and no requirement of attribution.
+
+\gitem{g:race-condition}{race condition}
+a situation in which the result of a computation can vary due to operations
+being performed in different orders.
+
+\gitem{g:raise}{raise}
+see \grefcross{g:throw}{throw}.
+
+\gitem{g:repl}{read-evaluate-print loop}
+an interactive program that reads a command typed in by a user, executes it,
+prints the result, and then waits patiently for the next command. REPLs are
+often used to explore new ideas or for debugging.
+
+\gitem{g:record}{record}
+a set of related values. In a \grefcross{g:relational-database}{relational database},
+a record is typically shown as a single row in a \grefcross{g:table}{table}. See also
+\grefcross{g:field}{field}.
+
+\gitem{g:regular-expression}{regular expression}
+a pattern for matching text, written as text itself. Regular expressions
+are sometimes called ``regexp'', ``regex'', or ``RE'', and are as powerful as
+they are cryptic. See \href{https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Regular_Expressions}{this documentation} for more details.
+
+\gitem{g:relational-database}{relational database}
+a database that organizes information into \grefcross{g:table}{tables}, each of which
+has a fixed set of named \grefcross{g:field}{fields} (shown as columns) and a variable
+number of \grefcross{g:record}{records} (shown as rows). See also \grefcross{g:sql}{SQL}.
+
+\gitem{g:relative-path}{relative path}
+a path whose destination is interpreted relative to some other location, such
+as the current directory. A relative path is the equivalent of giving
+directions using terms like ``straight'' and ``left''. See also \grefcross{g:absolute-path}{absolute
+path}.
+
+\gitem{g:responsive-design}{responsive design}
+an approach to building web pages and other applications that resizes and
+reorganizes things smoothly for different sizes of screens.
+
+\gitem{g:rgb}{RGB}
+a way to represent colors as triples of red, green, and blue intensities, each
+of which ranges from 0 to 255. RGB is often augmented in modern systems to
+create RGBA, where the fourth component is the pixel's transparency.
+
+\gitem{g:root-node}{root}
+the only node in a \grefcross{g:tree}{tree} that \emph{doesn't} have a \grefcross{g:parent-node}{parent}.
+
+\gitem{g:root-directory}{root directory}
+the directory that contains everything else, directly or indirectly. The root
+directory is written \texttt{/} (a bare forward slash).
+
+\gitem{g:root-element}{root element}
+the \grefcross{g:element}{element} in a document that contains every other element.
+The root element of a web page is the \texttt{html} element.
+
+\gitem{g:schema}{schema}
+a specification of the ``shape'' of data, such as the \grefcross{g:field}{fields} making
+up a database table or the ways in which structures can be nested in
+\grefcross{g:json}{JSON}.
+
+\gitem{g:scope}{scope}
+the portion of a program within which a definition can be seen and used. See
+\grefcross{g:global-variable}{global-variable}, \grefcross{g:local-variable}{local-variable},
+\grefcross{g:module-variable}{module-variable}, and (if you are brave)
+\grefcross{g:closure}{closure}.
+
+\gitem{g:seed}{seed}
+a value used to initialize a \grefcross{g:prng}{pseudo-random number generator}.
+
+\gitem{g:selector}{selector}
+a way to identify elements within an HTML document. The selector
+\texttt{h2\#contents}, for example, means ``the \texttt{h2} element with the ID \texttt{contents}''.
+
+\gitem{g:server}{server}
+a program that waits for requests from \grefcross{g:client}{clients} and sends them
+data in response. It is sometimes helpful to think of servers as harassed
+parents trying to babysit a room full of unruly children.
+
+\gitem{g:server-page-gen}{server-side page generation}
+to create an HTML page on a server. That HTML is then delivered as-is to a
+browser for display. See also \grefcross{g:client-page-gen}{client-side page
+generation}.
+
+\gitem{g:sql}{SQL}
+the language used for writing queries for \grefcross{g:relational-database}{relational
+databases}. The term was originally an acronym for
+Structured Query Language.
+
+\gitem{g:signature}{signature}
+the ordered list of argument data types required by a function or
+\grefcross{g:method}{method}. If two functions or methods have the same signature,
+they can be called in the same way.
+
+\gitem{g:stateful}{stateful}
+to retain information from one operation to the next.
+
+\gitem{g:stateless}{stateless}
+to \emph{not} retain information from one operation to the next.
+
+\gitem{g:string}{string}
+a block of text in a program. The term is short for ``character string''.
+
+\gitem{g:string-interpolation}{string interpolation}
+the process of inserting text corresponding to specified values into a string,
+usually to make output human-readable.
+
+\gitem{g:table}{table}
+a set of uniformly-formatted \grefcross{g:record}{records} in a \grefcross{g:relational-database}{relational
+database}. Tables are usually drawn with rows (each
+of which represents one record) and columns (each of which represents a
+\grefcross{g:field}{field}).
+
+\gitem{g:tag}{tag}
+a short textual label identifying a kind of element in an HTML page.
+Commonly-used tags include \texttt{p} (for a paragraph) and \texttt{h1} (for a level-1
+heading).
+
+\gitem{g:template}{template}
+a document with some placeholders that can be filled in with specific values.
+Templates are often used to create personalized email messages and web pages,
+though their efficacy is predicated upon relentless commercialization and
+devaluation of modern society's sense of what constitutes ``personal''.
+
+\gitem{g:test-runner}{test runner}
+a program that finds and runs \grefcross{g:unit-test}{unit tests} and reports their
+results.
+
+\gitem{g:test-suite}{test suite}
+a set of \grefcross{g:unit-test}{unit tests}, usually stored in files that follow a
+prescribed naming convention.
+
+\gitem{g:throw}{throw}
+to signal that something unexpected or unusual has happened in a program by
+creating an \grefcross{g:exception}{exception} and handing it to the error-handling
+system, which then tries to find a point in the program that will
+\grefcross{g:catch}{catch} it. (Some languages call this \emph{\grefcross{g:raise}{raising}} an
+exception.)
+
+\gitem{g:tree}{tree}
+a data structure containing strictly-nested \grefcross{g:node}{nodes}. Every node
+except the \grefcross{g:root-node}{root node} must have exactly one \grefcross{g:parent-node}{parent
+node}, but each node may have zero or more
+\grefcross{g:child-node}{children}.
+
+\gitem{g:truthy}{truthy}
+a truly horrible neologism meaning ``not equivalent to false''. See also
+\grefcross{g:falsy}{falsy}, but only if you are able to set aside your respect for the
+English language.
+
+\gitem{g:unicode}{Unicode}
+a standard that defines numeric codes for many thousands of characters and
+symbols. Unicode does \emph{not} define how those numbers are stored; that is done
+by standards like \grefcross{g:utf-8}{UTF-8}.
+
+\gitem{g:unit-test}{unit test}
+a test that exercises one property or expected behavior of a system.
+
+\gitem{g:url}{URL}
+a multi-part identifier that specifies something on a computer network. A URL
+may contain a protocol (such as \texttt{http}), a hostname (such as \texttt{example.com}), a
+port (such as \texttt{80}), a path (such as \texttt{/homepage.html}), and \grefcross{g:query-parameter}{query
+parameters}
+
+\gitem{g:utf-8}{UTF-8}
+a way to store the numeric codes representing Unicode characters in memory
+that is \grefcross{g:backward-compatible}{backward-compatible} with the older
+\grefcross{g:ascii}{ASCII} standard.
+
+\gitem{g:variable}{variable}
+a name in a program that has some data associated with it. A variable's value
+can be changed after definition. See also \grefcross{g:constant}{constant}.
+
+\gitem{g:xml}{XML}
+a set of rules for defining HTML-like tags and using them to format documents
+(typically data). XML achieved license plate popularity in the early 2000s,
+but its complexity led many programmers to adopt \grefcross{g:json}{JSON} instead.
+
+\end{description}

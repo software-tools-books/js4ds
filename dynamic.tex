@@ -1,0 +1,528 @@
+\chapter{Dynamic Pages}\label{s:dynamic}
+
+In the beginning,
+people created HTML pages by typing them in (just as we have been doing).
+They quickly realized that a lot of pages share a lot of content:
+navigation menus, contact info, and so on.
+The nearly universal response was to create a \gref{g:template}{template}
+and embed commands to include other snippets of HTML (like headers)
+and loop over data structures to create lists and tables.
+This is called \gref{g:server-page-gen}{server-side page generation}:
+the HTML is generated on the \gref{g:server}{server},
+and it was popular because that's where the data was,
+and that was the only place complex code could be run.
+(This tutorial uses a templating tool called \href{https://jekyllrb.com/}{Jekyll}.
+It's clumsy and limited, but it's the default on \href{http://github.com/}{GitHub}.)
+
+Server-side generation can be done statically or dynamically,
+i.e.,
+pages can be compiled once, stored on disk, and served thereafter,
+or each page can be recompiled whenever it's needed,
+which makes it easy to include dynamic elements like today's top news story
+(\figref{f:dynamic-alternatives}).
+
+\figpdf{figures/dynamic-alternatives.pdf}{Page Generation Alternatives}{f:dynamic-alternatives}
+
+As browsers and JavaScript became more powerful,
+the balance shifted toward \gref{g:client-page-gen}{client-side page generation}.
+In this model,
+the browser fetches data from one or more servers
+and feeds that data to a JavaScript library that generates HTML in the browser for display.
+This allows the \gref{g:client}{client} to decide how best to render data,
+which is increasingly important as phones and tablets take over
+from desktop and laptop computers.
+It also moves the computational burden off the server
+and onto the client device,
+which lowers the cost of providing data.
+
+Many, many JavaScript frameworks for client-side page generation have been created,
+and more are probably being developed right now.
+We have chosen \href{https://reactjs.org/}{React} because it is freely available,
+widely used,
+well documented,
+simpler than many alternatives,
+and has a cool logo.
+Its central design principles are:
+
+\begin{enumerate}
+\item
+  Page creators use functions to describe the HTML they want.
+\item
+  They then let React decide which functions to run when data changes.
+\end{enumerate}
+
+We will show how to use it in pure JavaScript,
+then introduce a tool called JSX that simplifies things.
+
+\section{Hello, World}\label{s:dynamic-hello}
+
+Let's begin by saying hello:
+
+\begin{minted}{html}
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Hello React</title>
+    <script src="https://fb.me/react-15.0.1.js"></script>
+    <script src="https://fb.me/react-dom-15.0.1.js"></script>
+  </head>
+  <body>
+    <div id="app">
+      <!-- this is filled in -->
+    </div>
+    <script>
+      ReactDOM.render(
+        React.DOM.h1(null, "Hello React"),
+        document.getElementById("app")
+      )
+    </script>
+  </body>
+</html>
+\end{minted}
+
+The \texttt{head} of the page loads two React libraries from the web;
+we will use locally-installed libraries later.
+The \texttt{body} contains a \texttt{div} with an ID to make it findable.
+When our script runs,
+React will put the HTML it generates into this \texttt{div}.
+
+The script itself create an \texttt{h1} with the text ``Hello, React'' using \texttt{React.DOM.h1},
+then finds the document element whose ID is \texttt{"app"}
+and uses \texttt{ReactDOM.render} to insert the former into the latter.
+This alters the representation of the page in memory,
+not the source of the page on disk;
+if we want to inspect the HTML,
+we have to do so in the browser.
+Finally,
+we put the script at the bottom of the page
+so that the browser will have turned the HTML into a DOM tree in memory
+before the script runs.
+We will come back and fix this later.
+
+\begin{aside}{Inspection Tools}
+  If you are using the Firefox browser,
+  you can open the developer tools pane by going to the main menu
+  and selecting \texttt{Tools...\ Web\ Developer...\ Toggle\ Tools}.
+  A tabbed display will open in the bottom of your page;
+  choose \texttt{Inspector} to view the content of your page and page's CSS.
+  As you move your mouse around the page itself,
+  corresponding structural elements will be highlighted.
+  It's actually pretty cool\ldots{}
+\end{aside}
+
+The first parameter to \texttt{React.DOM.h1} is \texttt{null} in the example above,
+but it can more generally be an object that specifies
+the attributes we want the newly-created node to have.
+There are a few quirks in this---for example,
+we have to use \texttt{fontStyle} rather than \texttt{font-style}
+so that the attribute object's keys look like legal JavaScript variables---but
+the mechanism is surprisingly easy to use:
+
+\begin{minted}{html}
+  <body>
+    <div id="app"></div>
+    <script>
+      const attributes = {
+        'style': {
+          'background': 'pink',
+          'fontStyle': 'italic'
+        }
+      }
+      ReactDOM.render(
+        React.DOM.h1(attributes, "Hello Stylish"),
+        document.getElementById("app")
+      )
+    </script>
+  </body>
+\end{minted}
+
+\section{JSX}\label{s:dynamic-jsx}
+
+Writing nested functions is a clumsy way to write HTML,
+so most React programmers use a tool called \href{https://reactjs.org/docs/introducing-jsx.html}{JSX}
+that translates HTML into JavaScript function calls.
+And yes,
+those JavaScript function calls then produce HTML---it's a funny world.
+Here's an example:
+
+\begin{minted}{html}
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Hello JSX</title>
+    <script src="https://fb.me/react-15.0.1.js"></script>
+    <script src="https://fb.me/react-dom-15.0.1.js"></script>
+    <script src="https://unpkg.com/babel-standalone@6/babel.js"></script>
+  </head>
+  <body>
+    <div id="app"></div>
+    <script type="text/babel">
+      ReactDOM.render(
+        <h1>Hello JSX</h1>,
+        document.getElementById('app')
+      )
+    </script>
+  </body>
+</html>
+\end{minted}
+
+Along with the two React libraries,
+this page includes a tool called \href{https://babeljs.io/}{Babel}
+to translate a mixed of HTML and JavaScript into pure JavaScript.
+To trigger translation,
+we add the attribute \texttt{type="text/babel"} to the \texttt{script} tag.
+
+Why bother?
+Because as the example above shows,
+it allows us to write \texttt{{\textless}h1{\textgreater}{}Hello\ JSX{\textless}/h1{\textgreater}{}} instead of calling a function.
+More generally,
+JSX lets us put JavaScript inside our HTML (inside our JavaScript (inside our HTML)),
+so we can (for example) use \texttt{map} to turn a list of strings into an HTML list:
+
+\begin{minted}{html}
+  <body>
+    <h1>JSX List</h1>
+    <div id="app"></div>
+    <script type="text/babel">
+      const allNames = ['McNulty', 'Jennings', 'Snyder',
+                        'Meltzer', 'Bilas', 'Lichterman']
+      ReactDOM.render(
+        <ul>{allNames.map((name) => <li>{name}</li> )}</ul>,
+        document.getElementById('app')
+      )
+    </script>
+  </body>
+\end{minted}
+
+We have to use \texttt{map} rather than a loop because whatever code we run has to return something
+that can be inserted into the DOM,
+and \texttt{for} loops don't return anything.
+(We could use a loop to build up a string through repeated concatenation,
+but \texttt{map} is cleaner.)
+And note: we must return exactly one node,
+because this is one function call.
+We will look in the exercises at why the curly braces immediately inside the \texttt{{\textless}ul{\textgreater}{}} element are necessary.
+
+Note also that when we run this,
+the browser console will warn us that each list element ought to have a unique \texttt{key} property,
+because React wants each element of the page to be selectable.
+We will add this later.
+
+\section{Creating Components}\label{s:dynamic-components}
+
+One of the most powerful features of React is that it lets us create new components
+that look like custom HTML tags,
+but are associated with functions that we write.
+React requires the names of these components to start with a capital letter
+to differentiate them from regular tags.
+We can,
+for example,
+define a function \texttt{ListOfNames} to generate our list of names,
+then put that element directly in \texttt{ReactDOM.Render}
+just as we would put an \texttt{h1} or \texttt{p}:
+
+\begin{minted}{html}
+  <body>
+    <h1>Create Component</h1>
+    <div id="app"></div>
+    <script type="text/babel">
+      const allNames = ['McNulty', 'Jennings', 'Snyder',
+                        'Meltzer', 'Bilas', 'Lichterman']
+
+      const ListOfNames = () => {
+        return (<ul>{allNames.map((name) => <li>{name}</li> )}</ul>)
+      }
+
+      ReactDOM.render(
+        <ListOfNames />,
+        document.getElementById('app')
+      )
+    </script>
+  </body>
+\end{minted}
+
+What we really want to do,
+though,
+is pass parameters to these components:
+after all,
+JSX is turning them into functions,
+and functions are far more useful when we can give them data.
+In React,
+all the attributes we put inside the component's tag
+are passed to our function in a single \texttt{props} object:
+
+\begin{minted}{html}
+  <body>
+    <h1>Pass Parameters</h1>
+    <div id="app"></div>
+    <script type="text/babel">
+      const allNames = ['McNulty', 'Jennings', 'Snyder',
+                        'Meltzer', 'Bilas', 'Lichterman']
+
+      const ListElement = (props) =>
+            (<li id={props.name}><em>{props.name}</em></li>)
+
+      ReactDOM.render(
+        <ul>{allNames.map((name) => <ListElement name={name} /> )}</ul>,
+        document.getElementById('app')
+      )
+    </script>
+  </body>
+\end{minted}
+
+If you look carefully,
+you'll see that the \texttt{name} attribute passed to the use of \texttt{ListElement}
+becomes the value of \texttt{prop.names} inside the function that implements \texttt{ListElement}.
+This gives us exactly one logical place to do calculations, set style, etc.
+
+\section{Developing with Parcel}\label{s:dynamic-parcel}
+
+Putting all of the source for an application in one HTML file is a bad practice,
+but we've already seen the race conditions that can arise when we load JavaScript in a page's header.
+And what about \texttt{require} statements?
+The browser will try to load the required files when those statements run,
+but who is going to serve them?
+
+The solution is use a \gref{g:bundler}{bundler} to combine everything into one big file,
+and to run a \gref{g:local-server}{local server} to preview our application during development.
+However,
+this solution brings with it another problem:
+which bundler to choose?
+As with front-end frameworks,
+there are many to choose from,
+and new ones are being added almost weekly.
+\href{https://webpack.js.org/}{Webpack} is probably the most widely used,
+but it is rather complex,
+so we will use \href{https://parceljs.org/}{Parcel},
+which is younger and therefore not yet bloated
+(but give it time).
+
+To install Parcel, run:
+
+\begin{minted}{shell}
+$ npm install parcel-bundler
+\end{minted}
+
+Once it's in place,
+we can tell it to run one of our test pages like this:
+
+\begin{minted}{shell}
+$ node_modules/.bin/parcel serve -p 4000 src/dynamic/pass-params.html
+\end{minted}
+
+\begin{minted}{text}
+Server running at http://localhost:4000
++ Built in 128ms.
+\end{minted}
+
+This works because when NPM installs a library in a project's \texttt{node\_modules} directory,
+it will sometimes put a runnable script associated with that library in \texttt{node\_modules/.bin}
+(note that it's \texttt{.bin} with a leading \texttt{.}, not \texttt{bin}).
+When we ask Parcel to serve up an application, it:
+
+\begin{itemize}
+\item
+  looks in the named file to find JavaScript,
+\item
+  looks recursively at what that file loads,
+\item
+  copies some files into a directory called \texttt{./dist} (which stands for ``distribution''), and
+\item
+  serves the application out of there.
+\end{itemize}
+
+Parcel also caches things in \texttt{./.cache} so that it doesn't need to do redundant work;
+both directories are normally added to \texttt{.gitignore}.
+To learn more about Parcel, see \href{https://medium.com/codingthesmartway-com-blog/getting-started-with-parcel-197eb85a2c8c}{Sebastian Eschweiler's quick tutorial}.
+
+It's very common to put tasks like ``run my application'' into NPM's \texttt{package.json} file,
+just as older programmers would put frequently-used commands into a project's Makefile.
+Look for the section in \texttt{package.json} whose key is \texttt{"scripts"} and add this:
+
+\begin{minted}{js}
+  "scripts": {
+    "dev": "parcel serve -p 4000",
+    ...
+  },
+\end{minted}
+
+We can now use \texttt{npm\ run\ dev\ -\/-\ src/dynamic/pass-params.html},
+since everything after \texttt{-\/-} is passed to the script being run.
+This doesn't just save us typing;
+it also gives other developers a record of how to use the project.
+Unfortunately,
+there is no standard way to add comments to a JSON file\ldots{}
+
+\begin{aside}{Whoops}
+  Note:
+  if we accidentally specify the name of a directory like \texttt{src/dynamic}
+  instead of the name of an HTML file,
+  Parcel prints an error on the console saying ``no entries found''.
+  This happens because it is trying to read the actual directory structure
+  as if it were a file.
+\end{aside}
+
+\section{Multiple Files}\label{s:dynamic-multiple}
+
+Now that we can bundle things up,
+let's move our JSX into \texttt{app.js} and load that in the \texttt{head} of the page:
+
+\begin{minted}{html}
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Hello Separate</title>
+    <script src="https://fb.me/react-15.0.1.js"></script>
+    <script src="https://fb.me/react-dom-15.0.1.js"></script>
+    <script src="https://unpkg.com/babel-standalone@6/babel.js"></script>
+    <script src="app.js"></script>
+  </head>
+  <body>
+    <h1>Hello Separate</h1>
+    <div id="app"></div>
+  </body>
+</html>
+\end{minted}
+
+For now,
+the JavaScript in \texttt{app.js} is:
+
+\begin{minted}{js}
+ReactDOM.render(
+  <p>Rendered by React</p>,
+  document.getElementById("app")
+)
+\end{minted}
+
+When we load this page we get the \texttt{h1} title but \emph{not} the paragraph.
+When we look in the browser console,
+we see the message:
+
+\begin{minted}{text}
+Error: _registerComponent(...): Target container is not a DOM element.
+\end{minted}
+
+This is the same race condition that has bitten us before.
+After sighing in frustration and making ourselves another cup of tea,
+we decide that,
+to keep things simple,
+we will load the script in the body of the page:
+
+\begin{minted}{js}
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Hello Bottom</title>
+  </head>
+  <body>
+    <h1>Hello Bottom</h1>
+    <div id="app"></div>
+    <script src="./app.js"></script>
+  </body>
+</html>
+\end{minted}
+
+More importantly,
+we will rewrite \texttt{app.js} so that it loads the libraries it needs,
+because there's no guarantee that libraries loaded in \texttt{head} will be available when \texttt{app.js} runs:
+
+\begin{minted}{js}
+const React = require('react')
+const ReactDOM = require('react-dom')
+
+ReactDOM.render(
+  <p>Rendered by React</p>,
+  document.getElementById('app')
+)
+\end{minted}
+
+We don't have to shut down the server and restart it every time we make changes like this,
+because Parcel watches for changes in files and relaunches itself as needed.
+Each time it does so,
+it looks at the libraries \texttt{app.js} loads and rebundles what it needs:
+right now,
+for example,
+\texttt{dist/app.ef6b320b.js} is 19930 lines long.
+
+A more modern option than loading in the bottom is to add the \texttt{async} attribute to the script in the head of the page,
+which tells the browser not to do anything with the JavaScript until the page has finished building:
+
+\begin{minted}{html}
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Hello Parcel</title>
+    <script src="./app.js" async></script>
+  </head>
+  <body>
+    <div id="app"></div>
+  </body>
+</html>
+\end{minted}
+
+\section{Exercises}\label{s:dynamic-exercises}
+
+\exercise{Those Damn Curly Braces}
+
+Our list-building example includes this line of code:
+
+\begin{minted}{js}
+        <ul>{allNames.map((name) => <li>{name}</li> )}</ul>,
+\end{minted}
+
+Why are the curly braces immediately inside the \texttt{{\textless}ul{\textgreater}{}} element necessary?
+What happens if you take them out?
+
+\exercise{Real Data}
+
+\begin{enumerate}
+\item
+  Create a file called \texttt{programmers.js} that defines
+  a list of JSON objects called \texttt{programmers}
+  with \texttt{firstName} and \texttt{lastName} fields for our programmers.
+  (You can search the Internet to find their names.)
+\item
+  Load that file in your page like any other JavaScript file.
+\item
+  Delete the list \texttt{allNames} from the application
+  and modify it to use data from the list \texttt{programmers} instead.
+\end{enumerate}
+
+Loading constant data like this is a common practice during testing.
+
+\exercise{Ordering}
+
+What happens if you change the order in which the JavaScript files
+are loaded in your web page?
+For example,
+what happens if you load \texttt{app.js} \emph{before} you load \texttt{ListElement.js}?
+
+\exercise{Multiple Targets}
+
+What happens if your HTML page contains two \texttt{div} elements with \texttt{id="app"}?
+
+\exercise{Creating a Component for Names}
+
+Create a new React component that renders a name,
+and modify the example to use it instead of always displaying names in \texttt{{\textless}li{\textgreater}{}} elements.
+
+\subsection*{Striping}
+Suppose we want to render every second list element in italics.
+(This would be a horrible design,
+but once we start creating tables,
+we might want to highlight alternate rows in different background colors
+to make it easier to read.)
+Modify the application so that
+even-numbered list elements are \texttt{{\textless}li{\textgreater}{}\{name\}{\textless}/li{\textgreater}{}}
+and odd-numbered list elements are \texttt{{\textless}li{\textgreater}{}{\textless}em{\textgreater}{}\{name\}{\textless}/em{\textgreater}{}{\textless}/li{\textgreater}{}}.
+(You may want to use the fact that a \texttt{map} callback can have two parameters
+instead of one.)
+
+\section*{Key Points}
+
+\input{keypoints/dynamic}

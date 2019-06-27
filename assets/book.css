@@ -1,0 +1,131 @@
+header {
+    text-align: center;
+}
+p.author,p.subtitle,p.date {
+    font-style: italic;
+    font-size: 1.5rem;
+}
+
+h1 {
+    margin-top: 2rem;
+    padding-top: 1rem;
+    border-top-style: solid;
+    border-top-width: 2px;
+    border-top-color: #808080;
+}
+
+h1.unnumbered {
+    margin-top: 0rem;
+    padding-top: 0rem;
+    border-top-style: none;
+}
+
+div.row-scrollable {
+    height: 100vh;
+}
+
+div.col-toc {
+    height: 100%;
+    overflow-y: scroll;
+    font-size: 90%;
+}
+
+div.col-body {
+    height: 100%;
+    overflow-y: scroll;
+}
+
+div.dedication {
+    text-align: center;
+    font-style: italic;
+}
+
+/* Outlines for code samples. */
+div.sourceCode {
+    border-style: solid;
+    border-width: 1px;
+    border-color: #D0D0D0;
+    padding: 0.5em;
+    background-color: #FCFCFC;
+}
+/* Outlines for text output. */
+pre.text {
+    border-style: solid;
+    border-width: 1px;
+    border-color: #D0D0D0;
+    padding: 0.5em;
+    background-color: #F8F8F0;
+}
+
+/* Make links darker than Bootstrap default. */
+a {
+    color: #6060a0;
+}
+
+/* Don't indent lists quite so much. */
+ol, ul {
+    padding-left: 1.2em;
+}
+
+/* Center figures. */
+figure {
+    padding: 2px;
+    text-align: center;
+}
+
+figcaption {
+    text-align: center;
+    font-weight: bold;
+}
+
+/* Mark quotations. */
+blockquote {
+    border-radius: 10px;
+    padding: 1em;
+    padding-bottom: 1px;
+    margin-top: 0.5em;
+    background-color: #F0F0F0;
+    border-style: solid;
+    border-width: 1px;
+    border-color: #C0C0C0;
+}
+
+/* Make h3 more distinct from h2. */
+h3 {
+    font-style: italic;
+}
+
+/* Closing up definition lists. */
+dl {
+    padding-left: 1em;
+}
+dt {
+    clear: left;
+    float: left;
+    margin: 0 0.5em 0 0;
+}
+dt::before {
+    content: "";
+    display: block;
+    height: 0.25em;
+}
+dd::before {
+    content: "";
+    display: block;
+    height: 0.25em;
+}
+dd p {
+    display: inline;
+    margin: 0;
+    padding: 0;
+}
+dt {
+    margin-left: -1em;
+}
+
+/* Fix Pygments displaying back quotes as errors by marking back quotes as Operator. */
+.highlight .err {
+    color: #ce5c00;
+    font-weight: bold;
+    border: none;
+}

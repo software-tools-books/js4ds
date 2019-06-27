@@ -1,30 +1,28 @@
 {
   "name": "js-vs-ds",
   "version": "0.1.0",
-  "description": "JavaScript versus Research Computing",
+  "description": "JavaScript versus Data Science",
   "keywords": [
     "lesson",
     "JavaScript",
     "data science"
   ],
   "main": "index.js",
-  "author": "Greg Wilson",
+  "author": "Maya Gans, Toby Hodges, and Greg Wilson",
   "license": "SEE LICENSE IN LICENSE.md",
-  "homepage": "http://gvwilson.github.io/js-vs-ds/",
+  "homepage": "http://software-tools-in-javascript.github.io/js-vs-ds/",
   "scripts": {
     "dev": "parcel serve -p 4000",
     "lint": "eslint bin/*.js src/**/*.js",
     "standard": "standard",
-    "stitch": "node bin/stitch.js _config.yml _site _site/index.html all.html",
-    "test": "mocha",
-    "words": "bin/wc.js *.md *.md *.md"
+    "test": "mocha"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/gvwilson/js-vs-ds.git"
+    "url": "git+https://github.com/software-tools-in-javascript/js-vs-ds.git"
   },
   "bugs": {
-    "url": "https://github.com/gvwilson/js-vs-ds/issues"
+    "url": "https://github.com/software-tools-in-javascript/js-vs-ds/issues"
   },
   "standard": {
     "ignore": [

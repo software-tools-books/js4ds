@@ -1,0 +1,212 @@
+\chapter{Legacy JavaScript Issues}\label{s:legacy}
+
+JavaScript is now twenty-five years old,
+and like many twenty-somethings,
+it is still struggling with issues from its childhood.
+This appendix explores three of them.
+
+\section{Equality}\label{s:legacy-equality}
+
+Gary Bernhardt's \href{https://www.destroyallsoftware.com/talks/wat}{lightning talk from 2012}
+may be the most-watched presentation on JavaScript ever.
+In it,
+he rattles through some truths about the language that may surprise you
+(\tblref{t:legacy-surprises}).
+
+
+\begin{table}
+\begin{longtable}{lll}
+Operation & Code & Result\tabularnewline
+empty array plus empty array & \texttt{{[}{]}\ +\ {[}{]}} & \texttt{""} (empty string)\tabularnewline
+empty array plus empty object & \texttt{{[}{]}\ +\ \{\}} & \texttt{\{\}} (empty object)\tabularnewline
+empty object plus empty array & \texttt{\{\}\ +\ {[}{]}} & \texttt{0} (number zero)\tabularnewline
+empty object plus empty object & \texttt{\{\}\ +\ \{\}} & \texttt{NaN} (not a number)\tabularnewline
+\end{longtable}
+\caption{Surprising Results}
+\label{t:legacy-surprises}
+\end{table}
+
+In order to understand this, we need to know several things
+(which are laid out in more detail in \href{https://medium.com/dailyjs/the-why-behind-the-wat-an-explanation-of-javascripts-weird-type-system-83b92879a8db}{this article} by Abhinav Suri):
+
+\begin{enumerate}
+\item
+  Arrays are objects whose keys happen to be sequential integers.
+\item
+  When JavaScript tries to add things that aren't numbers,
+  it tries to convert them to numbers,
+  and if that doesn't work,
+  to strings (because it can always concatenate strings).
+\item
+  To convert an array to a string,
+  JavaScript converts the elements to strings and concatenates them.
+  If the array is empty, the result is an empty string.
+\item
+  When converting an object to a string,
+  JavaScript produces \texttt{{[}object\ CLASS{]}},
+  where \texttt{CLASS} is the name of the object's class.
+\item
+  \texttt{\{\}} can be interpreted as either an empty object \emph{or} an empty block of code.
+\end{enumerate}
+
+So:
+
+\begin{itemize}
+\item
+  Empty array plus empty array becomes empty string plus empty string.
+\item
+  Empty array plus empty object becomes empty string plus \texttt{{[}object\ Object{]}}
+  (because the class of an empty object is just \texttt{Object}).
+\item
+  \texttt{\{\}\ +\ {[}{]}} is ``an empty block of code producing nothing, followed by \texttt{+{[}{]}}'',
+  which becomes ``+ of the numeric value of the string value of an empty array'',
+  which becomes ``+ of 0''.
+\item
+  Empty object plus empty object is interpreted as an empty object plus an empty block of code,
+  and since an empty block of code doesn't produce a result,
+  its ``value'' is \texttt{NaN} (not a number).
+\end{itemize}
+
+This is one of many cases in programming (and real life) where
+doing something that's convenient in a simple case
+produces confusion in less common cases.
+Every language except Canadian English has warts like these.
+
+\section{Iteration}\label{s:legacy-iteration}
+
+We wrote above that arrays are objects.
+This led to some undesirable behavior with JavaScript's original \texttt{for} loop,
+which used the word \texttt{in} rather than \texttt{of},
+and which looped over all of an object's enumerable keys:
+
+\begin{minted}{js}
+const things = ['x', 'y', 'z']
+things.someProperty = 'someValue'
+
+for (let key in things) {
+  console.log(key)
+}
+\end{minted}
+
+\begin{minted}{text}
+0
+1
+2
+someProperty
+\end{minted}
+
+That phrase ``enumerable keys'' conceals some strangeness of its own,
+but in brief,
+a \texttt{for-in} loop will loop over keys inherited from the object's parents
+as well as those defined in the object itself.
+Since this is usually not what programmers want (especially for arrays),
+older code often used a C-style loop:
+
+\begin{minted}{js}
+for (let i = 0; i < things.length; i += 1) {
+  console.log(i)
+}
+\end{minted}
+
+\begin{minted}{text}
+0
+1
+2
+\end{minted}
+
+Today's solution is to use \texttt{for-of} to get the \emph{values} from an array,
+which is usually what we want:
+
+\begin{minted}{js}
+for (let key of things) {
+  console.log(key)
+}
+\end{minted}
+
+\begin{minted}{text}
+x
+y
+z
+\end{minted}
+
+Better yet, use \texttt{forEach} and take advantage of its optional second and third arguments:
+
+\begin{minted}{js}
+things.forEach((val, loc, array) => {
+    console.log(`element ${loc} of ${array} is ${val}`)
+})
+\end{minted}
+
+\begin{minted}{text}
+element 0 of x,y,z is x
+element 1 of x,y,z is y
+element 2 of x,y,z is z
+\end{minted}
+
+\section{Prototypes}\label{s:legacy-prototypes}
+
+We come finally to an aspect of JavaScript that has been the cause of a great deal of confusion: prototypes.
+Every JavaScript object has an internal property called its \gref{g:prototype}{prototype}.
+If you try to access some property of an object and it's not found,
+JavaScript automatically looks in the object that the first object's prototype refers to.
+If the desired property isn't there,
+JavaScript looks in the prototype object's prototype, and so on.
+
+So where do prototypes come from?
+If an object is created with \texttt{new\ Something()},
+and the function \texttt{Something} has a property called \texttt{prototype},
+then the new object's prototype is set to the object to which that
+\texttt{prototype} property points.
+
+This will all make sense with an example and a diagram.
+Let's create an object to store the default properties of ice cream cones,
+then create a function \texttt{Cone} that creates an actual cone:
+
+\begin{minted}{js}
+const iceCream = {
+    size: 'large'
+}
+
+const Cone = function(f) {
+    this.flavor = f
+}
+
+Cone.prototype = iceCream
+\end{minted}
+
+We can now create a cone and look at its properties
+(\figref{f:legacy-prototype}):
+
+\begin{minted}{js}
+const dessert = new Cone('mustard')
+console.log(`flavor "${dessert.flavor}" size "${dessert.size}"`)
+\end{minted}
+
+\begin{minted}{text}
+flavor "mustard" size "large"
+\end{minted}
+
+\figpdf{figures/legacy-prototype.pdf}{Prototypes}{f:legacy-prototype}
+
+If we change the \texttt{size} of our dessert,
+lookup finds the object's property before looking up the chain to find the parent object's:
+
+\begin{minted}{js}
+dessert.size = 'extra-large'
+console.log(`new flavor "${dessert.flavor}" size "${dessert.size}"`)
+\end{minted}
+
+\begin{minted}{text}
+new flavor "mustard" size "extra-large"
+\end{minted}
+
+Prototypes are a way to implement inheritance for object-oriented programming;
+the problem is that the mechanics are rather clumsy,
+and very different from what most programmers are used to,
+so people built a variety of layers on top of prototypes.
+To make things even more confusing,
+\texttt{this} can behave in some rather odd ways,
+and again,
+people built layers to try to insulate themselves from those oddities.
+Prototypes still have their fans,
+but most people find modern JavaScript's classes easier to use.

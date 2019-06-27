@@ -1,0 +1,193 @@
+\chapter{Introduction}\label{s:intro}
+
+We were going to call this book \emph{JavaScript for Scientists and Engineers},
+but \href{https://www.dabeaz.com/}{David Beazley} thought that ``versus'' would make a better title.
+While that one-word change sums up how many people view the language,
+we hope we can convince you that modern JavaScript is usable as well as useful.
+We changed the second half of the title because hey, data science.
+We also hope that these lessons will help librarians,
+digital humanists,
+and everyone else who uses computing in their research,
+not just scientists and engineers.
+
+We will cover:
+
+\begin{itemize}
+\item
+  Core features of modern JavaScript
+\item
+  Programming with callbacks and promises
+\item
+  Creating objects and classes
+\item
+  Writing HTML and CSS
+\item
+  Creating interactive pages with React
+\item
+  Building data services
+\item
+  Testing
+\item
+  Data visualization
+\item
+  Combining everything to create a three-tier web application
+\end{itemize}
+
+Unlike most introductions to JavaScript,
+these lessons present an even mix of browser programming and server programming.
+We give each topic only shallow coverage;
+if you want to know more,
+there are many other free tutorials you can dive into once you've mastered the basics,
+some of which are both up-to-date and well designed.
+
+\section{Who You Are}\label{s:intro-personas}
+
+Every lesson should aim to \href{http://teachtogether.tech/en/process/}{meet the needs of specific learners} \cite{Wils2018}.
+The three people described below define the intended audience for this one.
+
+\begin{description}
+
+\item[Bhadra]
+received a BSc in microbiology five years ago,
+and has worked since then for a biotech firm with labs in four countries.
+She did a statistics class using R as an undergrad,
+then learned some more R and some Unix shell scripting
+in a \href{http://software-carpentry.org/}{Software Carpentry} workshop,
+but has no other training as a programmer.
+Bhadra's team is developing tools
+to detect structural similarities between proteins.
+They would like to build a browser interface to their tools
+so that people can test different algorithms on various data sets.
+This book will show Bhadra how to build, test, and deploy that interface.
+
+\item[Efraim]
+did fieldwork for the Ministry of Natural Resources for thirty-one years.
+He learned Visual Basic so that he could write Excel macros,
+then mastered C in order to maintain the control software
+for some second-hand remote sensing equipment.
+Efraim recently retired,
+and is now an active member of several citizen science projects.
+This book will show him how to create a service
+to share those projects' data with the world,
+and how to build a web-based administrative interface for it.
+
+\item[Sumi]
+is completing a PhD in 19th Century history.
+As part of her research,
+she is transcribing and cataloging the records of several dozen Japanese-American midwives.
+She has been creating and customizing WordPress sites for several years,
+and has picked up bits and pieces of JavaScript while doing so.
+Sumi is about to start looking for a job,
+and wants to create an interactive website to showcase her research.
+This book will fill in some of the gaps in her knowledge
+and show her how to take advantage of JavaScript's more modern features.
+
+\end{description}
+
+These prototypical users:
+
+\begin{itemize}
+\item
+  can write two-page programs that use lists, loops, conditionals, and functions,
+\item
+  can run commands in the Unix shell to navigate the filesystem and create and delete directories and files, and
+\item
+  have reliable access to the Internet.
+\end{itemize}
+
+\section{Setting Up}\label{s:intro-setup}
+
+The exercises at the end of each chapter include new information
+that you will need later in the book,
+and are therefore not optional.
+You can do the first few online,
+using a service like \href{https://runkit.com/}{RunKit},
+which gives you an interactive JavaScript playground in your browser.
+For larger things,
+and for chapters starting with the one on creating dynamic web pages (\chapref{s:dynamic}),
+you should \href{https://nodejs.org/en/download/}{download and install} the latest Long-term Support (LTS) versions of Node and NPM.
+
+\gref{g:node-js}{Node} is an open source implementation of JavaScript
+that includes a command-line interpreter like those for languages such as Python and R.
+The command \texttt{node} on its own starts a \gref{g:repl}{read-evaluate-print loop}
+that executes commands as they are typed in and displays their output.
+The command \texttt{node\ filename.js} reads and runs the commands in \texttt{filename.js};
+we will see in \chapref{s:pages} how to run JavaScript in a browser.
+
+\texttt{npm} is the Node \gref{g:package-manager}{Package Manager},
+a command-line tool for finding, installing, and updating JavaScript libraries.
+The command \texttt{npm\ install\ -\/-global\ library-name} (without a \texttt{.js} extension)
+installs a library \gref{g:global-installation}{globally} so that all projects can use it,
+while \texttt{npm\ install\ -\/-save\ library-name} installs the library \gref{g:local-installation}{locally}
+(i.e., in the current project folder).
+Local installation is usually a better idea,
+since it isolates projects from one another.
+
+\section{Contributing}\label{s:index-contrib}
+
+Contributions of all kinds are welcome,
+from errata and minor improvements to entirely new sections and chapters.
+Please \href{mailto:gvwilson@third-bit.com}{email us},
+\href{https://github.com/software-tools-in-javascript/js-vs-ds/issues}{file an issue} in \href{https://github.com/software-tools-in-javascript/js-vs-ds/}{our GitHub repository},
+or \href{https://github.com/software-tools-in-javascript/js-vs-ds/pulls}{submit a pull request}.
+Everyone whose work is incorporated will be acknowledged.
+Please see \href{/en/contributing/}{the contributors's guide} for more information,
+and please note that all contributors are required to abide by
+our \href{/en/conduct/}{Code of Conduct}.
+
+\section{Who We Are}\label{s:intro-contributors}
+
+\noindent\begin{figure}
+\centering
+\includegraphics{figures/hodges-toby.png}
+\caption{Toby Hodges}
+\end{figure}
+\noindent
+\textbf{\href{https://tbyhdgs.info/}{Toby Hodges}} is a bioinformatician turned community
+coordinator, working on the \href{https://bio-it.embl.de}{Bio-IT Project} at
+\href{https://www.embl.de}{EMBL}. He teaches a lot of courses in computing, organizes
+a lot of community-building events, listens to a lot of punk rock, and
+occasionally still finds time to write code and ride his bike. Toby would like
+to thank his wife for her support and patience while he swore about how annoying
+JavaScript is to debug.
+
+\noindent\begin{figure}
+\centering
+\includegraphics{figures/wilson-greg.png}
+\caption{Greg Wilson}
+\end{figure}
+\noindent
+\textbf{\href{http://third-bit.com/}{Greg Wilson}} has worked for 35 years in both industry and
+academia, and is the author or editor of several books on computing and two for
+children. He co-founded \href{http://carpentries.org}{Software Carpentry}, a non-profit
+organization that teaches basic computing skills to researchers, and is now part
+of the education team at \href{http://rstudio.com}{RStudio}. Greg would like to
+thank everyone at \href{https://rangle.io/}{Rangle} who was so patient with him when
+he was learning JavaScript.
+
+\subsection{Acknowledgments}\label{s:intro-acknowledgments}
+
+We are also grateful for fixes from:
+
+\begin{itemize}
+\item
+  \href{https://github.com/sdruskat}{Stephan Druskat}
+\item
+  \href{https://erictleung.com/}{Eric Leung}
+\item
+  \href{https://github.com/pdm55}{Peter Munro}
+\item
+  \href{http://www.leouieda.com/}{Leonardo Uieda}
+\end{itemize}
+
+\section{Exercises}\label{s:intro-exercises}
+
+\exercise{Setting Up}
+
+Install Node and NPM on your computer,
+then run the commands \texttt{node\ -\/-version} and \texttt{npm\ -\/-version}
+to see which versions you have.
+
+\section*{Key Points}
+
+\input{keypoints/intro}

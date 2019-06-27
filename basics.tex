@@ -1,0 +1,607 @@
+\chapter{Basic Features}\label{s:basics}
+
+This lesson introduces the core features of JavaScript,
+including how to run programs,
+the language's basic data types,
+arrays and objects,
+loops,
+conditionals,
+functions,
+and modules.
+All of these concepts should be familiar if you have programmed before.
+
+\section{Hello, World}\label{s:basics-hello-world}
+
+Use your favorite text editor to put the following line in a file called \texttt{hello.js}:
+
+\begin{minted}{js}
+console.log('hello, world')
+\end{minted}
+
+\texttt{console} is a built-in \gref{g:module}{module} that provides basic printing services
+(among other things).
+As in many languages,
+we use the \gref{g:dotted-notation}{dotted notation} \texttt{X.Y} to get part \texttt{Y} of thing \texttt{X}---in this case,
+to get \texttt{console}'s \texttt{log} function.
+\gref{g:string}{Character strings} like \texttt{'hello,\ world'} can be written with either single quotes or double quotes,
+so long as the quotation marks match,
+and semi-colons at the ends of statements are now (mostly) optional.
+
+To run a program,
+type \texttt{node\ program\_name.js} at the command line.
+(We will preface shell commands with \texttt{\$} to make them easier to spot.)
+
+\begin{minted}{shell}
+$ node src/basics/hello.js
+\end{minted}
+
+\begin{minted}{text}
+hello, world
+\end{minted}
+
+\section{Basic Data Types}\label{s:basics-data-types}
+
+JavaScript has the usual datatypes,
+though unlike C, Python, and many other languages,
+there is no separate type for integers:
+it stores all numbers as 64-bit floating-point values,
+which is accurate up to about 15 decimal digits.
+We can check this using \texttt{typeof},
+which is an operator, \emph{not} a function,
+and which returns a string:
+
+\begin{minted}{js}
+const aNumber = 123.45
+console.log('the type of', aNumber, 'is', typeof aNumber)
+\end{minted}
+
+\begin{minted}{text}
+the type of 123.45 is number
+\end{minted}
+
+\begin{minted}{js}
+const anInteger = 123
+console.log('the type of', anInteger, 'is', typeof anInteger)
+\end{minted}
+
+\begin{minted}{text}
+the type of 123 is number
+\end{minted}
+
+We have already met strings,
+which may contain any \gref{g:unicode}{Unicode} character:
+
+\begin{minted}{js}
+const aString = 'some text'
+console.log('the type of', aString, 'is', typeof aString)
+\end{minted}
+
+\begin{minted}{text}
+the type of some text is string
+\end{minted}
+
+Functions are also a type of data,
+a fact whose implications we will explore in \chapref{s:callbacks}:
+
+\begin{minted}{js}
+console.log('the type of', console.log, 'is', typeof console.log)
+\end{minted}
+
+\begin{minted}{text}
+the type of function () { [native code] } is function
+\end{minted}
+
+Rather than showing the other basic types one by one,
+we will put three values in a list and loop over it:
+
+\begin{minted}{js}
+const otherValues = [true, undefined, null]
+for (let value of otherValues) {
+  console.log('the type of', value, 'is', typeof value)
+}
+\end{minted}
+
+\begin{minted}{text}
+the type of true is boolean
+the type of undefined is undefined
+the type of null is object
+\end{minted}
+
+As the example above shows,
+we use \texttt{let} to define a \gref{g:variable}{variable}
+and \texttt{const} to define a \gref{g:constant}{constant},
+put values separated by commas inside \texttt{{[}{]}} to create an \gref{g:array}{array},
+and use \texttt{for...of} to loop over the values in that array.
+Note that we use \texttt{let} rather than the older \texttt{var} and \texttt{of} and not \texttt{in}:
+the latter returns the indexes of the collection (e.g., 0, 1, 2),
+which has some traps for the unwary ((s:legacy-iteration){[}\#REF)).
+Note also that indexing starts from 0 rather than 1,
+and that indentation is optional and for readability purposes only.
+This may be different from the language that you're used to.
+
+After all this,
+the types themselves are somewhat anticlimactic.
+JavaScript's \texttt{boolean} type can be either \texttt{true} or \texttt{false},
+though we will see below that other things can be treated as Booleans.
+\texttt{undefined} means ``hasn't been given a value'',
+while \texttt{null} means ``has a value, which is nothing''.
+
+\section{Control Flow}\label{s:basics-control-flow}
+
+We have already seen \texttt{for} loops and flat arrays,
+so let's have a look at conditionals and nested arrays.
+(Here and elsewhere we will wrap lines to make them fit cleanly on the page
+in the printed version.)
+
+\begin{minted}{js}
+const values = [[0, 1], ['', 'text'], [undefined, null],
+                [[], [2, 3]]]
+for (let pair of values) {
+  for (let element of pair) {
+    if (element) {
+      console.log(element, 'of type', typeof element, 'is truthy')
+    } else {
+      console.log(element, 'of type', typeof element, 'is falsy')
+    }
+  }
+}
+\end{minted}
+
+\begin{minted}{text}
+0 of type number is falsy
+1 of type number is truthy
+ of type string is falsy
+text of type string is truthy
+undefined of type undefined is falsy
+null of type object is falsy
+ of type object is truthy
+2,3 of type object is truthy
+\end{minted}
+
+This example shows that arrays are \gref{g:heterogeneous}{heterogeneous},
+i.e.,
+that they can contain values of many different types
+(including other arrays).
+It also shows that \texttt{if} and \texttt{else} work as they do in other languages:
+it's the truthiness of things that may be different.
+For numbers,
+0 is \gref{g:falsy}{falsy}, all others are \gref{g:truthy}{truthy};
+Similarly,
+the empty string is falsy and all other strings are truthy.
+\texttt{undefined} and \texttt{null} are both falsy,
+as most programmers would expect.
+
+But as the last two lines of output show,
+an empty array is truthy,
+which is different from its treatment in most programming languages.
+The argument made by JavaScript's advocates is that an empty array is there,
+it just happens to be empty,
+but this behavior is still a common cause of bugs.
+When testing an array,
+check that \texttt{Array.length} is zero.
+(Note that this is a \gref{g:property}{property},
+not a \gref{g:method}{method},
+i.e.,
+it should be treated as a variable,
+not called like a function.)
+
+\begin{aside}{Safety Tip}
+  Always use \texttt{===} (triple equals) and \texttt{!==} when testing for equality and inequality in JavaScript.
+  \texttt{==} and \texttt{!=} do type conversion,
+  which can produce some ugly surprises (\secref{s:legacy-equality}).
+\end{aside}
+
+\section{Formatting Strings}\label{s:basics-formatting}
+
+Rather than printing multiple strings and expressions,
+we can \gref{g:string-interpolation}{interpolate} values into a back-quoted string.
+(We have to use back quotes because this feature was added to JavaScript
+long after the language was first created.)
+As the example below shows,
+the value to be interpolated is put in \texttt{\$\{...\}},
+and can be any valid JavaScript expression,
+including a function or method call.
+
+\begin{minted}{js}
+for (let color of ['red', 'green', 'blue']) {
+  const message = `color is ${color}`
+  console.log(message, `and capitalized is ${color.toUpperCase()}`)
+}
+\end{minted}
+
+\begin{minted}{text}
+color is red and capitalized is RED
+color is green and capitalized is GREEN
+color is blue and capitalized is BLUE
+\end{minted}
+
+\section{Objects}\label{s:basics-objects}
+
+An \gref{g:object}{object} in JavaScript is a collection of key-value pairs,
+and is equivalent in simple cases to what Python would call a dictionary.
+The keys do not have to be strings,
+but almost always are;
+the values can be anything.
+We can create an object by putting key-value pairs in curly brackets
+with colons between the keys and values
+and commas between the pairs:
+
+\begin{minted}{js}
+const creature = {
+  'order': 'Primates',
+  'family': 'Callitrichidae',
+  'genus': 'Callithrix',
+  'species': 'Jacchus'
+}
+
+console.log(`creature is ${creature}`)
+console.log(`creature.genus is ${creature.genus}`)
+for (let key in creature) {
+  console.log(`creature[${key}] is ${creature[key]}`)
+}
+\end{minted}
+
+\begin{minted}{text}
+creature is [object Object]
+creature.genus is Callithrix
+creature[order] is Primates
+creature[family] is Callitrichidae
+creature[genus] is Callithrix
+creature[species] is Jacchus
+\end{minted}
+
+The type of an object is always \texttt{object}.
+We can get the value associated with a key using \texttt{object{[}key{]}},
+but if the key has a simple name,
+we can use \texttt{object.key} instead.
+Note that the square bracket form can be used with variables for keys,
+but the dotted notation cannot:
+i.e.,
+\texttt{creature.genus} is the same as \texttt{creature{[}'genus'{]}},
+but the assignment \texttt{g\ =\ 'genus'} followed by \texttt{creature.g} does not work.
+
+Because string keys are so common,
+and because programmers use simple names so often,
+JavaScript allows us to create objects without quoting the names of the keys:
+
+\begin{minted}{js}
+const creature = {
+  order: 'Primates',
+  family: 'Callitrichidae',
+  genus: 'Callithrix',
+  species: 'Jacchus'
+}
+\end{minted}
+
+\texttt{{[}object\ Object{]}} is not particularly useful output when we want to see what an object contains.
+To get a more helpful string representation,
+use \texttt{JSON.stringify(object)}:
+
+\begin{minted}{js}
+console.log(JSON.stringify(creature))
+\end{minted}
+
+\begin{minted}{text}
+{"order":"Primates","family":"Callitrichidae",
+ "genus":"Callithrix","species":"Jacchus"}
+\end{minted}
+
+Here,
+``JSON'' stands for ``JavaScript Object Notation'';
+we will learn more about it in \chapref{s:dataman}.
+
+\section{Functions}\label{s:basics-functions}
+
+Functions make it possible for mere mortals to understand programs
+by allowing us to think about them one piece at a time.
+Here is a function that finds the lowest and highest values in an array:
+
+\begin{minted}{js}
+function limits (values) {
+  if (!values.length) {
+    return [undefined, undefined]
+  }
+  let low = values[0]
+  let high = values[0]
+  for (let v of values) {
+    if (v < low) low = v
+    if (v > high) high = v
+  }
+  return [low, high]
+}
+\end{minted}
+
+Its definition consists of the keyword \texttt{function},
+its name,
+a parameterized list of \gref{g:parameter}{parameters} (which might be empty),
+and its body.
+We can use \texttt{return} to explicitly return a value at any time;
+if nothing is returned,
+the function's result is \texttt{undefined}.
+
+One oddity of JavaScript is that almost anything can be compared to almost anything else.
+Here are a few tests that demonstrate this:
+
+\begin{minted}{js}
+const allTests = [
+  [],
+  [9],
+  [3, 30, 300],
+  ['apple', 'Grapefruit', 'banana'],
+  [3, 'apple', ['sub-array']]
+]
+for (let test of allTests) {
+  console.log(`limits of ${test} are ${limits(test)}`)
+}
+\end{minted}
+
+\begin{minted}{text}
+limits of  are ,
+limits of 9 are 9,9
+limits of 3,30,300 are 3,300
+limits of apple,Grapefruit,banana are Grapefruit,banana
+limits of 3,apple,sub-array are 3,3
+\end{minted}
+
+Programmers generally don't write functions this way any longer,
+since it interacts in odd ways with other features of the language;
+\secref{s:legacy-prototypes} explains why and how in more detail.
+Instead,
+most programmers now write \gref{g:fat-arrow}{fat arrow functions}
+consisting of a parameter list,
+the \texttt{=\textgreater{}} symbol,
+and a body.
+Fat arrow functions don't have names,
+so the function must be assigned that to a constant or variable for later use:
+
+\begin{minted}{js}
+const limits = (values) => {
+  if (!values.length) {
+    return [undefined, undefined]
+  }
+  let low = values[0]
+  let high = values[0]
+  for (let v of values) {
+    if (v < low) low = v
+    if (v > high) high = v
+  }
+  return [low, high]
+}
+\end{minted}
+
+No matter how functions are defined,
+each one is a \gref{g:scope}{scope},
+which means its parameters and any variables created inside it are \gref{g:local-variable}{local} to the function.
+We will discuss scope in more detail in \chapref{s:callbacks}.
+
+\begin{aside}{Stuck in the Past}
+  Why did JavaScript introduce another syntax
+  rather than fixing the behavior of those defined with \texttt{function}?
+  The twin answers are that changes would break legacy programs that rely on the old behavior,
+  and that the language's developers wanted to make it really easy to define little functions.
+  Here and elsewhere,
+  we will see how a language's history and the way it is used shape its evolution.
+\end{aside}
+
+\section{Modules}\label{s:basics-modules}
+
+As our programs grow larger,
+we will want to put code in multiple files.
+The unavoidable bad news is that JavaScript has several module systems:
+Node still uses one called CommonJS,
+but is converting to the modern standard called ES6,
+so what we use on the command line is different from what we use in the browser (for now).
+
+\begin{aside}{Ee Ess}
+  JavaScript's official name is ECMAScript,
+  though only people who use the word ``datum'' in everyday conversation ever call it that.
+  Successive versions of the language are therefore known as ES5, ES6, and so on,
+  except when they're referred to as (for example) ES2018.
+\end{aside}
+
+Since we're going to build command-line programs before doing anything in the browser,
+we will introduce Node's module system first.
+We start by putting this code in a file called \texttt{utilities.js}:
+
+\begin{minted}{js}
+DEFAULT_BOUND = 3
+
+const clip = (values, bound = DEFAULT_BOUND) => {
+  let result = []
+  for (let v of values) {
+    if (v <= bound) {
+      result.push(v)
+    }
+  }
+  return result
+}
+
+module.exports = {
+  clip: clip
+}
+\end{minted}
+
+The function definition is straightforward;
+as you may have guessed, \texttt{bound\ =\ DEFAULT\_BOUND} sets a default value for that parameter
+so that \texttt{clip} can be called with just an array.
+You may also have guessed that \texttt{Array.push} appends a value to the end of an array;
+if you didn't,
+well,
+now you know.
+
+What's more important is assigning an object to \texttt{module.exports}.
+Only those things named in this object are visible to the outside world,
+so \texttt{DEFAULT\_BOUND} won't be.
+Remember,
+keys that are simple names don't have to be quoted,
+so \texttt{clip:\ clip} means ``associate a reference to the function \texttt{clip} with the string key \texttt{"clip"}.
+
+To use our newly-defined module we must \texttt{require} it.
+For example,
+we can put this in \texttt{import.js}:
+
+\begin{minted}{js}
+const utilities = require('./utilities')
+
+const data = [-1, 5, 3, 0, 10]
+console.log(`clip(${data}) -> ${utilities.clip(data)}`)
+console.log(`clip(${data}, 5) -> ${utilities.clip(data, 5)}`)
+\end{minted}
+
+\begin{minted}{text}
+clip(-1,5,3,0,10) -> -1,3,0
+clip(-1,5,3,0,10, 5) -> -1,5,3,0
+\end{minted}
+
+\texttt{require} returns the object that was assigned to \texttt{module.exports},
+so if we have assigned its result to a variable called \texttt{utilities},
+we must then call our function as \texttt{utilities.clip}.
+We use a relative path starting with \texttt{./} or \texttt{../} to import local files;
+paths that start with names are taken from installed Node libraries.
+
+\section{Exercises}\label{s:basics-exercises}
+
+\exercise{Typeof}
+
+What kind of thing is \texttt{typeof}?
+Is it an expression?
+A function?
+Something else?
+(You might notice that \texttt{typeof\ typeof} is syntactically invalid.
+In such circumstances,
+an internet search engine is your friend,
+as is the Mozilla Developer Network (MDN) JavaScript reference
+at \url{https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference}.
+
+\exercise{Fill in the Blanks}
+
+Answer these questions about the program below:
+
+\begin{enumerate}
+\item
+  What does \texttt{Array.push} do?
+\item
+  How does a \texttt{while} loop work?
+\item
+  What does \texttt{+=} do?
+\item
+  What does \texttt{Array.reverse} do, and what does it return?
+\end{enumerate}
+
+\begin{minted}{js}
+let current = 0
+let table = []
+while (current < 5) {
+  const entry = `square of ${current} is ${current * current}`
+  table.push(entry)
+  current += 1
+}
+table.reverse()
+for (let line of table) {
+  console.log(line)
+}
+\end{minted}
+
+\begin{minted}{text}
+square of 4 is 16
+square of 3 is 9
+square of 2 is 4
+square of 1 is 1
+square of 0 is 0
+\end{minted}
+
+\exercise{What Is Truth?}
+
+Write a function called \texttt{isTruthy} that returns \texttt{true} for everything that JavaScript considers truthy,
+and \texttt{false} for everything it considers \texttt{falsy} \emph{except} empty arrays:
+\texttt{isTruthy} should return \texttt{false} for those.
+
+\exercise{Combining Different Types}
+
+What output would you expect from the code below?
+Try running it and see whether the results match your expectations.
+What are the implications of this behavior when working with real-world data?
+
+\begin{minted}{js}
+const first = [3, 7, 8, 9, 1]
+console.log(`aggregating ${first}`)
+let total = 0
+for (let d of first) {
+  total += d
+}
+console.log(total)
+
+const second = [0, 3, -1, NaN, 8]
+console.log(`aggregating ${second}`)
+total = 0
+for (let d of second) {
+  total += d
+}
+console.log(total)
+\end{minted}
+
+\exercise{What Does This Do?}
+
+Explain what is happening in the assignment statement that creates the constant \texttt{creature}.
+
+\begin{minted}{js}
+const genus = 'Callithrix'
+const species = 'Jacchus'
+const creature = {genus, species}
+console.log(creature)
+\end{minted}
+
+\begin{minted}{text}
+{ genus: 'Callithrix', species: 'Jacchus' }
+\end{minted}
+
+\exercise{What Does This Code Do?}
+
+Explain what is happening in the assignment statement in this program.
+Use this technique to rewrite \texttt{src/basics/import.js}
+so that \texttt{clip} can be called directly as \texttt{clip(...)} rather than \texttt{utilities.clip(...)}.
+
+\begin{minted}{js}
+const creature = {
+  genus: 'Callithrix',
+  species: 'Jacchus'
+}
+const {genus, species} = creature
+console.log(`genus is ${genus}`)
+console.log(`species is ${species}`)
+\end{minted}
+
+\exercise{Return To Me, For My Heart Wants You Only}\begin{minted}{js}
+  
+const verbose_sum = (first, second) => {
+  console.log(`Going to add ${first} to ${second}`)
+  let total = first + second
+  return total
+  console.log(`Finished summing`)
+}
+
+var result = verbose_sum(3, 6)
+console.log(result)
+\end{minted}
+
+What output would you see in the console if you ran the code above?
+
+\begin{enumerate}
+\item
+  \texttt{Going\ to\ add\ \$\{first\}\ to\ \$\{second\}}\\
+  \texttt{9}
+\item
+  \texttt{Going\ to\ add\ 3\ to\ 6}\\
+  \texttt{9}\\
+  \texttt{Finished\ summing}
+\item
+  \texttt{Going\ to\ add\ 3\ to\ 6}\\
+  \texttt{9}
+\item
+  \texttt{Going\ to\ add\ 3\ to\ 6}\\
+  \texttt{36}
+\end{enumerate}
+
+\section*{Key Points}
+
+\input{keypoints/basics}

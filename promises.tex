@@ -1,0 +1,782 @@
+\chapter{Promises}\label{s:promises}
+
+By now we have got used to providing callback functions as arguments to other
+functions.
+Callbacks quickly become complicated because of:
+
+\begin{itemize}
+\item
+  Nesting: a delayed calculation may need the result of a delayed calculation that needs\ldots{}
+\item
+  Error handling: who notices and takes care of errors?
+  (This is often a problem in real life too.)
+\end{itemize}
+
+For example,
+suppose we want to turn a set of CSV files into HTML pages.
+The inputs to our function are the name of a directory that contains one or more CSV files
+and the name of an output directory;
+the desired results are
+that the output directory is created if it doesn't already exist,
+that one HTML file is created for each CSV file,
+that any HTML files in the directory that \emph{don't} correspond to CSV files are removed,
+and that an index page is created with links to all the pages.
+
+We can do this with synchronous operations,
+but that's not the JavaScript way
+(by which we mean that doing it that way won't introduce you to tools we're going to need later).
+We can also try doing it with callbacks, but:
+
+\begin{itemize}
+\item
+  we can't create the output directory until the existing one has been emptied;
+\item
+  can't generate the HTML pages until the output directory has been re-created; and
+\item
+  we can't generate the index page until the CSV files have been processed.
+\end{itemize}
+
+Instead of a tangled nest of callbacks,
+it's better to use \gref{g:promise}{promises},
+and then to use \texttt{async} and \texttt{await} to make things even easier.
+JavaScript offers three mechanisms because
+its developers have invented better ways to do things as the language has evolved,
+but the simple high-level ideas often don't make sense unless you understand how they work.
+(This too is often a problem in real life.)
+
+\section{The Execution Queue}\label{s:promises-queue}
+
+In order for any of what follows to make sense,
+it's vital to understand JavaScript's \gref{g:event-loop}{event loop},
+a full explanation of which can be found \href{https://nodejs.org/en/docs/guides/event-loop-timers-and-nexttick/}{here}.
+Most functions execute in order:
+
+\begin{minted}{js}
+[1000, 1500, 500].forEach(t => {
+  console.log(t)
+})
+\end{minted}
+
+\begin{minted}{text}
+1000
+1500
+500
+\end{minted}
+
+However,
+a handful of built-in functions delay execution:
+instead of running right away,
+they add a callback to a list that the JavaScript interpreter uses
+to keep track of things that want to be run.
+When one task finishes,
+the interpreter takes the next one from this queue and runs it.
+
+\texttt{setTimeout} is one of the most widely used functions of this kind.
+Here it is in operation:
+
+\begin{minted}{js}
+[1000, 1500, 500].forEach(t => {
+  console.log(`about to setTimeout for ${t}`)
+  setTimeout(() => {console.log(`inside timer handler for ${t}`)}, t)
+})
+\end{minted}
+
+\begin{minted}{text}
+about to setTimeout for 1000
+about to setTimeout for 1500
+about to setTimeout for 500
+inside timer handler for 500
+inside timer handler for 1000
+inside timer handler for 1500
+\end{minted}
+
+That's not surprising:
+if we ask JavaScript to delay execution,
+execution is delayed.
+What may be surprising is that setting a timeout of zero also defers execution:
+
+\begin{minted}{js}
+const values = [1000, 1500, 500]
+console.log('starting...')
+values.forEach(t => {
+  console.log(`about to setTimeout for ${t}`)
+  setTimeout(() => {console.log(`inside timer handler for ${t}`)}, 0)
+})
+console.log('...finishing')
+\end{minted}
+
+\begin{minted}{text}
+starting...
+about to setTimeout for 1000
+about to setTimeout for 1500
+about to setTimeout for 500
+...finishing
+inside timer handler for 1000
+inside timer handler for 1500
+inside timer handler for 500
+\end{minted}
+
+\figpdf{figures/promises-queue.pdf}{Run Queue}{f:promises-queue}
+
+\figref{f:promises-queue} shows what the run queue looks like just before the program prints \texttt{...finishing}.
+We can use \texttt{setTimeout} to build a generic non-blocking function:
+
+\begin{minted}{js}
+const nonBlocking = (callback) => {
+  setTimeout(callback, 0)
+}
+
+['a', 'b', 'c'].forEach(val => {
+  console.log(`about to do nonBlocking for ${val}`)
+  nonBlocking(() => console.log(`inside callback for ${val}`))
+})
+\end{minted}
+
+\begin{minted}{text}
+about to do nonBlocking for a
+about to do nonBlocking for b
+about to do nonBlocking for c
+inside callback for a
+inside callback for b
+inside callback for c
+\end{minted}
+
+Why bother doing this?
+Because we may want to give something else a chance to run.
+In particular,
+file I/O and anything involving a network request are incredibly slow from a computer's point of view.
+\href{http://exple.tive.org/blarg/2018/08/15/time-dilation/}{If a single CPU cycle was one second long},
+then getting data from RAM would take several minutes,
+getting it from a solid-state disk would take six to eight days,
+and getting it over the network is the equivalent of eight years.
+Rather than wasting that time,
+JavaScript is designed to let us (or our browser) switch tasks and do something else.
+
+Using a timeout of zero is a clever trick,
+but Node provides another function called \texttt{setImmediate} to do this for us.
+(There is also \texttt{process.nextTick},
+which doesn't do quite the same thing.
+You should probably not use it.)
+
+\begin{minted}{js}
+['a', 'b', 'c'].forEach(val => {
+  console.log(`about to do setImmediate for ${val}`)
+  setImmediate(() => console.log(`inside immediate handler for ${val}`))
+})
+\end{minted}
+
+\begin{minted}{text}
+about to do setImmediate for a
+about to do setImmediate for b
+about to do setImmediate for c
+inside immediate handler for a
+inside immediate handler for b
+inside immediate handler for c
+\end{minted}
+
+\section{Promises}\label{s:promises-promises}
+
+Recent versions of JavaScript encourage programmers to use \gref{g:promise}{promises}
+to manage delayed actions.
+For example,
+if we want to find the size of a file,
+we can write this:
+
+\begin{minted}{js}
+const fs = require('fs-extra')
+fs.stat('moby-dick.txt').then((stats) => console.log(stats.size))
+\end{minted}
+
+\begin{minted}{text}
+1276201
+\end{minted}
+
+\texttt{fs-extra.stat} will eventually produce some statistics about the file,
+but this will take a while,
+so \texttt{fs-extra.stat} returns a object of the class \texttt{Promise} right away.
+\texttt{Promise} has a method \texttt{then} that takes a callback as an argument and stores it in the promise object.
+When the \texttt{stat} call completes,
+the remembered callback is called,
+and passed yet another object with statistics about the file (including its size).
+
+To understand this a little better,
+let's create our own promise to fetch a file from the web.
+(We have broken the URL over two lines using string concatenation
+so that it will print nicely.)
+
+\begin{minted}{js}
+const fetch = require('node-fetch')
+
+url = 'https://api.nasa.gov/neo/rest/v1/feed' +
+      '?api_key=DEMO_KEY&start_date=2018-08-20'
+const prom = new Promise((resolve, reject) => {
+  fetch(url)
+  .then((response) => {
+    if (response.status === 200) {
+      resolve('fetched page successfully')
+    }
+  })
+}).then((message) => console.log(message))
+\end{minted}
+
+This code constructs a new \texttt{Promise} object.
+The constructor takes one argument;
+this must be a callback function of two arguments,
+which by convention are called \texttt{resolve} and \texttt{reject}.
+Inside the body of the callback,
+we call \texttt{resolve} to return a value if and when everything worked as planned.
+That value is then passed to the \texttt{then} method of the \texttt{Promise}.
+
+This may seem a roundabout way of doing things,
+but it solves several problems at once.
+The first and most important is error handling:
+if something goes wrong inside the callback passed to \texttt{Promise}'s constructor,
+we can call \texttt{reject} instead of \texttt{resolve}.
+Just as \texttt{then} handles whatever we pass to \texttt{resolve},
+\texttt{Promise} defines a method called \texttt{catch} to handle whatever is passed to \texttt{reject}.
+We can therefore build a slightly more robust version of our data fetcher
+that will report something sensible if we mis-type a year as \texttt{2108}:
+
+\begin{minted}{js}
+const fetch = require('node-fetch')
+
+url = 'https://api.nasa.gov/neo/rest/v1/feed' +
+      '?api_key=DEMO_KEY&start_date=2018-08-20'
+new Promise((resolve, reject) => {
+  fetch(url)
+  .then((response) => {
+    if (response.status === 200) {
+      resolve('fetched page successfully')
+    }
+    else {
+      reject(Error(`got HTTP status code ${response.status}`))
+    }
+  })
+}).then((message) => console.log(message))
+.catch((error) => console.log(error.message))
+\end{minted}
+
+\begin{minted}{text}
+got HTTP status code 400
+\end{minted}
+
+(Note that we didn't assign our Promise object to a variable in the example above.
+We can create promises on the fly if we need them only to define behaviour on
+successful completion/exception and won't need to refer to them again later.)
+What makes this all work is that a promise is an object.
+
+\figpdf{figures/promises-object-a.pdf}{Promises as Objects (after creation)}{f:promises-object-a}
+
+\figref{f:promises-object-a} shows what's in memory just after this promise has been created.
+There are a lot of arrows in this diagram,
+but they all serve a purpose:
+
+\begin{itemize}
+\item
+  The promise has three fields:
+  the initial action (which is the callback passed to the constructor),
+  the action to be taken if everything succeeds,
+  and the action to be taken if there's an error.
+\item
+  The success and error actions are empty,
+  because the initial action hasn't executed yet.
+\end{itemize}
+
+Once the promise is created,
+the program calls its \texttt{then} and \texttt{catch} methods in that order,
+giving each a callback.
+This happens \emph{before} the callback passed to the constructor
+(i.e., the initial action) is executed,
+and leaves the promise in the state shown in \figref{f:promises-object-b}:
+
+\figpdf{figures/promises-object-b.pdf}{Promises as Objects (after then and catch)}{f:promises-object-b}
+
+Calling \texttt{then} and \texttt{catch} assigns callbacks to the success action and error action members of the promise object.
+Those methods are then passed into the initial action callback as \texttt{resolve} and \texttt{reject},
+i.e.,
+if \texttt{resolve} is called because the page was fetched successfully,
+what's actually called is the promise's success action,
+which is the callback that was given to \texttt{then}.
+If \texttt{reject} is called,
+on the other hand,
+it triggers execution of the error action,
+which is the callback that was passed to \texttt{catch}.
+
+Yes,
+this is complicated---so complicated that another layer
+(which we will look at \protect\hyperlink{s:promises-async-await}{soon})
+has been added to JavaScript to hide these details.
+Without this complexity,
+though,
+it's extremely difficult to handle errors from delayed computations.
+If we try this, using JavaScript's \texttt{try\ \{...\}\ catch\ \{...\}} syntax for handling exceptions:
+
+\begin{minted}{js}
+const fetch = require('node-fetch')
+
+url = 'https://api.nasa.gov/neo/rest/v1/feed' +
+      '?api_key=DEMO_KEY&start_date=2018-08-20'
+try {
+  fetch(url)
+}
+catch (err) {
+  console.log(err)
+}
+\end{minted}
+
+\noindent
+then the error message won't appear
+because the call to \texttt{fetch} doesn't raise an exception right away.
+
+Going back to the \texttt{fs-extra.stat} example above,
+what if we want to process multiple files,
+e.g.,
+calculate their total size?
+We could write a loop:
+
+\begin{minted}{js}
+const fs = require('fs-extra')
+
+let total_size = 0
+const files = ['jane-eyre.txt', 'moby-dick.txt',
+               'life-of-frederick-douglass.txt']
+for (let fileName of files) {
+  fs.stat(fileName).then((stats) => {
+    total_size += stats.size
+  })
+}
+console.log(total_size)
+\end{minted}
+
+\noindent
+but this doesn't work:
+the \texttt{stat} in each iteration is executed asynchronously,
+so the loop finishes and the script prints a total size of zero
+before any of the promised code has run.
+
+Plan B is to chain the promises together
+to ensure that each executes only after the last has resolved:
+
+\begin{minted}{js}
+const fs = require('fs-extra')
+
+let total_size = 0
+new Promise((resolve, reject) => {
+  fs.stat('jane-eyre.txt').then((jeStats) => {
+    fs.stat('moby-dick.txt').then((mdStats) => {
+      fs.stat('life-of-frederick-douglass.txt').then((fdStats) => {
+        resolve(jeStats.size + mdStats.size + fdStats.size)
+      })
+    })
+  })
+}).then((total) => console.log(total))
+\end{minted}
+
+\noindent
+but this obviously doesn't handle an arbitrary number of files,
+since we have to write one level of nesting for each file.
+It's also potentially inefficient,
+since we could be waiting for one promise to complete
+while other promises further down are ready to be processed.
+
+The answer is \texttt{Promise.all},
+which returns an array of results from completed promises after all of them have resolved.
+The order of results corresponds to the order of the promises in the input array,
+which makes processing straightforward:
+
+\begin{minted}{js}
+const fs = require('fs-extra')
+
+let total_size = 0
+const files = ['jane-eyre.txt', 'moby-dick.txt',
+               'life-of-frederick-douglass.txt']
+Promise.all(files.map(f => fs.stat(f))).
+  then(stats => stats.reduce((total, s) => {return total + s.size}, 0)).
+  then(console.log)
+\end{minted}
+
+\begin{minted}{text}
+2594901
+\end{minted}
+
+We can also use \texttt{Promise.race},
+which takes an array of promises and returns the result of the first one to complete.
+
+\section{Using Promises}\label{s:promises-usage}
+
+Promises don't really make sense until we start to use them,
+so let's try counting the number of lines in a set of files
+that are larger than a specified threshold.
+This is a slightly complex example but we will go through and build it up step-by-step.
+Step 1 is to find the input files:
+
+\begin{minted}{js}
+const fs = require('fs-extra')
+const glob = require('glob-promise')
+
+const srcDir = process.argv[2]
+
+glob(`${srcDir}/**/*.txt`)
+  .then(files => console.log('glob', files))
+  .catch(error => console.error(error))
+\end{minted}
+
+\begin{minted}{text}
+glob [ './common-sense.txt',
+  './jane-eyre.txt',
+  './life-of-frederick-douglass.txt',
+  './moby-dick.txt',
+  './sense-and-sensibility.txt',
+  './time-machine.txt' ]
+\end{minted}
+
+Step 2 is to get the status of each file.
+This approach doesn't work because \texttt{fs.stat} is delayed:
+
+\begin{minted}{js}
+// ...imports and arguments as before...
+
+glob(`${srcDir}/**/*.txt`)
+  .then(files => files.map(f => fs.stat(f)))
+  .then(files => console.log('glob + files.map/stat', files))
+  .catch(error => console.error(error))
+\end{minted}
+
+\begin{minted}{text}
+glob + files.map/stat [ Promise { <pending> },
+  Promise { <pending> },
+  Promise { <pending> },
+  Promise { <pending> },
+  Promise { <pending> },
+  Promise { <pending> } ]
+\end{minted}
+
+Step 3 is to use \texttt{Promise.all} to wait for all these promises to resolve:
+
+\begin{minted}{js}
+// ...imports and arguments as before...
+
+glob(`${srcDir}/**/*.txt`)
+  .then(files => Promise.all(files.map(f => fs.stat(f))))
+  .then(files => console.log('glob + Promise.all(...)', files))
+  .catch(error => console.error(error))
+\end{minted}
+
+\begin{minted}{text}
+glob + Promise.all(...) [ Stats {
+    dev: 16777220,
+    mode: 33188,
+    ...more information... },
+    ...five more Stats objects...
+]
+\end{minted}
+
+In step 4,
+we remember that we need to keep track of the names of the files we are looking at,
+so we need to write our own function that returns an object with two keys
+(one for the filename, and one for the stats).
+As described in \chapref{s:pages},
+the notation \texttt{\{a,\ b\}} produces an object \texttt{\{"a":\ a,\ "b",\ b\}}:
+
+\begin{minted}{js}
+// ...imports and arguments as before...
+
+const statPair = (filename) => {
+  return new Promise((resolve, reject) => {
+    fs.stat(filename)
+      .then(stats => resolve({filename, stats}))
+      .catch(error => reject(error))
+  })
+}
+
+glob(`${srcDir}/**/*.txt`)
+  .then(files => Promise.all(files.map(f => statPair(f))))
+  .then(files => console.log('glob + Promise.all(...)', files))
+  .catch(error => console.error(error))
+\end{minted}
+
+\begin{minted}{text}
+glob + Promise.all(...) [ { filename: './common-sense.txt',
+    stats:
+     Stats {
+       dev: 16777220,
+       mode: 33188,
+       ...more information... }
+     },
+     ...five more (filename, Stats) pairs...
+]
+\end{minted}
+
+Step 5 is to make sure that
+we're only working with files more than 100,000 characters long:
+
+\begin{minted}{js}
+// ...imports and arguments as before...
+
+glob(`${srcDir}/**/*.txt`)
+  .then(files => Promise.all(files.map(f => statPair(f))))
+  .then(files => files.filter(pair => pair.stats.size > 100000))
+  .then(files => Promise.all(files.map(f => fs.readFile(f.filename, 'utf8'))))
+  .then(contents => console.log('...readFile', contents.map(c => c.length)))
+  .catch(error => console.error(error))
+\end{minted}
+
+\begin{minted}{text}
+...readFile [ 148134, 1070331, 248369, 1276201, 706124, 204492 ]
+\end{minted}
+
+In step 6,
+we split each file's content into lines and count:
+
+\begin{minted}{js}
+// ...imports and arguments as before...
+
+const countLines = (text) => {
+  return text.split('\n').length
+}
+
+glob(`${srcDir}/**/*.txt`)
+  .then(files => Promise.all(files.map(f => statPair(f))))
+  .then(files => files.filter(pair => pair.stats > 100000))
+  .then(files => Promise.all(files.map(f => fs.readFile(f.filename, 'utf8'))))
+  .then(contents => contents.map(c => countLines(c)))
+  .then(lengths => console.log('lengths', lengths))
+  .catch(error => console.error(error))
+\end{minted}
+
+\begin{minted}{text}
+lengths [ 2654, 21063, 4105, 22334, 13028, 3584 ]
+\end{minted}
+
+There's a lot going on in the example above
+but the important points are:
+
+\begin{itemize}
+\item
+  Promises always return another \texttt{Promise} object.
+\item
+  This allows us to chain multiple \texttt{then} calls.
+\item
+  This chain is formed of processes that will each wait to run until their predecessor has completed.
+\item
+  A single \texttt{catch} method works to handle exceptions raised by \emph{any} of the previous steps.
+\end{itemize}
+
+\hypertarget{s:promises-async-await}{\section{\texorpdfstring{\texttt{async} and \texttt{await}}{async and await}}\label{s:promises-async-await}}
+
+Programmers are never content to leave well enough alone,
+so the latest version of JavaScript offers yet another tool for managing asynchronous computation.
+As we saw above,
+the result of \texttt{Promise.then} is another promise,
+which allows us to create long chains of \texttt{.then(...).then(...).then(...)} calls.
+It works,
+but it isn't the most readable of notations and has been known to create a feeling of being trapped.
+
+We can avoid this using two new keywords, \texttt{async} and \texttt{await}.
+\texttt{async} tells JavaScript that a function is asynchronous,
+i.e.,
+that it might want to wait for something to complete.
+Inside an asynchronous function,
+\texttt{await} tells JavaScript to act as if it had waited for something to finish.
+We use the two together like this:
+
+\begin{minted}{js}
+const fs = require('fs-extra')
+
+const statPairAsync = async (filename) => {
+  const stats = await fs.stat(filename)
+  return {filename, stats}
+}
+
+statPairAsync('moby-dick.txt').then(
+  (white_whale) => console.log(white_whale.stats))
+\end{minted}
+
+An \texttt{async} function still returns a \texttt{Promise},
+but we can chain those promises together with other \texttt{async} functions using \texttt{await},
+which collects the result returned by a resolved promise.
+As before, we can use \texttt{.catch} to handle any errors thrown.
+
+Let's use these to convert the complete example from the previous section:
+
+\begin{minted}{js}
+const fs = require('fs-extra')
+const glob = require('glob-promise')
+
+const statPairAsync = async (filename) => {
+  const stats = await fs.stat(filename)
+  return {filename, stats}
+}
+
+const countLines = (text) => {
+  return text.split('\n').length
+}
+
+const processFiles = async (globpath) => {
+  const filenames = await glob(globpath)
+  const pairs = await Promise.all(
+    filenames.map(f => statPairAsync(f)))
+  const filtered = pairs.filter(
+    pair => pair.stats.size > 100000)
+  const contents = await Promise.all(
+    filtered.map(f => fs.readFile(f.filename, 'utf8')))
+  const lengths = contents.map(c => countLines(c))
+  console.log(lengths)
+}
+
+const srcDir = process.argv[2]
+
+processFiles(`${srcDir}/**/*.txt`)
+  .catch(e => console.log(e.message))
+\end{minted}
+
+Using \texttt{async} and \texttt{await} lets us avoid long \texttt{then} chains;
+unless and until JavaScript allows us to define operators like R's \texttt{\%\textgreater{}\%} pipe operator,
+they are probably the easiest way to write readable code.
+Note,
+though,
+that we can only use \texttt{await} inside \texttt{async} functions:
+JavaScript will report a syntax error if we use them elsewhere.
+In particular,
+we cannot use them interactively unless we wrap whatever we want to do in a wee function.
+
+\section{Exercises}\label{s:promises-exercises}
+
+\exercise{What's Going On?}
+
+This code runs fine:
+
+\begin{minted}{js}
+[500, 1000].forEach(t => {
+  console.log(`about to setTimeout for ${t}`)
+  setTimeout(() => {console.log(`inside timer handler for ${t}`)}, 0)
+})
+\end{minted}
+
+\noindent
+but this code fails:
+
+\begin{minted}{js}
+console.log('starting...')
+[500, 1000].forEach(t => {
+  console.log(`about to setTimeout for ${t}`)
+  setTimeout(() => {console.log(`inside timer handler for ${t}`)}, 0)
+})
+\end{minted}
+
+Why?
+
+\exercise{A Stay of Execution}
+
+Insert a call to \texttt{console.log} in the appropriate place in the code block below
+so that the output reads
+
+\begin{minted}{text}
+Waiting...
+This is a sharp Medicine, but it is a Physician for all diseases and miseries.
+Waiting...
+Finished.
+\end{minted}
+
+\begin{minted}{js}
+const holdingMessage = () => {
+  console.log('Waiting...')
+}
+
+const swingAxe = () => {
+  setTimeout(() => {
+    holdingMessage()
+    console.log('Finished.')
+  }, 100)
+  holdingMessage()
+}
+
+swingAxe()
+\end{minted}
+
+\exercise{A Synchronous or Asynchronous?}
+
+Which of these functions would you expect to be asynchronous?
+How can you tell?
+Does it matter?
+And, if so, what is a good strategy to find out for sure if a function is asynchronous?
+
+\begin{enumerate}
+\item
+  \texttt{findNearestTown(coords)}: given a set of coordinates (\texttt{coords}) in Brazil,
+  looks up and returns the name of the nearest settlement with an estimated population greater than 5000.
+  The function throws an error if \texttt{coords} fall outside Brazil.
+\item
+  \texttt{calculateSphereVolume(r)}: calculates and returns the volume of a sphere with radius \texttt{r}.
+\item
+  \texttt{calculateRoute(A,B)}: returns all possible routes by air between airports \texttt{A} and \texttt{B},
+  including direct routes and those with no more than 2 transfers.
+\end{enumerate}
+
+\exercise{Handling Exceptions}
+
+What (if any) output would you expect to see in the console
+when the code below is executed?
+
+\begin{minted}{js}
+const checkForBlanks = (inputValue) => {
+  return new Promise((resolve, reject) => {
+    if (inputValue === '') {
+      reject(Error("Blank values are not allowed"))
+    } else {
+      resolve(inputValue)
+    }
+  })
+}
+
+new Promise((resolve, reject) => {
+  setTimeout(() => {
+    reject(Error('Timed out!'))
+  }, 1000)
+  resolve('')
+}).then(
+  output => checkForBlanks(output), error => console.log(error.message)).then(
+    checkedOutput => console.log(checkedOutput)).catch(
+      error => console.log(error.message))
+\end{minted}
+
+\begin{enumerate}
+\item
+  \texttt{Timed\ out!}
+\item
+  blank output
+\item
+  \texttt{Blank\ values\ are\ not\ allowed}
+\item
+  a new \texttt{Promise} object
+\end{enumerate}
+
+\exercise{Empty Promises}
+
+Fill in the blanks (\texttt{\_\_\_})in the code block below so that
+the function returns \texttt{Array{[}7,\ 8,\ 2,\ 6,\ 5{]}}.
+
+\begin{minted}{js}
+const makePromise = (someInteger) => {
+  return ___ Promise((resolve, reject) => {
+    setTimeout(___(someInteger), someInteger * 1000)
+  })
+}
+Promise.___([makePromise(7), makePromise(___), makePromise(2),
+             makePromise(6), makePromise(5)]).then(
+  numbers => ___(numbers))
+\end{minted}
+
+Now adapt the function so that it returns only \texttt{2}.
+(Hint: you can achieve this by changing only one of the blank fields.)
+
+\exercise{\texttt{async}, Therefore I Am}
+
+Using \texttt{async} and \texttt{await},
+convert the completed function above into an asynchronous function with the same behaviour and output.
+Do you find your solution easier to read and follow than the original version?
+Do you think that that is only because you wrote this version?
+
+\section*{Key Points}
+
+\input{keypoints/promises}

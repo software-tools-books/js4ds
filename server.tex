@@ -1,0 +1,441 @@
+\chapter{Creating a Server}\label{s:server}
+
+Now that we have a data manager (\chapref{s:dataman})
+the next step is to create a server to share our data with the world,
+which we will build using a library called \href{https://expressjs.org/}{Express}.
+Before we start writing code,
+though,
+we need to understand how computers talk to each other.
+
+\section{HTTP}\label{s:server-http}
+
+Almost everything on the web communicates via \gref{g:http}{HTTP},
+which stands for HyperText Transfer Protocol.
+The core of HTTP is a \gref{g:http-request}{request}/\gref{g:http-response}{response} cycle
+that specifies the kinds of requests applications can make of servers,
+how they exchange data,
+and so on.
+\figref{f:server-cycle} shows this cycle in action for a page that includes one image.
+
+\figpdf{figures/server-cycle.pdf}{HTTP Request/Response Cycle}{f:server-cycle}
+
+\begin{enumerate}
+\item
+  The client (a browser or some other program) makes a connection to a server.
+\item
+  It then sends a blob of text specifying what it's asking for.
+\item
+  The server replies with a blob of text and the HTML.
+\item
+  The connection is closed.
+\item
+  The client parses the text and realizes it needs an image.
+\item
+  It sends another blob of text to the server asking for that image.
+\item
+  The server replies with a blob of text and the contents of the image file.
+\item
+  The connection is closed.
+\end{enumerate}
+
+This cycle might be repeated many times to display a single web page,
+since a separate request has to be made for every image,
+every CSS or JavaScript file,
+and so on.
+In practice,
+a lot of behind-the-scenes engineering is done to keep connections alive as long as they're needed,
+and to \gref{g:cache}{cache} items that are likely to be re-used.
+
+An HTTP request is just a block of text with two important parts:
+
+\begin{itemize}
+\item
+  The \gref{g:http-method}{method} is almost always either \texttt{GET} (to get data) or \texttt{POST} (to submit data).
+\item
+  The \gref{g:url}{URL} is typically a path to a file,
+  but as we'll see below,
+  it's completely up to the server to interpret it.
+\end{itemize}
+
+The request can also contain \gref{g:http-header}{headers},
+which are key-value pairs with more information about what the client wants.
+Some examples include:
+
+\begin{itemize}
+\item
+  \texttt{"Accept:\ text/html"} to specify that the client wants HTML
+\item
+  \texttt{"Accept-Language:\ fr,\ en"} to specify that the client prefers French, but will accept English
+\item
+  \texttt{"If-Modified-Since:\ 16-May-2018"} to tell the server that the client is only interested in recent data
+\end{itemize}
+
+(Unlike a dictionary, a key may appear any number of times,
+which allows a request to do things like specify that it's willing to accept several types of content.
+The \gref{g:http-body}{body} of the request is any extra data associated with it,
+such as files that are being uploaded.
+If a body is present,
+the request must contain the \texttt{Content-Length} header
+so that the server knows how much data to read
+(\figref{f:server-request}).
+
+\figpdf{figures/server-request.pdf}{Structure of an HTTP Request}{f:server-request}
+
+The headers and body in an HTTP response have the same form, and mean the same thing.
+Crucially,
+the response also includes a status code to indicate what happened:
+200 for OK, 404 for ``page not found'', and so on.
+Some of the more common are shown in \tblref{t:server-codes}.
+
+\begin{table}
+\begin{tabular}{llp{0.5\textwidth}}
+\textbf{Code} & \textbf{Name}                  & \textbf{Meaning} \\
+100  & Continue              & The client should continue sending data \\
+200  & OK                    & The request has succeeded \\
+204  & No Content            & The server completed the request but there is no data \\
+301  & Moved Permanently     & The resource has moved to a new permanent location \\
+307  & Temporary Redirect    & The resource is temporarily at a different location \\
+400  & Bad Request           & The request is badly formatted \\
+401  & Unauthorized          & The request requires authentication \\
+404  & Not Found             & The requested resource could not be found \\
+408  & Timeout               & The server gave up waiting for the client \\
+418  & I'm a Teapot          & An April Fool's joke \\
+500  & Internal Server Error & A server error occurred while handling the request \\
+601  & Connection Timed Out  & The server did not respond before the connection timed out
+\end{tabular}
+\caption{HTTP Status Codes}
+\label{t:server-codes}
+\end{table}
+
+One final thing we need to understand is the structure and interpretation of URLs.
+This one:
+
+\begin{minted}{text}
+http://example.org:1234/some/path?value=deferred&limit=200
+\end{minted}
+
+\noindent
+has five parts:
+
+\begin{itemize}
+\item
+  The protocol \texttt{http}, which specifies what rules are going to be used to exchange data.
+\item
+  The \gref{g:hostname}{hostname} \texttt{example.org}, which tells the client where to find the server.
+  If we are running a server on our own computer for testing,
+  we can use the name \texttt{localhost} to connect to it.
+  (Computers rely on a service called \gref{g:dns}{DNS}
+  to find the machines associated with human-readable hostnames,
+  but its operation is out of scope for this tutorial.)
+\item
+  The \gref{g:port}{port} \texttt{1234}, which tells the client where to call the service it wants.
+  (If a host is like an office building, a port is like a phone number in that building.
+  The fact that we think of phone numbers as having physical locations
+  says something about our age\ldots{})
+\item
+  The path \texttt{/some/path} tells the server what the client wants.
+\item
+  The \gref{g:query-parameter}{query parameters} \texttt{value=deferred} and \texttt{limit=200}.
+  These come after a question mark and are separated by ampersands,
+  and are used to provide extra information.
+\end{itemize}
+
+It used to be common for paths to identify actual files on the server,
+but the server can interpret the path however it wants.
+In particular,
+when we are writing a data service,
+the segments of the path can identify what data we are asking for.
+Alternatively,
+it's common to think of the path as identifying a function on the server that we want to call,
+and to think of the query parameters as the arguments to that function.
+We'll return to these ideas after we've seen how a simple server works.
+
+\section{Hello, Express}\label{s:server-express}
+
+A Node-based library called Express handles most of the details of HTTP for us.
+When we build a server using Express,
+we provide callback functions that take three parameters:
+
+\begin{itemize}
+\item
+  the original request,
+\item
+  the response we're building up, and
+\item
+  what to do next (which we'll ignore for now).
+\end{itemize}
+
+We also provide a pattern with each function that specifies what URLs it is to match.
+Here is a simple example:
+
+\begin{minted}{js}
+const express = require('express')
+
+const PORT = 3418
+
+// Main server object.
+const app = express()
+
+// Return a static page.
+app.get('/', (req, res, next) => {
+  res.status(200).send('<html><body><h1>Asteroids</h1></body></html>')
+})
+
+app.listen(PORT, () => { console.log('listening...') })
+\end{minted}
+
+The first line of code loads the Express library.
+The next defines the port we will listen on,
+and then the third creates the object that will do most of the work.
+
+Further down,
+the call to \texttt{app.get} tells that object to handle any \texttt{GET} request for `/'
+by sending a reply whose status is 200 (OK)
+and whose body is an HTML page containing only an \texttt{h1} heading.
+There is no actual HTML file on disk,
+and in fact no way for the browser to know if there was one or not:
+the server can send whatever it wants in response to whatever requests it wants to handle.
+
+Note that \texttt{app.get} doesn't actually get anything right away.
+Instead,
+it registers a callback with Express that says,
+``When you see this URL, call this function to handle it.''
+As we'll see below,
+we can register as many path/callback pairs as we want to handle different things.
+
+Finally,
+the last line of this script tells our application to listen on the specified port,
+while the callback tells it to print a message as it starts running.
+When we run this, we see:
+
+\begin{minted}{shell}
+$ node static-page.js
+\end{minted}
+
+\begin{minted}{text}
+listening...
+\end{minted}
+
+Our little server is now waiting for something to ask it for something.
+If we go to our browser and request \texttt{http://localhost:3418/},
+we get a page with a large title \texttt{Asteroids} on it.
+Our server has worked,
+and we can now stop it by typing Ctrl-C in the shell.
+
+\section{Handling Multiple Paths}\label{s:server-paths}
+
+Let's extend our server to do different things when given different paths,
+and to handle the case where the request path is not known:
+
+\begin{minted}{js}
+const express = require('express')
+
+const PORT = 3418
+
+// Main server object.
+const app = express()
+
+// Root page.
+app.get('/', (req, res, next) => {
+  res.status(200).send('<html><body><h1>Home</h1></body></html>')
+})
+
+// Alternative page.
+app.get('/asteroids', (req, res, next) => {
+  res.status(200).send('<html><body><h1>Asteroids</h1></body></html>')
+})
+
+// Nothing else worked.
+app.use((req, res, next) => {
+  res
+    .status(404)
+    .send(`<html><body><p>ERROR: ${req.url} not found</p></body></html>`)
+})
+
+app.listen(PORT, () => { console.log('listening...') })
+\end{minted}
+
+The first few lines are the same as before.
+We then specify handlers for the paths \texttt{/} and \texttt{/asteroids},
+each of which sends a different chunk of HTML.
+
+The call to \texttt{app.use} specifies a default handler:
+if none of the \texttt{app.get} handlers above it took care of the request,
+this callback function will send a ``page not found'' code
+\emph{and} a page containing an error message.
+Some sites skip the first part and only return error messages in pages for people to read,
+but this is sinful:
+making the code explicit makes it a lot easier to write programs to scrape data.
+
+As before, we can run our server from the command line
+and then go to various URLs to test it.
+\texttt{http://localhost:3418/} produces a page with the title ``Home'',
+\texttt{http://localhost:3418/asteroids} produces one with the title ``Asteroids'',
+and \texttt{http://localhost:3418/test} produces an error page.
+
+\section{Serving Files from Disk}\label{s:server-files}
+
+It's common to generate HTML in memory when building data services,
+but it's also common for the server to return files.
+To do this,
+we will provide our server with the path to the directory it's allowed to read pages from,
+and then run it with \texttt{node\ server-name.js\ path/to/directory}.
+We have to tell the server whence it's allowed to read files
+because we definitely do \emph{not} want it to be able to send everything on our computer to whoever asks for it.
+(For example,
+a request for the \texttt{/etc/passwd} password file on a Linux server should probably be refused.)
+
+Here's our updated server:
+
+\begin{minted}{js}
+const express = require('express')
+const path = require('path')
+const fs = require('fs')
+
+const PORT = 3418
+const root = process.argv[2]
+
+// Main server object.
+const app = express()
+
+// Handle all requests.
+app.use((req, res, next) => {
+  const actual = path.join(root, req.url)
+  const data = fs.readFileSync(actual, 'utf-8')
+  res.status(200).send(data)
+})
+
+app.listen(PORT, () => { console.log('listening...') })
+\end{minted}
+
+The steps in handling a request are:
+
+\begin{enumerate}
+\item
+  The URL requested by the client is given to us in \texttt{req.url}.
+\item
+  We use \texttt{path.join} to combine that with the path to the root directory,
+  which we got from a command-line argument when the server was run.
+\item
+  We try to read that file using \texttt{readFileSync},
+  which blocks the server until the file is read.
+  We will see later how to do this I/O asynchronously
+  so that our server is more responsive.
+\item
+  Once the file has been read, we return it with a status code of 200.
+\end{enumerate}
+
+If a sub-directory called \texttt{web-dir} holds a file called \texttt{title.html},
+and we run the server as:
+
+\begin{minted}{shell}
+$ node serve-pages.js ./web-dir
+\end{minted}
+
+\noindent
+we can then ask for \texttt{http://localhost:3418/title.html}
+and get the content of \texttt{web-dir/title.html}.
+Notice that the directory \texttt{./web-dir} doesn't appear in the URL:
+our server interprets all paths as if the directory we've given it
+is the root of the filesystem.
+
+If we ask for a nonexistent page like \texttt{http://localhost:3418/missing.html}
+we get this:
+
+\begin{minted}{text}
+Error: ENOENT: no such file or directory, open 'web-dir/missing.html'
+    at Object.openSync (fs.js:434:3)
+    at Object.readFileSync (fs.js:339:35)
+    ... etc. ...
+\end{minted}
+
+We will see in the exercises how to add proper error handling to our server.
+
+\begin{aside}{Favorites and Icons}
+  If we use a browser to request a page such as \texttt{title.html},
+  the browser may actually make two requests:
+  one for the page,
+  and one for a file called \texttt{favicon.ico}.
+  Browsers do this automatically,
+  then display that file in tabs, bookmark lists, and so on.
+  Despite its \texttt{.ico} suffix,
+  the file is (usually) a small PNG-formatted image,
+  and must be placed in the root directory of the website.
+\end{aside}
+
+\section{Content Types}\label{s:server-content-types}
+
+So far we have only served HTML,
+but the server can send any type of data,
+including images and other binary files.
+For example,
+let's serve some JSON data:
+
+\begin{minted}{js}
+// ...as before...
+
+app.use((req, res, next) => {
+  const actual = path.join(root, req.url)
+
+  if (actual.endsWith('.json')) {
+    const data = fs.readFileSync(actual, 'utf-8')
+    const json = JSON.parse(data)
+    res.setHeader('Content-Type', 'application/json')
+    res.status(200).send(json)
+  }
+
+  else {
+    const data = fs.readFileSync(actual, 'utf-8')
+    res.status(200).send(data)
+  }
+})
+\end{minted}
+
+What's different here is that when the requested path ends with \texttt{.json}
+we explicitly set the \texttt{Content-Type} header to \texttt{application/json}
+to tell the client how to interpret the bytes we're sending back.
+If we run this server with \texttt{web-dir} as the directory to serve from
+and ask for \texttt{http://localhost:3418/data.json},
+a modern browser will provide a folding display of the data
+rather than displaying the raw text.
+
+\section{Exercises}\label{s:server-exercises}
+
+\exercise{Report Missing Files}
+
+Modify the version of the server that returns files from disk
+to report a 404 error if a file cannot be found.
+What should it return if the file exists but cannot be read
+(e.g., if the server does not have permissions)?
+
+\exercise{Serving Images}
+
+Modify the version of the server that returns files from disk
+so that if the file it is asked for has a name ending in \texttt{.png} or \texttt{.jpg},
+it is returned with the right \texttt{Content-Type} header.
+
+\exercise{Delayed Replies}
+
+Our file server uses \texttt{fs.readFileSync} to read files,
+which means that it stops each time a file is requested
+rather than handling other queries while waiting for the file to be read.
+Modify the callback given to \texttt{app.use} so that it uses \texttt{fs.readFile} with a callback instead.
+
+\exercise{Using Query Parameters}
+
+URLs can contain query parameters in the form:
+
+\begin{minted}{text}
+http://site.edu?first=123&second=beta
+\end{minted}
+
+\noindent
+Read the online documentation for \href{https://expressjs.org/}{Express} to find out
+how to access them in a server,
+and then write a server to do simple arithmetic:
+the URL \texttt{http://localhost:3654/add?left=1\&right=2} should return \texttt{3},
+while the URL \texttt{http://localhost:3654/subtract?left=1\&right=2} should return \texttt{-1}.
+
+\section*{Key Points}
+
+\input{keypoints/server}

@@ -1,0 +1,80 @@
+\chapter{Deploying}\label{s:deploy}
+
+Running applications on our laptop is fine for testing,
+but sooner or later we will want to put them on the web for others to use.
+A general discussion of \gref{g:deployment}{deployment} is outside the scope of these lessons,
+particularly because it shouldn't be done without thinking carefully about security,
+but there are now a few entry-level platforms you can try out.
+
+One of the simplest of these platforms is \href{https://glitch.com/}{Glitch},
+which is designed to help students build their first interactive websites.
+It isn't designed to host large, high-traffic applications,
+but is great for prototyping and classroom use.
+To try it out,
+go to \url{https://glitch.com} and create a free account.
+You can then click on the ``New Project'' button in the upper right and select \texttt{hello-express},
+which will create a basic Express application.
+This project contains a handful of files that you should find familiar:
+
+\begin{itemize}
+\item
+  \texttt{README.md}: a description of the project formatted in Markdown.
+\item
+  \texttt{package.json}: the NPM package listing for the project.
+\item
+  \texttt{server.js}: the server.
+  This is initially set up to route requests for \texttt{/} to \texttt{/views/index.html},
+  but can be made as complicated as we want.
+  Note that it uses a variable called \texttt{\_\_dirname} (with two leading underscores)
+  to get the name of the directory that the server is running in;
+  this is needed because Glitch controls where our application runs.
+\item
+  \texttt{views/index.html}: the application's home page.
+  We can add as many other pages as we want,
+  but they have to go in the \texttt{views} folder.
+\item
+  \texttt{public/client.js}: the user interface code that is run in the browser.
+  The \texttt{public} folder acts as the root directory for the server,
+  so inside \texttt{views/index.html} and other web pages,
+  we refer to \texttt{public/client.js} simply as \texttt{/client.js}.
+\item
+  \texttt{public/style.css}: the CSS that styles the application.
+  Again,
+  inside \texttt{views/index.html} we refer to this file as \texttt{/style.css}
+  without naming the \texttt{public} folder.
+\item
+  \texttt{.env}: a shell script that defines any secret configuration variables the application needs,
+  such as passwords for databases.
+  Unlike the files above,
+  this one \emph{isn't} automatically copied when someone clones our application.
+  If we define a variable called \texttt{PASSWORD} in this file,
+  then our server can get its value (as a string) using \texttt{process.env.PASSWORD}.
+  Life might have been a little simpler if Glitch's creators had used a JSON file instead of a shell script,
+  but as long as we stick to simple \texttt{NAME=VALUE} pairs,
+  we'll be OK.
+\end{itemize}
+
+Two things that \emph{aren't} automatically present are a license and a Code of Conduct,
+but both can easily be added by clicking on the ``New File'' button.
+Several widely-used open source licenses are available,
+and the Code of Conduct is based on one that is also widely used in open source projects.
+Adding both makes it clear what we are allowing and expecting people to do with our project.
+
+The ``Rewind'' button in the bottom of the file explorer lets us view the project's history.
+Glitch uses Git to store changes,
+but presents those changes as a timeline
+so that we can scroll backward and forward to see what was altered when.
+The ``Tools'' button (also in the bottom of the file explorer)
+gives us access to run logs and performance information,
+and lets us connect our project to a repository on GitHub.
+
+Behind the scenes,
+every Glitch application runs in a virtual machine.
+Any data that it creates or modifies
+(such as files on disk or SQLite databases \appref{s:db}) are automatically saved,
+up to a limit of 128 MByte.
+An application is allowed to handle several thousand requests per hour;
+if it doesn't receive any requests for 5 minutes,
+the virtual machine is put to sleep.
+It is automatically restarted the next time a request comes in,
+but there will be a lag as it wakes up.

@@ -1,0 +1,807 @@
+\chapter{Interactive Sites}\label{s:interactive}
+
+Browsers allow us to define \gref{g:event-handler}{event handlers}
+to specify what to do in response to an externally-triggered action,
+such as a page loading or a user pressing a button.
+These event handlers are just callback functions
+that are (usually) given an \gref{g:event-object}{event object}
+containing information about what happened,
+and while we can write them in pure JavaScript,
+they're even easier to build in React.
+
+Let's switch back to single-page examples for a moment
+to show how we pass a callback function as
+a specifically-named property of the thing whose behavior we are specifying.
+(Don't forget to load the required libraries in the HTML header, like we did
+in \chapref{s:dynamic}.)
+
+\begin{minted}{js}
+  <body>
+    <div id="app"></div>
+    <script type="text/babel">
+      let counter = 0
+      const sayHello = (event) => {
+        counter += 1
+        console.log(`Hello, button: ${counter}`)
+      }
+
+      ReactDOM.render(
+        <button onClick={sayHello}>click this</button>,
+        document.getElementById("app")
+      )
+    </script>
+  </body>
+\end{minted}
+
+As its name suggests,
+a button's \texttt{onClick} handler is called whenever the button is clicked.
+Here,
+we are telling React to call \texttt{sayHello},
+which adds one to the variable \texttt{counter}
+and then prints its value along with a greeting message.
+
+Global variables and functions are a poor way to structure code.
+It's far better to define the component as a class
+and then use a method as the event handler:
+
+\begin{minted}{js}
+  <body>
+    <div id="app"></div>
+    <script type="text/babel">
+      class Counter extends React.Component {
+
+        constructor (props) {
+          super(props)
+          this.state = {counter: 0}
+        }
+
+        increment = (event) => {
+          this.setState({counter: this.state.counter+1})
+        }
+
+        render = () => {
+          return (
+            <p>
+              <button onClick={this.increment}>increment</button>
+              <br/>
+              current: {this.state.counter}
+            </p>
+          )
+        }
+      }
+
+      ReactDOM.render(
+        <Counter />,
+        document.getElementById("app")
+      )
+    </script>
+  </body>
+</html>
+\end{minted}
+
+Working from bottom to top,
+the \texttt{ReactDOM.render} call inserts whatever HTML is produced by \texttt{{\textless}Counter\ /{\textgreater}{}}
+into the element whose ID is \texttt{"app"}.
+In this case,
+though,
+the counter is not a function,
+but a class with three parts:
+
+\begin{enumerate}
+\item
+  Its constructor passes the properties provided by the user up to \texttt{React.Component}'s constructor.
+  (There aren't any properties in this case,
+  but there will be in future examples,
+  so it's a good habit to get into.)
+  The constructor then creates a property called \texttt{state}
+  that holds this component's state.
+  This property \emph{must} have this name so that React knows to watch it for changes.
+\item
+  The \texttt{increment} method uses \texttt{setState} (inherited from \texttt{React.Component})
+  to change the value of the counter.
+  We \emph{must} do this rather than creating and modifying \texttt{this.counter}
+  so that React will notice the change in state
+  and re-draw what it needs to.
+\item
+  The \texttt{render} method takes the place of the functions we have been using so far.
+  It can do anything it wants, but must return some HTML (using JSX).
+  Here, it creates a button with an event handler and displays the current value of the counter.
+\end{enumerate}
+
+React calls each component's \texttt{render} method each time \texttt{setState} is used to update the component's state;
+this is an example of a protocol,
+which was described in \secref{s:oop-protocols}.
+Behind the scenes,
+React does some thinking to minimize how much redrawing takes place:
+while it may look as though the paragraph, button, and current count are all being redrawn each time,
+React will only actually redraw as little as it can.
+
+\section{But It Doesn't Work}\label{s:interactive-babel}
+
+If we try running this little application from the command line with Parcel:
+
+\begin{minted}{shell}
+$ npm run dev -- src/interactive/display-counter.html
+\end{minted}
+
+\noindent
+everything works as planned.
+But now try taking the code out of the web page and putting it in its own file:
+
+\begin{minted}{html}
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Counter</title>
+    <script src="app.js" async></script>
+  </head>
+  <body>
+    <div id="app"></div>
+  </body>
+</html>
+\end{minted}
+
+\begin{minted}{js}
+import React from 'react'
+import ReactDOM from 'react-dom'
+
+class Counter extends React.Component {
+
+  constructor (props) {
+    // ...as before...
+  }
+
+  increment = (event) => {
+    this.setState({counter: this.state.counter+1})
+  }
+
+  render = () => {
+    // ...as before...
+  }
+}
+
+ReactDOM.render(
+  <Counter />,
+  document.getElementById('app')
+)
+\end{minted}
+
+Let's try running this:
+
+\begin{minted}{shell}
+$ npm run dev -- src/interactive/counter/index.html
+\end{minted}
+
+\begin{minted}{text}
+> js-vs-ds@0.1.0 dev /Users/stj/js-vs-ds
+> parcel serve -p 4000 "src/interactive/counter/index.html"
+
+Server running at http://localhost:4000
+!!  /Users/stj/js-vs-ds/src/interactive/counter/app.js:11:12: \
+  Unexpected token (11:12)
+   9 |   }
+  10 |
+> 11 |   increment = (event) => {
+     |             ^
+  12 |     this.setState({counter: this.state.counter+1})
+  13 |   }
+  14 |
+\end{minted}
+
+It seems that Parcel doesn't like fat arrow methods.
+This happens because React is still using ES6 JavaScript by default,
+and fat arrow methods weren't included in JavaScript at that point.
+All right, let's try using ``normal'' function-style method definitions instead:
+
+\begin{minted}{js}
+// ...imports as before...
+
+class Counter extends React.Component {
+
+  constructor (props) {
+    super(props)
+    this.state = {counter: 0}
+  }
+
+  increment (event) {
+    this.setState({counter: this.state.counter+1})
+  }
+
+  render () {
+    return (
+      <p>
+        <button onClick={this.increment}>increment</button>
+        <br/>
+        current: {this.state.counter}
+      </p>
+    )
+  }
+}
+
+// ...render as before...
+\end{minted}
+
+Parcel runs this without complaint,
+but clicking on the button doesn't change the display.
+Despair is once again our friend---our \emph{only} friend---but we persevere.
+When we open the debugging console in the browser,
+we see the message \texttt{TypeError:\ this\ is\ undefined}.
+\secref{s:legacy-prototypes} explains in detail why this happens;
+for now, suffice to say that some poor choices were made early in JavaScript's development about variable scoping.
+
+At this point it appears that we can compile but not run, or not bundle files together.
+But wait:
+when we used an in-page script, we specified the type as \texttt{text/babel}
+and loaded:
+
+\begin{minted}{text}
+https://unpkg.com/babel-standalone@6/babel.js
+\end{minted}
+
+\noindent
+in the page header along with React.
+Can Babel save us?
+
+The answer is ``yes'',
+though it takes a fair bit of searching on the web to find this out
+(particularly if you don't know what you're looking for).
+The magic is to create a file in the project's root directory called \texttt{.babelrc}
+and add the following lines:
+
+\begin{minted}{js}
+{
+  "presets": [
+    "react"
+  ],
+  "plugins": [
+    "transform-class-properties"
+  ]
+}
+\end{minted}
+
+Once we've done this,
+we can use NPM to install \texttt{babel-preset-react} and \texttt{babel-plugin-transform-class-properties}
+and then switch back to fat arrow methods.
+Voila: everything works.
+
+What's happening here is that
+when Babel translates our sparkly modern JavaScript into old-fashioned JavaScript compatible with all browsers,
+it reads \texttt{.babelrc} and obeys that configuration.
+The settings above tell it to do everything React needs using the \texttt{transform-class-properties} plugin;
+in particular,
+to accept fat arrow method definitions and bind \texttt{this} correctly.
+This works,
+but is a form of madness:
+something outside our program determines how that program is interpreted,
+and the commands controlling it go in yet another configuration file.
+Still,
+it is a useful form of madness,
+so we will press on.
+
+\section{Models and Views}\label{s:interactive-models-views}
+
+Well-designed applications separate models (which store data)
+from views (which display it)
+so that each can be tested and modified independently.
+When we use React,
+the models are typically classes,
+and the views are typically pure functions.
+
+To introduce this architecture,
+let's re-implement the counter using:
+
+\begin{itemize}
+\item
+  \texttt{App} to store the state and provide methods for altering it,
+\item
+  \texttt{NumberDisplay} to display a number, and
+\item
+  \texttt{UpAndDown} to provide buttons that increment and decrement that number.
+\end{itemize}
+
+The crucial design feature is that
+\texttt{NumberDisplay} and \texttt{UpAndDown} don't know what they're displaying
+or what actions are being taken on their behalf,
+which makes them easier to re-use.
+Of course,
+no good deed goes unpunished.
+The price that we pay
+for organizing our application into separate components
+is that now we must import the dependencies of each component
+and export the component itself within each script.
+
+After we've done this,
+our dependencies will be bundled by parcel.
+So we must remove the script loading from the HTML header.
+The whole page is:
+
+\begin{minted}{html}
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Up and Down</title>
+  </head>
+  <body>
+    <div id="app"></div>
+    <script src="app.js"></script>
+  </body>
+</html>
+\end{minted}
+
+The \texttt{NumberDisplay} class takes a label and a value and puts them in a paragraph
+(remember, the label and value will appear in our function as properties of the \texttt{props} parameter):
+
+\begin{minted}{js}
+const NumberDisplay = (props) => {
+  return (<p>{props.label}: {props.value}</p>)
+}
+\end{minted}
+
+Similarly,
+\texttt{UpAndDown} expects two functions as its \texttt{up} and \texttt{down} properties,
+and makes each the event handler for an appropriately-labelled button:
+
+\begin{minted}{js}
+const UpAndDown = (props) => {
+  return (
+    <p>
+      <button onClick={props.up}> [+] </button>
+      <button onClick={props.down}> [-] </button>
+    </p>
+  )
+}
+\end{minted}
+
+Both of these components will use React and ReactDOM when they are rendered
+so we must import these.
+We do this by adding import statements to the beginning of both components:
+
+\begin{minted}{js}
+import React from "react"
+import ReactDOM from "react-dom"
+\end{minted}
+
+Similarly, our application will need to import the
+\texttt{UpAndDown} and \texttt{NumberDisplay} components,
+so we need to export them after they've been defined.
+This is done by adding \texttt{export\ \{{\textless}object\_name{\textgreater}{}\}} to the end of the
+component script.
+(We will explore why the curly braces are necessary in the exercises.)
+After we've done this for \texttt{UpAndDown},
+the complete component script looks like this:
+
+\begin{minted}{js}
+import React from "react"
+import ReactDOM from "react-dom"
+
+const UpAndDown = (props) => {
+  return (
+    <p>
+      <button onClick={props.up}> [+] </button>
+      <button onClick={props.down}> [-] </button>
+    </p>
+  )
+}
+
+export {UpAndDown}
+\end{minted}
+
+We are now ready to build the overall application.
+It creates a \texttt{state} containing a counter
+and defines methods to increment or decrement the counter's value.
+Its \texttt{render} method then lays out the buttons and the current state
+using those elements
+(\figref{f:interactive-objects-dom}):
+
+\begin{minted}{js}
+class App extends React.Component {
+
+  constructor (props) {
+    super(props)
+    this.state = {counter: 0}
+  }
+
+  increment = (event) => {
+    this.setState({counter: this.state.counter + 1})
+  }
+
+  decrement = (event) => {
+    this.setState({counter: this.state.counter - 1})
+  }
+
+  render = () => {
+    return (
+      <div>
+        <UpAndDown up={this.increment} down={this.decrement} />
+        <NumberDisplay label='counter' value={this.state.counter} />
+      </div>
+    )
+  }
+}
+\end{minted}
+
+\figpdf{figures/interactive-objects-dom.pdf}{React Objects and the DOM}{f:interactive-objects-dom}
+
+We must import the dependencies as we did with the other components.
+As well as \texttt{React} and \texttt{ReactDOM},
+we need to include the components that we've written.
+Dependencies stored locally can be imported by providing the path to
+the file in which they are defined,
+with the \texttt{.js} removed from the file name:
+
+\begin{minted}{js}
+import React from "react"
+import ReactDOM from "react-dom"
+import {UpAndDown} from "./UpAndDown"
+import {NumberDisplay} from "./NumberDisplay"
+
+// ...script body...
+\end{minted}
+
+Finally,
+we can render the application with \texttt{ReactDOM} as before:
+
+\begin{minted}{js}
+// ...script body...
+
+const mount = document.getElementById("app")
+ReactDOM.render(<App/>, mount)
+\end{minted}
+
+This may seem pretty complicated,
+and it is,
+because this example would be much simpler to write without all this indirection.
+However,
+this strategy is widely used to manage large applications:
+data and event handlers are defined in one class,
+then passed into display components to be displayed and interacted with.
+
+\section{Fetching Data}\label{s:interactive-fetching}
+
+Let's use what we've learned to look at how the world might end.
+NASA provides a web API to get information about near-approach asteroids.
+We will use it to build a small display with:
+
+\begin{itemize}
+\item
+  a text box for submitting a starting date (get one week by default), and
+\item
+  a list of asteroids in that time period.
+\end{itemize}
+
+Here's the first version of our \texttt{App} class:
+
+\begin{minted}{js}
+import React from "react"
+import ReactDOM from "react-dom"
+import {AsteroidList} from "./AsteroidList"
+import {DateSubmit} from "./DateSubmit"
+
+class App extends React.Component {
+
+  constructor (props) {
+    super(props)
+    this.state = {
+      // ...fill in...
+    }
+  }
+
+  onNewDate = (text) => {
+    // ...fill in...
+  }
+
+  render = () => {
+    return (
+      <div>
+        <DateSubmit newValue={this.onNewDate} />
+        <AsteroidList asteroids={this.state.asteroids} />
+      </div>
+    )
+  }
+}
+
+const mount = document.getElementById("app")
+ReactDOM.render(<App/>, mount)
+\end{minted}
+
+We'll test it by displaying asteroids using fake data;
+as in our first example,
+the display component \texttt{AsteroidList} doesn't modify data,
+but just displays it in a table:
+
+\begin{minted}{js}
+import React from "react"
+import ReactDOM from "react-dom"
+
+const AsteroidList = (props) => {
+  return (
+    <table>
+      <tbody>
+      <tr>
+        <th>Name</th>
+        <th>Date</th>
+        <th>Diameter (m)</th>
+        <th>Approach (km)</th>
+      </tr>
+      {props.asteroids.map((a) => {
+        return (
+          <tr key={a.name}>
+            <td>{a.name}</td>
+            <td>{a.date}</td>
+            <td>{a.diameter}</td>
+            <td>{a.distance}</td>
+          </tr>
+        )
+      })}
+      </tbody>
+    </table>
+  )
+}
+
+export {AsteroidList}
+\end{minted}
+
+\texttt{React} will complain if we don't provide a unique key
+to distinguish elements that we create,
+since having these keys helps it keep track of the component-to-DOM relationship,
+which in turn \href{https://stackoverflow.com/questions/28329382/understanding-unique-keys-for-array-children-in-react-js}{makes updates much more efficient}.
+Since each asteroid's name is supposed to be unique,
+we use that name as the key for each table row.
+
+\texttt{AsteroidList} expects data to arrive in \texttt{props.asteroids},
+so let's put some made-up values in \texttt{App} for now
+that we can then pass in:
+
+\begin{minted}{js}
+class App extends React.Component {
+
+  constructor (props) {
+    super(props)
+    this.state = {
+      asteroids: [
+        {name: 'a30x1000', date: '2017-03-03',
+         diameter: 30, distance: 1000},
+        {name: 'a5x500', date: '2017-05-05',
+         diameter: 5, distance: 500},
+        {name: 'a2000x200', date: '2017-02-02',
+         diameter: 2000, distance: 200}
+      ]
+    }
+  }
+
+  // ...other code...
+}
+\end{minted}
+
+Let's also create a placeholder for \texttt{DateSubmit}:
+
+\begin{minted}{js}
+import React from "react"
+import ReactDOM from "react-dom"
+
+const DateSubmit = (props) => {
+  return (<p>DateSubmit</p>)
+}
+
+export {DateSubmit}
+\end{minted}
+
+\noindent
+and run it to get \figref{f:interactive-asteroids-screenshot}.
+
+\figpdf{figures/interactive-asteroids-screenshot.png}{Asteroids Application}{f:interactive-asteroids-screenshot}
+
+The next step is to handle date submission.
+Since we're trying to instill good practices,
+we will make a reusable component whose caller will pass in:
+
+\begin{itemize}
+\item
+  a text label;
+\item
+  a variable to update with the current value of a text box;
+\item
+  a function to call when text box's value changes, and
+\item
+  another function to call when a button is clicked to submit.
+\end{itemize}
+
+\begin{minted}{js}
+// ...imports as before...
+
+const DateSubmit = ({label, value, onChange, onCommit}) => {
+  return (
+    <p>
+      {label}:
+      <input type="text" value={value}
+             onChange={(event) => onChange(event.target.value)} />
+      <button onClick={(event) => onCommit(value)}>new</button>
+    </p>
+  )
+}
+
+export {DateSubmit}
+\end{minted}
+
+Note the use of destructuring in \texttt{DateSubmit}'s parameter list;
+this was introduced in \secref{s:pages-citations}
+and is an easy way to pull values out of the \texttt{props} parameter.
+
+It's important to understand the order of operations in the example above.
+\texttt{value=\{value\}} puts a value in the input box to display each time \texttt{DateSubmit} is called.
+We re-bind \texttt{onChange} and \texttt{onClick} to functions on each call as well
+(remember, JSX gets translated into function calls).
+So yes,
+this whole paragraph is being re-created every time someone types,
+but React and the browser work together to minimize recalculation.
+
+Now let's go back and re-work our application:
+
+\begin{minted}{js}
+// ...imports as before...
+
+class App extends React.Component {
+
+  constructor (props) {
+    super(props)
+    this.state = {
+      newDate: '',
+      asteroids: [
+        //...data as before...
+      ]
+    }
+  }
+
+  onEditNewDate = (text) => {
+    this.setState({newDate: text})
+  }
+
+  onSubmitNewDate = (text) => {
+    console.log(`new date ${text}`)
+    this.setState({newDate: ''})
+  }
+
+  render = () => {
+    return (
+      <div>
+        <h1>Asteroids</h1>
+        <DateSubmit
+          label='Date'
+          value={this.state.newDate}
+          onChange={this.onEditNewDate}
+          onCommit={this.onSubmitNewDate} />
+        <AsteroidList asteroids={this.state.asteroids} />
+      </div>
+    )
+  }
+}
+
+// ...mount as before...
+\end{minted}
+
+It's safe to pass \texttt{this.state.newDate} to \texttt{value}
+because we're re-drawing each time there's a change;
+remember, we're passing a value for display,
+not a reference to be modified.
+And note that we are not doing any kind of validation:
+the user could type \texttt{abc123} as a date
+and we would blithely try to process it.
+
+It's now time to get real data,
+which we will do using \texttt{fetch} with a URL.
+This returns a promise (\chapref{s:promises}),
+so we'll handle the result of the fetch in the promise's \texttt{then} method,
+and then chain another \texttt{then} method to transform the data into what we need:
+
+\begin{minted}{js}
+// ...previous code as before
+
+  onSubmitNewDate = (text) => {
+    const url = 'https://api.nasa.gov/neo/rest/v1/feed' +
+                `?api_key=DEMO_KEY&start_date=${text}`
+    fetch(url).then((response) => {
+      return response.json()
+    }).then((raw) => {
+      const asteroids = this.transform(raw)
+      this.setState({
+        newDate: '',
+        asteroids: asteroids
+      })
+    })
+  }
+
+//...render as before
+\end{minted}
+
+Line by line,
+the steps are:
+
+\begin{enumerate}
+\item
+  Build the URL for the data
+\item
+  Start to fetch data from that URL
+\item
+  Give a callback to execute when the data arrives
+\item
+  Give another callback to use when the data has been converted from text to JSON
+  (which we will look at in more detail in \chapref{s:dataman}).
+\item
+  Transform that data from its raw form into the objects we need
+\item
+  Set state
+\end{enumerate}
+
+Finally,
+the method to transform the data NASA gives us is:
+
+\begin{minted}{js}
+// ...previous code as before
+
+  transform = (raw) => {
+    let result = []
+    for (let key in raw.near_earth_objects) {
+      raw.near_earth_objects[key].forEach((asteroid) => {
+        result.push({
+          name: asteroid.name,
+          date: asteroid.close_approach_data[0].close_approach_date,
+          diameter: asteroid.estimated_diameter.meters.estimated_diameter_max,
+          distance: asteroid.close_approach_data[0].miss_distance.kilometers
+        })
+      })
+    }
+    return result
+  }
+
+// ...render as before
+\end{minted}
+
+We built this by looking at the structure of the JSON that NASA returned
+and figuring out how to index the fields we need.
+(Unfortunately,
+the top level of \texttt{near\_earth\_objects} is an object with dates as keys rather than an array,
+so we have to use \texttt{let...in...} rather than purely \texttt{map} or \texttt{forEach}.)
+
+\section{Exercises}\label{s:interactive-exercises}
+
+\exercise{Reset}
+
+Add a ``reset'' button to the counter application that always sets the counter's value to zero.
+Does using it to wipe out every change you've made to the counter
+feel like a metaphor for programming in general?
+
+\exercise{Transform}
+
+Modify all of the examples \emph{after} the introduction of Babel
+to use external scripts rather than in-pace scripts.
+
+\exercise{Exports}
+
+Are the curly braces necessary when exporting from a component file?
+What happens if you remove them?
+Read this \href{http://2ality.com/2014/09/es6-modules-final.html}{blogpost} and then consider whether it might
+have been more appropriate to use default exports and imports
+in the examples above.
+
+\exercise{Validation}
+
+Modify the application so that if the starting date isn't valid when the button is clicked,
+the application displays a warning message instead of fetching data.
+
+\begin{enumerate}
+\item
+  Add a field called \texttt{validDate} to the state and initialize it to \texttt{true}.
+\item
+  Add an \texttt{ErrorMessage} component that displays a paragraph containing either ``date OK'' or ``date invalid''
+  depending on the value of \texttt{validDate}.
+\item
+  Modify \texttt{onSubmitNewDate} so that it \emph{either} fetches new data \emph{or} modifies \texttt{validDate}.
+\end{enumerate}
+
+Once you are done,
+search the Internet for React validation and error messages
+and explore other tools you could use to do this.
+
+\section*{Key Points}
+
+\input{keypoints/interactive}

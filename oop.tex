@@ -1,0 +1,552 @@
+\chapter{Objects and Classes}\label{s:oop}
+
+Making new code use old code is easy:
+just load the libraries you want and write calls to the functions you need.
+Making \emph{old} code use \emph{new} code without rewriting it is trickier,
+but object-oriented programming can help.
+
+\section{Doing It By Hand}\label{s:oop-manual}
+
+As we saw in \href{REF}{s:basics},
+an object in JavaScript is a set of key-value pairs.
+Since functions are just another kind of data,
+an object's values can be functions,
+so data can carry around functions that work on it.
+For example,
+we can create an object to represent a square:
+
+\begin{minted}{js}
+const square = {
+  name: 'square',
+  size: 5,
+  area: (it) => { return it.size * it.size },
+  perimeter: (it) => { return 4 * it.size }
+}
+\end{minted}
+
+\noindent
+and then pass the object itself into each of its own functions:
+
+\begin{minted}{js}
+const a = square.area(square)
+console.log(`area of square is ${a}`)
+\end{minted}
+
+\begin{minted}{text}
+area of square is 25
+\end{minted}
+
+This is a bit clumsy---we'll often forget to pass the object into its functions---but
+it allows us to handle many different kinds of things in the same way.
+For example,
+we can create another object to represent a circle:
+
+\begin{minted}{js}
+const circle = {
+  name: 'circle',
+  radius: 3,
+  area: (it) => { return Math.PI * it.radius * it.radius },
+  perimeter: (it) => { return 2 * Math.PI * it.radius }
+}
+\end{minted}
+
+\noindent
+and then put all of these different objects in an array
+and operate on them in the same way
+without knowing precisely what kind of object we're dealing with:
+
+\begin{minted}{js}
+const show_all = (shapes) => {
+  for (let s of shapes) {
+    const a = s.area(s)
+    const p = s.perimeter(s)
+    console.log(`${s.name}: area ${a} perimeter ${p}`)
+  }
+}
+
+show_all([square, circle])
+\end{minted}
+
+\begin{minted}{text}
+square: area 25 perimeter 20
+circle: area 28.274333882308138 perimeter 18.84955592153876
+\end{minted}
+
+As long as we only use the value \texttt{name} and the functions \texttt{area} and \texttt{perimeter}
+we don't need to know what kind of shape we have.
+This is called \gref{g:polymorphism}{polymorphism},
+and it allows us to add new shapes without changing the code in our loop.
+In other words,
+it allows old code (in this case, the function \texttt{show\_all})
+to use new code (the new object \texttt{rectangle}).
+
+\begin{minted}{js}
+const rectangle = {
+  name: 'rectangle',
+  width: 2,
+  height: 3,
+  area: (it) => { return it.width * it.height },
+  perimeter: (it) => { return 2 * (it.width + it.height) }
+}
+
+show_all([square, circle, rectangle])
+\end{minted}
+
+\begin{minted}{text}
+square: area 25 perimeter 20
+circle: area 28.274333882308138 perimeter 18.84955592153876
+rectangle: area 6 perimeter 10
+\end{minted}
+
+\section{Classes}\label{s:oop-classes}
+
+Building every object by hand and calling \texttt{thing.function(thing)} is clumsy.
+JavaScript solved these problems using \gref{g:prototype}{prototypes},
+which also turned out to be clumsy (\secref{s:legacy-prototypes}).
+Most object-oriented languages use \gref{g:class}{classes} instead;
+these were added to JavaScript in ES6,
+and we will use them instead of prototypes throughout.
+Here's how we create a class that defines the properties of a square,
+without actually creating any specific squares:
+
+\begin{minted}{js}
+class Square {
+  constructor (size) {
+    this.name = 'square'
+    this.size = size
+  }
+  area () { return this.size * this.size }
+  perimeter () { return 4 * this.size }
+}
+\end{minted}
+
+\noindent
+(Class names are written in CamelCase by convention.)
+We can then create a specific square by using the class's name as if it were a function:
+
+\begin{minted}{js}
+const sq = new Square(3)
+console.log(`sq name ${sq.name} and area ${sq.area()}`)
+\end{minted}
+
+\begin{minted}{text}
+sq name square and area 9
+\end{minted}
+
+\texttt{new\ ClassName(...)} creates a new blank object
+and inserts a (hidden) reference to the class
+so that the object can find its \gref{g:method}{methods}.
+\texttt{new} then calls the specially-named method \texttt{constructor} to initialize the object's state.
+Inside the constructor and other methods,
+the object being operated on is referred to by the pronoun \texttt{this}.
+
+Inside the class,
+methods are defined with classic syntax rather than the \gref{g:fat-arrow}{fat arrows} we have been using.
+The inconsistency is unfortunate
+but this way of defining methods is what the current version of Node prefers;
+we will explore this topic further in \chapref{s:vis}.
+
+Classes defined this way support polymorphism:
+if two or more classes have some methods with the same names
+that take the same parameters
+and return the same kinds of values,
+other code can use objects of those classes interchangeably.
+For example,
+here's a class-based rewrite of our shapes code:
+
+\begin{minted}{js}
+class Circle {
+  constructor (radius) {
+    this.name = 'circle'
+    this.radius = radius
+  }
+  area () { return Math.PI * this.radius * this.radius }
+  perimeter () { return 2 * Math.PI * this.radius }
+}
+
+class Rectangle {
+  constructor (width, height) {
+    this.name = 'rectangle'
+    this.width = width
+    this.height = height
+  }
+  area () { return this.width * this.height }
+  perimeter () { return 2 * (this.width + this.height) }
+}
+
+const everything = [
+  new Square(3.5),
+  new Circle(2.5),
+  new Rectangle(1.5, 0.5)
+]
+for (let thing of everything) {
+  const a = thing.area(thing)
+  const p = thing.perimeter(thing)
+  console.log(`${thing.name}: area ${a} perimeter ${p}`)
+}
+\end{minted}
+
+\begin{minted}{text}
+square: area 12.25 perimeter 14
+circle: area 19.634954084936208 perimeter 15.707963267948966
+rectangle: area 0.75 perimeter 4
+\end{minted}
+
+\section{Inheritance}\label{s:oop-inheritance}
+
+We can build new classes from old ones by adding or \gref{g:override-method}{overriding} methods.
+To show this,
+we'll start by defining a person:
+
+\begin{minted}{js}
+class Person {
+  constructor (name) {
+    this.name = name
+  }
+
+  greeting (formal) {
+    if (formal) {
+      return `Hello, my name is ${this.name}`
+    } else {
+      return `Hi, I'm ${this.name}`
+    }
+  }
+
+  farewell () {
+    return `Goodbye`
+  }
+}
+\end{minted}
+
+We can now \gref{g:extend}{extend} \texttt{Person} to create a new class \texttt{Scientist},
+in which case we say that \texttt{Scientist} \gref{g:inherit}{inherits} from \texttt{Person},
+or that \texttt{Person} is a \gref{g:parent-class}{parent class} of \texttt{Scientist}
+and \texttt{Scientist} is a \gref{g:child-class}{child class} of \texttt{Person}.
+
+\begin{minted}{js}
+class Scientist extends Person {
+  constructor (name, area) {
+    super(name)
+    this.area = area
+  }
+
+  greeting (formal) {
+    return `${super.greeting(formal)}. Let's talk about ${this.area}...`
+  }
+}
+\end{minted}
+
+This tells us that a \texttt{Scientist} is a \texttt{Person} who:
+
+\begin{itemize}
+\item
+  Has an area of specialization as well as a name.
+\item
+  Says hello in a slightly longer way
+\item
+  Says goodbye in the same way as a \texttt{Person}
+  (since \texttt{Scientist} \emph{doesn't} define its own \texttt{farewell} method)
+\end{itemize}
+
+The word \texttt{super} is used in two ways here:
+
+\begin{itemize}
+\item
+  In the constructor for \texttt{Scientist},
+  \texttt{super(...)} calls up to the constructor of the parent class \texttt{Person}
+  so that it can do whatever initialization it does
+  before \texttt{Scientist} does its own initialization.
+  This saves us from duplicating steps.
+\item
+  Inside \texttt{greeting},
+  the expression \texttt{super.greeting(formal)} means
+  ``call the parent class's \texttt{greeting} method for this object''.
+  This allows methods defined in child classes to add to or modify
+  the behavior of methods defined in parent classes,
+  again without duplicating code.
+\end{itemize}
+
+Let's try it out:
+
+\begin{minted}{js}
+const parent = new Person('Hakim')
+console.log(`parent: ${parent.greeting(true)} - ${parent.farewell()}`)
+
+const child = new Scientist('Bhadra', 'microbiology')
+console.log(`child: ${child.greeting(false)} - ${child.farewell()}`)
+\end{minted}
+
+\begin{minted}{text}
+parent: Hello, my name is Hakim - Goodbye
+child: Hi, I'm Bhadra. Let's talk about microbiology... - Goodbye
+\end{minted}
+
+\figref{f:oop-inheritance} shows what memory looks like after these classes have been defined
+and the objects \texttt{parent} and \texttt{child} have been created.
+It looks complex at first,
+but allows us to see how JavaScript finds the right method
+when \texttt{child.farewell()} is called:
+
+\begin{itemize}
+\item
+  It looks in the object \texttt{child} to see if there's a function there with the right name.
+\item
+  There isn't, so it follows \texttt{child}'s link to its class \texttt{Scientist}
+  to see if a function is there.
+\item
+  There isn't, so it follows the link from \texttt{Scientist} to the parent class \texttt{Person}
+  and finds the function it's looking for.
+\end{itemize}
+
+\figpdf{figures/oop-inheritance.pdf}{Object-Oriented Inheritance}{f:oop-inheritance}
+
+\section{Protocols}\label{s:oop-protocols}
+
+A common way to use object-oriented programming is to define a \gref{g:protocol}{protocol}.
+The parent defines a method that invokes other methods at specific times or in a specific order.
+Users then derive classes from the parent that implement those methods
+to do those specific things.
+In essence,
+a protocol says,
+``You will all follow this procedure, but you may follow it in different ways.''
+
+For example,
+how does a generic bird behave throughout the year?
+The class \texttt{Bird} specifies that it forages, mates, and nests,
+and provides default methods for each:
+
+\begin{minted}{js}
+class Bird {
+  constructor (species) {
+    this.species = species
+  }
+
+  daily (season) {
+    return [
+      this.foraging(season),
+      this.mating(season),
+      this.nesting(season)
+    ]
+  }
+
+  foraging (season) {
+    return `${this.species} looks for food`
+  }
+
+  mating (season) {
+    let result = ''
+    if (season === 'fall') {
+      result = `${this.species} looks for a mate`
+    }
+    return result
+  }
+
+  nesting (season) {
+    // do nothing
+  }
+}
+\end{minted}
+
+A specific kind of bird,
+such as a penguin,
+can then override these methods to provide its own behaviors
+\emph{without} changing its daily behavior:
+
+\begin{minted}{js}
+class Penguin extends Bird {
+  constructor () {
+    super('penguin')
+    this.hasEgg = false
+  }
+
+  mating (season) {
+    if (season === 'fall') {
+      this.hasEgg = Math.random() < 0.5
+    }
+    return super.mating(season)
+  }
+
+  nesting (season) {
+    let result = ''
+    if (this.hasEgg && ((season === 'winter') || (season === 'spring'))) {
+      result = `${this.species} is nesting`
+      if (season === 'spring') {
+        this.hasEgg = false
+      }
+    }
+    return result
+  }
+}
+\end{minted}
+
+\texttt{Penguin} has some extra state (the variable \texttt{this.hasEgg}),
+and calls its parent's constructor before setting this up.
+It doesn't override the default behavior for \texttt{foraging},
+but it extends the default behavior for \texttt{mating}
+and completely replaces the default behavior for \texttt{nesting}.
+Here are the results of watching one penguin for four seasons:
+
+\begin{minted}{js}
+const bird = new Penguin()
+const seasons = ['summer', 'fall', 'winter', 'spring']
+for (let season of seasons) {
+  console.log(`in ${season}: ${bird.daily(season)}`)
+}
+\end{minted}
+
+\begin{minted}{text}
+in summer: penguin looks for food,,
+in fall: penguin looks for food,penguin looks for a mate,
+in winter: penguin looks for food,,
+in spring: penguin looks for food,,
+\end{minted}
+
+Here's another:
+
+\begin{minted}{text}
+in summer: penguin looks for food,,
+in fall: penguin looks for food,penguin looks for a mate,
+in winter: penguin looks for food,,penguin is nesting
+in spring: penguin looks for food,,penguin is nesting
+\end{minted}
+
+Different random numbers produce different behaviors,
+which makes testing hard:
+we'll see how to address this in \chapref{s:testing}.
+The main idea,
+though,
+is how old code can use new code:
+the old code defines expectations as an interface and a protocol,
+and the new code implements that interface and respects that protocol.
+We will see this idea over and over again
+as we build applications using standard libraries.
+
+\section{Exercises}\label{s:oop-exercises}
+
+\exercise{Delays}
+
+Define a class called \texttt{Delay} whose \texttt{call} method always returns
+the value given in the \emph{previous} call:
+
+\begin{minted}{js}
+const example = new Delay('a')
+for (let value of ['b', 'c', 'd']) {
+  console.log(value, '->', example.call(value))
+}
+\end{minted}
+
+\begin{minted}{text}
+b -> a
+c -> b
+d -> c
+\end{minted}
+
+A class like \texttt{Delay} is sometimes called \gref{g:stateful}{stateful},
+since it remembers its state from call to call.
+
+\exercise{Filtering}
+
+Define a class called \texttt{Filter} whose \texttt{call} method returns \texttt{null}
+if its input matches one of the values given to its constructor,
+or the input as output otherwise:
+
+\begin{minted}{js}
+const example = new Filter('a', 'e', 'i', 'o', 'u')
+for (let value of ['a', 'b', 'c', 'd', 'e']) {
+  console.log(value, '->', example.call(value))
+}
+\end{minted}
+
+\begin{minted}{text}
+a -> null
+b -> b
+c -> c
+d -> d
+e -> null
+\end{minted}
+
+A class like \texttt{Filter} is sometimes called \gref{g:stateless}{stateless},
+since it does not remember its state from call to call.
+
+\exercise{Pipelines}
+
+Define a class called \texttt{Pipeline}
+whose constructor takes one or more objects with a single-parameter \texttt{call} method,
+and whose own \texttt{call} method passes a value through each of them in turn.
+If any of the components' \texttt{call} methods returns \texttt{null},
+\texttt{Pipeline} stops immediately and returns \texttt{null}.
+
+\begin{minted}{js}
+const example = new Pipeline(new Filter('a', 'e', 'i', 'o', 'u'),
+                             new Delay('a'))
+for (let value of ['a' ,'b', 'c', 'd', 'e']) {
+  console.log(value, '->', example.call(value))
+}
+\end{minted}
+
+\begin{minted}{text}
+a -> null
+b -> a
+c -> b
+d -> c
+e -> null
+\end{minted}
+
+\exercise{Active Expressions}
+
+Consider this class:
+
+\begin{minted}{js}
+class Active {
+  constructor (name, transform) {
+    this.name = name
+    this.transform = transform
+    this.subscribers = []
+  }
+
+  subscribe (someone) {
+    this.subscribers.push(someone)
+  }
+
+  update (input) {
+    console.log(this.name, 'got', input)
+    const output = this.transform(input)
+    for (let s of this.subscribers) {
+      s.update(output)
+    }
+  }
+}
+\end{minted}
+
+\noindent
+and this program that uses it:
+
+\begin{minted}{js}
+const start = new Active('start', (x) => Math.min(x, 10))
+const left = new Active('left', (x) => 2 * x)
+const right = new Active('right', (x) => x + 1)
+const final = new Active('final', (x) => x)
+start.subscribe(left)
+start.subscribe(right)
+left.subscribe(final)
+right.subscribe(final)
+
+start.update(123)
+\end{minted}
+
+\begin{enumerate}
+\item
+  Trace what happens when the last line of the program is called.
+\item
+  Modify \texttt{Active} so that it calls \texttt{transform} \emph{if} that function was provided,
+  or a method \texttt{Active.transform} if a transformation function wasn't provided.
+\item
+  Create a new class \texttt{Delay} whose \texttt{transform} method always returns the previous value.
+  (Its constructor will need to take an initial value as a parameter.)
+\end{enumerate}
+
+This pattern is called \gref{g:observer-observable}{observer/observable}.
+
+\section*{Key Points}
+
+\input{keypoints/oop}
