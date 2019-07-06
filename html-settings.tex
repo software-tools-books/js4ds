@@ -1,22 +1,14 @@
 \usepackage[english]{babel}
 
+%----------------------------------------
+
 % Allow multi-page tables.
 \usepackage{longtable}
 
-% Asides
-\newenvironment{aside}[1]{\begin{quote}\subsubsection*{#1}}{\end{quote}}
-
-% Glossary references and items
-\newcommand{\gref}[2]{\hyperlink{#1}{\textbf{#2}}\index{#2}}
-\newcommand{\grefdex}[3]{\hyperlink{#1}{\textbf{#2}}\index{#3}}
-\newcommand{\grefcross}[2]{\hyperlink{#1}{\textbf{#2}}}
-\newcommand{\gitem}[2]{\item[\hypertarget{#1}{#2}]}
-
-% Render hyperlinks with footnotes as well.
-\newcommand{\hreffoot}[2]{\href{#1}{#2}}
-
 % Mark recommendations.
 \newcommand{\recommendation}[1]{\emph{#1}}
+
+\usepackage[T1]{fontenc}
 
 % Bibliography.
 \usepackage[backend=biber,style=alphabetic,sorting=nyt,maxbibnames=99]{biblatex}
@@ -25,6 +17,11 @@
 % https://tex.stackexchange.com/questions/8428/use-bibtex-key-as-the-cite-key
 \DeclareFieldFormat{labelalpha}{\thefield{entrykey}}
 \DeclareFieldFormat{extraalpha}{}
+
+% Asides
+\newenvironment{aside}[1]{\begin{quote}\subsubsection*{#1}}{\end{quote}}
+
+%----------------------------------------
 
 % Chapters, sections, and appendices with labels.
 \newcommand{\chaplbl}[2]{\chapter{#1}\label{#2}}
@@ -63,7 +60,18 @@
 \newcommand{\exercise}[1]{\subsection*{#1}}
 
 %----------------------------------------
+
+% Render hyperlinks with footnotes as well.
+\newcommand{\hreffoot}[2]{\href{#1}{#2}}
  
 % Always load hyperref last
 % https://tex.stackexchange.com/questions/16268/warning-with-footnotes-namehfootnote-xx-has-been-referenced-but-does-not-exi
 \usepackage{hyperref}
+
+%----------------------------------------
+
+% Glossary references and items have to come after hyperref package.
+\newcommand{\gref}[2]{\hyperlink{#1}{\textbf{#2}}\index{#2}}
+\newcommand{\grefdex}[3]{\hyperlink{#1}{\textbf{#2}}\index{#3}}
+\newcommand{\grefcross}[2]{\hyperlink{#1}{\textbf{#2}}}
+\newcommand{\gitem}[2]{\item[\hypertarget{#1}{#2}]}
