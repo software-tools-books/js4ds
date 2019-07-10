@@ -5,7 +5,7 @@
   <meta name="generator" content="pandoc" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
   <meta name="author" content="Maya Gans, Toby Hodges, and Greg Wilson" />
-  <title>JavaScript versus Data Science</title>
+  <title>JavaScript for Data Science</title>
   <style>
       code{white-space: pre-wrap;}
       span.smallcaps{font-variant: small-caps;}
@@ -86,14 +86,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="container-fluid">
   <div class="row row-scrollable">
     <div class="col-md-2 col-toc">
-      <a href="#title-block-header"><img src="assets/logo.png" alt="JavaScript versus Data Science" width="100%" /></a>
+      <a href="#title-block-header"><img src="assets/logo.png" alt="JavaScript for Data Science" width="100%" /></a>
 <nav id="TOC" role="doc-toc">
 <ul>
 <li><a href="#s:intro">Introduction</a><ul>
 <li><a href="#s:intro-personas">Who You Are</a></li>
+<li><a href="#s:intro-contributors">Who We Are</a></li>
 <li><a href="#s:intro-setup">Setting Up</a></li>
 <li><a href="#s:index-contrib">Contributing</a></li>
-<li><a href="#s:intro-contributors">Who We Are</a></li>
 <li><a href="#s:intro-exercises">Exercises</a></li>
 <li><a href="#key-points">Key Points</a></li>
 </ul></li>
@@ -268,14 +268,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </nav>
       <p>
         <a href="#s:license"><img src="assets/cc-by-nc.svg" alt="CC-BY-NC License" width="50%" /></a>
-        <a href="mailto:gvwilson@third-bit.com?subject=JavaScript versus Data Science"><img src="assets/email.svg" alt="Email" width="20%" /></a>
-        <a href="https://github.com/software-tools-in-javascript/js-vs-ds/"><img src="assets/github.svg" alt="GitHub" width="20%" /></a>
+        <a href="mailto:gvwilson@third-bit.com?subject=JavaScript for Data Science"><img src="assets/email.svg" alt="Email" width="20%" /></a>
+        <a href="https://github.com/software-tools-in-javascript/js4ds/"><img src="assets/github.svg" alt="GitHub" width="20%" /></a>
       </p>
     </div>
     <div class="col-md-8 col-body">
       <header>
-        <h1 class="title">JavaScript versus Data Science</h1>
-                <p class="subtitle">A brief guide for those who regret that this has become necessary.</p>
+        <h1 class="title">JavaScript for Data Science</h1>
                         <p class="author">Maya Gans, Toby Hodges, and Greg Wilson</p>
                         <p class="date">Version 3.0 beta / July 2019</p>
               </header>
@@ -286,7 +285,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
         </p>
       </div>
 <h1 id="s:intro">Introduction</h1>
-<p>We were going to call this book <em>JavaScript for Scientists and Engineers</em>, but <a href="https://www.dabeaz.com/">David Beazley</a> thought that “versus” would make a better title. While that one-word change sums up how many people view the language, we hope we can convince you that modern JavaScript is usable as well as useful. We changed the second half of the title because hey, data science. We also hope that these lessons will help librarians, digital humanists, and everyone else who uses computing in their research, not just scientists and engineers.</p>
+<p><a href="https://www.dabeaz.com/">David Beazley</a> thought that “JavaScript <em>versus</em> Data Science” would be a better title for this book. While that one-word change sums up how many people view the language, we hope we can convince you that modern JavaScript is usable as well as useful. We changed the second half of the title because hey, data science. We also hope that these lessons will help librarians, digital humanists, and everyone else who uses computing in their research, not just scientists and engineers.</p>
 <p>We will cover:</p>
 <ul>
 <li><p>Core features of modern JavaScript</p></li>
@@ -319,21 +318,19 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><p>can run commands in the Unix shell to navigate the filesystem and create and delete directories and files, and</p></li>
 <li><p>have reliable access to the Internet.</p></li>
 </ul>
+<h2 id="s:intro-contributors">Who We Are</h2>
+<p><img src="figures/gans-maya.png" alt="image" /></p>
+<p><strong>Maya Gans</strong> is a freelance data scientist and JavaScript developer by way of quantitative biology. When she isn’t debugging code, she’s somewhere remote climbing large mountains.</p>
+<p><img src="figures/hodges-toby.png" alt="image" /></p>
+<p><strong><a href="https://tbyhdgs.info/">Toby Hodges</a></strong> is a bioinformatician turned community coordinator, working on the <a href="https://bio-it.embl.de">Bio-IT Project</a> at <a href="https://www.embl.de">EMBL</a>. He teaches a lot of courses in computing, organizes a lot of community-building events, listens to a lot of punk rock, and occasionally still finds time to write code and ride his bike. Toby would like to thank his wife for her support and patience while he swore about how annoying JavaScript is to debug.</p>
+<p><img src="figures/wilson-greg.png" alt="image" /></p>
+<p><strong><a href="http://third-bit.com/">Greg Wilson</a></strong> has worked for 35 years in both industry and academia, and is the author or editor of several books on computing and two for children. He co-founded <a href="http://carpentries.org">Software Carpentry</a>, a non-profit organization that teaches basic computing skills to researchers, and is now part of the education team at <a href="http://rstudio.com">RStudio</a>. Greg would like to thank everyone at <a href="https://rangle.io/">Rangle</a> who was so patient with him when he was learning JavaScript.</p>
 <h2 id="s:intro-setup">Setting Up</h2>
 <p>The exercises at the end of each chapter include new information that you will need later in the book, and are therefore not optional. You can do the first few online, using a service like <a href="https://runkit.com/">RunKit</a>, which gives you an interactive JavaScript playground in your browser. For larger things, and for chapters starting with the one on creating dynamic web pages (Chapter <a href="#s:dynamic" data-reference-type="ref" data-reference="s:dynamic">7</a>), you should <a href="https://nodejs.org/en/download/">download and install</a> the latest Long-term Support (LTS) versions of Node and NPM.</p>
 <p><a href="#g:node-js"><strong>Node</strong></a> is an open source implementation of JavaScript that includes a command-line interpreter like those for languages such as Python and R. The command <code>node</code> on its own starts a <a href="#g:repl"><strong>read-evaluate-print loop</strong></a> that executes commands as they are typed in and displays their output. The command <code>node filename.js</code> reads and runs the commands in <code>filename.js</code>; we will see in Chapter <a href="#s:pages" data-reference-type="ref" data-reference="s:pages">6</a> how to run JavaScript in a browser.</p>
 <p><code>npm</code> is the Node <a href="#g:package-manager"><strong>Package Manager</strong></a>, a command-line tool for finding, installing, and updating JavaScript libraries. The command <code>npm install --global library-name</code> (without a <code>.js</code> extension) installs a library <a href="#g:global-installation"><strong>globally</strong></a> so that all projects can use it, while <code>npm install --save library-name</code> installs the library <a href="#g:local-installation"><strong>locally</strong></a> (i.e., in the current project folder). Local installation is usually a better idea, since it isolates projects from one another.</p>
 <h2 id="s:index-contrib">Contributing</h2>
-<p>Contributions of all kinds are welcome, from errata and minor improvements to entirely new sections and chapters. Please <a href="mailto:gvwilson@third-bit.com">email us</a>, <a href="https://github.com/software-tools-in-javascript/js-vs-ds/issues">file an issue</a> in <a href="https://github.com/software-tools-in-javascript/js-vs-ds/">our GitHub repository</a>, or <a href="https://github.com/software-tools-in-javascript/js-vs-ds/pulls">submit a pull request</a>. Everyone whose work is incorporated will be acknowledged. Please see <a href="/en/contributing/">the contributors’s guide</a> for more information, and please note that all contributors are required to abide by our <a href="/en/conduct/">Code of Conduct</a>.</p>
-<h2 id="s:intro-contributors">Who We Are</h2>
-<figure>
-<img src="figures/hodges-toby.png" alt="Toby Hodges" /><figcaption>Toby Hodges</figcaption>
-</figure>
-<p><strong><a href="https://tbyhdgs.info/">Toby Hodges</a></strong> is a bioinformatician turned community coordinator, working on the <a href="https://bio-it.embl.de">Bio-IT Project</a> at <a href="https://www.embl.de">EMBL</a>. He teaches a lot of courses in computing, organizes a lot of community-building events, listens to a lot of punk rock, and occasionally still finds time to write code and ride his bike. Toby would like to thank his wife for her support and patience while he swore about how annoying JavaScript is to debug.</p>
-<figure>
-<img src="figures/wilson-greg.png" alt="Greg Wilson" /><figcaption>Greg Wilson</figcaption>
-</figure>
-<p><strong><a href="http://third-bit.com/">Greg Wilson</a></strong> has worked for 35 years in both industry and academia, and is the author or editor of several books on computing and two for children. He co-founded <a href="http://carpentries.org">Software Carpentry</a>, a non-profit organization that teaches basic computing skills to researchers, and is now part of the education team at <a href="http://rstudio.com">RStudio</a>. Greg would like to thank everyone at <a href="https://rangle.io/">Rangle</a> who was so patient with him when he was learning JavaScript.</p>
+<p>Contributions of all kinds are welcome, from errata and minor improvements to entirely new sections and chapters. Please <a href="mailto:gvwilson@third-bit.com">email us</a>, <a href="https://github.com/software-tools-in-javascript/js4ds/issues">file an issue</a> in <a href="https://github.com/software-tools-in-javascript/js4ds/">our GitHub repository</a>, or <a href="https://github.com/software-tools-in-javascript/js4ds/pulls">submit a pull request</a>. Everyone whose work is incorporated will be acknowledged. Please see <a href="/en/contributing/">the contributors’s guide</a> for more information, and please note that all contributors are required to abide by our <a href="/en/conduct/">Code of Conduct</a>.</p>
 <h3 id="s:intro-acknowledgments">Acknowledgments</h3>
 <p>We are also grateful for fixes from:</p>
 <ul>
@@ -2731,7 +2728,7 @@ Finished.</code></pre>
 <li><p>a new <code>Promise</code> object</p></li>
 </ol>
 <h3 id="empty-promises" class="unnumbered">Empty Promises</h3>
-<p>Fill in the blanks (<code>___</code>)in the code block below so that the function returns <code>Array[7, 8, 2, 6, 5]</code>.</p>
+<p>Fill in the blanks (<code>___</code>) in the code block below so that the function returns <code>Array[7, 8, 2, 6, 5]</code>.</p>
 <div class="sourceCode" id="cb227"><pre class="sourceCode js"><code class="sourceCode javascript"><a class="sourceLine" id="cb227-1" title="1"><span class="kw">const</span> makePromise <span class="op">=</span> (someInteger) <span class="kw">=&gt;</span> <span class="op">{</span></a>
 <a class="sourceLine" id="cb227-2" title="2">  <span class="cf">return</span> ___ <span class="at">Promise</span>((resolve<span class="op">,</span> reject) <span class="kw">=&gt;</span> <span class="op">{</span></a>
 <a class="sourceLine" id="cb227-3" title="3">    <span class="at">setTimeout</span>(<span class="at">___</span>(someInteger)<span class="op">,</span> someInteger <span class="op">*</span> <span class="dv">1000</span>)</a>
@@ -2850,11 +2847,11 @@ Finished.</code></pre>
 <a class="sourceLine" id="cb232-22" title="22">)</a></code></pre></div>
 <p>Let’s try running this:</p>
 <pre class="shell"><code>$ npm run dev -- src/interactive/counter/index.html</code></pre>
-<pre class="text"><code>&gt; js-vs-ds@0.1.0 dev /Users/stj/js-vs-ds
+<pre class="text"><code>&gt; js4ds@0.1.0 dev /Users/stj/js4ds
 &gt; parcel serve -p 4000 &quot;src/interactive/counter/index.html&quot;
 
 Server running at http://localhost:4000
-!!  /Users/stj/js-vs-ds/src/interactive/counter/app.js:11:12: \
+!!  /Users/stj/js4ds/src/interactive/counter/app.js:11:12: \
   Unexpected token (11:12)
    9 |   }
   10 |
@@ -4225,7 +4222,7 @@ Server running at http://localhost:4000
 <p>Note that we <em>don’t</em> use <code>npm run dev</code> to trigger Parcel: this is running on the server, so no bundling is necessary. In our other window, we run:</p>
 <pre class="shell"><code>$ npm run dev src/capstone/front/index.html</code></pre>
 <p>which displays:</p>
-<pre class="text"><code>&gt; js-vs-ds@0.1.0 dev /Users/stj/js-vs-ds
+<pre class="text"><code>&gt; js4ds@0.1.0 dev /Users/stj/js4ds
 &gt; parcel serve -p 4000 &quot;src/capstone/front/index.html&quot;
 
 Server running at http://localhost:4000
@@ -4312,7 +4309,7 @@ The Same Origin Policy disallows reading the remote resource \
 <h1 id="s:finale">Finale</h1>
 <p>We have come a long way since <code>console.log(’hello, world’)</code> in Chapter <a href="#s:basics" data-reference-type="ref" data-reference="s:basics">2</a>. Callbacks and promises, JSON and web servers, packaging, unit tests, and visualization: every modern language can do them, but JavaScript is an increasingly popular choice. Yes, it has its flaws, but if we avoid some of the legacy features in Appendix <a href="#s:legacy" data-reference-type="ref" data-reference="s:legacy">22</a> it’s both usable and powerful.</p>
 <p>Our journey doesn’t stop here, though. The appendices explore some next steps, such as logging what our server does (Appendix <a href="#s:logging" data-reference-type="ref" data-reference="s:logging">23</a>) and using a relational database (Appendix <a href="#s:db" data-reference-type="ref" data-reference="s:db">25</a>) instead of a text file as a data store. Beyond that, you could look at more advanced techniques in JavaScript,[<a class="cite" href="#ref-Have2018">Have2018</a>] explore the full power of the <a href="https://d3js.org/">D3</a> library for interactive visualization,[<a class="cite" href="#ref-Meek2017">Meek2017</a>] dive into data wrangling,[<a class="cite" href="#ref-Davi2018">Davi2018</a>] or start over completely the way JavaScript programmers do every eight months and rewrite everything with <a href="https://developer.mozilla.org/en-US/docs/Web/Web_Components">Web Components</a>. Whatever you do, we hope that this tutorial has helped you get started.</p>
-<p>Contributions of all kinds are welcome, from errata and minor improvements to entirely new sections and chapters. Please <a href="mailto:gvwilson@third-bit.com">email us</a>, <a href="https://github.com/software-tools-in-javascript/js-vs-ds/issues">file an issue</a> in <a href="https://github.com/software-tools-in-javascript/js-vs-ds/">our GitHub repository</a>, or <a href="https://github.com/software-tools-in-javascript/js-vs-ds/pulls">submit a pull request</a>. Everyone whose work is incorporated will be acknowledged. Please see <a href="/en/contributing/">the contributors’s guide</a> for more information, and please note that all contributors are required to abide by our <a href="/en/conduct/">Code of Conduct</a>.</p>
+<p>Contributions of all kinds are welcome, from errata and minor improvements to entirely new sections and chapters. Please <a href="mailto:gvwilson@third-bit.com">email us</a>, <a href="https://github.com/software-tools-in-javascript/js4ds/issues">file an issue</a> in <a href="https://github.com/software-tools-in-javascript/js4ds/">our GitHub repository</a>, or <a href="https://github.com/software-tools-in-javascript/js4ds/pulls">submit a pull request</a>. Everyone whose work is incorporated will be acknowledged. Please see <a href="/en/contributing/">the contributors’s guide</a> for more information, and please note that all contributors are required to abide by our <a href="/en/conduct/">Code of Conduct</a>.</p>
 <h2 id="key-points-14" class="unnumbered">Key Points</h2>
 <ul>
 <li><p>We have learned a lot.</p></li>
@@ -4369,7 +4366,7 @@ The Same Origin Policy disallows reading the remote resource \
 <h2 id="s:conduct-attribution">Attribution</h2>
 <p>This Code of Conduct is adapted from the <a href="https://www.contributor-covenant.org">Contributor Covenant</a> version 1.4.</p>
 <h1 id="s:contributing">Contributing</h1>
-<p>Contributions of all kinds are welcome, from errata and minor improvements to entirely new sections and chapters: please <a href="mailto:gvwilson@third-bit.com">email us</a> or submit an issue or pull request to <a href="https://github.com/software-tools-in-javascript/js-vs-ds/">our GitHub repository</a>. Everyone whose work is incorporated will be acknowledged; please note that all contributors are required to abide by our Code of Conduct (Appendix <a href="#s:conduct" data-reference-type="ref" data-reference="s:conduct">17</a>). Please note that we use Simplified English rather than Traditional English, i.e., American rather than British spelling and grammar. We encourage translations; if you would like to take this on, please <a href="mailto:gvwilson@third-bit.com">email us</a>.</p>
+<p>Contributions of all kinds are welcome, from errata and minor improvements to entirely new sections and chapters: please <a href="mailto:gvwilson@third-bit.com">email us</a> or submit an issue or pull request to <a href="https://github.com/software-tools-in-javascript/js4ds/">our GitHub repository</a>. Everyone whose work is incorporated will be acknowledged; please note that all contributors are required to abide by our Code of Conduct (Appendix <a href="#s:conduct" data-reference-type="ref" data-reference="s:conduct">17</a>). Please note that we use Simplified English rather than Traditional English, i.e., American rather than British spelling and grammar. We encourage translations; if you would like to take this on, please <a href="mailto:gvwilson@third-bit.com">email us</a>.</p>
 <p>If you wish to report errata or suggest improvements to wording, please include the chapter name in the first line of the body of your report (e.g., <code>Testing Data Analysis</code>).</p>
 <h1 id="s:gloss">Glossary</h1>
 <dl>

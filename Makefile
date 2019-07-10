@@ -31,7 +31,7 @@ commands :
 everything : html pdf
 
 ## html           : generate HTML from LaTeX source.
-html : ${HTML} ${FIGURES_DST} ${ASSETS_DST} docs/CNAME
+html : ${HTML} ${FIGURES_DST} ${ASSETS_DST}
 
 ## pdf            : generate PDF from LaTeX source.
 pdf : ${PDF} ${SUMMARIES}
@@ -76,10 +76,10 @@ docs/assets/% : assets/%
 	@mkdir -p docs/assets
 	@cp $< $@
 
-# Copy CNAME file.
-docs/CNAME : ./CNAME
-	@mkdir -p docs
-	@cp $< $@
+# FIXME: Copy CNAME file.
+# docs/CNAME : ./CNAME
+# 	@mkdir -p docs
+# 	@cp $< $@
 
 ## ----------------------------------------
 
