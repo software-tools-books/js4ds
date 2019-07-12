@@ -408,7 +408,46 @@ Promises don't really make sense until we start to use them,
 so let's try counting the number of lines in a set of files
 that are larger than a specified threshold.
 This is a slightly complex example but we will go through and build it up step-by-step.
-Step 1 is to find the input files:
+
+Before we begin,
+we will want the name of the directory we want to search for files.
+We could put this in our code,
+but it's a lot more convenient if we allow users to provide it as a command-line argument
+when they run our script.
+To aid this,
+Node passes all of the command-line arguments in an array called \texttt{process.argv}.
+If we put this line in a file called \texttt{echo.js}:
+
+\begin{minted}{js}
+console.log('arguments are:', process.argv)
+\end{minted}
+
+\noindent
+and run it like this:
+
+\begin{minted}{shell}
+$ node src/promises/echo.js first second third
+\end{minted}
+
+\noindent
+the output is:
+
+\begin{minted}{text}
+arguments are: [ '/usr/local/bin/node',
+  '/Users/stj/js4ds/src/promises/echo.js',
+  'first',
+  'second',
+  'third' ]
+\end{minted}
+
+\noindent
+The full path to Node is the first argument;
+the name of our script is the second,
+and all of the extra arguments provided by the users follow that.
+If we want the first of those,
+we therefore need \texttt{process.argv[2]}.
+
+The first step in counting lines is now to find the input files:
 
 \begin{minted}{js}
 const fs = require('fs-extra')
