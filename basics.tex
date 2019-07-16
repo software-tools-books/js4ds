@@ -48,7 +48,9 @@ it stores all numbers as 64-bit floating-point values,
 which is accurate up to about 15 decimal digits.
 We can check this using \texttt{typeof},
 which is an operator, \emph{not} a function,
-and which returns a string:
+and which returns a string.
+We can also use \texttt{const} to define a \gref{g:constant}{constant},
+which gives a name to a value:
 
 \begin{minted}{js}
 const aNumber = 123.45
@@ -108,8 +110,7 @@ the type of null is object
 \end{minted}
 
 As the example above shows,
-we use \texttt{let} to define a \gref{g:variable}{variable}
-and \texttt{const} to define a \gref{g:constant}{constant},
+we use \texttt{let} to define a \gref{g:variable}{variable},
 put values separated by commas inside \texttt{{[}{]}} to create an \gref{g:array}{array},
 and use \texttt{for...of} to loop over the values in that array.
 Note that we use \texttt{let} rather than the older \texttt{var} and \texttt{of} and not \texttt{in}:
