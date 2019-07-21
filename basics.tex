@@ -562,11 +562,9 @@ console.log(creature)
 { genus: 'Callithrix', species: 'Jacchus' }
 \end{minted}
 
-\exercise{What Does This Code Do?}
+\exercise{Destructuring Assignment}
 
-Explain what is happening in the assignment statement in this program.
-Use this technique to rewrite \texttt{src/basics/import.js}
-so that \texttt{clip} can be called directly as \texttt{clip(...)} rather than \texttt{utilities.clip(...)}.
+When this short program runs:
 
 \begin{minted}{js}
 const creature = {
@@ -577,6 +575,45 @@ const {genus, species} = creature
 console.log(`genus is ${genus}`)
 console.log(`species is ${species}`)
 \end{minted}
+
+\noindent
+it produces the output:
+
+\begin{minted}{text}
+genus is Callithrix
+species is Jacchus
+\end{minted}
+
+\noindent
+but when this program runs:
+
+\begin{minted}{js}
+const creature = {
+  first: 'Callithrix',
+  second: 'Jacchus'
+}
+const {genus, species} = creature
+console.log(`genus is ${genus}`)
+console.log(`species is ${species}`)
+\end{minted}
+
+\noindent
+it produces:
+
+\begin{minted}{text}
+genus is undefined
+species is undefined
+\end{minted}
+
+\begin{enumerate}
+\item
+  What is the difference between these two programs?
+\item
+  How does \gref{g:destructuring}{destructuring assignment} work in general?
+\item
+  How can we use this technique to rewrite the \texttt{require} statement in \texttt{src/basics/import.js}
+  so that \texttt{clip} can be called directly as \texttt{clip(...)} rather than as \texttt{utilities.clip(...)}?
+\end{enumerate}
 
 \exercise{Return To Me, For My Heart Wants You Only}\begin{minted}{js}
   
