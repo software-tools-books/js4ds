@@ -111,11 +111,11 @@ the type of null is object
 
 As the example above shows,
 we use \texttt{let} to define a \gref{g:variable}{variable},
-put values separated by commas inside \texttt{{[}{]}} to create an \gref{g:array}{array},
+put values separated by commas inside \texttt{[]} to create an \gref{g:array}{array},
 and use \texttt{for...of} to loop over the values in that array.
 Note that we use \texttt{let} rather than the older \texttt{var} and \texttt{of} and not \texttt{in}:
 the latter returns the indexes of the collection (e.g., 0, 1, 2),
-which has some traps for the unwary ((s:legacy-iteration){[}\#REF)).
+which has some traps for the unwary ((s:legacy-iteration)[\#REF)).
 Note also that indexing starts from 0 rather than 1,
 and that indentation is optional and for readability purposes only.
 This may be different from the language that you're used to.
@@ -258,13 +258,13 @@ creature[species] is Jacchus
 \end{minted}
 
 The type of an object is always \texttt{object}.
-We can get the value associated with a key using \texttt{object{[}key{]}},
+We can get the value associated with a key using \texttt{object[key]},
 but if the key has a simple name,
 we can use \texttt{object.key} instead.
 Note that the square bracket form can be used with variables for keys,
 but the dotted notation cannot:
 i.e.,
-\texttt{creature.genus} is the same as \texttt{creature{[}'genus'{]}},
+\texttt{creature.genus} is the same as \texttt{creature['genus']},
 but the assignment \texttt{g\ =\ 'genus'} followed by \texttt{creature.g} does not work.
 
 Because string keys are so common,
@@ -280,7 +280,7 @@ const creature = {
 }
 \end{minted}
 
-\texttt{{[}object\ Object{]}} is not particularly useful output when we want to see what an object contains.
+\texttt{[object\ Object]} is not particularly useful output when we want to see what an object contains.
 To get a more helpful string representation,
 use \texttt{JSON.stringify(object)}:
 
