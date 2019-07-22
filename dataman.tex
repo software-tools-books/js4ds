@@ -89,7 +89,7 @@ and each record is an object with name-value pairs:
 
 Repeating field names like this is wasteful compared to listing them once at the top of a table,
 but it does mean that the fields within rows can be accessed directly
-using expressions like \texttt{colors{[}1{]}.red}.
+using expressions like \texttt{colors[1].red}.
 
 \section{Slicing Data}\label{s:dataman-slicing}
 
@@ -269,7 +269,7 @@ However, the notation \texttt{func(...array)} means
 ``pass all the values in the array as separate arguments'',
 which saves us from writing our own minimum and maximum functions.
 Thus,
-\texttt{func(...this.data.map(rec\ =\textgreater{}\ rec{[}field{]}))} means
+\texttt{func(...this.data.map(rec\ =\textgreater{}\ rec[field]))} means
 ``select the specified field from each record in \texttt{this.data} to create an array of fields,
 then pass all of those values as arguments to \texttt{func}.
 We include an underscore to the start of the name of \texttt{\_get} to indicate that we
