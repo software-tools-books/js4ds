@@ -235,11 +235,46 @@ the first line gets the \texttt{div} we're going to fill in.
 The second line grabs all the \texttt{h2} headings,
 which we have arbitrarily decided are the only things worthy of inclusion
 in the table of contents.
-We wrap the call in \texttt{document.querySelectorAll} with \texttt{Array.from}
-because the former's result isn't actually a JavaScript array:
-For reasons that probably made sense to someone, somewhere,
+We run the result of \texttt{document.querySelectorAll}
+through the function \texttt{Array.from}
+because the former's result isn't a JavaScript array:
+for reasons that probably made sense to someone, somewhere,
 it's a thing called a \texttt{NodeList}
 that lacks most of \texttt{Array}'s useful methods.
+
+\begin{aside}{Static Methods}
+  \texttt{Array.from} is a \gref{g:static-method}{static method}:
+  it belongs to the class as a whole,
+  not to objects of that class.
+  Static methods are primarily used to associate utility functions with classes
+  as in the example below.
+
+\begin{minted}{js}
+class Vec2D {
+  constructor(x, y) {
+    this.x = x
+    this.y = y
+  }
+
+  toString() {
+    return `(${this.x},${this.y})`
+  }
+
+  static dist(left, right) {
+    return Math.sqrt((left.x - right.x) ** 2 +
+                     (left.y - right.y) ** 2)
+  }
+}
+
+const a = new Vec2D(0.0, 1.0)
+const b = new Vec2D(1.0, 0.0)
+console.log(`distance between ${a} and ${b} is ${Vec2D.dist(a, b)}`)
+\end{minted}
+
+\begin{minted}{text}
+distance between (0,1) and (1,0) is 1.4142135623730951
+\end{minted}
+\end{aside}
 
 We then have three lines that do most of the function's work.
 The first tells us that \texttt{items} is going to be assigned
