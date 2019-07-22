@@ -109,10 +109,12 @@ the type of undefined is undefined
 the type of null is object
 \end{minted}
 
-As the example above shows,
-we use \texttt{let} to define a \gref{g:variable}{variable},
-put values separated by commas inside \texttt{{[}{]}} to create an \gref{g:array}{array},
-and use \texttt{for...of} to loop over the values in that array.
+As the example above shows, we create an array of values to loop through called \texttt{otherValues}. 
+We initiate our loop with the word \texttt{for}. 
+Within the parentheses, \texttt{let} creates a variable called \texttt{value} to iterate over each element within \texttt{otherValues}, 
+and \texttt{value} is the changing array value of \texttt{otherValues}. 
+Finally, within the curly braces we perform our desired operation on every value. 
+
 Note that we use \texttt{let} rather than the older \texttt{var} and \texttt{of} and not \texttt{in}:
 the latter returns the indexes of the collection (e.g., 0, 1, 2),
 which has some traps for the unwary (\appref{s:legacy-iteration}).
@@ -136,20 +138,45 @@ while \texttt{null} means ``has a value, which is nothing''.
 \section{Control Flow}\label{s:basics-control-flow}
 
 We have already seen \texttt{for} loops and flat arrays,
-so let's have a look at conditionals and nested arrays.
-(Here and elsewhere we will wrap lines to make them fit cleanly on the page
-in the printed version.)
+so let's have a look at nested arrays and conditionals.
+We start with arrays that contain other arrays,
+which are usually processed by \gref{g:nested-loop}{nested loops}:
 
 \begin{minted}{js}
-const values = [[0, 1], ['', 'text'], [undefined, null],
-                [[], [2, 3]]]
-for (let pair of values) {
-  for (let element of pair) {
-    if (element) {
-      console.log(element, 'of type', typeof element, 'is truthy')
-    } else {
-      console.log(element, 'of type', typeof element, 'is falsy')
-    }
+const nested = [['northwest', 'northeast'],
+                ['southwest', 'southeast']]
+for (let outer of nested) {
+  for (let inner of outer) {
+    console.log(inner)
+  }
+}
+\end{minted}
+
+\begin{minted}{text}
+northwest
+northeast
+southwest
+southeast
+\end{minted}
+
+The \gref{g:inner-loop}{inner loop} runs a complete cycle of iterations
+for each iteration of the \gref{g:outer-loop}{outer loop}.
+Each value assigned to the variable \texttt{outer} is a pair,
+so each value assigned to \texttt{inner} is one of the two strings from that pair.
+
+A JavaScript program can also make choices:
+it executes the \gref{g:body-statement}{body} of an \texttt{if} statement
+if and only if the \gref{g:condition}{condition} is true.
+Each \texttt{if} can have an \texttt{else},
+whose body is only executed if the condition \emph{isn't} true:
+
+\begin{minted}{js}
+const values = [0, 1, '', 'text', undefined, null, [], [2, 3]]
+for (let element of values) {
+  if (element) {
+    console.log(element, 'of type', typeof element, 'is truthy')
+  } else {
+    console.log(element, 'of type', typeof element, 'is falsy')
   }
 }
 \end{minted}
@@ -167,13 +194,10 @@ null of type object is falsy
 
 This example shows that arrays are \gref{g:heterogeneous}{heterogeneous},
 i.e.,
-that they can contain values of many different types
-(including other arrays).
-It also shows that \texttt{if} and \texttt{else} work as they do in other languages:
-it's the truthiness of things that may be different.
-For numbers,
-0 is \gref{g:falsy}{falsy}, all others are \gref{g:truthy}{truthy};
-Similarly,
+that they can contain values of many different types.
+It also shows that JavaScript has some rather odd ideas about the nature of truth.
+0 is \gref{g:falsy}{falsy}, while all other numbers are \gref{g:truthy}{truthy};
+similarly,
 the empty string is falsy and all other strings are truthy.
 \texttt{undefined} and \texttt{null} are both falsy,
 as most programmers would expect.
@@ -220,6 +244,12 @@ for (let color of ['red', 'green', 'blue']) {
 color is red and capitalized is RED
 color is green and capitalized is GREEN
 color is blue and capitalized is BLUE
+\end{minted}
+
+This allows us to succinctly add variables to a string instead of:
+
+\begin{minted}{js}
+const message = "color is" + color + "and capitalized is " + color.toUpperCase()
 \end{minted}
 
 \section{Objects}\label{s:basics-objects}
@@ -562,11 +592,9 @@ console.log(creature)
 { genus: 'Callithrix', species: 'Jacchus' }
 \end{minted}
 
-\exercise{What Does This Code Do?}
+\exercise{Destructuring Assignment}
 
-Explain what is happening in the assignment statement in this program.
-Use this technique to rewrite \texttt{src/basics/import.js}
-so that \texttt{clip} can be called directly as \texttt{clip(...)} rather than \texttt{utilities.clip(...)}.
+When this short program runs:
 
 \begin{minted}{js}
 const creature = {
@@ -577,6 +605,45 @@ const {genus, species} = creature
 console.log(`genus is ${genus}`)
 console.log(`species is ${species}`)
 \end{minted}
+
+\noindent
+it produces the output:
+
+\begin{minted}{text}
+genus is Callithrix
+species is Jacchus
+\end{minted}
+
+\noindent
+but when this program runs:
+
+\begin{minted}{js}
+const creature = {
+  first: 'Callithrix',
+  second: 'Jacchus'
+}
+const {genus, species} = creature
+console.log(`genus is ${genus}`)
+console.log(`species is ${species}`)
+\end{minted}
+
+\noindent
+it produces:
+
+\begin{minted}{text}
+genus is undefined
+species is undefined
+\end{minted}
+
+\begin{enumerate}
+\item
+  What is the difference between these two programs?
+\item
+  How does \gref{g:destructuring}{destructuring assignment} work in general?
+\item
+  How can we use this technique to rewrite the \texttt{require} statement in \texttt{src/basics/import.js}
+  so that \texttt{clip} can be called directly as \texttt{clip(...)} rather than as \texttt{utilities.clip(...)}?
+\end{enumerate}
 
 \exercise{Return To Me, For My Heart Wants You Only}\begin{minted}{js}
   
