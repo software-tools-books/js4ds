@@ -138,20 +138,45 @@ while \texttt{null} means ``has a value, which is nothing''.
 \section{Control Flow}\label{s:basics-control-flow}
 
 We have already seen \texttt{for} loops and flat arrays,
-so let's have a look at conditionals and nested arrays.
-(Here and elsewhere we will wrap lines to make them fit cleanly on the page
-in the printed version.)
+so let's have a look at nested arrays and conditionals.
+We start with arrays that contain other arrays,
+which are usually processed by \gref{g:nested-loop}{nested loops}:
 
 \begin{minted}{js}
-const values = [[0, 1], ['', 'text'], [undefined, null],
-                [[], [2, 3]]]
-for (let pair of values) {
-  for (let element of pair) {
-    if (element) {
-      console.log(element, 'of type', typeof element, 'is truthy')
-    } else {
-      console.log(element, 'of type', typeof element, 'is falsy')
-    }
+const nested = [['northwest', 'northeast'],
+                ['southwest', 'southeast']]
+for (let outer of nested) {
+  for (let inner of outer) {
+    console.log(inner)
+  }
+}
+\end{minted}
+
+\begin{minted}{text}
+northwest
+northeast
+southwest
+southeast
+\end{minted}
+
+The \gref{g:inner-loop}{inner loop} runs a complete cycle of iterations
+for each iteration of the \gref{g:outer-loop}{outer loop}.
+Each value assigned to the variable \texttt{outer} is a pair,
+so each value assigned to \texttt{inner} is one of the two strings from that pair.
+
+A JavaScript program can also make choices:
+it executes the \gref{g:body-statement}{body} of an \texttt{if} statement
+if and only if the \gref{g:condition}{condition} is true.
+Each \texttt{if} can have an \texttt{else},
+whose body is only executed if the condition \emph{isn't} true:
+
+\begin{minted}{js}
+const values = [0, 1, '', 'text', undefined, null, [], [2, 3]]
+for (let element of values) {
+  if (element) {
+    console.log(element, 'of type', typeof element, 'is truthy')
+  } else {
+    console.log(element, 'of type', typeof element, 'is falsy')
   }
 }
 \end{minted}
@@ -169,13 +194,10 @@ null of type object is falsy
 
 This example shows that arrays are \gref{g:heterogeneous}{heterogeneous},
 i.e.,
-that they can contain values of many different types
-(including other arrays).
-It also shows that \texttt{if} and \texttt{else} work as they do in other languages:
-it's the truthiness of things that may be different.
-For numbers,
-0 is \gref{g:falsy}{falsy}, all others are \gref{g:truthy}{truthy};
-Similarly,
+that they can contain values of many different types.
+It also shows that JavaScript has some rather odd ideas about the nature of truth.
+0 is \gref{g:falsy}{falsy}, while all other numbers are \gref{g:truthy}{truthy};
+similarly,
 the empty string is falsy and all other strings are truthy.
 \texttt{undefined} and \texttt{null} are both falsy,
 as most programmers would expect.
