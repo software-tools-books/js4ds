@@ -39,8 +39,13 @@ a named property attached to an HTML \grefcross{g:element}{element}.
 \gitem{g:backward-compatible}{backward-compatible}
 able to work consistently with older systems.
 
-\gitem{g:http-body}{body}
+\gitem{g:body-http}{body (of an HTTP message)}
 any optional data sent after the message's headers.
+
+\gitem{g:body-statement}{body (of a statement)}
+The statements in a program that are nested within or controlled by another statement,
+such as those making up a function or those that are only executed
+if the \grefcross{g:condition}{condition} of an \texttt{if} is true.
 
 \gitem{g:bundler}{bundler}
 a tool that combines JavaScript files, web pages, images, and other assets
@@ -103,6 +108,10 @@ a set of variables defined in the same \grefcross{g:scope}{scope} whose existenc
 been preserved after that scope has ended. Closures are one of the trickiest
 ideas in programming.
 
+\gitem{g:condition}{condition}
+The logical test that controls whether or not the \grefcross{g:body-statement}
+of an \texttt{if} statement executes or not.
+
 \gitem{g:csv}{Comma-Separated Values}
 a text format for tabular data in which each record is one row and fields are
 separated by commas. There are many minor variations, particularly around
@@ -121,6 +130,7 @@ recently-used data such as web pages so that they can be served more quickly.
 a variable whose value cannot be changed. Note that the value itself might be
 changed: for example, after the statement \texttt{const\ v\ =\ {[}'a',\ 'b'{]}}, the name \texttt{v}
 will always refer to the same array, but the array's contents can be changed.
+See also \grefcross{g:variable}{variable}.
 
 \gitem{g:cors}{Cross-Origin Resource Sharing}
 a way to control requests made for data and other resources that aren't served
@@ -300,6 +310,10 @@ In-memory databases are often used for testing.
 to acquire properties and methods from a parent class. See also
 \grefcross{g:extend}{extend}.
 
+\gitem{g:inner-loop}{inner loop}
+A loop contained in the \grefcross{g:body-statement}{body} of another loop.
+See also \grefcross{g:nested-loop}{nested loop}.
+
 \gitem{g:internal-style-sheet}{internal style sheet}
 a set of \grefcross{g:css}{CSS} definitions placed inside a web page rather than in an
 external file.
@@ -375,6 +389,10 @@ the ambiguity that arises when two or more things in a program that have the
 same name are active at the same time. The \grefcross{g:call-stack}{call stack} was
 invented in part to address this problem.
 
+\gitem{g:nested-loop}{nested loop}
+A loop that is contained in another loop. The \grefcross{g:inner-loop}{inner loop}
+can run many times for each iteration of the \grefcross{g:outer-loop}{outer loop}.
+
 \gitem{g:node-js}{Node}
 an open source implementation of JavaScript for use outside the browser.
 
@@ -397,6 +415,10 @@ they sought.
 \gitem{g:observer-observable}{observer-observable}
 a widely-used programming pattern in which some \grefcross{g:object}{objects} are
 notified and take action when other objects change state or take action.
+
+\gitem{g:outer-loop}{outer loop}
+A loop that contains another loop.
+See also \grefcross{g:nested-loop}{nested loop}.
 
 \gitem{g:override-method}{override}
 to replace a definition of a {[}method{]} in a \grefcross{g:parent-class}{parent-class}
