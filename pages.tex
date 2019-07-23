@@ -143,7 +143,10 @@ and add it to the in-memory structure that represents the page.
 \ldots{}at which point some magic happens behind the scenes.
 The browser stores the elements and text of the current page in a data structure called
 the Document Object Model,
-or more commonly, the \gref{g:dom}{DOM}.
+or more commonly the \gref{g:dom}{DOM}.
+The DOM is organized as a tree:
+each element or piece of text is a \gref{g:node}{node} in the tree,
+and a node's children are the elements contained within it (\figref{f:pages-dom}).
 Any time the browser detects a change to the DOM,
 it automatically refreshes just as much of its display as it needs to.
 We can insert or remove text,
@@ -152,6 +155,8 @@ or copy in entire sub-pages:
 each time,
 the browser will do only the work required to reflect that change
 as quickly as possible.
+
+\figpdf{figures/FIXME.png}{The Document Object Model}{f:pages-dom} % FIXME draw this picture
 
 \section{Creating a Table of Contents}\label{s:pages-toc}
 
@@ -513,7 +518,7 @@ and turn them into this:
 \end{minted}
 
 The typed-in form is about as little typing as we can get away with;
-the displayed form then wraps the citations in \texttt{{[}...{]}}
+the displayed form then wraps the citations in \texttt{[...]}
 and turns each individual citation into a link to our bibliography.
 For now,
 we'll assume that the bibliography can be found at \texttt{../bib/},
