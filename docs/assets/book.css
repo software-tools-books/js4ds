@@ -109,6 +109,9 @@ dt::before {
     display: block;
     height: 0.25em;
 }
+dt::after {
+    content: ":";
+}
 dd::before {
     content: "";
     display: block;
