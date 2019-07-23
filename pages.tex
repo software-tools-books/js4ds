@@ -251,8 +251,11 @@ that lacks most of \texttt{Array}'s useful methods.
   \texttt{Array.from} is a \gref{g:static-method}{static method}:
   it belongs to the class as a whole,
   not to objects of that class.
-  Static methods are primarily used to associate utility functions with classes
-  as in the example below.
+  Static methods are primarily used to associate utility functions with classes,
+  like \texttt{dist} in the example below.
+  Unlike calls to \gref{g:instance-method}{instance methods} like \texttt{magnitude},
+  static methods are called using \texttt{class.method()}
+  rather than \texttt{some\_object.method()}.
 
 \begin{minted}{js}
 class Vec2D {
@@ -265,6 +268,10 @@ class Vec2D {
     return `(${this.x},${this.y})`
   }
 
+  magnitude() {
+    return Math.sqrt(this.x ** 2 + this.y ** 2)
+  }
+
   static dist(left, right) {
     return Math.sqrt((left.x - right.x) ** 2 +
                      (left.y - right.y) ** 2)
@@ -272,11 +279,14 @@ class Vec2D {
 }
 
 const a = new Vec2D(0.0, 1.0)
+console.log(`magnitude of ${a} is ${a.magnitude()}`)
+
 const b = new Vec2D(1.0, 0.0)
 console.log(`distance between ${a} and ${b} is ${Vec2D.dist(a, b)}`)
 \end{minted}
 
 \begin{minted}{text}
+magnitude of (0,1) is 1
 distance between (0,1) and (1,0) is 1.4142135623730951
 \end{minted}
 \end{aside}
