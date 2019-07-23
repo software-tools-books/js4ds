@@ -21,7 +21,7 @@ see \grefcross{g:parameter}{parameter}.
 \gitem{g:array}{array}
 A collection of values stored in a particular order and indexed numerically.
 Arrays are written as comma-separated values in square brackets, such as
-\texttt{{[}'a',\ 'b',\ 'c'{]}}. The term \grefcross{g:list}{list} is often used synonymously.
+\texttt{['a',\ 'b',\ 'c']}. The term \grefcross{g:list}{list} is often used synonymously.
 
 \gitem{g:ascii}{ASCII}
 A widely-used set of numeric codes for representing characters from the Latin
@@ -40,13 +40,8 @@ A named property attached to an HTML \grefcross{g:element}{element}.
 \gitem{g:backward-compatible}{backward-compatible}
 Able to work consistently with older systems.
 
-<<<<<<< HEAD
 \gitem{g:body-http}{body (of an HTTP message)}
 any optional data sent after the message's headers.
-=======
-\gitem{g:http-body}{body}
-Any optional data sent after the message's headers.
->>>>>>> 14a7e6a02ff92ef32eba04ffb685f203969687f3
 
 \gitem{g:body-statement}{body (of a statement)}
 The statements in a program that are nested within or controlled by another statement,
@@ -133,8 +128,8 @@ A geographically distributed set of servers that store commonly-used or
 recently-used data such as web pages so that they can be served more quickly.
 
 \gitem{g:constant}{constant}
-A variable whose value cannot be changed. Note that the value itself might be
-changed: for example, after the statement \texttt{const\ v\ =\ {[}'a',\ 'b'{]}}, the name \texttt{v}
+a variable whose value cannot be changed. Note that the value itself might be
+changed: for example, after the statement \texttt{const\ v\ =\ ['a',\ 'b']}, the name \texttt{v}
 will always refer to the same array, but the array's contents can be changed.
 See also \grefcross{g:variable}{variable}.
 
@@ -150,8 +145,7 @@ computer figures out how to deliver it.
 The act of making software available for others to use.
 
 \gitem{g:destructuring}{destructuring}
-A form of assignment that unpacks a data structure in one step,
-such as \texttt{{[}a,\ b{]}\ =\ {[}1,\ 2{]}} or \texttt{\{left,\ right\}\ =\ \{left:\ 1,\ right:\ 2\}}.
+a form of assignment that unpacks a data structure in one step, such as \texttt{[a,\ b]\ =\ [1,\ 2]} or \texttt{\{left,\ right\}\ =\ \{left:\ 1,\ right:\ 2\}}.
 
 \gitem{g:dns}{Domain Name System}
 A decentralized naming system for computers that translates logical names such
@@ -429,7 +423,7 @@ A loop that contains another loop.
 See also \grefcross{g:nested-loop}{nested loop}.
 
 \gitem{g:override-method}{override}
-To replace a definition of a {[}method{]} in a \grefcross{g:parent-class}{parent-class}
+to replace a definition of a \grefcross{g:method}{method} in a \grefcross{g:parent-class}{parent-class}
 with a new definition in a \grefcross{g:child-class}{child class}.
 
 \gitem{g:query-parameter}{query parameter}
@@ -455,8 +449,8 @@ An existing \grefcross{g:class}{class} that has been \grefcross{g:extend}{extend
 new class. (The new class is called the \grefcross{g:child-class}{child class}.)
 
 \gitem{g:parent-node}{parent node}
-The \grefcross{g:node}{node} in a \grefcross{g:tree}{tree} that is above some other node. Every
-node has a parent except the {[}root{]}\{\#root-node\}.
+the \grefcross{g:node}{node} in a \grefcross{g:tree}{tree} that is above some other node. Every
+node has a parent except the \grefcross{g:root-node}{root node}.
 
 \gitem{g:parse}{parse}
 To translate the text of a program or web page into a data structure in memory

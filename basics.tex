@@ -109,15 +109,15 @@ the type of undefined is undefined
 the type of null is object
 \end{minted}
 
-As the example above shows, we create an array of values to loop through called \texttt{otherValues}. 
-We initiate our loop with the word \texttt{for}. 
-Within the parentheses, \texttt{let} creates a variable called \texttt{value} to iterate over each element within \texttt{otherValues}, 
-and \texttt{value} is the changing array value of \texttt{otherValues}. 
-Finally, within the curly braces we perform our desired operation on every value. 
+As the example above shows, we create an array of values to loop through called \texttt{otherValues}.
+We initiate our loop with the word \texttt{for}.
+Within the parentheses, \texttt{let} creates a variable called \texttt{value} to iterate over each element within \texttt{otherValues},
+and \texttt{value} is the changing array value of \texttt{otherValues}.
+Finally, within the curly braces we perform our desired operation on every value.
 
 Note that we use \texttt{let} rather than the older \texttt{var} and \texttt{of} and not \texttt{in}:
 the latter returns the indexes of the collection (e.g., 0, 1, 2),
-which has some traps for the unwary ((s:legacy-iteration){[}\#REF)).
+which has some traps for the unwary (\appref{s:legacy-iteration}).
 Note also that indexing starts from 0 rather than 1,
 and that indentation is optional and for readability purposes only.
 This may be different from the language that you're used to.
@@ -288,13 +288,13 @@ creature[species] is Jacchus
 \end{minted}
 
 The type of an object is always \texttt{object}.
-We can get the value associated with a key using \texttt{object{[}key{]}},
+We can get the value associated with a key using \texttt{object[key]},
 but if the key has a simple name,
 we can use \texttt{object.key} instead.
 Note that the square bracket form can be used with variables for keys,
 but the dotted notation cannot:
 i.e.,
-\texttt{creature.genus} is the same as \texttt{creature{[}'genus'{]}},
+\texttt{creature.genus} is the same as \texttt{creature['genus']},
 but the assignment \texttt{g\ =\ 'genus'} followed by \texttt{creature.g} does not work.
 
 Because string keys are so common,
@@ -310,7 +310,7 @@ const creature = {
 }
 \end{minted}
 
-\texttt{{[}object\ Object{]}} is not particularly useful output when we want to see what an object contains.
+\texttt{[object\ Object]} is not particularly useful output when we want to see what an object contains.
 To get a more helpful string representation,
 use \texttt{JSON.stringify(object)}:
 
@@ -646,7 +646,7 @@ species is undefined
 \end{enumerate}
 
 \exercise{Return To Me, For My Heart Wants You Only}\begin{minted}{js}
-  
+
 const verbose_sum = (first, second) => {
   console.log(`Going to add ${first} to ${second}`)
   let total = first + second
