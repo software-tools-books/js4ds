@@ -1,0 +1,107 @@
+\chapter{Regular Expressions}\label{s:regexp}
+
+A \gref{g:regular-expression}{regular expression} is a pattern for matching text.
+Most languages implement them in libraries,
+but they are built into JavaScript,
+and are written using \texttt{/} before and after a string rather than single or double quotes.
+
+\begin{itemize}
+
+\item
+  Letters and digits match themselves,
+  so the regular expression \texttt{/enjoy/} matches the word ``enjoy'' wherever it appears in a string.
+
+\item
+  A dot matches any character,
+  so \texttt{/../} matches any two consecutives characters
+  and \texttt{/en..y/} matches ``enjoy'', ``gently'', and ``brightens your day''.
+
+\item
+  The asterisk \texttt{*} means ``match zero or more occurrences of what comes immediately before'',
+  so \texttt{en*} matches ``ten'' and ``penny''.
+  It also matches ``feet'' (which has an ``e'' followed by zero occurrences of ``n'').
+
+\item
+  The plus sign \texttt{+} means ``match \emph{one} or more occurrences of what comes immediately before'',
+  so \texttt{en+} still matches ``ten'' and ``penny'' but doesn't match ``feet''
+  (because there isn't an ``n'').
+
+\item
+  Parentheses create groupes just as they do in mathematics,
+  so \texttt{(an)+} matches ``banana'' but not ``annual''.
+
+\item
+  The pipe character \texttt{|} means ``either/or'',
+  so \texttt{b|c} matches either a single ``b'' or a single ``c'',
+  and \texttt{(either)|(or)} matches either ``either'' or ``or''.
+  (The parentheses are necessary because \texttt{either|or} matches ``eitherr'' or ``eitheor''.)
+
+\item
+  The shorthand notation \texttt{[a-z]} means ``all the characters in a range'',
+  and is easier to write and read than \texttt{a|b|c|{\ldots}|y|z}.
+  
+\item
+  If we want to put a special character like \texttt{.}, \texttt{*}, \texttt{+}, or \texttt{|}
+  in a regular expression,
+  we have to \gref{g:escape-sequence}{escape} it with a backslash \texttt{\textbackslash}.
+  This means that \texttt{/stop{\textbackslash}./} only matches ``stop.'',
+  while \texttt{stop.} matches ``stops'' as well.
+  
+\end{itemize}
+
+Regular expressions can match an intimidating number of other patterns,
+but are fairly easy to use in programs.
+Like strings and arrays,
+they are objects with methods:
+if \texttt{pattern} is a regular expression,
+then \texttt{string.test(pattern)} returns \texttt{true} if the pattern matches the string
+and \texttt{false} if it does not,
+while \texttt{string.match(pattern)} returns an array of matching substrings.
+If we add the modifier ``g'' after the closing slash of the regular expression to make it ``global'',
+then \texttt{string.match(pattern)} returns \emph{all} of the matching substrings:
+
+\begin{minted}{js}
+Tests = [
+  'Jamie: james@geneinfo.org',
+  'Zara: zetsure@bio123.edu',
+  'Hong and Andrzej: hchui@euphoric.edu and aszego@euphoric.edu'
+]
+
+const pattern = /[a-z]+@[a-z]+\.[a-z]+/g
+
+console.log(`pattern is ${pattern}`)
+for (let test of Tests) {
+  console.log(`\ntested against ${test}`)
+  const matches = test.match(pattern)
+  if (matches === null) {
+    console.log('-no matches-')
+  }
+  else {
+    for (let m of matches) {
+      console.log(m)
+    }
+  }
+}
+\end{minted}
+
+\begin{minted}{text}
+pattern is /[a-z]+@[a-z]+\.[a-z]+/g
+
+tested against Jamie: james@geneinfo.org
+james@geneinfo.org
+
+tested against Zara: zetsure@bio123.edu
+-no matches-
+
+tested against Hong and Andrzej: hchui@euphoric.edu and aszego@euphoric.edu
+hchui@euphoric.edu
+aszego@euphoric.edu
+\end{minted}
+
+As powerful as they are,
+there are things that \hreffoot{https://stackoverflow.com/questions/1732348/regex-match-open-tags-except-xhtml-self-contained-tags/1732454\#1732454}{regular expressions can't do}.
+When it comes to pulling information out of text,
+though,
+they are easier to use and more efficient than long chains of substring tests.
+They can also be used to replace substrings and to split strings into pieces:
+please see \hreffoot{https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Regular\_Expressions}{the documentation} for more information.
