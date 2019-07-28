@@ -118,7 +118,8 @@ const pipeline = (initial, first, second) => {
 
 Let's use this to combine
 a function that trims blanks off the starts and ends of strings
-and another function that replaces spaces with dots:
+and another function that uses a \gref{g:regular-expression}{regular expression} (\appref{s:regexp})
+to replace spaces with dots:
 
 \begin{minted}{js}
 const trim = (text) => { return text.trim() }
