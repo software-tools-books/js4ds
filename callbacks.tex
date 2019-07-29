@@ -230,7 +230,7 @@ upper: ONE,TWO,THREE
 \end{minted}
 
 Taking the first letter of a word is so simple that it's hardly worth giving the function a name,
-so let's define it on the fly:
+so let's move the definition into the call to \texttt{transform}:
 
 \begin{minted}{js}
 const first = transform(data, (x) => { return x[0] })
@@ -241,10 +241,12 @@ console.log(`first: ${first}`)
 first: o,t,t
 \end{minted}
 
-A function that is created this way is sometimes called an \gref{g:anonymous-function}{anonymous function},
-since its creator doesn't give it a name.
-When JavaScript programmers use the term ``callback function'',
-they usually mean a function defined and used like this.
+\noindent
+A function that is defined where it is used and isn't assigned a name
+is called an \gref{g:anonymous-function}{anonymous function}.
+Most callback functions in JavaScript are written this way:
+the function with the given parameters and body (in this case, \texttt{x} and \texttt{return x[0]})
+is passed directly to something else (in this case, \texttt{transform}) to be called.
 
 \section{Functional Programming}\label{s:callbacks-functional}
 
