@@ -167,12 +167,44 @@ const pipeline = (initial, operations) => {
 }
 \end{minted}
 
+\noindent
+Going through this line by line:
+
+\begin{itemize}
+\item
+  The function \texttt{pipeline} takes an initial input value and array of functions.
+  Each of those functions must take one value as an input and produce one value as output.
+\item
+  We initialize a variable called \texttt{current} to hold the current value.
+  We have to use \texttt{let} for this rather than \texttt{const}
+  because we want to update it after each step of the pipeline runs.
+\item
+  We then call each of the functions in the pipeline in turn,
+  passing in the current value and storing the result to be passed into the next function.
+\item
+  The final result is whatever came out of the last step in the pipeline.
+\end{itemize}
+
+We don't actually have to create a separate variable for the current value;
+since parameters are always variables rather than constants,
+we could just overwrite the parameter \texttt{initial} over and over again like this:
+
+\begin{minted}{js}
+const pipeline = (current, operations) => {
+  for (let op of operations) {
+    current = op(current)
+  }
+  return current
+}
+\end{minted}
+
 Let's add a function \texttt{double} to our suite of text manglers:
 
 \begin{minted}{js}
 const double = (text) => { return text + text }
 \end{minted}
 
+\noindent
 and then try it out:
 
 \begin{minted}{js}
@@ -184,6 +216,23 @@ console.log(`|${original}| -> |${final}|`)
 \begin{minted}{text}
 | some text | -> |some.text..some.text|
 \end{minted}
+
+\noindent
+The order of operations is:
+
+\begin{enumerate}
+\item
+  \texttt{current} is assigned \texttt{' some text '} (with spaces around each word).
+\item
+  It is then assigned \texttt{double(' some text ')}, or \texttt{' some text  some text '}.
+\item
+  That value is then passed to \texttt{trim},
+  so \texttt{'some text  some text'} (without leading or trailing spaces)
+  is assigned to \texttt{current}.
+\item
+  Finally, the current value is passed to \texttt{dot}
+  and the result \texttt{some.text..some.text.} is returned.
+\end{enumerate}
 
 \section{Anonymous Functions}\label{s:callbacks-anonymous}
 
