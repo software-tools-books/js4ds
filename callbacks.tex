@@ -309,17 +309,32 @@ For example,
 a true believer in functional programming would be saddened by this:
 
 \begin{minted}{js}
+// Create test array
+const test = [1,2,3]
+
 const impure = (values) => {
   for (let i in values) {
     values[i] += 1
   }
 }
+
+// Run function
+impure(test)
+
+// Original array has been modified
+console.log(`test: ${test}`)
+\end{minted}
+
+\begin{minted}{text}
+test: 2,3,4
 \end{minted}
 
 \noindent
 and would politely, even patiently, suggest that it be rewritten like this:
 
 \begin{minted}{js}
+const test = [1,2,3]
+
 const pure = (values) -> {
   result = []
   for (let v of values) {
@@ -327,6 +342,16 @@ const pure = (values) -> {
   }
   return result
 }
+
+// Rather than modify test, we create a new array for the results
+const newArray = pure(test)
+console.log(`newArray: ${newArray}$`)
+console.log(`test: ${test}`)
+\end{minted}
+
+\begin{minted}{text}
+newArray: 2,3,4
+test: 1,2,3
 \end{minted}
 
 JavaScript arrays provide several methods to support functional programming.
