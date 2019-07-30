@@ -352,7 +352,55 @@ Its definition consists of the keyword \texttt{function},
 its name,
 a parameterized list of \gref{g:parameter}{parameters} (which might be empty),
 and its body.
-We can use \texttt{return} to explicitly return a value at any time;
+
+The body of the function begins with a test of the thing,
+referred to inside the function as \texttt{values},
+provided as an argument to the function:
+if \texttt{values} has no length -
+i.e. it does not consist of multiple entries -
+the function returns \texttt{[undefined,undefined]}.
+(We will address the rationale behind this behaviour in the exercises.)
+
+\begin{minted}{js}
+  if (!values.length) {
+    return [undefined, undefined]
+  }
+\end{minted}
+
+If that initial check finds that \texttt{values} does have a length -
+i.e. \texttt{!values.length} returns \texttt{false} -
+the rest of the function is run.
+This involves first initialising two variables,
+\texttt{low} and \texttt{high},
+with their values set as equal to the first item in \texttt{values}.
+
+\begin{minted}{js}
+  let low = values[0]
+  let high = values[0]
+\end{minted}
+
+In the next stage of the function,
+all of the values are iterated over and \texttt{low} and \texttt{high} are
+assigned a new value,
+equal to that of the next item,
+if that value is lower than \texttt{low} or higher than \texttt{high} respectively.
+
+\begin{minted}{js}
+  for (let v of values) {
+    if (v < low) low = v
+    if (v > high) high = v
+  }
+\end{minted}
+
+Once all of the items in \texttt{values} have been iterated over,
+the values of \texttt{low} and \texttt{high} are the minimum and maximum of \texttt{values}.
+These are returned as a pair inside an array.
+
+\begin{minted}{js}
+  return [low, high]
+\end{minted}
+
+Note that we can use \texttt{return} to explicitly return a value at any time;
 if nothing is returned,
 the function's result is \texttt{undefined}.
 
@@ -552,6 +600,14 @@ square of 0 is 0
 Write a function called \texttt{isTruthy} that returns \texttt{true} for everything that JavaScript considers truthy,
 and \texttt{false} for everything it considers \texttt{falsy} \emph{except} empty arrays:
 \texttt{isTruthy} should return \texttt{false} for those.
+
+\exercise{The Shape of Things to Come}
+
+We wrote the example function, \texttt{limits},
+above to return \texttt{[undefined,undefined]} if a variable
+with no length is fed into it.
+What is the advantage of doing this as opposed to
+returning \texttt{undefined} only?
 
 \exercise{Combining Different Types}
 
