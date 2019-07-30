@@ -300,7 +300,7 @@ Looking at the \texttt{map} call,
 each heading becomes a list item (\texttt{li})
 containing a link (\texttt{a})
 whose \texttt{href} attribute is the ID of the heading
-and whose displayed content (the text between \texttt{{\textless}a...{\textgreater}{}} and \texttt{{\textless}/a{\textgreater}{}})
+and whose displayed content (the text between \texttt{\htmltag{a...}} and \texttt{\htmltag{/a}})
 is the text of the heading.
 The \texttt{href} attribute's value starts with \texttt{\#},
 which makes this a local link
@@ -641,7 +641,7 @@ But we're not done looking at this stage of our pipeline:
   so the value associated with \texttt{"text"} is an array.
   We then \texttt{map} over its elements to trim leading and trailing space from each.
 \item
-  If we wrote \texttt{link\ ={\textgreater}{}\ \{node:\ link,\ text:\ whatever\}},
+  If we wrote \texttt{link\ ={\textgreater}\ \{node:\ link,\ text:\ whatever\}},
   JavaScript would interpret the curly braces \texttt{\{...\}} as meaning,
   ``Here is the body of a function,''
   and then complain because what's in those curly braces clearly \emph{isn't} a function body.

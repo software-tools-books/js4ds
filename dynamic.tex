@@ -176,7 +176,7 @@ we add the attribute \texttt{type="text/babel"} to the \texttt{script} tag.
 
 Why bother?
 Because as the example above shows,
-it allows us to write \texttt{{\textless}h1{\textgreater}{}Hello\ JSX{\textless}/h1{\textgreater}{}} instead of calling a function.
+it allows us to write \texttt{\htmltag{h1}Hello\ JSX\htmltag{/h1}} instead of calling a function.
 More generally,
 JSX lets us put JavaScript inside our HTML (inside our JavaScript (inside our HTML)),
 so we can (for example) use \texttt{map} to turn a list of strings into an HTML list:
@@ -203,7 +203,7 @@ and \texttt{for} loops don't return anything.
 but \texttt{map} is cleaner.)
 And note: we must return exactly one node,
 because this is one function call.
-We will look in the exercises at why the curly braces immediately inside the \texttt{{\textless}ul{\textgreater}{}} element are necessary.
+We will look in the exercises at why the curly braces immediately inside the \texttt{\htmltag{ul}} element are necessary.
 
 Note also that when we run this,
 the browser console will warn us that each list element ought to have a unique \texttt{key} property,
@@ -475,7 +475,7 @@ Our list-building example includes this line of code:
         <ul>{allNames.map((name) => <li>{name}</li> )}</ul>,
 \end{minted}
 
-Why are the curly braces immediately inside the \texttt{{\textless}ul{\textgreater}{}} element necessary?
+Why are the curly braces immediately inside the \texttt{\htmltag{ul}} element necessary?
 What happens if you take them out?
 
 \exercise{Real Data}
@@ -509,7 +509,7 @@ What happens if your HTML page contains two \texttt{div} elements with \texttt{i
 \exercise{Creating a Component for Names}
 
 Create a new React component that renders a name,
-and modify the example to use it instead of always displaying names in \texttt{{\textless}li{\textgreater}{}} elements.
+and modify the example to use it instead of always displaying names in \texttt{\htmltag{li}} elements.
 
 \subsection*{Striping}
 Suppose we want to render every second list element in italics.
@@ -518,10 +518,9 @@ but once we start creating tables,
 we might want to highlight alternate rows in different background colors
 to make it easier to read.)
 Modify the application so that
-even-numbered list elements are \texttt{{\textless}li{\textgreater}{}\{name\}{\textless}/li{\textgreater}{}}
-and odd-numbered list elements are \texttt{{\textless}li{\textgreater}{}{\textless}em{\textgreater}{}\{name\}{\textless}/em{\textgreater}{}{\textless}/li{\textgreater}{}}.
-(You may want to use the fact that a \texttt{map} callback can have two parameters
-instead of one.)
+even-numbered list elements are \texttt{\htmltag{li}\{name\}\htmltag{/li}}
+and odd-numbered list elements are \texttt{\htmltag{li}\htmltag{em}\{name\}\htmltag{/em}\htmltag{/li}}.
+(Hint: use the fact that a \texttt{map} callback can have two parameters instead of one.)
 
 \section*{Key Points}
 

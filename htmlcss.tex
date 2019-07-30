@@ -11,17 +11,17 @@ we need to understand a little of both.
 An HTML \gref{g:document}{document} contains \gref{g:element}{elements} and text
 (and possibly other things that we will ignore for now).
 Elements are shown using \gref{g:tag}{tags}:
-an opening tag \texttt{{\textless}tagname{\textgreater}{}} shows where the element begins,
-and a corresponding closing tag \texttt{{\textless}/tagname{\textgreater}{}} (with a leading slash) shows where it ends.
-If there's nothing between the two, we can write \texttt{{\textless}tagname/{\textgreater}{}} (with a trailing slash).
+an opening tag \texttt{\htmltag{tagname}} shows where the element begins,
+and a corresponding closing tag \texttt{\htmltag{/tagname}} (with a leading slash) shows where it ends.
+If there's nothing between the two, we can write \texttt{\htmltag{tagname/}} (with a trailing slash).
 
 A document's elements must form a \gref{g:tree}{tree},
 i.e.,
 they must be strictly nested.
 This means that if Y starts inside X,
 Y must end before X ends,
-so \texttt{{\textless}X{\textgreater}{}...{\textless}Y{\textgreater}{}...{\textless}/Y{\textgreater}{}{\textless}/X{\textgreater}{}} is legal,
-but \texttt{{\textless}X{\textgreater}{}...{\textless}Y{\textgreater}{}...{\textless}/X{\textgreater}{}{\textless}/Y{\textgreater}{}} is not.
+so \texttt{\htmltag{X}{\ldots}\htmltag{Y}{\ldots}\htmltag{/Y}\htmltag{/X}} is legal,
+but \texttt{\htmltag{X}{\ldots}\htmltag{Y}{\ldots}\htmltag{/X}\htmltag{/Y}} is not.
 Finally,
 every document should have a single \gref{g:root-element}{root element} that encloses everything else,
 although browsers aren't strict about enforcing this.
@@ -33,7 +33,7 @@ since most people don't obey them anyway.
 
 The text in an HTML page is normal printable text.
 However,
-since \texttt{{\textless}} and \texttt{{\textgreater}{}} are used to show where tags start and end,
+since \texttt{{\textless}} and \texttt{{\textgreater}} are used to show where tags start and end,
 we must use \gref{g:escape-sequence}{escape sequences} to represent them,
 just as we use \texttt{\textbackslash{}"} to represented a literal double-quote character
 inside a double-quoted string in JavaScript.
@@ -43,16 +43,15 @@ i.e.,
 an ampersand, the name of the character, and a semi-colon.
 A few common escape sequences are shown in \tblref{t:htmlcss-escapes}.
 
-
 \begin{table}
 \begin{longtable}{lll}
-Name & Escape Sequence & Character\tabularnewline
-Less than & \texttt{\&lt;} & {\textless}\tabularnewline
-Greater than & \texttt{\&gt;} & {\textgreater}{}\tabularnewline
-Ampersand & \texttt{\&amp;} & \&\tabularnewline
-Copyright & \texttt{\&copy;} & ©\tabularnewline
-Plus/minus & \texttt{\&plusmn;} & ±\tabularnewline
-Micro & \texttt{\&micro;} & µ\tabularnewline
+Name & Escape Sequence & Character \\
+Less than & \texttt{\&lt;} & {\textless} \\
+Greater than & \texttt{\&gt;} & {\textgreater} \\
+Ampersand & \texttt{\&amp;} & \& \\
+Copyright & \texttt{\&copy;} & © \\
+Plus/minus & \texttt{\&plusmn;} & ± \\
+Micro & \texttt{\&micro;} & µ \\
 \end{longtable}
 \caption{HTML Escapes}
 \label{t:htmlcss-escapes}
@@ -83,7 +82,7 @@ but laying them out on separate lines
 and indenting to show nesting
 helps human readers.
 Well-written pages also use comments, just like code:
-these start with \texttt{{\textless}!-\/-} and end with \texttt{-\/-{\textgreater}{}}.
+these start with \texttt{{\textless}!-\/-} and end with \texttt{-\/-{\textgreater}}.
 Unfortunately,
 comments cannot be nested,
 i.e.,
@@ -166,7 +165,7 @@ we can define styles based on the \texttt{class} attributes of elements.
 
 An attribute's name may appear at most once in any element,
 just like a key can only appear once in any JavaScript object,
-so \texttt{{\textless}p\ align="left"\ align="right"{\textgreater}{}...{\textless}/p{\textgreater}{}} is illegal.
+so \texttt{{\textless}p\ align="left"\ align="right"{\textgreater}{\ldots}\htmltag{/p}} is illegal.
 If we want to give an attribute multiple values---for example,
 if we want an element to have several classes---we put all the values in one string.
 Unfortunately,
@@ -291,10 +290,10 @@ or \texttt{th} (for ``table heading'').
 \end{minted}
 
 \begin{longtable}{ll}
-Alkali & Noble Gas\tabularnewline
-Hydrogen & Helium\tabularnewline
-Lithium & Neon\tabularnewline
-Sodium & Argon\tabularnewline
+Alkali & Noble Gas \\
+Hydrogen & Helium \\
+Lithium & Neon \\
+Sodium & Argon \\
 \end{longtable}
 
 Do \emph{not} use tables to create multi-column layouts:
@@ -309,7 +308,7 @@ The text inside the element is displayed and (usually) highlighted for clicking.
 Its \texttt{href} attribute specifies what the link is pointing at;
 both local filenames and URLs are supported.
 Oh,
-and we can use \texttt{{\textless}br/{\textgreater}{}} to force a line break in text
+and we can use \texttt{\htmltag{br/}} to force a line break in text
 (with a trailing slash inside the tag, since the \texttt{br} element doesn't contain any content):
 
 \begin{minted}{html}
@@ -364,7 +363,7 @@ Two things are worth noting here:
   Since \texttt{img} elements don't contain any text,
   they are often written with the trailing-slash notation.
   However,
-  they are also often written improperly as \texttt{{\textless}img\ src="..."{\textgreater}{}} without any slashes at all.
+  they are also often written improperly as \texttt{{\textless}img\ src="..."{\textgreater}} without any slashes at all.
   Browsers will understand this,
   but some software packages will complain.
 \item
@@ -460,7 +459,7 @@ in which case every element with that class has that style.
 
 As suggested by the earlier discussion of separators,
 elements may have multiple values for class,
-as in \texttt{{\textless}span\ class="keyword\ highlight"{\textgreater}{}...{\textless}/span{\textgreater}{}}.
+as in \texttt{{\textless}span\ class="keyword\ highlight"{\textgreater}{\ldots}\htmltag{/span}}.
 (The \texttt{span} element simply marks a region of text,
 but has no effect unless it's styled.)
 
@@ -513,12 +512,12 @@ then we can style those spans like this:
   We can also link directly to an element within a page using \texttt{\#name}
   inside the \texttt{href} attribute of a link.
   For example,
-  \texttt{{\textless}a\ href="selectors.html\#major"{\textgreater}{}some\ text{\textless}/a{\textgreater}{}}
+  \texttt{{\textless}a\ href="selectors.html\#major"{\textgreater}some\ text\htmltag{/a}}
   refers to the \texttt{\#major} element in \texttt{selectors.html},
-  while \texttt{{\textless}a\ href="selectors.html\#minor"{\textgreater}{}some\ text{\textless}/a{\textgreater}{}}
+  while \texttt{{\textless}a\ href="selectors.html\#minor"{\textgreater}some\ text\htmltag{/a}}
   refers to the \texttt{\#minor} element.
   This is particularly useful \emph{within} pages:
-  \texttt{{\textless}a\ href="\#major"{\textgreater}{}jump{\textless}/a{\textgreater}{}}
+  \texttt{{\textless}a\ href="\#major"{\textgreater}jump\htmltag{/a}}
   takes us straight to the \texttt{\#major} element within this page.
   Internal links like this are often used for cross-referencing and to create a table of contents.
 \end{aside}
@@ -627,7 +626,7 @@ like this:
 \item
   What happens if you don't close a \texttt{ul} or \texttt{ol} list?
 \item
-  Is that behavior consistent with what happens when you omit \texttt{{\textless}/p{\textgreater}{}} or \texttt{{\textless}/li{\textgreater}{}}?
+  Is that behavior consistent with what happens when you omit \texttt{\htmltag{/p}} or \texttt{\htmltag{/li}}?
 \end{enumerate}
 
 \exercise{Mix and Match}
