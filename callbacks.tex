@@ -270,11 +270,11 @@ const impure = (values) => {
 impure(test)
 
 // Original array has been modified
-console.log(`test = ${test}`)
+console.log(`test: ${test}`)
 \end{minted}
 
 \begin{minted}{text}
-test = 2,3,4
+test: 2,3,4
 \end{minted}
 
 \noindent
@@ -293,13 +293,13 @@ const pure = (values) -> {
 
 // Rather than modify test, we create a new array for the results
 const newArray = pure(test)
-console.log(`newArray = ${newArray}$`)
-console.log(`test = ${test}`)
+console.log(`newArray: ${newArray}$`)
+console.log(`test: ${test}`)
 \end{minted}
 
 \begin{minted}{text}
-newArray = 2,3,4
-test = 1,2,3
+newArray: 2,3,4
+test: 1,2,3
 \end{minted}
 
 JavaScript arrays provide several methods to support functional programming.
