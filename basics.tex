@@ -47,10 +47,15 @@ there is no separate type for integers:
 it stores all numbers as 64-bit floating-point values,
 which is accurate up to about 15 decimal digits.
 We can check this using \texttt{typeof},
-which is an operator, \emph{not} a function,
-and which returns a string.
-We can also use \texttt{const} to define a \gref{g:constant}{constant},
-which gives a name to a value:
+which returns a string.
+(Note: \texttt{typeof} is an operator,
+\emph{not} a function:
+we apply it to something by typing a space followed by
+the name of the thing we'd like to check the type of,
+e.g. \texttt{typeof dress}, as opposed to \texttt{typeof(dress)}.)
+We use it alongside \texttt{const} below,
+which itself is helpful when we want to give a name to a
+\gref{g:constant}{constant} value:
 
 \begin{minted}{js}
 const aNumber = 123.45
