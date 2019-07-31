@@ -473,12 +473,13 @@ which would find nodes with the ID \texttt{sorted}.)
 This array will then have all the \texttt{ul} or \texttt{ol} lists that the function is to sort.
 
 We process each list separately with \texttt{lists.forEach}.
-The callback function inside \texttt{forEach} creates an array containing the child nodes of the main list element,
-then filters that list to remove any top-level text nodes.
+The callback function inside \texttt{forEach}
+uses \texttt{Array.from} to create an array containing the child nodes of the main list element,
+then filters that list to remove any that are text nodes.
 We need the \texttt{Array.from} call because (once again) the DOM doesn't use a JavaScript array to store children,
 but a structure of its own devising that lacks the methods we want to call.
-The exercises will explore why we remove the top-level text nodes with
-\texttt{c.nodeName\ !==\ '\#text'}.
+We remove the text nodes because they represent the \gref{g:whitespace}{whitespace} between list elements,
+such as newline characters after a closing \texttt{{\textless}/li{\textgreater}} and before the next opening \texttt{{\textless}li{\textgreater}}.
 
 \begin{aside}{Identifying Text Nodes}
   We could check \texttt{c.nodeType} instead of \texttt{c.nodeName} to spot text nodes,
@@ -794,23 +795,12 @@ to remind us just how quickly life is passing by.
 \begin{enumerate}
 \item
   Write a function called \texttt{countWords} that finds all the text nodes in a page,
-  splits them on white space,
+  splits them on whitespace,
   and returns the total number of words in the page.
 \item
   Write a second function called \texttt{showWords} that uses the first to find the number of words,
   then displays that number in a paragraph whose ID is \texttt{wordcount}.
 \end{enumerate}
-
-\exercise{Removing Text Nodes}
-
-In the example that sorts the items in lists,
-we remove all the text nodes from the list of child nodes before sorting.
-Why?
-What happens if remove the line:
-
-\begin{minted}{js}
-          .filter(c => c.nodeName !== '#text')
-\end{minted}
 
 \exercise{A More Robust Table of Contents}
 
