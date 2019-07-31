@@ -541,7 +541,8 @@ and we should be ashamed of ourselves,
 but we can tell ourselves that we're going to fix it later
 and get on with learning JavaScript for now.
 
-Here's our test page:
+Our test page contains two bibliographic links
+and one non-bibliographic link:
 
 \begin{minted}{html}
 <html>
@@ -556,13 +557,15 @@ Here's our test page:
       We can look to <a href="#b">Brundle1982, Brundle1984</a>
       for answers.
     </p>
-
+    <hr/>
+    <p><em>Visit <a href="http://somewhere.org">the author's site</a>.</em></p>
+    
   </body>
 </html>
 \end{minted}
 
 \noindent
-and here's our function
+Here's our function
 (which we'll call from an event listener as before---again,
 the line breaks in the second call to \texttt{map} are there
 so that the printed version will fit the page):
@@ -594,17 +597,26 @@ const citations = () => {
 There is a lot going on here,
 but it all uses patterns we have seen before.
 It starts by building an array of all the links in the document
-(i.e., every \texttt{a} element):
+i.e., every \texttt{a} element:
 
 \begin{minted}{js}
   Array.from(document.querySelectorAll('a'))
+  // output:
+  // - <a href="#b">Moreau1896</a>
+  // - <a href="#b">Brundle1982, Brundle1984</a>
+  // - <a href="http://somewhere.org">the author's site</a>
 \end{minted}
 
+\noindent
+(We show the nodes in comments to visualize what each step of the pipeline does.)
 We then filter this array to find the links pointing at \texttt{\#b},
 which is what we're using to signal citations:
 
 \begin{minted}{js}
     .filter(link => link.getAttribute('href') === '#b')
+  // output:
+  // - <a href="#b">Moreau1896</a>
+  // - <a href="#b">Brundle1982, Brundle1984</a>
 \end{minted}
 
 We now have a problem.
@@ -626,12 +638,18 @@ but it's more readable to create an object so that each component has a name:
       {node: link,
        text: link.textContent.split(',').map(s => s.trim())}
     ))
+  // output:
+  // - {node: <a href="#b">Moreau1896</a>,
+  //    text: ['Moreau1896']}
+  // - {node: <a href="#b">Brundle1982, Brundle1984</a>,
+  //    text: ['Brundle1982', 'Brundle1984']}
 \end{minted}
 
 Here,
 we are turning each link into an object whose \texttt{"node"} key has the link's DOM node as its value,
 and whose \texttt{"text"} key has the node's text,
-split on commas and with leading and trailing whitespace trimmed off.
+which we split on commas and and trim to remove leading and trailing whitespace.
+
 But we're not done looking at this stage of our pipeline:
 
 \begin{enumerate}
@@ -659,6 +677,12 @@ the next stage of the pipeline is almost a relief:
       {node,
        text: text.map(cite => `<a href="../bib/#${cite}">${cite}</a>`)}
     ))
+  // output:
+  // - {node: <a href="#b">Moreau1896</a>,
+  //    text: [<a href="../bib/#Moreau1896"Moreau1896</a>]}
+  // - {node: <a href="#b">Brundle1982, Brundle1984</a>,
+  //    text: [<a href="../bib/#Brundle1982">Brundle1982</a>,
+  //           <a href="../bib/#Brundle1984">Brundle1984</a>]}
 \end{minted}
 
 All right,
@@ -690,8 +714,9 @@ All the \texttt{map} does is convert each to the text we want:
 a link that refers to \texttt{../bib/\#citation\_key} and whose displayed text is also the citation key.
 
 On to the next stage,
-which simply joins the string in \texttt{text} together to create a single string
-with commas between the entries:
+which joins the string in \texttt{text} together to create a single string
+with commas between the entries
+and square brackets around the whole thing:
 
 \begin{minted}{js}
     .map(({node, text}) => (
@@ -699,6 +724,11 @@ with commas between the entries:
        text: `[${text.join(', ')}]`}
     ))
 \end{minted}
+
+\noindent
+(We haven't show the output in commas because typesetting it would overflow the page
+and because our pseudo-HTML notation gets really confusing
+once we're showing strings containing HTML that contain strings.)
 
 The last stage in our pipeline uses \texttt{forEach} instead of \texttt{map}
 because we want to do something for each element of the array,
