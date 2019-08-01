@@ -1507,7 +1507,7 @@ home page (relative path)</code></pre>
 <p>Two things are worth noting here:</p>
 <ol>
 <li><p>Since <code>img</code> elements don’t contain any text, they are often written with the trailing-slash notation. However, they are also often written improperly as <code>&lt;img src="..."&gt;</code> without any slashes at all. Browsers will understand this, but some software packages will complain.</p></li>
-<li><p>If an image file is referred to using a path rather than a URL, that path can be either <a href="#g:relative-path"><strong>relative</strong></a> or <a href="#g:absolute-path"><strong>absolute</strong></a>. If it’s a relative path, it’s interpreted starting from where the web page is located; if it’s an absolute path, it’s interpreted relative to wherever the web browser thinks the <a href="#g:root-directory"><strong>root directory</strong></a> of the filesystem is. As we will see in Chapter <a href="#s:server" data-reference-type="ref" data-reference="s:server">12</a>, this can change from one installation to the next, so you should always try to use relative paths, except where you can’t. It’s all very confusing…</p></li>
+<li><p>If an image file is referred to using a path rather than a URL, that path can be either <a href="#g:relative-path"><strong>relative</strong></a> or <a href="#g:absolute-path"><strong>absolute</strong></a>. If it’s a relative path, it’s interpreted starting from where the web page is located; if it’s an absolute path, it’s interpreted relative to wherever the web browser thinks the <a href="#g:root-directory"><strong>root directory</strong></a> of the filesystem is. As we will see in Chapter <a href="#s:server" data-reference-type="ref" data-reference="s:server">12</a>, this can change from one installation to the next, so you should always try to use relative paths, except where you can’t. It’s all very confusing<span>…</span></p></li>
 </ol>
 <h2 id="s:htmlcss-css">Cascading Style Sheets</h2>
 <p>When HTML first appeared, people styled elements by setting their attributes:</p>
@@ -1520,7 +1520,7 @@ home page (relative path)</code></pre>
 <a class="sourceLine" id="cb136-7" title="7">    <span class="kw">&lt;/p&gt;</span></a>
 <a class="sourceLine" id="cb136-8" title="8">  <span class="kw">&lt;/body&gt;</span></a>
 <a class="sourceLine" id="cb136-9" title="9"><span class="kw">&lt;/html&gt;</span></a></code></pre></div>
-<p>Many still do, but a better way is to use <a href="#g:css"><strong>Cascading Style Sheets</strong></a> (CSS). These allow us to define a style once and use it many times, which makes it much easier to maintain consistency. (I was going to say “…and keep pages readable”, but given how complex CSS can be, that’s not a claim I feel I can make.) Here’s a page that uses CSS instead of direct styling:</p>
+<p>Many still do, but a better way is to use <a href="#g:css"><strong>Cascading Style Sheets</strong></a> (CSS). These allow us to define a style once and use it many times, which makes it much easier to maintain consistency. (I was going to say “<span>…</span>and keep pages readable”, but given how complex CSS can be, that’s not a claim I feel I can make.) Here’s a page that uses CSS instead of direct styling:</p>
 <div class="sourceCode" id="cb137"><pre class="sourceCode html"><code class="sourceCode html"><a class="sourceLine" id="cb137-1" title="1"><span class="kw">&lt;html&gt;</span></a>
 <a class="sourceLine" id="cb137-2" title="2">  <span class="kw">&lt;head&gt;</span></a>
 <a class="sourceLine" id="cb137-3" title="3">    <span class="kw">&lt;link</span><span class="ot"> rel=</span><span class="st">&quot;stylesheet&quot;</span><span class="ot"> href=</span><span class="st">&quot;simple-style.css&quot;</span> <span class="kw">/&gt;</span></a>
@@ -1715,7 +1715,7 @@ home page (relative path)</code></pre>
 <a class="sourceLine" id="cb146-5" title="5"><span class="kw">const</span> fill <span class="op">=</span> <span class="va">document</span>.<span class="at">getElementById</span>(<span class="st">&#39;fill&#39;</span>)</a>
 <a class="sourceLine" id="cb146-6" title="6"><span class="va">fill</span>.<span class="at">innerHTML</span> <span class="op">=</span> <span class="vs">`number of paragraphs: </span><span class="sc">${</span><span class="at">counter</span>()<span class="sc">}</span><span class="vs">`</span></a></code></pre></div>
 <p>Where <code>document.querySelectorAll</code> returns all nodes that match a selector, <code>document.getElementById</code> returns a single element that has the specified ID (which is set inside the element’s opening tag with <code>id="some_name"</code>). The variable <code>fill</code> is therefore assigned a reference to our <code>div</code>. We can then change the text inside that element by assigning to its <code>innerHTML</code> property. When we do this, JavaScript parses the string we provided as if it were HTML and creates whatever nodes it needs to represent the result. In this case, the content is just text, so JavaScript will create a single text node, store <code>"number of paragraphs: 2"</code> as its content, and add it to the in-memory structure that represents the page.</p>
-<p>…at which point some magic happens behind the scenes. The browser stores the elements and text of the current page in a data structure called the Document Object Model, or more commonly the <a href="#g:dom"><strong>DOM</strong></a>. The DOM is organized as a tree: each element or piece of text is a <a href="#g:node"><strong>node</strong></a> in the tree, and a node’s children are the elements contained within it (Figure <a href="#f:pages-dom" data-reference-type="ref" data-reference="f:pages-dom">6.1</a>). Any time the browser detects a change to the DOM, it automatically refreshes just as much of its display as it needs to. We can insert or remove text, change elements’ styles, or copy in entire sub-pages: each time, the browser will do only the work required to reflect that change as quickly as possible.</p>
+<p><span>…</span>at which point some magic happens behind the scenes. The browser stores the elements and text of the current page in a data structure called the Document Object Model, or more commonly the <a href="#g:dom"><strong>DOM</strong></a>. The DOM is organized as a tree: each element or piece of text is a <a href="#g:node"><strong>node</strong></a> in the tree, and a node’s children are the elements contained within it (Figure <a href="#f:pages-dom" data-reference-type="ref" data-reference="f:pages-dom">6.1</a>). Any time the browser detects a change to the DOM, it automatically refreshes just as much of its display as it needs to. We can insert or remove text, change elements’ styles, or copy in entire sub-pages: each time, the browser will do only the work required to reflect that change as quickly as possible.</p>
 <figure>
 <img src="figures/FIXME.png" alt="The Document Object Model" id="f:pages-dom" /><figcaption>The Document Object Model<span label="f:pages-dom"></span></figcaption>
 </figure>
@@ -2063,7 +2063,7 @@ distance between (0,1) and (1,0) is 1.4142135623730951</code></pre>
 <p>The script itself create an <code>h1</code> with the text “Hello, React” using <code>React.DOM.h1</code>, then finds the document element whose ID is <code>"app"</code> and uses <code>ReactDOM.render</code> to insert the former into the latter. This alters the representation of the page in memory, not the source of the page on disk; if we want to inspect the HTML, we have to do so in the browser. Finally, we put the script at the bottom of the page so that the browser will have turned the HTML into a DOM tree in memory before the script runs. We will come back and fix this later.</p>
 <blockquote>
 <h4 id="inspection-tools" class="unnumbered">Inspection Tools</h4>
-<p>If you are using the Firefox browser, you can open the developer tools pane by going to the main menu and selecting <code>Tools... Web Developer... Toggle Tools</code>. A tabbed display will open in the bottom of your page; choose <code>Inspector</code> to view the content of your page and page’s CSS. As you move your mouse around the page itself, corresponding structural elements will be highlighted. It’s actually pretty cool…</p>
+<p>If you are using the Firefox browser, you can open the developer tools pane by going to the main menu and selecting <code>Tools… Web Developer… Toggle Tools</code>. A tabbed display will open in the bottom of your page; choose <code>Inspector</code> to view the content of your page and page’s CSS. As you move your mouse around the page itself, corresponding structural elements will be highlighted. It’s actually pretty cool<span>…</span></p>
 </blockquote>
 <p>The first parameter to <code>React.DOM.h1</code> is <code>null</code> in the example above, but it can more generally be an object that specifies the attributes we want the newly-created node to have. There are a few quirks in this—for example, we have to use <code>fontStyle</code> rather than <code>font-style</code> so that the attribute object’s keys look like legal JavaScript variables—but the mechanism is surprisingly easy to use:</p>
 <div class="sourceCode" id="cb175"><pre class="sourceCode html"><code class="sourceCode html"><a class="sourceLine" id="cb175-1" title="1">  <span class="kw">&lt;body&gt;</span></a>
@@ -2177,7 +2177,7 @@ distance between (0,1) and (1,0) is 1.4142135623730951</code></pre>
 <a class="sourceLine" id="cb183-2" title="2">    <span class="st">&quot;dev&quot;</span><span class="op">:</span> <span class="st">&quot;parcel serve -p 4000&quot;</span><span class="op">,</span></a>
 <a class="sourceLine" id="cb183-3" title="3">    ...</a>
 <a class="sourceLine" id="cb183-4" title="4">  <span class="op">},</span></a></code></pre></div>
-<p>We can now use <code>npm run dev -- src/dynamic/pass-params.html</code>, since everything after <code>--</code> is passed to the script being run. This doesn’t just save us typing; it also gives other developers a record of how to use the project. Unfortunately, there is no standard way to add comments to a JSON file…</p>
+<p>We can now use <code>npm run dev -- src/dynamic/pass-params.html</code>, since everything after <code>--</code> is passed to the script being run. This doesn’t just save us typing; it also gives other developers a record of how to use the project. Unfortunately, there is no standard way to add comments to a JSON file<span>…</span></p>
 <blockquote>
 <h4 id="whoops" class="unnumbered">Whoops</h4>
 <p>Note: if we accidentally specify the name of a directory like <code>src/dynamic</code> instead of the name of an HTML file, Parcel prints an error on the console saying “no entries found”. This happens because it is trying to read the actual directory structure as if it were a file.</p>
@@ -2466,7 +2466,7 @@ distance between (0,1) and (1,0) is 1.4142135623730951</code></pre>
 <h1 id="s:promises">Promises</h1>
 <p>By now we have got used to providing callback functions as arguments to other functions. Callbacks quickly become complicated because of:</p>
 <ul>
-<li><p>Nesting: a delayed calculation may need the result of a delayed calculation that needs…</p></li>
+<li><p>Nesting: a delayed calculation may need the result of a delayed calculation that needs<span>…</span></p></li>
 <li><p>Error handling: who notices and takes care of errors? (This is often a problem in real life too.)</p></li>
 </ul>
 <p>For example, suppose we want to turn a set of CSV files into HTML pages. The inputs to our function are the name of a directory that contains one or more CSV files and the name of an output directory; the desired results are that the output directory is created if it doesn’t already exist, that one HTML file is created for each CSV file, that any HTML files in the directory that <em>don’t</em> correspond to CSV files are removed, and that an index page is created with links to all the pages.</p>
@@ -2756,7 +2756,7 @@ inside immediate handler for c</code></pre>
 <li><p>A single <code>catch</code> method works to handle exceptions raised by <em>any</em> of the previous steps.</p></li>
 </ul>
 <h2 id="s:promises-async-await"><code>async</code> and <code>await</code></h2>
-<p>Programmers are never content to leave well enough alone, so the latest version of JavaScript offers yet another tool for managing asynchronous computation. As we saw above, the result of <code>Promise.then</code> is another promise, which allows us to create long chains of <code>.then(...).then(...).then(...)</code> calls. It works, but it isn’t the most readable of notations and has been known to create a feeling of being trapped.</p>
+<p>Programmers are never content to leave well enough alone, so the latest version of JavaScript offers yet another tool for managing asynchronous computation. As we saw above, the result of <code>Promise.then</code> is another promise, which allows us to create long chains of <code>.then(...)</code> calls. It works, but it isn’t the most readable of notations and has been known to create a feeling of being trapped.</p>
 <p>We can avoid this using two new keywords, <code>async</code> and <code>await</code>. <code>async</code> tells JavaScript that a function is asynchronous, i.e., that it might want to wait for something to complete. Inside an asynchronous function, <code>await</code> tells JavaScript to act as if it had waited for something to finish. We use the two together like this:</p>
 <div class="sourceCode" id="cb237"><pre class="sourceCode js"><code class="sourceCode javascript"><a class="sourceLine" id="cb237-1" title="1"><span class="kw">const</span> fs <span class="op">=</span> <span class="at">require</span>(<span class="st">&#39;fs-extra&#39;</span>)</a>
 <a class="sourceLine" id="cb237-2" title="2"></a>
@@ -3295,7 +3295,7 @@ Server running at http://localhost:4000
 <a class="sourceLine" id="cb268-39" title="39"><span class="co">// ...mount as before...</span></a></code></pre></div>
 <p>It’s safe to pass <code>this.state.newDate</code> to <code>value</code> because we’re re-drawing each time there’s a change; remember, we’re passing a value for display, not a reference to be modified. And note that we are not doing any kind of validation: the user could type <code>abc123</code> as a date and we would blithely try to process it.</p>
 <p>It’s now time to get real data, which we will do using <code>fetch</code> with a URL. This returns a promise (Chapter <a href="#s:promises" data-reference-type="ref" data-reference="s:promises">9</a>), so we’ll handle the result of the fetch in the promise’s <code>then</code> method, and then chain another <code>then</code> method to transform the data into what we need:</p>
-<div class="sourceCode" id="cb269"><pre class="sourceCode js"><code class="sourceCode javascript"><a class="sourceLine" id="cb269-1" title="1"><span class="co">// ...previous code as before</span></a>
+<div class="sourceCode" id="cb269"><pre class="sourceCode js"><code class="sourceCode javascript"><a class="sourceLine" id="cb269-1" title="1"><span class="co">// ...previous code as before...</span></a>
 <a class="sourceLine" id="cb269-2" title="2"></a>
 <a class="sourceLine" id="cb269-3" title="3">  onSubmitNewDate <span class="op">=</span> (text) <span class="kw">=&gt;</span> <span class="op">{</span></a>
 <a class="sourceLine" id="cb269-4" title="4">    <span class="kw">const</span> url <span class="op">=</span> <span class="st">&#39;https://api.nasa.gov/neo/rest/v1/feed&#39;</span> <span class="op">+</span></a>
@@ -3311,7 +3311,7 @@ Server running at http://localhost:4000
 <a class="sourceLine" id="cb269-14" title="14">    <span class="op">}</span>)</a>
 <a class="sourceLine" id="cb269-15" title="15">  <span class="op">}</span></a>
 <a class="sourceLine" id="cb269-16" title="16"></a>
-<a class="sourceLine" id="cb269-17" title="17"><span class="co">//...render as before</span></a></code></pre></div>
+<a class="sourceLine" id="cb269-17" title="17"><span class="co">//...render as before...</span></a></code></pre></div>
 <p>Line by line, the steps are:</p>
 <ol>
 <li><p>Build the URL for the data</p></li>
@@ -3322,7 +3322,7 @@ Server running at http://localhost:4000
 <li><p>Set state</p></li>
 </ol>
 <p>Finally, the method to transform the data NASA gives us is:</p>
-<div class="sourceCode" id="cb270"><pre class="sourceCode js"><code class="sourceCode javascript"><a class="sourceLine" id="cb270-1" title="1"><span class="co">// ...previous code as before</span></a>
+<div class="sourceCode" id="cb270"><pre class="sourceCode js"><code class="sourceCode javascript"><a class="sourceLine" id="cb270-1" title="1"><span class="co">// ...previous code as before...</span></a>
 <a class="sourceLine" id="cb270-2" title="2"></a>
 <a class="sourceLine" id="cb270-3" title="3">  transform <span class="op">=</span> (raw) <span class="kw">=&gt;</span> <span class="op">{</span></a>
 <a class="sourceLine" id="cb270-4" title="4">    <span class="kw">let</span> result <span class="op">=</span> []</a>
@@ -3339,8 +3339,8 @@ Server running at http://localhost:4000
 <a class="sourceLine" id="cb270-15" title="15">    <span class="cf">return</span> result</a>
 <a class="sourceLine" id="cb270-16" title="16">  <span class="op">}</span></a>
 <a class="sourceLine" id="cb270-17" title="17"></a>
-<a class="sourceLine" id="cb270-18" title="18"><span class="co">// ...render as before</span></a></code></pre></div>
-<p>We built this by looking at the structure of the JSON that NASA returned and figuring out how to index the fields we need. (Unfortunately, the top level of <code>near_earth_objects</code> is an object with dates as keys rather than an array, so we have to use <code>let...in...</code> rather than purely <code>map</code> or <code>forEach</code>.)</p>
+<a class="sourceLine" id="cb270-18" title="18"><span class="co">// ...render as before...</span></a></code></pre></div>
+<p>We built this by looking at the structure of the JSON that NASA returned and figuring out how to index the fields we need. (Unfortunately, the top level of <code>near_earth_objects</code> is an object with dates as keys rather than an array, so we have to use <code>let... in...</code> rather than purely <code>map</code> or <code>forEach</code>.)</p>
 <h2 id="s:interactive-exercises">Exercises</h2>
 <h3 id="reset" class="unnumbered">Reset</h3>
 <p>Add a “reset” button to the counter application that always sets the counter’s value to zero. Does using it to wipe out every change you’ve made to the counter feel like a metaphor for programming in general?</p>
@@ -3683,7 +3683,7 @@ Server running at http://localhost:4000
 <ul>
 <li><p>The protocol <code>http</code>, which specifies what rules are going to be used to exchange data.</p></li>
 <li><p>The <a href="#g:hostname"><strong>hostname</strong></a> <code>example.org</code>, which tells the client where to find the server. If we are running a server on our own computer for testing, we can use the name <code>localhost</code> to connect to it. (Computers rely on a service called <a href="#g:dns"><strong>DNS</strong></a> to find the machines associated with human-readable hostnames, but its operation is out of scope for this tutorial.)</p></li>
-<li><p>The <a href="#g:port"><strong>port</strong></a> <code>1234</code>, which tells the client where to call the service it wants. (If a host is like an office building, a port is like a phone number in that building. The fact that we think of phone numbers as having physical locations says something about our age…)</p></li>
+<li><p>The <a href="#g:port"><strong>port</strong></a> <code>1234</code>, which tells the client where to call the service it wants. (If a host is like an office building, a port is like a phone number in that building. The fact that we think of phone numbers as having physical locations says something about our age<span>…</span>)</p></li>
 <li><p>The path <code>/some/path</code> tells the server what the client wants.</p></li>
 <li><p>The <a href="#g:query-parameter"><strong>query parameters</strong></a> <code>value=deferred</code> and <code>limit=200</code>. These come after a question mark and are separated by ampersands, and are used to provide extra information.</p></li>
 </ul>
@@ -4059,7 +4059,7 @@ Server running at http://localhost:4000
 <a class="sourceLine" id="cb310-9" title="9"><span class="va">app</span>.<span class="at">listen</span>(PORT<span class="op">,</span> () <span class="kw">=&gt;</span> <span class="op">{</span></a>
 <a class="sourceLine" id="cb310-10" title="10">  <span class="va">console</span>.<span class="at">log</span>(<span class="vs">`listening on port </span><span class="sc">${</span>PORT<span class="sc">}</span><span class="vs">...`</span>)</a>
 <a class="sourceLine" id="cb310-11" title="11"><span class="op">}</span>)</a></code></pre></div>
-<p>As you can probably guess from the fact that we’ve called it <code>driver-0</code>, we’re going to be making some changes down the road…</p>
+<p>As you can probably guess from the fact that we’ve called it <code>driver-0</code>, we’re going to be making some changes down the road<span>…</span></p>
 <p>Here’s the start of the server it works with:</p>
 <div class="sourceCode" id="cb311"><pre class="sourceCode js"><code class="sourceCode javascript"><a class="sourceLine" id="cb311-1" title="1"><span class="kw">const</span> express <span class="op">=</span> <span class="at">require</span>(<span class="st">&#39;express&#39;</span>)</a>
 <a class="sourceLine" id="cb311-2" title="2"></a>
@@ -5334,7 +5334,7 @@ aszego@euphoric.edu</code></pre>
 <h1 id="s:logging">Logging</h1>
 <p>The <code>console.log</code> function we have been using is a simple form of <a href="#g:logging"><strong>logging</strong></a>. We can use a library called <a href="https://github.com/winstonjs/winston">Winston</a> to get more control and structure. By control, we mean that we can define levels for messages and a threshold for the logger, and only log things that are at least that important. This is much better than commenting and uncommenting messages, both because it involves less typing and because we can leave the logging code in place when we put our application into production to debug the problems that inevitably arise after we thought we were done. The standard error levels provided by Winston (and similar logging libraries) are <code>’error’</code>, <code>’warn’</code>, <code>’info’</code>, <code>’verbose’</code>, and <code>’debug’</code>, so if we set the threshold to <code>’info’</code>, then <code>’verbose’</code> and <code>’debug’</code> messages won’t be displayed.</p>
 <p>As for structure, Winston produces log messages as JSON objects by default so that other programs can easily read them. We can also configure it to produce CSV, or even define some custom format, though doing that will make everyone’s life more difficult.</p>
-<p>Whatever format we choose, we have to create and add a <a href="#g:logging-transport"><strong>transport</strong></a> to tell Winston where messages should go. We will use one called <code>Console</code> that sends messages to the screen; we can also send messages to files, to remote logging servers, and so on. Note that we do <em>not</em> create a variable called <code>console</code> for the transport, because that will overwrite the <code>console</code> we have been using up until now, and yes, that took a couple of minutes to figure out…</p>
+<p>Whatever format we choose, we have to create and add a <a href="#g:logging-transport"><strong>transport</strong></a> to tell Winston where messages should go. We will use one called <code>Console</code> that sends messages to the screen; we can also send messages to files, to remote logging servers, and so on. Note that we do <em>not</em> create a variable called <code>console</code> for the transport, because that will overwrite the <code>console</code> we have been using up until now, and yes, that took a couple of minutes to figure out<span>…</span></p>
 <div class="sourceCode" id="cb347"><pre class="sourceCode js"><code class="sourceCode javascript"><a class="sourceLine" id="cb347-1" title="1"><span class="kw">const</span> express <span class="op">=</span> <span class="at">require</span>(<span class="st">&#39;express&#39;</span>)</a>
 <a class="sourceLine" id="cb347-2" title="2"><span class="kw">const</span> path <span class="op">=</span> <span class="at">require</span>(<span class="st">&#39;path&#39;</span>)</a>
 <a class="sourceLine" id="cb347-3" title="3"><span class="kw">const</span> fs <span class="op">=</span> <span class="at">require</span>(<span class="st">&#39;fs&#39;</span>)</a>
@@ -5501,7 +5501,7 @@ aszego@euphoric.edu</code></pre>
 <a class="sourceLine" id="cb356-7" title="7"><span class="op">}</span></a>
 <a class="sourceLine" id="cb356-8" title="8"></a>
 <a class="sourceLine" id="cb356-9" title="9"><span class="at">main</span>()</a></code></pre></div>
-<p>This is simple enough: it gets the path to the database file, the desired action, and any extra arguments from <code>process.argv</code>, then creates an instance of the <code>Database</code> class and—um. And then it calls <code>database[action](args)</code>, which takes a moment to figure out. What’s going on here is that an instance of a class is just a special kind of object, and we can always look up an object’s fields by name using <code>object[name]</code>, so if the string <code>action</code> (taken from the command-line argument) is <code>getAll</code> or <code>getOne</code>, then <code>database[action](args)</code> is either <code>database.getAll(args)</code> or database.getOne(args)<code>. This is clever, but if we ask for an action like </code>show<code> or </code>help<code> or </code>GetOne<code> (with an upper-case ’G’), then </code>database[action]‘ doesn’t exist and we get a very confusing error message. We really should try to do better…</p>
+<p>This is simple enough: it gets the path to the database file, the desired action, and any extra arguments from <code>process.argv</code>, then creates an instance of the <code>Database</code> class and—um. And then it calls <code>database[action](args)</code>, which takes a moment to figure out. What’s going on here is that an instance of a class is just a special kind of object, and we can always look up an object’s fields by name using <code>object[name]</code>, so if the string <code>action</code> (taken from the command-line argument) is <code>getAll</code> or <code>getOne</code>, then <code>database[action](args)</code> is either <code>database.getAll(args)</code> or database.getOne(args)<code>. This is clever, but if we ask for an action like </code>show<code> or </code>help<code> or </code>GetOne<code> (with an upper-case ’G’), then </code>database[action]‘ doesn’t exist and we get a very confusing error message. We really should try to do better<span>…</span></p>
 <p>But before then, let’s try running this:</p>
 <pre class="shell"><code>$ node database-initial.js fixture.db getAll</code></pre>
 <pre class="text"><code>{ workshopId: 1,

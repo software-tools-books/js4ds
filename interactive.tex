@@ -694,7 +694,7 @@ so we'll handle the result of the fetch in the promise's \texttt{then} method,
 and then chain another \texttt{then} method to transform the data into what we need:
 
 \begin{minted}{js}
-// ...previous code as before
+// ...previous code as before...
 
   onSubmitNewDate = (text) => {
     const url = 'https://api.nasa.gov/neo/rest/v1/feed' +
@@ -710,7 +710,7 @@ and then chain another \texttt{then} method to transform the data into what we n
     })
   }
 
-//...render as before
+//...render as before...
 \end{minted}
 
 Line by line,
@@ -736,7 +736,7 @@ Finally,
 the method to transform the data NASA gives us is:
 
 \begin{minted}{js}
-// ...previous code as before
+// ...previous code as before...
 
   transform = (raw) => {
     let result = []
@@ -753,14 +753,14 @@ the method to transform the data NASA gives us is:
     return result
   }
 
-// ...render as before
+// ...render as before...
 \end{minted}
 
 We built this by looking at the structure of the JSON that NASA returned
 and figuring out how to index the fields we need.
 (Unfortunately,
 the top level of \texttt{near\_earth\_objects} is an object with dates as keys rather than an array,
-so we have to use \texttt{let...in...} rather than purely \texttt{map} or \texttt{forEach}.)
+so we have to use \texttt{let...\ in...} rather than purely \texttt{map} or \texttt{forEach}.)
 
 \section{Exercises}\label{s:interactive-exercises}
 

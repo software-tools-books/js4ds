@@ -6,7 +6,7 @@ Callbacks quickly become complicated because of:
 
 \begin{itemize}
 \item
-  Nesting: a delayed calculation may need the result of a delayed calculation that needs\ldots{}
+  Nesting: a delayed calculation may need the result of a delayed calculation that needs{\ldots}
 \item
   Error handling: who notices and takes care of errors?
   (This is often a problem in real life too.)
@@ -607,7 +607,7 @@ Programmers are never content to leave well enough alone,
 so the latest version of JavaScript offers yet another tool for managing asynchronous computation.
 As we saw above,
 the result of \texttt{Promise.then} is another promise,
-which allows us to create long chains of \texttt{.then(...).then(...).then(...)} calls.
+which allows us to create long chains of \texttt{.then(...)} calls.
 It works,
 but it isn't the most readable of notations and has been known to create a feeling of being trapped.
 
