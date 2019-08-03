@@ -610,7 +610,8 @@ which is what we're using to signal citations:
 We now have a problem.
 We could use a \texttt{map} call to get the text out of each link and process it,
 but then all we'd have is an array of strings.
-We're going to want the nodes those strings came out of later on as well,
+We're going to want the nodes those strings came out of later on as well
+so that we can modify their \texttt{href} attributes,
 so somehow we have to pass the nodes and strings together through our pipeline.
 One option would be to create a two-element array for each:
 
