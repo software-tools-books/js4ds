@@ -134,19 +134,68 @@ sq name square and area 9
 \end{minted}
 
 \texttt{new\ ClassName(...)} creates a new blank object
-and inserts a (hidden) reference to the class
-so that the object can find its \gref{g:method}{methods}.
-\texttt{new} then calls the specially-named method \texttt{constructor} to initialize the object's state.
+and marks it to show that it is an \gref{g:instance}{instance} of \texttt{ClassName}.
+Objects need to know what class they belong to
+so that they can find their \gref{g:method}{methods},
+which are the functions defined within the class
+that operate on instances of it.
+(We'll explain how JavaScript marks objects in \secref{s:legacy-prototypes};
+it's more complicated than it needs to be
+in order to be compatible with older versions of the language.)
+
+Before \texttt{new} hands the newly-created object back to the program,
+it calls the specially-named method \texttt{constructor} to initialize the object's state.
 Inside the constructor and other methods,
 the object being operated on is referred to by the pronoun \texttt{this}.
+For example,
+if the constructor assigns an array to \texttt{this.values},
+then every instance of that class gets its own array.
 
-Inside the class,
-methods are defined with classic syntax rather than the \gref{g:fat-arrow}{fat arrows} we have been using.
+Methods are defined within a class using classic \texttt{function} syntax
+rather than the \gref{g:fat-arrow}{fat arrows} we have been using.
 The inconsistency is unfortunate
 but this way of defining methods is what the current version of Node prefers;
 we will explore this topic further in \chapref{s:vis}.
 
-Classes defined this way support polymorphism:
+There are a lot of new terms packed into the preceding three paragraphs,
+so let's retrace the execution of:
+
+\begin{minted}{js}
+const sq = new Square(3)
+console.log(`sq name ${sq.name} and area ${sq.area()}`)
+\end{minted}
+
+\begin{enumerate}
+\item
+  \texttt{new} creates a blank object,
+  then looks up the definition of the class \texttt{Square}
+  and calls the \texttt{constructor} defined inside it
+  with the value 3.
+\item
+  Inside that call,
+  \texttt{this} refers to the newly-created blank object.
+  The constructor adds two keys to the object:
+  \texttt{name}, which has the value \texttt{'square'},
+  and \texttt{size}, which has the value 3.
+\item
+  Once the constructor finishes,
+  the newly-created object is assigned to the variable \texttt{sq}.
+\item
+  In order to create a string to pass to \texttt{console.log},
+  the program has to look up the value of \texttt{sq.name},
+  which works like looking up any other key in an object.
+\item
+  The program also has to call \texttt{sq.area}.
+  During that call,
+  JavaScript temporarily assigns \texttt{sq} to the variable \texttt{this}
+  so that the \texttt{area} method can look up the value of \texttt{size}
+  in the object it's being called for.
+\item
+  Finally,
+  the program fills in the template string and calls \texttt{console.log}.
+\end{enumerate}
+
+JavaScript classes support polymorphism:
 if two or more classes have some methods with the same names
 that take the same parameters
 and return the same kinds of values,
