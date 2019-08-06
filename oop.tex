@@ -267,6 +267,17 @@ class Person {
 }
 \end{minted}
 
+This class allows us to create an instance with a formal greeting:
+
+\begin{minted}{js}
+const parent = new Person('Hakim')
+console.log(`parent: ${parent.greeting(true)} - ${parent.farewell()}`)
+\end{minted}
+
+\begin{minted}{text}
+parent: Hello, my name is Hakim - Goodbye
+\end{minted}
+
 We can now \gref{g:extend}{extend} \texttt{Person} to create a new class \texttt{Scientist},
 in which case we say that \texttt{Scientist} \gref{g:inherit}{inherits} from \texttt{Person},
 or that \texttt{Person} is a \gref{g:parent-class}{parent class} of \texttt{Scientist}
@@ -318,15 +329,11 @@ The word \texttt{super} is used in two ways here:
 Let's try it out:
 
 \begin{minted}{js}
-const parent = new Person('Hakim')
-console.log(`parent: ${parent.greeting(true)} - ${parent.farewell()}`)
-
 const child = new Scientist('Bhadra', 'microbiology')
 console.log(`child: ${child.greeting(false)} - ${child.farewell()}`)
 \end{minted}
 
 \begin{minted}{text}
-parent: Hello, my name is Hakim - Goodbye
 child: Hi, I'm Bhadra. Let's talk about microbiology... - Goodbye
 \end{minted}
 
