@@ -394,11 +394,11 @@ let's move our JSX into \texttt{app.js} and load that in the \texttt{head} of th
     <script src="https://fb.me/react-15.0.1.js"></script>
     <script src="https://fb.me/react-dom-15.0.1.js"></script>
     <script src="https://unpkg.com/babel-standalone@6/babel.js"></script>
-    <script src="app.js"></script>
+    <script src="app.js" type="text/babel"></script>
   </head>
   <body>
     <h1>Hello Separate</h1>
-    <div id="app" type="text/babel"></div>
+    <div id="app"></div>
   </body>
 </html>
 \end{minted}
@@ -437,7 +437,7 @@ we will load the script in the body of the page:
   <body>
     <h1>Hello Bottom</h1>
     <div id="app"></div>
-    <script src="./app.js"></script>
+    <script src="./app.js" type="text/babel"></script>
   </body>
 </html>
 \end{minted}
