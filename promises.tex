@@ -235,13 +235,13 @@ we can call \texttt{reject} instead of \texttt{resolve}.
 Just as \texttt{then} handles whatever we pass to \texttt{resolve},
 \texttt{Promise} defines a method called \texttt{catch} to handle whatever is passed to \texttt{reject}.
 We can therefore build a slightly more robust version of our data fetcher
-that will report something sensible if we mis-type a year as \texttt{2108}:
+that will report something sensible if we mis-type a month as \texttt{80}:
 
 \begin{minted}{js}
 const fetch = require('node-fetch')
 
 url = 'https://api.nasa.gov/neo/rest/v1/feed' +
-      '?api_key=DEMO_KEY&start_date=2018-08-20'
+      '?api_key=DEMO_KEY&start_date=2018-80-20'
 new Promise((resolve, reject) => {
   fetch(url)
   .then((response) => {
