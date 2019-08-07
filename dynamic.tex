@@ -426,6 +426,23 @@ we will load the script in the body of the page:
 </html>
 \end{minted}
 
+
+\begin{aside}{Installing React and ReactDOM}
+
+Now that we've made a project folder using \texttt{npm init},
+and we have a \texttt{project.json} file,
+we can install our first modules:
+
+\begin{minted}{shell}
+install --save react
+install --save reactDOM
+\end{minted}
+
+Now we can follow along with the code below, 
+accessing modules with the function \texttt{require}
+
+\end{aside}
+
 More importantly,
 we will rewrite \texttt{app.js} so that it loads the libraries it needs,
 because there's no guarantee that libraries loaded in \texttt{head} will be available when \texttt{app.js} runs:

@@ -7,6 +7,6 @@
   <body>
     <h1>Hello Bottom</h1>
     <div id="app"></div>
-    <script src="./app.js" type="text/babel"></script>
+    <script src="./app.js"></script>
   </body>
 </html>
