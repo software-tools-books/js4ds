@@ -275,7 +275,13 @@ are passed to our function in a single \texttt{props} object:
 If you look carefully,
 you'll see that the \texttt{name} attribute passed to the use of \texttt{ListElement}
 becomes the value of \texttt{prop.names} inside the function that implements \texttt{ListElement}.
-This gives us exactly one logical place to do calculations, set style, etc.
+
+Before we \texttt{map} each component of our array within \texttt{ReactDOM.render} 
+as in the examples above, the \texttt{ListElement} function gives us exactly one logical place to set attributes.
+Here we've used \texttt{ListElement} to italicize each element in our array and give them ids,
+but these functions can also be used for any transformation or calculation on each element to be rendered.
+
+
 
 \section{Developing with Parcel}\label{s:dynamic-parcel}
 
