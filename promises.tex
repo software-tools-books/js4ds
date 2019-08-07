@@ -415,7 +415,9 @@ We could put this in our code,
 but it's a lot more convenient if we allow users to provide it as a command-line argument
 when they run our script.
 To aid this,
-Node passes all of the command-line arguments in an array called \texttt{process.argv}.
+we'll use the property within Node called \texttt{process.argv}
+which returns the command line arguments as an array.
+
 If we put this line in a file called \texttt{echo.js}:
 
 \begin{minted}{js}
