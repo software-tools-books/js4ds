@@ -462,6 +462,17 @@ glob(`${srcDir}/**/*.txt`)
   .catch(error => console.error(error))
 \end{minted}
 
+\noindent
+If we go into the directory \texttt{src/promises} and run:
+
+\begin{minted}{shell}
+$ node step-01.js .
+\end{minted}
+
+\noindent
+to run the program with the current working directory \texttt{.} as its only argument,
+then the output is:
+
 \begin{minted}{text}
 glob [ './common-sense.txt',
   './jane-eyre.txt',
