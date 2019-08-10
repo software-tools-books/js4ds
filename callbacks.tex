@@ -411,13 +411,39 @@ console.log('shortened', data.map((x) => { return x.slice(0, 2) }))
 shortened [ 'th', 'is', 'a', 'te' ]
 \end{minted}
 
-And finally,
+Finally,
 \texttt{Array.reduce} reduces an array to a single value
 using a combining function and a starting value.
 The combining function must take two values,
 which are the current running total and the next value from the array;
 if the array is empty,
 \texttt{Array.reduce} returns the starting value.
+
+An example will make this clearer.
+To start,
+let's create an acronym using a loop:
+
+\begin{minted}{js}
+const data = ['this', 'is', 'a', 'test']
+
+let acronym = ''
+for (let value of data) {
+  acronym = acronym + value[0]
+}
+
+console.log(`acronym of ${data} is ${acronym}`)
+\end{minted}
+
+\begin{minted}{text}
+acronym of this,is,a,test is tiat
+\end{minted}
+
+The three key elements in the short program above are the input data,
+the initial value of the variable \texttt{acronym},
+and the way that variable is updated.
+When \texttt{Array.reduce} is used,
+the array is the data and the initial value and update function
+are passed as parameters:
 
 \begin{minted}{js}
 const data = ['this', 'is', 'a', 'test']
@@ -427,8 +453,18 @@ const concatFirst = (accumulator, nextValue) => {
 }
 let acronym = data.reduce(concatFirst, '')
 console.log(`acronym of ${data} is ${acronym}`)
+\end{minted}
 
-// In one step.
+\begin{minted}{text}
+acronym of this,is,a,test is tiat
+\end{minted}
+
+As elsewhere,
+we can define the function where we use it:
+
+\begin{minted}{js}
+const data = ['this', 'is', 'a', 'test']
+
 acronym = data.reduce((accum, next) => {
   return accum + next[0]
 }, '')
@@ -436,11 +472,10 @@ console.log('all in one step:', acronym)
 \end{minted}
 
 \begin{minted}{text}
-acronym of this,is,a,test is tiat
 all in one step: tiat
 \end{minted}
 
-The indentation of the ``in one step'' call may look a little odd,
+The indentation of the anonymous function defined inside \texttt{reduce} may look a little odd,
 but this is the style the JavaScript community has settled on.
 
 \section{Closures}\label{s:callbacks-closures}
