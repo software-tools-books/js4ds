@@ -63,6 +63,7 @@ describe('first test', () => {
 })
 \end{minted}
 
+\noindent
 As this example shows,
 \texttt{describe}'s arguments are an explanatory string and a callback function.
 That callback makes calls to \texttt{it}, which takes:
@@ -74,6 +75,7 @@ That callback makes calls to \texttt{it}, which takes:
   a callback that receives a function (called \texttt{done} by convention).
 \end{itemize}
 
+\noindent
 (The name \texttt{it} was chosen so that when we read tests aloud,
 it sounds like we're saying, ``It should do this or that.'')
 At the end of each test we call \texttt{done} to signal that it has finished.
@@ -144,6 +146,7 @@ server.listen(PORT,
               () => { console.log(`listening on port ${PORT}...`) })
 \end{minted}
 
+\noindent
 And here is the application code we've extracted into \texttt{server.js}
 so that we can test it:
 
@@ -243,6 +246,7 @@ Let's run our code:
   1 passing (58ms)
 \end{minted}
 
+\noindent
 Excellent: let's add some more tests.
 
 \begin{minted}{js}

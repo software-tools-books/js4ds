@@ -56,7 +56,8 @@ This page has three main parts:
   the scheme used to represent characters
   not found on a standard American keyboard in the 1970s.
   Character sets and character encodings are out of scope for this lesson;
-  see \href{https://www.joelonsoftware.com/2003/10/08/the-absolute-minimum-every-software-developer-absolutely-positively-must-know-about-unicode-and-character-sets-no-excuses/}{this essay} for an unfortunately timeless discussion.
+  see \href{https://www.joelonsoftware.com/2003/10/08/the-absolute-minimum-every-software-developer-absolutely-positively-must-know-about-unicode-and-character-sets-no-excuses/}{this essay}
+  for an unfortunately timeless discussion.
 \item
   The top half of the \texttt{body} has some headings and paragraphs
   for the JavaScript to play with.
@@ -198,6 +199,7 @@ we might as well define it and call it immediately without giving it a name:
 }(actual_value)
 \end{minted}
 
+\noindent
 However,
 this doesn't reliably work as written;
 in order to make JavaScript happy,
@@ -236,6 +238,7 @@ Let's come back to the body of the function:
   container.innerHTML = '<ul>' + items + '</ul>'
 \end{minted}
 
+\noindent
 As before,
 the first line gets the \texttt{div} we're going to fill in.
 The second line grabs all the \texttt{h2} headings,

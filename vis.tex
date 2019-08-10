@@ -163,6 +163,7 @@ We can fill in the options argument to \texttt{vegaEmbed} to turn those off:
     vegaEmbed("#vis", spec, options)
 \end{minted}
 
+\noindent
 We now have the visualization we wanted
 (\figref{f:vis-disable-controls}).
 
@@ -245,6 +246,7 @@ Step 1 is to slim down our HTML file so that it only loads our application:
 </html>
 \end{minted}
 
+\noindent
 In step 2,
 we \texttt{npm\ install\ vega\ vega-lite\ vega-embed} and \texttt{require('vega-embed')} in \texttt{app.js}:
 
@@ -262,13 +264,14 @@ const options = {
 vegaEmbed("#vis", spec, options)
 \end{minted}
 
+\noindent
 We launch this with Parcel via our saved \texttt{npm\ run} command:
 
 \begin{minted}{shell}
 $ npm run dev -- src/vis/react-01/index.html
 \end{minted}
 
-But nothing appears when we open \texttt{http://localhost:4000} in our browser.
+Our hearts break when we open \texttt{http://localhost:4000} in our browser and nothing appears.
 Looking in the browser console,
 we see a message telling us that \texttt{vegaEmbed} is not a function.
 
@@ -306,6 +309,7 @@ import vegaEmbed from 'vega-embed'
 // ...as before...
 \end{minted}
 
+\noindent
 If we do this,
 the bundled file is 74.5K lines of JavaScript,
 but at least it's all in one place for distribution.

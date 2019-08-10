@@ -281,8 +281,6 @@ as in the examples above, the \texttt{ListElement} function gives us exactly one
 Here we've used \texttt{ListElement} to italicize each element in our array and give them ids,
 but these functions can also be used for any transformation or calculation on each element to be rendered.
 
-
-
 \section{Developing with Parcel}\label{s:dynamic-parcel}
 
 Putting all of the source for an application in one HTML file is a bad practice,
@@ -327,6 +325,7 @@ To install Parcel, run:
 $ npm install parcel-bundler
 \end{minted}
 
+\noindent
 Once it's in place,
 we can tell it to run one of our test pages like this:
 
@@ -361,7 +360,8 @@ When we ask Parcel to serve up an application, it:
 
 Parcel also caches things in \texttt{./.cache} so that it doesn't need to do redundant work;
 both directories are normally added to \texttt{.gitignore}.
-To learn more about Parcel, see \href{https://medium.com/codingthesmartway-com-blog/getting-started-with-parcel-197eb85a2c8c}{Sebastian Eschweiler's quick tutorial}.
+To learn more about Parcel,
+see \href{https://medium.com/codingthesmartway-com-blog/getting-started-with-parcel-197eb85a2c8c}{this short tutorial}.
 
 It's very common to put tasks like ``run my application'' into NPM's \texttt{package.json} file,
 just as older programmers would put frequently-used commands into a project's Makefile.
@@ -413,6 +413,7 @@ let's move our JSX into \texttt{app.js} and load that in the \texttt{head} of th
 </html>
 \end{minted}
 
+\noindent
 For now,
 the JavaScript in \texttt{app.js} is:
 
@@ -424,8 +425,7 @@ ReactDOM.render(
 \end{minted}
 
 When we load this page we get the \texttt{h1} title but \emph{not} the paragraph.
-When we look in the browser console,
-we see the message:
+The browser console displays the message:
 
 \begin{minted}{text}
 Error: _registerComponent(...): Target container is not a DOM element.
