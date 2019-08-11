@@ -172,8 +172,9 @@ to them all in the same way.
 
 \gitem{g:element}{element}
 An individual component of a web page. In HTML, elements are enclosed in
-matching \texttt{{\textless}tag{\textgreater}{}} and \texttt{{\textless}/tag{\textgreater}{}} pairs, or written as \texttt{{\textless}tag/{\textgreater}{}} if they contain no
-content. Elements are represented as \grefcross{g:node}{nodes} in the \grefcross{g:dom}{DOM}.
+matching \texttt{\htmltag{tag}} and \texttt{\htmltag{/tag}} pairs,
+or written as \texttt{\htmltag{tag/}} if they contain no content.
+Elements are represented as \grefcross{g:node}{nodes} in the \grefcross{g:dom}{DOM}.
 
 \gitem{g:entry-point}{entry point}
 A function with a known name and \grefcross{g:signature}{signature} that a framework
@@ -217,7 +218,7 @@ A horrible neologism meaning ``equivalent to false''. See also the equally
 horrible \grefcross{g:truthy}{truthy}.
 
 \gitem{g:fat-arrow}{fat arrow function}
-A JavaScript function defined using the syntax \texttt{(...parameters...)\ ={\textgreater}{}\ \{...body...\}}.
+A JavaScript function defined using the syntax \texttt{(...parameters...)\ ={\textgreater}\ \{...body...\}}.
 Fat arrow functions treat the special value \texttt{this} in a less
 inconsistent way than their older equivalents.
 
@@ -315,6 +316,10 @@ To acquire properties and methods from a parent class. See also
 \gitem{g:inner-loop}{inner loop}
 A loop contained in the \grefcross{g:body-statement}{body} of another loop.
 See also \grefcross{g:nested-loop}{nested loop}.
+
+\gitem{g:instance}{instance}
+If an object \texttt{obj} is of a particular class \texttt{cls},
+we say that \texttt{obj} is an instance of \texttt{cls}.
 
 \gitem{g:instance-method}{instance method}
 A method that is called using, and operates on, a particular object.

@@ -34,10 +34,10 @@ in \chapref{s:dynamic}.)
 \end{minted}
 
 As its name suggests,
-a button's \texttt{onClick} handler is called whenever the button is clicked.
+\texttt{onClick} is the event handler called when a button is clicked.
 Here,
 we are telling React to call \texttt{sayHello},
-which adds one to the variable \texttt{counter}
+which adds one to the event object \texttt{counter}
 and then prints its value along with a greeting message.
 
 Global variables and functions are a poor way to structure code.
@@ -80,7 +80,7 @@ and then use a method as the event handler:
 \end{minted}
 
 Working from bottom to top,
-the \texttt{ReactDOM.render} call inserts whatever HTML is produced by \texttt{{\textless}Counter\ /{\textgreater}{}}
+the \texttt{ReactDOM.render} call inserts whatever HTML is produced by \texttt{\htmltag{Counter\ /}}
 into the element whose ID is \texttt{"app"}.
 In this case,
 though,
@@ -364,7 +364,7 @@ import ReactDOM from "react-dom"
 Similarly, our application will need to import the
 \texttt{UpAndDown} and \texttt{NumberDisplay} components,
 so we need to export them after they've been defined.
-This is done by adding \texttt{export\ \{{\textless}object\_name{\textgreater}{}\}} to the end of the
+This is done by adding \texttt{export\ \{\htmltag{object\_name}\}} to the end of the
 component script.
 (We will explore why the curly braces are necessary in the exercises.)
 After we've done this for \texttt{UpAndDown},
@@ -694,7 +694,7 @@ so we'll handle the result of the fetch in the promise's \texttt{then} method,
 and then chain another \texttt{then} method to transform the data into what we need:
 
 \begin{minted}{js}
-// ...previous code as before
+// ...previous code as before...
 
   onSubmitNewDate = (text) => {
     const url = 'https://api.nasa.gov/neo/rest/v1/feed' +
@@ -710,7 +710,7 @@ and then chain another \texttt{then} method to transform the data into what we n
     })
   }
 
-//...render as before
+//...render as before...
 \end{minted}
 
 Line by line,
@@ -736,7 +736,7 @@ Finally,
 the method to transform the data NASA gives us is:
 
 \begin{minted}{js}
-// ...previous code as before
+// ...previous code as before...
 
   transform = (raw) => {
     let result = []
@@ -753,14 +753,14 @@ the method to transform the data NASA gives us is:
     return result
   }
 
-// ...render as before
+// ...render as before...
 \end{minted}
 
 We built this by looking at the structure of the JSON that NASA returned
 and figuring out how to index the fields we need.
 (Unfortunately,
 the top level of \texttt{near\_earth\_objects} is an object with dates as keys rather than an array,
-so we have to use \texttt{let...in...} rather than purely \texttt{map} or \texttt{forEach}.)
+so we have to use \texttt{let...\ in...} rather than purely \texttt{map} or \texttt{forEach}.)
 
 \section{Exercises}\label{s:interactive-exercises}
 

@@ -341,7 +341,7 @@ describe('server', () => {
 This gets the page as before,
 parses it,
 then looks for \texttt{h1} elements and checks the text of the first one.
-(Note that this \emph{doesn't} check if the title is \texttt{{\textless}em{\textgreater}{}H{\textless}/em{\textgreater}{}ome}
+(Note that this \emph{doesn't} check if the title is \texttt{\htmltag{em}H\htmltag{/em}ome}
 because \texttt{.text()} concatenates all the text of the children.)
 We won't explore this approach further because we're going to serve data for rendering
 rather than generating HTML and sending that,

@@ -27,7 +27,7 @@ Let's begin by counting the number of paragraphs in a page:
   </head>
   <body>
     <h1>Title</h1>
-    <div class="fill"></div>
+    <div id="fill"></div>
     <h2 id="one">First <em>emphasized</em></h2>
     <p>stuff</p>
     <h2 id="two">Second <code>with code</code></h2>
@@ -104,12 +104,13 @@ number of paragraphs: 2
 \end{minted}
 
 \begin{aside}{Developer Tools}
-  If you are using the Firefox browser,
-  you can open the developer tools pane by going to the main menu
-  and selecting \texttt{Tools...\ Web\ Developer...\ Toggle\ Tools}.
+  To open developer tools in Firefox,
+  go to the main menu and select \texttt{Tools {\textgreater} Web\ Developer {\textgreater} Toggle\ Tools}.
   A tabbed display will open in the bottom of your page;
   choose \texttt{Console} to view the output of your JavaScript,
   or to write a little bit to run immediately.
+  You can open a similar set of tools from \texttt{View {\textgreater} Developer {\textgreater} JavaScript\ Console} in Chrome,
+  or by using \texttt{Ctrl+Shift+I} on Windows for Firefox, Chrome, or Microsoft Edge.
 \end{aside}
 
 Showing results in the console is good enough for development work,
@@ -140,7 +141,7 @@ so JavaScript will create a single text node,
 store \texttt{"number\ of\ paragraphs:\ 2"} as its content,
 and add it to the in-memory structure that represents the page.
 
-\ldots{}at which point some magic happens behind the scenes.
+{\ldots}at which point some magic happens behind the scenes.
 The browser stores the elements and text of the current page in a data structure called
 the Document Object Model,
 or more commonly the \gref{g:dom}{DOM}.
@@ -289,6 +290,9 @@ console.log(`distance between ${a} and ${b} is ${Vec2D.dist(a, b)}`)
 magnitude of (0,1) is 1
 distance between (0,1) and (1,0) is 1.4142135623730951
 \end{minted}
+
+We can call static methods directly on the class \texttt{Vec2D.dist},
+while \texttt{Vec2D.magnitude} is \texttt{undefined}.
 \end{aside}
 
 We then have three lines that do most of the function's work.
@@ -300,7 +304,7 @@ Looking at the \texttt{map} call,
 each heading becomes a list item (\texttt{li})
 containing a link (\texttt{a})
 whose \texttt{href} attribute is the ID of the heading
-and whose displayed content (the text between \texttt{{\textless}a...{\textgreater}{}} and \texttt{{\textless}/a{\textgreater}{}})
+and whose displayed content (the text between \texttt{\htmltag{a...}} and \texttt{\htmltag{/a}})
 is the text of the heading.
 The \texttt{href} attribute's value starts with \texttt{\#},
 which makes this a local link
@@ -382,7 +386,7 @@ Our first attempt uses this as the HTML page:
 \end{minted}
 
 \noindent
-and this as the script:
+and this as our initial script:
 
 \begin{minted}{js}
 const sortLists = () => {
@@ -622,7 +626,8 @@ which is what we're using to signal citations:
 We now have a problem.
 We could use a \texttt{map} call to get the text out of each link and process it,
 but then all we'd have is an array of strings.
-We're going to want the nodes those strings came out of later on as well,
+We're going to want the nodes those strings came out of later on as well
+so that we can modify their \texttt{href} attributes,
 so somehow we have to pass the nodes and strings together through our pipeline.
 One option would be to create a two-element array for each:
 
@@ -660,7 +665,7 @@ But we're not done looking at this stage of our pipeline:
   so the value associated with \texttt{"text"} is an array.
   We then \texttt{map} over its elements to trim leading and trailing space from each.
 \item
-  If we wrote \texttt{link\ ={\textgreater}{}\ \{node:\ link,\ text:\ whatever\}},
+  If we wrote \texttt{link\ ={\textgreater}\ \{node:\ link,\ text:\ whatever\}},
   JavaScript would interpret the curly braces \texttt{\{...\}} as meaning,
   ``Here is the body of a function,''
   and then complain because what's in those curly braces clearly \emph{isn't} a function body.
@@ -834,8 +839,13 @@ to remind us just how quickly life is passing by.
 
 \exercise{A More Robust Table of Contents}
 
-Modify the table of contents example so that if an \texttt{h2} heading doesn't have an \texttt{id},
-it is still included in the table of contents.
+\begin{enumerate}
+\item
+  What does the table of contents example generate if an \texttt{h2} \emph{doesn't} have an \texttt{id} attribute?
+\item
+  Modify the example so that it only includes \texttt{h2} elements that have an \texttt{id} attribute
+  in the table of contents.
+\end{enumerate}
 
 \exercise{Explicitly Creating Nodes}
 

@@ -6,7 +6,7 @@ Callbacks quickly become complicated because of:
 
 \begin{itemize}
 \item
-  Nesting: a delayed calculation may need the result of a delayed calculation that needs\ldots{}
+  Nesting: a delayed calculation may need the result of a delayed calculation that needs{\ldots}
 \item
   Error handling: who notices and takes care of errors?
   (This is often a problem in real life too.)
@@ -235,13 +235,13 @@ we can call \texttt{reject} instead of \texttt{resolve}.
 Just as \texttt{then} handles whatever we pass to \texttt{resolve},
 \texttt{Promise} defines a method called \texttt{catch} to handle whatever is passed to \texttt{reject}.
 We can therefore build a slightly more robust version of our data fetcher
-that will report something sensible if we mis-type a year as \texttt{2108}:
+that will report something sensible if we mis-type a month as \texttt{80}:
 
 \begin{minted}{js}
 const fetch = require('node-fetch')
 
 url = 'https://api.nasa.gov/neo/rest/v1/feed' +
-      '?api_key=DEMO_KEY&start_date=2018-08-20'
+      '?api_key=DEMO_KEY&start_date=2018-80-20'
 new Promise((resolve, reject) => {
   fetch(url)
   .then((response) => {
@@ -415,7 +415,9 @@ We could put this in our code,
 but it's a lot more convenient if we allow users to provide it as a command-line argument
 when they run our script.
 To aid this,
-Node passes all of the command-line arguments in an array called \texttt{process.argv}.
+we'll use the property within Node called \texttt{process.argv}
+which is an array containing all the command line arguments passed to the script.
+
 If we put this line in a file called \texttt{echo.js}:
 
 \begin{minted}{js}
@@ -459,6 +461,17 @@ glob(`${srcDir}/**/*.txt`)
   .then(files => console.log('glob', files))
   .catch(error => console.error(error))
 \end{minted}
+
+\noindent
+If we go into the directory \texttt{src/promises} and run:
+
+\begin{minted}{shell}
+$ node step-01.js .
+\end{minted}
+
+\noindent
+to run the program with the current working directory \texttt{.} as its only argument,
+then the output is:
 
 \begin{minted}{text}
 glob [ './common-sense.txt',
@@ -607,7 +620,7 @@ Programmers are never content to leave well enough alone,
 so the latest version of JavaScript offers yet another tool for managing asynchronous computation.
 As we saw above,
 the result of \texttt{Promise.then} is another promise,
-which allows us to create long chains of \texttt{.then(...).then(...).then(...)} calls.
+which allows us to create long chains of \texttt{.then(...)} calls.
 It works,
 but it isn't the most readable of notations and has been known to create a feeling of being trapped.
 
