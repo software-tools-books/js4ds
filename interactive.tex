@@ -337,6 +337,7 @@ const NumberDisplay = (props) => {
 }
 \end{minted}
 
+\noindent
 Similarly,
 \texttt{UpAndDown} expects two functions as its \texttt{up} and \texttt{down} properties,
 and makes each the event handler for an appropriately-labelled button:
@@ -448,11 +449,10 @@ const mount = document.getElementById("app")
 ReactDOM.render(<App/>, mount)
 \end{minted}
 
-This may seem pretty complicated,
-and it is,
-because this example would be much simpler to write without all this indirection.
+This seems pretty complicated because it is:
+our small example would be much simpler without all this indirection.
 However,
-this strategy is widely used to manage large applications:
+we need this strategy to manage large applications:
 data and event handlers are defined in one class,
 then passed into display components to be displayed and interacted with.
 
@@ -573,6 +573,7 @@ class App extends React.Component {
 }
 \end{minted}
 
+\noindent
 Let's also create a placeholder for \texttt{DateSubmit}:
 
 \begin{minted}{js}
@@ -635,7 +636,7 @@ So yes,
 this whole paragraph is being re-created every time someone types,
 but React and the browser work together to minimize recalculation.
 
-Now let's go back and re-work our application:
+Back to our application:
 
 \begin{minted}{js}
 // ...imports as before...
@@ -679,6 +680,7 @@ class App extends React.Component {
 // ...mount as before...
 \end{minted}
 
+\noindent
 It's safe to pass \texttt{this.state.newDate} to \texttt{value}
 because we're re-drawing each time there's a change;
 remember, we're passing a value for display,

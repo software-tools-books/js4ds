@@ -260,13 +260,14 @@ new Promise((resolve, reject) => {
 got HTTP status code 400
 \end{minted}
 
-(Note that we didn't assign our Promise object to a variable in the example above.
+\noindent
+Note that we didn't assign our Promise object to a variable in the example above.
 We can create promises on the fly if we need them only to define behaviour on
-successful completion/exception and won't need to refer to them again later.)
-What makes this all work is that a promise is an object.
+successful completion/exception and won't need to refer to them again later.
 
 \figpdf{figures/promises-object-a.pdf}{Promises as Objects (after creation)}{f:promises-object-a}
 
+What makes this all work is that a promise is an object.
 \figref{f:promises-object-a} shows what's in memory just after this promise has been created.
 There are a lot of arrows in this diagram,
 but they all serve a purpose:
@@ -614,7 +615,7 @@ but the important points are:
   A single \texttt{catch} method works to handle exceptions raised by \emph{any} of the previous steps.
 \end{itemize}
 
-\hypertarget{s:promises-async-await}{\section{\texorpdfstring{\texttt{async} and \texttt{await}}{async and await}}\label{s:promises-async-await}}
+\section{\texttt{async} and \texttt{await}}\label{s:promises-async-await}
 
 Programmers are never content to leave well enough alone,
 so the latest version of JavaScript offers yet another tool for managing asynchronous computation.
@@ -716,6 +717,7 @@ console.log('starting...')
 })
 \end{minted}
 
+\noindent
 Why?
 
 \exercise{A Stay of Execution}
@@ -819,6 +821,7 @@ Promise.___([makePromise(7), makePromise(___), makePromise(2),
   numbers => ___(numbers))
 \end{minted}
 
+\noindent
 Now adapt the function so that it returns only \texttt{2}.
 (Hint: you can achieve this by changing only one of the blank fields.)
 
