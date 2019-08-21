@@ -87,6 +87,7 @@ and each record is an object with name-value pairs:
 ]
 \end{minted}
 
+\noindent
 Repeating field names like this is wasteful compared to listing them once at the top of a table,
 but it does mean that the fields within rows can be accessed directly
 using expressions like \texttt{colors[1].red}.
@@ -133,6 +134,7 @@ $ node select-random.js ../../data/surveys.csv 10 slice.csv
 \end{minted}
 
 \noindent
+
 we get this:
 
 \begin{minted}{text}

@@ -246,6 +246,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><a href="#s:collab-software">Licensing Software</a></li>
 <li><a href="#s:collab-datadocs">Licensing Data and Documentation</a></li>
 <li><a href="#s:collab-conduct">Code of Conduct</a></li>
+<li><a href="#governance">Governance</a></li>
 </ul></li>
 <li><a href="#s:legacy">Legacy JavaScript Issues</a><ul>
 <li><a href="#s:legacy-equality">Equality</a></li>
@@ -286,7 +287,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
         </p>
       </div>
 <h1 id="s:intro">Introduction</h1>
-<p><a href="https://www.dabeaz.com/">David Beazley</a> thought that “JavaScript <em>versus</em> Data Science” would be a better title for this book. While that construction sums up how many people view the language, we hope we can convince you that modern JavaScript is usable as well as useful. Scientists and engineers are who we were thinking of when we wrote this book but we hope that these lessons will also help librarians, digital humanists, and everyone else who uses computing in their research.</p>
+<p><a href="https://www.dabeaz.com/">David Beazley</a> thought that “JavaScript <em>versus</em> Data Science” would be a better title for this book. While that one word sums up how many people view the language, we hope we can convince you that modern JavaScript is usable as well as useful. Scientists and engineers are who we were thinking of when we wrote this book but we hope that these lessons will also help librarians, digital humanists, and everyone else who uses computing in their research.</p>
 <p>We will cover:</p>
 <ul>
 <li><p>Core features of modern JavaScript</p></li>
@@ -321,7 +322,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul>
 <h2 id="s:intro-contributors">Who We Are</h2>
 <p><img src="figures/gans-maya.png" alt="image" /></p>
-<p><strong>Maya Gans</strong> is a freelance data scientist and front-end developer by way of quantitative biology. She has 4 years of experience programming in R, and her passion for data visualization brought her to the weird world of JavaScript. When she isn’t debugging or blogging <a href="https://maya.rbind.io/">or blogging</a> about code, she’s somewhere remote climbing large mountains. She dedicates this book to her fellow self taught programmers who were told they weren’t good enough but are too driven and excited to care.</p>
+<p><strong>Maya Gans</strong> is a freelance data scientist and front-end developer by way of quantitative biology. She has 4 years of experience programming in R, and her passion for data visualization brought her to the weird world of JavaScript. When she isn’t debugging <a href="https://maya.rbind.io/">or blogging</a> about code, she’s somewhere remote climbing large mountains. She dedicates this book to her fellow self taught programmers who were told they weren’t good enough but are too driven and excited to care.</p>
 <p><img src="figures/hodges-toby.png" alt="image" /></p>
 <p><strong><a href="https://tbyhdgs.info/">Toby Hodges</a></strong> is a bioinformatician turned community coordinator, working on the <a href="https://bio-it.embl.de">Bio-IT Project</a> at <a href="https://www.embl.de">EMBL</a>. He teaches a lot of courses in computing, organizes a lot of community-building events, listens to a lot of punk rock, and occasionally still finds time to write code and ride his bike. Toby would like to thank his wife for her support and patience while he swore about how annoying JavaScript is to debug.</p>
 <p><img src="figures/wilson-greg.png" alt="image" /></p>
@@ -652,17 +653,16 @@ species is undefined</code></pre>
 <li><p>How can we use this technique to rewrite the <code>require</code> statement in <code>src/basics/import.js</code> so that <code>clip</code> can be called directly as <code>clip(...)</code> rather than as <code>utilities.clip(...)</code>?</p></li>
 </ol>
 <h3 id="return-to-me-for-my-heart-wants-you-only" class="unnumbered">Return To Me, For My Heart Wants You Only</h3>
-<div class="sourceCode" id="cb46"><pre class="sourceCode js"><code class="sourceCode javascript"><a class="sourceLine" id="cb46-1" title="1"></a>
-<a class="sourceLine" id="cb46-2" title="2"><span class="kw">const</span> verbose_sum <span class="op">=</span> (first<span class="op">,</span> second) <span class="kw">=&gt;</span> <span class="op">{</span></a>
-<a class="sourceLine" id="cb46-3" title="3">  <span class="va">console</span>.<span class="at">log</span>(<span class="vs">`Going to add </span><span class="sc">${</span>first<span class="sc">}</span><span class="vs"> to </span><span class="sc">${</span>second<span class="sc">}</span><span class="vs">`</span>)</a>
-<a class="sourceLine" id="cb46-4" title="4">  <span class="kw">let</span> total <span class="op">=</span> first <span class="op">+</span> second</a>
-<a class="sourceLine" id="cb46-5" title="5">  <span class="cf">return</span> total</a>
-<a class="sourceLine" id="cb46-6" title="6">  <span class="va">console</span>.<span class="at">log</span>(<span class="vs">`Finished summing`</span>)</a>
-<a class="sourceLine" id="cb46-7" title="7"><span class="op">}</span></a>
-<a class="sourceLine" id="cb46-8" title="8"></a>
-<a class="sourceLine" id="cb46-9" title="9"><span class="kw">var</span> result <span class="op">=</span> <span class="at">verbose_sum</span>(<span class="dv">3</span><span class="op">,</span> <span class="dv">6</span>)</a>
-<a class="sourceLine" id="cb46-10" title="10"><span class="va">console</span>.<span class="at">log</span>(result)</a></code></pre></div>
-<p>What output would you see in the console if you ran the code above?</p>
+<p>What output would you see in the console if you ran this code?</p>
+<div class="sourceCode" id="cb46"><pre class="sourceCode js"><code class="sourceCode javascript"><a class="sourceLine" id="cb46-1" title="1"><span class="kw">const</span> verbose_sum <span class="op">=</span> (first<span class="op">,</span> second) <span class="kw">=&gt;</span> <span class="op">{</span></a>
+<a class="sourceLine" id="cb46-2" title="2">  <span class="va">console</span>.<span class="at">log</span>(<span class="vs">`Going to add </span><span class="sc">${</span>first<span class="sc">}</span><span class="vs"> to </span><span class="sc">${</span>second<span class="sc">}</span><span class="vs">`</span>)</a>
+<a class="sourceLine" id="cb46-3" title="3">  <span class="kw">let</span> total <span class="op">=</span> first <span class="op">+</span> second</a>
+<a class="sourceLine" id="cb46-4" title="4">  <span class="cf">return</span> total</a>
+<a class="sourceLine" id="cb46-5" title="5">  <span class="va">console</span>.<span class="at">log</span>(<span class="vs">`Finished summing`</span>)</a>
+<a class="sourceLine" id="cb46-6" title="6"><span class="op">}</span></a>
+<a class="sourceLine" id="cb46-7" title="7"></a>
+<a class="sourceLine" id="cb46-8" title="8"><span class="kw">var</span> result <span class="op">=</span> <span class="at">verbose_sum</span>(<span class="dv">3</span><span class="op">,</span> <span class="dv">6</span>)</a>
+<a class="sourceLine" id="cb46-9" title="9"><span class="va">console</span>.<span class="at">log</span>(result)</a></code></pre></div>
 <ol>
 <li><p><code>Going to add ${first} to ${second}</code><br />
 <code>9</code></p></li>
@@ -863,8 +863,7 @@ hello</code></pre>
 <a class="sourceLine" id="cb70-14" title="14"><span class="va">console</span>.<span class="at">log</span>(<span class="vs">`test: </span><span class="sc">${</span>test<span class="sc">}</span><span class="vs">`</span>)</a></code></pre></div>
 <pre class="text"><code>newArray: 2,3,4
 test: 1,2,3</code></pre>
-<p>JavaScript arrays provide several methods to support functional programming. For example, <code>Array.some</code> returns <code>true</code> if <em>any</em> element in an array passes a test, while <code>Array.every</code> returns <code>true</code> if <em>all</em> elements in an array pass a test.</p>
-<p>Here’s how they work:</p>
+<p>JavaScript arrays provide several methods to support functional programming. For example, <code>Array.some</code> returns <code>true</code> if <em>any</em> element in an array passes a test, while <code>Array.every</code> returns <code>true</code> if <em>all</em> elements in an array pass a test. Here’s how they work:</p>
 <div class="sourceCode" id="cb72"><pre class="sourceCode js"><code class="sourceCode javascript"><a class="sourceLine" id="cb72-1" title="1"><span class="kw">const</span> data <span class="op">=</span> [<span class="st">&#39;this&#39;</span><span class="op">,</span> <span class="st">&#39;is&#39;</span><span class="op">,</span> <span class="st">&#39;a&#39;</span><span class="op">,</span> <span class="st">&#39;test&#39;</span>]</a>
 <a class="sourceLine" id="cb72-2" title="2"><span class="va">console</span>.<span class="at">log</span>(<span class="st">&#39;some longer than 3:&#39;</span><span class="op">,</span></a>
 <a class="sourceLine" id="cb72-3" title="3">            <span class="va">data</span>.<span class="at">some</span>((x) <span class="kw">=&gt;</span> <span class="op">{</span> <span class="cf">return</span> <span class="va">x</span>.<span class="at">length</span> <span class="op">&gt;</span> <span class="dv">3</span> <span class="op">}</span>))</a>
@@ -972,8 +971,7 @@ all longer than 3: false</code></pre>
 <a class="sourceLine" id="cb93-3" title="3">  <span class="co">// &#39;location&#39; is the index of that value</span></a>
 <a class="sourceLine" id="cb93-4" title="4">  <span class="co">// &#39;container&#39; is the containing array (in this case, &#39;someArray&#39;)</span></a>
 <a class="sourceLine" id="cb93-5" title="5"><span class="op">}</span>)</a></code></pre></div>
-<p>If you only need the value, you can provide a callback that only takes one parameter; if you only need the value and its location, you can provide a callback that takes two.</p>
-<p>Use this to write a function <code>doubleInPlace</code> that doubles all the values in an array in place:</p>
+<p>If you only need the value, you can provide a callback that only takes one parameter; if you only need the value and its location, you can provide a callback that takes two. Use this to write a function <code>doubleInPlace</code> that doubles all the values in an array in place:</p>
 <div class="sourceCode" id="cb94"><pre class="sourceCode js"><code class="sourceCode javascript"><a class="sourceLine" id="cb94-1" title="1"><span class="kw">const</span> vals <span class="op">=</span> [<span class="dv">1</span><span class="op">,</span> <span class="dv">2</span><span class="op">,</span> <span class="dv">3</span>]</a>
 <a class="sourceLine" id="cb94-2" title="2"><span class="at">doubleInPlace</span>(vals)</a>
 <a class="sourceLine" id="cb94-3" title="3"><span class="va">console</span>.<span class="at">log</span>(<span class="vs">`vals after change: </span><span class="sc">${</span>vals<span class="sc">}</span><span class="vs">`</span>)</a></code></pre></div>
@@ -2231,7 +2229,7 @@ distance between (0,1) and (1,0) is 1.4142135623730951</code></pre>
 <li><p>copies some files into a directory called <code>./dist</code> (which stands for “distribution”), and</p></li>
 <li><p>serves the application out of there.</p></li>
 </ul>
-<p>Parcel also caches things in <code>./.cache</code> so that it doesn’t need to do redundant work; both directories are normally added to <code>.gitignore</code>. To learn more about Parcel, see <a href="https://medium.com/codingthesmartway-com-blog/getting-started-with-parcel-197eb85a2c8c">Sebastian Eschweiler’s quick tutorial</a>.</p>
+<p>Parcel also caches things in <code>./.cache</code> so that it doesn’t need to do redundant work; both directories are normally added to <code>.gitignore</code>. To learn more about Parcel, see <a href="https://medium.com/codingthesmartway-com-blog/getting-started-with-parcel-197eb85a2c8c">this short tutorial</a>.</p>
 <p>It’s very common to put tasks like “run my application” into NPM’s <code>package.json</code> file, just as older programmers would put frequently-used commands into a project’s Makefile. Look for the section in <code>package.json</code> whose key is <code>"scripts"</code> and add this:</p>
 <div class="sourceCode" id="cb191"><pre class="sourceCode js"><code class="sourceCode javascript"><a class="sourceLine" id="cb191-1" title="1">  <span class="st">&quot;scripts&quot;</span><span class="op">:</span> <span class="op">{</span></a>
 <a class="sourceLine" id="cb191-2" title="2">    <span class="st">&quot;dev&quot;</span><span class="op">:</span> <span class="st">&quot;parcel serve -p 4000&quot;</span><span class="op">,</span></a>
@@ -2264,7 +2262,7 @@ distance between (0,1) and (1,0) is 1.4142135623730951</code></pre>
 <a class="sourceLine" id="cb193-2" title="2">  <span class="op">&lt;</span>p<span class="op">&gt;</span>Rendered by React&lt;/p<span class="op">&gt;,</span></a>
 <a class="sourceLine" id="cb193-3" title="3">  <span class="va">document</span>.<span class="at">getElementById</span>(<span class="st">&quot;app&quot;</span>)</a>
 <a class="sourceLine" id="cb193-4" title="4">)</a></code></pre></div>
-<p>When we load this page we get the <code>h1</code> title but <em>not</em> the paragraph. When we look in the browser console, we see the message:</p>
+<p>When we load this page we get the <code>h1</code> title but <em>not</em> the paragraph. The browser console displays the message:</p>
 <pre class="text"><code>Error: _registerComponent(...): Target container is not a DOM element.</code></pre>
 <p>This is the same race condition that has bitten us before. After sighing in frustration and making ourselves another cup of tea, we decide that, to keep things simple, we will load the script in the body of the page:</p>
 <div class="sourceCode" id="cb195"><pre class="sourceCode js"><code class="sourceCode javascript"><a class="sourceLine" id="cb195-1" title="1"><span class="op">&lt;!</span>DOCTYPE html<span class="op">&gt;</span></a>
@@ -2495,7 +2493,7 @@ distance between (0,1) and (1,0) is 1.4142135623730951</code></pre>
 <a class="sourceLine" id="cb206-11" title="11"><span class="at">vegaEmbed</span>(<span class="st">&quot;#vis&quot;</span><span class="op">,</span> spec<span class="op">,</span> options)</a></code></pre></div>
 <p>We launch this with Parcel via our saved <code>npm run</code> command:</p>
 <pre class="shell"><code>$ npm run dev -- src/vis/react-01/index.html</code></pre>
-<p>But nothing appears when we open <code>http://localhost:4000</code> in our browser. Looking in the browser console, we see a message telling us that <code>vegaEmbed</code> is not a function.</p>
+<p>Our hearts break when we open <code>http://localhost:4000</code> in our browser and nothing appears. Looking in the browser console, we see a message telling us that <code>vegaEmbed</code> is not a function.</p>
 <p>What we have tripped over is something that’s still painful in 2018. The old method of getting libraries is <code>require</code>, and that’s still what Node supports as of Version 10.9.0. The new standard is <code>import</code>, which allows a module to define a default value so that <code>import ’something’</code> gets a function, a class, or whatever. This is really handy, but <code>require</code> doesn’t work that way.</p>
 <p>We can either add the <code>--experimental-modules</code> flag when using Node on the command line, or rename our files with a <code>.mjs</code> extension, both of which are annoying. Alternatively, we can get the thing we want by accessing <code>.default</code> during import, or by referring to <code>vegaEmbed.default</code> when we call it. These choices are also annoying, but after a bit of fiddling and cursing, we decide to make the fix as the library is loaded:</p>
 <div class="sourceCode" id="cb208"><pre class="sourceCode js"><code class="sourceCode javascript"><a class="sourceLine" id="cb208-1" title="1"><span class="kw">const</span> vegaEmbed <span class="op">=</span> <span class="at">require</span>(<span class="st">&#39;vega-embed&#39;</span>).<span class="at">default</span></a>
@@ -2641,11 +2639,11 @@ inside immediate handler for c</code></pre>
 <a class="sourceLine" id="cb223-15" title="15"><span class="op">}</span>).<span class="at">then</span>((message) <span class="kw">=&gt;</span> <span class="va">console</span>.<span class="at">log</span>(message))</a>
 <a class="sourceLine" id="cb223-16" title="16">.<span class="at">catch</span>((error) <span class="kw">=&gt;</span> <span class="va">console</span>.<span class="at">log</span>(<span class="va">error</span>.<span class="at">message</span>))</a></code></pre></div>
 <pre class="text"><code>got HTTP status code 400</code></pre>
-<p>(Note that we didn’t assign our Promise object to a variable in the example above. We can create promises on the fly if we need them only to define behaviour on successful completion/exception and won’t need to refer to them again later.) What makes this all work is that a promise is an object.</p>
+<p>Note that we didn’t assign our Promise object to a variable in the example above. We can create promises on the fly if we need them only to define behaviour on successful completion/exception and won’t need to refer to them again later.</p>
 <figure>
 <img src="figures/promises-object-a.svg" id="f:promises-object-a" /><figcaption>Promises as Objects (after creation)<span label="f:promises-object-a"></span></figcaption>
 </figure>
-<p>Figure <a href="#f:promises-object-a" data-reference-type="ref" data-reference="f:promises-object-a">9.2</a> shows what’s in memory just after this promise has been created. There are a lot of arrows in this diagram, but they all serve a purpose:</p>
+<p>What makes this all work is that a promise is an object. Figure <a href="#f:promises-object-a" data-reference-type="ref" data-reference="f:promises-object-a">9.2</a> shows what’s in memory just after this promise has been created. There are a lot of arrows in this diagram, but they all serve a purpose:</p>
 <ul>
 <li><p>The promise has three fields: the initial action (which is the callback passed to the constructor), the action to be taken if everything succeeds, and the action to be taken if there’s an error.</p></li>
 <li><p>The success and error actions are empty, because the initial action hasn’t executed yet.</p></li>
@@ -3193,7 +3191,7 @@ Server running at http://localhost:4000
 <a class="sourceLine" id="cb271-2" title="2"></a>
 <a class="sourceLine" id="cb271-3" title="3"><span class="kw">const</span> mount <span class="op">=</span> <span class="va">document</span>.<span class="at">getElementById</span>(<span class="st">&quot;app&quot;</span>)</a>
 <a class="sourceLine" id="cb271-4" title="4"><span class="va">ReactDOM</span>.<span class="at">render</span>(<span class="op">&lt;</span>App/<span class="op">&gt;,</span> mount)</a></code></pre></div>
-<p>This may seem pretty complicated, and it is, because this example would be much simpler to write without all this indirection. However, this strategy is widely used to manage large applications: data and event handlers are defined in one class, then passed into display components to be displayed and interacted with.</p>
+<p>This seems pretty complicated because it is: our small example would be much simpler without all this indirection. However, we need this strategy to manage large applications: data and event handlers are defined in one class, then passed into display components to be displayed and interacted with.</p>
 <h2 id="s:interactive-fetching">Fetching Data</h2>
 <p>Let’s use what we’ve learned to look at how the world might end. NASA provides a web API to get information about near-approach asteroids. We will use it to build a small display with:</p>
 <ul>
@@ -3317,7 +3315,7 @@ Server running at http://localhost:4000
 <a class="sourceLine" id="cb276-14" title="14"><span class="im">export</span> <span class="op">{</span>DateSubmit<span class="op">}</span></a></code></pre></div>
 <p>Note the use of destructuring in <code>DateSubmit</code>’s parameter list; this was introduced in Section <a href="#s:pages-citations" data-reference-type="ref" data-reference="s:pages-citations">6.4</a> and is an easy way to pull values out of the <code>props</code> parameter.</p>
 <p>It’s important to understand the order of operations in the example above. <code>value={value}</code> puts a value in the input box to display each time <code>DateSubmit</code> is called. We re-bind <code>onChange</code> and <code>onClick</code> to functions on each call as well (remember, JSX gets translated into function calls). So yes, this whole paragraph is being re-created every time someone types, but React and the browser work together to minimize recalculation.</p>
-<p>Now let’s go back and re-work our application:</p>
+<p>Back to our application:</p>
 <div class="sourceCode" id="cb277"><pre class="sourceCode js"><code class="sourceCode javascript"><a class="sourceLine" id="cb277-1" title="1"><span class="co">// ...imports as before...</span></a>
 <a class="sourceLine" id="cb277-2" title="2"></a>
 <a class="sourceLine" id="cb277-3" title="3"><span class="kw">class</span> App <span class="kw">extends</span> <span class="va">React</span>.<span class="at">Component</span> <span class="op">{</span></a>
@@ -4123,8 +4121,7 @@ Server running at http://localhost:4000
 <a class="sourceLine" id="cb319-9" title="9"><span class="va">app</span>.<span class="at">listen</span>(PORT<span class="op">,</span> () <span class="kw">=&gt;</span> <span class="op">{</span></a>
 <a class="sourceLine" id="cb319-10" title="10">  <span class="va">console</span>.<span class="at">log</span>(<span class="vs">`listening on port </span><span class="sc">${</span>PORT<span class="sc">}</span><span class="vs">...`</span>)</a>
 <a class="sourceLine" id="cb319-11" title="11"><span class="op">}</span>)</a></code></pre></div>
-<p>As you can probably guess from the fact that we’ve called it <code>driver-0</code>, we’re going to be making some changes down the road<span>…</span></p>
-<p>Here’s the start of the server it works with:</p>
+<p>As you can probably guess from the fact that we’ve called it <code>driver-0</code>, we’re going to be making some changes down the road<span>…</span> Here’s the start of the server it works with:</p>
 <div class="sourceCode" id="cb320"><pre class="sourceCode js"><code class="sourceCode javascript"><a class="sourceLine" id="cb320-1" title="1"><span class="kw">const</span> express <span class="op">=</span> <span class="at">require</span>(<span class="st">&#39;express&#39;</span>)</a>
 <a class="sourceLine" id="cb320-2" title="2"></a>
 <a class="sourceLine" id="cb320-3" title="3"><span class="co">// &#39;dataManager&#39; is a global variable that refers to our database.</span></a>
@@ -4320,8 +4317,7 @@ Server running at http://localhost:4000
 <a class="sourceLine" id="cb331-16" title="16">    )</a>
 <a class="sourceLine" id="cb331-17" title="17">  <span class="op">}</span></a></code></pre></div>
 <h2 id="s:capstone-tables">The Tables</h2>
-<p>We will display survey stats as tables, with a paragraph fallback when there’s no data.</p>
-<p>First, we display summary statistics for the whole data set (as returned by the <code>GET /survey/stats</code> query we wrote a handler for earlier) as a table at the top of the page. (Again, we need parentheses around the HTML fragment so that it will parse properly.)</p>
+<p>We will display survey stats as tables, with a paragraph fallback when there’s no data. First, we display summary statistics for the whole data set (as returned by the <code>GET /survey/stats</code> query we wrote a handler for earlier) as a table at the top of the page. (Again, we need parentheses around the HTML fragment so that it will parse properly.)</p>
 <div class="sourceCode" id="cb332"><pre class="sourceCode js"><code class="sourceCode javascript"><a class="sourceLine" id="cb332-1" title="1"><span class="im">import</span> React <span class="im">from</span> <span class="st">&#39;react&#39;</span></a>
 <a class="sourceLine" id="cb332-2" title="2"></a>
 <a class="sourceLine" id="cb332-3" title="3"><span class="kw">const</span> SurveyStats <span class="op">=</span> (<span class="op">{</span>data<span class="op">}</span>) <span class="kw">=&gt;</span> <span class="op">{</span></a>
@@ -4421,7 +4417,8 @@ Server running at http://localhost:4000
 <p>In order to test our application, we need to run a data server, and then launch our application with Parcel. The easiest way to do that is to open two windows on our computer and make each half the width (or height) of our screen so that we can see messages from both halves of what we’re doing.</p>
 <p>In one window, we run:</p>
 <pre class="shell"><code>$ node src/capstone/back/driver-0.js src/capstone/back/test-data.csv</code></pre>
-<p>Note that we <em>don’t</em> use <code>npm run dev</code> to trigger Parcel: this is running on the server, so no bundling is necessary. In our other window, we run:</p>
+<p>Note that we <em>don’t</em> use <code>npm run dev</code> to trigger Parcel: this is running on the server, so no bundling is necessary.</p>
+<p>In our other window, we run:</p>
 <pre class="shell"><code>$ npm run dev src/capstone/front/index.html</code></pre>
 <p>which displays:</p>
 <pre class="text"><code>&gt; js4ds@0.1.0 dev /Users/stj/js4ds
@@ -4467,7 +4464,7 @@ The Same Origin Policy disallows reading the remote resource \
 <figure>
 <img src="figures/capstone-second-attempt.png" alt="Second Attempt at Viewing Capstone Project" id="f:capstone-second-attempt" /><figcaption>Second Attempt at Viewing Capstone Project<span label="f:capstone-second-attempt"></span></figcaption>
 </figure>
-<p>Much better! Now we can type some dates into the “start” and “end” boxes and, after we press “update”, we get a chart and table of the aggregated statistics for the year range given (Figure <a href="#f:capstone-complete" data-reference-type="ref" data-reference="f:capstone-complete">14.3</a>).</p>
+<p>This is much better. We can now type some dates into the “start” and “end” boxes and, after we press “update”, we get a chart and table of the aggregated statistics for the year range given (Figure <a href="#f:capstone-complete" data-reference-type="ref" data-reference="f:capstone-complete">14.3</a>).</p>
 <figure>
 <img src="figures/capstone-complete.png" alt="Completed Capstone Project" id="f:capstone-complete" /><figcaption>Completed Capstone Project<span label="f:capstone-complete"></span></figcaption>
 </figure>
@@ -5244,6 +5241,30 @@ The Same Origin Policy disallows reading the remote resource \
 <p>Having a Code of Conduct is particularly important for people from marginalized or under-represented groups, who have probably experienced harassment or unwelcoming behavior before. By adopting one, you signal that your project is trying to be a better place than YouTube, Twitter, and other online cesspools. Some people may push back claiming that it’s unnecessary, or that it infringes freedom of speech, but in our experience, what they often mean is that thinking about how they might have benefited from past inequity makes them feel uncomfortable, or that they like to argue for the sake of arguing. If having a Code of Conduct leads to them going elsewhere, that will probably make your project run more smoothly.</p>
 <p>Just as you shouldn’t write your own license for a project, you probably shouldn’t write your own Code of Conduct. We recommend using the <a href="https://www.contributor-covenant.org">Contributor Covenant</a> for development projects and the <a href="http://geekfeminism.wikia.com/wiki/Conference_anti-harassment/Policy">model code of conduct</a> from the <a href="http://geekfeminism.wikia.com/">Geek Feminism Wiki</a> for in-person events. Both have been thought through carefully and revised in the light of experience, and both are now used widely enough that many potential participants in your project will not need to have them explained.</p>
 <p>Rules are meaningless if they aren’t enforced. If you adopt a Code of Conduct, it is therefore important to be clear about how to report issues and who will handle them.[<a class="cite" href="#ref-Auro2018">Auro2018</a>] is a short, practical guide to handling incidents; like the Contributor Covenant and the model code of conduct, it’s better to start with something that other people have thought through and refined than to try to create something from scratch.</p>
+<h2 id="governance">Governance</h2>
+<p><span>s:collab-governance</span></p>
+<p>If your project involves more than half a dozen people, you should be explicit about the way decisions are made. We recommend Martha’s Rules [<a class="cite" href="#ref-Mina1986">Mina1986</a>]:</p>
+<ol>
+<li><p>Before each meeting, anyone who wishes may sponsor a proposal. Proposals must be circulated at least 24 hours before a meeting in order to be considered at that meeting, and must include:</p>
+<ul>
+<li><p>a one-line summary (the subject line of the issue);</p></li>
+<li><p>the full text of the proposal;</p></li>
+<li><p>any required background information;</p></li>
+<li><p>pros and cons; and</p></li>
+<li><p>possible alternatives.</p></li>
+</ul></li>
+<li><p>A quorum is established in a meeting if half or more of voting members are present.</p></li>
+<li><p>Once a person has sponsored a proposal, they are responsible for it. The group may not discuss or vote on the issue unless the sponsor or their delegate is present. The sponsor is also responsible for presenting the item to the group.</p></li>
+<li><p>After the sponsor presents the proposal, a <em>sense vote</em> is cast for the proposal prior to any discussion:</p>
+<ul>
+<li><p>Who likes the proposal?</p></li>
+<li><p>Who can live with the proposal?</p></li>
+<li><p>Who is uncomfortable with the proposal?</p></li>
+</ul></li>
+<li><p>If all or most of the group likes or can live with the proposal, it is immediately moved to a formal vote with no further discussion.</p></li>
+<li><p>If most of the group is uncomfortable with the proposal, it is postponed for further rework by the sponsor.</p></li>
+<li><p>If some members are uncomfortable they can briefly state their objections. A timer is then set for a brief discussion moderated by the facilitator. After 10 minutes or when no one has anything further to add (whichever comes first), the facilitator calls for a yes-or-no vote on the question: “Should we implement this decision over the stated objections?” If a majority votes "yes" the proposal is implemented. Otherwise, the proposal is returned to the sponsor for further work.</p></li>
+</ol>
 <h1 id="s:legacy">Legacy JavaScript Issues</h1>
 <p>JavaScript is now twenty-five years old, and like many twenty-somethings, it is still struggling with issues from its childhood. This appendix explores three of them.</p>
 <h2 id="s:legacy-equality">Equality</h2>
@@ -5721,8 +5742,7 @@ aszego@euphoric.edu</code></pre>
 TypeError: Cannot read property &#39;Symbol(Symbol.iterator)&#39; of undefined
     at display (/project/src/db/separate-driver.js:4:15)
     at main (/project/src/db/separate-driver.js:16:3)</code></pre>
-<p>Whoops: the <code>run</code> method of the database delivers results to a callback; its own result is therefore <code>undefined</code>, so there’s nothing in the caller to print.</p>
-<p>The solution is to give the <code>get</code> methods a callback of their own:</p>
+<p>Whoops: the <code>run</code> method of the database delivers results to a callback; its own result is therefore <code>undefined</code>, so there’s nothing in the caller to print. The solution is to give the <code>get</code> methods a callback of their own:</p>
 <div class="sourceCode" id="cb379"><pre class="sourceCode js"><code class="sourceCode javascript"><a class="sourceLine" id="cb379-1" title="1"><span class="kw">class</span> Database <span class="op">{</span></a>
 <a class="sourceLine" id="cb379-2" title="2"></a>
 <a class="sourceLine" id="cb379-3" title="3">  <span class="co">// ...as before...</span></a>
@@ -5981,6 +6001,9 @@ TypeError: Cannot read property &#39;Symbol(Symbol.iterator)&#39; of undefined
 <div id="ref-Meek2017">
 <p><strong>[Meek2017]</strong> Meeks, Elijah. <em>D3.js in Action</em>. 2nd ed. Manning, 2017. A comprehensive guide to the D3 visualization framework.</p>
 </div>
+<div id="ref-Mina1986">
+<p><strong>[Mina1986]</strong> Minahan, Anne. “Martha’s Rules.” <em>Affilia</em> 1, no. 2 (June 1986): 53–56. doi:<a href="https://doi.org/10.1177/088610998600100206">10.1177/088610998600100206</a>.</p>
+</div>
 <div id="ref-Mori2012">
 <p><strong>[Mori2012]</strong> Morin, Andrew, Jennifer Urban, and Piotr Sliz. “A Quick Guide to Software Licensing for the Scientist-Programmer.” <em>PLoS Computational Biology</em> 8, no. 7 (July 2012). doi:<a href="https://doi.org/10.1371/journal.pcbi.1002598">10.1371/journal.pcbi.1002598</a>. A short introduction to software licensing for non-specialists.</p>
 </div>
@@ -5991,6 +6014,7 @@ TypeError: Cannot read property &#39;Symbol(Symbol.iterator)&#39; of undefined
 <section class="footnotes" role="doc-endnotes">
 <hr />
 <ol>
+
 
 
 

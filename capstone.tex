@@ -1,7 +1,8 @@
 \chapter{Capstone Project}\label{s:capstone}
 
 It's time to bring everything together in an extended example:
-a (slightly) interactive visualization of species data from \url{https://figshare.com/articles/Portal_Project_Teaching_Database/1314459}.
+a (slightly) interactive visualization of species data from
+\url{https://figshare.com/articles/Portal_Project_Teaching_Database/1314459}.
 Our plan is to:
 
 \begin{itemize}
@@ -17,6 +18,7 @@ Our plan is to:
   add visualization.
 \end{itemize}
 
+\noindent
 This will require a few new ideas,
 but will mostly recapitulate what's come before.
 
@@ -64,9 +66,9 @@ app.listen(PORT, () => {
 })
 \end{minted}
 
+\noindent
 As you can probably guess from the fact that we've called it \texttt{driver-0},
 we're going to be making some changes down the road{\ldots}
-
 Here's the start of the server it works with:
 
 \begin{minted}{js}
@@ -131,6 +133,7 @@ app.get('/survey/:start/:end', (req, res, next) => {
 })
 \end{minted}
 
+\noindent
 We also write an error handling function:
 
 \begin{minted}{js}
@@ -343,7 +346,8 @@ and the second \texttt{then} callback when the data has been converted to JSON.
   }
 \end{minted}
 
-Now let's update the display with \texttt{SurveyStats}, \texttt{ChooseRange}, \texttt{DataChart}, and \texttt{DataDisplay},
+Now let's update the display with \texttt{SurveyStats},
+\texttt{ChooseRange}, \texttt{DataChart}, and \texttt{DataDisplay},
 which are all stateless components
 (i.e., they display things but don't change anything):
 
@@ -371,7 +375,6 @@ which are all stateless components
 
 We will display survey stats as tables,
 with a paragraph fallback when there's no data.
-
 First, we display summary statistics for the whole data set
 (as returned by the \texttt{GET\ /survey/stats} query we wrote a handler for earlier)
 as a table at the top of the page.
@@ -506,6 +509,7 @@ const DataChart = ({data}) => {
 export default DataChart
 \end{minted}
 
+\noindent
 The other components are similar to those we have seen before.
 
 \section{Running It}\label{s:capstone-run}
@@ -524,9 +528,11 @@ we run:
 $ node src/capstone/back/driver-0.js src/capstone/back/test-data.csv
 \end{minted}
 
+\noindent
 Note that we \emph{don't} use \texttt{npm\ run\ dev} to trigger Parcel:
 this is running on the server,
 so no bundling is necessary.
+
 In our other window,
 we run:
 
@@ -559,7 +565,9 @@ The Same Origin Policy disallows reading the remote resource \
 (Reason: CORS header 'Access-Control-Allow-Origin' missing).
 \end{minted}
 
-The ``Learn More'' link given with the error message takes us to \href{https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS/Errors/CORSMissingAllowOrigin}{this page},
+\noindent
+The ``Learn More'' link given with the error message takes us to
+\href{https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS/Errors/CORSMissingAllowOrigin}{this page},
 which uses many science words we don't know.
 A web search turns up \href{https://en.wikipedia.org/wiki/Cross-origin_resource_sharing}{this article on Wikipedia},
 which tells us that \gref{g:cors}{Cross-origin resource sharing} (CORS)
@@ -605,12 +613,13 @@ Let's run that:
 $ node src/capstone/back/driver-1.js src/capstone/back/test-data.csv
 \end{minted}
 
+\noindent
 and then re-launch our application to get \figref{f:capstone-second-attempt}.
 
 \figpdf{figures/capstone-second-attempt.png}{Second Attempt at Viewing Capstone Project}{f:capstone-second-attempt}
 
-Much better!
-Now we can type some dates into the ``start'' and ``end'' boxes and,
+This is much better.
+We can now type some dates into the ``start'' and ``end'' boxes and,
 after we press ``update'',
 we get a chart and table of the aggregated statistics for the year range given
 (\figref{f:capstone-complete}).

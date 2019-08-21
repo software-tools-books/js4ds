@@ -114,6 +114,7 @@ the type of undefined is undefined
 the type of null is object
 \end{minted}
 
+\noindent
 As the example above shows, we create an array of values to loop through called \texttt{otherValues}.
 We initiate our loop with the word \texttt{for}.
 Within the parentheses, \texttt{let} creates a variable called \texttt{value} to iterate over each element within \texttt{otherValues},
@@ -251,6 +252,7 @@ color is green and capitalized is GREEN
 color is blue and capitalized is BLUE
 \end{minted}
 
+\noindent
 This allows us to succinctly add variables to a string instead of:
 
 \begin{minted}{js}
@@ -328,6 +330,7 @@ console.log(JSON.stringify(creature))
  "genus":"Callithrix","species":"Jacchus"}
 \end{minted}
 
+\noindent
 Here,
 ``JSON'' stands for ``JavaScript Object Notation'';
 we will learn more about it in \chapref{s:dataman}.
@@ -372,6 +375,7 @@ the function returns \texttt{[undefined,undefined]}.
   }
 \end{minted}
 
+\noindent
 If that initial check finds that \texttt{values} does have a length -
 i.e. \texttt{!values.length} returns \texttt{false} -
 the rest of the function is run.
@@ -405,6 +409,7 @@ These are returned as a pair inside an array.
   return [low, high]
 \end{minted}
 
+\noindent
 Note that we can use \texttt{return} to explicitly return a value at any time;
 if nothing is returned,
 the function's result is \texttt{undefined}.
@@ -543,6 +548,7 @@ clip(-1,5,3,0,10) -> -1,3,0
 clip(-1,5,3,0,10, 5) -> -1,5,3,0
 \end{minted}
 
+\noindent
 \texttt{require} returns the object that was assigned to \texttt{module.exports},
 so if we have assigned its result to a variable called \texttt{utilities},
 we must then call our function as \texttt{utilities.clip}.
@@ -706,8 +712,11 @@ species is undefined
   so that \texttt{clip} can be called directly as \texttt{clip(...)} rather than as \texttt{utilities.clip(...)}?
 \end{enumerate}
 
-\exercise{Return To Me, For My Heart Wants You Only}\begin{minted}{js}
+\exercise{Return To Me, For My Heart Wants You Only}
 
+What output would you see in the console if you ran this code?
+
+\begin{minted}{js}
 const verbose_sum = (first, second) => {
   console.log(`Going to add ${first} to ${second}`)
   let total = first + second
@@ -718,8 +727,6 @@ const verbose_sum = (first, second) => {
 var result = verbose_sum(3, 6)
 console.log(result)
 \end{minted}
-
-What output would you see in the console if you ran the code above?
 
 \begin{enumerate}
 \item

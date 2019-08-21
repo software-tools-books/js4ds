@@ -102,6 +102,7 @@ Here's an empty HTML page with the structure described above:
 </html>
 \end{minted}
 
+\noindent
 Nothing shows up if we open this in a browser,
 so let's add a little content:
 
@@ -151,6 +152,7 @@ For example:
 <h1 align="center">A Centered Heading</h1>
 \end{minted}
 
+\noindent
 centers the \texttt{h1} heading on the page, while:
 
 \begin{minted}{html}
@@ -296,6 +298,7 @@ Lithium & Neon \\
 Sodium & Argon \\
 \end{longtable}
 
+\noindent
 Do \emph{not} use tables to create multi-column layouts:
 there's a better way.
 
@@ -319,6 +322,7 @@ and we can use \texttt{\htmltag{br/}} to force a line break in text
 <a href="../index.html">home page (relative path)</a>
 \end{minted}
 
+\noindent
 This appears as:
 
 \begin{minted}{text}
@@ -440,6 +444,7 @@ span.keyword {
 }
 \end{minted}
 
+\noindent
 Each entry has the form \texttt{tag.class} followed by a group of properties inside curly braces,
 and each property is a key-value pair.
 We can omit the class and just write (for example):
@@ -450,6 +455,7 @@ p {
 }
 \end{minted}
 
+\noindent
 in which case the style applies to everything with that tag.
 If we do this,
 we can override general rules with specific ones:
