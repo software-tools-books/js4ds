@@ -447,26 +447,24 @@ we will load the script in the body of the page:
   <body>
     <h1>Hello Bottom</h1>
     <div id="app"></div>
-    <script src="./app.js"></script>
+    <script src="./app.js" type="text/babel"></script>
   </body>
 </html>
 \end{minted}
 
 
 \begin{aside}{Installing React and ReactDOM}
-
-Now that we've made a project folder using \texttt{npm init},
-and we have a \texttt{project.json} file,
+Now that we have made a project folder using \texttt{npm init} and have a \texttt{project.json} file,
 we can install our first modules:
 
 \begin{minted}{shell}
-npm install react
-npm install reactDOM
+$ npm install react
+$ npm install reactDOM
 \end{minted}
 
-Any code chunks beginning with the function \texttt{require},
-indicate we will need to install that library to access the module's functions.
-
+In general,
+uses of the function \texttt{require} indicate that
+we need to install that library to access the module's functions.
 \end{aside}
 
 More importantly,
