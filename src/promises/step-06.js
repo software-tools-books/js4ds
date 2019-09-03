@@ -15,7 +15,7 @@ const countLines = (text) => {
   return text.split('\n').length
 }
 
-glob(`${srcDir}/*.txt`)
+glob(`${srcDir}/**/*.txt`)
   .then(files => Promise.all(files.map(f => statPair(f))))
   .then(files => files.filter(pair => pair.stats.size > 100000))
   .then(files => Promise.all(files.map(f => fs.readFile(f.filename, 'utf8'))))
