@@ -162,6 +162,8 @@ console.log(withHundreds.toArray())
   { ones: 3, tens: 30, hundreds: 300 } ]
 \end{minted}
 
+FIXME: show pipeline with new dataframe being created
+
 -   More common to create new columns from existing values
 
 \begin{minted}{js}
@@ -190,6 +192,8 @@ console.log(justResults.toArray())
   { sum: 22, product: 40 },
   { sum: 33, product: 90 } ]
 \end{minted}
+
+FIXME: show another pipeline diagram
 
 -   Often want to sort data for display
 -   Raw data:
@@ -247,6 +251,8 @@ console.log(doubleSorted.toArray())
   { green: '255', blue: '255' } ]
 \end{minted}
 
+FIXME: show sorting and sub-sorting as diagram
+
 -   Removing duplicates is often combined with sorting for display purposes
 
 \begin{minted}{js}
@@ -285,9 +291,10 @@ console.log(multiColumn.toArray())
 -   Because arrays are only equal if they're the same object
     \texttt{[0] === [0]} is \texttt{false}
 
-\section{Indexing}\label{s:dataforge-indexing}
+\section{Subsets}\label{s:dataforge-subset}
 
 -   Often want to work with subsets of data
+    -   And get data into the right format using \texttt{parseDates}, \texttt{parseFloats}, etc.
 
 \begin{minted}{js}
 const fs = require('fs')
@@ -376,6 +383,8 @@ console.log(earthquakes.skip(10).take(3).toArray())
     Magnitude: 3.1 } ]
 \end{minted}
 
+FIXME: diagram showing head, tail, skip, and take
+
 -   Usually more useful to filter to keep rows that pass some test
     -   Tests can be as complex as desired, but must work row by row
 
@@ -400,6 +409,7 @@ console.log(large.toArray())
 \section{Aggregation}\label{s:dataforge-aggregate}
 
 -   What are the average earthquake depth and magnitude?
+    -   Produces an object rather than a dataframe
 
 \begin{minted}{js}
 const averageValues = earthquakes.summarize({
@@ -470,6 +480,8 @@ console.log(averaged.toArray())
 -   That worked, but what are \texttt{deflate} and \texttt{inflate} and why are they needed?
 -   \texttt{inflate} turns a series into a dataframe
 -   \texttt{deflate} turns a column of a dataframe into a series
+
+FIXME: draw pipeline and data structures
 
 \section{In Real Life}\label{s:dataforge-real}
 
