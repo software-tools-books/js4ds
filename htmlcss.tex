@@ -122,6 +122,8 @@ so let's add a little content:
 </html>
 \end{minted}
 
+\figpdf{figures/FIXME.png}{HTML as a Tree}{f:htmlcss-tree} % diagram of HTML tree for this simple page
+
 \begin{itemize}
 \item
   The \texttt{title} element inside \texttt{head} gives the page a title.
@@ -334,6 +336,8 @@ home page (relative path)
 \noindent
 with the usual clickability.
 
+\figpdf{figures/FIXME.png}{Pages and Links}{f:htmlcss-links} % diagram showing three pages with relative links and one external page
+
 \section{Images}\label{s:htmlcss-images}
 
 Images can be stored inside HTML pages in two ways:
@@ -360,7 +364,7 @@ and an \texttt{alt} attribute with some descriptive text to aid accessibility an
          alt="Display the HTML5 logo using a URL" />
 \end{minted}
 
-Two things are worth noting here:
+Two things to note here are:
 
 \begin{enumerate}
 \item
@@ -463,16 +467,18 @@ the style for a disclaimer paragraph is defined by \texttt{p} with overrides def
 We can also omit the tag and simply use \texttt{.class},
 in which case every element with that class has that style.
 
+\figpdf{figures/FIXME.png}{CSS Selectors}{f:htmlcss-selectors} % diagram mapping CSS items to HTML elements.
+
 As suggested by the earlier discussion of separators,
 elements may have multiple values for class,
 as in \texttt{{\textless}span\ class="keyword\ highlight"{\textgreater}{\ldots}\htmltag{/span}}.
 (The \texttt{span} element simply marks a region of text,
 but has no effect unless it's styled.)
 
-These two features are one
+These features are one
 (but unfortunately not the only)
 common source of confusion with CSS:
-If one may override general rules with specific ones
+if one may override general rules with specific ones
 but also provide multiple values for class,
 how do we keep track of which rules will apply to an element with multiple classes?
 A detailed discussion of the order of precedence for CSS rules
@@ -574,6 +580,8 @@ to create a two-column layout with a banner at the top:
   </body>
 </html>
 \end{minted}
+
+\figpdf{figures/FIXME.png}{Bootstrap Layout}{f:htmlcss-bootstrap} % screenshot
 
 The page opens by loading Bootstrap from the web;
 we can also download \texttt{bootstrap.min.css} and refer to it with a local path.

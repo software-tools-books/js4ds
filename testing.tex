@@ -97,6 +97,8 @@ $ ./node_modules/.bin/mocha path/to/test.js
   1 passing (12ms)
 \end{minted}
 
+\figpdf{figures/FIXME.png}{Mocha in Action}{f:testing-mocha} % diagram to show where Mocha looks for tests and the describe/it structure of execution.
+
 As with bundling,
 we normally put the \texttt{mocha} command in \texttt{package.json}
 so that \texttt{./node\_modules/.bin} is automatically included in the path.
@@ -182,6 +184,9 @@ The answer is yet another library called \href{https://github.com/visionmedia/su
 that sends fake HTTP requests to an Express server
 that has been split in the way we just split ours
 and lets us interact with that server's replies.
+
+\figpdf{figures/FIXME.png}{Supertest versus Reality}{f:testing-supertest} % diagram of real HTTP versus supertest.
+
 Here's a test of a simple request that uses Mocha to manage the test,
 and supertest's \texttt{request} function to send something to the server
 and check the result:
