@@ -78,7 +78,7 @@ This is called \gref{g:polymorphism}{polymorphism},
 and it allows us to add new shapes without changing the code in our loop.
 In other words,
 it allows old code (in this case, the function \texttt{show\_all})
-to use new code (the new object \texttt{rectangle}).
+to use new code (the new object \texttt{rectangle}):
 
 \begin{minted}{js}
 const rectangle = {
@@ -142,6 +142,8 @@ that operate on instances of it.
 (We'll explain how JavaScript marks objects in \secref{s:legacy-prototypes};
 it's more complicated than it needs to be
 in order to be compatible with older versions of the language.)
+
+\figpdf{figures/FIXME.png}{Objects and Classes in Memory}{f:oop-memory} % picture of objects and classes in memory
 
 Before \texttt{new} hands the newly-created object back to the program,
 it calls the specially-named method \texttt{constructor} to initialize the object's state.
@@ -240,6 +242,8 @@ square: area 12.25 perimeter 14
 circle: area 19.634954084936208 perimeter 15.707963267948966
 rectangle: area 0.75 perimeter 4
 \end{minted}
+
+\figpdf{figures/FIXME.png}{Polymorphism}{f:oop-polymorphism} % picture of polymorphic objects
 
 \section{Inheritance}\label{s:oop-inheritance}
 
