@@ -108,9 +108,7 @@ but a class with three parts:
   Here, it creates a button with an event handler and displays the current value of the counter.
 \end{enumerate}
 
-React calls each component's \texttt{render} method each time \texttt{setState} is used to update the component's state;
-this is an example of a protocol,
-which was described in \secref{s:oop-protocols}.
+React calls each component's \texttt{render} method each time \texttt{setState} is used to update the component's state.
 Behind the scenes,
 React does some thinking to minimize how much redrawing takes place:
 while it may look as though the paragraph, button, and current count are all being redrawn each time,
