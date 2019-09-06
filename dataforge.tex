@@ -1,6 +1,6 @@
 \chapter{Using Data-Forge}\label{s:dataforge}
 
-FIXME
+FIXME: write this chapter
 
 -   Inspired by Python's Pandas library
     -   But should be familiar to users of R dataframes
@@ -162,7 +162,7 @@ console.log(withHundreds.toArray())
   { ones: 3, tens: 30, hundreds: 300 } ]
 \end{minted}
 
-FIXME: show pipeline with new dataframe being created
+\figpdf{figures/FIXME.png}{Everything is a Pipeline}{f:dataforge-pipeline} % show pipeline with new dataframe being created
 
 -   More common to create new columns from existing values
 
@@ -193,7 +193,7 @@ console.log(justResults.toArray())
   { sum: 33, product: 90 } ]
 \end{minted}
 
-FIXME: show another pipeline diagram
+\figpdf{figures/FIXME.png}{A More Complicated Pipeline}{f:dataforge-another-pipeline} % show pipeline with new dataframe being created
 
 -   Often want to sort data for display
 -   Raw data:
@@ -251,7 +251,7 @@ console.log(doubleSorted.toArray())
   { green: '255', blue: '255' } ]
 \end{minted}
 
-FIXME: show sorting and sub-sorting as diagram
+\figpdf{figures/FIXME.png}{Sorting and Sub-sorting}{f:dataforge-sorting} % show sorting and sub-sorting as diagram
 
 -   Removing duplicates is often combined with sorting for display purposes
 
@@ -383,7 +383,7 @@ console.log(earthquakes.skip(10).take(3).toArray())
     Magnitude: 3.1 } ]
 \end{minted}
 
-FIXME: diagram showing head, tail, skip, and take
+\figpdf{figures/FIXME.png}{Seleting by Position}{f:dataforge-positional} % diagram showing head, tail, skip, and take
 
 -   Usually more useful to filter to keep rows that pass some test
     -   Tests can be as complex as desired, but must work row by row
@@ -481,7 +481,7 @@ console.log(averaged.toArray())
 -   \texttt{inflate} turns a series into a dataframe
 -   \texttt{deflate} turns a column of a dataframe into a series
 
-FIXME: draw pipeline and data structures
+\figpdf{figures/FIXME.png}{Summarizing Groups}{f:dataforge-positional} % show steps in deflate and inflate
 
 \section{In Real Life}\label{s:dataforge-real}
 
