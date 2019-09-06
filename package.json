@@ -34,6 +34,8 @@
     "babel-preset-react": "^6.24.1",
     "body-parser": "^1.18.3",
     "cors": "^2.8.4",
+    "data-forge": "^1.7.3",
+    "data-forge-fs": "0.0.7",
     "eslint": "^5.10.0",
     "eslint-plugin-import": "^2.14.0",
     "eslint-plugin-node": "^8.0.0",
