@@ -320,8 +320,8 @@ It would be more natural for \texttt{\_average} to take an array rather than a v
 but we want to be able to use it in the same way that we use \texttt{Math.min} and \texttt{Math.max},
 so we have to conform to their signature.
 
-After some thought we realize that it's possible for \texttt{subset} to be empty -
-that is, it's possible that there are years that have no data in our data set.
+After some thought we realize that it's possible for \texttt{subset} to be empty---i.e.,
+it's possible that there are years that have no data in our data set.
 We should filter these out,
 to prevent unnecessary effort being made to render summary statistics with \texttt{NaN} values.
 Remembering that empty arrays are not falsy in JavaScript (\chapref{s:basics}),
