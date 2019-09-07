@@ -288,7 +288,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <header>
         <h1 class="title">JavaScript for Data Science</h1>
                         <p class="author">Maya Gans, Toby Hodges, and Greg Wilson</p>
-                        <p class="date">Version 3.0 beta / July 2019</p>
+                        <p class="date">Version 3.1 / September 2019</p>
               </header>
       <div class="dedication">
         <p><strong>Dedication</strong></p>
@@ -4060,7 +4060,7 @@ Server running at http://localhost:4000
 <li><p>Check the structure of the DOM rather than the textual representation of the HTML when testing.</p></li>
 </ul>
 <h1 id="s:dataforge">Using Data-Forge</h1>
-<p>FIXME</p>
+<p>FIXME: write this chapter</p>
 <p>- Inspired by Python’s Pandas library - But should be familiar to users of R dataframes - DataForge creates DataFrames with named columns - Each column is a Series - Key features: - Dataframes are immutable: operations produce new dataframes - Method chaining - Lazy evaluation: calculations aren’t done until they are needed - Tidy data - Each column is a variable - Each row is an observation</p>
 <h2 id="s:dataforge-basics">Basic Operations</h2>
 <p>- Load the library and create a dataframe from a list of objects - Each objects must have the same keys</p>
@@ -4141,7 +4141,9 @@ Server running at http://localhost:4000
 <pre class="text"><code>[ { ones: 1, tens: 10, hundreds: 100 },
   { ones: 2, tens: 20, hundreds: 200 },
   { ones: 3, tens: 30, hundreds: 300 } ]</code></pre>
-<p>FIXME: show pipeline with new dataframe being created</p>
+<figure>
+<img src="figures/FIXME.png" alt="Everything is a Pipeline" id="f:dataforge-pipeline" /><figcaption>Everything is a Pipeline<span label="f:dataforge-pipeline"></span></figcaption>
+</figure>
 <p>- More common to create new columns from existing values</p>
 <div class="sourceCode" id="cb331"><pre class="sourceCode js"><code class="sourceCode javascript"><a class="sourceLine" id="cb331-1" data-line-number="1"><span class="kw">const</span> sumsAndProducts <span class="op">=</span> <span class="va">data</span>.<span class="at">generateSeries</span>(<span class="op">{</span></a>
 <a class="sourceLine" id="cb331-2" data-line-number="2">  <span class="dt">sum</span><span class="op">:</span> row <span class="op">=&gt;</span> <span class="va">row</span>.<span class="at">ones</span> <span class="op">+</span> <span class="va">row</span>.<span class="at">tens</span><span class="op">,</span></a>
@@ -4157,7 +4159,9 @@ Server running at http://localhost:4000
 <pre class="text"><code>[ { sum: 11, product: 10 },
   { sum: 22, product: 40 },
   { sum: 33, product: 90 } ]</code></pre>
-<p>FIXME: show another pipeline diagram</p>
+<figure>
+<img src="figures/FIXME.png" alt="A More Complicated Pipeline" id="f:dataforge-another-pipeline" /><figcaption>A More Complicated Pipeline<span label="f:dataforge-another-pipeline"></span></figcaption>
+</figure>
 <p>- Often want to sort data for display - Raw data:</p>
 <div class="sourceCode" id="cb335"><pre class="sourceCode js"><code class="sourceCode javascript"><a class="sourceLine" id="cb335-1" data-line-number="1"><span class="kw">const</span> fs <span class="op">=</span> <span class="at">require</span>(<span class="st">&#39;fs&#39;</span>)</a>
 <a class="sourceLine" id="cb335-2" data-line-number="2"><span class="kw">const</span> DF <span class="op">=</span> <span class="at">require</span>(<span class="st">&#39;data-forge&#39;</span>)</a>
@@ -4192,7 +4196,9 @@ Server running at http://localhost:4000
   { green: &#39;255&#39;, blue: &#39;0&#39; },
   { green: &#39;255&#39;, blue: &#39;0&#39; },
   { green: &#39;255&#39;, blue: &#39;255&#39; } ]</code></pre>
-<p>FIXME: show sorting and sub-sorting as diagram</p>
+<figure>
+<img src="figures/FIXME.png" alt="Sorting and Sub-sorting" id="f:dataforge-sorting" /><figcaption>Sorting and Sub-sorting<span label="f:dataforge-sorting"></span></figcaption>
+</figure>
 <p>- Removing duplicates is often combined with sorting for display purposes</p>
 <div class="sourceCode" id="cb341"><pre class="sourceCode js"><code class="sourceCode javascript"><a class="sourceLine" id="cb341-1" data-line-number="1"><span class="kw">const</span> notTheSame <span class="op">=</span> <span class="va">colors</span>.<span class="at">distinct</span>(row <span class="op">=&gt;</span> <span class="va">row</span>.<span class="at">red</span>)</a>
 <a class="sourceLine" id="cb341-2" data-line-number="2"><span class="va">console</span>.<span class="at">log</span>(<span class="va">notTheSame</span>.<span class="at">toArray</span>())</a></code></pre></div>
@@ -4274,7 +4280,9 @@ Server running at http://localhost:4000
     Longitude: 13.2313,
     Depth_Km: 10.9,
     Magnitude: 3.1 } ]</code></pre>
-<p>FIXME: diagram showing head, tail, skip, and take</p>
+<figure>
+<img src="figures/FIXME.png" alt="Seleting by Position" id="f:dataforge-positional" /><figcaption>Seleting by Position<span label="f:dataforge-positional"></span></figcaption>
+</figure>
 <p>- Usually more useful to filter to keep rows that pass some test - Tests can be as complex as desired, but must work row by row</p>
 <div class="sourceCode" id="cb353"><pre class="sourceCode js"><code class="sourceCode javascript"><a class="sourceLine" id="cb353-1" data-line-number="1"><span class="kw">const</span> large <span class="op">=</span> <span class="va">earthquakes</span>.<span class="at">where</span>(row <span class="op">=&gt;</span> (<span class="va">row</span>.<span class="at">Magnitude</span> <span class="op">&gt;=</span> <span class="fl">5.0</span>))</a>
 <a class="sourceLine" id="cb353-2" data-line-number="2"><span class="va">console</span>.<span class="at">log</span>(<span class="va">large</span>.<span class="at">toArray</span>())</a></code></pre></div>
@@ -4335,7 +4343,9 @@ Server running at http://localhost:4000
   { Magnitude: 5.4, Depth_Km: 8 },
   { Magnitude: 6, Depth_Km: 8.1 } ]</code></pre>
 <p>- That worked, but what are <code>deflate</code> and <code>inflate</code> and why are they needed? - <code>inflate</code> turns a series into a dataframe - <code>deflate</code> turns a column of a dataframe into a series</p>
-<p>FIXME: draw pipeline and data structures</p>
+<figure>
+<img src="figures/FIXME.png" alt="Summarizing Groups" id="f:dataforge-summarizing" /><figcaption>Summarizing Groups<span label="f:dataforge-summarizing"></span></figcaption>
+</figure>
 <h2 id="s:dataforge-real">In Real Life</h2>
 <p>FIXME: extended example</p>
 <h2 id="s:dataforge-exercises">Exercises</h2>
@@ -5655,13 +5665,81 @@ element 2 of x,y,z is z</code></pre>
 <li><p>Parentheses create groupes just as they do in mathematics, so <code>(an)+</code> matches “banana” but not “annual”.</p></li>
 <li><p>The pipe character <code>|</code> means “either/or”, so <code>b|c</code> matches either a single “b” or a single “c”, and <code>(either)|(or)</code> matches either “either” or “or”. (The parentheses are necessary because <code>either|or</code> matches “eitherr” or “eitheor”.)</p></li>
 <li><p>The shorthand notation <code>[a-z]</code> means “all the characters in a range”, and is easier to write and read than <code>a|b|c|…|y|z</code>.</p></li>
+<li><p>The characters <code>^</code> and <code>$</code> are called anchors: they match the beginning and end of the line without matching any actual characters.</p></li>
 <li><p>If we want to put a special character like <code>.</code>, <code>*</code>, <code>+</code>, or <code>|</code> in a regular expression, we have to <a href="#g:escape-sequence"><strong>escape</strong></a> it with a backslash <code>\</code>. This means that <code>/stop\./</code> only matches “stop.”, while <code>stop.</code> matches “stops” as well.</p></li>
 </ul>
-<p>FIXME: add a couple of simple regular expression examples here.</p>
-<figure>
-<img src="figures/FIXME.png" alt="Regular Expressions" id="f:regexp-fsa" /><figcaption>Regular Expressions<span label="f:regexp-fsa"></span></figcaption>
-</figure>
-<p>Regular expressions can match an intimidating number of other patterns, but are fairly easy to use in programs. Like strings and arrays, they are objects with methods: if <code>pattern</code> is a regular expression, then <code>string.test(pattern)</code> returns <code>true</code> if the pattern matches the string and <code>false</code> if it does not, while <code>string.match(pattern)</code> returns an array of matching substrings. If we add the modifier “g” after the closing slash of the regular expression to make it “global”, then <code>string.match(pattern)</code> returns <em>all</em> of the matching substrings:</p>
+<table class="table table-striped">
+<caption>Regular Expression Matches<span label="t:regexp-examples"></span></caption>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Text</td>
+<td style="text-align: left;">Pattern</td>
+<td style="text-align: left;">Match</td>
+<td style="text-align: left;">Explanation</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><code>abc</code></td>
+<td style="text-align: left;">/b/</td>
+<td style="text-align: left;">yes</td>
+<td style="text-align: left;">character matches itself</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"></td>
+<td style="text-align: left;">/b*/</td>
+<td style="text-align: left;">yes</td>
+<td style="text-align: left;">matches zero or more b’s</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"></td>
+<td style="text-align: left;">/z*/</td>
+<td style="text-align: left;">yes</td>
+<td style="text-align: left;">text contains zero z’s, so pattern matches</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"></td>
+<td style="text-align: left;">/z+/</td>
+<td style="text-align: left;">no</td>
+<td style="text-align: left;">text does not contain one or more z’s</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"></td>
+<td style="text-align: left;">/a.c/</td>
+<td style="text-align: left;">yes</td>
+<td style="text-align: left;">’.’ matches the ’b’</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"></td>
+<td style="text-align: left;">/<span>^</span>b/</td>
+<td style="text-align: left;">no</td>
+<td style="text-align: left;">text does not start with ’b’</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><code>abc123</code></td>
+<td style="text-align: left;">/[a-z]+/</td>
+<td style="text-align: left;">yes</td>
+<td style="text-align: left;">contains one or more consecutive lower-case letters</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"></td>
+<td style="text-align: left;">/<span>^</span>[a-z]+$/</td>
+<td style="text-align: left;">no</td>
+<td style="text-align: left;">digits in string prevent a match</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"></td>
+<td style="text-align: left;">/<span>^</span>[a-z0-9]+$/</td>
+<td style="text-align: left;">yes</td>
+<td style="text-align: left;">whole string is lower-letters or digits</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><code>Dr. Toby</code></td>
+<td style="text-align: left;">/(Dr|Prof)<span>\</span>./</td>
+<td style="text-align: left;">yes</td>
+<td style="text-align: left;">contains either “Dr” or “Prof” followed by literal ’.’</td>
+</tr>
+</tbody>
+</table>
+<p>This is a lot to digest, so Table <a href="#t:regexp-examples" data-reference-type="ref" data-reference="t:regexp-examples">[t:regexp-examples]</a> shows a few examples. Regular expressions can match an intimidating number of other patterns, but are fairly easy to use in programs. Like strings and arrays, they are objects with methods: if <code>pattern</code> is a regular expression, then <code>string.test(pattern)</code> returns <code>true</code> if the pattern matches the string and <code>false</code> if it does not, while <code>string.match(pattern)</code> returns an array of matching substrings. If we add the modifier “g” after the closing slash of the regular expression to make it “global”, then <code>string.match(pattern)</code> returns <em>all</em> of the matching substrings:</p>
 <div class="sourceCode" id="cb397"><pre class="sourceCode js"><code class="sourceCode javascript"><a class="sourceLine" id="cb397-1" data-line-number="1">Tests <span class="op">=</span> [</a>
 <a class="sourceLine" id="cb397-2" data-line-number="2">  <span class="st">&#39;Jamie: james@geneinfo.org&#39;</span><span class="op">,</span></a>
 <a class="sourceLine" id="cb397-3" data-line-number="3">  <span class="st">&#39;Zara: zetsure@bio123.edu&#39;</span><span class="op">,</span></a>
