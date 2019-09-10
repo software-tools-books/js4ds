@@ -97,8 +97,6 @@ $ ./node_modules/.bin/mocha path/to/test.js
   1 passing (12ms)
 \end{minted}
 
-\figpdf{figures/FIXME.png}{Mocha in Action}{f:testing-mocha} % diagram to show where Mocha looks for tests and the describe/it structure of execution.
-
 As with bundling,
 we normally put the \texttt{mocha} command in \texttt{package.json}
 so that \texttt{./node\_modules/.bin} is automatically included in the path.
@@ -122,7 +120,14 @@ to \texttt{package.json}, our command becomes:
 $ npm test -- path/to/test.js
 \end{minted}
 
+\noindent
 (Again, everything after \texttt{-\/-} is passed to the script itself.)
+If we don't specify where to find tests,
+Mocha looks for a directory called \texttt{test}
+and runs the files it finds there whose names begin with \texttt{test}
+(\figref{f:testing-mocha}).
+
+\figpdf{figures/testing-mocha.pdf}{Mocha in Action}{f:testing-mocha}
 
 \section{Refactoring}\label{s:testing-refactoring}
 
