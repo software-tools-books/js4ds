@@ -168,9 +168,10 @@ southeast
 The \gref{g:inner-loop}{inner loop} runs a complete cycle of iterations
 for each iteration of the \gref{g:outer-loop}{outer loop}.
 Each value assigned to the variable \texttt{outer} is a pair,
-so each value assigned to \texttt{inner} is one of the two strings from that pair.
+so each value assigned to \texttt{inner} is one of the two strings from that pair
+(\figref{f:basics-traversal}).
 
-\figpdf{figures/FIXME.png}{Nested Loop Traversal}{f:basics-traversal} % diagram showing outer and inner traversal axes
+\figpdf{figures/basics-traversal.pdf}{Nested Loop Traversal}{f:basics-traversal}
 
 A JavaScript program can also make choices:
 it executes the \gref{g:body-statement}{body} of an \texttt{if} statement
@@ -265,12 +266,16 @@ const message = "color is" + color + "and capitalized is " + color.toUpperCase()
 
 An \gref{g:object}{object} in JavaScript is a collection of key-value pairs,
 and is equivalent in simple cases to what Python would call a dictionary.
+It's common to visualize an object as a two-column table
+with the keys in one column and the values in another (\figref{f:basics-object-table}).
 The keys do not have to be strings,
 but almost always are;
 the values can be anything.
-We can create an object by putting key-value pairs in curly brackets
-with colons between the keys and values
-and commas between the pairs:
+We can create an object by putting key-value pairs in curly brackets;
+there must be a colon between the key and the value,
+and pairs must be separated by commas like the elements of arrays:
+
+\figpdf{figures/basics-object-table.pdf}{Objects in Memory}{f:basics-object-table}
 
 \begin{minted}{js}
 const creature = {
@@ -295,8 +300,6 @@ creature[family] is Callitrichidae
 creature[genus] is Callithrix
 creature[species] is Jacchus
 \end{minted}
-
-\figpdf{figures/FIXME.png}{Objects in Memory}{f:basics-object-table} % two-column table representation of object.
 
 The type of an object is always \texttt{object}.
 We can get the value associated with a key using \texttt{object[key]},
@@ -535,7 +538,7 @@ so \texttt{clip:\ clip} means ``associate a reference to the function \texttt{cl
 
 To use our newly-defined module we must \texttt{require} it.
 For example,
-we can put this in \texttt{import.js}:
+we can put this in \texttt{application.js}:
 
 \begin{minted}{js}
 const utilities = require('./utilities')
@@ -557,7 +560,7 @@ we must then call our function as \texttt{utilities.clip}.
 We use a relative path starting with \texttt{./} or \texttt{../} to import local files;
 paths that start with names are taken from installed Node libraries.
 
-\figpdf{figures/FIXME.png}{How Require Works}{f:basics-require} % diagram showing how require works
+\figpdf{figures/basics-require.pdf}{How Require Works}{f:basics-require}
 
 \section{Exercises}\label{s:basics-exercises}
 
