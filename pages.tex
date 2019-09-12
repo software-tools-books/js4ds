@@ -56,7 +56,8 @@ This page has three main parts:
   the scheme used to represent characters
   not found on a standard American keyboard in the 1970s.
   Character sets and character encodings are out of scope for this lesson;
-  see \href{https://www.joelonsoftware.com/2003/10/08/the-absolute-minimum-every-software-developer-absolutely-positively-must-know-about-unicode-and-character-sets-no-excuses/}{this essay} for an unfortunately timeless discussion.
+  see \href{https://www.joelonsoftware.com/2003/10/08/the-absolute-minimum-every-software-developer-absolutely-positively-must-know-about-unicode-and-character-sets-no-excuses/}{this essay}
+  for an unfortunately timeless discussion.
 \item
   The top half of the \texttt{body} has some headings and paragraphs
   for the JavaScript to play with.
@@ -104,12 +105,13 @@ number of paragraphs: 2
 \end{minted}
 
 \begin{aside}{Developer Tools}
-  If you are using the Firefox browser,
-  you can open the developer tools pane by going to the main menu
-  and selecting \texttt{Tools...\ Web\ Developer...\ Toggle\ Tools}.
+  To open developer tools in Firefox,
+  go to the main menu and select \texttt{Tools {\textgreater} Web\ Developer {\textgreater} Toggle\ Tools}.
   A tabbed display will open in the bottom of your page;
   choose \texttt{Console} to view the output of your JavaScript,
   or to write a little bit to run immediately.
+  You can open a similar set of tools from \texttt{View {\textgreater} Developer {\textgreater} JavaScript\ Console} in Chrome,
+  or by using \texttt{Ctrl+Shift+I} on Windows for Firefox, Chrome, or Microsoft Edge.
 \end{aside}
 
 Showing results in the console is good enough for development work,
@@ -144,9 +146,10 @@ and add it to the in-memory structure that represents the page.
 The browser stores the elements and text of the current page in a data structure called
 the Document Object Model,
 or more commonly the \gref{g:dom}{DOM}.
-The DOM is organized as a tree:
+As shown in \figref{f:htmlcss-tree},
+the DOM is organized as a tree:
 each element or piece of text is a \gref{g:node}{node} in the tree,
-and a node's children are the elements contained within it (\figref{f:pages-dom}).
+and a node's children are the elements contained within it.
 Any time the browser detects a change to the DOM,
 it automatically refreshes just as much of its display as it needs to.
 We can insert or remove text,
@@ -155,8 +158,6 @@ or copy in entire sub-pages:
 each time,
 the browser will do only the work required to reflect that change
 as quickly as possible.
-
-\figpdf{figures/FIXME.png}{The Document Object Model}{f:pages-dom} % FIXME draw this picture
 
 \section{Creating a Table of Contents}\label{s:pages-toc}
 
@@ -197,10 +198,11 @@ we might as well define it and call it immediately without giving it a name:
 }(actual_value)
 \end{minted}
 
+\noindent
 However,
 this doesn't reliably work as written;
 in order to make JavaScript happy,
-we have to parenthesize the function definition
+we have to put parentheses around the function definition
 so that it's clear exactly what's being called:
 
 \begin{minted}{js}
@@ -235,6 +237,7 @@ Let's come back to the body of the function:
   container.innerHTML = '<ul>' + items + '</ul>'
 \end{minted}
 
+\noindent
 As before,
 the first line gets the \texttt{div} we're going to fill in.
 The second line grabs all the \texttt{h2} headings,
@@ -256,39 +259,6 @@ that lacks most of \texttt{Array}'s useful methods.
   Unlike calls to \gref{g:instance-method}{instance methods} like \texttt{magnitude},
   static methods are called using \texttt{class.method()}
   rather than \texttt{some\_object.method()}.
-
-\begin{minted}{js}
-class Vec2D {
-  constructor(x, y) {
-    this.x = x
-    this.y = y
-  }
-
-  toString() {
-    return `(${this.x},${this.y})`
-  }
-
-  magnitude() {
-    return Math.sqrt(this.x ** 2 + this.y ** 2)
-  }
-
-  static dist(left, right) {
-    return Math.sqrt((left.x - right.x) ** 2 +
-                     (left.y - right.y) ** 2)
-  }
-}
-
-const a = new Vec2D(0.0, 1.0)
-console.log(`magnitude of ${a} is ${a.magnitude()}`)
-
-const b = new Vec2D(1.0, 0.0)
-console.log(`distance between ${a} and ${b} is ${Vec2D.dist(a, b)}`)
-\end{minted}
-
-\begin{minted}{text}
-magnitude of (0,1) is 1
-distance between (0,1) and (1,0) is 1.4142135623730951
-\end{minted}
 \end{aside}
 
 We then have three lines that do most of the function's work.
@@ -382,7 +352,7 @@ Our first attempt uses this as the HTML page:
 \end{minted}
 
 \noindent
-and this as the script:
+and this as our initial script:
 
 \begin{minted}{js}
 const sortLists = () => {
@@ -465,6 +435,8 @@ const sortLists = () => {
 }
 \end{minted}
 
+\figpdf{figures/FIXME.png}{Sorting and Replacing}{f:pages-sortlist} % diagram showing how the data is transformed
+
 As before,
 it starts by creating an array containing the nodes we want to operate on.
 (We use the selector \texttt{.sorted} (with a dot \texttt{.}) to select everything with the class \texttt{sorted},
@@ -541,7 +513,8 @@ and we should be ashamed of ourselves,
 but we can tell ourselves that we're going to fix it later
 and get on with learning JavaScript for now.
 
-Here's our test page:
+Our test page contains two bibliographic links
+and one non-bibliographic link:
 
 \begin{minted}{html}
 <html>
@@ -556,13 +529,15 @@ Here's our test page:
       We can look to <a href="#b">Brundle1982, Brundle1984</a>
       for answers.
     </p>
-
+    <hr/>
+    <p><em>Visit <a href="http://somewhere.org">the author's site</a>.</em></p>
+    
   </body>
 </html>
 \end{minted}
 
 \noindent
-and here's our function
+Here's our function
 (which we'll call from an event listener as before---again,
 the line breaks in the second call to \texttt{map} are there
 so that the printed version will fit the page):
@@ -591,20 +566,31 @@ const citations = () => {
 }
 \end{minted}
 
+\figpdf{figures/FIXME.png}{A Processing Pipeline}{f:pages-pipeline} % replace all of the embedded comments below with a multi-part diagram
+
 There is a lot going on here,
 but it all uses patterns we have seen before.
 It starts by building an array of all the links in the document
-(i.e., every \texttt{a} element):
+i.e., every \texttt{a} element:
 
 \begin{minted}{js}
   Array.from(document.querySelectorAll('a'))
+  // output:
+  // - <a href="#b">Moreau1896</a>
+  // - <a href="#b">Brundle1982, Brundle1984</a>
+  // - <a href="http://somewhere.org">the author's site</a>
 \end{minted}
 
+\noindent
+(We show the nodes in comments to visualize what each step of the pipeline does.)
 We then filter this array to find the links pointing at \texttt{\#b},
 which is what we're using to signal citations:
 
 \begin{minted}{js}
     .filter(link => link.getAttribute('href') === '#b')
+  // output:
+  // - <a href="#b">Moreau1896</a>
+  // - <a href="#b">Brundle1982, Brundle1984</a>
 \end{minted}
 
 We now have a problem.
@@ -627,12 +613,18 @@ but it's more readable to create an object so that each component has a name:
       {node: link,
        text: link.textContent.split(',').map(s => s.trim())}
     ))
+  // output:
+  // - {node: <a href="#b">Moreau1896</a>,
+  //    text: ['Moreau1896']}
+  // - {node: <a href="#b">Brundle1982, Brundle1984</a>,
+  //    text: ['Brundle1982', 'Brundle1984']}
 \end{minted}
 
 Here,
 we are turning each link into an object whose \texttt{"node"} key has the link's DOM node as its value,
 and whose \texttt{"text"} key has the node's text,
-split on commas and with leading and trailing whitespace trimmed off.
+which we split on commas and and trim to remove leading and trailing whitespace.
+
 But we're not done looking at this stage of our pipeline:
 
 \begin{enumerate}
@@ -660,6 +652,12 @@ the next stage of the pipeline is almost a relief:
       {node,
        text: text.map(cite => `<a href="../bib/#${cite}">${cite}</a>`)}
     ))
+  // output:
+  // - {node: <a href="#b">Moreau1896</a>,
+  //    text: [<a href="../bib/#Moreau1896"Moreau1896</a>]}
+  // - {node: <a href="#b">Brundle1982, Brundle1984</a>,
+  //    text: [<a href="../bib/#Brundle1982">Brundle1982</a>,
+  //           <a href="../bib/#Brundle1984">Brundle1984</a>]}
 \end{minted}
 
 All right,
@@ -691,8 +689,9 @@ All the \texttt{map} does is convert each to the text we want:
 a link that refers to \texttt{../bib/\#citation\_key} and whose displayed text is also the citation key.
 
 On to the next stage,
-which simply joins the string in \texttt{text} together to create a single string
-with commas between the entries:
+which joins the string in \texttt{text} together to create a single string
+with commas between the entries
+and square brackets around the whole thing:
 
 \begin{minted}{js}
     .map(({node, text}) => (
@@ -700,6 +699,11 @@ with commas between the entries:
        text: `[${text.join(', ')}]`}
     ))
 \end{minted}
+
+\noindent
+(We haven't show the output in commas because typesetting it would overflow the page
+and because our pseudo-HTML notation gets really confusing
+once we're showing strings containing HTML that contain strings.)
 
 The last stage in our pipeline uses \texttt{forEach} instead of \texttt{map}
 because we want to do something for each element of the array,
@@ -718,7 +722,7 @@ This is the point at which carrying the node itself forward through the pipeline
 We create a \texttt{span} element,
 fill it in by assigning to its \texttt{innerHTML} property,
 and then replace the original link node with the node we have just created.
-If we now load our page,
+If we now add an event listener after our function to call it when the page is loaded,
 we see our citations formatted as we desired.
 
 \section{A Real-time Clock}\label{s:pages-clock}

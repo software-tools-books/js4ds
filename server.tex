@@ -70,6 +70,7 @@ Some examples include:
   \texttt{"If-Modified-Since:\ 16-May-2018"} to tell the server that the client is only interested in recent data
 \end{itemize}
 
+\noindent
 (Unlike a dictionary, a key may appear any number of times,
 which allows a request to do things like specify that it's willing to accept several types of content.
 The \gref{g:body-http}{body} of the request is any extra data associated with it,
@@ -338,6 +339,8 @@ and get the content of \texttt{web-dir/title.html}.
 Notice that the directory \texttt{./web-dir} doesn't appear in the URL:
 our server interprets all paths as if the directory we've given it
 is the root of the filesystem.
+
+\figpdf{figures/FIXME.png}{Mapping URLs to Files}{f:server-mapping} % diagram showing how URLs map to files below a root directory.
 
 If we ask for a nonexistent page like \texttt{http://localhost:3418/missing.html}
 we get this:

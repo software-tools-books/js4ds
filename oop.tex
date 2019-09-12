@@ -78,7 +78,7 @@ This is called \gref{g:polymorphism}{polymorphism},
 and it allows us to add new shapes without changing the code in our loop.
 In other words,
 it allows old code (in this case, the function \texttt{show\_all})
-to use new code (the new object \texttt{rectangle}).
+to use new code (the new object \texttt{rectangle}):
 
 \begin{minted}{js}
 const rectangle = {
@@ -142,6 +142,8 @@ that operate on instances of it.
 (We'll explain how JavaScript marks objects in \secref{s:legacy-prototypes};
 it's more complicated than it needs to be
 in order to be compatible with older versions of the language.)
+
+\figpdf{figures/oop-memory.pdf}{Objects and Classes in Memory}{f:oop-memory}
 
 Before \texttt{new} hands the newly-created object back to the program,
 it calls the specially-named method \texttt{constructor} to initialize the object's state.
@@ -267,6 +269,17 @@ class Person {
 }
 \end{minted}
 
+This class allows us to create an instance with a formal greeting:
+
+\begin{minted}{js}
+const parent = new Person('Hakim')
+console.log(`parent: ${parent.greeting(true)} - ${parent.farewell()}`)
+\end{minted}
+
+\begin{minted}{text}
+parent: Hello, my name is Hakim - Goodbye
+\end{minted}
+
 We can now \gref{g:extend}{extend} \texttt{Person} to create a new class \texttt{Scientist},
 in which case we say that \texttt{Scientist} \gref{g:inherit}{inherits} from \texttt{Person},
 or that \texttt{Person} is a \gref{g:parent-class}{parent class} of \texttt{Scientist}
@@ -318,15 +331,11 @@ The word \texttt{super} is used in two ways here:
 Let's try it out:
 
 \begin{minted}{js}
-const parent = new Person('Hakim')
-console.log(`parent: ${parent.greeting(true)} - ${parent.farewell()}`)
-
 const child = new Scientist('Bhadra', 'microbiology')
 console.log(`child: ${child.greeting(false)} - ${child.farewell()}`)
 \end{minted}
 
 \begin{minted}{text}
-parent: Hello, my name is Hakim - Goodbye
 child: Hi, I'm Bhadra. Let's talk about microbiology... - Goodbye
 \end{minted}
 
@@ -348,127 +357,6 @@ when \texttt{child.farewell()} is called:
 \end{itemize}
 
 \figpdf{figures/oop-inheritance.pdf}{Object-Oriented Inheritance}{f:oop-inheritance}
-
-\section{Protocols}\label{s:oop-protocols}
-
-A common way to use object-oriented programming is to define a \gref{g:protocol}{protocol}.
-The parent defines a method that invokes other methods at specific times or in a specific order.
-Users then derive classes from the parent that implement those methods
-to do those specific things.
-In essence,
-a protocol says,
-``You will all follow this procedure, but you may follow it in different ways.''
-
-For example,
-how does a generic bird behave throughout the year?
-The class \texttt{Bird} specifies that it forages, mates, and nests,
-and provides default methods for each:
-
-\begin{minted}{js}
-class Bird {
-  constructor (species) {
-    this.species = species
-  }
-
-  daily (season) {
-    return [
-      this.foraging(season),
-      this.mating(season),
-      this.nesting(season)
-    ]
-  }
-
-  foraging (season) {
-    return `${this.species} looks for food`
-  }
-
-  mating (season) {
-    let result = ''
-    if (season === 'fall') {
-      result = `${this.species} looks for a mate`
-    }
-    return result
-  }
-
-  nesting (season) {
-    // do nothing
-  }
-}
-\end{minted}
-
-A specific kind of bird,
-such as a penguin,
-can then override these methods to provide its own behaviors
-\emph{without} changing its daily behavior:
-
-\begin{minted}{js}
-class Penguin extends Bird {
-  constructor () {
-    super('penguin')
-    this.hasEgg = false
-  }
-
-  mating (season) {
-    if (season === 'fall') {
-      this.hasEgg = Math.random() < 0.5
-    }
-    return super.mating(season)
-  }
-
-  nesting (season) {
-    let result = ''
-    if (this.hasEgg && ((season === 'winter') || (season === 'spring'))) {
-      result = `${this.species} is nesting`
-      if (season === 'spring') {
-        this.hasEgg = false
-      }
-    }
-    return result
-  }
-}
-\end{minted}
-
-\texttt{Penguin} has some extra state (the variable \texttt{this.hasEgg}),
-and calls its parent's constructor before setting this up.
-It doesn't override the default behavior for \texttt{foraging},
-but it extends the default behavior for \texttt{mating}
-and completely replaces the default behavior for \texttt{nesting}.
-Here are the results of watching one penguin for four seasons:
-
-\begin{minted}{js}
-const bird = new Penguin()
-const seasons = ['summer', 'fall', 'winter', 'spring']
-for (let season of seasons) {
-  console.log(`in ${season}: ${bird.daily(season)}`)
-}
-\end{minted}
-
-\begin{minted}{text}
-in summer: penguin looks for food,,
-in fall: penguin looks for food,penguin looks for a mate,
-in winter: penguin looks for food,,
-in spring: penguin looks for food,,
-\end{minted}
-
-Here's another:
-
-\begin{minted}{text}
-in summer: penguin looks for food,,
-in fall: penguin looks for food,penguin looks for a mate,
-in winter: penguin looks for food,,penguin is nesting
-in spring: penguin looks for food,,penguin is nesting
-\end{minted}
-
-Different random numbers produce different behaviors,
-which makes testing hard:
-we'll see how to address this in \chapref{s:testing}.
-The main idea,
-though,
-is how old code can use new code:
-the old code defines expectations as an interface and a protocol,
-and the new code implements that interface and respects that protocol.
-We will see this idea over and over again
-as we build applications using standard libraries.
 
 \section{Exercises}\label{s:oop-exercises}
 
