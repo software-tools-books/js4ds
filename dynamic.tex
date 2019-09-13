@@ -405,7 +405,7 @@ let's move our JSX into \texttt{app.js} and load that in the \texttt{head} of th
     <script src="https://fb.me/react-15.0.1.js"></script>
     <script src="https://fb.me/react-dom-15.0.1.js"></script>
     <script src="https://unpkg.com/babel-standalone@6/babel.js"></script>
-    <script src="app.js"></script>
+    <script src="app.js" type="text/babel"></script>
   </head>
   <body>
     <h1>Hello Separate</h1>
@@ -499,7 +499,7 @@ which tells the browser not to do anything with the JavaScript until the page ha
   <head>
     <meta charset="utf-8">
     <title>Hello Parcel</title>
-    <script src="./app.js" async></script>
+    <script src="./app.js" type="text/babel" async></script>
   </head>
   <body>
     <div id="app"></div>
