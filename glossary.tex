@@ -650,6 +650,25 @@ system, which then tries to find a point in the program that will
 \grefcross{g:catch}{catch} it. (Some languages call this \emph{\grefcross{g:raise}{raising}} an
 exception.)
 
+\gitem{g:tidy-data}{tidy data}
+Tabular data that satisfies four conditions:
+\begin{itemize}
+\item
+  Each column contains one statistical variable
+  (i.e., one property that was measured or observed).
+
+\item
+  Each different observation is in a different row.
+
+\item
+  There is one table for each set of observations.
+
+\item
+  If there are multiple tables,
+  each table has a column containing a unique key
+  so that related data can be linked.
+\end{itemize}
+
 \gitem{g:tree}{tree}
 A data structure containing strictly-nested \grefcross{g:node}{nodes}. Every node
 except the \grefcross{g:root-node}{root node} must have exactly one \grefcross{g:parent-node}{parent
