@@ -120,7 +120,14 @@ to \texttt{package.json}, our command becomes:
 $ npm test -- path/to/test.js
 \end{minted}
 
+\noindent
 (Again, everything after \texttt{-\/-} is passed to the script itself.)
+If we don't specify where to find tests,
+Mocha looks for a directory called \texttt{test}
+and runs the files it finds there whose names begin with \texttt{test}
+(\figref{f:testing-mocha}).
+
+\figpdf{figures/testing-mocha.pdf}{Mocha in Action}{f:testing-mocha}
 
 \section{Refactoring}\label{s:testing-refactoring}
 
@@ -182,6 +189,9 @@ The answer is yet another library called \href{https://github.com/visionmedia/su
 that sends fake HTTP requests to an Express server
 that has been split in the way we just split ours
 and lets us interact with that server's replies.
+
+\figpdf{figures/testing-supertest.pdf}{Supertest versus Reality}{f:testing-supertest}
+
 Here's a test of a simple request that uses Mocha to manage the test,
 and supertest's \texttt{request} function to send something to the server
 and check the result:

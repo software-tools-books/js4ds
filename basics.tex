@@ -168,7 +168,10 @@ southeast
 The \gref{g:inner-loop}{inner loop} runs a complete cycle of iterations
 for each iteration of the \gref{g:outer-loop}{outer loop}.
 Each value assigned to the variable \texttt{outer} is a pair,
-so each value assigned to \texttt{inner} is one of the two strings from that pair.
+so each value assigned to \texttt{inner} is one of the two strings from that pair
+(\figref{f:basics-traversal}).
+
+\figpdf{figures/basics-traversal.pdf}{Nested Loop Traversal}{f:basics-traversal}
 
 A JavaScript program can also make choices:
 it executes the \gref{g:body-statement}{body} of an \texttt{if} statement
@@ -263,12 +266,16 @@ const message = "color is" + color + "and capitalized is " + color.toUpperCase()
 
 An \gref{g:object}{object} in JavaScript is a collection of key-value pairs,
 and is equivalent in simple cases to what Python would call a dictionary.
+It's common to visualize an object as a two-column table
+with the keys in one column and the values in another (\figref{f:basics-object-table}).
 The keys do not have to be strings,
 but almost always are;
 the values can be anything.
-We can create an object by putting key-value pairs in curly brackets
-with colons between the keys and values
-and commas between the pairs:
+We can create an object by putting key-value pairs in curly brackets;
+there must be a colon between the key and the value,
+and pairs must be separated by commas like the elements of arrays:
+
+\figpdf{figures/basics-object-table.pdf}{Objects in Memory}{f:basics-object-table}
 
 \begin{minted}{js}
 const creature = {
@@ -364,9 +371,8 @@ and its body.
 The body of the function begins with a test of the thing,
 referred to inside the function as \texttt{values},
 provided as an argument to the function:
-if \texttt{values} has no length -
-i.e. it does not consist of multiple entries -
-the function returns \texttt{[undefined,undefined]}.
+if \texttt{values} has no length---i.e.,
+it does not consist of multiple entries---the function returns \texttt{[undefined,undefined]}.
 (We will address the rationale behind this behaviour in the exercises.)
 
 \begin{minted}{js}
@@ -376,9 +382,8 @@ the function returns \texttt{[undefined,undefined]}.
 \end{minted}
 
 \noindent
-If that initial check finds that \texttt{values} does have a length -
-i.e. \texttt{!values.length} returns \texttt{false} -
-the rest of the function is run.
+If that initial check finds that \texttt{values} does have a length---i.e.,
+\texttt{!values.length} returns \texttt{false}---the rest of the function is run.
 This involves first initialising two variables,
 \texttt{low} and \texttt{high},
 with their values set as equal to the first item in \texttt{values}.
@@ -533,7 +538,7 @@ so \texttt{clip:\ clip} means ``associate a reference to the function \texttt{cl
 
 To use our newly-defined module we must \texttt{require} it.
 For example,
-we can put this in \texttt{import.js}:
+we can put this in \texttt{application.js}:
 
 \begin{minted}{js}
 const utilities = require('./utilities')
@@ -554,6 +559,8 @@ so if we have assigned its result to a variable called \texttt{utilities},
 we must then call our function as \texttt{utilities.clip}.
 We use a relative path starting with \texttt{./} or \texttt{../} to import local files;
 paths that start with names are taken from installed Node libraries.
+
+\figpdf{figures/basics-require.pdf}{How Require Works}{f:basics-require}
 
 \section{Exercises}\label{s:basics-exercises}
 

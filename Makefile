@@ -83,6 +83,10 @@ docs/assets/% : assets/%
 
 ## ----------------------------------------
 
+## serve          : build site.
+serve :
+	cd docs && jekyll serve -I
+
 ## check          : check internal consistency.
 check : spell
 	@python bin/check.py -b book.bib -f figures ${TEX}

@@ -1,0 +1,755 @@
+\chapter{Using Data-Forge}\label{s:dataforge}
+
+We have now seen how to do everything a data scientist would want to do in JavaScript
+except actual data science.
+This is unfortunately one of the areas where the language still lags behind R and Python,
+but statistical libraries are now appearing,
+and if the last twenty-five years have taught us anything,
+it's not to underestimate JavaScript.
+
+In this chapter we will look at a library called Data-Forge
+that is designed for working with tabular data.
+DataForge was inspired by Python's Pandas library,
+but should be familiar to anyone who has worked with R.
+Its \texttt{DataFrame} class represents a table made up of named columns
+and any number of rows (\figref{f:dataforge-rows-and-columns}).
+Each column is stored as an (unnamed) \texttt{Series} object;
+once in a while,
+we will need to work with these objects directly
+instead of with the dataframe as a whole.
+
+\figimg{figures/FIXME.png}{How Tables Are Stored}{f:dataforge-rows-and-columns} % show row-column storage with series
+
+Dataframes are immutable:
+once a dataframe has been constructed,
+its contents cannot be changed.
+Instead,
+every operation produces a new dataframe.
+(Some clever behind-the-scenes data recycling makes this much more efficient than it sounds.)
+
+Like Pandas and the tidyverse,
+Data-Forge is designed to work on \gref{g:tidy-data}{tidy data}.
+As defined in \cite{Wick2014}, tabular data is tidy if:
+
+\begin{itemize}
+\item
+  Each column contains one statistical variable
+  (i.e., one property that was measured or observed).
+
+\item
+  Each different observation is in a different row.
+
+\item
+  There is one table for each set of observations.
+
+\item
+  If there are multiple tables,
+  each table has a column containing a unique key
+  so that related data can be linked.
+\end{itemize}
+
+For example,
+this data is not tidy:
+
+\begin{longtable}{|l|l|l|l|l|}
+  \hline
+  \multicolumn{5}{|c|}{Rodent Pleurisy Rates} \\
+  \hline
+  & \multicolumn{2}{c|}{Female} & \multicolumn{2}{c|}{Male} \\
+  \hline
+  & 2018 & 2019 & 2018 & 2019 \\
+  \hline
+  Jan & 0.05 & 0.07 & 0.03 & 0.06 \\
+  \hline
+  Feb & 0.05 & 0.08 & 0.04 & 0.07 \\
+  \hline
+  Mar & 0.05 & 0.11 & 0.04 & 0.10 \\
+  \hline
+\end{longtable}
+
+\noindent
+but this data is:
+
+\begin{longtable}{|l|l|l|l|}
+  \hline
+  Year & Month & Sex & Rate \\
+  \hline
+  2018 & Jan & Female & 0.05 \\
+  \hline
+  2018 & Feb & Female & 0.05 \\
+  \hline
+  2018 & Mar & Female & 0.05 \\
+  \hline
+  2018 & Jan & Male & 0.03 \\
+  \hline
+  2018 & Feb & Male & 0.04 \\
+  \hline
+  2018 & Mar & Male & 0.04 \\
+  \hline
+  2019 & Jan & Female & 0.07 \\
+  \hline
+  2019 & Feb & Female & 0.08 \\
+  \hline
+  2019 & Mar & Female & 0.11 \\
+  \hline
+  2019 & Jan & Male & 0.06 \\
+  \hline
+  2019 & Feb & Male & 0.07 \\
+  \hline
+  2019 & Mar & Male & 0.10 \\
+  \hline
+\end{longtable}
+
+\section{Basic Operations}\label{s:dataforge-basics}
+
+To get started,
+we install Data-Forge using \texttt{npm install data-forge}
+and then load the library and create a dataframe from a list of objects.
+Each of these objects must use the same keys,
+which become the names of the dataframe's columns:
+
+\begin{minted}{js}
+const DF = require('data-forge')
+
+const fromObjects = new DF.DataFrame([
+    {ones: 1, tens: 10},
+    {ones: 2, tens: 20},
+    {ones: 3, tens: 30}
+])
+console.log('fromObjects:\n', fromObjects)
+\end{minted}
+
+When we print the dataframe,
+we see this rather complex structure:
+
+\begin{minted}{text}
+fromObjects:
+ DataFrame {
+  configFn: null,
+  content:
+   { index: CountIterable {},
+     values: [ [Object], [Object], [Object] ],
+     pairs: MultiIterable { iterables: [Array] },
+     isBaked: true,
+     columnNames: [ 'ones', 'tens' ] } }
+\end{minted}
+
+\noindent
+If we want to see the actual data,
+we need to convert the dataframe back to an array of objects:
+
+\begin{minted}{js}
+console.log('fromObjects as array:\n', fromObjects.toArray())
+\end{minted}
+
+\begin{minted}{text}
+fromObjects as array:
+ [ { ones: 1, tens: 10 },
+  { ones: 2, tens: 20 },
+  { ones: 3, tens: 30 } ]
+\end{minted}
+
+We can instead create a dataframe by providing the names of the columns in one list
+and the rows' values in another:
+
+\begin{minted}{js}
+const fromSpec = new DF.DataFrame({
+  columnNames: ['ones', 'tens'],
+  rows: [
+    [4, 40],
+    [5, 50],
+    [6, 60]
+  ]
+})
+console.log('fromSpec as array:\n', fromSpec.toArray())
+\end{minted}
+
+\begin{minted}{text}
+fromSpec as array:
+ [ { ones: 4, tens: 40 },
+  { ones: 5, tens: 50 },
+  { ones: 6, tens: 60 } ]
+\end{minted}
+
+However,
+we usually won't create a dataframe directly like this;
+instead,
+we will read data from a file or a database.
+Data-Forge provides a function called \texttt{fromCSV} for doing this:
+
+\begin{minted}{js}
+const text = `ones,tens
+7,70
+8,80
+9,90`
+const fromText = DF.fromCSV(text)
+console.log('fromText as array:\n', fromText.toArray())
+\end{minted}
+
+\begin{minted}{text}
+fromText as array:
+ [ { ones: '7', tens: '70' },
+  { ones: '8', tens: '80' },
+  { ones: '9', tens: '90' } ]
+\end{minted}
+
+However we create our dataframe,
+we can ask it for its columns' names:
+
+\begin{minted}{js}
+console.log(data.getColumnNames())
+\end{minted}
+
+\begin{minted}{text}
+[ 'ones', 'tens' ]
+\end{minted}
+
+\noindent
+or get its content as a list of lists (rather than as a list of objects):
+
+\begin{minted}{js}
+console.log(data.toRows())
+\end{minted}
+
+\begin{minted}{text}
+[ [ 1, 10 ], [ 2, 20 ], [ 3, 30 ] ]
+\end{minted}
+
+We can also process the rows using either a \texttt{for} loop:
+
+\begin{minted}{js}
+for (let row of data) {
+  console.log(row)
+}
+\end{minted}
+
+\begin{minted}{text}
+{ ones: 1, tens: 10 }
+{ ones: 2, tens: 20 }
+{ ones: 3, tens: 30 }
+\end{minted}
+
+\noindent
+or \texttt{forEach}:
+
+\begin{minted}{js}
+data.forEach(row => {
+  console.log(row)
+})
+\end{minted}
+
+\begin{minted}{text}
+{ ones: 1, tens: 10 }
+{ ones: 2, tens: 20 }
+{ ones: 3, tens: 30 }
+\end{minted}
+
+\noindent
+However,
+a good rule of thumb is that if you're using a loop on a dataframe,
+you're doing the wrong thing.
+Instead,
+you should be using the methods described below.
+
+\section{Doing Calculations}\label{s:dataforge-calc}
+
+Suppose we want to add a new column to a dataframe---or rather,
+create a new dataframe with an extra column,
+since we can't modify a dataframe in place.
+To do this,
+we create a new \texttt{Series} object to represent that column,
+then use \texttt{withSeries} to construct our result:
+
+\begin{minted}{js}
+const double_oh = new DF.Series([100, 200, 300])
+
+const withHundreds = data.withSeries({hundreds: double_oh})
+console.log(withHundreds.toArray())
+\end{minted}
+
+\begin{minted}{text}
+[ { ones: 1, tens: 10, hundreds: 100 },
+  { ones: 2, tens: 20, hundreds: 200 },
+  { ones: 3, tens: 30, hundreds: 300 } ]
+\end{minted}
+
+Just as we usually create dataframes by reading data from external sources,
+we will usually create new columns from existing values.
+As you probably won't be surprised to learn,
+we tell Data-Forge how to do this by writing callback functions.
+Since we often want to create several new columns at once,
+we give the \texttt{generateSeries} method an object
+whose keys are the names of the new columns
+and whose values are callbacks taking a row as input and producing a new value as output:
+
+\begin{minted}{js}
+const sumsAndProducts = data.generateSeries({
+  sum: row => row.ones + row.tens,
+  product: row => row.ones * row.tens
+})
+console.log(sumsAndProducts.toArray())
+\end{minted}
+
+\begin{minted}{text}
+[ { ones: 1, tens: 10, sum: 11, product: 10 },
+  { ones: 2, tens: 20, sum: 22, product: 40 },
+  { ones: 3, tens: 30, sum: 33, product: 90 } ]
+\end{minted}
+
+We can also get rid of columns entirely using \texttt{dropSeries}:
+
+\begin{minted}{js}
+const justResults = sumsAndProducts.dropSeries(["ones", "tens"])
+console.log(justResults.toArray())
+\end{minted}
+
+\begin{minted}{text}
+[ { sum: 11, product: 10 },
+  { sum: 22, product: 40 },
+  { sum: 33, product: 90 } ]
+\end{minted}
+
+Since every dataframe method returns a dataframe,
+we can use \gref{g:method-chaining}{method chaining} to combine operations (\figref{f:dataforge-method-chaining}):
+
+\begin{minted}{js}
+const result = data
+  .withSeries({hundreds: double_oh})
+  .generateSeries({
+    sum: row => row.ones + row.tens + row.hundreds
+  })
+  .dropSeries(["ones", "tens", "hundreds"])
+  .toArray()
+\end{minted}
+
+We have seen this technique before with chains of \texttt{.then} calls on promises;
+here,
+it is used like pipes in the Unix command line
+or the pipe operator \texttt{{\%}{\textgreater}{\%}} in modern R code.
+
+\figimg{figures/FIXME.png}{A More Complicated Pipeline}{f:dataforge-method-chaining} % show pipeline with new dataframe being created
+
+To make results easier to understand,
+we will often want to sort our data.
+Suppose we have a file containing the red-green-blue values for several colors:
+
+\begin{minted}{text}
+name,red,green,blue
+maroon,128,0,0
+lime,0,255,0
+navy,0,0,128
+yellow,255,255,0
+fuchsia,255,0,255
+aqua,0,255,255
+\end{minted}
+
+\noindent
+We can pass the name of this file to our program as a command-line argument,
+read it (remembering to set the encoding to UTF-8 so that we get characters rather than raw bytes),
+and then display it:
+
+\begin{minted}{js}
+const fs = require('fs')
+const DF = require('data-forge')
+
+const text = fs.readFileSync(process.argv[2], 'utf-8')
+const colors = DF.fromCSV(text)
+console.log(colors.toArray())
+\end{minted}
+
+\begin{minted}{text}
+[ { name: 'maroon', red: '128', green: '0', blue: '0' },
+  { name: 'lime', red: '0', green: '255', blue: '0' },
+  { name: 'navy', red: '0', green: '0', blue: '128' },
+  { name: 'yellow', red: '255', green: '255', blue: '0' },
+  { name: 'fuchsia', red: '255', green: '0', blue: '255' },
+  { name: 'aqua', red: '0', green: '255', blue: '255' } ]
+\end{minted}
+
+If we want to see the colors in alphabetical order,
+we call \texttt{orderBy} with a callback that gives Data-Forge the value to sort by:
+
+\begin{minted}{js}
+const sorted = colors.orderBy(row => row.name)
+console.log(sorted.toArray())
+\end{minted}
+
+\begin{minted}{text}
+[ { name: 'aqua', red: '0', green: '255', blue: '255' },
+  { name: 'fuchsia', red: '255', green: '0', blue: '255' },
+  { name: 'lime', red: '0', green: '255', blue: '0' },
+  { name: 'maroon', red: '128', green: '0', blue: '0' },
+  { name: 'navy', red: '0', green: '0', blue: '128' },
+  { name: 'yellow', red: '255', green: '255', blue: '0' } ]
+\end{minted}
+
+\noindent
+To sub-sort by another column we use \texttt{thenBy}:
+
+\begin{minted}{js}
+const doubleSorted = colors
+      .orderBy(row => row.green)
+      .thenBy(row => row.blue)
+      .dropSeries(['name', 'red'])
+console.log(doubleSorted.toArray())
+\end{minted}
+
+\begin{minted}{text}
+[ { green: '0', blue: '0' },
+  { green: '0', blue: '128' },
+  { green: '0', blue: '255' },
+  { green: '255', blue: '0' },
+  { green: '255', blue: '0' },
+  { green: '255', blue: '255' } ]
+\end{minted}
+
+\figimg{figures/FIXME.png}{Sorting and Sub-sorting}{f:dataforge-sorting} % show sorting and sub-sorting as diagram
+
+We can remove duplicates with \texttt{distinct}:
+
+\begin{minted}{js}
+const notTheSame = colors.distinct(row => row.red)
+console.log(notTheSame.toArray())
+\end{minted}
+
+\begin{minted}{text}
+[ { name: 'maroon', red: '128', green: '0', blue: '0' },
+  { name: 'lime', red: '0', green: '255', blue: '0' },
+  { name: 'yellow', red: '255', green: '255', blue: '0' } ]
+\end{minted}
+
+\noindent
+but this is trickier than it appears.
+Each row does indeed have a distinct \texttt{red} value,
+but Data-Forge gets to decide which row to keep from each subset.
+What's more surprising is that multi-column \texttt{distinct} \emph{doesn't} work:
+
+\begin{minted}{js}
+const multiColumn = colors
+      .distinct(row => [row.red, row.green])
+      .orderBy(row => row.red)
+      .thenBy(row => row.green)
+console.log(multiColumn.toArray())
+\end{minted}
+
+\begin{minted}{text}
+[ { name: 'navy', red: '0', green: '0', blue: '128' },
+  { name: 'lime', red: '0', green: '255', blue: '0' },
+  { name: 'aqua', red: '0', green: '255', blue: '255' },
+  { name: 'maroon', red: '128', green: '0', blue: '0' },
+  { name: 'fuchsia', red: '255', green: '0', blue: '255' },
+  { name: 'yellow', red: '255', green: '255', blue: '0' } ]
+\end{minted}
+
+This isn't Data-Forge's fault.
+In JavaScript,
+two arrays are only equal if they're the same object,
+i.e., \texttt{[0] === [0]} is \texttt{false}.
+We will explore ways of doing multi-column \texttt{distinct} in the exercises.
+
+\section{Subsets}\label{s:dataforge-subset}
+
+You may have noticed that the color values in the table above are strings rather than numbers.
+If we want Data-Forge to convert values to more useful types,
+we can use the methods \texttt{parseDates}, \texttt{parseFloats}, and so on.
+The program below does this for data about earthquakes in August 2016:
+
+\begin{minted}{js}
+const fs = require('fs')
+const DF = require('data-forge')
+
+const text = fs.readFileSync('earthquakes.csv', 'utf-8')
+const earthquakes = DF
+      .fromCSV(text)
+      .parseDates('Time')
+      .parseFloats(['Latitude', 'Longitude', 'Depth_Km', 'Magnitude'])
+console.log('Data has', earthquakes.count(), 'rows')
+\end{minted}
+
+\begin{minted}{text}
+Data has 798 rows
+\end{minted}
+
+Whether we convert it or not,
+we will often want to work with subsets of data.
+We can select values by position using \texttt{head} and \texttt{tail}
+(which are named after classic Unix commands):
+
+\begin{minted}{js}
+console.log(earthquakes.head(3).toArray())
+\end{minted}
+
+\begin{minted}{text}
+[ { Time: 2016-08-24T07:36:32.000Z,
+    Latitude: 42.6983,
+    Longitude: 13.2335,
+    Depth_Km: 8.1,
+    Magnitude: 6 },
+  { Time: 2016-08-24T07:37:26.580Z,
+    Latitude: 42.7123,
+    Longitude: 13.2533,
+    Depth_Km: 9,
+    Magnitude: 4.5 },
+  { Time: 2016-08-24T07:40:46.590Z,
+    Latitude: 42.7647,
+    Longitude: 13.1723,
+    Depth_Km: 9.7,
+    Magnitude: 3.8 } ]
+\end{minted}
+
+\begin{minted}{js}
+console.log(earthquakes.tail(3).toArray())
+\end{minted}
+
+\begin{minted}{text}
+[ { Time: 2016-08-26T10:09:45.380Z,
+    Latitude: 42.6953,
+    Longitude: 13.2363,
+    Depth_Km: 9.5,
+    Magnitude: 2.3 },
+  { Time: 2016-08-26T10:11:55.960Z,
+    Latitude: 42.6163,
+    Longitude: 13.2985,
+    Depth_Km: 11,
+    Magnitude: 2.1 },
+  { Time: 2016-08-26T10:21:09.870Z,
+    Latitude: 42.6153,
+    Longitude: 13.2952,
+    Depth_Km: 7.5,
+    Magnitude: 3 } ]
+\end{minted}
+
+If we want data from the middle of the table,
+we can skip a few rows and then take as many as we want:
+
+\begin{minted}{js}
+console.log(earthquakes.skip(10).take(3).toArray())
+\end{minted}
+
+\begin{minted}{text}
+[ { Time: 2016-08-24T07:47:51.540Z,
+    Latitude: 42.6675,
+    Longitude: 13.3238,
+    Depth_Km: 6.5,
+    Magnitude: 3.3 },
+  { Time: 2016-08-24T07:52:25.710Z,
+    Latitude: 42.7447,
+    Longitude: 13.2827,
+    Depth_Km: 7.9,
+    Magnitude: 2.9 },
+  { Time: 2016-08-24T07:52:43.210Z,
+    Latitude: 42.6378,
+    Longitude: 13.2313,
+    Depth_Km: 10.9,
+    Magnitude: 3.1 } ]
+\end{minted}
+
+\figimg{figures/FIXME.png}{Seleting by Position}{f:dataforge-positional} % diagram showing head, tail, skip, and take
+
+However,
+it's far more common to select rows by the values they contain rather than by their position.
+Just like the \texttt{Array.filter} method we met way back in \secref{s:callbacks-functional},
+we do this by giving Data-Forge a callback function that tells it whether a given row should be kept or not.
+This text can be as complex as desired,
+but must work row by row:
+we cannot make a decision about one row based on the values in the rows before it or after it.
+
+\begin{minted}{js}
+const large = earthquakes.where(row => (row.Magnitude >= 5.0))
+console.log(large.toArray())
+\end{minted}
+
+\begin{minted}{text}
+[ { Time: 2016-08-24T07:36:32.000Z,
+    Latitude: 42.6983,
+    Longitude: 13.2335,
+    Depth_Km: 8.1,
+    Magnitude: 6 },
+  { Time: 2016-08-24T08:33:28.890Z,
+    Latitude: 42.7922,
+    Longitude: 13.1507,
+    Depth_Km: 8,
+    Magnitude: 5.4 } ]
+\end{minted}
+    
+\section{Aggregation}\label{s:dataforge-aggregate}
+
+Working with individual observations is all very well,
+but if we want to understand our data,
+we need to look at its aggregate properties.
+If,
+for example,
+we want to know the average depth and magnitude of our earthquakes,
+we use the \texttt{summarize} method:
+
+\begin{minted}{js}
+const averageValues = earthquakes.summarize({
+  Depth_Km: series => series.average(),
+  Magnitude: series => series.average()
+})
+console.log(averageValues)
+\end{minted}
+
+\begin{minted}{text}
+{ Depth_Km: 9.545614035087722, Magnitude: 2.5397243107769376 }
+\end{minted}
+
+\noindent
+As with \texttt{filter},
+we can do many calculations at once by giving \texttt{summarize} several callbacks.
+The keys of the object we pass in specify the columns we want to aggregate;
+the callbacks invoke methods of the \texttt{Series} class that Data-Forge uses to store individual columns.
+Instead of producing a dataframe with a single row,
+\texttt{summarize} produces an object whose keys match the names of the columns in our original dataframe.
+
+Aggregation is often combined with grouping:
+for example,
+we may want to calculate the average weight of rats of different breeds
+or the distribution of votes by province.
+The first step is to group the data:
+
+\begin{minted}{js}
+const groupedByMagnitude = earthquakes.groupBy(row => row.Magnitude)
+console.log(`${groupedByMagnitude.count()} groups`)
+console.log(groupedByMagnitude.head(2).toArray())
+\end{minted}
+
+\begin{minted}{text}
+28 groups
+[ DataFrame {
+    configFn: null,
+    content:
+     { index: [ExtractElementIterable],
+       values: [ExtractElementIterable],
+       pairs: [Array],
+       isBaked: false,
+       columnNames: [ColumnNamesIterable] } },
+  DataFrame {
+    configFn: null,
+    content:
+     { index: [ExtractElementIterable],
+       values: [ExtractElementIterable],
+       pairs: [Array],
+       isBaked: false,
+       columnNames: [ColumnNamesIterable] } } ]
+\end{minted}
+
+As the output shows,
+\texttt{groupBy} returns an array containing one new dataframe for each group in our original data.
+Here's how we find the average depth of earthquakes according to magnitude:
+
+\begin{minted}{js}
+const averaged = earthquakes
+      .groupBy(row => row.Magnitude)
+      .select(group => ({
+        Magnitude: group.first().Magnitude,
+        Depth_Km: group.deflate(row => row.Depth_Km).average()
+      }))
+      .inflate()
+      .orderBy(row => row.Magnitude)
+console.log(averaged.toArray())
+\end{minted}
+
+\begin{minted}{text}
+[ { Magnitude: 2, Depth_Km: 9.901052631578946 },
+  { Magnitude: 2.1, Depth_Km: 9.702083333333333 },
+  { Magnitude: 2.2, Depth_Km: 9.843037974683545 },
+  ...
+  { Magnitude: 4.5, Depth_Km: 9.4 },
+  { Magnitude: 5.4, Depth_Km: 8 },
+  { Magnitude: 6, Depth_Km: 8.1 } ]
+\end{minted}
+
+Going through this step by step:
+
+\begin{enumerate}
+
+\item
+  The \texttt{groupBy} call produces a list of 28 dataframes,
+  one for each distinct value of \texttt{Magnitude}.
+
+\item
+  \texttt{select} then converts each of these dataframes into an object
+  whose \texttt{Magnitude} is equal to the magnitude of the group's first element
+  and whose \texttt{Depth\_Km} is the average of the depths.
+  \begin{itemize}
+  \item
+    We can use the magnitude of the group's first element because all of the magnitudes in the group are the same.
+  \item
+    We must also remember to use \texttt{deflate} to turn a column of a dataframe into a \texttt{Series}
+    so that we can then call \texttt{average}.
+  \end{itemize}
+
+\item
+  The output of \texttt{select} is a \texttt{Series} of two-valued objects,
+  so we must call \texttt{inflate} to convert it back to a \texttt{DataFrame}.
+
+\item
+  Finally,
+  we order by the magnitude of the earthquakes to produce our output.
+  
+\end{enumerate}
+
+\figref{f:dataforge-summarizing} shows these steps graphically.
+It's easy to forget the \texttt{inflate} and \texttt{deflate} steps at first
+(we did when writing this example),
+but they quickly become habitual.
+
+\figimg{figures/FIXME.png}{Summarizing Groups}{f:dataforge-summarizing} % show steps in deflate and inflate
+
+\section{In Real Life}\label{s:dataforge-real}
+
+FIXME: extended example
+
+\section{Exercises}\label{s:dataforge-exercises}
+
+\exercise{Other Data Formats}
+
+Write a short program that reads data from \texttt{colors.csv},
+converts the red-green-blue values to numbers,
+and saves the result as JSON.
+Once that is working,
+write another program that reads the JSON file and converts it back to CSV.
+Are there any differences between your second program's output
+and your original CSV file?
+
+\exercise{Directional Sorting}
+
+Modify the program in \secref{s:dataforge-calc} to sort color values
+by \emph{increasing} red and \emph{decreasing} green.
+
+\exercise{Multi-Column Distinct}
+
+\secref{s:dataforge-calc} pointed out that we cannot use \texttt{distinct}
+to find rows with distinct combinations of values.
+What \emph{can} we do?
+To show that your idea works,
+write a program that gets distinct combinations of red and green values from the color data:
+
+\begin{minted}{text}
+red,green
+0,0
+0,255
+128,0
+255,0
+255,255
+\end{minted}
+
+\exercise{Revisting Data Manipulation}
+
+Back in the chapter on data manipulation,
+we aggregated \texttt{surveys.csv} to find the minumum, maximum and average values 
+for \texttt{year}, \texttt{hindfoot\_length}, and \texttt{weight}.
+Repeat this exersize using the methods of \texttt{data-forge}.
+
+\exercise{Grouping and Aggregating}
+
+Retrace the steps in the example that calculated
+the average depth of earthquakes of different magnitudes
+and show the data structure after each method call.
+Are they all dataframes,
+or are other data structures created or manipulated as well?
+
+\section*{Key Points}
+
+\input{keypoints/dataforge}

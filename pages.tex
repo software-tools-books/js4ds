@@ -146,9 +146,10 @@ and add it to the in-memory structure that represents the page.
 The browser stores the elements and text of the current page in a data structure called
 the Document Object Model,
 or more commonly the \gref{g:dom}{DOM}.
-The DOM is organized as a tree:
+As shown in \figref{f:htmlcss-tree},
+the DOM is organized as a tree:
 each element or piece of text is a \gref{g:node}{node} in the tree,
-and a node's children are the elements contained within it (\figref{f:pages-dom}).
+and a node's children are the elements contained within it.
 Any time the browser detects a change to the DOM,
 it automatically refreshes just as much of its display as it needs to.
 We can insert or remove text,
@@ -157,8 +158,6 @@ or copy in entire sub-pages:
 each time,
 the browser will do only the work required to reflect that change
 as quickly as possible.
-
-\figpdf{figures/FIXME.png}{The Document Object Model}{f:pages-dom} % FIXME draw this picture
 
 \section{Creating a Table of Contents}\label{s:pages-toc}
 
@@ -203,7 +202,7 @@ we might as well define it and call it immediately without giving it a name:
 However,
 this doesn't reliably work as written;
 in order to make JavaScript happy,
-we have to parenthesize the function definition
+we have to put parentheses around the function definition
 so that it's clear exactly what's being called:
 
 \begin{minted}{js}
@@ -260,42 +259,6 @@ that lacks most of \texttt{Array}'s useful methods.
   Unlike calls to \gref{g:instance-method}{instance methods} like \texttt{magnitude},
   static methods are called using \texttt{class.method()}
   rather than \texttt{some\_object.method()}.
-
-\begin{minted}{js}
-class Vec2D {
-  constructor(x, y) {
-    this.x = x
-    this.y = y
-  }
-
-  toString() {
-    return `(${this.x},${this.y})`
-  }
-
-  magnitude() {
-    return Math.sqrt(this.x ** 2 + this.y ** 2)
-  }
-
-  static dist(left, right) {
-    return Math.sqrt((left.x - right.x) ** 2 +
-                     (left.y - right.y) ** 2)
-  }
-}
-
-const a = new Vec2D(0.0, 1.0)
-console.log(`magnitude of ${a} is ${a.magnitude()}`)
-
-const b = new Vec2D(1.0, 0.0)
-console.log(`distance between ${a} and ${b} is ${Vec2D.dist(a, b)}`)
-\end{minted}
-
-\begin{minted}{text}
-magnitude of (0,1) is 1
-distance between (0,1) and (1,0) is 1.4142135623730951
-\end{minted}
-
-We can call static methods directly on the class \texttt{Vec2D.dist},
-while \texttt{Vec2D.magnitude} is \texttt{undefined}.
 \end{aside}
 
 We then have three lines that do most of the function's work.
@@ -472,6 +435,8 @@ const sortLists = () => {
 }
 \end{minted}
 
+\figpdf{figures/pages-sortlist.pdf}{Sorting and Replacing}{f:pages-sortlist}
+
 As before,
 it starts by creating an array containing the nodes we want to operate on.
 (We use the selector \texttt{.sorted} (with a dot \texttt{.}) to select everything with the class \texttt{sorted},
@@ -600,6 +565,8 @@ const citations = () => {
     })
 }
 \end{minted}
+
+\figpdf{figures/pages-pipeline.pdf}{A Processing Pipeline}{f:pages-pipeline}
 
 There is a lot going on here,
 but it all uses patterns we have seen before.

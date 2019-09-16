@@ -25,6 +25,7 @@
 .Rproj.user
 .cache/
 .coverage
+.jekyll-metadata
 .~lock.*
 __pycache__
 _minted-*

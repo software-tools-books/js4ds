@@ -39,6 +39,10 @@ and are written using \texttt{/} before and after a string rather than single or
 \item
   The shorthand notation \texttt{[a-z]} means ``all the characters in a range'',
   and is easier to write and read than \texttt{a|b|c|{\ldots}|y|z}.
+
+\item
+  The characters \texttt{\textasciicircum} and \texttt{\$} are called anchors:
+  they match the beginning and end of the line without matching any actual characters.
   
 \item
   If we want to put a special character like \texttt{.}, \texttt{*}, \texttt{+}, or \texttt{|}
@@ -49,6 +53,74 @@ and are written using \texttt{/} before and after a string rather than single or
   
 \end{itemize}
 
+\begin{table}
+\begin{longtable}{llll}
+Text
+& Pattern
+& Match
+& Explanation
+\\
+
+\texttt{abc}
+& /b/
+& yes
+&
+character matches itself
+\\
+
+& /b*/
+& yes
+& matches zero or more b's
+\\
+
+& /z*/
+& yes
+& text contains zero z's, so pattern matches
+\\
+
+& /z+/
+& no
+& text does not contain one or more z's
+\\
+
+& /a.c/
+& yes
+& '.' matches the 'b'
+\\
+
+& /{\textasciicircum}b/
+& no
+& text does not start with 'b'
+\\
+
+\texttt{abc123}
+& /[a-z]+/
+& yes
+& contains one or more consecutive lower-case letters
+\\
+
+& /{\textasciicircum}[a-z]+\$/
+& no
+& digits in string prevent a match
+\\
+
+& /{\textasciicircum}[a-z0-9]+\$/
+& yes
+& whole string is lower-letters or digits
+\\
+
+\texttt{Dr.\ Toby}
+& /(Dr|Prof){\textbackslash}./
+& yes & contains either ``Dr'' or ``Prof'' followed by literal '.'
+\\
+
+\end{longtable}
+\caption{Regular Expression Matches}
+\label{t:regexp-examples}
+\end{table}
+
+This is a lot to digest,
+so \tblref{t:regexp-examples} shows a few examples.
 Regular expressions can match an intimidating number of other patterns,
 but are fairly easy to use in programs.
 Like strings and arrays,
