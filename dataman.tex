@@ -196,10 +196,11 @@ module.exports = DataManager
 
 The \texttt{papa.parse} function takes on two arguments: 
 the csv file to be parsed,
-and a callback.
-Here,
-\texttt{options} is a highly customizable configuration object that controls how the parser behaves.
-we define \texttt{options} to interpret the first row as a header (which sets column names)
+and a configuration object that controls how the parser behaves. 
+This configuration object is highly customisable. 
+Here, we define \texttt{options} 
+to instruct the parser 
+to interpret the first row as a header (which sets column names)
 and to convert things that look like numbers to numbers (the \texttt{dynamicTyping} option).
 
 The output of \texttt{papa.parse} looks like this:
