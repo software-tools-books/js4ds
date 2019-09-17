@@ -347,7 +347,7 @@ There are two passes of execution in this block:
 The first is the \texttt{try...catch} event loop,
 and the second is \texttt{fetch}.
 JavaScript rips the asynchronous code right out of the execution context!
-There's no error, because \texttt{fetch} never got the chance to run.
+There's no error, because \texttt{fetch} hasn't yet had the chance to run.
 
 Going back to the \texttt{fs-extra.stat} example above,
 what if we want to process multiple files,
