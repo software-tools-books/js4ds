@@ -12,14 +12,7 @@ that is designed for working with tabular data.
 DataForge was inspired by Python's Pandas library,
 but should be familiar to anyone who has worked with R.
 Its \texttt{DataFrame} class represents a table made up of named columns
-and any number of rows (\figref{f:dataforge-rows-and-columns}).
-Each column is stored as an (unnamed) \texttt{Series} object;
-once in a while,
-we will need to work with these objects directly
-instead of with the dataframe as a whole.
-
-\figimg{figures/FIXME.png}{How Tables Are Stored}{f:dataforge-rows-and-columns} % show row-column storage with series
-
+and any number of rows.
 Dataframes are immutable:
 once a dataframe has been constructed,
 its contents cannot be changed.
@@ -134,9 +127,15 @@ fromObjects:
      columnNames: [ 'ones', 'tens' ] } }
 \end{minted}
 
-\noindent
+Each column is stored as a \texttt{Series} object;
+once in a while,
+we will need to work with these objects directly
+instead of with the dataframe as a whole.
+(\figref{f:dataforge-rows-and-columns}).
 If we want to see the actual data,
 we need to convert the dataframe back to an array of objects:
+
+\figpdf{figures/dataforge-rows-and-columns.pdf}{How Tables Are Stored}{f:dataforge-rows-and-columns}
 
 \begin{minted}{js}
 console.log('fromObjects as array:\n', fromObjects.toArray())
