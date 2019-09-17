@@ -309,7 +309,11 @@ console.log(justResults.toArray())
 \end{minted}
 
 Since every dataframe method returns a dataframe,
-we can use \gref{g:method-chaining}{method chaining} to combine operations (\figref{f:dataforge-method-chaining}):
+we can use \gref{g:method-chaining}{method chaining} to combine operations (\figref{f:dataforge-method-chaining}).
+We have seen this technique before with chains of \texttt{.then} calls on promises;
+here,
+it is used like pipes in the Unix command line
+or the pipe operator \texttt{{\%}{\textgreater}{\%}} in modern R code:
 
 \begin{minted}{js}
 const result = data
@@ -321,12 +325,7 @@ const result = data
   .toArray()
 \end{minted}
 
-We have seen this technique before with chains of \texttt{.then} calls on promises;
-here,
-it is used like pipes in the Unix command line
-or the pipe operator \texttt{{\%}{\textgreater}{\%}} in modern R code.
-
-\figimg{figures/FIXME.png}{A More Complicated Pipeline}{f:dataforge-method-chaining} % show pipeline with new dataframe being created
+\figpdf{figures/dataforge-method-chaining.pdf}{A More Complicated Pipeline}{f:dataforge-method-chaining}
 
 To make results easier to understand,
 we will often want to sort our data.
@@ -402,7 +401,7 @@ console.log(doubleSorted.toArray())
   { green: '255', blue: '255' } ]
 \end{minted}
 
-\figimg{figures/FIXME.png}{Sorting and Sub-sorting}{f:dataforge-sorting} % show sorting and sub-sorting as diagram
+\figpdf{figures/dataforge-sorting.pdf}{Sorting and Sub-sorting}{f:dataforge-sorting}
 
 We can remove duplicates with \texttt{distinct}:
 
