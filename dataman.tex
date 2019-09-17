@@ -87,13 +87,15 @@ and each record is an object with name-value pairs:
 ]
 \end{minted}
 
+\noindent
 Repeating field names like this is wasteful compared to listing them once at the top of a table,
 but it does mean that the fields within rows can be accessed directly
 using expressions like \texttt{colors[1].red}.
 
 \section{Slicing Data}\label{s:dataman-slicing}
 
-The data we will use as an example is available in a variety of formats from \url{https://figshare.com/articles/Portal_Project_Teaching_Database/1314459}.
+The data we will use as an example is available in a variety of formats
+from \url{https://figshare.com/articles/Portal_Project_Teaching_Database/1314459}.
 We will focus on \texttt{surveys.csv},
 which has over 35,500 records.
 That's a lot to look at,
@@ -105,7 +107,10 @@ there's a good chance that neither would be representative of the data as a whol
 Instead,
 we will write a little script that selects N records at random.
 Since it doesn't need to be efficient,
-we will do something simple:
+we will read everything,
+pair each line with a random number,
+sort the lines using those random numbers as keys,
+then take the top few lines.
 
 \begin{minted}{js}
 const fs = require('fs')
@@ -122,13 +127,14 @@ const sample = lines.slice(1)
 fs.writeFileSync(outputFile, header + '\n' + sample.join('\n'))
 \end{minted}
 
-We run this on the command line:
+When we run this on the command line:
 
 \begin{minted}{shell}
 $ node select-random.js ../../data/surveys.csv 10 slice.csv
 \end{minted}
 
-and get this:
+\noindent
+we get:
 
 \begin{minted}{text}
 record_id,month,day,year,plot_id,species_id,sex,hindfoot_length,weight
@@ -147,6 +153,26 @@ record_id,month,day,year,plot_id,species_id,sex,hindfoot_length,weight
 Running it again will probably generate a different data slice,
 since we're not specifying a random number generation seed.
 We are bad people, and will fix this in the exercises.
+
+\begin{aside}{Slicing Command-Line Arguments}
+  When we run:
+
+\begin{minted}{shell}
+$ node select-random.js ../../data/surveys.csv 10 slice.csv
+\end{minted}
+
+  the array \texttt{process.argv} contains five strings:
+  the \texttt{node} command,
+  the name of our script \texttt{select-random.js},
+  and then the name of the input file,
+  the number of lines we can,
+  and the name of the output file.
+  \texttt{process.argv.slice(2)} discards elements 0 and 1 from this list,
+  leaving us the three values we need to assign to \texttt{inputFile},
+  \texttt{numLines},
+  and \texttt{outputFile} respectively.
+  We will explore a better way to do this in the exercises.
+\end{aside}
 
 \section{Data Manager}\label{s:dataman-manager}
 
@@ -294,8 +320,8 @@ It would be more natural for \texttt{\_average} to take an array rather than a v
 but we want to be able to use it in the same way that we use \texttt{Math.min} and \texttt{Math.max},
 so we have to conform to their signature.
 
-After some thought we realize that it's possible for \texttt{subset} to be empty -
-that is, it's possible that there are years that have no data in our data set.
+After some thought we realize that it's possible for \texttt{subset} to be empty---i.e.,
+it's possible that there are years that have no data in our data set.
 We should filter these out,
 to prevent unnecessary effort being made to render summary statistics with \texttt{NaN} values.
 Remembering that empty arrays are not falsy in JavaScript (\chapref{s:basics}),
@@ -388,6 +414,12 @@ i.e., so that the names of the fields whose minimum, average, and maximum values
 can be passed as strings,
 and the method will automatically create the right names and values in its result.
 
-\exercise{Key Points}
+\exercise{Handling Command-Line Arguments}
+
+Read the documentation for
+the \href{https://www.npmjs.com/package/command-line-args}{\texttt{command-line-args}} package
+and rewrite the data slicing script to use it instead of \texttt{process.argv.slice}.
+
+\section*{Key Points}
 
 \input{keypoints/dataman}

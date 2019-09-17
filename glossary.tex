@@ -73,7 +73,7 @@ A way to describe how HTML should be rendered.
 To take responsibility for handling an \grefcross{g:exception}{exception}.
 Catch is the counterpart of \grefcross{g:throw}{throw}.
 
-\gitem{g:cc-by}{Creative Commons - Attribution License}
+\gitem{g:cc-by}{Creative Commons--Attribution License}
 A license that allows people to re-use work as long as they cite its
 original source.
 
@@ -484,13 +484,6 @@ programmers write along the way.
 A way to handle delayed computations in JavaScript. Promises were supposed to
 make programmers' lives simpler.
 
-\gitem{g:protocol}{protocol}
-A set of rules specifying how two things will interact. The HTTP protocol
-defines the format of \grefcross{g:http-request}{requests},
-\grefcross{g:http-response}{responses}, and \grefcross{g:http-status-code}{status codes}; a
-protocol for application plugins defines how they will be referred to and what
-\grefcross{g:entry-point}{entry points} they must contain.
-
 \gitem{g:prototype}{prototype}
 An idiosyncratic mechanism used in the original definition of JavaScript for
 sharing properties between objects that we unfortunately still have to cope
@@ -656,6 +649,25 @@ creating an \grefcross{g:exception}{exception} and handing it to the error-handl
 system, which then tries to find a point in the program that will
 \grefcross{g:catch}{catch} it. (Some languages call this \emph{\grefcross{g:raise}{raising}} an
 exception.)
+
+\gitem{g:tidy-data}{tidy data}
+Tabular data that satisfies four conditions:
+\begin{itemize}
+\item
+  Each column contains one statistical variable
+  (i.e., one property that was measured or observed).
+
+\item
+  Each different observation is in a different row.
+
+\item
+  There is one table for each set of observations.
+
+\item
+  If there are multiple tables,
+  each table has a column containing a unique key
+  so that related data can be linked.
+\end{itemize}
 
 \gitem{g:tree}{tree}
 A data structure containing strictly-nested \grefcross{g:node}{nodes}. Every node

@@ -34,10 +34,10 @@ in \chapref{s:dynamic}.)
 \end{minted}
 
 As its name suggests,
-a button's \texttt{onClick} handler is called whenever the button is clicked.
+\texttt{onClick} is the event handler called when a button is clicked.
 Here,
 we are telling React to call \texttt{sayHello},
-which adds one to the variable \texttt{counter}
+which adds one to the event object \texttt{counter}
 and then prints its value along with a greeting message.
 
 Global variables and functions are a poor way to structure code.
@@ -108,9 +108,7 @@ but a class with three parts:
   Here, it creates a button with an event handler and displays the current value of the counter.
 \end{enumerate}
 
-React calls each component's \texttt{render} method each time \texttt{setState} is used to update the component's state;
-this is an example of a protocol,
-which was described in \secref{s:oop-protocols}.
+React calls each component's \texttt{render} method each time \texttt{setState} is used to update the component's state.
 Behind the scenes,
 React does some thinking to minimize how much redrawing takes place:
 while it may look as though the paragraph, button, and current count are all being redrawn each time,
@@ -337,6 +335,7 @@ const NumberDisplay = (props) => {
 }
 \end{minted}
 
+\noindent
 Similarly,
 \texttt{UpAndDown} expects two functions as its \texttt{up} and \texttt{down} properties,
 and makes each the event handler for an appropriately-labelled button:
@@ -448,11 +447,10 @@ const mount = document.getElementById("app")
 ReactDOM.render(<App/>, mount)
 \end{minted}
 
-This may seem pretty complicated,
-and it is,
-because this example would be much simpler to write without all this indirection.
+This seems pretty complicated because it is:
+our small example would be much simpler without all this indirection.
 However,
-this strategy is widely used to manage large applications:
+we need this strategy to manage large applications:
 data and event handlers are defined in one class,
 then passed into display components to be displayed and interacted with.
 
@@ -573,6 +571,7 @@ class App extends React.Component {
 }
 \end{minted}
 
+\noindent
 Let's also create a placeholder for \texttt{DateSubmit}:
 
 \begin{minted}{js}
@@ -589,7 +588,7 @@ export {DateSubmit}
 \noindent
 and run it to get \figref{f:interactive-asteroids-screenshot}.
 
-\figpdf{figures/interactive-asteroids-screenshot.png}{Asteroids Application}{f:interactive-asteroids-screenshot}
+\figimg{figures/interactive-asteroids-screenshot.png}{Asteroids Application}{f:interactive-asteroids-screenshot}
 
 The next step is to handle date submission.
 Since we're trying to instill good practices,
@@ -635,7 +634,7 @@ So yes,
 this whole paragraph is being re-created every time someone types,
 but React and the browser work together to minimize recalculation.
 
-Now let's go back and re-work our application:
+Back to our application:
 
 \begin{minted}{js}
 // ...imports as before...
@@ -679,6 +678,7 @@ class App extends React.Component {
 // ...mount as before...
 \end{minted}
 
+\noindent
 It's safe to pass \texttt{this.state.newDate} to \texttt{value}
 because we're re-drawing each time there's a change;
 remember, we're passing a value for display,

@@ -140,7 +140,7 @@ we see a bar chart,
 and feel very proud of ourselves
 (\figref{f:vis-mark-encoding}).
 
-\figpdf{figures/vis-mark-encoding.png}{Mark and Encoding}{f:vis-mark-encoding}
+\figimg{figures/vis-mark-encoding.png}{Mark and Encoding}{f:vis-mark-encoding}
 
 There are also some poorly-styled links for various controls that we're not going to use.
 We can fill in the options argument to \texttt{vegaEmbed} to turn those off:
@@ -163,15 +163,11 @@ We can fill in the options argument to \texttt{vegaEmbed} to turn those off:
     vegaEmbed("#vis", spec, options)
 \end{minted}
 
+\noindent
 We now have the visualization we wanted
 (\figref{f:vis-disable-controls}).
 
-\begin{figure}
-\centering
-\includegraphics{figures/vis-disable-controls.png}
-\caption{Without Controls}
-\label{f:vis-disable-controls}
-\end{figure}
+\figimg{figures/vis-disable-controls.png}{Without Controls}{f:vis-disable-controls}
 
 Vega-Lite has a \emph{lot} of options:
 for example,
@@ -215,12 +211,7 @@ which is set to \texttt{"average"}
 
 \figref{f:vis-aggregate-points} shows the result.
 
-\begin{figure}
-\centering
-\includegraphics{figures/vis-aggregate-points.png}
-\caption{Aggregating and Using Points}
-\label{f:vis-aggregate-points}
-\end{figure}
+\figimg{figures/vis-aggregate-points.png}{Aggregating and Using Points}{f:vis-aggregate-points}
 
 \section{Local Installation}\label{s:vis-vega-local}
 
@@ -245,6 +236,7 @@ Step 1 is to slim down our HTML file so that it only loads our application:
 </html>
 \end{minted}
 
+\noindent
 In step 2,
 we \texttt{npm\ install\ vega\ vega-lite\ vega-embed} and \texttt{require('vega-embed')} in \texttt{app.js}:
 
@@ -262,13 +254,14 @@ const options = {
 vegaEmbed("#vis", spec, options)
 \end{minted}
 
+\noindent
 We launch this with Parcel via our saved \texttt{npm\ run} command:
 
 \begin{minted}{shell}
 $ npm run dev -- src/vis/react-01/index.html
 \end{minted}
 
-But nothing appears when we open \texttt{http://localhost:4000} in our browser.
+Our hearts break when we open \texttt{http://localhost:4000} in our browser and nothing appears.
 Looking in the browser console,
 we see a message telling us that \texttt{vegaEmbed} is not a function.
 
@@ -306,6 +299,7 @@ import vegaEmbed from 'vega-embed'
 // ...as before...
 \end{minted}
 
+\noindent
 If we do this,
 the bundled file is 74.5K lines of JavaScript,
 but at least it's all in one place for distribution.

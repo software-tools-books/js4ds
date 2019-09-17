@@ -170,6 +170,7 @@ $ node database-initial.js fixture.db getAll
   workshopDuration: 150 }
 \end{minted}
 
+\noindent
 That seems to have worked:
 \texttt{getAll} was called,
 and the result is an array of objects,
@@ -286,6 +287,7 @@ Here are the changes to the constructor:
   }
 \end{minted}
 
+\noindent
 And here are the supporting methods:
 
 \begin{minted}{js}
@@ -311,6 +313,7 @@ And here are the supporting methods:
   }
 \end{minted}
 
+\noindent
 We also need to change the driver
 (and check, finally, that the requested action is actually supported):
 
@@ -394,7 +397,6 @@ TypeError: Cannot read property 'Symbol(Symbol.iterator)' of undefined
 Whoops: the \texttt{run} method of the database delivers results to a callback;
 its own result is therefore \texttt{undefined},
 so there's nothing in the caller to print.
-
 The solution is to give the \texttt{get} methods a callback of their own:
 
 \begin{minted}{js}
@@ -413,6 +415,7 @@ class Database {
 }
 \end{minted}
 
+\noindent
 We then change the driver to pass \texttt{display} to the database method it's calling:
 
 \begin{minted}{js}

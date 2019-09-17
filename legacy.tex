@@ -13,14 +13,13 @@ In it,
 he rattles through some truths about the language that may surprise you
 (\tblref{t:legacy-surprises}).
 
-
 \begin{table}
 \begin{longtable}{lll}
-Operation & Code & Result\tabularnewline
-empty array plus empty array & \texttt{[]\ +\ []} & \texttt{""} (empty string)\tabularnewline
-empty array plus empty object & \texttt{[]\ +\ \{\}} & \texttt{\{\}} (empty object)\tabularnewline
-empty object plus empty array & \texttt{\{\}\ +\ []} & \texttt{0} (number zero)\tabularnewline
-empty object plus empty object & \texttt{\{\}\ +\ \{\}} & \texttt{NaN} (not a number)\tabularnewline
+Operation & Code & Result \\
+empty array plus empty array & \texttt{[]\ +\ []} & \texttt{""} (empty string) \\
+empty array plus empty object & \texttt{[]\ +\ \{\}} & \texttt{\{\}} (empty object) \\
+empty object plus empty array & \texttt{\{\}\ +\ []} & \texttt{0} (number zero) \\
+empty object plus empty object & \texttt{\{\}\ +\ \{\}} & \texttt{NaN} (not a number) \\
 \end{longtable}
 \caption{Surprising Results}
 \label{t:legacy-surprises}
@@ -49,6 +48,7 @@ In order to understand this, we need to know several things
   \texttt{\{\}} can be interpreted as either an empty object \emph{or} an empty block of code.
 \end{enumerate}
 
+\noindent
 So:
 
 \begin{itemize}
@@ -129,6 +129,7 @@ y
 z
 \end{minted}
 
+\noindent
 Better yet, use \texttt{forEach} and take advantage of its optional second and third arguments:
 
 \begin{minted}{js}

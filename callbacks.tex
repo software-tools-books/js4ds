@@ -26,6 +26,7 @@ oneMore = (x) => {
 }
 \end{minted}
 
+\noindent
 JavaScript allocates a block of memory big enough to store several instructions,
 translates the text of the function into instructions,
 and stores a reference to those instructions in the variable \texttt{oneMore}
@@ -101,6 +102,7 @@ hello
 hello
 \end{minted}
 
+\noindent
 Again,
 this is clearer when we look at the state of memory while \texttt{doTwice} is running
 (\figref{f:callbacks-do-twice}).
@@ -144,6 +146,7 @@ memory looks like \figref{f:callbacks-pipeline}.
 
 \figpdf{figures/callbacks-pipeline.pdf}{Implementing a Pipeline}{f:callbacks-pipeline}
 
+\noindent
 Reversing the order of the functions changes the result:
 
 \begin{minted}{js}
@@ -358,7 +361,6 @@ JavaScript arrays provide several methods to support functional programming.
 For example,
 \texttt{Array.some} returns \texttt{true} if \emph{any} element in an array passes a test,
 while \texttt{Array.every} returns \texttt{true} if \emph{all} elements in an array pass a test.
-
 Here's how they work:
 
 \begin{minted}{js}
@@ -386,6 +388,7 @@ console.log('those longer than 3:',
 those longer than 3: [ 'this', 'test' ]
 \end{minted}
 
+\noindent
 So do all of the elements with more than 3 characters start with a `t'?
 
 \begin{minted}{js}
@@ -411,13 +414,39 @@ console.log('shortened', data.map((x) => { return x.slice(0, 2) }))
 shortened [ 'th', 'is', 'a', 'te' ]
 \end{minted}
 
-And finally,
+Finally,
 \texttt{Array.reduce} reduces an array to a single value
 using a combining function and a starting value.
 The combining function must take two values,
 which are the current running total and the next value from the array;
 if the array is empty,
 \texttt{Array.reduce} returns the starting value.
+
+An example will make this clearer.
+To start,
+let's create an acronym using a loop:
+
+\begin{minted}{js}
+const data = ['this', 'is', 'a', 'test']
+
+let acronym = ''
+for (let value of data) {
+  acronym = acronym + value[0]
+}
+
+console.log(`acronym of ${data} is ${acronym}`)
+\end{minted}
+
+\begin{minted}{text}
+acronym of this,is,a,test is tiat
+\end{minted}
+
+The three key elements in the short program above are the input data,
+the initial value of the variable \texttt{acronym},
+and the way that variable is updated.
+When \texttt{Array.reduce} is used,
+the array is the data and the initial value and update function
+are passed as parameters:
 
 \begin{minted}{js}
 const data = ['this', 'is', 'a', 'test']
@@ -427,8 +456,18 @@ const concatFirst = (accumulator, nextValue) => {
 }
 let acronym = data.reduce(concatFirst, '')
 console.log(`acronym of ${data} is ${acronym}`)
+\end{minted}
 
-// In one step.
+\begin{minted}{text}
+acronym of this,is,a,test is tiat
+\end{minted}
+
+As elsewhere,
+we can define the function where we use it:
+
+\begin{minted}{js}
+const data = ['this', 'is', 'a', 'test']
+
 acronym = data.reduce((accum, next) => {
   return accum + next[0]
 }, '')
@@ -436,11 +475,10 @@ console.log('all in one step:', acronym)
 \end{minted}
 
 \begin{minted}{text}
-acronym of this,is,a,test is tiat
 all in one step: tiat
 \end{minted}
 
-The indentation of the ``in one step'' call may look a little odd,
+The indentation of the anonymous function defined inside \texttt{reduce} may look a little odd,
 but this is the style the JavaScript community has settled on.
 
 \section{Closures}\label{s:callbacks-closures}
@@ -512,6 +550,7 @@ and assign that function to \texttt{add\_2}
 
 \figpdf{figures/callbacks-adder-4.pdf}{Creating an Adder (Steps 4-6)}{f:callbacks-adder-4}
 
+\noindent
 When we now call \texttt{add\_1} or \texttt{add\_2},
 they add the value passed in and the value they've kept a reference to.
 
@@ -574,7 +613,6 @@ If you only need the value,
 you can provide a callback that only takes one parameter;
 if you only need the value and its location,
 you can provide a callback that takes two.
-
 Use this to write a function \texttt{doubleInPlace}
 that doubles all the values in an array in place:
 
@@ -628,6 +666,7 @@ The changes are:
   (These sequence numbers are 1-based rather than 0-based.)
 \end{itemize}
 
+\noindent
 You will probably want to use \texttt{Array.reduce} to generate the sequence numbers.
 
 \section*{Key Points}

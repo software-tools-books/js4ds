@@ -281,8 +281,6 @@ as in the examples above, the \texttt{ListElement} function gives us exactly one
 Here we've used \texttt{ListElement} to italicize each element in our array and give them ids,
 but these functions can also be used for any transformation or calculation on each element to be rendered.
 
-
-
 \section{Developing with Parcel}\label{s:dynamic-parcel}
 
 Putting all of the source for an application in one HTML file is a bad practice,
@@ -306,21 +304,19 @@ which is younger and therefore not yet bloated
 (but give it time).
 
 \begin{aside}{Initiate a Project with Node Package Manager}
-If you've been coding along,
-so far we've created single HTML and JavaScript files,
-and we've used the node command to run JavaScript files in the terminal, 
-but we have not yet used node package manager, \texttt{npm}. 
-Before we install Parcel, 
-we can turn the directory 
-which we've been creating our HTML and JavaScript files into a project 
-by typing:
+  If you've been coding along,
+  so far we've created single HTML and JavaScript files,
+  and we've used the node command to run JavaScript files in the terminal, 
+  but we have not yet used the Node package manager \texttt{npm}. 
+  Before we install Parcel, 
+  we can turn the directory 
+  which we've been creating our HTML and JavaScript files into a project 
+  by typing:
 
 \begin{minted}{shell}
 $ npm init -y
 \end{minted}
-
 \end{aside}
-
 
 To install Parcel, run:
 
@@ -328,7 +324,8 @@ To install Parcel, run:
 $ npm install parcel-bundler
 \end{minted}
 
-Once it's in place,
+\noindent
+Once Parcel is installed,
 we can tell it to run one of our test pages like this:
 
 \begin{minted}{shell}
@@ -340,10 +337,14 @@ Server running at http://localhost:4000
 + Built in 128ms.
 \end{minted}
 
+\begin{aside}{Quitting Parcel}
+  To leave Parcel use the keyboard interrupt Control-C.
+\end{aside}
+
 This works because when NPM installs a library in a project's \texttt{node\_modules} directory,
-it will sometimes put a runnable script associated with that library in \texttt{node\_modules/.bin}
+that library may put a runnable script in \texttt{node\_modules/.bin}
 (note that it's \texttt{.bin} with a leading \texttt{.}, not \texttt{bin}).
-When we ask Parcel to serve up an application, it:
+When we ask Parcel to serve an application, it:
 
 \begin{itemize}
 \item
@@ -358,7 +359,10 @@ When we ask Parcel to serve up an application, it:
 
 Parcel also caches things in \texttt{./.cache} so that it doesn't need to do redundant work;
 both directories are normally added to \texttt{.gitignore}.
-To learn more about Parcel, see \href{https://medium.com/codingthesmartway-com-blog/getting-started-with-parcel-197eb85a2c8c}{Sebastian Eschweiler's quick tutorial}.
+To learn more about Parcel,
+see \href{https://medium.com/codingthesmartway-com-blog/getting-started-with-parcel-197eb85a2c8c}{this short tutorial}.
+
+\figpdf{figures/dynamic-parcel.pdf}{What Goes Where with Parcel}{f:dynamic-parcel}
 
 It's very common to put tasks like ``run my application'' into NPM's \texttt{package.json} file,
 just as older programmers would put frequently-used commands into a project's Makefile.
@@ -401,7 +405,7 @@ let's move our JSX into \texttt{app.js} and load that in the \texttt{head} of th
     <script src="https://fb.me/react-15.0.1.js"></script>
     <script src="https://fb.me/react-dom-15.0.1.js"></script>
     <script src="https://unpkg.com/babel-standalone@6/babel.js"></script>
-    <script src="app.js"></script>
+    <script src="app.js" type="text/babel"></script>
   </head>
   <body>
     <h1>Hello Separate</h1>
@@ -410,6 +414,7 @@ let's move our JSX into \texttt{app.js} and load that in the \texttt{head} of th
 </html>
 \end{minted}
 
+\noindent
 For now,
 the JavaScript in \texttt{app.js} is:
 
@@ -421,8 +426,7 @@ ReactDOM.render(
 \end{minted}
 
 When we load this page we get the \texttt{h1} title but \emph{not} the paragraph.
-When we look in the browser console,
-we see the message:
+The browser console displays the message:
 
 \begin{minted}{text}
 Error: _registerComponent(...): Target container is not a DOM element.
@@ -430,8 +434,8 @@ Error: _registerComponent(...): Target container is not a DOM element.
 
 This is the same race condition that has bitten us before.
 After sighing in frustration and making ourselves another cup of tea,
-we decide that,
-to keep things simple,
+we decide that
+to keep things simple
 we will load the script in the body of the page:
 
 \begin{minted}{js}
@@ -444,10 +448,25 @@ we will load the script in the body of the page:
   <body>
     <h1>Hello Bottom</h1>
     <div id="app"></div>
-    <script src="./app.js"></script>
+    <script src="./app.js" type="text/babel"></script>
   </body>
 </html>
 \end{minted}
+
+\begin{aside}{Installing React and ReactDOM}
+  Now that we have made a project folder using \texttt{npm init}
+  and have created a \texttt{project.json} file,
+  we can install our first modules:
+
+\begin{minted}{shell}
+$ npm install react
+$ npm install reactDOM
+\end{minted}
+
+  In general,
+  uses of the function \texttt{require} indicate that
+  we need to install that library to access the module's functions.
+\end{aside}
 
 More importantly,
 we will rewrite \texttt{app.js} so that it loads the libraries it needs,
@@ -480,7 +499,7 @@ which tells the browser not to do anything with the JavaScript until the page ha
   <head>
     <meta charset="utf-8">
     <title>Hello Parcel</title>
-    <script src="./app.js" async></script>
+    <script src="./app.js" type="text/babel" async></script>
   </head>
   <body>
     <div id="app"></div>
