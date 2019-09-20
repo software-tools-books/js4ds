@@ -15,15 +15,13 @@ class JSONtoDataFrame extends DataManager {
 }
 
 const nps = new JSONtoDataFrame('../../data/national_parks.csv').dataframe()
-    .where(row => row.year !== "Total")
     .where(row => row.visitors !== "NA")
-    // need to convert to integers
+    .where(row => typeof row.year !== 'string' && row.year !== '')
     .groupBy(row => row.year)
     .select(group => ({
         Year: group.first().year,
         Annual_Visitors: group.deflate(row => row.visitors).sum(),
     }))
     .inflate()
-    .where(row => row.year >= 2009)
 
 console.log(nps.toString())
