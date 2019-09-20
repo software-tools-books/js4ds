@@ -840,7 +840,7 @@ const annualVisitors = npsCleaned
         // to populate the rows of the Year column
         Year: group.first().year,
         // Now we can sum the annual visitors
-        Total: group.select(row => row.visitors).sum(),
+        Annual_Visitors: group.deflate(row => row.visitors).sum(),
     }))
     .inflate()
     .where(row => row.Year >= 2009)
