@@ -3,18 +3,20 @@ const papa = require('papaparse')
 const DF = require('data-forge');
 const DataManager = require('../dataman/data-manager.js');
 
-class JSONtoDataFrame {
-
-    constructor (filename) {
-        const raw = fs.readFileSync(filename, 'utf-8')
-        const options = {header: true, dynamicTyping: true}
-        this.data = papa.parse(raw, options).data
-      }
+class JSONtoDataFrame extends DataManager {
     
+    constructor(file) {
+      super(file)
+    }
+
+    dataframe() {
+        return new DF.DataFrame(this.data)
+    } 
+
 }
 
-const temp = new JSONtoDataFrame('../../data/national_parks.csv')
-const nps = new DF.DataFrame(temp.data)
+// Ideally want to just write 
+const nps = new JSONtoDataFrame.dataframe('../../data/national_parks.csv')
 
 const npsCleaned = nps
          .where(row => row.year !== "Total")
@@ -39,4 +41,6 @@ const annualVisitors = npsCleaned
         Total: group.select(row => row.visitors).sum(),
     }))
     .inflate()
+    .where(row => row.Year >= 2009)
+
 console.log(annualVisitors.toString())
