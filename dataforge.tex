@@ -718,13 +718,13 @@ we can include a method to transform the JSON object to a data frame:
 
 FIXME
 \begin{minted}{js}
-const DF = require('data-forge')
 const DataManager = require('../dataman/data-manager.js')
+const DF = require('data-forge')
 
 class JSONtoDataFrame extends DataManager {
     
-    constructor(file) {
-      super(file)
+    constructor(filename) {
+        super(filename)
     }
 
     dataframe() {
@@ -732,7 +732,8 @@ class JSONtoDataFrame extends DataManager {
     } 
 
 }
-const nps = new JSONtoDataFrame('../../data/national_parks.csv')
+
+const nps = new JSONtoDataFrame('../../data/national_parks.csv').dataframe()
 \end{minted}
 
 It's always good
