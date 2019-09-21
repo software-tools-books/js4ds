@@ -697,165 +697,181 @@ but they quickly become habitual.
 
 \section{In Real Life}\label{s:dataforge-real}
 
-In this example, 
-we'll explore United States National Park data from \url{dataisplural/data.world}
-to find the annual recreational visits to national parks for the last ten years.
+To wrap up our exploration of Data-Forge,
+we will explore data from \url{dataisplural/data.world}
+to find the annual recreational visits to national parks in the United States for the last ten years.
+Our strategy is to:
 
 \begin{enumerate}
 \item
-  Importing the data by extending the \texttt{DataManager}.
+  import the data,
 \item
-  Inspecting columns to make sure the data is clean for aggregation.
+  inspect the columns to make sure the data is clean,
 \item
-  Grouping the data by year, then summarizing the total visitors.
+  fix any problems we notice,
 \item
-  Filtering the years to be greater than 2009.
+  group the data by year and summarize the total visitors, and then
+\item
+  filter to keep only the years that are greater than 2009.
 \end{enumerate}
 
-By extending the \texttt{DataManager} we created earlier
-to transform csv data to a JSON array of objects, 
-we can include a method to transform the JSON object to a data frame:
+We'll start by reading the data and looking at the first couple of rows:
 
-FIXME
 \begin{minted}{js}
-const DataManager = require('../dataman/data-manager.js')
+const fs = require('fs')
 const DF = require('data-forge')
 
-class JSONtoDataFrame extends DataManager {
-    
-    constructor(filename) {
-        super(filename)
-    }
-
-    dataframe() {
-        return new DF.DataFrame(this.data)
-    } 
-
-}
-
-const nps = new JSONtoDataFrame('../../data/national_parks.csv').dataframe()
+const text = fs.readFileSync('../../data/national_parks.csv', 'utf-8')
+const raw = DF.fromCSV(text)
+console.log(raw.head(2).toArray())
 \end{minted}
 
-It's always good
-to look at the structure of the data before we dive into any analysis.
-The function \texttt{detectTypes} transforms our data
-to display the frequency of each column's types.
+\begin{minted}{text}
+[ { year: '1904',
+    gnis_id: '1163670',
+    geometry: 'POLYGON',
+    metadata: 'NA',
+    number_of_records: '1',
+    parkname: 'Crater Lake',
+    region: 'PW',
+    state: 'OR',
+    unit_code: 'CRLA',
+    unit_name: 'Crater Lake National Park',
+    unit_type: 'National Park',
+    visitors: '1500' },
+  { year: '1941',
+    gnis_id: '1531834',
+    geometry: 'MULTIPOLYGON',
+    metadata: 'NA',
+    number_of_records: '1',
+    parkname: 'Lake Roosevelt',
+    region: 'PW',
+    state: 'WA',
+    unit_code: 'LARO',
+    unit_name: 'Lake Roosevelt National Recreation Area',
+    unit_type: 'National Recreation Area',
+    visitors: '0' } ]
+\end{minted}
+
+It's always good to look at the structure of the data
+before we dive into any analysis.
+The dataframe method \texttt{detectTypes} shows us the frequency of data types in our dataframe:
 
 \begin{minted}{js}
-// Check the data types of each column
-const typesDf = nps.detectTypes(); 
+const typesDf = raw.detectTypes() 
 console.log(typesDf.toString())
 \end{minted}
 
 \begin{minted}{text}
-__index__  Type    Frequency            Column           
----------  ------  -------------------  -----------------
-0          number  98.20964749536178    year             
-1          string  1.790352504638219    year             
-2          number  99.99072356215213    gnis_id          
-3          string  0.00927643784786642  gnis_id          
-4          string  100                  geometry         
-5          string  100                  metadata         
-6          number  100                  number_of_records
-7          string  100                  parkname         
-8          string  100                  region           
-9          string  100                  state            
-10         string  100                  unit_code        
-11         string  100                  unit_name        
-12         string  100                  unit_type        
-13         number  99.98144712430427    visitors         
-14         string  0.01855287569573284  visitors  
+__index__  Type    Frequency  Column
+---------  ------  ---------  -----------------
+0          string  100        year
+1          string  100        gnis_id
+2          string  100        geometry
+3          string  100        metadata
+4          string  100        number_of_records
+5          string  100        parkname
+6          string  100        region
+7          string  100        state
+8          string  100        unit_code
+9          string  100        unit_name
+10         string  100        unit_type
+11         string  100        visitors
 \end{minted}
 
-Focusing on the year and visitors columns
-as we need these to perform our analysis, 
-we see that there are some values being parsed as strings.
-We can use the \texttt{detectValues} function
-to find the frequency of the unique inputs per column.
+We want numbers instead of strings for \texttt{year} and \texttt{visitors},
+but before we transform them,
+let's check and see if any values in those columns are \texttt{NA},
+meaning ``not available'':
 
 \begin{minted}{js}
-const uniqueValuesDf = nps
-            .detectValues(); 
+const cleaned = raw
+      .where(row => ((row.year != 'NA') && (row.visitors != 'NA')))
+console.log(`${raw.count()} original rows and ${cleaned.count()} cleaned rows`)
 \end{minted}
 
 \begin{minted}{text}
-__index__  Value     Frequency             Column           
----------  --------  -------------------   ---------
-....
-....
-82         Total     1.790352504638219     year
-....
-271        NA        0.01855287569573284   visitors
-....
-....
+21560 original rows and 21556 cleaned rows
 \end{minted}
 
-We have \texttt{year} values 
-that are equal to the string \texttt{Total}
-and should be removed. 
-We also have \texttt{NA} values for visitors
-which is a string in JavaScript 
-and not the same as \texttt{null} or \texttt{undefined}.
-We will remove these rows as well.
+Four rows contain missing values.
+We probably wouldn't spot them if we scrolled through the data ourselves,
+so it's good that we let the computer do the work.
+Let's remove those four rows and convert the two columns of interest from strings to numbers:
 
 \begin{minted}{js}
-const npsCleaned = nps
-         .where(row => row.year !== "Total" & row.visitors !== "NA")
-
-// double check to ensure all the year and visitors types are numbers
-console.log(npsCleaned
-              .detectTypes()
-              .toString()
-           )
+const data = raw
+      .where(row => ((row.year != 'NA') && (row.visitors != 'NA')))
+      .parseFloats(['year', 'visitors'])
+console.log(`${data.count()} rows`)
+console.log(data.detectTypes().toString())
 \end{minted}
 
 \begin{minted}{text}
-__index__  Type    Frequency             Column           
----------  ------  --------------------  -----------------
-0          number  100                   year                    
-1          number  99.99072184078679     gnis_id          
-2          string  0.009278159213212098  gnis_id          
-3          string  100                   geometry         
-4          string  100                   metadata         
-5          number  100                   number_of_records
-6          string  100                   parkname         
-7          string  100                   region           
-8          string  100                   state            
-9          string  100                   unit_code        
-10         string  100                   unit_name        
-11         string  100                   unit_type        
-12         number  100                   visitors     
+21556 rows
+__index__  Type    Frequency  Column
+---------  ------  ---------  -----------------
+0          number  100        year
+...        ...     ...        ...
+11         number  100        visitors
 \end{minted}
 
+This looks good:
+we have dropped the four offending rows and everything else is a number.
 With clean data,
-we can now group by year,
-then find the total annual national park visitors:
+we can now group by year
+and find the total number of visitors in each year:
 
-FIXME - getting an error that sum is not a function?
 \begin{minted}{js}
-const annualVisitors = npsCleaned
-    .groupBy(row => row.year)
-    .select(group => ({
-        // we will use the unique year values
-        // to populate the rows of the Year column
-        Year: group.first().year,
-        // Now we can sum the annual visitors
-        Annual_Visitors: group.deflate(row => row.visitors).sum(),
-    }))
-    .inflate()
-    .where(row => row.Year >= 2009)
-
-console.log(annualVisitors.toString())
+const annual = data
+      .groupBy(row => row.year)
+      .select(group => ({
+        year: group.first().year,
+        visitors: group.deflate(row => row.visitors).sum()
+      }))
+      .inflate()
+      .orderBy(row => row.year)
+console.log(annual.toString())
 \end{minted}
 
 \begin{minted}{text}
+__index__  year  visitors   
+---------  ----  -----------
+0          1904  120690     
+112        1905  140954     
+88         NaN   13764633135
+55         1906  30569      
+113        1907  32935      
+61         1908  42768      
+111        1909  60899      
+110        1910  173416     
+...        ...   ...
+23         2011  276799292  
+91         2012  281392715  
+70         2013  271305455  
+89         2014  290105230  
+78         2015  304730566  
+75         2016  328483428  
 \end{minted}
 
-This analysis shows how
-Data-Forge let's you inspect, clean, and transform data.
-If you don't live close to visit any of these parks,
-we still encourage you to take breaks and step outside
-before completing the exercises.
+Uh oh.
+What's that \texttt{NaN} doing there in the third row?
+Are there still some missing values in the \texttt{year} column?
+
+\begin{minted}{js}
+const numNan = data
+      .where(row => (isNaN(row.year) || isNaN(row.visitors)))
+      .count()
+console.log(`${numNan} rows have NaN`)
+\end{minted}
+
+\begin{minted}{text}
+382 rows have NaN
+\end{minted}
+
+The exercises will look at where these non-numbers have come from and how we should handle them.
+Even if you don't live close to a national park,
+we encourage you to take a break and step outside before tackling the exercises below.
 
 \section{Exercises}\label{s:dataforge-exercises}
 
@@ -905,6 +921,12 @@ the average depth of earthquakes of different magnitudes
 and show the data structure after each method call.
 Are they all dataframes,
 or are other data structures created or manipulated as well?
+
+\exercise{Not a Number}
+
+Write a short pipeline that prints out the values in the \texttt{year} and \texttt{visitors} columns
+that wind up being converted to \texttt{NaN}.
+(Hint: copy the columns, convert the copies to numbers, filter to keep those rows, then print the original values.)
 
 \section*{Key Points}
 
