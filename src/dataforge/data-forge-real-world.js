@@ -16,6 +16,8 @@ class JSONtoDataFrame extends DataManager {
 
 const nps = new JSONtoDataFrame('../../data/national_parks.csv').dataframe()
     .where(row => row.visitors !== "NA")
+    //.where(row => row.year !== "Total") //this should work but returns an empty data frame?
+    //.parseInts('year') //this should work but doesn't because of the filter, I presume
     .groupBy(row => row.year)
     .select(group => ({
        Year: group.first().year,
