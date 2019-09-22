@@ -151,7 +151,10 @@ which takes a moment to figure out.
 What's going on here is that an instance of a class is just a special kind of object,
 and we can always look up an object's fields by name using \texttt{object[name]},
 so if the string \texttt{action} (taken from the command-line argument) is \texttt{getAll} or \texttt{getOne},
-then \texttt{database[action](args)} is either \texttt{database.getAll(args)} or database.getOne(args)\texttt{.\ This\ is\ clever,\ but\ if\ we\ ask\ for\ an\ action\ like\ }show\texttt{\ or\ }help\texttt{\ or\ }GetOne\texttt{\ (with\ an\ upper-case\ 'G'),\ then\ }database[action]` doesn't exist and we get a very confusing error message.
+then \texttt{database[action](args)} is either \texttt{database.getAll(args)} or \texttt{database.getOne(args)}.
+This  is  clever, but if we ask for an action like \texttt{show} or \texttt{help} or \texttt{GetOne}
+(with an upper-case 'G')
+then \texttt{database[action]} doesn't exist and we get a very confusing error message.
 We really should try to do better{\ldots}
 
 But before then,
