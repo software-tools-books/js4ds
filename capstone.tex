@@ -24,9 +24,16 @@ but will mostly recapitulate what's come before.
 
 \section{Data Manager}\label{s:capstone-data}
 
-The data manager is exactly the same as the one we built in \chapref{s:dataman}.
+We could use exactly the same data manager
+as the one we built in \chapref{s:dataman}.
+However, to do so would be to miss an
+opportunity to apply our new-found knowledge
+of the Data-Forge library.
+Instead, let's adapt the code to use dataframes,
+as we learned in the previous chapter.
+
 As a reminder,
-the key class is:
+the key class in our data manager is:
 
 \begin{minted}{js}
 class DataManager {
@@ -43,6 +50,158 @@ class DataManager {
     // ...return slice of data...
   }
 }
+\end{minted}
+
+\texttt{DataManager} begins by reading data
+from a CSV file,
+which is a task that we know can be
+achieved with Data-Forge.
+We can keep the line where we use \texttt{fs} to open
+the file for reading
+and convert the rest of \texttt{constructor}
+to use Data-Forge:
+
+\begin{minted}{js}
+  constructor (filename) {
+    const raw = fs.readFileSync(filename, 'utf-8')
+    this.data = DF.fromCSV(raw)
+    .parseInts(['record_id','month','day','year','plot_id'])
+    .parseFloats(['hindfoot_length','weight'])
+  }
+\end{minted}
+
+Remember that \texttt{_get} method we had to write
+to apply functions for finding minimum, mean, and maximum
+values within the data for each year?
+Working with dataframes allows us to avoid that extra effort
+and makes things comparatively easy to read.
+Here's the new version of \texttt{getSurveyStats}:
+
+\begin{minted}{js}
+  getSurveyStats () {
+    return {
+      year_low : this.data.deflate(row => row.year).min(),
+      year_high : this.data.deflate(row => row.year).max(),
+      record_count : this.data.count()
+    }
+  }
+\end{minted}
+
+We also adapt the \texttt{getSurveyRange} method
+to work with the dataframe.
+
+\begin{minted}{js}
+  getSurveyRange (minYear, maxYear) {
+    return Array(1 + maxYear - minYear)
+      .fill(0)
+      .map((v, i) => minYear + i)
+      .map(year => {
+      const subset = this.data.where(row => row.year === year)
+      if (subset.count()) {
+        return {
+          key  : toString(year),
+          year : year,
+          min_hindfoot_length : subset.deflate(row => row.hindfoot_length).min(),
+          ave_hindfoot_length : subset.deflate(row => row.hindfoot_length).average(),
+          max_hindfoot_length : subset.deflate(row => row.hindfoot_length).max(),
+          min_weight : subset.deflate(row => row.weight).min(),
+          ave_weight : subset.deflate(row => row.weight).average(),
+          max_weight : subset.deflate(row => row.weight).max()
+        }
+      }
+    })
+  }
+\end{minted}
+
+Just as above,
+this has removed the need for the \texttt{_get} method.
+However, when testing the code we find
+that blank spaces are displayed where
+the summary values of should for a suspicious number of years.
+On closer inspection,
+we discover that the summarizing methods
+(\textt{min} etc)
+of Data-Forge Series are sensitive to missing data
+and quietly return \texttt{NaN}
+if any values are absent in the series
+on which they are called,
+or \texttt{undefined} if they're all missing.
+So we need to add an additional filter step
+to remove the rows with missing data in the columns
+that we're interested in (hindfoot length and weight):
+
+\begin{minted}{js}
+// ...as before...
+      if (subset.count()) {
+        return {
+          key  : toString(year),
+          year : year,
+          min_hindfoot_length : subset.where(row => !isNaN(row.hindfoot_length)).deflate(row => row.hindfoot_length).min(),
+          ave_hindfoot_length : subset.where(row => !isNaN(row.hindfoot_length)).deflate(row => row.hindfoot_length).average(),
+          max_hindfoot_length : subset.where(row => !isNaN(row.hindfoot_length)).deflate(row => row.hindfoot_length).max(),
+          min_weight : subset.where(row => !isNaN(row.weight)).deflate(row => row.weight).min(),
+          ave_weight : subset.where(row => !isNaN(row.weight)).deflate(row => row.weight).average(),
+          max_weight : subset.where(row => !isNaN(row.weight)).deflate(row => row.weight).max()
+        }
+      }
+// ...as before...
+\end{minted}
+
+Making these changes we discover that,
+although the summarizing functions run and return
+\texttt{NaN} or \texttt{undefined}
+when presented with a series with at least one missing piece observation,
+they throw an error when called on a completely empty series
+(that is, a series of length zero).
+To make our data manager robust to this,
+we go back to writing internal methods
+to ensure that data is only summarized
+if it actually exists in the first place:
+
+\begin{minted}{js}
+// ...as before...
+      if (subset.count()) {
+        return {
+          key  : toString(year),
+          year : year,
+          min_hindfoot_length : this._getMin(subset, 'hindfoot_length'),
+          ave_hindfoot_length : this._getAve(subset, 'hindfoot_length'),
+          max_hindfoot_length : this._getMax(subset, 'hindfoot_length'),
+          min_weight : this._getMin(subset, 'weight'),
+          ave_weight : this._getAve(subset, 'weight'),
+          max_weight : this._getMax(subset, 'weight')
+        }
+      }
+    })
+  }
+
+  _getMin (yearData, columnName) {
+    const filtered = yearData.where(row => !isNaN(row[columnName]))
+    if (filtered.count()) {
+      return filtered.deflate(row => row[columnName]).min()
+    } else {
+      return 'no data'
+    }
+  }
+
+  _getAve (yearData, columnName) {
+    const filtered = yearData.where(row => !isNaN(row[columnName]))
+    if (filtered.count()) {
+      return filtered.deflate(row => row[columnName]).average()
+    } else {
+      return 'no data'
+    }
+  }
+
+  _getMax (yearData, columnName) {
+    const filtered = yearData.where(row => !isNaN(row[columnName]))
+    if (filtered.count()) {
+      return filtered.deflate(row => row[columnName]).max()
+    } else {
+      return 'no data'
+    }
+  }
+// ...as before...
 \end{minted}
 
 \section{Server}\label{s:capstone-server}
