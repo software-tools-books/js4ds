@@ -33,36 +33,45 @@ class DataManager {
       .map(year => {
 	  const subset = this.data.where(row => row.year === year)
       if (subset.count()) {
-        const subset_has_hf = subset.where(row => !isNaN(row.hindfoot_length))
-        let hf_min = 'no data'
-        let hf_ave = 'no data'
-        let hf_max = 'no data'
-        if (subset_has_hf.count()) {
-          hf_min = subset_has_hf.deflate(row => row.hindfoot_length).min()
-          hf_ave = subset_has_hf.deflate(row => row.hindfoot_length).average()
-          hf_max = subset_has_hf.deflate(row => row.hindfoot_length).max()
-        }
-        const subset_has_weight = subset.where(row => !isNaN(row.weight))
-        let w_min = 'no data'
-        let w_ave = 'no data'
-        let w_max = 'no data'
-        if (subset_has_weight.count()) {
-          w_min = subset_has_weight.deflate(row => row.weight).min()
-          w_ave = subset_has_weight.deflate(row => row.weight).average()
-          w_max = subset_has_weight.deflate(row => row.weight).max()
-        }
         return {
           key  : toString(year),
           year : year,
-          min_hindfoot_length : hf_min,
-          ave_hindfoot_length : hf_ave,
-          max_hindfoot_length : hf_max,
-          min_weight : w_min,
-          ave_weight : w_ave,
-          max_weight : w_max
+          min_hindfoot_length : this._getMin(subset, 'hindfoot_length'),
+          ave_hindfoot_length : this._getAve(subset, 'hindfoot_length'),
+          max_hindfoot_length : this._getMax(subset, 'hindfoot_length'),
+          min_weight : this._getMin(subset, 'weight'),
+          ave_weight : this._getAve(subset, 'weight'),
+          max_weight : this._getMax(subset, 'weight')
         }
       }
     })
+  }
+
+  _getMin (yearData, columnName) {
+    const filtered = yearData.where(row => !isNaN(row[columnName]))
+    if (filtered.count()) {
+      return filtered.deflate(row => row[columnName]).min()
+    } else {
+      return 'no data'
+    }
+  }
+
+  _getAve (yearData, columnName) {
+    const filtered = yearData.where(row => !isNaN(row[columnName]))
+    if (filtered.count()) {
+      return filtered.deflate(row => row[columnName]).average()
+    } else {
+      return 'no data'
+    }
+  }
+
+  _getMax (yearData, columnName) {
+    const filtered = yearData.where(row => !isNaN(row[columnName]))
+    if (filtered.count()) {
+      return filtered.deflate(row => row[columnName]).max()
+    } else {
+      return 'no data'
+    }
   }
 
 }
