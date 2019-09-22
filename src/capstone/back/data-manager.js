@@ -1,5 +1,5 @@
 const fs = require('fs')
-const papa = require('papaparse')
+const DF = require('data-forge')
 
 const _average = (...values) => {
   let sum = 0
@@ -13,15 +13,16 @@ class DataManager {
 
   constructor (filename) {
     const raw = fs.readFileSync(filename, 'utf-8')
-    const options = {header: true, dynamicTyping: true}
-    this.data = papa.parse(raw, options).data
+    this.data = DF.fromCSV(raw)
+    .parseInts(['record_id','month','day','year','plot_id'])
+    .parseFloats(['hindfoot_length','weight'])
   }
 
   getSurveyStats () {
     return {
-      year_low : this._get(this.data, 'year', Math.min),
-      year_high : this._get(this.data, 'year', Math.max),
-      record_count : this.data.length
+      year_low : this.data.deflate(row => row.year).min(),
+      year_high : this.data.deflate(row => row.year).max(),
+      record_count : this.data.count()
     }
   }
 
@@ -30,25 +31,40 @@ class DataManager {
       .fill(0)
       .map((v, i) => minYear + i)
       .map(year => {
-	  const subset = this.data.filter(r => r.year === year)
-      if (subset.length) {
+	  const subset = this.data.where(row => row.year === year)
+      if (subset.count()) {
+        let subset_has_hf = subset.where(row => !isNaN(row.hindfoot_length))
+        let hf_min = 'no data'
+        let hf_ave = 'no data'
+        let hf_max = 'no data'
+        if (subset_has_hf.count()) {
+          hf_min = subset_has_hf.deflate(row => row.hindfoot_length).min()
+          hf_ave = subset_has_hf.deflate(row => row.hindfoot_length).average()
+          hf_max = subset_has_hf.deflate(row => row.hindfoot_length).max()
+        }
+        let subset_has_weight = subset.where(row => !isNaN(row.weight))
+        let w_min = 'no data'
+        let w_ave = 'no data'
+        let w_max = 'no data'
+        if (subset_has_weight.count()) {
+          w_min = subset_has_weight.deflate(row => row.weight).min()
+          w_ave = subset_has_weight.deflate(row => row.weight).average()
+          w_max = subset_has_weight.deflate(row => row.weight).max()
+        }
         return {
           key  : toString(year),
           year : year,
-          min_hindfoot_length : this._get(subset, 'hindfoot_length', Math.min),
-          ave_hindfoot_length : this._get(subset, 'hindfoot_length', _average),
-          max_hindfoot_length : this._get(subset, 'hindfoot_length', Math.max),
-          min_weight : this._get(subset, 'weight', Math.min),
-          ave_weight : this._get(subset, 'weight', _average),
-          max_weight : this._get(subset, 'weight', Math.max)
+          min_hindfoot_length : hf_min,
+          ave_hindfoot_length : hf_ave,
+          max_hindfoot_length : hf_max,
+          min_weight : w_min,
+          ave_weight : w_ave,
+          max_weight : w_max
         }
       }
     })
   }
 
-  _get(values, field, func) {
-    return func(...values.map(rec => rec[field]).filter(val => !isNaN(val)))
-  }
 }
 
 module.exports = DataManager
