@@ -33,7 +33,7 @@ class DataManager {
       .map(year => {
 	  const subset = this.data.where(row => row.year === year)
       if (subset.count()) {
-        let subset_has_hf = subset.where(row => !isNaN(row.hindfoot_length))
+        const subset_has_hf = subset.where(row => !isNaN(row.hindfoot_length))
         let hf_min = 'no data'
         let hf_ave = 'no data'
         let hf_max = 'no data'
@@ -42,7 +42,7 @@ class DataManager {
           hf_ave = subset_has_hf.deflate(row => row.hindfoot_length).average()
           hf_max = subset_has_hf.deflate(row => row.hindfoot_length).max()
         }
-        let subset_has_weight = subset.where(row => !isNaN(row.weight))
+        const subset_has_weight = subset.where(row => !isNaN(row.weight))
         let w_min = 'no data'
         let w_ave = 'no data'
         let w_max = 'no data'
