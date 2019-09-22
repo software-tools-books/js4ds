@@ -327,7 +327,28 @@ catch (err) {
 
 \noindent
 then the error message won't appear
-because the call to \texttt{fetch} doesn't raise an exception right away.
+because the function \texttt{fetch} is asynchronous,
+which means that code executes in this order:
+
+\begin{enumerate}
+\item
+  inside try, ask the computer to execute \texttt{fetch(url)} at some point in the future
+\item
+  since asking this doesn't cause an exception, skip the catch
+\item
+  then run \texttt{fetch(url)},
+  which fails without anything in place to catch the exception 
+  because the \texttt{try...catch} has already finished 
+  so \texttt{console.log} never runs and the error message doesn't appear.
+\end{enumerate}
+
+\figpdf{figures/promises-try-catch-fail.pdf}{When Try...Catch Fails}{f:try-catch-fail}
+
+There are two passes of execution in this block:
+The first is the \texttt{try...catch} event loop,
+and the second is \texttt{fetch}.
+JavaScript rips the asynchronous code right out of the execution context!
+There's no error, because \texttt{fetch} hasn't yet had the chance to run.
 
 Going back to the \texttt{fs-extra.stat} example above,
 what if we want to process multiple files,

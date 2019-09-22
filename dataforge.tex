@@ -9,17 +9,10 @@ it's not to underestimate JavaScript.
 
 In this chapter we will look at a library called Data-Forge
 that is designed for working with tabular data.
-DataForge was inspired by Python's Pandas library,
+Data-Forge was inspired by Python's Pandas library,
 but should be familiar to anyone who has worked with R.
 Its \texttt{DataFrame} class represents a table made up of named columns
-and any number of rows (\figref{f:dataforge-rows-and-columns}).
-Each column is stored as an (unnamed) \texttt{Series} object;
-once in a while,
-we will need to work with these objects directly
-instead of with the dataframe as a whole.
-
-\figimg{figures/FIXME.png}{How Tables Are Stored}{f:dataforge-rows-and-columns} % show row-column storage with series
-
+and any number of rows.
 Dataframes are immutable:
 once a dataframe has been constructed,
 its contents cannot be changed.
@@ -134,9 +127,15 @@ fromObjects:
      columnNames: [ 'ones', 'tens' ] } }
 \end{minted}
 
-\noindent
+Each column is stored as a \texttt{Series} object;
+once in a while,
+we will need to work with these objects directly
+instead of with the dataframe as a whole.
+(\figref{f:dataforge-rows-and-columns}).
 If we want to see the actual data,
 we need to convert the dataframe back to an array of objects:
+
+\figpdf{figures/dataforge-rows-and-columns.pdf}{How Tables Are Stored}{f:dataforge-rows-and-columns}
 
 \begin{minted}{js}
 console.log('fromObjects as array:\n', fromObjects.toArray())
@@ -310,7 +309,11 @@ console.log(justResults.toArray())
 \end{minted}
 
 Since every dataframe method returns a dataframe,
-we can use \gref{g:method-chaining}{method chaining} to combine operations (\figref{f:dataforge-method-chaining}):
+we can use \gref{g:method-chaining}{method chaining} to combine operations (\figref{f:dataforge-method-chaining}).
+We have seen this technique before with chains of \texttt{.then} calls on promises;
+here,
+it is used like pipes in the Unix command line
+or the pipe operator \texttt{{\%}{\textgreater}{\%}} in modern R code:
 
 \begin{minted}{js}
 const result = data
@@ -322,12 +325,7 @@ const result = data
   .toArray()
 \end{minted}
 
-We have seen this technique before with chains of \texttt{.then} calls on promises;
-here,
-it is used like pipes in the Unix command line
-or the pipe operator \texttt{{\%}{\textgreater}{\%}} in modern R code.
-
-\figimg{figures/FIXME.png}{A More Complicated Pipeline}{f:dataforge-method-chaining} % show pipeline with new dataframe being created
+\figpdf{figures/dataforge-method-chaining.pdf}{A More Complicated Pipeline}{f:dataforge-method-chaining}
 
 To make results easier to understand,
 we will often want to sort our data.
@@ -403,7 +401,7 @@ console.log(doubleSorted.toArray())
   { green: '255', blue: '255' } ]
 \end{minted}
 
-\figimg{figures/FIXME.png}{Sorting and Sub-sorting}{f:dataforge-sorting} % show sorting and sub-sorting as diagram
+\figpdf{figures/dataforge-sorting.pdf}{Sorting and Sub-sorting}{f:dataforge-sorting}
 
 We can remove duplicates with \texttt{distinct}:
 
@@ -544,7 +542,7 @@ console.log(earthquakes.skip(10).take(3).toArray())
     Magnitude: 3.1 } ]
 \end{minted}
 
-\figimg{figures/FIXME.png}{Seleting by Position}{f:dataforge-positional} % diagram showing head, tail, skip, and take
+\figpdf{figures/dataforge-positional.pdf}{Seleting by Position}{f:dataforge-positional}
 
 However,
 it's far more common to select rows by the values they contain rather than by their position.
@@ -695,11 +693,185 @@ It's easy to forget the \texttt{inflate} and \texttt{deflate} steps at first
 (we did when writing this example),
 but they quickly become habitual.
 
-\figimg{figures/FIXME.png}{Summarizing Groups}{f:dataforge-summarizing} % show steps in deflate and inflate
+\figpdf{figures/dataforge-summarizing.pdf}{Summarizing Groups}{f:dataforge-summarizing}
 
 \section{In Real Life}\label{s:dataforge-real}
 
-FIXME: extended example
+To wrap up our exploration of Data-Forge,
+we will explore data from \url{dataisplural/data.world}
+to find the annual recreational visits to national parks in the United States for the last ten years.
+Our strategy is to:
+
+\begin{enumerate}
+\item
+  import the data,
+\item
+  inspect the columns to make sure the data is clean,
+\item
+  fix any problems we notice,
+\item
+  group the data by year and summarize the total visitors, and then
+\item
+  filter to keep only the years that are greater than 2009.
+\end{enumerate}
+
+We'll start by reading the data and looking at the first couple of rows:
+
+\begin{minted}{js}
+const fs = require('fs')
+const DF = require('data-forge')
+
+const text = fs.readFileSync('../../data/national_parks.csv', 'utf-8')
+const raw = DF.fromCSV(text)
+console.log(raw.head(2).toArray())
+\end{minted}
+
+\begin{minted}{text}
+[ { year: '1904',
+    gnis_id: '1163670',
+    geometry: 'POLYGON',
+    metadata: 'NA',
+    number_of_records: '1',
+    parkname: 'Crater Lake',
+    region: 'PW',
+    state: 'OR',
+    unit_code: 'CRLA',
+    unit_name: 'Crater Lake National Park',
+    unit_type: 'National Park',
+    visitors: '1500' },
+  { year: '1941',
+    gnis_id: '1531834',
+    geometry: 'MULTIPOLYGON',
+    metadata: 'NA',
+    number_of_records: '1',
+    parkname: 'Lake Roosevelt',
+    region: 'PW',
+    state: 'WA',
+    unit_code: 'LARO',
+    unit_name: 'Lake Roosevelt National Recreation Area',
+    unit_type: 'National Recreation Area',
+    visitors: '0' } ]
+\end{minted}
+
+It's always good to look at the structure of the data
+before we dive into any analysis.
+The dataframe method \texttt{detectTypes} shows us the frequency of data types in our dataframe:
+
+\begin{minted}{js}
+const typesDf = raw.detectTypes() 
+console.log(typesDf.toString())
+\end{minted}
+
+\begin{minted}{text}
+__index__  Type    Frequency  Column
+---------  ------  ---------  -----------------
+0          string  100        year
+1          string  100        gnis_id
+2          string  100        geometry
+3          string  100        metadata
+4          string  100        number_of_records
+5          string  100        parkname
+6          string  100        region
+7          string  100        state
+8          string  100        unit_code
+9          string  100        unit_name
+10         string  100        unit_type
+11         string  100        visitors
+\end{minted}
+
+We want numbers instead of strings for \texttt{year} and \texttt{visitors},
+but before we transform them,
+let's check and see if any values in those columns are \texttt{NA},
+meaning ``not available'':
+
+\begin{minted}{js}
+const cleaned = raw
+      .where(row => ((row.year != 'NA') && (row.visitors != 'NA')))
+console.log(`${raw.count()} original rows and ${cleaned.count()} cleaned rows`)
+\end{minted}
+
+\begin{minted}{text}
+21560 original rows and 21556 cleaned rows
+\end{minted}
+
+Four rows contain missing values.
+We probably wouldn't spot them if we scrolled through the data ourselves,
+so it's good that we let the computer do the work.
+Let's remove those four rows and convert the two columns of interest from strings to numbers:
+
+\begin{minted}{js}
+const data = raw
+      .where(row => ((row.year != 'NA') && (row.visitors != 'NA')))
+      .parseFloats(['year', 'visitors'])
+console.log(`${data.count()} rows`)
+console.log(data.detectTypes().toString())
+\end{minted}
+
+\begin{minted}{text}
+21556 rows
+__index__  Type    Frequency  Column
+---------  ------  ---------  -----------------
+0          number  100        year
+...        ...     ...        ...
+11         number  100        visitors
+\end{minted}
+
+This looks good:
+we have dropped the four offending rows and everything else is a number.
+With clean data,
+we can now group by year
+and find the total number of visitors in each year:
+
+\begin{minted}{js}
+const annual = data
+      .groupBy(row => row.year)
+      .select(group => ({
+        year: group.first().year,
+        visitors: group.deflate(row => row.visitors).sum()
+      }))
+      .inflate()
+      .orderBy(row => row.year)
+console.log(annual.toString())
+\end{minted}
+
+\begin{minted}{text}
+__index__  year  visitors   
+---------  ----  -----------
+0          1904  120690     
+112        1905  140954     
+88         NaN   13764633135
+55         1906  30569      
+113        1907  32935      
+61         1908  42768      
+111        1909  60899      
+110        1910  173416     
+...        ...   ...
+23         2011  276799292  
+91         2012  281392715  
+70         2013  271305455  
+89         2014  290105230  
+78         2015  304730566  
+75         2016  328483428  
+\end{minted}
+
+Uh oh.
+What's that \texttt{NaN} doing there in the third row?
+Are there still some missing values in the \texttt{year} column?
+
+\begin{minted}{js}
+const numNan = data
+      .where(row => (isNaN(row.year) || isNaN(row.visitors)))
+      .count()
+console.log(`${numNan} rows have NaN`)
+\end{minted}
+
+\begin{minted}{text}
+382 rows have NaN
+\end{minted}
+
+The exercises will look at where these non-numbers have come from and how we should handle them.
+Even if you don't live close to a national park,
+we encourage you to take a break and step outside before tackling the exercises below.
 
 \section{Exercises}\label{s:dataforge-exercises}
 
@@ -749,6 +921,12 @@ the average depth of earthquakes of different magnitudes
 and show the data structure after each method call.
 Are they all dataframes,
 or are other data structures created or manipulated as well?
+
+\exercise{Not a Number}
+
+Write a short pipeline that prints out the values in the \texttt{year} and \texttt{visitors} columns
+that wind up being converted to \texttt{NaN}.
+(Hint: copy the columns, convert the copies to numbers, filter to keep those rows, then print the original values.)
 
 \section*{Key Points}
 

@@ -1831,7 +1831,7 @@ home page (relative path)</code></pre>
 <a class="sourceLine" id="cb161-12" data-line-number="12">  <span class="op">}</span>)</a>
 <a class="sourceLine" id="cb161-13" data-line-number="13"><span class="op">}</span></a></code></pre></div>
 <figure>
-<img src="figures/FIXME.png" alt="Sorting and Replacing" id="f:pages-sortlist" /><figcaption>Sorting and Replacing<span label="f:pages-sortlist"></span></figcaption>
+<img src="figures/pages-sortlist.svg" id="f:pages-sortlist" /><figcaption>Sorting and Replacing<span label="f:pages-sortlist"></span></figcaption>
 </figure>
 <p>As before, it starts by creating an array containing the nodes we want to operate on. (We use the selector <code>.sorted</code> (with a dot <code>.</code>) to select everything with the class <code>sorted</code>, rather than <code>#sorted</code>, which would find nodes with the ID <code>sorted</code>.) This array will then have all the <code>ul</code> or <code>ol</code> lists that the function is to sort.</p>
 <p>We process each list separately with <code>lists.forEach</code>. The callback function inside <code>forEach</code> uses <code>Array.from</code> to create an array containing the child nodes of the main list element, then filters that list to remove any that are text nodes. We need the <code>Array.from</code> call because (once again) the DOM doesn’t use a JavaScript array to store children, but a structure of its own devising that lacks the methods we want to call. We remove the text nodes because they represent the <a href="#g:whitespace"><strong>whitespace</strong></a> between list elements, such as newline characters after a closing <code>&lt;/li&gt;</code> and before the next opening <code>&lt;li&gt;</code>.</p>
@@ -1888,7 +1888,7 @@ home page (relative path)</code></pre>
 <a class="sourceLine" id="cb165-20" data-line-number="20">    <span class="op">}</span>)</a>
 <a class="sourceLine" id="cb165-21" data-line-number="21"><span class="op">}</span></a></code></pre></div>
 <figure>
-<img src="figures/FIXME.png" alt="A Processing Pipeline" id="f:pages-pipeline" /><figcaption>A Processing Pipeline<span label="f:pages-pipeline"></span></figcaption>
+<img src="figures/pages-pipeline.svg" id="f:pages-pipeline" /><figcaption>A Processing Pipeline<span label="f:pages-pipeline"></span></figcaption>
 </figure>
 <p>There is a lot going on here, but it all uses patterns we have seen before. It starts by building an array of all the links in the document i.e., every <code>a</code> element:</p>
 <div class="sourceCode" id="cb166"><pre class="sourceCode js"><code class="sourceCode javascript"><a class="sourceLine" id="cb166-1" data-line-number="1">  <span class="va">Array</span>.<span class="at">from</span>(<span class="va">document</span>.<span class="at">querySelectorAll</span>(<span class="st">&#39;a&#39;</span>))</a>
@@ -2611,7 +2611,16 @@ inside immediate handler for c</code></pre>
 <a class="sourceLine" id="cb219-8" data-line-number="8"><span class="cf">catch</span> (err) <span class="op">{</span></a>
 <a class="sourceLine" id="cb219-9" data-line-number="9">  <span class="va">console</span>.<span class="at">log</span>(err)</a>
 <a class="sourceLine" id="cb219-10" data-line-number="10"><span class="op">}</span></a></code></pre></div>
-<p>then the error message won’t appear because the call to <code>fetch</code> doesn’t raise an exception right away.</p>
+<p>then the error message won’t appear because the function <code>fetch</code> is asynchronous, which means that code executes in this order:</p>
+<ol>
+<li><p>inside try, ask the computer to execute <code>fetch(url)</code> at some point in the future</p></li>
+<li><p>since asking this doesn’t cause an exception, skip the catch</p></li>
+<li><p>then run <code>fetch(url)</code>, which fails without anything in place to catch the exception because the <code>try...catch</code> has already finished so <code>console.log</code> never runs and the error message doesn’t appear.</p></li>
+</ol>
+<figure>
+<img src="figures/promises-try-catch-fail.svg" id="f:try-catch-fail" /><figcaption>When Try...Catch Fails<span label="f:try-catch-fail"></span></figcaption>
+</figure>
+<p>There are two passes of execution in this block: The first is the <code>try...catch</code> event loop, and the second is <code>fetch</code>. JavaScript rips the asynchronous code right out of the execution context! There’s no error, because <code>fetch</code> hasn’t yet had the chance to run.</p>
 <p>Going back to the <code>fs-extra.stat</code> example above, what if we want to process multiple files, e.g., calculate their total size? We could write a loop:</p>
 <div class="sourceCode" id="cb220"><pre class="sourceCode js"><code class="sourceCode javascript"><a class="sourceLine" id="cb220-1" data-line-number="1"><span class="kw">const</span> fs <span class="op">=</span> <span class="at">require</span>(<span class="st">&#39;fs-extra&#39;</span>)</a>
 <a class="sourceLine" id="cb220-2" data-line-number="2"></a>
@@ -4049,11 +4058,7 @@ Server running at http://localhost:4000
 </ul>
 <h1 id="s:dataforge">Using Data-Forge</h1>
 <p>We have now seen how to do everything a data scientist would want to do in JavaScript except actual data science. This is unfortunately one of the areas where the language still lags behind R and Python, but statistical libraries are now appearing, and if the last twenty-five years have taught us anything, it’s not to underestimate JavaScript.</p>
-<p>In this chapter we will look at a library called Data-Forge that is designed for working with tabular data. DataForge was inspired by Python’s Pandas library, but should be familiar to anyone who has worked with R. Its <code>DataFrame</code> class represents a table made up of named columns and any number of rows (Figure <a href="#f:dataforge-rows-and-columns" data-reference-type="ref" data-reference="f:dataforge-rows-and-columns">[f:dataforge-rows-and-columns]</a>). Each column is stored as an (unnamed) <code>Series</code> object; once in a while, we will need to work with these objects directly instead of with the dataframe as a whole.</p>
-<figure>
-<img src="figures/FIXME.png" alt="How Tables Are Stored" id="f:dataforge-rows-and-columns" /><figcaption>How Tables Are Stored<span label="f:dataforge-rows-and-columns"></span></figcaption>
-</figure>
-<p>Dataframes are immutable: once a dataframe has been constructed, its contents cannot be changed. Instead, every operation produces a new dataframe. (Some clever behind-the-scenes data recycling makes this much more efficient than it sounds.)</p>
+<p>In this chapter we will look at a library called Data-Forge that is designed for working with tabular data. DataForge was inspired by Python’s Pandas library, but should be familiar to anyone who has worked with R. Its <code>DataFrame</code> class represents a table made up of named columns and any number of rows. Dataframes are immutable: once a dataframe has been constructed, its contents cannot be changed. Instead, every operation produces a new dataframe. (Some clever behind-the-scenes data recycling makes this much more efficient than it sounds.)</p>
 <p>Like Pandas and the tidyverse, Data-Forge is designed to work on <a href="#g:tidy-data"><strong>tidy data</strong></a>. As defined in,[<a class="cite" href="#ref-Wick2014">Wick2014</a>] tabular data is tidy if:</p>
 <ul>
 <li><p>Each column contains one statistical variable (i.e., one property that was measured or observed).</p></li>
@@ -4206,7 +4211,10 @@ Server running at http://localhost:4000
      pairs: MultiIterable { iterables: [Array] },
      isBaked: true,
      columnNames: [ &#39;ones&#39;, &#39;tens&#39; ] } }</code></pre>
-<p>If we want to see the actual data, we need to convert the dataframe back to an array of objects:</p>
+<p>Each column is stored as a <code>Series</code> object; once in a while, we will need to work with these objects directly instead of with the dataframe as a whole. (Figure <a href="#f:dataforge-rows-and-columns" data-reference-type="ref" data-reference="f:dataforge-rows-and-columns">[f:dataforge-rows-and-columns]</a>). If we want to see the actual data, we need to convert the dataframe back to an array of objects:</p>
+<figure>
+<img src="figures/dataforge-rows-and-columns.svg" id="f:dataforge-rows-and-columns" /><figcaption>How Tables Are Stored<span label="f:dataforge-rows-and-columns"></span></figcaption>
+</figure>
 <div class="sourceCode" id="cb315"><pre class="sourceCode js"><code class="sourceCode javascript"><a class="sourceLine" id="cb315-1" data-line-number="1"><span class="va">console</span>.<span class="at">log</span>(<span class="st">&#39;fromObjects as array:</span><span class="sc">\n</span><span class="st">&#39;</span><span class="op">,</span> <span class="va">fromObjects</span>.<span class="at">toArray</span>())</a></code></pre></div>
 <pre class="text"><code>fromObjects as array:
  [ { ones: 1, tens: 10 },
@@ -4282,7 +4290,7 @@ Server running at http://localhost:4000
 <pre class="text"><code>[ { sum: 11, product: 10 },
   { sum: 22, product: 40 },
   { sum: 33, product: 90 } ]</code></pre>
-<p>Since every dataframe method returns a dataframe, we can use <a href="#g:method-chaining"><strong>method chaining</strong></a> to combine operations (Figure <a href="#f:dataforge-method-chaining" data-reference-type="ref" data-reference="f:dataforge-method-chaining">[f:dataforge-method-chaining]</a>):</p>
+<p>Since every dataframe method returns a dataframe, we can use <a href="#g:method-chaining"><strong>method chaining</strong></a> to combine operations (Figure <a href="#f:dataforge-method-chaining" data-reference-type="ref" data-reference="f:dataforge-method-chaining">[f:dataforge-method-chaining]</a>). We have seen this technique before with chains of <code>.then</code> calls on promises; here, it is used like pipes in the Unix command line or the pipe operator <code>%&gt;%</code> in modern R code:</p>
 <div class="sourceCode" id="cb335"><pre class="sourceCode js"><code class="sourceCode javascript"><a class="sourceLine" id="cb335-1" data-line-number="1"><span class="kw">const</span> result <span class="op">=</span> data</a>
 <a class="sourceLine" id="cb335-2" data-line-number="2">  .<span class="at">withSeries</span>(<span class="op">{</span><span class="dt">hundreds</span><span class="op">:</span> double_oh<span class="op">}</span>)</a>
 <a class="sourceLine" id="cb335-3" data-line-number="3">  .<span class="at">generateSeries</span>(<span class="op">{</span></a>
@@ -4290,9 +4298,8 @@ Server running at http://localhost:4000
 <a class="sourceLine" id="cb335-5" data-line-number="5">  <span class="op">}</span>)</a>
 <a class="sourceLine" id="cb335-6" data-line-number="6">  .<span class="at">dropSeries</span>([<span class="st">&quot;ones&quot;</span><span class="op">,</span> <span class="st">&quot;tens&quot;</span><span class="op">,</span> <span class="st">&quot;hundreds&quot;</span>])</a>
 <a class="sourceLine" id="cb335-7" data-line-number="7">  .<span class="at">toArray</span>()</a></code></pre></div>
-<p>We have seen this technique before with chains of <code>.then</code> calls on promises; here, it is used like pipes in the Unix command line or the pipe operator <code>%&gt;%</code> in modern R code.</p>
 <figure>
-<img src="figures/FIXME.png" alt="A More Complicated Pipeline" id="f:dataforge-method-chaining" /><figcaption>A More Complicated Pipeline<span label="f:dataforge-method-chaining"></span></figcaption>
+<img src="figures/dataforge-method-chaining.svg" id="f:dataforge-method-chaining" /><figcaption>A More Complicated Pipeline<span label="f:dataforge-method-chaining"></span></figcaption>
 </figure>
 <p>To make results easier to understand, we will often want to sort our data. Suppose we have a file containing the red-green-blue values for several colors:</p>
 <pre class="text"><code>name,red,green,blue
@@ -4337,7 +4344,7 @@ aqua,0,255,255</code></pre>
   { green: &#39;255&#39;, blue: &#39;0&#39; },
   { green: &#39;255&#39;, blue: &#39;255&#39; } ]</code></pre>
 <figure>
-<img src="figures/FIXME.png" alt="Sorting and Sub-sorting" id="f:dataforge-sorting" /><figcaption>Sorting and Sub-sorting<span label="f:dataforge-sorting"></span></figcaption>
+<img src="figures/dataforge-sorting.svg" id="f:dataforge-sorting" /><figcaption>Sorting and Sub-sorting<span label="f:dataforge-sorting"></span></figcaption>
 </figure>
 <p>We can remove duplicates with <code>distinct</code>:</p>
 <div class="sourceCode" id="cb343"><pre class="sourceCode js"><code class="sourceCode javascript"><a class="sourceLine" id="cb343-1" data-line-number="1"><span class="kw">const</span> notTheSame <span class="op">=</span> <span class="va">colors</span>.<span class="at">distinct</span>(row <span class="op">=&gt;</span> <span class="va">row</span>.<span class="at">red</span>)</a>
@@ -4421,7 +4428,7 @@ aqua,0,255,255</code></pre>
     Depth_Km: 10.9,
     Magnitude: 3.1 } ]</code></pre>
 <figure>
-<img src="figures/FIXME.png" alt="Seleting by Position" id="f:dataforge-positional" /><figcaption>Seleting by Position<span label="f:dataforge-positional"></span></figcaption>
+<img src="figures/dataforge-positional.svg" id="f:dataforge-positional" /><figcaption>Seleting by Position<span label="f:dataforge-positional"></span></figcaption>
 </figure>
 <p>However, it’s far more common to select rows by the values they contain rather than by their position. Just like the <code>Array.filter</code> method we met way back in Section <a href="#s:callbacks-functional" data-reference-type="ref" data-reference="s:callbacks-functional">3.4</a>, we do this by giving Data-Forge a callback function that tells it whether a given row should be kept or not. This text can be as complex as desired, but must work row by row: we cannot make a decision about one row based on the values in the rows before it or after it.</p>
 <div class="sourceCode" id="cb355"><pre class="sourceCode js"><code class="sourceCode javascript"><a class="sourceLine" id="cb355-1" data-line-number="1"><span class="kw">const</span> large <span class="op">=</span> <span class="va">earthquakes</span>.<span class="at">where</span>(row <span class="op">=&gt;</span> (<span class="va">row</span>.<span class="at">Magnitude</span> <span class="op">&gt;=</span> <span class="fl">5.0</span>))</a>
@@ -4496,7 +4503,7 @@ aqua,0,255,255</code></pre>
 </ol>
 <p>Figure <a href="#f:dataforge-summarizing" data-reference-type="ref" data-reference="f:dataforge-summarizing">[f:dataforge-summarizing]</a> shows these steps graphically. It’s easy to forget the <code>inflate</code> and <code>deflate</code> steps at first (we did when writing this example), but they quickly become habitual.</p>
 <figure>
-<img src="figures/FIXME.png" alt="Summarizing Groups" id="f:dataforge-summarizing" /><figcaption>Summarizing Groups<span label="f:dataforge-summarizing"></span></figcaption>
+<img src="figures/dataforge-summarizing.svg" id="f:dataforge-summarizing" /><figcaption>Summarizing Groups<span label="f:dataforge-summarizing"></span></figcaption>
 </figure>
 <h2 id="s:dataforge-real">In Real Life</h2>
 <p>FIXME: extended example</p>
@@ -4515,7 +4522,8 @@ aqua,0,255,255</code></pre>
 255,255</code></pre>
 <h3 id="revisting-data-manipulation" class="unnumbered unnumbered">Revisting Data Manipulation</h3>
 <p>Back in the chapter on data manipulation, we aggregated <code>surveys.csv</code> to find the minumum, maximum and average values for <code>year</code>, <code>hindfoot_length</code>, and <code>weight</code>. Repeat this exersize using the methods of <code>data-forge</code>.</p>
-<p>FIXME: explain why we need <code>select</code> in the grouped aggregate example</p>
+<h3 id="grouping-and-aggregating" class="unnumbered unnumbered">Grouping and Aggregating</h3>
+<p>Retrace the steps in the example that calculated the average depth of earthquakes of different magnitudes and show the data structure after each method call. Are they all dataframes, or are other data structures created or manipulated as well?</p>
 <h2 id="key-points-13" class="unnumbered unnumbered">Key Points</h2>
 <ul>
 <li><p>Create a <code>DataFrame</code> from an array of objects with identical keys, from a spec with <code>columnNames</code> and <code>rows</code> fields, or by parse text that contains CSV or JSON.</p></li>
