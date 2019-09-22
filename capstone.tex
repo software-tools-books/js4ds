@@ -62,65 +62,65 @@ and convert the rest of \texttt{constructor}
 to use Data-Forge:
 
 \begin{minted}{js}
-  constructor (filename) {
-    const raw = fs.readFileSync(filename, 'utf-8')
-    this.data = DF.fromCSV(raw)
-    .parseInts(['record_id','month','day','year','plot_id'])
-    .parseFloats(['hindfoot_length','weight'])
-  }
+constructor (filename) {
+  const raw = fs.readFileSync(filename, 'utf-8')
+  this.data = DF.fromCSV(raw)
+  .parseInts(['record_id','month','day','year','plot_id'])
+  .parseFloats(['hindfoot_length','weight'])
+}
 \end{minted}
 
-Remember that \texttt{_get} method we had to write
-to apply functions for finding minimum, mean, and maximum
-values within the data for each year?
+Remember that \texttt{\_get} method we had to write
+to apply functions for summarizing the data for each year?
 Working with dataframes allows us to avoid that extra effort
+in \texttt{getSurveyStats}
 and makes things comparatively easy to read.
-Here's the new version of \texttt{getSurveyStats}:
+Here's the new version of the method:
 
 \begin{minted}{js}
-  getSurveyStats () {
-    return {
-      year_low : this.data.deflate(row => row.year).min(),
-      year_high : this.data.deflate(row => row.year).max(),
-      record_count : this.data.count()
-    }
+getSurveyStats () {
+  return {
+    year_low : this.data.deflate(row => row.year).min(),
+    year_high : this.data.deflate(row => row.year).max(),
+    record_count : this.data.count()
   }
+}
 \end{minted}
 
 We also adapt the \texttt{getSurveyRange} method
 to work with the dataframe.
 
 \begin{minted}{js}
-  getSurveyRange (minYear, maxYear) {
-    return Array(1 + maxYear - minYear)
-      .fill(0)
-      .map((v, i) => minYear + i)
-      .map(year => {
-      const subset = this.data.where(row => row.year === year)
-      if (subset.count()) {
-        return {
-          key  : toString(year),
-          year : year,
-          min_hindfoot_length : subset.deflate(row => row.hindfoot_length).min(),
-          ave_hindfoot_length : subset.deflate(row => row.hindfoot_length).average(),
-          max_hindfoot_length : subset.deflate(row => row.hindfoot_length).max(),
-          min_weight : subset.deflate(row => row.weight).min(),
-          ave_weight : subset.deflate(row => row.weight).average(),
-          max_weight : subset.deflate(row => row.weight).max()
-        }
+getSurveyRange (minYear, maxYear) {
+  return Array(1 + maxYear - minYear)
+    .fill(0)
+    .map((v, i) => minYear + i)
+    .map(year => {
+    const subset = this.data.where(row => row.year === year)
+    if (subset.count()) {
+      return {
+        key  : toString(year),
+        year : year,
+        min_hindfoot_length : subset.deflate(row => row.hindfoot_length).min(),
+        ave_hindfoot_length : subset.deflate(row => row.hindfoot_length).average(),
+        max_hindfoot_length : subset.deflate(row => row.hindfoot_length).max(),
+        min_weight : subset.deflate(row => row.weight).min(),
+        ave_weight : subset.deflate(row => row.weight).average(),
+        max_weight : subset.deflate(row => row.weight).max()
       }
-    })
-  }
+    }
+  })
+}
 \end{minted}
 
 Just as above,
-this has removed the need for the \texttt{_get} method.
+this has removed the need for the \texttt{\_get} method.
 However, when testing the code we find
 that blank spaces are displayed where
 the summary values of should for a suspicious number of years.
 On closer inspection,
 we discover that the summarizing methods
-(\textt{min} etc)
+(\texttt{min} etc)
 of Data-Forge Series are sensitive to missing data
 and quietly return \texttt{NaN}
 if any values are absent in the series
@@ -159,7 +159,12 @@ to ensure that data is only summarized
 if it actually exists in the first place:
 
 \begin{minted}{js}
-// ...as before...
+    getSurveyRange (minYear, maxYear) {
+      return Array(1 + maxYear - minYear)
+        .fill(0)
+        .map((v, i) => minYear + i)
+        .map(year => {
+      const subset = this.data.where(row => row.year === year)
       if (subset.count()) {
         return {
           key  : toString(year),
@@ -201,7 +206,6 @@ if it actually exists in the first place:
       return 'no data'
     }
   }
-// ...as before...
 \end{minted}
 
 \section{Server}\label{s:capstone-server}
