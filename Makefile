@@ -51,11 +51,12 @@ ${PDF} : ${SRC}
 	./${CREATE_PDF}
 
 # Generate HTML.
-${HTML} : temp.tex template.html bin/post-pandoc.py
+${HTML} : temp.tex template.html bin/post-pandoc.py favicon.ico
 	@mkdir -p docs
 	${PANDOC} --template=template.html --bibliography=book.bib -o - temp.tex \
 	| bin/post-pandoc.py \
 	> ${HTML}
+	@cp favicon.ico docs/favicon.ico
 
 # Generate intermediate .tex file.
 temp.tex : ${SRC} bin/pre-pandoc.py
