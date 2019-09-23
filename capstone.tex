@@ -24,14 +24,9 @@ but will mostly recapitulate what's come before.
 
 \section{Data Manager}\label{s:capstone-data}
 
-We could use exactly the same data manager
-as the one we built in \chapref{s:dataman}.
-However, to do so would be to miss an
-opportunity to apply our new-found knowledge
-of the Data-Forge library.
-Instead, let's adapt the code to use dataframes,
-as we learned in the previous chapter.
-
+We could use exactly the same data manager as the one we built in \chapref{s:dataman},
+but let's apply our new-found knowledge of the Data-Forge library instead
+and adapt the code to use dataframes.
 As a reminder,
 the key class in our data manager is:
 
@@ -52,14 +47,9 @@ class DataManager {
 }
 \end{minted}
 
-\texttt{DataManager} begins by reading data
-from a CSV file,
-which is a task that we know can be
-achieved with Data-Forge.
-We can keep the line where we use \texttt{fs} to open
-the file for reading
-and convert the rest of \texttt{constructor}
-to use Data-Forge:
+The new \texttt{DataManager} must still begin by reading data from a CSV file,
+so we keep the line where we use \texttt{fs} to open the file
+and convert the rest of \texttt{constructor}:
 
 \begin{minted}{js}
 constructor (filename) {
@@ -70,12 +60,9 @@ constructor (filename) {
 }
 \end{minted}
 
-Remember that \texttt{\_get} method we had to write
-to apply functions for summarizing the data for each year?
-Working with dataframes allows us to avoid that extra effort
-in \texttt{getSurveyStats}
-and makes things comparatively easy to read.
-Here's the new version of the method:
+Remember that \texttt{\_get} method we had to write to summarize the data for each year?
+Working with dataframes allows us to avoid doing that ourselves in \texttt{getSurveyStats}
+and makes things comparatively easy to read:
 
 \begin{minted}{js}
 getSurveyStats () {
@@ -87,8 +74,7 @@ getSurveyStats () {
 }
 \end{minted}
 
-We also adapt the \texttt{getSurveyRange} method
-to work with the dataframe.
+We must also adapt \texttt{getSurveyRange} to work with the dataframe:
 
 \begin{minted}{js}
 getSurveyRange (minYear, maxYear) {
@@ -113,22 +99,17 @@ getSurveyRange (minYear, maxYear) {
 }
 \end{minted}
 
-Just as above,
-this has removed the need for the \texttt{\_get} method.
-However, when testing the code we find
-that blank spaces are displayed where
-the summary values of should for a suspicious number of years.
+This removes the need for the \texttt{\_get} method,
+but when we test the code we find that blank spaces are displayed
+where the summary values should be for a suspicious number of years.
 On closer inspection,
-we discover that the summarizing methods
-(\texttt{min} etc)
-of Data-Forge Series are sensitive to missing data
-and quietly return \texttt{NaN}
-if any values are absent in the series
-on which they are called,
+we discover that \texttt{min} and other summarizing methods
+are sensitive to missing data:
+they return \texttt{NaN} if any values are absent in the series on which they are called,
 or \texttt{undefined} if they're all missing.
-So we need to add an additional filter step
+We therefore need an additional filter step
 to remove the rows with missing data in the columns
-that we're interested in (hindfoot length and weight):
+that we're interested in (weight and hindfoot length):
 
 \begin{minted}{js}
 // ...as before...
