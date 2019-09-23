@@ -4662,8 +4662,7 @@ __index__  Type    Frequency  Column
 </ul>
 <p>This will require a few new ideas, but will mostly recapitulate what’s come before.</p>
 <h2 id="s:capstone-data">Data Manager</h2>
-<p>We could use exactly the same data manager as the one we built in Chapter <a href="#s:dataman" data-reference-type="ref" data-reference="s:dataman">11</a>. However, to do so would be to miss an opportunity to apply our new-found knowledge of the Data-Forge library. Instead, let’s adapt the code to use dataframes, as we learned in the previous chapter.</p>
-<p>As a reminder, the key class in our data manager is:</p>
+<p>We could use exactly the same data manager as the one we built in Chapter <a href="#s:dataman" data-reference-type="ref" data-reference="s:dataman">11</a>, but let’s apply our new-found knowledge of the Data-Forge library instead and adapt the code to use dataframes. As a reminder, the key class in our data manager is:</p>
 <div class="sourceCode" id="cb376"><pre class="sourceCode js"><code class="sourceCode javascript"><a class="sourceLine" id="cb376-1" data-line-number="1"><span class="kw">class</span> DataManager <span class="op">{</span></a>
 <a class="sourceLine" id="cb376-2" data-line-number="2"></a>
 <a class="sourceLine" id="cb376-3" data-line-number="3">  <span class="at">constructor</span> (filename) <span class="op">{</span></a>
@@ -4678,14 +4677,14 @@ __index__  Type    Frequency  Column
 <a class="sourceLine" id="cb376-12" data-line-number="12">    <span class="co">// ...return slice of data...</span></a>
 <a class="sourceLine" id="cb376-13" data-line-number="13">  <span class="op">}</span></a>
 <a class="sourceLine" id="cb376-14" data-line-number="14"><span class="op">}</span></a></code></pre></div>
-<p><code>DataManager</code> begins by reading data from a CSV file, which is a task that we know can be achieved with Data-Forge. We can keep the line where we use <code>fs</code> to open the file for reading and convert the rest of <code>constructor</code> to use Data-Forge:</p>
+<p>The new <code>DataManager</code> must still begin by reading data from a CSV file, so we keep the line where we use <code>fs</code> to open the file and convert the rest of <code>constructor</code>:</p>
 <div class="sourceCode" id="cb377"><pre class="sourceCode js"><code class="sourceCode javascript"><a class="sourceLine" id="cb377-1" data-line-number="1"><span class="at">constructor</span> (filename) <span class="op">{</span></a>
 <a class="sourceLine" id="cb377-2" data-line-number="2">  <span class="kw">const</span> raw <span class="op">=</span> <span class="va">fs</span>.<span class="at">readFileSync</span>(filename<span class="op">,</span> <span class="st">&#39;utf-8&#39;</span>)</a>
 <a class="sourceLine" id="cb377-3" data-line-number="3">  <span class="kw">this</span>.<span class="at">data</span> <span class="op">=</span> <span class="va">DF</span>.<span class="at">fromCSV</span>(raw)</a>
 <a class="sourceLine" id="cb377-4" data-line-number="4">  .<span class="at">parseInts</span>([<span class="st">&#39;record_id&#39;</span><span class="op">,</span><span class="st">&#39;month&#39;</span><span class="op">,</span><span class="st">&#39;day&#39;</span><span class="op">,</span><span class="st">&#39;year&#39;</span><span class="op">,</span><span class="st">&#39;plot_id&#39;</span>])</a>
 <a class="sourceLine" id="cb377-5" data-line-number="5">  .<span class="at">parseFloats</span>([<span class="st">&#39;hindfoot_length&#39;</span><span class="op">,</span><span class="st">&#39;weight&#39;</span>])</a>
 <a class="sourceLine" id="cb377-6" data-line-number="6"><span class="op">}</span></a></code></pre></div>
-<p>Remember that <code>_get</code> method we had to write to apply functions for summarizing the data for each year? Working with dataframes allows us to avoid that extra effort in <code>getSurveyStats</code> and makes things comparatively easy to read. Here’s the new version of the method:</p>
+<p>Remember that <code>_get</code> method we had to write to summarize the data for each year? Working with dataframes allows us to avoid doing that ourselves in <code>getSurveyStats</code> and makes things comparatively easy to read:</p>
 <div class="sourceCode" id="cb378"><pre class="sourceCode js"><code class="sourceCode javascript"><a class="sourceLine" id="cb378-1" data-line-number="1"><span class="at">getSurveyStats</span> () <span class="op">{</span></a>
 <a class="sourceLine" id="cb378-2" data-line-number="2">  <span class="cf">return</span> <span class="op">{</span></a>
 <a class="sourceLine" id="cb378-3" data-line-number="3">    <span class="dt">year_low </span><span class="op">:</span> <span class="kw">this</span>.<span class="va">data</span>.<span class="at">deflate</span>(row <span class="op">=&gt;</span> <span class="va">row</span>.<span class="at">year</span>).<span class="at">min</span>()<span class="op">,</span></a>
@@ -4693,7 +4692,7 @@ __index__  Type    Frequency  Column
 <a class="sourceLine" id="cb378-5" data-line-number="5">    <span class="dt">record_count </span><span class="op">:</span> <span class="kw">this</span>.<span class="va">data</span>.<span class="at">count</span>()</a>
 <a class="sourceLine" id="cb378-6" data-line-number="6">  <span class="op">}</span></a>
 <a class="sourceLine" id="cb378-7" data-line-number="7"><span class="op">}</span></a></code></pre></div>
-<p>We also adapt the <code>getSurveyRange</code> method to work with the dataframe.</p>
+<p>We must also adapt <code>getSurveyRange</code> to work with the dataframe:</p>
 <div class="sourceCode" id="cb379"><pre class="sourceCode js"><code class="sourceCode javascript"><a class="sourceLine" id="cb379-1" data-line-number="1"><span class="at">getSurveyRange</span> (minYear<span class="op">,</span> maxYear) <span class="op">{</span></a>
 <a class="sourceLine" id="cb379-2" data-line-number="2">  <span class="cf">return</span> <span class="at">Array</span>(<span class="dv">1</span> <span class="op">+</span> maxYear <span class="op">-</span> minYear)</a>
 <a class="sourceLine" id="cb379-3" data-line-number="3">    .<span class="at">fill</span>(<span class="dv">0</span>)</a>
@@ -4714,7 +4713,7 @@ __index__  Type    Frequency  Column
 <a class="sourceLine" id="cb379-18" data-line-number="18">    <span class="op">}</span></a>
 <a class="sourceLine" id="cb379-19" data-line-number="19">  <span class="op">}</span>)</a>
 <a class="sourceLine" id="cb379-20" data-line-number="20"><span class="op">}</span></a></code></pre></div>
-<p>Just as above, this has removed the need for the <code>_get</code> method. However, when testing the code we find that blank spaces are displayed where the summary values of should for a suspicious number of years. On closer inspection, we discover that the summarizing methods (<code>min</code> etc) of Data-Forge Series are sensitive to missing data and quietly return <code>NaN</code> if any values are absent in the series on which they are called, or <code>undefined</code> if they’re all missing. So we need to add an additional filter step to remove the rows with missing data in the columns that we’re interested in (hindfoot length and weight):</p>
+<p>This removes the need for the <code>_get</code> method, but when we test the code we find that blank spaces are displayed where the summary values should be for a suspicious number of years. On closer inspection, we discover that <code>min</code> and other summarizing methods are sensitive to missing data: they return <code>NaN</code> if any values are absent in the series on which they are called, or <code>undefined</code> if they’re all missing. We therefore need an additional filter step to remove the rows with missing data in the columns that we’re interested in (weight and hindfoot length):</p>
 <div class="sourceCode" id="cb380"><pre class="sourceCode js"><code class="sourceCode javascript"><a class="sourceLine" id="cb380-1" data-line-number="1"><span class="co">// ...as before...</span></a>
 <a class="sourceLine" id="cb380-2" data-line-number="2">      <span class="cf">if</span> (<span class="va">subset</span>.<span class="at">count</span>()) <span class="op">{</span></a>
 <a class="sourceLine" id="cb380-3" data-line-number="3">        <span class="cf">return</span> <span class="op">{</span></a>
