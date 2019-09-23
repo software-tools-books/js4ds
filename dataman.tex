@@ -220,11 +220,15 @@ class DataManager {
 module.exports = DataManager
 \end{minted}
 
-What our hubris made us miss in our first couple of attempts was that
-the \texttt{options} object controls how the parser behaves.
-Here,
-we tell it to interpret the first row as a header (which sets column names)
+The \texttt{papa.parse} function takes on two arguments: 
+the csv file to be parsed,
+and a configuration object that controls how the parser behaves. 
+This configuration object is highly customisable. 
+Here, we define \texttt{options} 
+to instruct the parser 
+to interpret the first row as a header (which sets column names)
 and to convert things that look like numbers to numbers (the \texttt{dynamicTyping} option).
+
 The output of \texttt{papa.parse} looks like this:
 
 \begin{minted}{js}
