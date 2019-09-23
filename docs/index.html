@@ -3495,7 +3495,7 @@ Server running at http://localhost:4000
 <a class="sourceLine" id="cb283-11" data-line-number="11"><span class="op">}</span></a>
 <a class="sourceLine" id="cb283-12" data-line-number="12"></a>
 <a class="sourceLine" id="cb283-13" data-line-number="13"><span class="va">module</span>.<span class="at">exports</span> <span class="op">=</span> DataManager</a></code></pre></div>
-<p>What our hubris made us miss in our first couple of attempts was that the <code>options</code> object controls how the parser behaves. Here, we tell it to interpret the first row as a header (which sets column names) and to convert things that look like numbers to numbers (the <code>dynamicTyping</code> option). The output of <code>papa.parse</code> looks like this:</p>
+<p><code>papa.parse</code> takes on two arguments: the CSV file to be parsed and a configuration object that controls how the parser behaves. This configuration object is highly customizable.; here, our <code>options</code> instruct the parser to interpret the first row as a header (which sets column names) and to convert things that look like numbers to numbers (the <code>dynamicTyping</code> option). The output of <code>papa.parse</code> looks like this:</p>
 <div class="sourceCode" id="cb284"><pre class="sourceCode js"><code class="sourceCode javascript"><a class="sourceLine" id="cb284-1" data-line-number="1"><span class="op">{</span> <span class="dt">data</span><span class="op">:</span></a>
 <a class="sourceLine" id="cb284-2" data-line-number="2">   [ <span class="op">{</span> <span class="dt">record_id</span><span class="op">:</span> <span class="dv">18501</span><span class="op">,</span></a>
 <a class="sourceLine" id="cb284-3" data-line-number="3">       <span class="dt">month</span><span class="op">:</span> <span class="dv">3</span><span class="op">,</span></a>
@@ -3535,7 +3535,7 @@ Server running at http://localhost:4000
 <a class="sourceLine" id="cb284-37" data-line-number="37">        <span class="st">&#39;sex&#39;</span><span class="op">,</span></a>
 <a class="sourceLine" id="cb284-38" data-line-number="38">        <span class="st">&#39;hindfoot_length&#39;</span><span class="op">,</span></a>
 <a class="sourceLine" id="cb284-39" data-line-number="39">        <span class="st">&#39;weight&#39;</span> ] <span class="op">}</span> <span class="op">}</span></a></code></pre></div>
-<p>so using <code>papa.parse(raw, options).data</code> gets the data we want as JSON. Let’s write a method to get some overall statistics:</p>
+<p>so using <code>papa.parse(raw, options).data</code> gets the data we want as JSON. Let’s write a method to get some overall statistics:</p>
 <div class="sourceCode" id="cb285"><pre class="sourceCode js"><code class="sourceCode javascript"><a class="sourceLine" id="cb285-1" data-line-number="1">  <span class="at">getSurveyStats</span> () <span class="op">{</span></a>
 <a class="sourceLine" id="cb285-2" data-line-number="2">    <span class="cf">return</span> <span class="op">{</span></a>
 <a class="sourceLine" id="cb285-3" data-line-number="3">      <span class="dt">year_low </span><span class="op">:</span> <span class="kw">this</span>.<span class="at">_get</span>(<span class="kw">this</span>.<span class="at">data</span><span class="op">,</span> <span class="st">&#39;year&#39;</span><span class="op">,</span> <span class="va">Math</span>.<span class="at">min</span>)<span class="op">,</span></a>

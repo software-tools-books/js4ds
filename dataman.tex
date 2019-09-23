@@ -220,15 +220,14 @@ class DataManager {
 module.exports = DataManager
 \end{minted}
 
-The \texttt{papa.parse} function takes on two arguments: 
-the csv file to be parsed,
+\texttt{papa.parse} takes on two arguments: 
+the CSV file to be parsed
 and a configuration object that controls how the parser behaves. 
-This configuration object is highly customisable. 
-Here, we define \texttt{options} 
-to instruct the parser 
+This configuration object is highly customizable.;
+here,
+our \texttt{options}  instruct the parser 
 to interpret the first row as a header (which sets column names)
 and to convert things that look like numbers to numbers (the \texttt{dynamicTyping} option).
-
 The output of \texttt{papa.parse} looks like this:
 
 \begin{minted}{js}
@@ -274,7 +273,7 @@ The output of \texttt{papa.parse} looks like this:
 \end{minted}
 
 \noindent
-so using \texttt{papa.parse(raw,\ options).data} gets the data we want as JSON.
+so using \texttt{papa.parse(raw, options).data} gets the data we want as JSON.
 Let's write a method to get some overall statistics:
 
 \begin{minted}{js}
