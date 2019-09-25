@@ -7,7 +7,7 @@ MAKEINDEX=makeindex
 PANDOC=pandoc -s --css=assets/bootstrap.min.css --css=assets/tango.css --css=assets/book.css --toc --toc-depth=2 --csl=chicago.csl
 
 # Files
-TEX=$(filter-out temp.tex,$(wildcard *.tex))
+TEX=$(filter-out temp.tex,$(wildcard *.tex)) $(wildcard keypoints/*.tex)
 SRC=${TEX} $(wildcard *.bib) $(wildcard *.cls) $(wildcard *.csl)
 TEX_CHAPTERS=$(filter-out %-settings.tex,${TEX})
 HTML=docs/index.html
@@ -18,7 +18,7 @@ FIGURES_DST=$(patsubst %,docs/%,${FIGURES_SRC})
 ASSETS_SRC=$(wildcard assets/*)
 ASSETS_DST=$(patsubst %,docs/%,${ASSETS_SRC})
 CREATE_PDF=CREATE_PDF.sh
-RELEASE=$(HOME)/js-vs-ds-release.zip
+RELEASE=$(HOME)/js4ds.zip
 
 # Controls
 all : commands

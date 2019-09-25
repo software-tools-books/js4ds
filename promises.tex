@@ -37,7 +37,7 @@ We can also try doing it with callbacks, but:
 \end{itemize}
 
 Instead of a tangled nest of callbacks,
-it's better to use \gref{g:promise}{promises},
+it's better to use \grefdex{g:promise}{promises}{promise},
 and then to use \texttt{async} and \texttt{await} to make things even easier.
 JavaScript offers three mechanisms because
 its developers have invented better ways to do things as the language has evolved,
@@ -119,7 +119,8 @@ inside timer handler for 500
 \figpdf{figures/promises-queue.pdf}{Run Queue}{f:promises-queue}
 
 \figref{f:promises-queue} shows what the run queue looks like just before the program prints \texttt{...finishing}.
-We can use \texttt{setTimeout} to build a generic non-blocking function:
+We can use \texttt{setTimeout}\texttt{setTimeout@\texttt{setTimeout}}
+to build a generic non-blocking function:
 
 \begin{minted}{js}
 const nonBlocking = (callback) => {
@@ -176,8 +177,7 @@ inside immediate handler for c
 
 \section{Promises}\label{s:promises-promises}
 
-Recent versions of JavaScript encourage programmers to use \gref{g:promise}{promises}
-to manage delayed actions.
+Recent versions of JavaScript encourage programmers to use promises to manage delayed actions.
 For example,
 if we want to find the size of a file,
 we can write this:
@@ -200,7 +200,7 @@ the remembered callback is called,
 and passed yet another object with statistics about the file (including its size).
 
 To understand this a little better,
-let's create our own promise to fetch a file from the web.
+let's create our own promise to fetch a file from the web.\index{fetch|texttt}
 (We have broken the URL over two lines using string concatenation
 so that it will print nicely.)
 
@@ -223,7 +223,7 @@ This code constructs a new \texttt{Promise} object.
 The constructor takes one argument;
 this must be a callback function of two arguments,
 which by convention are called \texttt{resolve} and \texttt{reject}.
-Inside the body of the callback,
+Inside the body of the callback,\index{promise!execution}
 we call \texttt{resolve} to return a value if and when everything worked as planned.
 That value is then passed to the \texttt{then} method of the \texttt{Promise}.
 
@@ -233,7 +233,7 @@ The first and most important is error handling:
 if something goes wrong inside the callback passed to \texttt{Promise}'s constructor,
 we can call \texttt{reject} instead of \texttt{resolve}.
 Just as \texttt{then} handles whatever we pass to \texttt{resolve},
-\texttt{Promise} defines a method called \texttt{catch} to handle whatever is passed to \texttt{reject}.
+\texttt{Promise} defines a method called \texttt{catch} to handle whatever is passed to \texttt{reject}.\index{promise!error handling}
 We can therefore build a slightly more robust version of our data fetcher
 that will report something sensible if we mis-type a month as \texttt{80}:
 
@@ -310,7 +310,7 @@ has been added to JavaScript to hide these details.
 Without this complexity,
 though,
 it's extremely difficult to handle errors from delayed computations.
-If we try this, using JavaScript's \texttt{try\ \{...\}\ catch\ \{...\}} syntax for handling exceptions:
+If we run this using JavaScript's \texttt{try\ \{...\}\ catch\ \{...\}} syntax for handling exceptions:
 
 \begin{minted}{js}
 const fetch = require('node-fetch')
@@ -376,7 +376,7 @@ the \texttt{stat} in each iteration is executed asynchronously,
 so the loop finishes and the script prints a total size of zero
 before any of the promised code has run.
 
-Plan B is to chain the promises together
+Plan~B is to chain the promises together
 to ensure that each executes only after the last has resolved:
 
 \begin{minted}{js}
@@ -401,7 +401,7 @@ It's also potentially inefficient,
 since we could be waiting for one promise to complete
 while other promises further down are ready to be processed.
 
-The answer is \texttt{Promise.all},
+The answer is \texttt{Promise.all},\index{promise!all}
 which returns an array of results from completed promises after all of them have resolved.
 The order of results corresponds to the order of the promises in the input array,
 which makes processing straightforward:
@@ -646,7 +646,8 @@ which allows us to create long chains of \texttt{.then(...)} calls.
 It works,
 but it isn't the most readable of notations and has been known to create a feeling of being trapped.
 
-We can avoid this using two new keywords, \texttt{async} and \texttt{await}.
+We can avoid this using two new keywords,\index{promise!\texttt{async} and \texttt{await}}
+\texttt{async}\index{async|texttt} and \texttt{await}\index{await|texttt}.
 \texttt{async} tells JavaScript that a function is asynchronous,
 i.e.,
 that it might want to wait for something to complete.

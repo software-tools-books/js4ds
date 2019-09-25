@@ -4,7 +4,7 @@ In the beginning,
 people created HTML pages by typing them in (just as we have been doing).
 They quickly realized that a lot of pages share a lot of content:
 navigation menus, contact info, and so on.
-The nearly universal response was to create a \gref{g:template}{template}
+The nearly universal response was to create a \grefdex{g:template}{template}{template!HTML}\index{HTML template}
 and embed commands to include other snippets of HTML (like headers)
 and loop over data structures to create lists and tables.
 This is called \gref{g:server-page-gen}{server-side page generation}:
@@ -35,9 +35,9 @@ It also moves the computational burden off the server
 and onto the client device,
 which lowers the cost of providing data.
 
-Many, many JavaScript frameworks for client-side page generation have been created,
+Many (many) JavaScript frameworks for client-side page generation have been created,
 and more are probably being developed right now.
-We have chosen \href{https://reactjs.org/}{React} because it is freely available,
+We have chosen \href{https://reactjs.org/}{React}\index{React} because it is freely available,
 widely used,
 well documented,
 simpler than many alternatives,
@@ -92,7 +92,7 @@ then finds the document element whose ID is \texttt{"app"}
 and uses \texttt{ReactDOM.render} to insert the former into the latter.
 This alters the representation of the page in memory,
 not the source of the page on disk;
-if we want to inspect the HTML,
+if we want to inspect the resulting HTML,
 we have to do so in the browser.
 Finally,
 we put the script at the bottom of the page
@@ -101,7 +101,7 @@ before the script runs.
 We will come back and fix this later.
 
 \begin{aside}{Inspection Tools}
-  If you are using the Firefox browser,
+  If you are using the Firefox browser,\index{developer tools}
   you can open the developer tools pane by going to the main menu
   and selecting \texttt{Tools{\ldots}\ Web\ Developer{\ldots}\ Toggle\ Tools}.
   A tabbed display will open in the bottom of your page;
@@ -117,7 +117,7 @@ the attributes we want the newly-created node to have.
 There are a few quirks in this---for example,
 we have to use \texttt{fontStyle} rather than \texttt{font-style}
 so that the attribute object's keys look like legal JavaScript variables---but
-the mechanism is surprisingly easy to use:
+the mechanism is seductively easy to use:
 
 \begin{minted}{html}
   <body>
@@ -140,7 +140,7 @@ the mechanism is surprisingly easy to use:
 \section{JSX}\label{s:dynamic-jsx}
 
 Writing nested functions is a clumsy way to write HTML,
-so most React programmers use a tool called \href{https://reactjs.org/docs/introducing-jsx.html}{JSX}
+so most React programmers use a tool called \href{https://reactjs.org/docs/introducing-jsx.html}{JSX}\index{JSX}
 that translates HTML into JavaScript function calls.
 And yes,
 those JavaScript function calls then produce HTML---it's a funny world.
@@ -169,7 +169,7 @@ Here's an example:
 \end{minted}
 
 Along with the two React libraries,
-this page includes a tool called \href{https://babeljs.io/}{Babel}
+this page includes a tool called \href{https://babeljs.io/}{Babel}\index{Babel}
 to translate a mixed of HTML and JavaScript into pure JavaScript.
 To trigger translation,
 we add the attribute \texttt{type="text/babel"} to the \texttt{script} tag.
@@ -212,7 +212,8 @@ We will add this later.
 
 \section{Creating Components}\label{s:dynamic-components}
 
-One of the most powerful features of React is that it lets us create new components
+One of the most powerful features of React is that it lets us create
+new \grefdex{g:component}{components}{React!component}\index{component (in React)}
 that look like custom HTML tags,
 but are associated with functions that we write.
 React requires the names of these components to start with a capital letter
@@ -251,7 +252,8 @@ JSX is turning them into functions,
 and functions are far more useful when we can give them data.
 In React,
 all the attributes we put inside the component's tag
-are passed to our function in a single \texttt{props} object:
+are passed to our function in
+a single \texttt{props} object:\index{React!parameter}\index{React!\texttt{props} object}\index{parameter!React}
 
 \begin{minted}{html}
   <body>
@@ -297,17 +299,17 @@ which bundler to choose?
 As with front-end frameworks,
 there are many to choose from,
 and new ones are being added almost weekly.
-\href{https://webpack.js.org/}{Webpack} is probably the most widely used,
+\href{https://webpack.js.org/}{Webpack}\index{Webpack} is probably the most widely used,
 but it is rather complex,
-so we will use \href{https://parceljs.org/}{Parcel},
+so we will use \href{https://parceljs.org/}{Parcel},\index{Parcel}
 which is younger and therefore not yet bloated
 (but give it time).
 
 \begin{aside}{Initiate a Project with Node Package Manager}
   If you've been coding along,
   so far we've created single HTML and JavaScript files,
-  and we've used the node command to run JavaScript files in the terminal, 
-  but we have not yet used the Node package manager \texttt{npm}. 
+  and we've used the Node command to run JavaScript files in the terminal, 
+  but we have not yet used the Node Package Manager \texttt{npm}. 
   Before we install Parcel, 
   we can turn the directory 
   which we've been creating our HTML and JavaScript files into a project 
@@ -364,7 +366,8 @@ see \href{https://medium.com/codingthesmartway-com-blog/getting-started-with-par
 
 \figpdf{figures/dynamic-parcel.pdf}{What Goes Where with Parcel}{f:dynamic-parcel}
 
-It's very common to put tasks like ``run my application'' into NPM's \texttt{package.json} file,
+It's very common to put tasks like ``run my application''
+into NPM's \texttt{package.json} file,\index{package.json@\texttt{package.json}}
 just as older programmers would put frequently-used commands into a project's Makefile.
 Look for the section in \texttt{package.json} whose key is \texttt{"scripts"} and add this:
 
@@ -387,8 +390,7 @@ there is no standard way to add comments to a JSON file{\ldots}
   if we accidentally specify the name of a directory like \texttt{src/dynamic}
   instead of the name of an HTML file,
   Parcel prints an error on the console saying ``no entries found''.
-  This happens because it is trying to read the actual directory structure
-  as if it were a file.
+  This happens because it is trying to read the directory itself as a file.
 \end{aside}
 
 \section{Multiple Files}\label{s:dynamic-multiple}
@@ -433,7 +435,7 @@ Error: _registerComponent(...): Target container is not a DOM element.
 \end{minted}
 
 This is the same race condition that has bitten us before.
-After sighing in frustration and making ourselves another cup of tea,
+After sighing in frustration and making another cup of tea,
 we decide that
 to keep things simple
 we will load the script in the body of the page:
@@ -490,7 +492,9 @@ right now,
 for example,
 \texttt{dist/app.ef6b320b.js} is 19930 lines long.
 
-A more modern option than loading in the bottom is to add the \texttt{async} attribute to the script in the head of the page,
+A more modern option than loading in the bottom is
+to add the \texttt{async} attribute\index{async attribute!\texttt{async} attribute}\index{running JavaScript!\texttt{async} attribute}
+to the script in the head of the page,
 which tells the browser not to do anything with the JavaScript until the page has finished building:
 
 \begin{minted}{html}

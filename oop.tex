@@ -7,7 +7,7 @@ but object-oriented programming can help.
 
 \section{Doing It By Hand}\label{s:oop-manual}
 
-As we saw in \href{REF}{s:basics},
+As we saw in \chapref{s:basics},
 an object in JavaScript is a set of key-value pairs.
 Since functions are just another kind of data,
 an object's values can be functions,
@@ -36,7 +36,7 @@ console.log(`area of square is ${a}`)
 area of square is 25
 \end{minted}
 
-This is a bit clumsy---we'll often forget to pass the object into its functions---but
+This is clumsy---we'll often forget to pass the object into its functions---but
 it allows us to handle many different kinds of things in the same way.
 For example,
 we can create another object to represent a circle:
@@ -101,9 +101,9 @@ rectangle: area 6 perimeter 10
 \section{Classes}\label{s:oop-classes}
 
 Building every object by hand and calling \texttt{thing.function(thing)} is clumsy.
-JavaScript solved these problems using \gref{g:prototype}{prototypes},
-which also turned out to be clumsy (\secref{s:legacy-prototypes}).
-Most object-oriented languages use \gref{g:class}{classes} instead;
+JavaScript solved these problems using \grefdex{g:prototype}{prototypes}{prototype},
+which also turned out to be almost as clumsy as our hand-rolled solution (\secref{s:legacy-prototypes}).
+Most object-oriented languages use \grefdex{g:class}{classes}{class!in JavaScript} instead;
 these were added to JavaScript in ES6,
 and we will use them instead of prototypes throughout.
 Here's how we create a class that defines the properties of a square,
@@ -121,7 +121,7 @@ class Square {
 \end{minted}
 
 \noindent
-(Class names are written in CamelCase by convention.)
+(Class names are written in CamelCase\index{camel case} by convention.)
 We can then create a specific square by using the class's name as if it were a function:
 
 \begin{minted}{js}
@@ -136,7 +136,7 @@ sq name square and area 9
 \texttt{new\ ClassName(...)} creates a new blank object
 and marks it to show that it is an \gref{g:instance}{instance} of \texttt{ClassName}.
 Objects need to know what class they belong to
-so that they can find their \gref{g:method}{methods},
+so that they can find their \grefdex{g:method}{methods}{method},
 which are the functions defined within the class
 that operate on instances of it.
 (We'll explain how JavaScript marks objects in \secref{s:legacy-prototypes};
@@ -146,18 +146,21 @@ in order to be compatible with older versions of the language.)
 \figpdf{figures/oop-memory.pdf}{Objects and Classes in Memory}{f:oop-memory}
 
 Before \texttt{new} hands the newly-created object back to the program,
-it calls the specially-named method \texttt{constructor} to initialize the object's state.
+it calls the specially-named \gref{g:constructor}{constructor}
+to initialize the object's state.
 Inside the constructor and other methods,
-the object being operated on is referred to by the pronoun \texttt{this}.
+the object being operated on is referred to by the pronoun \texttt{this}.\index{this|texttt}
 For example,
 if the constructor assigns an array to \texttt{this.values},
 then every instance of that class gets its own array.
 
-Methods are defined within a class using classic \texttt{function} syntax
-rather than the \gref{g:fat-arrow}{fat arrows} we have been using.
-The inconsistency is unfortunate
-but this way of defining methods is what the current version of Node prefers;
-we will explore this topic further in \chapref{s:vis}.
+\begin{aside}{Everything Old is New Again}
+  Methods are defined within a class using classic \texttt{function} syntax
+  rather than the fat arrows we have been using.
+  The inconsistency is unfortunate
+  but this way of defining methods is what the current version of Node prefers;
+  we will explore this topic further in \chapref{s:vis}.
+\end{aside}
 
 There are a lot of new terms packed into the preceding three paragraphs,
 so let's retrace the execution of:
@@ -197,7 +200,7 @@ console.log(`sq name ${sq.name} and area ${sq.area()}`)
   the program fills in the template string and calls \texttt{console.log}.
 \end{enumerate}
 
-JavaScript classes support polymorphism:
+JavaScript classes support polymorphism:\index{polymorphism}
 if two or more classes have some methods with the same names
 that take the same parameters
 and return the same kinds of values,
@@ -245,7 +248,8 @@ rectangle: area 0.75 perimeter 4
 
 \section{Inheritance}\label{s:oop-inheritance}
 
-We can build new classes from old ones by adding or \gref{g:override-method}{overriding} methods.
+We can build new classes from old ones
+by adding or \grefdex{g:override-method}{overriding}{method!override} methods.\index{overriding methods}
 To show this,
 we'll start by defining a person:
 
@@ -280,10 +284,11 @@ console.log(`parent: ${parent.greeting(true)} - ${parent.farewell()}`)
 parent: Hello, my name is Hakim - Goodbye
 \end{minted}
 
-We can now \gref{g:extend}{extend} \texttt{Person} to create a new class \texttt{Scientist},
-in which case we say that \texttt{Scientist} \gref{g:inherit}{inherits} from \texttt{Person},
-or that \texttt{Person} is a \gref{g:parent-class}{parent class} of \texttt{Scientist}
-and \texttt{Scientist} is a \gref{g:child-class}{child class} of \texttt{Person}.
+We can now \grefdex{g:extend}{extend}{extension}\index{class!extension} \texttt{Person}
+to create a new class \texttt{Scientist},
+in which case we say that \texttt{Scientist} \grefdex{g:inherit}{inherits}{inheritance}\index{class!inheritance} from \texttt{Person},
+or that \texttt{Person} is a \gref{g:parent-class}{parent class}\index{class!parent} of \texttt{Scientist}
+and \texttt{Scientist} is a \gref{g:child-class}{child class}\index{class!child} of \texttt{Person}.
 
 \begin{minted}{js}
 class Scientist extends Person {
@@ -310,7 +315,7 @@ This tells us that a \texttt{Scientist} is a \texttt{Person} who:
   (since \texttt{Scientist} \emph{doesn't} define its own \texttt{farewell} method)
 \end{itemize}
 
-The word \texttt{super} is used in two ways here:
+The word \texttt{super}\index{super|texttt} is used in two ways here:
 
 \begin{itemize}
 \item

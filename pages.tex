@@ -11,7 +11,7 @@ JavaScript.
 
 One thing these examples \emph{don't} show is how to build interactive web pages.
 JavaScript was invented primarily to support buttons, forms, and the like,
-but we will need to do a bit more background work before exploring them.
+but we will need a bit more background before exploring them.
 Still,
 we can do a surprising number of useful things
 simply by playing with the content of pages.
@@ -71,11 +71,11 @@ This page has three main parts:
 \begin{aside}{When Scripts Run}
   We have put the script at the bottom of the page
   because we want to be sure that the page's contents actually exist in memory
-  before trying to process them.
+  before trying to process them.\index{running JavaScript!in the browser}
   If we put the \texttt{script} tag and its contents at the top of the page,
   the browser might run our JavaScript \emph{after} the page has been read
   but \emph{before} its elements and text have been parsed and stored in memory.
-  \gref{g:race-condition}{Race conditions} like this bedevil web programming;
+  \grefdex{g:race-condition}{Race conditions}{race condition} like this bedevil web programming;
   we will see more robust ways to deal with them later.
 \end{aside}
 
@@ -83,7 +83,7 @@ Inside the \texttt{script} tag,
 we define a function called \texttt{counter} that takes no arguments,
 then use \texttt{console.log} to display the result of calling it.
 The only thing inside the function that we haven't encountered before
-is the call \texttt{document.querySelectorAll('p')}.
+is the call \texttt{document.querySelectorAll('p')}.\index{query selector}
 As you might guess from its name,
 \texttt{document} is an object that gives us a handle on the page the script is in;
 it is created and provided automatically by the browser.
@@ -105,7 +105,7 @@ number of paragraphs: 2
 \end{minted}
 
 \begin{aside}{Developer Tools}
-  To open developer tools in Firefox,
+  To open developer tools in Firefox,\index{developer tools}
   go to the main menu and select \texttt{Tools {\textgreater} Web\ Developer {\textgreater} Toggle\ Tools}.
   A tabbed display will open in the bottom of your page;
   choose \texttt{Console} to view the output of your JavaScript,
@@ -132,7 +132,8 @@ Where \texttt{document.querySelectorAll} returns all nodes that match a selector
 \texttt{document.getElementById} returns a single element that has the specified ID
 (which is set inside the element's opening tag with \texttt{id="some\_name"}).
 The variable \texttt{fill} is therefore assigned a reference to our \texttt{div}.
-We can then change the text inside that element by assigning to its \texttt{innerHTML} property.
+We can then change the text inside that element by assigning to
+its \texttt{innerHTML} property.\index{innerHTML property@\texttt{innerHTML} property}
 When we do this,
 JavaScript parses the string we provided as if it were HTML
 and creates whatever nodes it needs to represent the result.
@@ -145,10 +146,10 @@ and add it to the in-memory structure that represents the page.
 {\ldots}at which point some magic happens behind the scenes.
 The browser stores the elements and text of the current page in a data structure called
 the Document Object Model,
-or more commonly the \gref{g:dom}{DOM}.
+or more commonly the \gref{g:dom}{DOM}.\index{Document Object Model}
 As shown in \figref{f:htmlcss-tree},
 the DOM is organized as a tree:
-each element or piece of text is a \gref{g:node}{node} in the tree,
+each element or piece of text is a \grefdex{g:node}{node}{node (of tree)}\index{tree!node} in the tree,
 and a node's children are the elements contained within it.
 Any time the browser detects a change to the DOM,
 it automatically refreshes just as much of its display as it needs to.
@@ -256,7 +257,7 @@ that lacks most of \texttt{Array}'s useful methods.
   not to objects of that class.
   Static methods are primarily used to associate utility functions with classes,
   like \texttt{dist} in the example below.
-  Unlike calls to \gref{g:instance-method}{instance methods} like \texttt{magnitude},
+  Unlike calls to \grefdex{g:instance-method}{instance methods}{instance method} like \texttt{magnitude},
   static methods are called using \texttt{class.method()}
   rather than \texttt{some\_object.method()}.
 \end{aside}
@@ -374,7 +375,8 @@ When we load the page,
 though,
 the items aren't sorted.
 A bit of trial and error reveals that we have tripped over the race condition alluded to earlier:
-if we call our function in the \texttt{onload} attribute of the \texttt{body} tag,
+if we call our function in the \texttt{onload} attribute\index{onload attribute (of page)@\texttt{onload} attribute (of page)}
+of the \texttt{body} tag,
 it is run when the page is loaded into memory
 but \emph{before} the page's content has been parsed and turned into a DOM tree.
 After searching online for ``run JavaScript when page loaded'',
@@ -439,7 +441,7 @@ const sortLists = () => {
 
 As before,
 it starts by creating an array containing the nodes we want to operate on.
-(We use the selector \texttt{.sorted} (with a dot \texttt{.}) to select everything with the class \texttt{sorted},
+(We use the selector \texttt{.sorted} (with a leading dot) to select everything with the class \texttt{sorted},
 rather than \texttt{\#sorted},
 which would find nodes with the ID \texttt{sorted}.)
 This array will then have all the \texttt{ul} or \texttt{ol} lists that the function is to sort.
@@ -451,12 +453,14 @@ then filters that list to remove any that are text nodes.
 We need the \texttt{Array.from} call because (once again) the DOM doesn't use a JavaScript array to store children,
 but a structure of its own devising that lacks the methods we want to call.
 We remove the text nodes because they represent the \gref{g:whitespace}{whitespace} between list elements,
-such as newline characters after a closing \texttt{{\textless}/li{\textgreater}} and before the next opening \texttt{{\textless}li{\textgreater}}.
+such as newline characters after a closing \texttt{{\textless}/li{\textgreater}}
+and before the next opening \texttt{{\textless}li{\textgreater}}.
 
 \begin{aside}{Identifying Text Nodes}
   We could check \texttt{c.nodeType} instead of \texttt{c.nodeName} to spot text nodes,
   but we felt that \texttt{nodeName} made the code easier to understand.
-  Note that we use \texttt{!==} for the comparison
+  As always,
+  we use \texttt{!==} for the comparison
   in order to prevent unpleasant surprises (\secref{s:legacy-equality}).
 \end{aside}
 
@@ -474,7 +478,7 @@ primarily on the \href{https://www.w3schools.com/}{W3Schools} site.
 
 Unfortunately,
 searching for ``remove all children from node'' tells us that we have to do it ourselves,
-so we use a \texttt{while} loop to remove all the children
+so we use a \texttt{while} loop to remove all the children\index{while loop@\texttt{while} loop}\index{loop!\texttt{while}}
 (including the unwanted top-level text elements)
 from the \texttt{ul} or \texttt{ol} list,
 then add all of the children back in sorted order.
@@ -771,7 +775,7 @@ padded with a leading zero if necessary,
 and then join those strings to create a time like \texttt{17:48:02}
 to stuff into the element whose ID is \texttt{current}.
 
-But what does \texttt{setTimeout} do?
+But what does \texttt{setTimeout} do?\texttt{setTimeout@\texttt{setTimeout}}
 It tells the browser to run a function after some number of milliseconds have passed.
 In this case,
 we're running the same function \texttt{startTime} a second from now.

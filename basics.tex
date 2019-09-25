@@ -18,16 +18,19 @@ Use your favorite text editor to put the following line in a file called \texttt
 console.log('hello, world')
 \end{minted}
 
-\texttt{console} is a built-in \gref{g:module}{module} that provides basic printing services
+\texttt{console}\index{console.log|texttt} is a built-in \gref{g:module}{module}
+that provides basic printing services
 (among other things).
 As in many languages,
-we use the \gref{g:dotted-notation}{dotted notation} \texttt{X.Y} to get part \texttt{Y} of thing \texttt{X}---in this case,
+we use the \gref{g:dotted-notation}{dotted notation} \texttt{X.Y}
+to get part \texttt{Y} of thing \texttt{X}---in this case,
 to get \texttt{console}'s \texttt{log} function.
-\gref{g:string}{Character strings} like \texttt{'hello,\ world'} can be written with either single quotes or double quotes,
+\gref{g:string}{Character strings} like \texttt{'hello,\ world'}
+can be written with either single quotes or double quotes,
 so long as the quotation marks match,
 and semi-colons at the ends of statements are now (mostly) optional.
 
-To run a program,
+To run a program\index{running JavaScript!from the command line},
 type \texttt{node\ program\_name.js} at the command line.
 (We will preface shell commands with \texttt{\$} to make them easier to spot.)
 
@@ -41,12 +44,12 @@ hello, world
 
 \section{Basic Data Types}\label{s:basics-data-types}
 
-JavaScript has the usual datatypes,
+JavaScript has the usual datatypes,\index{datatypes!number}
 though unlike C, Python, and many other languages,
-there is no separate type for integers:
+there is no separate type for integers:\index{datatypes!integer (lack of)}
 it stores all numbers as 64-bit floating-point values,
 which is accurate up to about 15 decimal digits.
-We can check this using \texttt{typeof},
+We can check this using \texttt{typeof},\index{typeof operator@\texttt{typeof} operator}
 which returns a string.
 (Note: \texttt{typeof} is an operator,
 \emph{not} a function:
@@ -116,12 +119,15 @@ the type of null is object
 
 \noindent
 As the example above shows, we create an array of values to loop through called \texttt{otherValues}.
-We initiate our loop with the word \texttt{for}.
-Within the parentheses, \texttt{let} creates a variable called \texttt{value} to iterate over each element within \texttt{otherValues},
+We initiate our loop with the word \texttt{for}.\index{for loop@\texttt{for} loop}\index{loop!\texttt{for}}
+Within the parentheses,
+\texttt{let} creates a variable\index{variable!defining}
+called \texttt{value} to iterate over each element within \texttt{otherValues},
 and \texttt{value} is the changing array value of \texttt{otherValues}.
 Finally, within the curly braces we perform our desired operation on every value.
 
-Note that we use \texttt{let} rather than the older \texttt{var} and \texttt{of} and not \texttt{in}:
+Note that we use \texttt{let} rather than the older \texttt{var}
+and \texttt{of} and not \texttt{in}:
 the latter returns the indexes of the collection (e.g., 0, 1, 2),
 which has some traps for the unwary (\appref{s:legacy-iteration}).
 Note also that indexing starts from 0 rather than 1,
@@ -136,17 +142,18 @@ This may be different from the language that you're used to.
 
 After all this,
 the types themselves are somewhat anticlimactic.
-JavaScript's \texttt{boolean} type can be either \texttt{true} or \texttt{false},
+JavaScript's \texttt{boolean} type\index{datatype!Boolean}
+can be either \texttt{true} or \texttt{false},
 though we will see below that other things can be treated as Booleans.
-\texttt{undefined} means ``hasn't been given a value'',
-while \texttt{null} means ``has a value, which is nothing''.
+\texttt{undefined} means ``hasn't been given a value'',\index{datatype!undefined}
+while \texttt{null} means ``has a value, which is nothing''.\index{datatype!null}
 
 \section{Control Flow}\label{s:basics-control-flow}
 
 We have already seen \texttt{for} loops and flat arrays,
 so let's have a look at nested arrays and conditionals.
-We start with arrays that contain other arrays,
-which are usually processed by \gref{g:nested-loop}{nested loops}:
+We start with arrays that contain other arrays,\index{nesting!arrays}\index{array!nested}
+which are usually processed by \gref{g:nested-loop}{nested loops}:\index{loop!nested}
 
 \begin{minted}{js}
 const nested = [['northwest', 'northeast'],
@@ -205,7 +212,8 @@ This example shows that arrays are \gref{g:heterogeneous}{heterogeneous},
 i.e.,
 that they can contain values of many different types.
 It also shows that JavaScript has some rather odd ideas about the nature of truth.
-0 is \gref{g:falsy}{falsy}, while all other numbers are \gref{g:truthy}{truthy};
+0 is \gref{g:falsy}{falsy},\index{neologism!horrible}
+while all other numbers are \gref{g:truthy}{truthy};
 similarly,
 the empty string is falsy and all other strings are truthy.
 \texttt{undefined} and \texttt{null} are both falsy,
@@ -218,7 +226,7 @@ The argument made by JavaScript's advocates is that an empty array is there,
 it just happens to be empty,
 but this behavior is still a common cause of bugs.
 When testing an array,
-check that \texttt{Array.length} is zero.
+check that \texttt{Array.length} is zero.\index{array!length}
 (Note that this is a \gref{g:property}{property},
 not a \gref{g:method}{method},
 i.e.,
@@ -226,7 +234,8 @@ it should be treated as a variable,
 not called like a function.)
 
 \begin{aside}{Safety Tip}
-  Always use \texttt{===} (triple equals) and \texttt{!==} when testing for equality and inequality in JavaScript.
+  Always use \texttt{===} (triple equals) and \texttt{!==}
+  when testing for equality and inequality in JavaScript.\index{equality!forms of}
   \texttt{==} and \texttt{!=} do type conversion,
   which can produce some ugly surprises (\secref{s:legacy-equality}).
 \end{aside}
@@ -234,7 +243,8 @@ not called like a function.)
 \section{Formatting Strings}\label{s:basics-formatting}
 
 Rather than printing multiple strings and expressions,
-we can \gref{g:string-interpolation}{interpolate} values into a back-quoted string.
+we can \grefdex{g:string-interpolation}{interpolate}{string interpolation}
+values into a back-quoted string.
 (We have to use back quotes because this feature was added to JavaScript
 long after the language was first created.)
 As the example below shows,
@@ -268,9 +278,9 @@ An \gref{g:object}{object} in JavaScript is a collection of key-value pairs,
 and is equivalent in simple cases to what Python would call a dictionary.
 It's common to visualize an object as a two-column table
 with the keys in one column and the values in another (\figref{f:basics-object-table}).
-The keys do not have to be strings,
+The keys do not have to be strings,\index{object!keys}
 but almost always are;
-the values can be anything.
+the values can be anything.\index{object!values}
 We can create an object by putting key-value pairs in curly brackets;
 there must be a colon between the key and the value,
 and pairs must be separated by commas like the elements of arrays:
@@ -326,7 +336,7 @@ const creature = {
 
 \texttt{[object\ Object]} is not particularly useful output when we want to see what an object contains.
 To get a more helpful string representation,
-use \texttt{JSON.stringify(object)}:
+use \texttt{JSON.stringify(object)}:\index{object!string representation}
 
 \begin{minted}{js}
 console.log(JSON.stringify(creature))
@@ -339,7 +349,7 @@ console.log(JSON.stringify(creature))
 
 \noindent
 Here,
-``JSON'' stands for ``JavaScript Object Notation'';
+``JSON'' stands for ``JavaScript Object Notation'';\index{JSON}
 we will learn more about it in \chapref{s:dataman}.
 
 \section{Functions}\label{s:basics-functions}
@@ -363,14 +373,15 @@ function limits (values) {
 }
 \end{minted}
 
-Its definition consists of the keyword \texttt{function},
+Its definition consists of the keyword \texttt{function},\index{function!classic}
 its name,
-a parameterized list of \gref{g:parameter}{parameters} (which might be empty),
+a parameterized list of \grefdex{g:parameter}{parameters}{parameter}\index{function!parameter}
+(which might be empty),
 and its body.
 
 The body of the function begins with a test of the thing,
 referred to inside the function as \texttt{values},
-provided as an argument to the function:
+provided as an \gref{g:argument}{argument} to the function:
 if \texttt{values} has no length---i.e.,
 it does not consist of multiple entries---the function returns \texttt{[undefined,undefined]}.
 (We will address the rationale behind this behaviour in the exercises.)
@@ -406,7 +417,7 @@ if that value is lower than \texttt{low} or higher than \texttt{high} respective
   }
 \end{minted}
 
-Once all of the items in \texttt{values} have been iterated over,
+Once all of the items in \texttt{values} have been examined,
 the values of \texttt{low} and \texttt{high} are the minimum and maximum of \texttt{values}.
 These are returned as a pair inside an array.
 
@@ -415,9 +426,9 @@ These are returned as a pair inside an array.
 \end{minted}
 
 \noindent
-Note that we can use \texttt{return} to explicitly return a value at any time;
+Note that we can use \texttt{return} to explicitly return a value at any time;\index{function!return}\index{return statement}
 if nothing is returned,
-the function's result is \texttt{undefined}.
+the function's result is \texttt{undefined}.\index{function!default value}
 
 One oddity of JavaScript is that almost anything can be compared to almost anything else.
 Here are a few tests that demonstrate this:
@@ -447,7 +458,7 @@ Programmers generally don't write functions this way any longer,
 since it interacts in odd ways with other features of the language;
 \secref{s:legacy-prototypes} explains why and how in more detail.
 Instead,
-most programmers now write \gref{g:fat-arrow}{fat arrow functions}
+most programmers now write \grefdex{g:fat-arrow}{fat arrow functions}{fat arrow function}\index{function!fat arrow}
 consisting of a parameter list,
 the \texttt{=\textgreater{}} symbol,
 and a body.
@@ -470,8 +481,9 @@ const limits = (values) => {
 \end{minted}
 
 No matter how functions are defined,
-each one is a \gref{g:scope}{scope},
-which means its parameters and any variables created inside it are \gref{g:local-variable}{local} to the function.
+each one is a \grefdex{g:scope}{scope}{scope!variable},\index{variable scope}
+which means its parameters and any variables created inside it
+are \grefdex{g:local-variable}{local}{local variable}\index{variable!local} to the function.
 We will discuss scope in more detail in \chapref{s:callbacks}.
 
 \begin{aside}{Stuck in the Past}
@@ -480,7 +492,7 @@ We will discuss scope in more detail in \chapref{s:callbacks}.
   The twin answers are that changes would break legacy programs that rely on the old behavior,
   and that the language's developers wanted to make it really easy to define little functions.
   Here and elsewhere,
-  we will see how a language's history and the way it is used shape its evolution.
+  we will see how a language's history and use shape its evolution.
 \end{aside}
 
 \section{Modules}\label{s:basics-modules}
@@ -488,12 +500,12 @@ We will discuss scope in more detail in \chapref{s:callbacks}.
 As our programs grow larger,
 we will want to put code in multiple files.
 The unavoidable bad news is that JavaScript has several module systems:
-Node still uses one called CommonJS,
-but is converting to the modern standard called ES6,
+Node still uses one called CommonJS,\index{CommonJS module system}\index{module system!CommonJS}
+but is converting to the modern standard called ES6,\index{ES6 module system}\index{module system!ES6}
 so what we use on the command line is different from what we use in the browser (for now).
 
 \begin{aside}{Ee Ess}
-  JavaScript's official name is ECMAScript,
+  JavaScript's official name is ECMAScript,\index{ECMAScript}
   though only people who use the word ``datum'' in everyday conversation ever call it that.
   Successive versions of the language are therefore known as ES5, ES6, and so on,
   except when they're referred to as (for example) ES2018.
@@ -529,14 +541,14 @@ if you didn't,
 well,
 now you know.
 
-What's more important is assigning an object to \texttt{module.exports}.
+What's more important is assigning an object to \texttt{module.exports}.\index{module!exports}
 Only those things named in this object are visible to the outside world,
 so \texttt{DEFAULT\_BOUND} won't be.
 Remember,
 keys that are simple names don't have to be quoted,
 so \texttt{clip:\ clip} means ``associate a reference to the function \texttt{clip} with the string key \texttt{"clip"}.
 
-To use our newly-defined module we must \texttt{require} it.
+To use our newly-defined module we must \texttt{require} it.\index{module!imports}\index{module!\texttt{require}}
 For example,
 we can put this in \texttt{application.js}:
 
@@ -573,7 +585,7 @@ Something else?
 (You might notice that \texttt{typeof\ typeof} is syntactically invalid.
 In such circumstances,
 an internet search engine is your friend,
-as is the Mozilla Developer Network (MDN) JavaScript reference
+as is the Mozilla Developer Network\index{Mozilla Developer Network} (MDN) JavaScript reference
 at \url{https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference}.
 
 \exercise{Fill in the Blanks}
@@ -629,6 +641,7 @@ returning \texttt{undefined} only?
 
 \exercise{Combining Different Types}
 
+What does \grefdex{g:nan}{\texttt{NaN}}{Not a Number} represent?\index{NaN@\texttt{NaN} (Not a Number)}
 What output would you expect from the code below?
 Try running it and see whether the results match your expectations.
 What are the implications of this behavior when working with real-world data?

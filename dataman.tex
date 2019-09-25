@@ -14,7 +14,7 @@ we decide to start with the data store;
 \section{Data Formats}\label{s:dataman-formats}
 
 The most widely used text format for tabular data is undoubtedly
-\gref{g:csv}{comma-separated values} or CSV.
+\gref{g:csv}{comma-separated values} (CSV).
 Each row of the table is a line in the file;
 the values within each row---i.e., the columns---are separated by commas.
 Numbers appear as themselves;
@@ -52,9 +52,8 @@ or the weights in pounds or kilograms.
 
 CSV is good for tabular data,
 but a lot of data doesn't neatly fit into rows and columns.
-A format for hierarchical data that is popular with many programmers is \gref{g:json}{JSON},
-which stands for JavaScript Object Notation.
-It supports a subset of the syntax for values, arrays, and objects in JavaScript,
+Many programmers use \gref{g:json}{JSON} instead:
+it supports a subset of the syntax for values, arrays, and objects in JavaScript,
 so that (for example)
 we can store configuration values for a program like this:
 
@@ -105,7 +104,7 @@ Although it would be easy to take the first ten,
 or the last,
 there's a good chance that neither would be representative of the data as a whole.
 Instead,
-we will write a little script that selects N records at random.
+we will write a little script that selects some records at random.
 Since it doesn't need to be efficient,
 we will read everything,
 pair each line with a random number,
@@ -151,7 +150,7 @@ record_id,month,day,year,plot_id,species_id,sex,hindfoot_length,weight
 \end{minted}
 
 Running it again will probably generate a different data slice,
-since we're not specifying a random number generation seed.
+since we're not specifying a random number generation \gref{g:seed}{seed}.
 We are bad people, and will fix this in the exercises.
 
 \begin{aside}{Slicing Command-Line Arguments}
@@ -193,7 +192,7 @@ we decide that our data manager will be able to answer two questions:
   to particular columns.
 \end{enumerate}
 
-We will use \href{https://www.papaparse.com/}{PapaParse} to parse our CSV,
+We will use \href{https://www.papaparse.com/}{PapaParse}\index{PapaParse} to parse our CSV,
 so our first step is to install it:
 
 \begin{minted}{shell}
@@ -220,7 +219,7 @@ class DataManager {
 module.exports = DataManager
 \end{minted}
 
-\texttt{papa.parse} takes on two arguments: 
+\texttt{papa.parse} takes two arguments: 
 the CSV file to be parsed
 and a configuration object that controls how the parser behaves. 
 This configuration object is highly customizable.;
@@ -273,7 +272,7 @@ The output of \texttt{papa.parse} looks like this:
 \end{minted}
 
 \noindent
-so using \texttt{papa.parse(raw, options).data} gets the data we want as JSON.
+so \texttt{papa.parse(raw, options).data} gets the data we want as JSON.
 Let's write a method to get some overall statistics:
 
 \begin{minted}{js}
@@ -294,7 +293,8 @@ Let's write a method to get some overall statistics:
 
 Functions like \texttt{Math.min} and \texttt{Math.max} take any number of scalar values as arguments,
 but do not directly process arrays.
-However, the notation \texttt{func(...array)} means
+Enter \gref{g:spread-syntax}{spread syntax} \texttt{...}:
+the notation \texttt{func(...array)} means
 ``pass all the values in the array as separate arguments'',
 which saves us from writing our own minimum and maximum functions.
 Thus,
@@ -326,7 +326,8 @@ so we have to conform to their signature.
 After some thought we realize that it's possible for \texttt{subset} to be empty---i.e.,
 it's possible that there are years that have no data in our data set.
 We should filter these out,
-to prevent unnecessary effort being made to render summary statistics with \texttt{NaN} values.
+to prevent unnecessary effort being made to render summary statistics
+with \texttt{NaN} values.\index{NaN@\texttt{NaN} (Not a Number)}
 Remembering that empty arrays are not falsy in JavaScript (\chapref{s:basics}),
 we decide to test that the \texttt{subset} returned by filtering for each year
 contains at least one entry.

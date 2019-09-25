@@ -10,6 +10,9 @@ in geography. See also \grefcross{g:relative-path}{relative path}.
 \gitem{g:aggregation-function}{aggregation function}
 A function that combines many values into one, such as \texttt{sum} or \texttt{max}.
 
+\gitem{g:alias}{alias}
+A second or subsequent name referring to the same data or function.
+
 \gitem{g:anonymous-function}{anonymous function}
 A function that is defined without giving it a name, such as a callback
 defined where it is used. Anonymous functions are sometimes called \emph{lambda
@@ -66,14 +69,14 @@ A function A that is passed to another function B for B to call at a later
 time. Callback functions are used to implement delayed actions, such as what
 to do when data arrives in response to a network request.
 
-\gitem{g:css}{Cascading Style Sheets}
+\gitem{g:css}{Cascading Style Sheets (CSS)}
 A way to describe how HTML should be rendered.
 
 \gitem{g:catch}{catch}
 To take responsibility for handling an \grefcross{g:exception}{exception}.
 Catch is the counterpart of \grefcross{g:throw}{throw}.
 
-\gitem{g:cc-by}{Creative Commons--Attribution License}
+\gitem{g:cc-by}{Creative Commons--Attribution License (CC-BY)}
 A license that allows people to re-use work as long as they cite its
 original source.
 
@@ -109,11 +112,17 @@ A set of variables defined in the same \grefcross{g:scope}{scope} whose existenc
 been preserved after that scope has ended. Closures are one of the trickiest
 ideas in programming.
 
+\gitem{g:component}{component (in React)}
+A user-defined ``tag'' associated with a call to a function that generates HTML.
+
 \gitem{g:condition}{condition}
 The logical test that controls whether or not the \grefcross{g:body-statement}
 of an \texttt{if} statement executes or not.
 
-\gitem{g:csv}{Comma-Separated Values}
+\gitem{g:constructor}{constructor}
+A ``method'' that is automatically called to initialize an object when it is created.
+
+\gitem{g:csv}{Comma-Separated Values (CSV)}
 A text format for tabular data in which each record is one row and fields are
 separated by commas. There are many minor variations, particularly around
 quoting of strings.
@@ -123,7 +132,7 @@ An object that maintains a connection to a database. When the code is
 finished working with the database, the connection manager ensures that the
 connection is closed gracefully, which helps to avoid the corruption of data.
 
-\gitem{g:cdn}{Content Delivery Network}
+\gitem{g:cdn}{Content Delivery Network (CDN)}
 A geographically distributed set of servers that store commonly-used or
 recently-used data such as web pages so that they can be served more quickly.
 
@@ -133,9 +142,15 @@ changed: for example, after the statement \texttt{const\ v\ =\ ['a',\ 'b']}, the
 will always refer to the same array, but the array's contents can be changed.
 See also \grefcross{g:variable}{variable}.
 
-\gitem{g:cors}{Cross-Origin Resource Sharing}
+\gitem{g:cors}{Cross-Origin Resource Sharing (CORS)}
 A way to control requests made for data and other resources that aren't served
 by the site that gave the browser the original page.
+
+\gitem{g:dataframe}{dataframe}
+A data structure designed to store tabular data.
+A dataframe has zero or more named columns
+and zero or more rows,
+each of which has exactly one value for each column.
 
 \gitem{g:declarative}{declarative programming}
 A style of programming in which the user specifies what they want, and the
@@ -145,16 +160,17 @@ computer figures out how to deliver it.
 The act of making software available for others to use.
 
 \gitem{g:destructuring}{destructuring}
-a form of assignment that unpacks a data structure in one step, such as \texttt{[a,\ b]\ =\ [1,\ 2]} or \texttt{\{left,\ right\}\ =\ \{left:\ 1,\ right:\ 2\}}.
+a form of assignment that unpacks a data structure in one step,
+such as \texttt{[a,\ b] = [1,\ 2]} or \texttt{\{left,\ right\} = \{left:\ 1,\ right:\ 2\}}.
 
-\gitem{g:dns}{Domain Name System}
+\gitem{g:dns}{Domain Name System (DNS)}
 A decentralized naming system for computers that translates logical names such
 as \texttt{third-bit.com} into the addresses of particular computers.
 
 \gitem{g:document}{document}
 An entire HTML page.
 
-\gitem{g:dom}{Document Object Model}
+\gitem{g:dom}{Document Object Model (DOM)}
 A standard way to represent HTML in memory. The \grefcross{g:element}{elements} and
 \grefcross{g:attribute}{attributes} of the page, along with its text, are stored as
 \grefcross{g:node}{nodes} organized in a tree.
@@ -213,6 +229,11 @@ to signal that something unexpected has happened; another part will
 To create a new class from an existing class. We say that the new class
 \grefcross{g:inherit}{inherits} from the old one.
 
+\gitem{g:external-style-sheet}{external style sheet}
+A set of \grefcross{g:css}{CSS} definitions placed in an external file
+rather than inside a web page.
+See also \grefcross{g:internal-style-sheet}{internal style sheet}.
+
 \gitem{g:falsy}{falsy}
 A horrible neologism meaning ``equivalent to false''. See also the equally
 horrible \grefcross{g:truthy}{truthy}.
@@ -245,7 +266,7 @@ users and projects. See also \grefcross{g:local-installation}{local installation
 A variable defined outside any particular function, which is therefore visible
 to all functions. See also \grefcross{g:local-variable}{local variable}.
 
-\gitem{g:gpl}{GNU Public License}
+\gitem{g:gpl}{GNU Public License (GPL)}
 A license that allows people to re-use software as long as they distribute
 the source of their changes.
 
@@ -274,7 +295,7 @@ The part of a URL that specifies the computer to talk to. In
 \texttt{http://example.com/something/}, the hostname is \texttt{example.com}; in
 \texttt{http://localhost:1234/}, it is \texttt{localhost}.
 
-\gitem{g:http}{HTTP}
+\gitem{g:http}{HyperText Transfer Protocol (HTTP)}
 The HyperText Transfer Protocol used to exchange information between browsers
 and websites, and more generally between other \grefcross{g:client}{clients} and
 \grefcross{g:server}{servers}. HTTP is a \grefcross{g:stateless}{stateless} protocol in which
@@ -305,6 +326,9 @@ A numerical code that indicates what happened when an \grefcross{g:http-request}
 request} was processed, such as 200 (OK), 404 (not found), or
 500 (internal server error).
 
+\gitem{g:immutable}{immutable}
+Data that cannot be changed after being created.
+
 \gitem{g:in-memory-database}{in-memory database}
 A database that is stored in memory rather than in permanent storage.
 In-memory databases are often used for testing.
@@ -328,8 +352,9 @@ See also \grefcross{g:static-method}{static method}.
 \gitem{g:internal-style-sheet}{internal style sheet}
 A set of \grefcross{g:css}{CSS} definitions placed inside a web page rather than in an
 external file.
+See also \grefcross{g:external-style-sheet}{external style sheet}.
 
-\gitem{g:json}{JSON}
+\gitem{g:json}{JavaScript Object Notation (JSON)}
 A way to represent data by combining basic values like numbers and character
 strings in \grefcross{g:array}{arrays} and name/value structures. The acronym stands
 for ``JavaScript Object Notation''; unlike better-defined standards like
@@ -387,14 +412,18 @@ deploy at the expense of readability.
 \gitem{g:mit-license}{MIT License}
 A license that allows people to re-use software with no restrictions.
 
+\gitem{g:model}{model (of data)}
+How data is stored.
+See also \gitem{g:view}{view}.
+
 \gitem{g:module}{module}
 A set of variables, functions, and/or classes grouped together for easier
 management (typically but not always in a single file). Modules are sometimes
 also called \grefcross{g:library}{libraries}.
 
 \gitem{g:module-variable}{module variable}
-A variable that is visible within a module but not outside it. See
-\grefcross{g:scope}{scope}.
+A variable that is visible within a module but not outside it.
+See also \grefcross{g:scope}{scope}.
 
 \gitem{g:mutation}{mutation}
 Changing data in place, such as modifying an element of an array or adding a
@@ -413,13 +442,18 @@ can run many times for each iteration of the \grefcross{g:outer-loop}{outer loop
 An open source implementation of JavaScript for use outside the browser.
 
 \gitem{g:node}{node}
-An in-memory representation of an element in an HTML page. See also
-\grefcross{g:dom}{DOM}. Not to be confused with \grefcross{g:node-js}{Node.js}.
+An in-memory representation of an element in an HTML page
+(not to be confused with \grefcross{g:node-js}{Node.js}).
+See also \grefcross{g:dom}{DOM}.
 
 \gitem{g:nosql-database}{NoSQL database}
 Any database that doesn't use the \grefcross{g:relational-database}{relational} model.
 The awkward name comes from the fact that such databases don't use
 \grefcross{g:sql}{SQL} as a query language.
+
+\gitem{g:nan}{Not a Number (NaN)}
+A special value used to represent an invalid number,
+such as the result of dividing zero by zero.
 
 \gitem{g:object}{object}
 A clump of variables and/or \grefcross{g:method}{methods} grouped together in a
@@ -466,7 +500,7 @@ new class. (The new class is called the \grefcross{g:child-class}{child class}.)
 the \grefcross{g:node}{node} in a \grefcross{g:tree}{tree} that is above some other node. Every
 node has a parent except the \grefcross{g:root-node}{root node}.
 
-\gitem{g:parse}{parse}
+\gitem{g:parse}{parsing}
 To translate the text of a program or web page into a data structure in memory
 that the program can then manipulate.
 
@@ -508,7 +542,7 @@ A function that can generate a series of \grefcross{g:pseudo-random-number}{pseu
 numbers} after being initialized with a
 \grefcross{g:seed}{seed}.
 
-\gitem{g:cc-0}{public domain license}
+\gitem{g:cc-0}{public domain license (CC-0)}
 A license that allow people to re-use material however they want
 with no restrictions and no requirement of attribution.
 
@@ -519,15 +553,18 @@ being performed in different orders.
 \gitem{g:raise}{raise}
 see \grefcross{g:throw}{throw}.
 
-\gitem{g:repl}{read-evaluate-print loop}
+\gitem{g:refactor}{refactor}
+To reorganize or clean up code in a way that doesn't change its behavior.
+
+\gitem{g:repl}{read-evaluate-print loop (REPL)}
 An interactive program that reads a command typed in by a user, executes it,
 prints the result, and then waits patiently for the next command. REPLs are
 often used to explore new ideas or for debugging.
 
 \gitem{g:record}{record}
 A set of related values. In a \grefcross{g:relational-database}{relational database},
-a record is typically shown as a single row in a \grefcross{g:table}{table}. See also
-\grefcross{g:field}{field}.
+a record is typically shown as a single row in a \grefcross{g:table}{table}.
+See also \grefcross{g:field}{field}.
 
 \gitem{g:regular-expression}{regular expression}
 A pattern for matching text, written as text itself. Regular expressions
@@ -573,8 +610,9 @@ up a database table or the ways in which structures can be nested in
 \grefcross{g:json}{JSON}.
 
 \gitem{g:scope}{scope}
-The portion of a program within which a definition can be seen and used. See
-\grefcross{g:global-variable}{global-variable}, \grefcross{g:local-variable}{local-variable},
+The portion of a program within which a definition can be seen and used.
+See also \grefcross{g:global-variable}{global-variable},
+\grefcross{g:local-variable}{local-variable},
 \grefcross{g:module-variable}{module-variable}, and (if you are brave)
 \grefcross{g:closure}{closure}.
 
@@ -594,6 +632,10 @@ parents trying to babysit a room full of unruly children.
 To create an HTML page on a server. That HTML is then delivered as-is to a
 browser for display. See also \grefcross{g:client-page-gen}{client-side page
 generation}.
+
+\gitem{g:spread syntax}{spread syntax}
+The \texttt{...} in \texttt{...some\_array},
+which means ``interpolate the values of the array in place''.
 
 \gitem{g:sql}{SQL}
 The language used for writing queries for \grefcross{g:relational-database}{relational
@@ -707,6 +749,10 @@ that is \grefcross{g:backward-compatible}{backward-compatible} with the older
 \gitem{g:variable}{variable}
 A name in a program that has some data associated with it. A variable's value
 can be changed after definition. See also \grefcross{g:constant}{constant}.
+
+\gitem{g:view}{view (of data)}
+How data is presented.
+See also \gitem{g:model}{model}.
 
 \gitem{g:whitespace}{whitespace}
 The space, newline, carriage return, and horizontal and vertical tab characters

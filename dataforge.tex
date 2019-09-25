@@ -7,13 +7,13 @@ but statistical libraries are now appearing,
 and if the last twenty-five years have taught us anything,
 it's not to underestimate JavaScript.
 
-In this chapter we will look at a library called Data-Forge
+In this chapter we will look at a library called Data-Forge\index{Data-Forge}
 that is designed for working with tabular data.
-Data-Forge was inspired by Python's Pandas library,
-but should be familiar to anyone who has worked with R.
-Its \texttt{DataFrame} class represents a table made up of named columns
+Data-Forge was inspired by Python's Pandas library,\index{Pandas}
+but should be familiar to anyone who has worked with the tidyverse in R as well.\index{tidyverse}
+Its \grefdex{g:dataframe}{\texttt{DataFrame}}{dataframe} class represents a table made up of named columns
 and any number of rows.
-Dataframes are immutable:
+Dataframes are \gref{g:immutable}{immutable}:
 once a dataframe has been constructed,
 its contents cannot be changed.
 Instead,
@@ -214,7 +214,7 @@ console.log(data.toRows())
 [ [ 1, 10 ], [ 2, 20 ], [ 3, 30 ] ]
 \end{minted}
 
-We can also process the rows using either a \texttt{for} loop:
+We can also process the rows using a \texttt{for} loop:
 
 \begin{minted}{js}
 for (let row of data) {
@@ -229,7 +229,7 @@ for (let row of data) {
 \end{minted}
 
 \noindent
-or \texttt{forEach}:
+or its \texttt{forEach} method:
 
 \begin{minted}{js}
 data.forEach(row => {
@@ -246,9 +246,8 @@ data.forEach(row => {
 \noindent
 However,
 a good rule of thumb is that if you're using a loop on a dataframe,
-you're doing the wrong thing.
-Instead,
-you should be using the methods described below.
+you're doing the wrong thing:
+you should instead use the methods described below.
 
 \section{Doing Calculations}\label{s:dataforge-calc}
 
@@ -448,7 +447,7 @@ We will explore ways of doing multi-column \texttt{distinct} in the exercises.
 \section{Subsets}\label{s:dataforge-subset}
 
 You may have noticed that the color values in the table above are strings rather than numbers.
-If we want Data-Forge to convert values to more useful types,
+If we want Data-Forge to convert values to more useful types,\index{dataframe!type conversion}
 we can use the methods \texttt{parseDates}, \texttt{parseFloats}, and so on.
 The program below does this for data about earthquakes in August 2016:
 
@@ -470,7 +469,7 @@ Data has 798 rows
 
 Whether we convert it or not,
 we will often want to work with subsets of data.
-We can select values by position using \texttt{head} and \texttt{tail}
+We can select values by position using \texttt{head} and \texttt{tail}\index{dataframe!select by location}
 (which are named after classic Unix commands):
 
 \begin{minted}{js}
@@ -545,7 +544,7 @@ console.log(earthquakes.skip(10).take(3).toArray())
 \figpdf{figures/dataforge-positional.pdf}{Seleting by Position}{f:dataforge-positional}
 
 However,
-it's far more common to select rows by the values they contain rather than by their position.
+it's far more common to select rows by the values they contain rather than by their position.\index{dataframe!select by value}
 Just like the \texttt{Array.filter} method we met way back in \secref{s:callbacks-functional},
 we do this by giving Data-Forge a callback function that tells it whether a given row should be kept or not.
 This text can be as complex as desired,
@@ -574,7 +573,7 @@ console.log(large.toArray())
 
 Working with individual observations is all very well,
 but if we want to understand our data,
-we need to look at its aggregate properties.
+we need to look at its aggregate properties.\index{dataframe!aggregation}
 If,
 for example,
 we want to know the average depth and magnitude of our earthquakes,
@@ -698,7 +697,7 @@ but they quickly become habitual.
 \section{In Real Life}\label{s:dataforge-real}
 
 To wrap up our exploration of Data-Forge,
-we will explore data from \url{dataisplural/data.world}
+we will explore data from \url{http://dataisplural/data.world}
 to find the annual recreational visits to national parks in the United States for the last ten years.
 Our strategy is to:
 

@@ -29,14 +29,13 @@ Each unit test can have one of three results:
   error: something went wrong with the test itself
 \end{itemize}
 
-We can combine tests into \gref{g:test-suite}{test suites}
+We can combine tests into \grefdex{g:test-suite}{test suites}{test suite}
 (and test suites into larger suites, and so on)
 so that we can more easily run related sets of tests.
 This makes testing during development faster,
 which in turn makes it more likely that we'll actually do it.
-
 Finally,
-we write the tests themselves using \gref{g:assertion}{assertions}:
+we write the tests themselves using \grefdex{g:assertion}{assertions}{assertion}:
 statements that check whether or not some condition holds
 and generate an error if it doesn't.
 Node provides an \texttt{assert} library with some useful functions for asserting various things;
@@ -45,7 +44,8 @@ we'll explore this as we go along.
 \section{Introducing Mocha}\label{s:testing-mocha}
 
 JavaScript has almost as many testing libraries as it has front-end frameworks.
-We will use one called \href{https://mochajs.org/}{Mocha} that is popular and well documented.
+We will use one called \href{https://mochajs.org/}{Mocha}\index{Mocha}
+that is popular and well documented.
 Unlike the libraries we have seen before,
 we don't import anything to use it;
 instead,
@@ -131,7 +131,7 @@ and runs the files it finds there whose names begin with \texttt{test}
 
 \section{Refactoring}\label{s:testing-refactoring}
 
-The next step is to create testable software.
+The next step is to \gref{g:refactor}{refactor} our software to make it testable.
 In the case of our server,
 we have to:
 
@@ -174,7 +174,7 @@ module.exports = app
 \end{minted}
 
 Before going any further,
-we can check that we haven't broken anything by running:
+we check that we haven't broken anything by running:
 
 \begin{minted}{shell}
 $ node standalone.js
@@ -185,7 +185,7 @@ $ node standalone.js
 All right:
 now that we have extracted the code that's specific to our server,
 how do we test it?
-The answer is yet another library called \href{https://github.com/visionmedia/supertest}{supertest}
+The answer is yet another library called \href{https://github.com/visionmedia/supertest}{supertest}\index{supertest}
 that sends fake HTTP requests to an Express server
 that has been split in the way we just split ours
 and lets us interact with that server's replies.
@@ -306,8 +306,9 @@ as making sure that it provides data when asked to.
 
 \section{Checking the HTML}\label{s:testing-html}
 
-It's increasingly common for servers to return data that is then rendered by the client,
-but some servers still generate HTML.
+It's increasingly common for servers to return data that is rendered by the client
+rather than generating and returning HTML,
+but some servers still do the latter.
 Do \emph{not} try to check this with substrings or regular expressions:
 the exceptions have exceptions,
 and \href{https://stackoverflow.com/a/1732454}{that way lies madness}.
@@ -316,7 +317,7 @@ we should parse the HTML to create a structure in memory and check that;
 if parsing fails because the HTML is badly formatted, that's worth knowing too.
 The structure in question is our new friend the DOM,
 and to get it,
-we will use (yet another) library called \href{https://cheerio.js.org/}{cheerio}.
+we will use (yet another) library called \href{https://cheerio.js.org/}{cheerio}.\index{cheerio}
 \texttt{cheerio.load} turns HTML text into a DOM tree;
 the resulting object can be used like a function,
 and we can use the same selectors we met previously to find things in it.

@@ -1,6 +1,6 @@
 \chapter{Callbacks}\label{s:callbacks}
 
-JavaScript relies heavily on \gref{g:callback-function}{callback functions}:
+JavaScript relies heavily on \grefdex{g:callback-function}{callback functions}{callback function}:
 Instead of a function giving us a result immediately,
 we give it another function that tells it what to do next.
 Many other languages use them as well,
@@ -10,7 +10,7 @@ we must first understand what actually happens when functions are defined and ca
 
 \section{The Call Stack}\label{s:callbacks-callstack}
 
-When JavaScript \gref{g:parse}{parses} the expression \texttt{let\ name\ =\ "text"},
+When JavaScript \grefdex{g:parse}{parses}{parsing} the expression \texttt{let\ name\ =\ "text"},
 it allocates a block of memory big enough for four characters
 and stores a reference to that block of characters in the variable \texttt{name}.
 We can show this by drawing a \gref{g:memory-diagram}{memory diagram}
@@ -53,14 +53,16 @@ console.log(anotherName(5))
 
 Doing this does \emph{not} call the function:
 as \figref{f:callbacks-alias-function} shows,
-it creates a second name that refers to the same block of instructions.
+it creates a second name,
+or \gref{g:alias}{alias},
+that refers to the same block of instructions.
 
 \figpdf{figures/callbacks-alias-function.pdf}{Aliasing a Function}{f:callbacks-alias-function}
 
 As explained in \chapref{s:basics},
 when JavaScript calls a function it assigns the arguments in the call to the function's parameters.
 In order for this to be safe,
-we need to ensure that there are no \gref{g:name-collision}{name collisions},
+we need to ensure that there are no \grefdex{g:name-collision}{name collisions}{name collision},
 i.e.,
 that if there is a variable called \texttt{something} and one of the function's parameters is also called \texttt{something},
 the function will use the right one.
@@ -295,15 +297,17 @@ first: o,t,t
 
 \noindent
 A function that is defined where it is used and isn't assigned a name
-is called an \gref{g:anonymous-function}{anonymous function}.
+is called an \gref{g:anonymous-function}{anonymous function}.\index{function!anonymous}
 Most callback functions in JavaScript are written this way:
 the function with the given parameters and body (in this case, \texttt{x} and \texttt{return x[0]})
 is passed directly to something else (in this case, \texttt{transform}) to be called.
 
 \section{Functional Programming}\label{s:callbacks-functional}
 
-\gref{g:functional-programming}{Functional programming} is a style of programming
-that relies heavily on \gref{g:higher-order-function}{higher-order functions} like \texttt{pipeline}
+\grefdex{g:functional-programming}{Functional programming}{functional programming}\index{programming!functional}
+is a style of programming
+that relies heavily on \grefdex{g:higher-order-function}{higher-order functions}{higher-order function}\index{function!higher-order}
+like \texttt{pipeline}
 that take other functions as parameters.
 In addition,
 functional programming expects that functions won't modify data in place,
@@ -358,9 +362,10 @@ test: 1,2,3
 \end{minted}
 
 JavaScript arrays provide several methods to support functional programming.
-For example,
+For example,\index{array methods!\texttt{some}}
 \texttt{Array.some} returns \texttt{true} if \emph{any} element in an array passes a test,
-while \texttt{Array.every} returns \texttt{true} if \emph{all} elements in an array pass a test.
+while \texttt{Array.every} returns \texttt{true}\index{array methods!\texttt{every}}
+if \emph{all} elements in an array pass a test.
 Here's how they work:
 
 \begin{minted}{js}
@@ -376,7 +381,8 @@ some longer than 3: true
 all longer than 3: false
 \end{minted}
 
-\texttt{Array.filter} creates a new array containing only values that pass a test:
+\texttt{Array.filter}\index{array methods!\texttt{filter}}
+creates a new array containing only values that pass a test:
 
 \begin{minted}{js}
 const data = ['this', 'is', 'a', 'test']
@@ -403,7 +409,8 @@ console.log(`all longer than 3 start with t: ${result}`)
 all longer than 3 start with t: true
 \end{minted}
 
-\texttt{Array.map} creates a new array by calling a function for each element of an existing array:
+\texttt{Array.map}\index{array methods!\texttt{map}}
+creates a new array by calling a function for each element of an existing array:
 
 \begin{minted}{js}
 const data = ['this', 'is', 'a', 'test']
@@ -415,7 +422,7 @@ shortened [ 'th', 'is', 'a', 'te' ]
 \end{minted}
 
 Finally,
-\texttt{Array.reduce} reduces an array to a single value
+\texttt{Array.reduce} reduces an array to a single value\index{array methods!\texttt{reduce}}
 using a combining function and a starting value.
 The combining function must take two values,
 which are the current running total and the next value from the array;
@@ -483,8 +490,7 @@ but this is the style the JavaScript community has settled on.
 
 \section{Closures}\label{s:callbacks-closures}
 
-The last tool we need to introduce is an extremely useful side-effect of the way memory is handled
-called a \gref{g:closure}{closure}.
+The last tool we need to introduce is an extremely useful side-effect of the way memory is handled.
 The easiest way to explain it is by example.
 We have already defined a function called \texttt{pipeline} that chains any number of other functions together:
 
@@ -543,7 +549,7 @@ even though that value isn't referred to any longer by anyone else.
 
 \figpdf{figures/callbacks-adder-3.pdf}{Creating an Adder (Step 3)}{f:callbacks-adder-3}
 
-In steps 4-6,
+In steps 4--6,
 we repeat these three steps to create another function that has a reference to the value 2,
 and assign that function to \texttt{add\_2}
 (\figref{f:callbacks-adder-4}).
@@ -572,6 +578,7 @@ console.log(`adding 1 and 2 to 100 -> ${result}`)
 adding 1 and 2 to 100 -> 103
 \end{minted}
 
+\noindent
 Again, \texttt{adder(1)} and \texttt{adder(2)} do not add anything to anything:
 they define new (unnamed) functions that add 1 and 2 respectively when called.
 
@@ -594,7 +601,7 @@ it doesn't have to be enclosed in \texttt{\{...\}} and \texttt{return} doesn't n
 
 \exercise{Side Effects With \texttt{forEach}}
 
-JavaScript arrays have a method called \texttt{forEach},
+JavaScript arrays have a method called \texttt{forEach},\index{array methods!\texttt{forEach}}
 which calls a callback function once for each element of the array.
 Unlike \texttt{map},
 \texttt{forEach} does \emph{not} save the values returned by these calls

@@ -1,6 +1,6 @@
 \chapter{Introduction}\label{s:intro}
 
-\href{https://www.dabeaz.com/}{David Beazley} thought that ``JavaScript \emph{versus} Data Science''
+\href{https://www.dabeaz.com/}{David Beazley}\index{Beazley, David} thought that ``JavaScript \emph{versus} Data Science''
 would be a better title for this book.
 While that one word sums up how many people view the language,
 we hope we can convince you that modern JavaScript is usable as well as useful.
@@ -41,7 +41,7 @@ some of which are both up-to-date and well designed.
 
 \section{Who You Are}\label{s:intro-personas}
 
-Every lesson should aim to \href{http://teachtogether.tech/en/process/}{meet the needs of specific learners} \cite{Wils2018}.
+Every lesson should aim to \href{http://teachtogether.tech/en/process/}{meet the needs of specific learners} \cite{Wils2019}.
 The three people described below define the intended audience for this one.
 
 \begin{description}
@@ -116,7 +116,7 @@ but are too driven and excited to care.
 \noindent
 \textbf{\href{https://tbyhdgs.info/}{Toby Hodges}} is a bioinformatician turned community
 coordinator, working on the \href{https://bio-it.embl.de}{Bio-IT Project} at
-\href{https://www.embl.de}{EMBL}. He teaches a lot of courses in computing, organizes
+\href{https://www.embl.de}{EMBL}\index{EMBL}. He teaches a lot of courses in computing, organizes
 a lot of community-building events, listens to a lot of punk rock, and
 occasionally still finds time to write code and ride his bike. Toby would like
 to thank his wife for her support and patience while he swore about how annoying
@@ -129,9 +129,9 @@ JavaScript is to debug.
 \noindent
 \textbf{\href{http://third-bit.com/}{Greg Wilson}} has worked for 35 years in both industry and
 academia, and is the author or editor of several books on computing and two for
-children. He co-founded \href{http://carpentries.org}{Software Carpentry}, a non-profit
+children. He co-founded \href{http://carpentries.org}{Software Carpentry}\index{Software Carpentry}, a non-profit
 organization that teaches basic computing skills to researchers, and is now part
-of the education team at \href{http://rstudio.com}{RStudio}. Greg would like to
+of the education team at \href{http://rstudio.com}{RStudio}\index{RStudio}. Greg would like to
 thank everyone at \href{https://rangle.io/}{Rangle} who was so patient with him when
 he was learning JavaScript.
 
@@ -141,20 +141,21 @@ The exercises at the end of each chapter include new information
 that you will need later in the book,
 and are therefore not optional.
 You can do the first few online,
-using a service like \href{https://runkit.com/}{RunKit},
+using a service like \href{https://runkit.com/}{RunKit}\index{RunKit},
 which gives you an interactive JavaScript playground in your browser.
 For larger things,
 and for chapters starting with the one on creating dynamic web pages (\chapref{s:dynamic}),
 you should \href{https://nodejs.org/en/download/}{download and install} the latest Long-term Support (LTS) versions of Node and NPM.
 
-\gref{g:node-js}{Node} is an open source implementation of JavaScript
+\gref{g:node-js}{Node}\index{Node} is an open source implementation of JavaScript
 that includes a command-line interpreter like those for languages such as Python and R.
 The command \texttt{node} on its own starts a \gref{g:repl}{read-evaluate-print loop}
 that executes commands as they are typed in and displays their output.
 The command \texttt{node\ filename.js} reads and runs the commands in \texttt{filename.js};
 we will see in \chapref{s:pages} how to run JavaScript in a browser.
 
-\texttt{npm} is the Node \gref{g:package-manager}{Package Manager},
+\texttt{npm}\index{npm|texttt}\index{Node Package Manager (\texttt{npm})}
+is the Node \grefdex{g:package-manager}{Package Manager}{package manager},
 a command-line tool for finding, installing, updating, building, and executing JavaScript libraries.
 The command \texttt{npm\ install\ -\/-global\ library-name} (without a \texttt{.js} extension)
 installs a library \gref{g:global-installation}{globally} so that all projects can use it,

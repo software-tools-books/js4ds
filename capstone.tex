@@ -25,8 +25,7 @@ but will mostly recapitulate what's come before.
 \section{Data Manager}\label{s:capstone-data}
 
 We could use exactly the same data manager as the one we built in \chapref{s:dataman},
-but let's apply our new-found knowledge of the Data-Forge library instead
-and adapt the code to use dataframes.
+but let's apply our new-found knowledge of the Data-Forge library instead.\index{Data-Forge}
 As a reminder,
 the key class in our data manager is:
 
@@ -192,9 +191,9 @@ if it actually exists in the first place:
 \section{Server}\label{s:capstone-server}
 
 The server is going to be almost the same as the one in \chapref{s:server}.
-However, we need to connect it to the data manager class.
-We'll do this by having the driver create a data manager,
-and then pass that data manager to the server as the latter is being created:
+However, we need to connect it to the data manager.
+We'll do this by having the driver create a data manager
+and then pass that data manager to the server when the latter is created:
 
 \begin{minted}{js}
 const DataManager = require('./data-manager')
@@ -243,7 +242,7 @@ we'll be able to send database queries to \texttt{dataManager}.
 This variable is global within this file,
 but since it's not exported,
 it's invisible outside.
-Variables like this are called \gref{g:module-variable}{module variables},
+Variables like this are called \grefdex{g:module-variable}{module variables}{module variable},
 and give us a way to share information among the functions in a module
 without giving anything outside the module a way to cause (direct) harm to that information.
 
@@ -252,8 +251,8 @@ without giving anything outside the module a way to cause (direct) harm to that 
 The next step is to decide what our server's API will be,
 i.e.,
 what URLs it will understand and what data they will fetch.
-\texttt{GET\ /survey/stats} will get summary statistics as a single JSON record,
-and \texttt{GET\ /survey/:start/:end} gets aggregate values for a range of years.
+\texttt{GET /survey/stats} will get summary statistics as a single JSON record,
+and \texttt{GET /survey/:start/:end} gets aggregate values for a range of years.
 (We will add error checking on the year range as an exercise.)
 Anything else will return a 404 error code and a snippet of HTML telling us we're bad people.
 We will put this code in \texttt{server.js} and a command-line driver in \texttt{driver.js} for testability.
@@ -520,7 +519,7 @@ which are all stateless components
 We will display survey stats as tables,
 with a paragraph fallback when there's no data.
 First, we display summary statistics for the whole data set
-(as returned by the \texttt{GET\ /survey/stats} query we wrote a handler for earlier)
+(as returned by the \texttt{GET /survey/stats} query we wrote a handler for earlier)
 as a table at the top of the page.
 (Again, we need parentheses around the HTML fragment so that it will parse properly.)
 
@@ -546,7 +545,7 @@ export default SurveyStats
 \end{minted}
 
 Next, we display aggregated statistics for a given range of years
-(the \texttt{GET\ /survey/:start/:end} query)
+(the \texttt{GET /survey/:start/:end} query)
 in another table.
 
 \begin{minted}{js}
@@ -595,8 +594,8 @@ We do the same when plotting the data.
 
 \section{The Chart}\label{s:capstone-chart}
 
-We initially tried using Vega-Lite directly for the chart,
-but after a few failures and some googling,
+We initially tried using Vega-Lite directly for the chart,\index{Vega-Lite}
+but after a few failures and some online searching,
 we switched to \texttt{react-vega-lite}:
 Vega-Lite's \texttt{vega-embed} wants to modify an existing DOM element when called,
 while \texttt{react-vega-lite} constructs an element to be put in place at the right time,
@@ -660,7 +659,7 @@ The other components are similar to those we have seen before.
 
 In order to test our application,
 we need to run a data server,
-and then launch our application with Parcel.
+and then launch our application with Parcel.\index{Parcel}
 The easiest way to do that is to open two windows on our computer
 and make each half the width (or height) of our screen
 so that we can see messages from both halves of what we're doing.
@@ -714,7 +713,7 @@ The ``Learn More'' link given with the error message takes us to
 \href{https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS/Errors/CORSMissingAllowOrigin}{this page},
 which uses many science words we don't know.
 A web search turns up \href{https://en.wikipedia.org/wiki/Cross-origin_resource_sharing}{this article on Wikipedia},
-which tells us that \gref{g:cors}{Cross-origin resource sharing} (CORS)
+which tells us that \gref{g:cors}{cross-origin resource sharing} (CORS)\index{CORS}
 is a security mechanism.
 If a page loads some JavaScript,
 and that JavaScript is allowed to send requests to servers other than the one that the page came from,

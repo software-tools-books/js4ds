@@ -23,7 +23,7 @@ Y must end before X ends,
 so \texttt{\htmltag{X}{\ldots}\htmltag{Y}{\ldots}\htmltag{/Y}\htmltag{/X}} is legal,
 but \texttt{\htmltag{X}{\ldots}\htmltag{Y}{\ldots}\htmltag{/X}\htmltag{/Y}} is not.
 Finally,
-every document should have a single \gref{g:root-element}{root element} that encloses everything else,
+every document should have a single \gref{g:root-element}{root element}\index{element!root} that encloses everything else,
 although browsers aren't strict about enforcing this.
 In fact,
 most browsers are pretty relaxed about enforcing any kind of rules at all,
@@ -34,7 +34,7 @@ since most people don't obey them anyway.
 The text in an HTML page is normal printable text.
 However,
 since \texttt{{\textless}} and \texttt{{\textgreater}} are used to show where tags start and end,
-we must use \gref{g:escape-sequence}{escape sequences} to represent them,
+we must use \grefdex{g:escape-sequence}{escape sequences}{escape sequence} to represent them,
 just as we use \texttt{\textbackslash{}"} to represented a literal double-quote character
 inside a double-quoted string in JavaScript.
 In HTML,
@@ -72,9 +72,9 @@ An HTML page should have:
 \item
   a single \texttt{html} element that encloses everything else
 \item
-  a single \texttt{head} element that contains information about the page
+  a single \texttt{head} element that contains information about the page\index{head (of HTML page)}
 \item
-  a single \texttt{body} element that contains the content to be displayed
+  a single \texttt{body} element that contains the content to be displayed.\index{body!of HTML page}
 \end{itemize}
 
 It doesn't matter whether or how we indent the tags showing these elements and the content they contain,
@@ -130,7 +130,7 @@ so let's add a little content:
   This is displayed in the browser bar when the page is open,
   but is \emph{not} displayed as part of the page itself.
 \item
-  The \texttt{h1} element is a level-1 heading;
+  The \texttt{h1} element is a level-1 heading;\index{heading (in HTML)}
   we can use \texttt{h2}, \texttt{h3}, and so on to create sub-headings.
 \item
   The \texttt{p} element is a paragraph.
@@ -146,7 +146,7 @@ so let's add a little content:
 
 \section{Attributes}\label{s:htmlcss-attributes}
 
-Elements can be customized by giving them \gref{g:attribute}{attributes},
+Elements can be customized by giving them \grefdex{g:attribute}{attributes}{attribute},
 which are written as \texttt{name="value"} pairs inside the element's opening tag.
 For example:
 
@@ -190,7 +190,7 @@ we can even sometimes just get away with \texttt{name} on its own.
 
 Headings and paragraphs are all very well,
 but data scientists need more.
-To create an unordered (bulleted) list,
+To create an unordered (bulleted) list,\index{list (in HTML page)}
 we use a \texttt{ul} element,
 and wrap each item inside the list in \texttt{li}.
 To create an ordered (numbered) list,
@@ -278,7 +278,7 @@ Lists are a great way to get started,
 but if we \emph{really} want to impress people with our data science skills,
 we need tables.
 Unsurprisingly,
-we use the \texttt{table} element to create these.
+we use the \texttt{table} element to create these.\index{table (in HTML page)}
 Each row is a \texttt{tr} (for ``table row''),
 and within rows,
 column items are shown with \texttt{td} (for ``table data'')
@@ -306,7 +306,7 @@ there's a better way.
 
 \section{Links}\label{s:htmlcss-links}
 
-Links to other pages are what makes HTML hypertext.
+Links to other pages are what makes HTML hypertext.\index{link!in HTML page}
 Confusingly,
 the element used to show a link is called \texttt{a}.
 The text inside the element is displayed and (usually) highlighted for clicking.
@@ -340,7 +340,7 @@ with the usual clickability.
 
 \section{Images}\label{s:htmlcss-images}
 
-Images can be stored inside HTML pages in two ways:
+Images can be stored inside HTML pages in two ways:\index{image (in HTML page)}
 by using SVG (which we will discuss in \chapref{s:vis})
 or by encoding the image as text and including that text in the body of the page,
 which is clever,
@@ -353,7 +353,7 @@ The \texttt{src} attribute of the \texttt{img} tag specifies where to find the f
 as with the \texttt{href} attribute of an \texttt{a} element,
 this can be either a URL or a local path.
 Every \texttt{img} should also include a \texttt{title} attribute (whose purpose is self-explanatory)
-and an \texttt{alt} attribute with some descriptive text to aid accessibility and search engines.
+and an \texttt{alt} attribute with some descriptive text to aid accessibility and search engines.\index{accessibility (in HTML page)}
 (Again, we have wrapped and broken lines so that they will display nicely in the printed version.)
 
 \begin{minted}{html}
@@ -376,11 +376,13 @@ Two things to note here are:
   but some software packages will complain.
 \item
   If an image file is referred to using a path rather than a URL,
-  that path can be either \gref{g:relative-path}{relative} or \gref{g:absolute-path}{absolute}.
+  that path can be either \grefdex{g:relative-path}{relative}{relative path}\index{path!relative}
+  or \grefdex{g:absolute-path}{absolute}{absolute path}\index{path!absolute}.
   If it's a relative path,
   it's interpreted starting from where the web page is located;
   if it's an absolute path,
-  it's interpreted relative to wherever the web browser thinks the \gref{g:root-directory}{root directory} of the filesystem is.
+  it's interpreted relative to wherever the web browser thinks
+  the \gref{g:root-directory}{root directory} of the filesystem is.
   As we will see in \chapref{s:server},
   this can change from one installation to the next,
   so you should always try to use relative paths,
@@ -405,12 +407,12 @@ When HTML first appeared, people styled elements by setting their attributes:
 \end{minted}
 
 Many still do,
-but a better way is to use \gref{g:css}{Cascading Style Sheets} (CSS).
+but a better way is to use \gref{g:css}{Cascading Style Sheets} (CSS).\index{CSS}
 These allow us to define a style once and use it many times,
 which makes it much easier to maintain consistency.
-(I was going to say ``{\ldots}and keep pages readable'',
+(We were going to say ``{\ldots}and keep pages readable'',
 but given how complex CSS can be,
-that's not a claim I feel I can make.)
+that's not a claim we feel we can make.)
 Here's a page that uses CSS instead of direct styling:
 
 \begin{minted}{html}
@@ -428,11 +430,12 @@ Here's a page that uses CSS instead of direct styling:
 </html>
 \end{minted}
 
-The \texttt{head} contains a link to a CSS file stored in the same directory as the page itself;
+The \texttt{head} contains a link to an \gref{g:external-style-sheet}{external style sheet}\index{style sheet!external}
+stored in the same directory as the page itself;
 we could use a URL here instead of a relative path,
 but the \texttt{link} element \emph{must} have the \texttt{rel="stylesheet"} attribute.
 Inside the page,
-we then set the \texttt{class} attribute of each element we want to style.
+we then set the \texttt{class} attribute of each element we want to style.\index{class!in HTML}
 
 The file \texttt{simple-style.css} looks like this:
 
@@ -485,7 +488,7 @@ likely to work often with stylesheets read (and consider bookmarking)
 \href{https://www.w3schools.com/css/css_specificity.asp}{this W3Schools page}.
 
 One other thing CSS can do is match specific elements.
-We can label particular elements uniquely within a page using the \texttt{id} attribute,
+We can label particular elements uniquely within a page using the \texttt{id} attribute,\index{element!ID}
 then refer to those elements using \texttt{\#name} as a \gref{g:selector}{selector}.
 For example,
 if we create a page that gives two spans unique IDs:
@@ -519,7 +522,7 @@ then we can style those spans like this:
 \end{minted}
 
 \begin{aside}{Internal Links}
-  We can also link directly to an element within a page using \texttt{\#name}
+  We can also link directly to an element within a page using \texttt{\#name}\index{link!internal}
   inside the \texttt{href} attribute of a link.
   For example,
   \texttt{{\textless}a\ href="selectors.html\#major"{\textgreater}some\ text\htmltag{/a}}
@@ -536,7 +539,7 @@ then we can style those spans like this:
 
 CSS can become very complicated very quickly,
 so most people use a framework to take care of the details.
-One of the most popular is \href{https://getbootstrap.com/}{Bootstrap}
+One of the most popular is \href{https://getbootstrap.com/}{Bootstrap}\index{Bootstrap}
 (which is what we're using to style this website).
 Here's the entire source of a page that uses Bootstrap
 to create a two-column layout with a banner at the top:
@@ -583,10 +586,11 @@ to create a two-column layout with a banner at the top:
 
 The page opens by loading Bootstrap from the web;
 we can also download \texttt{bootstrap.min.css} and refer to it with a local path.
-(The \texttt{.min} in the file's name signals that the file has been \gref{g:minimization}{minimized}
+(The \texttt{.min} in the file's name signals that the file has been \grefdex{g:minimization}{minimized}{minimization}
 so that it will load more quickly.)
 
-The page then uses a \texttt{style} element to create an \gref{g:internal-style-sheet}{internal style sheet}
+The page then uses a \texttt{style} element to create
+an \gref{g:internal-style-sheet}{internal style sheet}\index{style sheet!internal}
 to put a solid one-pixel border around every \texttt{div}
 so that we can see the regions of the page more clearly.
 Defining styles in the page header is generally a bad idea,
@@ -603,7 +607,7 @@ Inside that container is a row with two columns,
 one 4/12 as wide as the row and the other 8/12 as wide.
 (Bootstrap uses a 12-column system because 12 has lots of divisors.)
 
-Bootstrap is \gref{g:responsive-design}{responsive}:
+Bootstrap is \grefdex{g:responsive-design}{responsive}{responsive design}:
 elements change size as the page grows narrower,
 and are then stacked when the screen becomes too small to display them side by side.
 

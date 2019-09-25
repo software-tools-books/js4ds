@@ -1,6 +1,6 @@
 \chapter{Interactive Sites}\label{s:interactive}
 
-Browsers allow us to define \gref{g:event-handler}{event handlers}
+Browsers allow us to define \grefdex{g:event-handler}{event handlers}{event handler}
 to specify what to do in response to an externally-triggered action,
 such as a page loading or a user pressing a button.
 These event handlers are just callback functions
@@ -223,14 +223,14 @@ Parcel runs this without complaint,
 but clicking on the button doesn't change the display.
 Despair is once again our friend---our \emph{only} friend---but we persevere.
 When we open the debugging console in the browser,
-we see the message \texttt{TypeError:\ this\ is\ undefined}.
+we see the message \texttt{TypeError: this is undefined}.
 \secref{s:legacy-prototypes} explains in detail why this happens;
-for now, suffice to say that some poor choices were made early in JavaScript's development about variable scoping.
+for now,
+suffice to say that some poor choices were made early in JavaScript's development about variable scoping.
 
 At this point it appears that we can compile but not run, or not bundle files together.
-But wait:
-when we used an in-page script, we specified the type as \texttt{text/babel}
-and loaded:
+But wait---when we used an in-page script,
+we specified the type as \texttt{text/babel} and loaded:
 
 \begin{minted}{text}
 https://unpkg.com/babel-standalone@6/babel.js
@@ -238,7 +238,7 @@ https://unpkg.com/babel-standalone@6/babel.js
 
 \noindent
 in the page header along with React.
-Can Babel save us?
+Can Babel save us?\index{Babel!configuration}
 
 The answer is ``yes'',
 though it takes a fair bit of searching on the web to find this out
@@ -278,8 +278,8 @@ so we will press on.
 
 \section{Models and Views}\label{s:interactive-models-views}
 
-Well-designed applications separate models (which store data)
-from views (which display it)
+Well-designed applications separate \grefdex{g:model}{models}{model} (which store data)
+from \grefdex{g:view}{views}{view} (which display it)
 so that each can be tested and modified independently.
 When we use React,
 the models are typically classes,
@@ -539,7 +539,7 @@ const AsteroidList = (props) => {
 export {AsteroidList}
 \end{minted}
 
-\texttt{React} will complain if we don't provide a unique key
+\texttt{React} will complain if we don't provide a unique key\index{React!need for unique keys}
 to distinguish elements that we create,
 since having these keys helps it keep track of the component-to-DOM relationship,
 which in turn \href{https://stackoverflow.com/questions/28329382/understanding-unique-keys-for-array-children-in-react-js}{makes updates much more efficient}.
@@ -688,7 +688,7 @@ the user could type \texttt{abc123} as a date
 and we would blithely try to process it.
 
 It's now time to get real data,
-which we will do using \texttt{fetch} with a URL.
+which we will do using \texttt{fetch} with a URL.\index{fetch|texttt}
 This returns a promise (\chapref{s:promises}),
 so we'll handle the result of the fetch in the promise's \texttt{then} method,
 and then chain another \texttt{then} method to transform the data into what we need:

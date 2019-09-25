@@ -2,16 +2,15 @@
 
 Now that we have a data manager (\chapref{s:dataman})
 the next step is to create a server to share our data with the world,
-which we will build using a library called \href{https://expressjs.org/}{Express}.
+which we will build using a library called \href{https://expressjs.org/}{Express}.\index{Express}
 Before we start writing code,
 though,
 we need to understand how computers talk to each other.
 
 \section{HTTP}\label{s:server-http}
 
-Almost everything on the web communicates via \gref{g:http}{HTTP},
-which stands for HyperText Transfer Protocol.
-The core of HTTP is a \gref{g:http-request}{request}/\gref{g:http-response}{response} cycle
+Almost everything on the web communicates via the HyperText Transfer Protocol (\gref{g:http}{HTTP}).
+The core of HTTP is a \grefdex{g:http-request}{request}{HTTP!request}/\grefdex{g:http-response}{response}{HTTP!response} cycle
 that specifies the kinds of requests applications can make of servers,
 how they exchange data,
 and so on.
@@ -57,7 +56,7 @@ An HTTP request is just a block of text with two important parts:
   it's completely up to the server to interpret it.
 \end{itemize}
 
-The request can also contain \gref{g:http-header}{headers},
+The request can also contain \grefdex{g:http-header}{headers}{HTTP!header},\index{header (HTTP)}
 which are key-value pairs with more information about what the client wants.
 Some examples include:
 
@@ -73,7 +72,7 @@ Some examples include:
 \noindent
 (Unlike a dictionary, a key may appear any number of times,
 which allows a request to do things like specify that it's willing to accept several types of content.
-The \gref{g:body-http}{body} of the request is any extra data associated with it,
+The \grefdex{g:body-http}{body}{body!of HTTP request} of the request is any extra data associated with it,
 such as files that are being uploaded.
 If a body is present,
 the request must contain the \texttt{Content-Length} header
@@ -84,7 +83,8 @@ so that the server knows how much data to read
 
 The headers and body in an HTTP response have the same form, and mean the same thing.
 Crucially,
-the response also includes a status code to indicate what happened:
+the response also includes a \grefdex{g:http-status-code}{status code}{HTTP!status code}\index{status code (HTTP)}
+to indicate what happened:
 200 for OK, 404 for ``page not found'', and so on.
 Some of the more common are shown in \tblref{t:server-codes}.
 
@@ -136,7 +136,7 @@ has five parts:
 \item
   The path \texttt{/some/path} tells the server what the client wants.
 \item
-  The \gref{g:query-parameter}{query parameters} \texttt{value=deferred} and \texttt{limit=200}.
+  The \grefdex{g:query-parameter}{query parameters}{query parameter} \texttt{value=deferred} and \texttt{limit=200}.
   These come after a question mark and are separated by ampersands,
   and are used to provide extra information.
 \end{itemize}

@@ -4,8 +4,8 @@ Tables and lists are great, but visualizations are often more effective---if
 they're well designed and your audience is sighted, that is.
 There are even more ways to visualize data in the browser
 than there are front-end toolkits for JavaScript.
-We have chosen to use \href{http://vega.github.io/}{Vega-Lite},
-which is a \gref{g:declarative}{declarative} framework:
+We have chosen to use \href{http://vega.github.io/}{Vega-Lite},\index{Vega-Lite}
+which is a \gref{g:declarative}{declarative} framework:\index{programming!declarative}
 as a user,
 you specify the data and settings,
 and let the library take care of everything else.
@@ -265,9 +265,9 @@ Our hearts break when we open \texttt{http://localhost:4000} in our browser and 
 Looking in the browser console,
 we see a message telling us that \texttt{vegaEmbed} is not a function.
 
-What we have tripped over is something that's still painful in 2018.
+What we have tripped over is something that's still painful in 2019.
 The old method of getting libraries is \texttt{require},
-and that's still what Node supports as of Version 10.9.0.
+and that's still what Node supports as of Version~10.9.0.
 The new standard is \texttt{import},
 which allows a module to define a default value so that \texttt{import\ 'something'} gets a function, a class, or whatever.
 This is really handy, but \texttt{require} doesn't work that way.
