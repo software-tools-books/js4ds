@@ -121,10 +121,14 @@
 \newcommand{\secref}[1]{Section~\ref{#1}}
 \newcommand{\tblref}[1]{Table~\ref{#1}}
 
-% Image figures.
+% Image figures - dropped '[width=\textwidth]'.
+\makeatletter
+\define@key{Gin}{resolution}{\pdfimageresolution=#1\relax}
+\makeatother
+
 \newcommand{\figimg}[3]{\begin{figure}%
 \centering%
-\includegraphics[width=\textwidth]{#1}%
+\includegraphics[resolution=300]{#1}%
 \caption{#2}%
 \label{#3}%
 \end{figure}}
