@@ -44,7 +44,7 @@ we'll explore this as we go along.
 \section{Introducing Mocha}\label{s:testing-mocha}
 
 JavaScript has almost as many testing libraries as it has front-end frameworks.
-We will use one called \href{https://mochajs.org/}{Mocha}\index{Mocha}
+We will use one called \hreffoot{https://mochajs.org/}{Mocha}\index{Mocha}
 that is popular and well documented.
 Unlike the libraries we have seen before,
 we don't import anything to use it;
@@ -185,7 +185,7 @@ $ node standalone.js
 All right:
 now that we have extracted the code that's specific to our server,
 how do we test it?
-The answer is yet another library called \href{https://github.com/visionmedia/supertest}{supertest}\index{supertest}
+The answer is yet another library called \hreffoot{https://github.com/visionmedia/supertest}{supertest}\index{supertest}
 that sends fake HTTP requests to an Express server
 that has been split in the way we just split ours
 and lets us interact with that server's replies.
@@ -311,13 +311,13 @@ rather than generating and returning HTML,
 but some servers still do the latter.
 Do \emph{not} try to check this with substrings or regular expressions:
 the exceptions have exceptions,
-and \href{https://stackoverflow.com/a/1732454}{that way lies madness}.
+and \hreffoot{https://stackoverflow.com/a/1732454}{that way lies madness}.
 Instead,
 we should parse the HTML to create a structure in memory and check that;
 if parsing fails because the HTML is badly formatted, that's worth knowing too.
 The structure in question is our new friend the DOM,
 and to get it,
-we will use (yet another) library called \href{https://cheerio.js.org/}{cheerio}.\index{cheerio}
+we will use (yet another) library called \hreffoot{https://cheerio.js.org/}{cheerio}.\index{cheerio}
 \texttt{cheerio.load} turns HTML text into a DOM tree;
 the resulting object can be used like a function,
 and we can use the same selectors we met previously to find things in it.

@@ -48,7 +48,7 @@ but the simple high-level ideas often don't make sense unless you understand how
 
 In order for any of what follows to make sense,
 it's vital to understand JavaScript's \gref{g:event-loop}{event loop},
-a full explanation of which can be found \href{https://nodejs.org/en/docs/guides/event-loop-timers-and-nexttick/}{here}.
+a full explanation of which can be found \hreffoot{https://nodejs.org/en/docs/guides/event-loop-timers-and-nexttick/}{here}.
 Most functions execute in order:
 
 \begin{minted}{js}
@@ -146,7 +146,7 @@ Why bother doing this?
 Because we may want to give something else a chance to run.
 In particular,
 file I/O and anything involving a network request are incredibly slow from a computer's point of view.
-\href{http://exple.tive.org/blarg/2018/08/15/time-dilation/}{If a single CPU cycle was one second long},
+\hreffoot{http://exple.tive.org/blarg/2018/08/15/time-dilation/}{If a single CPU cycle was one second long},
 then getting data from RAM would take several minutes,
 getting it from a solid-state disk would take six to eight days,
 and getting it over the network is the equivalent of eight years.

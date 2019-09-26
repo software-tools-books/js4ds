@@ -94,7 +94,7 @@ using expressions like \texttt{colors[1].red}.
 \section{Slicing Data}\label{s:dataman-slicing}
 
 The data we will use as an example is available in a variety of formats
-from \url{https://figshare.com/articles/Portal_Project_Teaching_Database/1314459}.
+from the \hreffoot{https://figshare.com/articles/Portal\_Project\_Teaching\_Database/1314459}{Portal Project Teaching Database}.
 We will focus on \texttt{surveys.csv},
 which has over 35,500 records.
 That's a lot to look at,
@@ -192,7 +192,7 @@ we decide that our data manager will be able to answer two questions:
   to particular columns.
 \end{enumerate}
 
-We will use \href{https://www.papaparse.com/}{PapaParse}\index{PapaParse} to parse our CSV,
+We will use \hreffoot{https://www.papaparse.com/}{PapaParse}\index{PapaParse} to parse our CSV,
 so our first step is to install it:
 
 \begin{minted}{shell}
@@ -382,7 +382,7 @@ Given the same initial \gref{g:seed}{seed},
 a pseudo-random number generator will always produce the same sequence of values.
 
 There is no way to set a seed for \texttt{Math.random} out of the box,
-but the \href{https://www.npmjs.com/package/seedrandom}{seedrandom} package provides an add-on function for this purpose.
+but the \hreffoot{https://www.npmjs.com/package/seedrandom}{seedrandom} package provides an add-on function for this purpose.
 Install the package and modify the slice selection utility
 so that it takes a word or phrase as a command-line argument
 and uses it to seed the random number generator.
@@ -421,7 +421,7 @@ and the method will automatically create the right names and values in its resul
 \exercise{Handling Command-Line Arguments}
 
 Read the documentation for
-the \href{https://www.npmjs.com/package/command-line-args}{\texttt{command-line-args}} package
+the \hreffoot{https://www.npmjs.com/package/command-line-args}{\texttt{command-line-args}} package
 and rewrite the data slicing script to use it instead of \texttt{process.argv.slice}.
 
 \section*{Key Points}

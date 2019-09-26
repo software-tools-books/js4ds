@@ -11,8 +11,8 @@ This is called \gref{g:server-page-gen}{server-side page generation}:
 the HTML is generated on the \gref{g:server}{server},
 and it was popular because that's where the data was,
 and that was the only place complex code could be run.
-(This tutorial uses a templating tool called \href{https://jekyllrb.com/}{Jekyll}.
-It's clumsy and limited, but it's the default on \href{http://github.com/}{GitHub}.)
+(This tutorial uses a templating tool called \hreffoot{https://jekyllrb.com/}{Jekyll}.
+It's clumsy and limited, but it's the default on \hreffoot{http://github.com/}{GitHub}.)
 
 Server-side generation can be done statically or dynamically,
 i.e.,
@@ -37,7 +37,7 @@ which lowers the cost of providing data.
 
 Many (many) JavaScript frameworks for client-side page generation have been created,
 and more are probably being developed right now.
-We have chosen \href{https://reactjs.org/}{React}\index{React} because it is freely available,
+We have chosen \hreffoot{https://reactjs.org/}{React}\index{React} because it is freely available,
 widely used,
 well documented,
 simpler than many alternatives,
@@ -140,7 +140,7 @@ the mechanism is seductively easy to use:
 \section{JSX}\label{s:dynamic-jsx}
 
 Writing nested functions is a clumsy way to write HTML,
-so most React programmers use a tool called \href{https://reactjs.org/docs/introducing-jsx.html}{JSX}\index{JSX}
+so most React programmers use a tool called \hreffoot{https://reactjs.org/docs/introducing-jsx.html}{JSX}\index{JSX}
 that translates HTML into JavaScript function calls.
 And yes,
 those JavaScript function calls then produce HTML---it's a funny world.
@@ -169,7 +169,7 @@ Here's an example:
 \end{minted}
 
 Along with the two React libraries,
-this page includes a tool called \href{https://babeljs.io/}{Babel}\index{Babel}
+this page includes a tool called \hreffoot{https://babeljs.io/}{Babel}\index{Babel}
 to translate a mixed of HTML and JavaScript into pure JavaScript.
 To trigger translation,
 we add the attribute \texttt{type="text/babel"} to the \texttt{script} tag.
@@ -299,9 +299,9 @@ which bundler to choose?
 As with front-end frameworks,
 there are many to choose from,
 and new ones are being added almost weekly.
-\href{https://webpack.js.org/}{Webpack}\index{Webpack} is probably the most widely used,
+\hreffoot{https://webpack.js.org/}{Webpack}\index{Webpack} is probably the most widely used,
 but it is rather complex,
-so we will use \href{https://parceljs.org/}{Parcel},\index{Parcel}
+so we will use \hreffoot{https://parceljs.org/}{Parcel},\index{Parcel}
 which is younger and therefore not yet bloated
 (but give it time).
 
@@ -362,7 +362,7 @@ When we ask Parcel to serve an application, it:
 Parcel also caches things in \texttt{./.cache} so that it doesn't need to do redundant work;
 both directories are normally added to \texttt{.gitignore}.
 To learn more about Parcel,
-see \href{https://medium.com/codingthesmartway-com-blog/getting-started-with-parcel-197eb85a2c8c}{this short tutorial}.
+see \hreffoot{https://medium.com/codingthesmartway-com-blog/getting-started-with-parcel-197eb85a2c8c}{this short tutorial}.
 
 \figpdf{figures/dynamic-parcel.pdf}{What Goes Where with Parcel}{f:dynamic-parcel}
 
