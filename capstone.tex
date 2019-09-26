@@ -66,9 +66,9 @@ and makes things comparatively easy to read:
 \begin{minted}{js}
 getSurveyStats () {
   return {
-    year_low : this.data.deflate(row => row.year).min(),
-    year_high : this.data.deflate(row => row.year).max(),
-    record_count : this.data.count()
+    year_low: this.data.deflate(row => row.year).min(),
+    year_high: this.data.deflate(row => row.year).max(),
+    record_count: this.data.count()
   }
 }
 \end{minted}
@@ -81,17 +81,17 @@ getSurveyRange (minYear, maxYear) {
     .fill(0)
     .map((v, i) => minYear + i)
     .map(year => {
-    const subset = this.data.where(row => row.year === year)
+    const subset = this.data.where(r => r.year === year)
     if (subset.count()) {
       return {
-        key  : toString(year),
-        year : year,
-        min_hindfoot_length : subset.deflate(row => row.hindfoot_length).min(),
-        ave_hindfoot_length : subset.deflate(row => row.hindfoot_length).average(),
-        max_hindfoot_length : subset.deflate(row => row.hindfoot_length).max(),
-        min_weight : subset.deflate(row => row.weight).min(),
-        ave_weight : subset.deflate(row => row.weight).average(),
-        max_weight : subset.deflate(row => row.weight).max()
+        key: toString(year),
+        year: year,
+        min_hindfoot_length: subset.deflate(r => r.hindfoot_length).min(),
+        ave_hindfoot_length: subset.deflate(r => r.hindfoot_length).average(),
+        max_hindfoot_length: subset.deflate(r => r.hindfoot_length).max(),
+        min_weight: subset.deflate(r => r.weight).min(),
+        ave_weight: subset.deflate(r => r.weight).average(),
+        max_weight: subset.deflate(r => r.weight).max()
       }
     }
   })
@@ -114,14 +114,20 @@ that we're interested in (weight and hindfoot length):
 // ...as before...
       if (subset.count()) {
         return {
-          key  : toString(year),
-          year : year,
-          min_hindfoot_length : subset.where(row => !isNaN(row.hindfoot_length)).deflate(row => row.hindfoot_length).min(),
-          ave_hindfoot_length : subset.where(row => !isNaN(row.hindfoot_length)).deflate(row => row.hindfoot_length).average(),
-          max_hindfoot_length : subset.where(row => !isNaN(row.hindfoot_length)).deflate(row => row.hindfoot_length).max(),
-          min_weight : subset.where(row => !isNaN(row.weight)).deflate(row => row.weight).min(),
-          ave_weight : subset.where(row => !isNaN(row.weight)).deflate(row => row.weight).average(),
-          max_weight : subset.where(row => !isNaN(row.weight)).deflate(row => row.weight).max()
+          key: toString(year),
+          year: year,
+          min_hindfoot_length: subset.where(r => !isNaN(r.hindfoot_length))
+                                     .deflate(r => r.hindfoot_length).min(),
+          ave_hindfoot_length: subset.where(r => !isNaN(r.hindfoot_length))
+                                     .deflate(r => r.hindfoot_length).average(),
+          max_hindfoot_length: subset.where(r => !isNaN(r.hindfoot_length))
+                                     .deflate(r => r.hindfoot_length).max(),
+          min_weight: subset.where(r => !isNaN(r.weight))
+                            .deflate(r => r.weight).min(),
+          ave_weight: subset.where(r => !isNaN(r.weight))
+                            .deflate(r => r.weight).average(),
+          max_weight: subset.where(r => !isNaN(r.weight))
+                            .deflate(r => r.weight).max()
         }
       }
 // ...as before...
@@ -147,14 +153,14 @@ if it actually exists in the first place:
       const subset = this.data.where(row => row.year === year)
       if (subset.count()) {
         return {
-          key  : toString(year),
-          year : year,
-          min_hindfoot_length : this._getMin(subset, 'hindfoot_length'),
-          ave_hindfoot_length : this._getAve(subset, 'hindfoot_length'),
-          max_hindfoot_length : this._getMax(subset, 'hindfoot_length'),
-          min_weight : this._getMin(subset, 'weight'),
-          ave_weight : this._getAve(subset, 'weight'),
-          max_weight : this._getMax(subset, 'weight')
+          key: toString(year),
+          year: year,
+          min_hindfoot_length: this._getMin(subset, 'hindfoot_length'),
+          ave_hindfoot_length: this._getAve(subset, 'hindfoot_length'),
+          max_hindfoot_length: this._getMax(subset, 'hindfoot_length'),
+          min_weight: this._getMin(subset, 'weight'),
+          ave_weight: this._getAve(subset, 'weight'),
+          max_weight: this._getMax(subset, 'weight')
         }
       }
     })
