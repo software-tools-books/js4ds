@@ -84,8 +84,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </head>
 <body>
 <div class="container-fluid">
-  <div class="row row-scrollable">
-    <div class="col-md-2 col-toc">
+  <div class="row">
+    <nav class="col-md-2 col-toc">
       <a href="#title-block-header"><img src="assets/logo.png" alt="JavaScript for Data Science" width="100%" /></a>
 <nav id="TOC" role="doc-toc">
 <ul>
@@ -283,34 +283,35 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
         <a href="mailto:gvwilson@third-bit.com?subject=JavaScript for Data Science"><img src="assets/email.svg" alt="Email" width="20%" /></a>
         <a href="https://github.com/software-tools-in-javascript/js4ds/"><img src="assets/github.svg" alt="GitHub" width="20%" /></a>
       </p>
-    </div>
-    <div class="col-md-8 col-body">
-      <header>
-        <h1 class="title">JavaScript for Data Science</h1>
-                        <p class="author">Maya Gans, Toby Hodges, and Greg Wilson</p>
-                        <p class="date">Version 3.1 / September 2019</p>
-              </header>
-      <div class="dedication">
-        <p><strong>Dedication</strong></p>
-        <p>
-          For Jordan, who taught me failures pave the way to success.<br/>
-          — Maya
-        </p>
-        <p>
-          For Oskar.<br/>
-          — Toby
-        </p>
-        <p>
-          For Brent, Jon, Aleksandra, and Raniere, who believed when it mattered most.<br/>
-          — Greg
-        </p>
-        <p>
-          <em>
-            All royalties from the sale of this book are being donated to <a href="https://rladies.org/">R-Ladies</a>,<br/>
-            a worldwide organization whose mission is to promote gender diversity in the R community.
-          </em>
-        </p>
-      </div>
+    </nav>
+    <div class="col-md-10 col-body">
+      <div class="container">
+        <header>
+          <h1 class="title">JavaScript for Data Science</h1>
+                              <p class="author"><a href="http://third-bit.com">Maya Gans, Toby Hodges, and Greg Wilson</a></p>
+                              <p class="date">Version 3.1 / September 2019</p>
+                  </header>
+        <div class="dedication">
+          <p><strong>Dedication</strong></p>
+          <p>
+            For Jordan, who taught me failures pave the way to success.<br/>
+            — Maya
+          </p>
+          <p>
+            For Oskar.<br/>
+            — Toby
+          </p>
+          <p>
+            For Brent, Jon, Aleksandra, and Raniere, who believed when it mattered most.<br/>
+            — Greg
+          </p>
+          <p>
+            <em>
+              All royalties from the sale of this book are being donated to <a href="https://rladies.org/">R-Ladies</a>,<br/>
+              a worldwide organization whose mission is to promote gender diversity in the R community.
+            </em>
+          </p>
+        </div>
 
 
 
@@ -350,18 +351,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><p>have reliable access to the Internet.</p></li>
 </ul>
 <h2 id="s:intro-contributors">Who We Are</h2>
-<p><img src="figures/gans-maya.png" alt="image" /></p>
 <p><strong>Maya Gans</strong> is a freelance data scientist and front-end developer by way of quantitative biology. She has 4 years of experience programming in R, and her passion for data visualization brought her to the weird world of JavaScript. When she isn’t debugging <a href="https://maya.rbind.io/">or blogging</a> about code, she’s somewhere remote climbing large mountains. She dedicates this book to her fellow self taught programmers who were told they weren’t good enough but are too driven and excited to care.</p>
-<p><img src="figures/hodges-toby.png" alt="image" /></p>
 <p><strong><a href="https://tbyhdgs.info/">Toby Hodges</a></strong> is a bioinformatician turned community coordinator, working on the <a href="https://bio-it.embl.de">Bio-IT Project</a> at <a href="https://www.embl.de">EMBL</a>. He teaches a lot of courses in computing, organizes a lot of community-building events, listens to a lot of punk rock, and occasionally still finds time to write code and ride his bike. Toby would like to thank his wife for her support and patience while he swore about how annoying JavaScript is to debug.</p>
-<p><img src="figures/wilson-greg.png" alt="image" /></p>
 <p><strong><a href="http://third-bit.com/">Greg Wilson</a></strong> has worked for 35 years in both industry and academia, and is the author or editor of several books on computing and two for children. He co-founded <a href="http://carpentries.org">Software Carpentry</a>, a non-profit organization that teaches basic computing skills to researchers, and is now part of the education team at <a href="http://rstudio.com">RStudio</a>. Greg would like to thank everyone at <a href="https://rangle.io/">Rangle</a> who was so patient with him when he was learning JavaScript.</p>
 <h2 id="s:intro-setup">Setting Up</h2>
+<p>You can find the examples for each chapter in the <code>src</code> directory in our <a href="https://github.com/software-tools-in-javascript/js4ds">GitHub repository</a>. Each sub-folder contains the code and data needed to follow along with the text.</p>
 <p>The exercises at the end of each chapter include new information that you will need later in the book, and are therefore not optional. You can do the first few online, using a service like <a href="https://runkit.com/">RunKit</a>, which gives you an interactive JavaScript playground in your browser. For larger things, and for chapters starting with the one on creating dynamic web pages (Chapter <a href="#s:dynamic" data-reference-type="ref" data-reference="s:dynamic">7</a>), you should <a href="https://nodejs.org/en/download/">download and install</a> the latest Long-term Support (LTS) versions of Node and NPM.</p>
 <p><a href="#g:node-js"><strong>Node</strong></a> is an open source implementation of JavaScript that includes a command-line interpreter like those for languages such as Python and R. The command <code>node</code> on its own starts a <a href="#g:repl"><strong>read-evaluate-print loop</strong></a> that executes commands as they are typed in and displays their output. The command <code>node filename.js</code> reads and runs the commands in <code>filename.js</code>; we will see in Chapter <a href="#s:pages" data-reference-type="ref" data-reference="s:pages">6</a> how to run JavaScript in a browser.</p>
 <p><code>npm</code> is the Node <a href="#g:package-manager"><strong>Package Manager</strong></a>, a command-line tool for finding, installing, updating, building, and executing JavaScript libraries. The command <code>npm install --global library-name</code> (without a <code>.js</code> extension) installs a library <a href="#g:global-installation"><strong>globally</strong></a> so that all projects can use it, while <code>npm install --save library-name</code> installs the library <a href="#g:local-installation"><strong>locally</strong></a> (i.e., in the current project folder). Local installation is usually a better idea, since it isolates projects from one another.</p>
 <h2 id="s:index-contrib">Contributing</h2>
-<p>Contributions of all kinds are welcome, from errata and minor improvements to entirely new sections and chapters: please <a href="mailto:gvwilson@third-bit.com">email us</a> or submit an issue or pull request to <a href="https://github.com/software-tools-in-javascript/js4ds/">our GitHub repository</a>. Everyone whose work is incorporated will be acknowledged; please note that all contributors are required to abide by our Code of Conduct (Appendix <a href="#s:conduct" data-reference-type="ref" data-reference="s:conduct">18</a>). Please note that we use Simplified English rather than Traditional English, i.e., American rather than British spelling and grammar. We encourage translations; if you would like to take this on, please <a href="mailto:gvwilson@third-bit.com">email us</a>.</p>
+<p>Contributions of all kinds are welcome, from errata and minor improvements to entirely new sections and chapters: please submit an issue or pull request to <a href="https://github.com/software-tools-in-javascript/js4ds/">our GitHub repository</a>. Everyone whose work is incorporated will be acknowledged; please note that all contributors are required to abide by our Code of Conduct (Appendix <a href="#s:conduct" data-reference-type="ref" data-reference="s:conduct">18</a>). Please note that we use Simplified English rather than Traditional English, i.e., American rather than British spelling and grammar. We encourage translations; if you would like to take this on, please <a href="gvwilson@third-bit.com">email us</a>.</p>
 <p>If you wish to report errata or suggest improvements to wording, please include the chapter name in the first line of the body of your report (e.g., <code>Testing Data Analysis</code>).</p>
 <h3 id="s:intro-acknowledgments">Acknowledgments</h3>
 <p>We are also grateful for fixes from:</p>
@@ -374,7 +373,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul>
 <h2 id="s:intro-exercises">Exercises</h2>
 <h3 id="setting-up" class="unnumbered unnumbered">Setting Up</h3>
-<p>Install Node and NPM on your computer, then run the commands <code>node --version</code> and <code>npm --version</code> to see which versions you have.</p>
+<p><a href="https://nodejs.org/en/download/">Install Node</a> on your computer, then run the commands <code>node --version</code> and <code>npm --version</code> to see which versions you have.</p>
 <h2 id="key-points" class="unnumbered unnumbered">Key Points</h2>
 <ul>
 <li><p>Modern JavaScript is a good tool for building desktop and web-based applications.</p></li>
@@ -610,7 +609,7 @@ clip(-1,5,3,0,10, 5) -&gt; -1,5,3,0</code></pre>
 </figure>
 <h2 id="s:basics-exercises">Exercises</h2>
 <h3 id="typeof" class="unnumbered unnumbered">Typeof</h3>
-<p>What kind of thing is <code>typeof</code>? Is it an expression? A function? Something else? (You might notice that <code>typeof typeof</code> is syntactically invalid. In such circumstances, an internet search engine is your friend, as is the Mozilla Developer Network (MDN) JavaScript reference at <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference" class="uri">https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference</a>.</p>
+<p>What kind of thing is <code>typeof</code>? Is it an expression? A function? Something else? (You might notice that <code>typeof typeof</code> is syntactically invalid. In such circumstances, an internet search engine is your friend, as is the <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference">Mozilla Developer Network</a> JavaScript reference.</p>
 <h3 id="fill-in-the-blanks" class="unnumbered unnumbered">Fill in the Blanks</h3>
 <p>Answer these questions about the program below:</p>
 <ol>
@@ -3433,7 +3432,7 @@ Server running at http://localhost:4000
 <a class="sourceLine" id="cb276-12" data-line-number="12">  ]</a>
 <a class="sourceLine" id="cb276-13" data-line-number="13"><span class="op">}</span></a></code></pre></div>
 <p>JSON can be used for tabular data as well. The whole table is an array, and each record is an object with name-value pairs:</p>
-<div class="sourceCode" id="cb277"><pre class="sourceCode js"><code class="sourceCode javascript"><a class="sourceLine" id="cb277-1" data-line-number="1">[</a>
+<div class="sourceCode" id="cb277"><pre class="sourceCode js"><code class="sourceCode javascript"><a class="sourceLine" id="cb277-1" data-line-number="1"><span class="kw">const</span> colors <span class="op">=</span> [</a>
 <a class="sourceLine" id="cb277-2" data-line-number="2">  <span class="op">{</span><span class="st">&quot;name&quot;</span><span class="op">:</span> <span class="st">&quot;maroon&quot;</span><span class="op">,</span> <span class="st">&quot;red&quot;</span><span class="op">:</span> <span class="dv">128</span><span class="op">,</span> <span class="st">&quot;green&quot;</span><span class="op">:</span> <span class="dv">0</span><span class="op">,</span> <span class="st">&quot;blue&quot;</span><span class="op">:</span> <span class="dv">0</span><span class="op">},</span></a>
 <a class="sourceLine" id="cb277-3" data-line-number="3">  <span class="op">{</span><span class="st">&quot;name&quot;</span><span class="op">:</span> <span class="st">&quot;olive&quot;</span><span class="op">,</span> <span class="st">&quot;red&quot;</span><span class="op">:</span> <span class="dv">128</span><span class="op">,</span> <span class="st">&quot;green&quot;</span><span class="op">:</span> <span class="dv">128</span><span class="op">,</span> <span class="st">&quot;blue&quot;</span><span class="op">:</span> <span class="dv">0</span><span class="op">},</span></a>
 <a class="sourceLine" id="cb277-4" data-line-number="4">  <span class="op">{</span><span class="st">&quot;name&quot;</span><span class="op">:</span> <span class="st">&quot;aqua&quot;</span><span class="op">,</span> <span class="st">&quot;red&quot;</span><span class="op">:</span> <span class="dv">0</span><span class="op">,</span> <span class="st">&quot;green&quot;</span><span class="op">:</span> <span class="dv">255</span><span class="op">,</span> <span class="st">&quot;blue&quot;</span><span class="op">:</span> <span class="dv">255</span><span class="op">},</span></a>
@@ -3441,7 +3440,7 @@ Server running at http://localhost:4000
 <a class="sourceLine" id="cb277-6" data-line-number="6">]</a></code></pre></div>
 <p>Repeating field names like this is wasteful compared to listing them once at the top of a table, but it does mean that the fields within rows can be accessed directly using expressions like <code>colors[1].red</code>.</p>
 <h2 id="s:dataman-slicing">Slicing Data</h2>
-<p>The data we will use as an example is available in a variety of formats from <a href="https://figshare.com/articles/Portal_Project_Teaching_Database/1314459" class="uri">https://figshare.com/articles/Portal_Project_Teaching_Database/1314459</a>. We will focus on <code>surveys.csv</code>, which has over 35,500 records. That’s a lot to look at, so we will create a 10-record slice for testing.</p>
+<p>The data we will use as an example is available in a variety of formats from the <a href="https://figshare.com/articles/Portal_Project_Teaching_Database/1314459">Portal Project Teaching Database</a>. We will focus on <code>surveys.csv</code>, which has over 35,500 records. That’s a lot to look at, so we will create a 10-record slice for testing.</p>
 <p>Although it would be easy to take the first ten, or the last, there’s a good chance that neither would be representative of the data as a whole. Instead, we will write a little script that selects some records at random. Since it doesn’t need to be efficient, we will read everything, pair each line with a random number, sort the lines using those random numbers as keys, then take the top few lines.</p>
 <div class="sourceCode" id="cb278"><pre class="sourceCode js"><code class="sourceCode javascript"><a class="sourceLine" id="cb278-1" data-line-number="1"><span class="kw">const</span> fs <span class="op">=</span> <span class="at">require</span>(<span class="st">&#39;fs&#39;</span>)</a>
 <a class="sourceLine" id="cb278-2" data-line-number="2"></a>
@@ -4383,7 +4382,7 @@ aqua,0,255,255</code></pre>
   { name: &#39;yellow&#39;, red: &#39;255&#39;, green: &#39;255&#39;, blue: &#39;0&#39; } ]</code></pre>
 <p>This isn’t Data-Forge’s fault. In JavaScript, two arrays are only equal if they’re the same object, i.e., <code>[0] === [0]</code> is <code>false</code>. We will explore ways of doing multi-column <code>distinct</code> in the exercises.</p>
 <h2 id="s:dataforge-subset">Subsets</h2>
-<p>You may have noticed that the color values in the table above are strings rather than numbers. If we want Data-Forge to convert values to more useful types, we can use the methods <code>parseDates</code>, <code>parseFloats</code>, and so on. The program below does this for data about earthquakes in August 2016:</p>
+<p>You may have noticed that the color values in the table above are strings rather than numbers. If we want Data-Forge to convert values to more useful types, we can use the methods <code>parseDates</code>, <code>parseFloats</code>, and so on. The program below does this for a subset of <a href="https://earthquake.usgs.gov/earthquakes/feed/v1.0/csv.php">USGS data about earthquakes in August 2016</a>:</p>
 <div class="sourceCode" id="cb347"><pre class="sourceCode js"><code class="sourceCode javascript"><a class="sourceLine" id="cb347-1" data-line-number="1"><span class="kw">const</span> fs <span class="op">=</span> <span class="at">require</span>(<span class="st">&#39;fs&#39;</span>)</a>
 <a class="sourceLine" id="cb347-2" data-line-number="2"><span class="kw">const</span> DF <span class="op">=</span> <span class="at">require</span>(<span class="st">&#39;data-forge&#39;</span>)</a>
 <a class="sourceLine" id="cb347-3" data-line-number="3"></a>
@@ -4654,7 +4653,7 @@ __index__  Type    Frequency  Column
 <li><p>Create a <code>DataFrame</code> from an array of objects with identical keys, from a spec with <code>columnNames</code> and <code>rows</code> fields, or by parse text that contains CSV or JSON.</p></li>
 </ul>
 <h1 id="s:capstone">Capstone Project</h1>
-<p>It’s time to bring everything together in an extended example: a (slightly) interactive visualization of species data from <a href="https://figshare.com/articles/Portal_Project_Teaching_Database/1314459" class="uri">https://figshare.com/articles/Portal_Project_Teaching_Database/1314459</a>. Our plan is to:</p>
+<p>It’s time to bring everything together in an extended example: a (slightly) interactive visualization of species data from the <a href="https://figshare.com/articles/Portal_Project_Teaching_Database/1314459">Portal Project Teaching Database</a>. Our plan is to:</p>
 <ul>
 <li><p>slice data for testing,</p></li>
 <li><p>write a data server to serve that data,</p></li>
@@ -5248,7 +5247,7 @@ The Same Origin Policy disallows reading the remote resource \
 <h2 id="s:conduct-attribution">Attribution</h2>
 <p>This Code of Conduct is adapted from the <a href="https://www.contributor-covenant.org">Contributor Covenant</a> version 1.4.</p>
 <h1 id="s:contributing">Contributing</h1>
-<p>Contributions of all kinds are welcome, from errata and minor improvements to entirely new sections and chapters: please <a href="mailto:gvwilson@third-bit.com">email us</a> or submit an issue or pull request to <a href="https://github.com/software-tools-in-javascript/js4ds/">our GitHub repository</a>. Everyone whose work is incorporated will be acknowledged; please note that all contributors are required to abide by our Code of Conduct (Appendix <a href="#s:conduct" data-reference-type="ref" data-reference="s:conduct">18</a>). Please note that we use Simplified English rather than Traditional English, i.e., American rather than British spelling and grammar. We encourage translations; if you would like to take this on, please <a href="mailto:gvwilson@third-bit.com">email us</a>.</p>
+<p>Contributions of all kinds are welcome, from errata and minor improvements to entirely new sections and chapters: please submit an issue or pull request to <a href="https://github.com/software-tools-in-javascript/js4ds/">our GitHub repository</a>. Everyone whose work is incorporated will be acknowledged; please note that all contributors are required to abide by our Code of Conduct (Appendix <a href="#s:conduct" data-reference-type="ref" data-reference="s:conduct">18</a>). Please note that we use Simplified English rather than Traditional English, i.e., American rather than British spelling and grammar. We encourage translations; if you would like to take this on, please <a href="gvwilson@third-bit.com">email us</a>.</p>
 <p>If you wish to report errata or suggest improvements to wording, please include the chapter name in the first line of the body of your report (e.g., <code>Testing Data Analysis</code>).</p>
 <h1 id="s:gloss">Glossary</h1>
 <dl>
@@ -5643,7 +5642,7 @@ The Same Origin Policy disallows reading the remote resource \
 <dd><p>A set of related values. In a <a href="#g:relational-database"><strong>relational database</strong></a>, a record is typically shown as a single row in a <a href="#g:table"><strong>table</strong></a>. See also <a href="#g:field"><strong>field</strong></a>.</p>
 </dd>
 <dt><span id="g:regular-expression">regular expression</span></dt>
-<dd><p>A pattern for matching text, written as text itself. Regular expressions are sometimes called “regexp”, “regex”, or “RE”, and are as powerful as they are cryptic. See <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Regular_Expressions">this documentation</a> for more details.</p>
+<dd><p>A pattern for matching text, written as text itself. Regular expressions are sometimes called “regexp”, “regex”, or “RE”, and are as powerful as they are cryptic.</p>
 </dd>
 <dt><span id="g:relational-database">relational database</span></dt>
 <dd><p>A database that organizes information into <a href="#g:table"><strong>tables</strong></a>, each of which has a fixed set of named <a href="#g:field"><strong>fields</strong></a> (shown as columns) and a variable number of <a href="#g:record"><strong>records</strong></a> (shown as rows). See also <a href="#g:sql"><strong>SQL</strong></a>.</p>
@@ -6847,6 +6846,7 @@ TypeError: Cannot read property &#39;Symbol(Symbol.iterator)&#39; of undefined
 <li id="fn11"><p>Anne Minahan, “Martha’s Rules,” <em>Affilia</em> 1, no. 2 (June 1986): 53–56, doi:<a href="https://doi.org/10.1177/088610998600100206">10.1177/088610998600100206</a>.<a href="#fnref11" class="footnote-back">↩</a></p></li>
 </ol>
 </section>
+      </div>
     </div>
   </div>
 </div>

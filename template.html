@@ -46,8 +46,8 @@ $for(include-before)$
 $include-before$
 $endfor$
 <div class="container-fluid">
-  <div class="row row-scrollable">
-    <div class="col-md-2 col-toc">
+  <div class="row">
+    <nav class="col-md-2 col-toc">
       <a href="#title-block-header"><img src="assets/logo.png" alt="JavaScript for Data Science" width="100%" /></a>
 $if(toc)$
 <nav id="$idprefix$TOC" role="doc-toc">
@@ -59,42 +59,44 @@ $table-of-contents$
         <a href="https://github.com/software-tools-in-javascript/js4ds/"><img src="assets/github.svg" alt="GitHub" width="20%" /></a>
       </p>
 $endif$
-    </div>
-    <div class="col-md-8 col-body">
-      <header>
-        <h1 class="title">$title$</h1>
-        $if(subtitle)$
-        <p class="subtitle">$subtitle$</p>
-        $endif$
-        $for(author)$
-        <p class="author">$author$</p>
-        $endfor$
-        $if(date)$
-        <p class="date">$date$</p>
-        $endif$
-      </header>
-      <div class="dedication">
-        <p><strong>Dedication</strong></p>
-        <p>
-          For Jordan, who taught me failures pave the way to success.<br/>
-          — Maya
-        </p>
-        <p>
-          For Oskar.<br/>
-          — Toby
-        </p>
-        <p>
-          For Brent, Jon, Aleksandra, and Raniere, who believed when it mattered most.<br/>
-          — Greg
-        </p>
-        <p>
-          <em>
-            All royalties from the sale of this book are being donated to <a href="https://rladies.org/">R-Ladies</a>,<br/>
-            a worldwide organization whose mission is to promote gender diversity in the R community.
-          </em>
-        </p>
-      </div>
+    </nav>
+    <div class="col-md-10 col-body">
+      <div class="container">
+        <header>
+          <h1 class="title">$title$</h1>
+          $if(subtitle)$
+          <p class="subtitle">$subtitle$</p>
+          $endif$
+          $for(author)$
+          <p class="author"><a href="http://third-bit.com">$author$</a></p>
+          $endfor$
+          $if(date)$
+          <p class="date">$date$</p>
+          $endif$
+        </header>
+        <div class="dedication">
+          <p><strong>Dedication</strong></p>
+          <p>
+            For Jordan, who taught me failures pave the way to success.<br/>
+            — Maya
+          </p>
+          <p>
+            For Oskar.<br/>
+            — Toby
+          </p>
+          <p>
+            For Brent, Jon, Aleksandra, and Raniere, who believed when it mattered most.<br/>
+            — Greg
+          </p>
+          <p>
+            <em>
+              All royalties from the sale of this book are being donated to <a href="https://rladies.org/">R-Ladies</a>,<br/>
+              a worldwide organization whose mission is to promote gender diversity in the R community.
+            </em>
+          </p>
+        </div>
 $body$
+      </div>
     </div>
   </div>
 </div>
