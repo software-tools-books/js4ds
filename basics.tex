@@ -152,8 +152,8 @@ while \texttt{null} means ``has a value, which is nothing''.\index{datatype!null
 
 We have already seen \texttt{for} loops and flat arrays,
 so let's have a look at nested arrays and conditionals.
-We start with arrays that contain other arrays,\index{nesting!arrays}\index{array!nested}
-which are usually processed by \gref{g:nested-loop}{nested loops}:\index{loop!nested}
+We start with arrays that contain other arrays,\index{nested!arrays}\index{array!nested}
+which are usually processed by \grefdex{g:nested-loop}{nested loops}{nested!loops}:\index{loop!nested}
 
 \begin{minted}{js}
 const nested = [['northwest', 'northeast'],
@@ -212,7 +212,7 @@ This example shows that arrays are \gref{g:heterogeneous}{heterogeneous},
 i.e.,
 that they can contain values of many different types.
 It also shows that JavaScript has some rather odd ideas about the nature of truth.
-0 is \gref{g:falsy}{falsy},\index{neologism!horrible}
+0 is \gref{g:falsy}{falsy},\index{neologism (horrible)}
 while all other numbers are \gref{g:truthy}{truthy};
 similarly,
 the empty string is falsy and all other strings are truthy.
@@ -481,7 +481,7 @@ const limits = (values) => {
 \end{minted}
 
 No matter how functions are defined,
-each one is a \grefdex{g:scope}{scope}{scope!variable},\index{variable scope}
+each one is a \grefdex{g:scope}{scope}{scope (of variable)},\index{variable scope}
 which means its parameters and any variables created inside it
 are \grefdex{g:local-variable}{local}{local variable}\index{variable!local} to the function.
 We will discuss scope in more detail in \chapref{s:callbacks}.
