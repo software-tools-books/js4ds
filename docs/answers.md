@@ -38,6 +38,24 @@ const annotateData = (array) => array.reduce(reducer, [])
 const newData = annotateData(data)
 ```
 
+## Objects and Classes
+
+### Delays
+
+```{js}
+class Delay {
+  constructor(initialValue){
+    this.nextValue = initialValue
+  }
+
+  call(nextValue) {
+    let previousValue = this.nextValue
+    this.nextValue = nextValue
+    return previousValue
+  }
+}
+```
+
 ## Data-Forge
 
 ### Revisting Data Manipulation
