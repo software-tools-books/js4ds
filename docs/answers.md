@@ -56,6 +56,20 @@ class Delay {
 }
 ```
 
+### Filtering
+
+```{js}
+class Filter {
+  constructor(...values){
+    this.filterValues = values
+  }
+
+  call(inputValue){
+    return this.filterValues.some((value) => value === inputValue) ? null : inputValue
+  }
+}
+```
+
 ## Data-Forge
 
 ### Revisting Data Manipulation
