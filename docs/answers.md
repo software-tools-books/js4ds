@@ -70,6 +70,26 @@ class Filter {
 }
 ```
 
+### Pipelines
+
+```{js}
+class Pipeline {
+    constructor(...pipes){
+        this.pipes = pipes
+    }
+
+    call(inputValue){
+        let returnValue
+        for (let pipe of this.pipes){
+            returnValue = (() => pipe.call(inputValue))()
+            if (!returnValue) break
+            inputValue = returnValue
+        }
+        return returnValue
+    }
+}
+```
+
 ## Data-Forge
 
 ### Revisting Data Manipulation
