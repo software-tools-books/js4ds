@@ -526,7 +526,7 @@ creature[species] is Jacchus</code></pre>
 <div class="sourceCode" id="cb27"><pre class="sourceCode js"><code class="sourceCode javascript"><a class="sourceLine" id="cb27-1" data-line-number="1">  <span class="cf">if</span> (<span class="op">!</span><span class="va">values</span>.<span class="at">length</span>) <span class="op">{</span></a>
 <a class="sourceLine" id="cb27-2" data-line-number="2">    <span class="cf">return</span> [<span class="kw">undefined</span><span class="op">,</span> <span class="kw">undefined</span>]</a>
 <a class="sourceLine" id="cb27-3" data-line-number="3">  <span class="op">}</span></a></code></pre></div>
-<p>If that initial check finds that <code>values</code> does have a length—i.e., <code>!values.length</code> returns <code>false</code>—the rest of the function is run. This involves first initialising two variables, <code>low</code> and <code>high</code>, with their values set as equal to the first item in <code>values</code>.</p>
+<p>If that initial check finds that <code>values</code> does have a length—i.e., <code>!values.length</code> returns <code>false</code>—the rest of the function is run. This involves first initializing two variables, <code>low</code> and <code>high</code>, with their values set as equal to the first item in <code>values</code>.</p>
 <div class="sourceCode" id="cb28"><pre class="sourceCode js"><code class="sourceCode javascript"><a class="sourceLine" id="cb28-1" data-line-number="1">  <span class="kw">let</span> low <span class="op">=</span> values[<span class="dv">0</span>]</a>
 <a class="sourceLine" id="cb28-2" data-line-number="2">  <span class="kw">let</span> high <span class="op">=</span> values[<span class="dv">0</span>]</a></code></pre></div>
 <p>In the next stage of the function, all of the values are iterated over and <code>low</code> and <code>high</code> are assigned a new value, equal to that of the next item, if that value is lower than <code>low</code> or higher than <code>high</code> respectively.</p>
@@ -4444,7 +4444,7 @@ aqua,0,255,255</code></pre>
     Depth_Km: 10.9,
     Magnitude: 3.1 } ]</code></pre>
 <figure>
-<img src="figures/dataforge-positional.svg" id="f:dataforge-positional" /><figcaption>Seleting by Position<span label="f:dataforge-positional"></span></figcaption>
+<img src="figures/dataforge-positional.svg" id="f:dataforge-positional" /><figcaption>Selecting by Position<span label="f:dataforge-positional"></span></figcaption>
 </figure>
 <p>However, it’s far more common to select rows by the values they contain rather than by their position. Just like the <code>Array.filter</code> method we met way back in Section <a href="#s:callbacks-functional" data-reference-type="ref" data-reference="s:callbacks-functional">3.4</a>, we do this by giving Data-Forge a callback function that tells it whether a given row should be kept or not. This text can be as complex as desired, but must work row by row: we cannot make a decision about one row based on the values in the rows before it or after it.</p>
 <div class="sourceCode" id="cb355"><pre class="sourceCode js"><code class="sourceCode javascript"><a class="sourceLine" id="cb355-1" data-line-number="1"><span class="kw">const</span> large <span class="op">=</span> <span class="va">earthquakes</span>.<span class="at">where</span>(row <span class="op">=&gt;</span> (<span class="va">row</span>.<span class="at">Magnitude</span> <span class="op">&gt;=</span> <span class="fl">5.0</span>))</a>
@@ -4642,8 +4642,8 @@ __index__  Type    Frequency  Column
 128,0
 255,0
 255,255</code></pre>
-<h3 id="revisting-data-manipulation" class="unnumbered unnumbered">Revisting Data Manipulation</h3>
-<p>Back in the chapter on data manipulation, we aggregated <code>surveys.csv</code> to find the minumum, maximum and average values for <code>year</code>, <code>hindfoot_length</code>, and <code>weight</code>. Repeat this exersize using the methods of <code>data-forge</code>.</p>
+<h3 id="revisiting-data-manipulation" class="unnumbered unnumbered">Revisiting Data Manipulation</h3>
+<p>Back in the chapter on data manipulation, we aggregated <code>surveys.csv</code> to find the minimum, maximum and average values for <code>year</code>, <code>hindfoot_length</code>, and <code>weight</code>. Repeat this exercise using the methods of <code>data-forge</code>.</p>
 <h3 id="grouping-and-aggregating" class="unnumbered unnumbered">Grouping and Aggregating</h3>
 <p>Retrace the steps in the example that calculated the average depth of earthquakes of different magnitudes and show the data structure after each method call. Are they all dataframes, or are other data structures created or manipulated as well?</p>
 <h3 id="not-a-number" class="unnumbered unnumbered">Not a Number</h3>
@@ -6116,10 +6116,10 @@ element 2 of x,y,z is z</code></pre>
 <p>A <a href="#g:regular-expression"><strong>regular expression</strong></a> is a pattern for matching text. Most languages implement them in libraries, but they are built into JavaScript, and are written using <code>/</code> before and after a string rather than single or double quotes.</p>
 <ul>
 <li><p>Letters and digits match themselves, so the regular expression <code>/enjoy/</code> matches the word “enjoy” wherever it appears in a string.</p></li>
-<li><p>A dot matches any character, so <code>/../</code> matches any two consecutives characters and <code>/en..y/</code> matches “enjoy”, “gently”, and “brightens your day”.</p></li>
+<li><p>A dot matches any character, so <code>/../</code> matches any two consecutive characters and <code>/en..y/</code> matches “enjoy”, “gently”, and “brightens your day”.</p></li>
 <li><p>The asterisk <code>*</code> means “match zero or more occurrences of what comes immediately before”, so <code>en*</code> matches “ten” and “penny”. It also matches “feet” (which has an “e” followed by zero occurrences of “n”).</p></li>
 <li><p>The plus sign <code>+</code> means “match <em>one</em> or more occurrences of what comes immediately before”, so <code>en+</code> still matches “ten” and “penny” but doesn’t match “feet” (because there isn’t an “n”).</p></li>
-<li><p>Parentheses create groupes just as they do in mathematics, so <code>(an)+</code> matches “banana” but not “annual”.</p></li>
+<li><p>Parentheses create groups just as they do in mathematics, so <code>(an)+</code> matches “banana” but not “annual”.</p></li>
 <li><p>The pipe character <code>|</code> means “either/or”, so <code>b|c</code> matches either a single “b” or a single “c”, and <code>(either)|(or)</code> matches either “either” or “or”. (The parentheses are necessary because <code>either|or</code> matches “eitherr” or “eitheor”.)</p></li>
 <li><p>The shorthand notation <code>[a-z]</code> means “all the characters in a range”, and is easier to write and read than <code>a|b|c|…|y|z</code>.</p></li>
 <li><p>The characters <code>^</code> and <code>$</code> are called anchors: they match the beginning and end of the line without matching any actual characters.</p></li>

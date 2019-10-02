@@ -120,7 +120,7 @@ settings :
 
 ## spell          : check spelling.
 spell :
-	@-cat ${TEX_CHAPTERS} | aspell -t list | sort | uniq | diff -y --suppress-common-lines - etc/wordlist.txt
+	@-cat ${TEX_CHAPTERS} | aspell -t list | sort | uniq | diff -y --suppress-common-lines - .wordlist
 
 ## words          : count words.
 words :
