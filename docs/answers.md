@@ -44,11 +44,11 @@ const newData = annotateData(data)
 
 ```{js}
 class Delay {
-  constructor(initialValue){
+  constructor (initialValue) {
     this.nextValue = initialValue
   }
 
-  call(nextValue) {
+  call (nextValue) {
     let previousValue = this.nextValue
     this.nextValue = nextValue
     return previousValue
@@ -60,11 +60,11 @@ class Delay {
 
 ```{js}
 class Filter {
-  constructor(...values){
+  constructor (...values) {
     this.filterValues = values
   }
 
-  call(inputValue){
+  call (inputValue) {
     return this.filterValues.some((value) => value === inputValue) ? null : inputValue
   }
 }
@@ -74,18 +74,14 @@ class Filter {
 
 ```{js}
 class Pipeline {
-    constructor(...pipes){
+    constructor (...pipes) {
         this.pipes = pipes
     }
 
-    call(inputValue){
-        let returnValue
-        for (let pipe of this.pipes){
-            returnValue = (() => pipe.call(inputValue))()
-            if (!returnValue) break
-            inputValue = returnValue
-        }
-        return returnValue
+    call (inputValue) {
+        return this.pipes.reduce(
+          (accumulator, currentValue) =>
+          accumulator ? currentValue.call(accumulator) : null, inputValue)
     }
 }
 ```
