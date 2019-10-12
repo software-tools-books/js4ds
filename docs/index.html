@@ -3617,7 +3617,7 @@ Server running at http://localhost:4000
 <li><p>PapaParse is a robust CSV parsing library that produces JSON output.</p></li>
 </ul>
 <h1 id="s:server">Creating a Server</h1>
-<p>Now that we have a data manager (Chapter <a href="#s:dataman" data-reference-type="ref" data-reference="s:dataman">11</a>) the next step is to create a server to share our data with the world, which we will build using a library called <a href="https://expressjs.org/">Express</a>. Before we start writing code, though, we need to understand how computers talk to each other.</p>
+<p>Now that we have a data manager (Chapter <a href="#s:dataman" data-reference-type="ref" data-reference="s:dataman">11</a>) the next step is to create a server to share our data with the world, which we will build using a library called <a href="https://expressjs.com/">Express</a>. Before we start writing code, though, we need to understand how computers talk to each other.</p>
 <h2 id="s:server-http">HTTP</h2>
 <p>Almost everything on the web communicates via the HyperText Transfer Protocol (<a href="#g:http"><strong>HTTP</strong></a>). The core of HTTP is a <a href="#g:http-request"><strong>request</strong></a>/<a href="#g:http-response"><strong>response</strong></a> cycle that specifies the kinds of requests applications can make of servers, how they exchange data, and so on. Figure <a href="#f:server-cycle" data-reference-type="ref" data-reference="f:server-cycle">[f:server-cycle]</a> shows this cycle in action for a page that includes one image.</p>
 <figure>
@@ -3863,7 +3863,7 @@ Server running at http://localhost:4000
 <h3 id="using-query-parameters" class="unnumbered unnumbered">Using Query Parameters</h3>
 <p>URLs can contain query parameters in the form:</p>
 <pre class="text"><code>http://site.edu?first=123&amp;second=beta</code></pre>
-<p>Read the online documentation for <a href="https://expressjs.org/">Express</a> to find out how to access them in a server, and then write a server to do simple arithmetic: the URL <code>http://localhost:3654/add?left=1&amp;right=2</code> should return <code>3</code>, while the URL <code>http://localhost:3654/subtract?left=1&amp;right=2</code> should return <code>-1</code>.</p>
+<p>Read the online documentation for <a href="https://expressjs.com/">Express</a> to find out how to access them in a server, and then write a server to do simple arithmetic: the URL <code>http://localhost:3654/add?left=1&amp;right=2</code> should return <code>3</code>, while the URL <code>http://localhost:3654/subtract?left=1&amp;right=2</code> should return <code>-1</code>.</p>
 <h2 id="key-points-11" class="unnumbered unnumbered">Key Points</h2>
 <ul>
 <li><p>An HTTP request or response consists of a plain-text header and an optional body.</p></li>
