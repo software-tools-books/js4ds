@@ -25,7 +25,7 @@ This book will introduce you to JavaScript's power and ideosyncracies, and guide
 - Unit testing with Mocha
 - Using Data-Forge to wrangle tabular data
 
-All of the material is covered by the Creative Commons Attribution-NonCommercial 4.0 International license (CC-BY-NC-4.0), and is included in the book's companion website at http://js4ds.tech.
+All of the material is covered by the Creative Commons Attribution-NonCommercial 4.0 International license (CC-BY-NC-4.0), and is included in the book's companion website at http://js4ds.org.
 
 Maya Gans is a freelance data scientist and front-end developer by way of quantitative biology. 
 
