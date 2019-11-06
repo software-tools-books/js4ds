@@ -82,8 +82,7 @@ This is a blob of \gref{g:json}{JSON} with certain required fields:
 In this case,
 we represent a two-dimensional data table as objects with explicit indices \texttt{"a"} and \texttt{"b"}.
 We have to do this because JSON (like JavaScript) doesn't have a native representation
-of two-dimensional arrays with row and column headers,
-because programmers.
+of two-dimensional arrays with row and column headers.
 
 Once we have created our spec,
 we can call \texttt{vegaEmbed} with the ID of the element that will hold the visualization,
@@ -265,7 +264,7 @@ Our hearts break when we open \texttt{http://localhost:4000} in our browser and 
 Looking in the browser console,
 we see a message telling us that \texttt{vegaEmbed} is not a function.
 
-What we have tripped over is something that's still painful in 2019.
+What we have tripped over is a leftover from JavaScript's evolution.
 The old method of getting libraries is \texttt{require},
 and that's still what Node supports as of Version~10.9.0.
 The new standard is \texttt{import},
@@ -319,7 +318,7 @@ so that values are binned in this way.
 Vega-Lite can display
 \hreffoot{https://vega.github.io/vega-lite/examples/bar\_grouped.html}{grouped bar charts}
 as well as simple ones.
-Find or create a simple data set and construct a grouped bar chart.
+Find or create a simple dataset and construct a grouped bar chart.
 How impressed will your supervisor, your committee, or a future employee be
 by your chosen color scheme?
 

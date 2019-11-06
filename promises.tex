@@ -193,7 +193,7 @@ fs.stat('moby-dick.txt').then((stats) => console.log(stats.size))
 
 \texttt{fs-extra.stat} will eventually produce some statistics about the file,
 but this will take a while,
-so \texttt{fs-extra.stat} returns a object of the class \texttt{Promise} right away.
+so \texttt{fs-extra.stat} returns an object of the class \texttt{Promise} right away.
 \texttt{Promise} has a method \texttt{then} that takes a callback as an argument and stores it in the promise object.
 When the \texttt{stat} call completes,
 the remembered callback is called,
@@ -262,7 +262,7 @@ got HTTP status code 400
 
 \noindent
 Note that we didn't assign our Promise object to a variable in the example above.
-We can create promises on the fly if we need them only to define behaviour on
+We can create promises on the fly if we need them only to define behavior on
 successful completion/exception and won't need to refer to them again later.
 
 \figpdf{figures/promises-object-a.pdf}{Promises as Objects (after creation)}{f:promises-object-a}
@@ -465,7 +465,7 @@ arguments are: [ '/usr/local/bin/node',
 \end{minted}
 
 \noindent
-The full path to Node is the first argument;
+The full path to Node is the first argument,
 the name of our script is the second,
 and all of the extra arguments provided by the users follow that.
 If we want the first of those,
@@ -850,7 +850,7 @@ Now adapt the function so that it returns only \texttt{2}.
 \exercise{\texttt{async}, Therefore I Am}
 
 Using \texttt{async} and \texttt{await},
-convert the completed function above into an asynchronous function with the same behaviour and output.
+convert the completed function above into an asynchronous function with the same behavior and output.
 Do you find your solution easier to read and follow than the original version?
 Do you think that that is only because you wrote this version?
 

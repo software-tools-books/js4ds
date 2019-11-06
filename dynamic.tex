@@ -87,7 +87,7 @@ The \texttt{body} contains a \texttt{div} with an ID to make it findable.
 When our script runs,
 React will put the HTML it generates into this \texttt{div}.
 
-The script itself create an \texttt{h1} with the text ``Hello, React'' using \texttt{React.DOM.h1},
+The script itself creates an \texttt{h1} with the text ``Hello, React'' using \texttt{React.DOM.h1},
 then finds the document element whose ID is \texttt{"app"}
 and uses \texttt{ReactDOM.render} to insert the former into the latter.
 This alters the representation of the page in memory,
@@ -170,7 +170,7 @@ Here's an example:
 
 Along with the two React libraries,
 this page includes a tool called \hreffoot{https://babeljs.io/}{Babel}\index{Babel}
-to translate a mixed of HTML and JavaScript into pure JavaScript.
+to translate a mix of HTML and JavaScript into pure JavaScript.
 To trigger translation,
 we add the attribute \texttt{type="text/babel"} to the \texttt{script} tag.
 
@@ -291,7 +291,7 @@ And what about \texttt{require} statements?
 The browser will try to load the required files when those statements run,
 but who is going to serve them?
 
-The solution is use a \gref{g:bundler}{bundler} to combine everything into one big file,
+The solution is to use a \gref{g:bundler}{bundler} to combine everything into one big file,
 and to run a \gref{g:local-server}{local server} to preview our application during development.
 However,
 this solution brings with it another problem:

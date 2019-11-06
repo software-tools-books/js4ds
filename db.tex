@@ -178,7 +178,7 @@ That seems to have worked:
 \texttt{getAll} was called,
 and the result is an array of objects,
 one per record,
-whose names are the derived in an obvious way from the names of the columns.
+whose names are derived in an obvious way from the names of the columns.
 
 \section{In-Memory Database}\label{s:db-in-memory}
 
@@ -512,7 +512,7 @@ Each test has the same structure:
 we define the expected result,
 create an entirely new database in memory,
 and then call the method being tested,
-passing it the fixture and the callback that will receives results.
+passing it the fixture and the callback that will receive results.
 That callback uses \texttt{assert} to check results
 and \texttt{done} to signal that the test has completed.
 
@@ -582,7 +582,7 @@ that specify what is to be added or deleted,
 and an empty list of rows is passed to the action callback
 (since adding and deleting don't return anything).
 Testing involves a little more typing,
-since want to check that the database is in the right state after the operation:
+since we want to check that the database is in the right state after the operation:
 
 \begin{minted}{js}
 // ...imports as before...
@@ -660,7 +660,7 @@ that selects specific records.
 \exercise{More Filtering}
 
 The SQL query encapsulated in the variable below can be used to
-find all workshop whose duration falls within a range.
+find all workshops whose duration falls within a range.
 
 \begin{minted}{js}
 const Q_WORKSHOP_DURATION_RANGE = `
@@ -689,7 +689,7 @@ This is bad practice,
 and I should be ashamed of having done it.
 The right thing to do is to \gref{g:throw}{throw}
 an \gref{g:exception}{exception}
-that main program can \gref{g:catch}{catch}
+that the main program can \gref{g:catch}{catch}
 and handle however it wants.
 
 \begin{enumerate}
