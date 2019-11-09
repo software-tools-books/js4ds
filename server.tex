@@ -402,6 +402,21 @@ and ask for \texttt{http://localhost:3418/data.json},
 a modern browser will provide a folding display of the data
 rather than displaying the raw text.
 
+\begin{aside}{So What's an API?}
+  A library's \gref{Application Programming Interface}{g:api} (API) is simply
+  the set of functions other programs are allowed to call.
+  This is usually a subset of all of the functions defined in the library,
+  since many may be helpers intended for internal use only.
+  Similarly,
+  a server's API is the set of requests it knows how to respond to.
+  For example,
+  NASA's near-approach asteroid API (\secref{s:interactive-fetching})
+  can handle requests that include an authentication key and a starting data,
+  while the server we have built in this chapter
+  can respond to requests for HTML and JSON files.
+  We will look a little more closely at API design in \secref{s:capstone-server}.
+\end{aside}
+
 \section{Exercises}\label{s:server-exercises}
 
 \exercise{Report Missing Files}
