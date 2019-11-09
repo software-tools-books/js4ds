@@ -524,7 +524,7 @@ which are all stateless components
 
 We will display survey stats as tables,
 with a paragraph fallback when there's no data.
-First, we display summary statistics for the whole data set
+First, we display summary statistics for the whole dataset
 (as returned by the \texttt{GET /survey/stats} query we wrote a handler for earlier)
 as a table at the top of the page.
 (Again, we need parentheses around the HTML fragment so that it will parse properly.)
@@ -801,8 +801,9 @@ A user has asked for the number of male and female animals observed for each yea
   if the range of years requested is invalid
 \item
   Compare your implementation to someone else's.
-  Did you define ``invalid'' in the same way?
-  I.e., will your programs always return the same status codes for every query?
+  Did you define ``invalid'' in the same way,
+  i.e.,
+  will your programs always return the same status codes for every query?
 \end{enumerate}
 
 \exercise{Adding More Tests}
