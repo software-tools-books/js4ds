@@ -86,12 +86,18 @@ getSurveyRange (minYear, maxYear) {
       return {
         key: toString(year),
         year: year,
-        min_hindfoot_length: subset.deflate(r => r.hindfoot_length).min(),
-        ave_hindfoot_length: subset.deflate(r => r.hindfoot_length).average(),
-        max_hindfoot_length: subset.deflate(r => r.hindfoot_length).max(),
-        min_weight: subset.deflate(r => r.weight).min(),
-        ave_weight: subset.deflate(r => r.weight).average(),
-        max_weight: subset.deflate(r => r.weight).max()
+        min_hindfoot_length: subset.deflate(r => r.hindfoot_length)
+                                   .min(),
+        ave_hindfoot_length: subset.deflate(r => r.hindfoot_length)
+                                   .average(),
+        max_hindfoot_length: subset.deflate(r => r.hindfoot_length)
+                                   .max(),
+        min_weight: subset.deflate(r => r.weight)
+                          .min(),
+        ave_weight: subset.deflate(r => r.weight)
+                          .average(),
+        max_weight: subset.deflate(r => r.weight)
+                          .max()
       }
     }
   })
@@ -116,18 +122,30 @@ that we're interested in (weight and hindfoot length):
         return {
           key: toString(year),
           year: year,
-          min_hindfoot_length: subset.where(r => !isNaN(r.hindfoot_length))
-                                     .deflate(r => r.hindfoot_length).min(),
-          ave_hindfoot_length: subset.where(r => !isNaN(r.hindfoot_length))
-                                     .deflate(r => r.hindfoot_length).average(),
-          max_hindfoot_length: subset.where(r => !isNaN(r.hindfoot_length))
-                                     .deflate(r => r.hindfoot_length).max(),
-          min_weight: subset.where(r => !isNaN(r.weight))
-                            .deflate(r => r.weight).min(),
-          ave_weight: subset.where(r => !isNaN(r.weight))
-                            .deflate(r => r.weight).average(),
-          max_weight: subset.where(r => !isNaN(r.weight))
-                            .deflate(r => r.weight).max()
+          min_hindfoot_length: subset
+                               .where(r => !isNaN(r.hindfoot_length))
+                               .deflate(r => r.hindfoot_length)
+                               .min(),
+          ave_hindfoot_length: subset
+                               .where(r => !isNaN(r.hindfoot_length))
+                               .deflate(r => r.hindfoot_length)
+                               .average(),
+          max_hindfoot_length: subset
+                               .where(r => !isNaN(r.hindfoot_length))
+                               .deflate(r => r.hindfoot_length)
+                               .max(),
+          min_weight: subset
+                      .where(r => !isNaN(r.weight))
+                      .deflate(r => r.weight)
+                      .min(),
+          ave_weight: subset
+                      .where(r => !isNaN(r.weight))
+                      .deflate(r => r.weight)
+                      .average(),
+          max_weight: subset
+                      .where(r => !isNaN(r.weight))
+                      .deflate(r => r.weight)
+                      .max()
         }
       }
 // ...as before...
