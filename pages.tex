@@ -298,7 +298,7 @@ that we should only worry about them if they actually prove themselves a problem
 \section{Sortable Lists}\label{s:pages-sort-list}
 
 Creating nodes allows us to add content to a page,
-but we can also rearrange the nodes that are there.
+but we can also rearrange the nodes that are there (\figref{f:pages-sortlist}).
 Our next exercise is to sort the elements of a list,
 so that if the author writes:
 
@@ -541,10 +541,8 @@ and one non-bibliographic link:
 \end{minted}
 
 \noindent
-Here's our function
-(which we'll call from an event listener as before---again,
-the line breaks in the second call to \texttt{map} are there
-so that the printed version will fit the page):
+Here's our function (\figref{f:pages-pipeline}),
+which we'll call from an event listener as before:
 
 \begin{minted}{js}
 const citations = () => {

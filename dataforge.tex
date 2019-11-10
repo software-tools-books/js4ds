@@ -381,7 +381,7 @@ console.log(sorted.toArray())
 \end{minted}
 
 \noindent
-To sub-sort by another column we use \texttt{thenBy}:
+To sub-sort (\figref{f:dataforge-sorting}) by another column we use \texttt{thenBy}:
 
 \begin{minted}{js}
 const doubleSorted = colors
@@ -518,7 +518,7 @@ console.log(earthquakes.tail(3).toArray())
 \end{minted}
 
 If we want data from the middle of the table,
-we can skip a few rows and then take as many as we want:
+we can skip a few rows and then take as many as we want (\figref{f:dataforge-positional}):
 
 \begin{minted}{js}
 console.log(earthquakes.skip(10).take(3).toArray())

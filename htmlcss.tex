@@ -15,7 +15,7 @@ an opening tag \texttt{\htmltag{tagname}} shows where the element begins,
 and a corresponding closing tag \texttt{\htmltag{/tagname}} (with a leading slash) shows where it ends.
 If there's nothing between the two, we can write \texttt{\htmltag{tagname/}} (with a trailing slash).
 
-A document's elements must form a \gref{g:tree}{tree},
+A document's elements must form a \gref{g:tree}{tree} (\figref{f:htmlcss-tree}),
 i.e.,
 they must be strictly nested.
 This means that if Y starts inside X,
@@ -306,7 +306,7 @@ there's a better way.
 
 \section{Links}\label{s:htmlcss-links}
 
-Links to other pages are what make HTML hypertext.\index{link!in HTML page}
+Links to other pages are what make HTML hypertext (\figref{f:htmlcss-links}).\index{link!in HTML page}
 Confusingly,
 the element used to show a link is called \texttt{a}.
 The text inside the element is displayed and (usually) highlighted for clicking.
@@ -542,7 +542,7 @@ so most people use a framework to take care of the details.
 One of the most popular is \hreffoot{https://getbootstrap.com/}{Bootstrap}\index{Bootstrap}
 (which is what we're using to style this website).
 Here's the entire source of a page that uses Bootstrap
-to create a two-column layout with a banner at the top:
+to create a two-column layout with a banner at the top (\figref{f:htmlcss-bootstrap}):
 
 \begin{minted}{html}
 <html>
