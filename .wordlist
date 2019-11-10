@@ -156,7 +156,6 @@ componentDidMount
 concatFirst
 configFn
 const
-contributors's
 coords
 cors
 countLines
@@ -372,7 +371,6 @@ someArray
 someInteger
 someProperty
 someValue
-sorcerors
 sortLists
 sortlist
 sql
