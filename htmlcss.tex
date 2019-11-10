@@ -522,16 +522,14 @@ then we can style those spans like this:
 \end{minted}
 
 \begin{aside}{Internal Links}
-  We can also link directly to an element within a page using \texttt{\#name}\index{link!internal}
-  inside the \texttt{href} attribute of a link.
-  For example,
-  \texttt{{\textless}a\ href="selectors.html\#major"{\textgreater}some\ text\htmltag{/a}}
-  refers to the \texttt{\#major} element in \texttt{selectors.html},
-  while \texttt{{\textless}a\ href="selectors.html\#minor"{\textgreater}some\ text\htmltag{/a}}
-  refers to the \texttt{\#minor} element.
+  We can link to an element in a page using \texttt{\#name}\index{link!internal}
+  inside the link's \texttt{href}:
+  for example,
+  \texttt{{\textless}a\ href="page.html\#place"{\textgreater}text\htmltag{/a}}
+  refers to the \texttt{\#place} element in \texttt{page.html}.
   This is particularly useful \emph{within} pages:
-  \texttt{{\textless}a\ href="\#major"{\textgreater}jump\htmltag{/a}}
-  takes us straight to the \texttt{\#major} element within this page.
+  \texttt{{\textless}a\ href="\#place"{\textgreater}jump\htmltag{/a}}
+  takes us straight to the \texttt{\#place} element within this page.
   Internal links like this are often used for cross-referencing and to create a table of contents.
 \end{aside}
 
