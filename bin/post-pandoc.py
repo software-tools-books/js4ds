@@ -5,6 +5,7 @@ import re
 
 
 FIGURE_PAT = re.compile(r'<embed src="figures/(.+?)\.pdf"')
+FIGCAPTION_PAT = re.compile(r'<figcaption><span>(.+?)</span><span id="(.+?)" label="(.+?)">.+?</span></figcaption>')
 BIB_REF_PAT = re.compile(r'<span\s+class="citation"\s+data-cites="(.+?)">.+?</span>')
 BIB_ENTRY_PAT = re.compile(r'<div\s+id="ref-(.+?)">\n<p>', re.MULTILINE)
 
@@ -26,10 +27,15 @@ def main():
         .replace(EMPTY_ROW_EVEN, '')\
         .replace(EMPTY_ROW_ODD, '')
     text = FIGURE_PAT.sub(r'<img src="figures/\1.svg"', text)
+    text = FIGCAPTION_PAT.sub(replace_figcaption, text)
     text = BIB_REF_PAT.sub(replace_ref, text)
     text = BIB_ENTRY_PAT.sub(replace_entry, text)
     text = fix_footnotes(text)
     sys.stdout.write(text)
+
+
+def replace_figcaption(fields):
+    return '<figcaption><span id="{1}">{0}</span></figcaption>'.format(fields[1], fields[2])
 
 
 def replace_ref(refs):

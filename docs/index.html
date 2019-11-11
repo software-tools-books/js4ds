@@ -335,7 +335,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>Every lesson should aim to <a href="http://teachtogether.tech/en/process/">meet the needs of specific learners</a>.[<a class="cite" href="#ref-Wils2019">Wils2019</a>] The three people described below define the intended audience for this one.</p>
 <dl>
 <dt>Bhadra</dt>
-<dd><p>received a BSc in microbiology five years ago, and has worked since then for a biotech firm with labs in four countries. She did a statistics class using R as an undergrad, then learned some more R and some Unix shell scripting in a <a href="http://software-carpentry.org/">Software Carpentry</a> workshop, but has no other training as a programmer. Bhadra’s team is developing tools to detect structural similarities between proteins. They would like to build a browser interface to their tools so that people can test different algorithms on various data sets. This book will show Bhadra how to build, test, and deploy that interface.</p>
+<dd><p>received a BSc in microbiology five years ago, and has worked since then for a biotech firm with labs in four countries. She did a statistics class using R as an undergrad, then learned some more R and some Unix shell scripting in a <a href="http://software-carpentry.org/">Software Carpentry</a> workshop, but has no other training as a programmer. Bhadra’s team is developing tools to detect structural similarities between proteins. They would like to build a browser interface to their tools so that people can test different algorithms on various datasets. This book will show Bhadra how to build, test, and deploy that interface.</p>
 </dd>
 <dt>Efraim</dt>
 <dd><p>did fieldwork for the Ministry of Natural Resources for thirty-one years. He learned Visual Basic so that he could write Excel macros, then mastered C in order to maintain the control software for some second-hand remote sensing equipment. Efraim recently retired, and is now an active member of several citizen science projects. This book will show him how to create a service to share those projects’ data with the world, and how to build a web-based administrative interface for it.</p>
@@ -351,7 +351,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><p>have reliable access to the Internet.</p></li>
 </ul>
 <h2 id="s:intro-contributors">Who We Are</h2>
-<p><strong>Maya Gans</strong> is a freelance data scientist and front-end developer by way of quantitative biology. She has 4 years of experience programming in R, and her passion for data visualization brought her to the weird world of JavaScript. When she isn’t debugging <a href="https://maya.rbind.io/">or blogging</a> about code, she’s somewhere remote climbing large mountains. She dedicates this book to her fellow self taught programmers who were told they weren’t good enough but are too driven and excited to care.</p>
+<p><strong>Maya Gans</strong> is a freelance data scientist and front-end developer by way of quantitative biology. She has 4 years of experience programming in R, and her passion for data visualization brought her to the weird world of JavaScript. When she isn’t debugging <a href="https://maya.rbind.io/">or blogging</a> about code, she’s somewhere remote climbing large mountains. She dedicates this book to her fellow self-taught programmers who were told they weren’t good enough but are too driven and excited to care.</p>
 <p><strong><a href="https://tbyhdgs.info/">Toby Hodges</a></strong> is a bioinformatician turned community coordinator, working on the <a href="https://bio-it.embl.de">Bio-IT Project</a> at <a href="https://www.embl.de">EMBL</a>. He teaches a lot of courses in computing, organizes a lot of community-building events, listens to a lot of punk rock, and occasionally still finds time to write code and ride his bike. Toby would like to thank his wife for her support and patience while he swore about how annoying JavaScript is to debug.</p>
 <p><strong><a href="http://third-bit.com/">Greg Wilson</a></strong> has worked for 35 years in both industry and academia, and is the author or editor of several books on computing and two for children. He co-founded <a href="http://carpentries.org">Software Carpentry</a>, a non-profit organization that teaches basic computing skills to researchers, and is now part of the education team at <a href="http://rstudio.com">RStudio</a>. Greg would like to thank everyone at <a href="https://rangle.io/">Rangle</a> who was so patient with him when he was learning JavaScript.</p>
 <h2 id="s:intro-setup">Setting Up</h2>
@@ -363,7 +363,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>Contributions of all kinds are welcome, from errata and minor improvements to entirely new sections and chapters: please submit an issue or pull request to <a href="https://github.com/software-tools-in-javascript/js4ds/">our GitHub repository</a>. Everyone whose work is incorporated will be acknowledged; please note that all contributors are required to abide by our Code of Conduct (Appendix <a href="#s:conduct" data-reference-type="ref" data-reference="s:conduct">18</a>). Please note that we use Simplified English rather than Traditional English, i.e., American rather than British spelling and grammar. We encourage translations; if you would like to take this on, please <a href="gvwilson@third-bit.com">email us</a>.</p>
 <p>If you wish to report errata or suggest improvements to wording, please include the chapter name in the first line of the body of your report (e.g., <code>Testing Data Analysis</code>).</p>
 <h3 id="s:intro-acknowledgments">Acknowledgments</h3>
-<p>We are also grateful for fixes from:</p>
+<p>We are grateful as always to Shashi Kumar for help with the LaTeX. We are also grateful for fixes from:</p>
 <ul>
 <li><p><a href="https://github.com/sdruskat">Stephan Druskat</a></p></li>
 <li><p><a href="https://github.com/cRAN-cg">Chiranjeev Gupta</a></p></li>
@@ -391,7 +391,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <pre class="shell"><code>$ node src/basics/hello.js</code></pre>
 <pre class="text"><code>hello, world</code></pre>
 <h2 id="s:basics-data-types">Basic Data Types</h2>
-<p>JavaScript has the usual datatypes, though unlike C, Python, and many other languages, there is no separate type for integers: it stores all numbers as 64-bit floating-point values, which is accurate up to about 15 decimal digits. We can check this using <code>typeof</code>, which returns a string. (Note: <code>typeof</code> is an operator, <em>not</em> a function: we apply it to something by typing a space followed by the name of the thing we’d like to check the type of, e.g. <code>typeof dress</code>, as opposed to <code>typeof(dress)</code>.) We use it alongside <code>const</code> below, which itself is helpful when we want to give a name to a <a href="#g:constant"><strong>constant</strong></a> value:</p>
+<p>JavaScript has the usual datatypes, though unlike C, Python, and many other languages, there is no separate type for integers: it stores all numbers as 64-bit floating-point values, which is accurate up to about 15 decimal digits. We can check this using <code>typeof</code>, which returns a string. (Note: <code>typeof</code> is an operator, <em>not</em> a function: we apply it to something by typing a space followed by the name of the thing we’d like to check the type of, e.g., <code>typeof dress</code> as opposed to <code>typeof(dress)</code>.) We use it alongside <code>const</code> below, which itself is helpful when we want to give a name to a <a href="#g:constant"><strong>constant</strong></a> value:</p>
 <div class="sourceCode" id="cb4"><pre class="sourceCode js"><code class="sourceCode javascript"><a class="sourceLine" id="cb4-1" data-line-number="1"><span class="kw">const</span> aNumber <span class="op">=</span> <span class="fl">123.45</span></a>
 <a class="sourceLine" id="cb4-2" data-line-number="2"><span class="va">console</span>.<span class="at">log</span>(<span class="st">&#39;the type of&#39;</span><span class="op">,</span> aNumber<span class="op">,</span> <span class="st">&#39;is&#39;</span><span class="op">,</span> <span class="kw">typeof</span> aNumber)</a></code></pre></div>
 <pre class="text"><code>the type of 123.45 is number</code></pre>
@@ -435,7 +435,7 @@ southwest
 southeast</code></pre>
 <p>The <a href="#g:inner-loop"><strong>inner loop</strong></a> runs a complete cycle of iterations for each iteration of the <a href="#g:outer-loop"><strong>outer loop</strong></a>. Each value assigned to the variable <code>outer</code> is a pair, so each value assigned to <code>inner</code> is one of the two strings from that pair (Figure <a href="#f:basics-traversal" data-reference-type="ref" data-reference="f:basics-traversal">[f:basics-traversal]</a>).</p>
 <figure>
-<img src="figures/basics-traversal.svg" id="f:basics-traversal" /><figcaption>Nested Loop Traversal<span label="f:basics-traversal"></span></figcaption>
+<img src="figures/basics-traversal.svg" /><figcaption><span id="f:basics-traversal">Nested Loop Traversal</span></figcaption>
 </figure>
 <p>A JavaScript program can also make choices: it executes the <a href="#g:body-statement"><strong>body</strong></a> of an <code>if</code> statement if and only if the <a href="#g:condition"><strong>condition</strong></a> is true. Each <code>if</code> can have an <code>else</code>, whose body is only executed if the condition <em>isn’t</em> true:</p>
 <div class="sourceCode" id="cb16"><pre class="sourceCode js"><code class="sourceCode javascript"><a class="sourceLine" id="cb16-1" data-line-number="1"><span class="kw">const</span> values <span class="op">=</span> [<span class="dv">0</span><span class="op">,</span> <span class="dv">1</span><span class="op">,</span> <span class="st">&#39;&#39;</span><span class="op">,</span> <span class="st">&#39;text&#39;</span><span class="op">,</span> <span class="kw">undefined</span><span class="op">,</span> <span class="kw">null</span><span class="op">,</span> []<span class="op">,</span> [<span class="dv">2</span><span class="op">,</span> <span class="dv">3</span>]]</a>
@@ -474,7 +474,7 @@ color is blue and capitalized is BLUE</code></pre>
 <h2 id="s:basics-objects">Objects</h2>
 <p>An <a href="#g:object"><strong>object</strong></a> in JavaScript is a collection of key-value pairs, and is equivalent in simple cases to what Python would call a dictionary. It’s common to visualize an object as a two-column table with the keys in one column and the values in another (Figure <a href="#f:basics-object-table" data-reference-type="ref" data-reference="f:basics-object-table">[f:basics-object-table]</a>). The keys do not have to be strings, but almost always are; the values can be anything. We can create an object by putting key-value pairs in curly brackets; there must be a colon between the key and the value, and pairs must be separated by commas like the elements of arrays:</p>
 <figure>
-<img src="figures/basics-object-table.svg" id="f:basics-object-table" /><figcaption>Objects in Memory<span label="f:basics-object-table"></span></figcaption>
+<img src="figures/basics-object-table.svg" /><figcaption><span id="f:basics-object-table">Objects in Memory</span></figcaption>
 </figure>
 <div class="sourceCode" id="cb21"><pre class="sourceCode js"><code class="sourceCode javascript"><a class="sourceLine" id="cb21-1" data-line-number="1"><span class="kw">const</span> creature <span class="op">=</span> <span class="op">{</span></a>
 <a class="sourceLine" id="cb21-2" data-line-number="2">  <span class="st">&#39;order&#39;</span><span class="op">:</span> <span class="st">&#39;Primates&#39;</span><span class="op">,</span></a>
@@ -522,7 +522,7 @@ creature[species] is Jacchus</code></pre>
 <a class="sourceLine" id="cb26-11" data-line-number="11">  <span class="cf">return</span> [low<span class="op">,</span> high]</a>
 <a class="sourceLine" id="cb26-12" data-line-number="12"><span class="op">}</span></a></code></pre></div>
 <p>Its definition consists of the keyword <code>function</code>, its name, a parameterized list of <a href="#g:parameter"><strong>parameters</strong></a> (which might be empty), and its body.</p>
-<p>The body of the function begins with a test of the thing, referred to inside the function as <code>values</code>, provided as an <a href="#g:argument"><strong>argument</strong></a> to the function: if <code>values</code> has no length—i.e., it does not consist of multiple entries—the function returns <code>[undefined,undefined]</code>. (We will address the rationale behind this behaviour in the exercises.)</p>
+<p>The body of the function begins with a test of the thing, referred to inside the function as <code>values</code>, provided as an <a href="#g:argument"><strong>argument</strong></a> to the function: if <code>values</code> has no length—i.e., it does not consist of multiple entries—the function returns <code>[undefined,undefined]</code>. (We will address the rationale behind this behavior in the exercises.)</p>
 <div class="sourceCode" id="cb27"><pre class="sourceCode js"><code class="sourceCode javascript"><a class="sourceLine" id="cb27-1" data-line-number="1">  <span class="cf">if</span> (<span class="op">!</span><span class="va">values</span>.<span class="at">length</span>) <span class="op">{</span></a>
 <a class="sourceLine" id="cb27-2" data-line-number="2">    <span class="cf">return</span> [<span class="kw">undefined</span><span class="op">,</span> <span class="kw">undefined</span>]</a>
 <a class="sourceLine" id="cb27-3" data-line-number="3">  <span class="op">}</span></a></code></pre></div>
@@ -577,7 +577,7 @@ limits of 3,apple,sub-array are 3,3</code></pre>
 <h4 id="ee-ess" class="unnumbered unnumbered">Ee Ess</h4>
 <p>JavaScript’s official name is ECMAScript, though only people who use the word “datum” in everyday conversation ever call it that. Successive versions of the language are therefore known as ES5, ES6, and so on, except when they’re referred to as (for example) ES2018.</p>
 </blockquote>
-<p>Since we’re going to build command-line programs before doing anything in the browser, we will introduce Node’s module system first. We start by putting this code in a file called <code>utilities.js</code>:</p>
+<p>Since we’re going to build command-line programs before doing anything in the browser, we will introduce Node’s module system first (Figure <a href="#f:basics-require" data-reference-type="ref" data-reference="f:basics-require">[f:basics-require]</a>). We start by putting this code in a file called <code>utilities.js</code>:</p>
 <div class="sourceCode" id="cb34"><pre class="sourceCode js"><code class="sourceCode javascript"><a class="sourceLine" id="cb34-1" data-line-number="1">DEFAULT_BOUND <span class="op">=</span> <span class="dv">3</span></a>
 <a class="sourceLine" id="cb34-2" data-line-number="2"></a>
 <a class="sourceLine" id="cb34-3" data-line-number="3"><span class="kw">const</span> clip <span class="op">=</span> (values<span class="op">,</span> bound <span class="op">=</span> DEFAULT_BOUND) <span class="op">=&gt;</span> <span class="op">{</span></a>
@@ -605,11 +605,11 @@ limits of 3,apple,sub-array are 3,3</code></pre>
 clip(-1,5,3,0,10, 5) -&gt; -1,5,3,0</code></pre>
 <p><code>require</code> returns the object that was assigned to <code>module.exports</code>, so if we have assigned its result to a variable called <code>utilities</code>, we must then call our function as <code>utilities.clip</code>. We use a relative path starting with <code>./</code> or <code>../</code> to import local files; paths that start with names are taken from installed Node libraries.</p>
 <figure>
-<img src="figures/basics-require.svg" id="f:basics-require" /><figcaption>How Require Works<span label="f:basics-require"></span></figcaption>
+<img src="figures/basics-require.svg" /><figcaption><span id="f:basics-require">How Require Works</span></figcaption>
 </figure>
 <h2 id="s:basics-exercises">Exercises</h2>
 <h3 id="typeof" class="unnumbered unnumbered">Typeof</h3>
-<p>What kind of thing is <code>typeof</code>? Is it an expression? A function? Something else? (You might notice that <code>typeof typeof</code> is syntactically invalid. In such circumstances, an internet search engine is your friend, as is the <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference">Mozilla Developer Network</a> JavaScript reference.</p>
+<p>What kind of thing is <code>typeof</code>? Is it an expression? A function? Something else? (You might notice that <code>typeof typeof</code> is syntactically invalid. In such circumstances, an Internet search engine is your friend, as is the <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference">Mozilla Developer Network</a> JavaScript reference.</p>
 <h3 id="fill-in-the-blanks" class="unnumbered unnumbered">Fill in the Blanks</h3>
 <p>Answer these questions about the program below:</p>
 <ol>
@@ -741,7 +741,7 @@ species is undefined</code></pre>
 <h2 id="s:callbacks-callstack">The Call Stack</h2>
 <p>When JavaScript <a href="#g:parse"><strong>parses</strong></a> the expression <code>let name = &quot;text&quot;</code>, it allocates a block of memory big enough for four characters and stores a reference to that block of characters in the variable <code>name</code>. We can show this by drawing a <a href="#g:memory-diagram"><strong>memory diagram</strong></a> like the one in Figure <a href="#f:callbacks-name-value" data-reference-type="ref" data-reference="f:callbacks-name-value">[f:callbacks-name-value]</a>.</p>
 <figure>
-<img src="figures/callbacks-name-value.svg" id="f:callbacks-name-value" /><figcaption>Name and Value<span label="f:callbacks-name-value"></span></figcaption>
+<img src="figures/callbacks-name-value.svg" /><figcaption><span id="f:callbacks-name-value">Name and Value</span></figcaption>
 </figure>
 <p>When we write:</p>
 <div class="sourceCode" id="cb47"><pre class="sourceCode js"><code class="sourceCode javascript"><a class="sourceLine" id="cb47-1" data-line-number="1">oneMore <span class="op">=</span> (x) <span class="op">=&gt;</span> <span class="op">{</span></a>
@@ -749,7 +749,7 @@ species is undefined</code></pre>
 <a class="sourceLine" id="cb47-3" data-line-number="3"><span class="op">}</span></a></code></pre></div>
 <p>JavaScript allocates a block of memory big enough to store several instructions, translates the text of the function into instructions, and stores a reference to those instructions in the variable <code>oneMore</code> (Figure <a href="#f:callbacks-one-more" data-reference-type="ref" data-reference="f:callbacks-one-more">[f:callbacks-one-more]</a>).</p>
 <figure>
-<img src="figures/callbacks-one-more.svg" id="f:callbacks-one-more" /><figcaption>Functions in Memory<span label="f:callbacks-one-more"></span></figcaption>
+<img src="figures/callbacks-one-more.svg" /><figcaption><span id="f:callbacks-one-more">Functions in Memory</span></figcaption>
 </figure>
 <p>The only difference between these two cases is what’s on the other end of the reference: four characters or a bunch of instructions that add one to a number. This means that we can assign the function to another variable, just as we would assign a number:</p>
 <div class="sourceCode" id="cb48"><pre class="sourceCode js"><code class="sourceCode javascript"><a class="sourceLine" id="cb48-1" data-line-number="1"><span class="co">// assign the function oneMore to the variable anotherName </span></a>
@@ -760,11 +760,11 @@ species is undefined</code></pre>
 <pre class="text"><code>6</code></pre>
 <p>Doing this does <em>not</em> call the function: as Figure <a href="#f:callbacks-alias-function" data-reference-type="ref" data-reference="f:callbacks-alias-function">[f:callbacks-alias-function]</a> shows, it creates a second name, or <a href="#g:alias"><strong>alias</strong></a>, that refers to the same block of instructions.</p>
 <figure>
-<img src="figures/callbacks-alias-function.svg" id="f:callbacks-alias-function" /><figcaption>Aliasing a Function<span label="f:callbacks-alias-function"></span></figcaption>
+<img src="figures/callbacks-alias-function.svg" /><figcaption><span id="f:callbacks-alias-function">Aliasing a Function</span></figcaption>
 </figure>
 <p>As explained in Chapter <a href="#s:basics" data-reference-type="ref" data-reference="s:basics">2</a>, when JavaScript calls a function it assigns the arguments in the call to the function’s parameters. In order for this to be safe, we need to ensure that there are no <a href="#g:name-collision"><strong>name collisions</strong></a>, i.e., that if there is a variable called <code>something</code> and one of the function’s parameters is also called <code>something</code>, the function will use the right one. The way every modern language implements this is to use a <a href="#g:call-stack"><strong>call stack</strong></a>. Instead of putting all our variables in one big table, we have one table for global variables and one extra table for each function call. This means that if we assign 100 to <code>x</code>, call <code>oneMore(2  x + 1)</code>, and look at memory in the middle of that call, we will see what’s in Figure <a href="#f:callbacks-call-stack" data-reference-type="ref" data-reference="f:callbacks-call-stack">[f:callbacks-call-stack]</a>.</p>
 <figure>
-<img src="figures/callbacks-call-stack.svg" id="f:callbacks-call-stack" /><figcaption>The Call Stack<span label="f:callbacks-call-stack"></span></figcaption>
+<img src="figures/callbacks-call-stack.svg" /><figcaption><span id="f:callbacks-call-stack">The Call Stack</span></figcaption>
 </figure>
 <h2 id="s:callbacks-func">Functions of Functions</h2>
 <p>The call stack allows us to write and call functions without worrying about whether we’re accidentally going to refer to the wrong variable. And since functions are just another kind of data, we can pass one function into another. For example, we can write a function called <code>doTwice</code> that calls some other function two times:</p>
@@ -782,7 +782,7 @@ species is undefined</code></pre>
 hello</code></pre>
 <p>Again, this is clearer when we look at the state of memory while <code>doTwice</code> is running (Figure <a href="#f:callbacks-do-twice" data-reference-type="ref" data-reference="f:callbacks-do-twice">[f:callbacks-do-twice]</a>).</p>
 <figure>
-<img src="figures/callbacks-do-twice.svg" id="f:callbacks-do-twice" /><figcaption>Functions of Functions<span label="f:callbacks-do-twice"></span></figcaption>
+<img src="figures/callbacks-do-twice.svg" /><figcaption><span id="f:callbacks-do-twice">Functions of Functions</span></figcaption>
 </figure>
 <p>This becomes more useful when the function or functions passed in have parameters of their own. For example, the function <code>pipeline</code> passes a value to one function, then takes that function’s result and passes it to a second, and returns the final result:</p>
 <div class="sourceCode" id="cb52"><pre class="sourceCode js"><code class="sourceCode javascript"><a class="sourceLine" id="cb52-1" data-line-number="1"><span class="kw">const</span> pipeline <span class="op">=</span> (initial<span class="op">,</span> first<span class="op">,</span> second) <span class="op">=&gt;</span> <span class="op">{</span></a>
@@ -799,7 +799,7 @@ hello</code></pre>
 <pre class="text"><code>trim then dot: |this.example.uses.text|</code></pre>
 <p>During the call to <code>temp = first(initial)</code>, but before a value has been returned to be assigned to <code>temp</code>, memory looks like Figure <a href="#f:callbacks-pipeline" data-reference-type="ref" data-reference="f:callbacks-pipeline">[f:callbacks-pipeline]</a>.</p>
 <figure>
-<img src="figures/callbacks-pipeline.svg" id="f:callbacks-pipeline" /><figcaption>Implementing a Pipeline<span label="f:callbacks-pipeline"></span></figcaption>
+<img src="figures/callbacks-pipeline.svg" /><figcaption><span id="f:callbacks-pipeline">Implementing a Pipeline</span></figcaption>
 </figure>
 <p>Reversing the order of the functions changes the result:</p>
 <div class="sourceCode" id="cb55"><pre class="sourceCode js"><code class="sourceCode javascript"><a class="sourceLine" id="cb55-1" data-line-number="1"><span class="kw">const</span> dotThenTrim <span class="op">=</span> <span class="at">pipeline</span>(original<span class="op">,</span> dot<span class="op">,</span> trim)</a>
@@ -978,17 +978,17 @@ all longer than 3: false</code></pre>
 <pre class="text"><code>add_1(100) is 101, add_2(100) is 102</code></pre>
 <p>The best way to understand what’s going on is to draw a step-by-step memory diagram. In step 1, we call <code>adder(1)</code> (Figure <a href="#f:callbacks-adder-1" data-reference-type="ref" data-reference="f:callbacks-adder-1">[f:callbacks-adder-1]</a>). <code>adder</code> creates a new function that includes a reference to that 1 we just passed in (Figure <a href="#f:callbacks-adder-2" data-reference-type="ref" data-reference="f:callbacks-adder-2">[f:callbacks-adder-2]</a>). In step 3, <code>adder</code> returns that function, which is assigned to <code>add_1</code> (Figure <a href="#f:callbacks-adder-3" data-reference-type="ref" data-reference="f:callbacks-adder-3">[f:callbacks-adder-3]</a>). Crucially, the function that <code>add_1</code> refers to still has a reference to the value 1, even though that value isn’t referred to any longer by anyone else.</p>
 <figure>
-<img src="figures/callbacks-adder-1.svg" id="f:callbacks-adder-1" /><figcaption>Creating an Adder (Step 1)<span label="f:callbacks-adder-1"></span></figcaption>
+<img src="figures/callbacks-adder-1.svg" /><figcaption><span id="f:callbacks-adder-1">Creating an Adder (Step 1)</span></figcaption>
 </figure>
 <figure>
-<img src="figures/callbacks-adder-2.svg" id="f:callbacks-adder-2" /><figcaption>Creating an Adder (Step 2)<span label="f:callbacks-adder-2"></span></figcaption>
+<img src="figures/callbacks-adder-2.svg" /><figcaption><span id="f:callbacks-adder-2">Creating an Adder (Step 2)</span></figcaption>
 </figure>
 <figure>
-<img src="figures/callbacks-adder-3.svg" id="f:callbacks-adder-3" /><figcaption>Creating an Adder (Step 3)<span label="f:callbacks-adder-3"></span></figcaption>
+<img src="figures/callbacks-adder-3.svg" /><figcaption><span id="f:callbacks-adder-3">Creating an Adder (Step 3)</span></figcaption>
 </figure>
 <p>In steps 4–6, we repeat these three steps to create another function that has a reference to the value 2, and assign that function to <code>add_2</code> (Figure <a href="#f:callbacks-adder-4" data-reference-type="ref" data-reference="f:callbacks-adder-4">[f:callbacks-adder-4]</a>).</p>
 <figure>
-<img src="figures/callbacks-adder-4.svg" id="f:callbacks-adder-4" /><figcaption>Creating an Adder (Steps 4-6)<span label="f:callbacks-adder-4"></span></figcaption>
+<img src="figures/callbacks-adder-4.svg" /><figcaption><span id="f:callbacks-adder-4">Creating an Adder (Steps 4-6)</span></figcaption>
 </figure>
 <p>When we now call <code>add_1</code> or <code>add_2</code>, they add the value passed in and the value they’ve kept a reference to.</p>
 <p>This trick of capturing a reference to a value inside something else is called a <a href="#g:closure"><strong>closure</strong></a>. It works because JavaScript holds on to values as long as anything, anywhere, still refers to them. Closures solve our pipeline problem by letting us define little functions on the fly and give them extra data to work with:</p>
@@ -1033,7 +1033,7 @@ all longer than 3: false</code></pre>
 <a class="sourceLine" id="cb97-4" data-line-number="4">]</a></code></pre></div>
 <p><em>without</em> using any loops. The changes are:</p>
 <ul>
-<li><p>The <code>date</code> field is replaced with just the ‘year.</p></li>
+<li><p>The <code>date</code> field is replaced with just the year.</p></li>
 <li><p>Only observations of female animals are retained.</p></li>
 <li><p>The retained records are given sequence numbers to relate them back to the original data. (These sequence numbers are 1-based rather than 0-based.)</p></li>
 </ul>
@@ -1098,7 +1098,7 @@ circle: area 28.274333882308138 perimeter 18.84955592153876</code></pre>
 circle: area 28.274333882308138 perimeter 18.84955592153876
 rectangle: area 6 perimeter 10</code></pre>
 <h2 id="s:oop-classes">Classes</h2>
-<p>Building every object by hand and calling <code>thing.function(thing)</code> is clumsy. JavaScript solved these problems using <a href="#g:prototype"><strong>prototypes</strong></a>, which also turned out to be almost as clumsy as our hand-rolled solution (Section <a href="#s:legacy-prototypes" data-reference-type="ref" data-reference="s:legacy-prototypes">23.3</a>). Most object-oriented languages use <a href="#g:class"><strong>classes</strong></a> instead; these were added to JavaScript in ES6, and we will use them instead of prototypes throughout. Here’s how we create a class that defines the properties of a square, without actually creating any specific squares:</p>
+<p>Building every object by hand and calling <code>thing.function(thing)</code> is clumsy. JavaScript solved these problems using <a href="#g:prototype"><strong>prototypes</strong></a>, which also turned out to be almost as clumsy as our hand-rolled solution (Section <a href="#s:legacy-prototypes" data-reference-type="ref" data-reference="s:legacy-prototypes">23.3</a>). Most object-oriented languages use <a href="#g:class"><strong>classes</strong></a> instead (Figure <a href="#f:oop-memory" data-reference-type="ref" data-reference="f:oop-memory">[f:oop-memory]</a>); these were added to JavaScript in ES6, and we will use them instead of prototypes throughout. Here’s how we create a class that defines the properties of a square, without actually creating any specific squares:</p>
 <div class="sourceCode" id="cb106"><pre class="sourceCode js"><code class="sourceCode javascript"><a class="sourceLine" id="cb106-1" data-line-number="1"><span class="kw">class</span> Square <span class="op">{</span></a>
 <a class="sourceLine" id="cb106-2" data-line-number="2">  <span class="at">constructor</span> (size) <span class="op">{</span></a>
 <a class="sourceLine" id="cb106-3" data-line-number="3">    <span class="kw">this</span>.<span class="at">name</span> <span class="op">=</span> <span class="st">&#39;square&#39;</span></a>
@@ -1113,7 +1113,7 @@ rectangle: area 6 perimeter 10</code></pre>
 <pre class="text"><code>sq name square and area 9</code></pre>
 <p><code>new ClassName(...)</code> creates a new blank object and marks it to show that it is an <a href="#g:instance"><strong>instance</strong></a> of <code>ClassName</code>. Objects need to know what class they belong to so that they can find their <a href="#g:method"><strong>methods</strong></a>, which are the functions defined within the class that operate on instances of it. (We’ll explain how JavaScript marks objects in Section <a href="#s:legacy-prototypes" data-reference-type="ref" data-reference="s:legacy-prototypes">23.3</a>; it’s more complicated than it needs to be in order to be compatible with older versions of the language.)</p>
 <figure>
-<img src="figures/oop-memory.svg" id="f:oop-memory" /><figcaption>Objects and Classes in Memory<span label="f:oop-memory"></span></figcaption>
+<img src="figures/oop-memory.svg" /><figcaption><span id="f:oop-memory">Objects and Classes in Memory</span></figcaption>
 </figure>
 <p>Before <code>new</code> hands the newly-created object back to the program, it calls the specially-named <a href="#g:constructor"><strong>constructor</strong></a> to initialize the object’s state. Inside the constructor and other methods, the object being operated on is referred to by the pronoun <code>this</code>. For example, if the constructor assigns an array to <code>this.values</code>, then every instance of that class gets its own array.</p>
 <blockquote>
@@ -1220,7 +1220,7 @@ rectangle: area 0.75 perimeter 4</code></pre>
 <li><p>There isn’t, so it follows the link from <code>Scientist</code> to the parent class <code>Person</code> and finds the function it’s looking for.</p></li>
 </ul>
 <figure>
-<img src="figures/oop-inheritance.svg" id="f:oop-inheritance" /><figcaption>Object-Oriented Inheritance<span label="f:oop-inheritance"></span></figcaption>
+<img src="figures/oop-inheritance.svg" /><figcaption><span id="f:oop-inheritance">Object-Oriented Inheritance</span></figcaption>
 </figure>
 <h2 id="s:oop-exercises">Exercises</h2>
 <h3 id="delays" class="unnumbered unnumbered">Delays</h3>
@@ -1308,11 +1308,11 @@ e -&gt; null</code></pre>
 <p>HTML is the standard way to represent documents for presentation in web browsers, and CSS is the standard way to describe how it should look. Both are more complicated than they should have been, but in order to create web applications, we need to understand a little of both.</p>
 <h2 id="s:htmlcss-formatting">Formatting</h2>
 <p>An HTML <a href="#g:document"><strong>document</strong></a> contains <a href="#g:element"><strong>elements</strong></a> and text (and possibly other things that we will ignore for now). Elements are shown using <a href="#g:tag"><strong>tags</strong></a>: an opening tag <code>&lt;tagname&gt;</code> shows where the element begins, and a corresponding closing tag <code>&lt;/tagname&gt;</code> (with a leading slash) shows where it ends. If there’s nothing between the two, we can write <code>&lt;tagname/&gt;</code> (with a trailing slash).</p>
-<p>A document’s elements must form a <a href="#g:tree"><strong>tree</strong></a>, i.e., they must be strictly nested. This means that if Y starts inside X, Y must end before X ends, so <code>&lt;X&gt;…&lt;Y&gt;…&lt;/Y&gt;&lt;/X&gt;</code> is legal, but <code>&lt;X&gt;…&lt;Y&gt;…&lt;/X&gt;&lt;/Y&gt;</code> is not. Finally, every document should have a single <a href="#g:root-element"><strong>root element</strong></a> that encloses everything else, although browsers aren’t strict about enforcing this. In fact, most browsers are pretty relaxed about enforcing any kind of rules at all, since most people don’t obey them anyway.</p>
+<p>A document’s elements must form a <a href="#g:tree"><strong>tree</strong></a> (Figure <a href="#f:htmlcss-tree" data-reference-type="ref" data-reference="f:htmlcss-tree">[f:htmlcss-tree]</a>), i.e., they must be strictly nested. This means that if Y starts inside X, Y must end before X ends, so <code>&lt;X&gt;…&lt;Y&gt;…&lt;/Y&gt;&lt;/X&gt;</code> is legal, but <code>&lt;X&gt;…&lt;Y&gt;…&lt;/X&gt;&lt;/Y&gt;</code> is not. Finally, every document should have a single <a href="#g:root-element"><strong>root element</strong></a> that encloses everything else, although browsers aren’t strict about enforcing this. In fact, most browsers are pretty relaxed about enforcing any kind of rules at all, since most people don’t obey them anyway.</p>
 <h2 id="s:htmlcss-text">Text</h2>
 <p>The text in an HTML page is normal printable text. However, since <code>&lt;</code> and <code>&gt;</code> are used to show where tags start and end, we must use <a href="#g:escape-sequence"><strong>escape sequences</strong></a> to represent them, just as we use <code>\&quot;</code> to represented a literal double-quote character inside a double-quoted string in JavaScript. In HTML, escape sequences are written <code>&amp;name;</code>, i.e., an ampersand, the name of the character, and a semi-colon. A few common escape sequences are shown in Table <a href="#t:htmlcss-escapes" data-reference-type="ref" data-reference="t:htmlcss-escapes">[t:htmlcss-escapes]</a>.</p>
 <table class="table table-striped">
-<caption>HTML Escapes<span label="t:htmlcss-escapes"></span></caption>
+<caption><span>HTML Escapes</span><span id="t:htmlcss-escapes" label="t:htmlcss-escapes">[t:htmlcss-escapes]</span></caption>
 <tbody>
 <tr class="odd">
 <td style="text-align: left;">Name</td>
@@ -1349,6 +1349,11 @@ e -&gt; null</code></pre>
 <td style="text-align: left;"><code>&amp;micro;</code></td>
 <td style="text-align: left;">µ</td>
 </tr>
+<tr class="even">
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+</tr>
 </tbody>
 </table>
 <p>The first two are self-explanatory, and <code>&amp;amp;</code> is needed so that we can write a literal ampersand (just as <code>\\</code> is needed in JavaScript strings so that we can write a literal backslash). <code>&amp;copy;</code>, <code>&amp;plusmn;</code>, and <code>&amp;micro;</code> are usually not needed any longer, since most editors will allow us to put non-ASCII characters directly into documents these days, but occasionally we will run into older or stricter systems.</p>
@@ -1384,7 +1389,7 @@ e -&gt; null</code></pre>
 <a class="sourceLine" id="cb127-12" data-line-number="12">  <span class="kw">&lt;/body&gt;</span></a>
 <a class="sourceLine" id="cb127-13" data-line-number="13"><span class="kw">&lt;/html&gt;</span></a></code></pre></div>
 <figure>
-<img src="figures/htmlcss-tree.svg" id="f:htmlcss-tree" /><figcaption>HTML as a Tree<span label="f:htmlcss-tree"></span></figcaption>
+<img src="figures/htmlcss-tree.svg" /><figcaption><span id="f:htmlcss-tree">HTML as a Tree</span></figcaption>
 </figure>
 <ul>
 <li><p>The <code>title</code> element inside <code>head</code> gives the page a title. This is displayed in the browser bar when the page is open, but is <em>not</em> displayed as part of the page itself.</p></li>
@@ -1480,7 +1485,7 @@ e -&gt; null</code></pre>
 </table>
 <p>Do <em>not</em> use tables to create multi-column layouts: there’s a better way.</p>
 <h2 id="s:htmlcss-links">Links</h2>
-<p>Links to other pages are what makes HTML hypertext. Confusingly, the element used to show a link is called <code>a</code>. The text inside the element is displayed and (usually) highlighted for clicking. Its <code>href</code> attribute specifies what the link is pointing at; both local filenames and URLs are supported. Oh, and we can use <code>&lt;br/&gt;</code> to force a line break in text (with a trailing slash inside the tag, since the <code>br</code> element doesn’t contain any content):</p>
+<p>Links to other pages are what make HTML hypertext (Figure <a href="#f:htmlcss-links" data-reference-type="ref" data-reference="f:htmlcss-links">[f:htmlcss-links]</a>). Confusingly, the element used to show a link is called <code>a</code>. The text inside the element is displayed and (usually) highlighted for clicking. Its <code>href</code> attribute specifies what the link is pointing at; both local filenames and URLs are supported. Oh, and we can use <code>&lt;br/&gt;</code> to force a line break in text (with a trailing slash inside the tag, since the <code>br</code> element doesn’t contain any content):</p>
 <div class="sourceCode" id="cb135"><pre class="sourceCode html"><code class="sourceCode html"><a class="sourceLine" id="cb135-1" data-line-number="1"><span class="kw">&lt;a</span><span class="ot"> href=</span><span class="st">&quot;https://nodejs.org/&quot;</span><span class="kw">&gt;</span>Node.js<span class="kw">&lt;/a&gt;</span></a>
 <a class="sourceLine" id="cb135-2" data-line-number="2"><span class="kw">&lt;br/&gt;</span></a>
 <a class="sourceLine" id="cb135-3" data-line-number="3"><span class="kw">&lt;a</span><span class="ot"> href=</span><span class="st">&quot;https://facebook.github.io/react/&quot;</span><span class="kw">&gt;</span>React<span class="kw">&lt;/a&gt;</span></a>
@@ -1492,16 +1497,16 @@ React
 home page (relative path)</code></pre>
 <p>with the usual clickability.</p>
 <figure>
-<img src="figures/htmlcss-links.svg" id="f:htmlcss-links" /><figcaption>Pages and Links<span label="f:htmlcss-links"></span></figcaption>
+<img src="figures/htmlcss-links.svg" /><figcaption><span id="f:htmlcss-links">Pages and Links</span></figcaption>
 </figure>
 <h2 id="s:htmlcss-images">Images</h2>
 <p>Images can be stored inside HTML pages in two ways: by using SVG (which we will discuss in Chapter <a href="#s:vis" data-reference-type="ref" data-reference="s:vis">8</a>) or by encoding the image as text and including that text in the body of the page, which is clever, but makes the source of the pages very hard to read.</p>
 <p>It is far more common to store each image in a separate file and refer to that file using an <code>img</code> element (which also allows us to use the image in many places without copying it). The <code>src</code> attribute of the <code>img</code> tag specifies where to find the file; as with the <code>href</code> attribute of an <code>a</code> element, this can be either a URL or a local path. Every <code>img</code> should also include a <code>title</code> attribute (whose purpose is self-explanatory) and an <code>alt</code> attribute with some descriptive text to aid accessibility and search engines. (Again, we have wrapped and broken lines so that they will display nicely in the printed version.)</p>
-<div class="sourceCode" id="cb137"><pre class="sourceCode html"><code class="sourceCode html"><a class="sourceLine" id="cb137-1" data-line-number="1">    <span class="kw">&lt;img</span><span class="ot"> src=</span><span class="st">&quot;./html5.png&quot;</span><span class="ot"> title=</span><span class="st">&quot;HTML5 Logo&quot;</span></a>
-<a class="sourceLine" id="cb137-2" data-line-number="2"><span class="ot">         alt=</span><span class="st">&quot;Displays the HTML5 logo using a local path&quot;</span> <span class="kw">/&gt;</span></a>
-<a class="sourceLine" id="cb137-3" data-line-number="3">    <span class="kw">&lt;img</span><span class="ot"> src=</span><span class="st">&quot;https://github.com/software-tools-in-javascript/js-vs-rc/blob/master/src/htmlcss/html5.png&quot;</span></a>
-<a class="sourceLine" id="cb137-4" data-line-number="4"><span class="ot">         title=</span><span class="st">&quot;HTML5 Logo&quot;</span></a>
-<a class="sourceLine" id="cb137-5" data-line-number="5"><span class="ot">         alt=</span><span class="st">&quot;Display the HTML5 logo using a URL&quot;</span> <span class="kw">/&gt;</span></a></code></pre></div>
+<div class="sourceCode" id="cb137"><pre class="sourceCode html"><code class="sourceCode html"><a class="sourceLine" id="cb137-1" data-line-number="1">    <span class="kw">&lt;img</span><span class="ot"> src=</span><span class="st">&quot;./assets/logo.png&quot;</span><span class="ot"> title=</span><span class="st">&quot;Book Logo&quot;</span></a>
+<a class="sourceLine" id="cb137-2" data-line-number="2"><span class="ot">         alt=</span><span class="st">&quot;Displays the book logo using a local path&quot;</span> <span class="kw">/&gt;</span></a>
+<a class="sourceLine" id="cb137-3" data-line-number="3">    <span class="kw">&lt;img</span><span class="ot"> src=</span><span class="st">&quot;https://js4ds.org/assets/logo.png&quot;</span></a>
+<a class="sourceLine" id="cb137-4" data-line-number="4"><span class="ot">         title=</span><span class="st">&quot;Book Logo&quot;</span></a>
+<a class="sourceLine" id="cb137-5" data-line-number="5"><span class="ot">         alt=</span><span class="st">&quot;Display the book logo using a URL&quot;</span> <span class="kw">/&gt;</span></a></code></pre></div>
 <p>Two things to note here are:</p>
 <ol>
 <li><p>Since <code>img</code> elements don’t contain any text, they are often written with the trailing-slash notation. However, they are also often written improperly as <code>&lt;img src=&quot;...&quot;&gt;</code> without any slashes at all. Browsers will understand this, but some software packages will complain.</p></li>
@@ -1572,10 +1577,10 @@ home page (relative path)</code></pre>
 <a class="sourceLine" id="cb143-6" data-line-number="6">}</a></code></pre></div>
 <blockquote>
 <h4 id="internal-links" class="unnumbered unnumbered">Internal Links</h4>
-<p>We can also link directly to an element within a page using <code>#name</code> inside the <code>href</code> attribute of a link. For example, <code>&lt;a href=&quot;selectors.html#major&quot;&gt;some text&lt;/a&gt;</code> refers to the <code>#major</code> element in <code>selectors.html</code>, while <code>&lt;a href=&quot;selectors.html#minor&quot;&gt;some text&lt;/a&gt;</code> refers to the <code>#minor</code> element. This is particularly useful <em>within</em> pages: <code>&lt;a href=&quot;#major&quot;&gt;jump&lt;/a&gt;</code> takes us straight to the <code>#major</code> element within this page. Internal links like this are often used for cross-referencing and to create a table of contents.</p>
+<p>We can link to an element in a page using <code>#name</code> inside the link’s <code>href</code>: for example, <code>&lt;a href=&quot;page.html#place&quot;&gt;text&lt;/a&gt;</code> refers to the <code>#place</code> element in <code>page.html</code>. This is particularly useful <em>within</em> pages: <code>&lt;a href=&quot;#place&quot;&gt;jump&lt;/a&gt;</code> takes us straight to the <code>#place</code> element within this page. Internal links like this are often used for cross-referencing and to create a table of contents.</p>
 </blockquote>
 <h2 id="s:htmlcss-bootstrap">Bootstrap</h2>
-<p>CSS can become very complicated very quickly, so most people use a framework to take care of the details. One of the most popular is <a href="https://getbootstrap.com/">Bootstrap</a> (which is what we’re using to style this website). Here’s the entire source of a page that uses Bootstrap to create a two-column layout with a banner at the top:</p>
+<p>CSS can become very complicated very quickly, so most people use a framework to take care of the details. One of the most popular is <a href="https://getbootstrap.com/">Bootstrap</a> (which is what we’re using to style this website). Here’s the entire source of a page that uses Bootstrap to create a two-column layout with a banner at the top (Figure <a href="#f:htmlcss-bootstrap" data-reference-type="ref" data-reference="f:htmlcss-bootstrap">[f:htmlcss-bootstrap]</a>):</p>
 <div class="sourceCode" id="cb144"><pre class="sourceCode html"><code class="sourceCode html"><a class="sourceLine" id="cb144-1" data-line-number="1"><span class="kw">&lt;html&gt;</span></a>
 <a class="sourceLine" id="cb144-2" data-line-number="2">  <span class="kw">&lt;head&gt;</span></a>
 <a class="sourceLine" id="cb144-3" data-line-number="3">    <span class="kw">&lt;link</span><span class="ot"> rel=</span><span class="st">&quot;stylesheet&quot;</span></a>
@@ -1611,9 +1616,7 @@ home page (relative path)</code></pre>
 <a class="sourceLine" id="cb144-33" data-line-number="33"></a>
 <a class="sourceLine" id="cb144-34" data-line-number="34">  <span class="kw">&lt;/body&gt;</span></a>
 <a class="sourceLine" id="cb144-35" data-line-number="35"><span class="kw">&lt;/html&gt;</span></a></code></pre></div>
-<figure>
-<img src="figures/htmlcss-bootstrap.png" alt="Bootstrap Layout" id="f:htmlcss-bootstrap" /><figcaption>Bootstrap Layout<span label="f:htmlcss-bootstrap"></span></figcaption>
-</figure>
+
 <p>The page opens by loading Bootstrap from the web; we can also download <code>bootstrap.min.css</code> and refer to it with a local path. (The <code>.min</code> in the file’s name signals that the file has been <a href="#g:minimization"><strong>minimized</strong></a> so that it will load more quickly.)</p>
 <p>The page then uses a <code>style</code> element to create an <a href="#g:internal-style-sheet"><strong>internal style sheet</strong></a> to put a solid one-pixel border around every <code>div</code> so that we can see the regions of the page more clearly. Defining styles in the page header is generally a bad idea, but it’s a good way to test things quickly. Oh, and a <code>div</code> just marks a region of a page without doing anything to it, just as a <code>span</code> marks a region of text without changing its appearance unless we apply a style.</p>
 <p>The first <code>div</code> creates a header box (called a “jumbotron”) and centers its text. The second <code>div</code> is a container, which creates a bit of margin on the left and right sides of our content. Inside that container is a row with two columns, one 4/12 as wide as the row and the other 8/12 as wide. (Bootstrap uses a 12-column system because 12 has lots of divisors.)</p>
@@ -1760,7 +1763,7 @@ home page (relative path)</code></pre>
 <p>We then have three lines that do most of the function’s work. The first tells us that <code>items</code> is going to be assigned something derived from <code>headings</code>; the second transforms the array of headings into an array of strings, and the third joins those strings to create a single string. Looking at the <code>map</code> call, each heading becomes a list item (<code>li</code>) containing a link (<code>a</code>) whose <code>href</code> attribute is the ID of the heading and whose displayed content (the text between <code>&lt;a...&gt;</code> and <code>&lt;/a&gt;</code>) is the text of the heading. The <code>href</code> attribute’s value starts with <code>#</code>, which makes this a local link (i.e., it links to something inside the same page). If one of our <code>h2</code> headings doesn’t have an <code>id</code> set, this <code>map</code> will fail; we’ll explore ways to handle this in the exercises.</p>
 <p>Finally, the last line of the code shown above fills in the content of the container (i.e., the <code>div</code>) with an unordered list (<code>ul</code>) that contains all of the items we just constructed. Again, when we assign to an element’s <code>innerHTML</code> property, JavaScript parses the string we give it and constructs the HTML nodes we need. It would be marginally faster to build these nodes ourselves (which we will do in the exercises), but building and parsing strings is usually easier to read, and the performance differences are small enough in modern browsers that we should only worry about them if they actually prove themselves a problem.</p>
 <h2 id="s:pages-sort-list">Sortable Lists</h2>
-<p>Creating nodes allows us to add content to a page, but we can also rearrange the nodes that are there. Our next exercise is to sort the elements of a list, so that if the author writes:</p>
+<p>Creating nodes allows us to add content to a page, but we can also rearrange the nodes that are there (Figure <a href="#f:pages-sortlist" data-reference-type="ref" data-reference="f:pages-sortlist">[f:pages-sortlist]</a>). Our next exercise is to sort the elements of a list, so that if the author writes:</p>
 <div class="sourceCode" id="cb155"><pre class="sourceCode html"><code class="sourceCode html"><a class="sourceLine" id="cb155-1" data-line-number="1"><span class="kw">&lt;ul&gt;</span></a>
 <a class="sourceLine" id="cb155-2" data-line-number="2">  <span class="kw">&lt;li&gt;</span>pee (P)<span class="kw">&lt;/li&gt;</span></a>
 <a class="sourceLine" id="cb155-3" data-line-number="3">  <span class="kw">&lt;li&gt;</span>cue (Q)<span class="kw">&lt;/li&gt;</span></a>
@@ -1848,7 +1851,7 @@ home page (relative path)</code></pre>
 <a class="sourceLine" id="cb161-12" data-line-number="12">  <span class="op">}</span>)</a>
 <a class="sourceLine" id="cb161-13" data-line-number="13"><span class="op">}</span></a></code></pre></div>
 <figure>
-<img src="figures/pages-sortlist.svg" id="f:pages-sortlist" /><figcaption>Sorting and Replacing<span label="f:pages-sortlist"></span></figcaption>
+<img src="figures/pages-sortlist.svg" /><figcaption><span id="f:pages-sortlist">Sorting and Replacing</span></figcaption>
 </figure>
 <p>As before, it starts by creating an array containing the nodes we want to operate on. (We use the selector <code>.sorted</code> (with a leading dot) to select everything with the class <code>sorted</code>, rather than <code>#sorted</code>, which would find nodes with the ID <code>sorted</code>.) This array will then have all the <code>ul</code> or <code>ol</code> lists that the function is to sort.</p>
 <p>We process each list separately with <code>lists.forEach</code>. The callback function inside <code>forEach</code> uses <code>Array.from</code> to create an array containing the child nodes of the main list element, then filters that list to remove any that are text nodes. We need the <code>Array.from</code> call because (once again) the DOM doesn’t use a JavaScript array to store children, but a structure of its own devising that lacks the methods we want to call. We remove the text nodes because they represent the <a href="#g:whitespace"><strong>whitespace</strong></a> between list elements, such as newline characters after a closing <code>&lt;/li&gt;</code> and before the next opening <code>&lt;li&gt;</code>.</p>
@@ -1882,7 +1885,7 @@ home page (relative path)</code></pre>
 <a class="sourceLine" id="cb164-15" data-line-number="15">    </a>
 <a class="sourceLine" id="cb164-16" data-line-number="16">  <span class="kw">&lt;/body&gt;</span></a>
 <a class="sourceLine" id="cb164-17" data-line-number="17"><span class="kw">&lt;/html&gt;</span></a></code></pre></div>
-<p>Here’s our function (which we’ll call from an event listener as before—again, the line breaks in the second call to <code>map</code> are there so that the printed version will fit the page):</p>
+<p>Here’s our function (Figure <a href="#f:pages-pipeline" data-reference-type="ref" data-reference="f:pages-pipeline">[f:pages-pipeline]</a>), which we’ll call from an event listener as before:</p>
 <div class="sourceCode" id="cb165"><pre class="sourceCode js"><code class="sourceCode javascript"><a class="sourceLine" id="cb165-1" data-line-number="1"><span class="kw">const</span> citations <span class="op">=</span> () <span class="op">=&gt;</span> <span class="op">{</span></a>
 <a class="sourceLine" id="cb165-2" data-line-number="2">  <span class="va">Array</span>.<span class="at">from</span>(<span class="va">document</span>.<span class="at">querySelectorAll</span>(<span class="st">&#39;a&#39;</span>))</a>
 <a class="sourceLine" id="cb165-3" data-line-number="3">    .<span class="at">filter</span>(link <span class="op">=&gt;</span> <span class="va">link</span>.<span class="at">getAttribute</span>(<span class="st">&#39;href&#39;</span>) <span class="op">===</span> <span class="st">&#39;#b&#39;</span>)</a>
@@ -1905,7 +1908,7 @@ home page (relative path)</code></pre>
 <a class="sourceLine" id="cb165-20" data-line-number="20">    <span class="op">}</span>)</a>
 <a class="sourceLine" id="cb165-21" data-line-number="21"><span class="op">}</span></a></code></pre></div>
 <figure>
-<img src="figures/pages-pipeline.svg" id="f:pages-pipeline" /><figcaption>A Processing Pipeline<span label="f:pages-pipeline"></span></figcaption>
+<img src="figures/pages-pipeline.svg" /><figcaption><span id="f:pages-pipeline">A Processing Pipeline</span></figcaption>
 </figure>
 <p>There is a lot going on here, but it all uses patterns we have seen before. It starts by building an array of all the links in the document i.e., every <code>a</code> element:</p>
 <div class="sourceCode" id="cb166"><pre class="sourceCode js"><code class="sourceCode javascript"><a class="sourceLine" id="cb166-1" data-line-number="1">  <span class="va">Array</span>.<span class="at">from</span>(<span class="va">document</span>.<span class="at">querySelectorAll</span>(<span class="st">&#39;a&#39;</span>))</a>
@@ -1930,7 +1933,7 @@ home page (relative path)</code></pre>
 <a class="sourceLine" id="cb169-7" data-line-number="7">  <span class="co">//    text: [&#39;Moreau1896&#39;]}</span></a>
 <a class="sourceLine" id="cb169-8" data-line-number="8">  <span class="co">// - {node: &lt;a href=&quot;#b&quot;&gt;Brundle1982, Brundle1984&lt;/a&gt;,</span></a>
 <a class="sourceLine" id="cb169-9" data-line-number="9">  <span class="co">//    text: [&#39;Brundle1982&#39;, &#39;Brundle1984&#39;]}</span></a></code></pre></div>
-<p>Here, we are turning each link into an object whose <code>&quot;node&quot;</code> key has the link’s DOM node as its value, and whose <code>&quot;text&quot;</code> key has the node’s text, which we split on commas and and trim to remove leading and trailing whitespace.</p>
+<p>Here, we are turning each link into an object whose <code>&quot;node&quot;</code> key has the link’s DOM node as its value, and whose <code>&quot;text&quot;</code> key has the node’s text, which we split on commas and trim to remove leading and trailing whitespace.</p>
 <p>But we’re not done looking at this stage of our pipeline:</p>
 <ol>
 <li><p>We don’t need to quote the names <code>&quot;node&quot;</code> and <code>&quot;text&quot;</code>, though we could.</p></li>
@@ -1956,7 +1959,7 @@ home page (relative path)</code></pre>
 <a class="sourceLine" id="cb171-2" data-line-number="2">      <span class="op">{</span>node<span class="op">,</span></a>
 <a class="sourceLine" id="cb171-3" data-line-number="3">       <span class="dt">text</span><span class="op">:</span> <span class="vs">`[</span><span class="sc">${</span><span class="va">text</span>.<span class="at">join</span>(<span class="st">&#39;, &#39;</span>)<span class="sc">}</span><span class="vs">]`</span><span class="op">}</span></a>
 <a class="sourceLine" id="cb171-4" data-line-number="4">    ))</a></code></pre></div>
-<p>(We haven’t show the output in commas because typesetting it would overflow the page and because our pseudo-HTML notation gets really confusing once we’re showing strings containing HTML that contain strings.)</p>
+<p>(We haven’t shown the output in commas because typesetting it would overflow the page and because our pseudo-HTML notation gets really confusing once we’re showing strings containing HTML that contain strings.)</p>
 <p>The last stage in our pipeline uses <code>forEach</code> instead of <code>map</code> because we want to do something for each element of the array, but don’t need a value returned (because what we’re doing has the side effect of modifying the document):</p>
 <div class="sourceCode" id="cb172"><pre class="sourceCode js"><code class="sourceCode javascript"><a class="sourceLine" id="cb172-1" data-line-number="1">    .<span class="at">forEach</span>((<span class="op">{</span>node<span class="op">,</span> text<span class="op">}</span>) <span class="op">=&gt;</span> <span class="op">{</span></a>
 <a class="sourceLine" id="cb172-2" data-line-number="2">      <span class="kw">const</span> span <span class="op">=</span> <span class="va">document</span>.<span class="at">createElement</span>(<span class="st">&#39;span&#39;</span>)</a>
@@ -2030,7 +2033,7 @@ home page (relative path)</code></pre>
 <p>In the beginning, people created HTML pages by typing them in (just as we have been doing). They quickly realized that a lot of pages share a lot of content: navigation menus, contact info, and so on. The nearly universal response was to create a <a href="#g:template"><strong>template</strong></a> and embed commands to include other snippets of HTML (like headers) and loop over data structures to create lists and tables. This is called <a href="#g:server-page-gen"><strong>server-side page generation</strong></a>: the HTML is generated on the <a href="#g:server"><strong>server</strong></a>, and it was popular because that’s where the data was, and that was the only place complex code could be run. (This tutorial uses a templating tool called <a href="https://jekyllrb.com/">Jekyll</a>. It’s clumsy and limited, but it’s the default on <a href="http://github.com/">GitHub</a>.)</p>
 <p>Server-side generation can be done statically or dynamically, i.e., pages can be compiled once, stored on disk, and served thereafter, or each page can be recompiled whenever it’s needed, which makes it easy to include dynamic elements like today’s top news story (Figure <a href="#f:dynamic-alternatives" data-reference-type="ref" data-reference="f:dynamic-alternatives">[f:dynamic-alternatives]</a>).</p>
 <figure>
-<img src="figures/dynamic-alternatives.svg" id="f:dynamic-alternatives" /><figcaption>Page Generation Alternatives<span label="f:dynamic-alternatives"></span></figcaption>
+<img src="figures/dynamic-alternatives.svg" /><figcaption><span id="f:dynamic-alternatives">Page Generation Alternatives</span></figcaption>
 </figure>
 <p>As browsers and JavaScript became more powerful, the balance shifted toward <a href="#g:client-page-gen"><strong>client-side page generation</strong></a>. In this model, the browser fetches data from one or more servers and feeds that data to a JavaScript library that generates HTML in the browser for display. This allows the <a href="#g:client"><strong>client</strong></a> to decide how best to render data, which is increasingly important as phones and tablets take over from desktop and laptop computers. It also moves the computational burden off the server and onto the client device, which lowers the cost of providing data.</p>
 <p>Many (many) JavaScript frameworks for client-side page generation have been created, and more are probably being developed right now. We have chosen <a href="https://reactjs.org/">React</a> because it is freely available, widely used, well documented, simpler than many alternatives, and has a cool logo. Its central design principles are:</p>
@@ -2062,7 +2065,7 @@ home page (relative path)</code></pre>
 <a class="sourceLine" id="cb174-19" data-line-number="19">  <span class="kw">&lt;/body&gt;</span></a>
 <a class="sourceLine" id="cb174-20" data-line-number="20"><span class="kw">&lt;/html&gt;</span></a></code></pre></div>
 <p>The <code>head</code> of the page loads two React libraries from the web; we will use locally-installed libraries later. The <code>body</code> contains a <code>div</code> with an ID to make it findable. When our script runs, React will put the HTML it generates into this <code>div</code>.</p>
-<p>The script itself create an <code>h1</code> with the text “Hello, React” using <code>React.DOM.h1</code>, then finds the document element whose ID is <code>&quot;app&quot;</code> and uses <code>ReactDOM.render</code> to insert the former into the latter. This alters the representation of the page in memory, not the source of the page on disk; if we want to inspect the resulting HTML, we have to do so in the browser. Finally, we put the script at the bottom of the page so that the browser will have turned the HTML into a DOM tree in memory before the script runs. We will come back and fix this later.</p>
+<p>The script itself creates an <code>h1</code> with the text “Hello, React” using <code>React.DOM.h1</code>, then finds the document element whose ID is <code>&quot;app&quot;</code> and uses <code>ReactDOM.render</code> to insert the former into the latter. This alters the representation of the page in memory, not the source of the page on disk; if we want to inspect the resulting HTML, we have to do so in the browser. Finally, we put the script at the bottom of the page so that the browser will have turned the HTML into a DOM tree in memory before the script runs. We will come back and fix this later.</p>
 <blockquote>
 <h4 id="inspection-tools" class="unnumbered unnumbered">Inspection Tools</h4>
 <p>If you are using the Firefox browser, you can open the developer tools pane by going to the main menu and selecting <code>Tools… Web Developer… Toggle Tools</code>. A tabbed display will open in the bottom of your page; choose <code>Inspector</code> to view the content of your page and page’s CSS. As you move your mouse around the page itself, corresponding structural elements will be highlighted. It’s actually pretty cool<span>…</span></p>
@@ -2104,7 +2107,7 @@ home page (relative path)</code></pre>
 <a class="sourceLine" id="cb176-17" data-line-number="17">    <span class="kw">&lt;/script&gt;</span></a>
 <a class="sourceLine" id="cb176-18" data-line-number="18">  <span class="kw">&lt;/body&gt;</span></a>
 <a class="sourceLine" id="cb176-19" data-line-number="19"><span class="kw">&lt;/html&gt;</span></a></code></pre></div>
-<p>Along with the two React libraries, this page includes a tool called <a href="https://babeljs.io/">Babel</a> to translate a mixed of HTML and JavaScript into pure JavaScript. To trigger translation, we add the attribute <code>type=&quot;text/babel&quot;</code> to the <code>script</code> tag.</p>
+<p>Along with the two React libraries, this page includes a tool called <a href="https://babeljs.io/">Babel</a> to translate a mix of HTML and JavaScript into pure JavaScript. To trigger translation, we add the attribute <code>type=&quot;text/babel&quot;</code> to the <code>script</code> tag.</p>
 <p>Why bother? Because as the example above shows, it allows us to write <code>&lt;h1&gt;Hello JSX&lt;/h1&gt;</code> instead of calling a function. More generally, JSX lets us put JavaScript inside our HTML (inside our JavaScript (inside our HTML)), so we can (for example) use <code>map</code> to turn a list of strings into an HTML list:</p>
 <div class="sourceCode" id="cb177"><pre class="sourceCode html"><code class="sourceCode html"><a class="sourceLine" id="cb177-1" data-line-number="1">  <span class="kw">&lt;body&gt;</span></a>
 <a class="sourceLine" id="cb177-2" data-line-number="2">    <span class="kw">&lt;h1&gt;</span>JSX List<span class="kw">&lt;/h1&gt;</span></a>
@@ -2160,7 +2163,7 @@ home page (relative path)</code></pre>
 <p>Before we <code>map</code> each component of our array within <code>ReactDOM.render</code> as in the examples above, the <code>ListElement</code> function gives us exactly one logical place to set attributes. Here we’ve used <code>ListElement</code> to italicize each element in our array and give them ids, but these functions can also be used for any transformation or calculation on each element to be rendered.</p>
 <h2 id="s:dynamic-parcel">Developing with Parcel</h2>
 <p>Putting all of the source for an application in one HTML file is a bad practice, but we’ve already seen the race conditions that can arise when we load JavaScript in a page’s header. And what about <code>require</code> statements? The browser will try to load the required files when those statements run, but who is going to serve them?</p>
-<p>The solution is use a <a href="#g:bundler"><strong>bundler</strong></a> to combine everything into one big file, and to run a <a href="#g:local-server"><strong>local server</strong></a> to preview our application during development. However, this solution brings with it another problem: which bundler to choose? As with front-end frameworks, there are many to choose from, and new ones are being added almost weekly. <a href="https://webpack.js.org/">Webpack</a> is probably the most widely used, but it is rather complex, so we will use <a href="https://parceljs.org/">Parcel</a>, which is younger and therefore not yet bloated (but give it time).</p>
+<p>The solution is to use a <a href="#g:bundler"><strong>bundler</strong></a> (Figure <a href="#f:dynamic-parcel" data-reference-type="ref" data-reference="f:dynamic-parcel">[f:dynamic-parcel]</a>) to combine everything into one big file, and to run a <a href="#g:local-server"><strong>local server</strong></a> to preview our application during development. However, this solution brings with it another problem: which bundler to choose? As with front-end frameworks, there are many to choose from, and new ones are being added almost weekly. <a href="https://webpack.js.org/">Webpack</a> is probably the most widely used, but it is rather complex, so we will use <a href="https://parceljs.org/">Parcel</a>, which is younger and therefore not yet bloated (but give it time).</p>
 <blockquote>
 <h4 id="initiate-a-project-with-node-package-manager" class="unnumbered unnumbered">Initiate a Project with Node Package Manager</h4>
 <p>If you’ve been coding along, so far we’ve created single HTML and JavaScript files, and we’ve used the Node command to run JavaScript files in the terminal, but we have not yet used the Node Package Manager <code>npm</code>. Before we install Parcel, we can turn the directory which we’ve been creating our HTML and JavaScript files into a project by typing:</p>
@@ -2185,7 +2188,7 @@ home page (relative path)</code></pre>
 </ul>
 <p>Parcel also caches things in <code>./.cache</code> so that it doesn’t need to do redundant work; both directories are normally added to <code>.gitignore</code>. To learn more about Parcel, see <a href="https://medium.com/codingthesmartway-com-blog/getting-started-with-parcel-197eb85a2c8c">this short tutorial</a>.</p>
 <figure>
-<img src="figures/dynamic-parcel.svg" id="f:dynamic-parcel" /><figcaption>What Goes Where with Parcel<span label="f:dynamic-parcel"></span></figcaption>
+<img src="figures/dynamic-parcel.svg" /><figcaption><span id="f:dynamic-parcel">What Goes Where with Parcel</span></figcaption>
 </figure>
 <p>It’s very common to put tasks like “run my application” into NPM’s <code>package.json</code> file, just as older programmers would put frequently-used commands into a project’s Makefile. Look for the section in <code>package.json</code> whose key is <code>&quot;scripts&quot;</code> and add this:</p>
 <div class="sourceCode" id="cb184"><pre class="sourceCode js"><code class="sourceCode javascript"><a class="sourceLine" id="cb184-1" data-line-number="1">  <span class="st">&quot;scripts&quot;</span><span class="op">:</span> <span class="op">{</span></a>
@@ -2341,7 +2344,7 @@ $ npm install reactDOM</code></pre>
 <a class="sourceLine" id="cb194-19" data-line-number="19">    <span class="op">}</span></a>
 <a class="sourceLine" id="cb194-20" data-line-number="20">  <span class="kw">&lt;/script&gt;</span></a>
 <a class="sourceLine" id="cb194-21" data-line-number="21">...rest of page as before...</a></code></pre></div>
-<p>In this case, we represent a two-dimensional data table as objects with explicit indices <code>&quot;a&quot;</code> and <code>&quot;b&quot;</code>. We have to do this because JSON (like JavaScript) doesn’t have a native representation of two-dimensional arrays with row and column headers, because programmers.</p>
+<p>In this case, we represent a two-dimensional data table as objects with explicit indices <code>&quot;a&quot;</code> and <code>&quot;b&quot;</code>. We have to do this because JSON (like JavaScript) doesn’t have a native representation of two-dimensional arrays with row and column headers.</p>
 <p>Once we have created our spec, we can call <code>vegaEmbed</code> with the ID of the element that will hold the visualization, the spec, and some options (which for now we will leave empty):</p>
 <div class="sourceCode" id="cb195"><pre class="sourceCode js"><code class="sourceCode javascript"><a class="sourceLine" id="cb195-1" data-line-number="1">    <span class="kw">let</span> spec <span class="op">=</span> <span class="op">{</span></a>
 <a class="sourceLine" id="cb195-2" data-line-number="2">      <span class="st">&quot;$schema&quot;</span><span class="op">:</span> <span class="st">&quot;https://vega.github.io/schema/vega-lite/v2.0.json&quot;</span><span class="op">,</span></a>
@@ -2375,9 +2378,7 @@ $ npm install reactDOM</code></pre>
 <a class="sourceLine" id="cb196-14" data-line-number="14">    <span class="op">}</span></a>
 <a class="sourceLine" id="cb196-15" data-line-number="15">    <span class="at">vegaEmbed</span>(<span class="st">&quot;#vis&quot;</span><span class="op">,</span> spec<span class="op">,</span> <span class="op">{}</span>)</a></code></pre></div>
 <p>When we open the page now, we see a bar chart, and feel very proud of ourselves (Figure <a href="#f:vis-mark-encoding" data-reference-type="ref" data-reference="f:vis-mark-encoding">[f:vis-mark-encoding]</a>).</p>
-<figure>
-<img src="figures/vis-mark-encoding.png" alt="Mark and Encoding" id="f:vis-mark-encoding" /><figcaption>Mark and Encoding<span label="f:vis-mark-encoding"></span></figcaption>
-</figure>
+
 <p>There are also some poorly-styled links for various controls that we’re not going to use. We can fill in the options argument to <code>vegaEmbed</code> to turn those off:</p>
 <div class="sourceCode" id="cb197"><pre class="sourceCode js"><code class="sourceCode javascript"><a class="sourceLine" id="cb197-1" data-line-number="1">    <span class="kw">let</span> spec <span class="op">=</span> <span class="op">{</span></a>
 <a class="sourceLine" id="cb197-2" data-line-number="2">      <span class="st">&quot;$schema&quot;</span><span class="op">:</span> <span class="st">&quot;https://vega.github.io/schema/vega-lite/v2.0.json&quot;</span><span class="op">,</span></a>
@@ -2395,9 +2396,7 @@ $ npm install reactDOM</code></pre>
 <a class="sourceLine" id="cb197-14" data-line-number="14">    <span class="op">}</span></a>
 <a class="sourceLine" id="cb197-15" data-line-number="15">    <span class="at">vegaEmbed</span>(<span class="st">&quot;#vis&quot;</span><span class="op">,</span> spec<span class="op">,</span> options)</a></code></pre></div>
 <p>We now have the visualization we wanted (Figure <a href="#f:vis-disable-controls" data-reference-type="ref" data-reference="f:vis-disable-controls">[f:vis-disable-controls]</a>).</p>
-<figure>
-<img src="figures/vis-disable-controls.png" alt="Without Controls" id="f:vis-disable-controls" /><figcaption>Without Controls<span label="f:vis-disable-controls"></span></figcaption>
-</figure>
+
 <p>Vega-Lite has a <em>lot</em> of options: for example, we can use points and average the Y values. (We will change the X data so that values aren’t distinct in order to show this off, because otherwise averaging doesn’t do much.) In our revised spec, <code>x</code> is now <code>&quot;nominal&quot;</code> instead of <code>&quot;ordinal&quot;</code> and <code>y</code> has an extra property <code>&quot;aggregate&quot;</code>, which is set to <code>&quot;average&quot;</code> (but can be used to specify other <a href="#g:aggregation-function"><strong>aggregation functions</strong></a>):</p>
 <div class="sourceCode" id="cb198"><pre class="sourceCode js"><code class="sourceCode javascript"><a class="sourceLine" id="cb198-1" data-line-number="1">    <span class="kw">let</span> spec <span class="op">=</span> <span class="op">{</span></a>
 <a class="sourceLine" id="cb198-2" data-line-number="2">      <span class="st">&quot;$schema&quot;</span><span class="op">:</span> <span class="st">&quot;https://vega.github.io/schema/vega-lite/v2.0.json&quot;</span><span class="op">,</span></a>
@@ -2426,9 +2425,7 @@ $ npm install reactDOM</code></pre>
 <a class="sourceLine" id="cb198-25" data-line-number="25">    <span class="op">}</span></a>
 <a class="sourceLine" id="cb198-26" data-line-number="26">    <span class="at">vegaEmbed</span>(<span class="st">&quot;#vis&quot;</span><span class="op">,</span> spec<span class="op">,</span> options)</a></code></pre></div>
 <p>Figure <a href="#f:vis-aggregate-points" data-reference-type="ref" data-reference="f:vis-aggregate-points">[f:vis-aggregate-points]</a> shows the result.</p>
-<figure>
-<img src="figures/vis-aggregate-points.png" alt="Aggregating and Using Points" id="f:vis-aggregate-points" /><figcaption>Aggregating and Using Points<span label="f:vis-aggregate-points"></span></figcaption>
-</figure>
+
 <h2 id="s:vis-vega-local">Local Installation</h2>
 <p>Loading Vega from a <a href="#g:cdn"><strong>Content Delivery Network</strong></a> (CDN) reduces the load on our server, but prevents offline development. Since we want to be able to work when we’re disconnected, let’s load from local files.</p>
 <p>Step 1 is to slim down our HTML file so that it only loads our application:</p>
@@ -2458,7 +2455,7 @@ $ npm install reactDOM</code></pre>
 <p>We launch this with Parcel via our saved <code>npm run</code> command:</p>
 <pre class="shell"><code>$ npm run dev -- src/vis/react-01/index.html</code></pre>
 <p>Our hearts break when we open <code>http://localhost:4000</code> in our browser and nothing appears. Looking in the browser console, we see a message telling us that <code>vegaEmbed</code> is not a function.</p>
-<p>What we have tripped over is something that’s still painful in 2019. The old method of getting libraries is <code>require</code>, and that’s still what Node supports as of Version 10.9.0. The new standard is <code>import</code>, which allows a module to define a default value so that <code>import ’something’</code> gets a function, a class, or whatever. This is really handy, but <code>require</code> doesn’t work that way.</p>
+<p>What we have tripped over is a leftover from JavaScript’s evolution. The old method of getting libraries is <code>require</code>, and that’s still what Node supports as of Version 10.9.0. The new standard is <code>import</code>, which allows a module to define a default value so that <code>import ’something’</code> gets a function, a class, or whatever. This is really handy, but <code>require</code> doesn’t work that way.</p>
 <p>We can either add the <code>--experimental-modules</code> flag when using Node on the command line, or rename our files with a <code>.mjs</code> extension, both of which are annoying. Alternatively, we can get the thing we want by accessing <code>.default</code> during import, or by referring to <code>vegaEmbed.default</code> when we call it. These choices are also annoying, but after a bit of fiddling and cursing, we decide to make the fix as the library is loaded:</p>
 <div class="sourceCode" id="cb202"><pre class="sourceCode js"><code class="sourceCode javascript"><a class="sourceLine" id="cb202-1" data-line-number="1"><span class="kw">const</span> vegaEmbed <span class="op">=</span> <span class="at">require</span>(<span class="st">&#39;vega-embed&#39;</span>).<span class="at">default</span></a>
 <a class="sourceLine" id="cb202-2" data-line-number="2"></a>
@@ -2472,7 +2469,7 @@ $ npm install reactDOM</code></pre>
 <h3 id="binned-scatterplots" class="unnumbered unnumbered">Binned Scatterplots</h3>
 <p>Vega-Lite can create <a href="https://vega.github.io/vega-lite/examples/circle_binned.html">binned scatterplots</a> in which the sizes of markers indicate how many values were put in each bin. Modify the aggregating scatterplot shown above so that values are binned in this way.</p>
 <h3 id="grouped-bar-charts" class="unnumbered unnumbered">Grouped Bar Charts</h3>
-<p>Vega-Lite can display <a href="https://vega.github.io/vega-lite/examples/bar_grouped.html">grouped bar charts</a> as well as simple ones. Find or create a simple data set and construct a grouped bar chart. How impressed will your supervisor, your committee, or a future employee be by your chosen color scheme?</p>
+<p>Vega-Lite can display <a href="https://vega.github.io/vega-lite/examples/bar_grouped.html">grouped bar charts</a> as well as simple ones. Find or create a simple dataset and construct a grouped bar chart. How impressed will your supervisor, your committee, or a future employee be by your chosen color scheme?</p>
 <h3 id="limits-of-declarative-programming" class="unnumbered unnumbered">Limits of Declarative Programming</h3>
 <p>Look at Vega-Lite’s <a href="https://vega.github.io/vega-lite/examples/">example gallery</a> and identify one kind of plot or transformation you’ve used or seen that <em>isn’t</em> included there. Do you think this is because they just haven’t gotten around to it yet, or is there something about that plot or transformation that doesn’t lend itself to Vega-Lite’s declarative model?</p>
 <h3 id="working-with-arrays" class="unnumbered unnumbered">Working With Arrays</h3>
@@ -2511,20 +2508,20 @@ $ npm install reactDOM</code></pre>
 <p><code>setTimeout</code> is one of the most widely used functions of this kind. Here it is in operation:</p>
 <div class="sourceCode" id="cb206"><pre class="sourceCode js"><code class="sourceCode javascript"><a class="sourceLine" id="cb206-1" data-line-number="1">[<span class="dv">1000</span><span class="op">,</span> <span class="dv">1500</span><span class="op">,</span> <span class="dv">500</span>].<span class="at">forEach</span>(t <span class="op">=&gt;</span> <span class="op">{</span></a>
 <a class="sourceLine" id="cb206-2" data-line-number="2">  <span class="va">console</span>.<span class="at">log</span>(<span class="vs">`about to setTimeout for </span><span class="sc">${</span>t<span class="sc">}</span><span class="vs">`</span>)</a>
-<a class="sourceLine" id="cb206-3" data-line-number="3">  <span class="at">setTimeout</span>(() <span class="op">=&gt;</span> <span class="op">{</span><span class="va">console</span>.<span class="at">log</span>(<span class="vs">`inside timer handler for </span><span class="sc">${</span>t<span class="sc">}</span><span class="vs">`</span>)<span class="op">},</span> t)</a>
+<a class="sourceLine" id="cb206-3" data-line-number="3">  <span class="at">setTimeout</span>(() <span class="op">=&gt;</span> <span class="op">{</span><span class="va">console</span>.<span class="at">log</span>(<span class="vs">`inside handler for </span><span class="sc">${</span>t<span class="sc">}</span><span class="vs">`</span>)<span class="op">},</span> t)</a>
 <a class="sourceLine" id="cb206-4" data-line-number="4"><span class="op">}</span>)</a></code></pre></div>
 <pre class="text"><code>about to setTimeout for 1000
 about to setTimeout for 1500
 about to setTimeout for 500
-inside timer handler for 500
-inside timer handler for 1000
-inside timer handler for 1500</code></pre>
+inside handler for 500
+inside handler for 1000
+inside handler for 1500</code></pre>
 <p>That’s not surprising: if we ask JavaScript to delay execution, execution is delayed. What may be surprising is that setting a timeout of zero also defers execution:</p>
 <div class="sourceCode" id="cb208"><pre class="sourceCode js"><code class="sourceCode javascript"><a class="sourceLine" id="cb208-1" data-line-number="1"><span class="kw">const</span> values <span class="op">=</span> [<span class="dv">1000</span><span class="op">,</span> <span class="dv">1500</span><span class="op">,</span> <span class="dv">500</span>]</a>
 <a class="sourceLine" id="cb208-2" data-line-number="2"><span class="va">console</span>.<span class="at">log</span>(<span class="st">&#39;starting...&#39;</span>)</a>
 <a class="sourceLine" id="cb208-3" data-line-number="3"><span class="va">values</span>.<span class="at">forEach</span>(t <span class="op">=&gt;</span> <span class="op">{</span></a>
 <a class="sourceLine" id="cb208-4" data-line-number="4">  <span class="va">console</span>.<span class="at">log</span>(<span class="vs">`about to setTimeout for </span><span class="sc">${</span>t<span class="sc">}</span><span class="vs">`</span>)</a>
-<a class="sourceLine" id="cb208-5" data-line-number="5">  <span class="at">setTimeout</span>(() <span class="op">=&gt;</span> <span class="op">{</span><span class="va">console</span>.<span class="at">log</span>(<span class="vs">`inside timer handler for </span><span class="sc">${</span>t<span class="sc">}</span><span class="vs">`</span>)<span class="op">},</span> <span class="dv">0</span>)</a>
+<a class="sourceLine" id="cb208-5" data-line-number="5">  <span class="at">setTimeout</span>(() <span class="op">=&gt;</span> <span class="op">{</span><span class="va">console</span>.<span class="at">log</span>(<span class="vs">`inside handler for </span><span class="sc">${</span>t<span class="sc">}</span><span class="vs">`</span>)<span class="op">},</span> <span class="dv">0</span>)</a>
 <a class="sourceLine" id="cb208-6" data-line-number="6"><span class="op">}</span>)</a>
 <a class="sourceLine" id="cb208-7" data-line-number="7"><span class="va">console</span>.<span class="at">log</span>(<span class="st">&#39;...finishing&#39;</span>)</a></code></pre></div>
 <pre class="text"><code>starting...
@@ -2532,11 +2529,11 @@ about to setTimeout for 1000
 about to setTimeout for 1500
 about to setTimeout for 500
 ...finishing
-inside timer handler for 1000
-inside timer handler for 1500
-inside timer handler for 500</code></pre>
+inside handler for 1000
+inside handler for 1500
+inside handler for 500</code></pre>
 <figure>
-<img src="figures/promises-queue.svg" id="f:promises-queue" /><figcaption>Run Queue<span label="f:promises-queue"></span></figcaption>
+<img src="figures/promises-queue.svg" /><figcaption><span id="f:promises-queue">Run Queue</span></figcaption>
 </figure>
 <p>Figure <a href="#f:promises-queue" data-reference-type="ref" data-reference="f:promises-queue">[f:promises-queue]</a> shows what the run queue looks like just before the program prints <code>...finishing</code>. We can use <code>setTimeout</code><code>setTimeout@setTimeout</code> to build a generic non-blocking function:</p>
 <div class="sourceCode" id="cb210"><pre class="sourceCode js"><code class="sourceCode javascript"><a class="sourceLine" id="cb210-1" data-line-number="1"><span class="kw">const</span> nonBlocking <span class="op">=</span> (callback) <span class="op">=&gt;</span> <span class="op">{</span></a>
@@ -2570,7 +2567,7 @@ inside immediate handler for c</code></pre>
 <div class="sourceCode" id="cb214"><pre class="sourceCode js"><code class="sourceCode javascript"><a class="sourceLine" id="cb214-1" data-line-number="1"><span class="kw">const</span> fs <span class="op">=</span> <span class="at">require</span>(<span class="st">&#39;fs-extra&#39;</span>)</a>
 <a class="sourceLine" id="cb214-2" data-line-number="2"><span class="va">fs</span>.<span class="at">stat</span>(<span class="st">&#39;moby-dick.txt&#39;</span>).<span class="at">then</span>((stats) <span class="op">=&gt;</span> <span class="va">console</span>.<span class="at">log</span>(<span class="va">stats</span>.<span class="at">size</span>))</a></code></pre></div>
 <pre class="text"><code>1276201</code></pre>
-<p><code>fs-extra.stat</code> will eventually produce some statistics about the file, but this will take a while, so <code>fs-extra.stat</code> returns a object of the class <code>Promise</code> right away. <code>Promise</code> has a method <code>then</code> that takes a callback as an argument and stores it in the promise object. When the <code>stat</code> call completes, the remembered callback is called, and passed yet another object with statistics about the file (including its size).</p>
+<p><code>fs-extra.stat</code> will eventually produce some statistics about the file, but this will take a while, so <code>fs-extra.stat</code> returns an object of the class <code>Promise</code> right away. <code>Promise</code> has a method <code>then</code> that takes a callback as an argument and stores it in the promise object. When the <code>stat</code> call completes, the remembered callback is called, and passed yet another object with statistics about the file (including its size).</p>
 <p>To understand this a little better, let’s create our own promise to fetch a file from the web. (We have broken the URL over two lines using string concatenation so that it will print nicely.)</p>
 <div class="sourceCode" id="cb216"><pre class="sourceCode js"><code class="sourceCode javascript"><a class="sourceLine" id="cb216-1" data-line-number="1"><span class="kw">const</span> fetch <span class="op">=</span> <span class="at">require</span>(<span class="st">&#39;node-fetch&#39;</span>)</a>
 <a class="sourceLine" id="cb216-2" data-line-number="2"></a>
@@ -2603,9 +2600,9 @@ inside immediate handler for c</code></pre>
 <a class="sourceLine" id="cb217-15" data-line-number="15"><span class="op">}</span>).<span class="at">then</span>((message) <span class="op">=&gt;</span> <span class="va">console</span>.<span class="at">log</span>(message))</a>
 <a class="sourceLine" id="cb217-16" data-line-number="16">.<span class="at">catch</span>((error) <span class="op">=&gt;</span> <span class="va">console</span>.<span class="at">log</span>(<span class="va">error</span>.<span class="at">message</span>))</a></code></pre></div>
 <pre class="text"><code>got HTTP status code 400</code></pre>
-<p>Note that we didn’t assign our Promise object to a variable in the example above. We can create promises on the fly if we need them only to define behaviour on successful completion/exception and won’t need to refer to them again later.</p>
+<p>Note that we didn’t assign our Promise object to a variable in the example above. We can create promises on the fly if we need them only to define behavior on successful completion/exception and won’t need to refer to them again later.</p>
 <figure>
-<img src="figures/promises-object-a.svg" id="f:promises-object-a" /><figcaption>Promises as Objects (after creation)<span label="f:promises-object-a"></span></figcaption>
+<img src="figures/promises-object-a.svg" /><figcaption><span id="f:promises-object-a">Promises as Objects (after creation)</span></figcaption>
 </figure>
 <p>What makes this all work is that a promise is an object. Figure <a href="#f:promises-object-a" data-reference-type="ref" data-reference="f:promises-object-a">[f:promises-object-a]</a> shows what’s in memory just after this promise has been created. There are a lot of arrows in this diagram, but they all serve a purpose:</p>
 <ul>
@@ -2614,7 +2611,7 @@ inside immediate handler for c</code></pre>
 </ul>
 <p>Once the promise is created, the program calls its <code>then</code> and <code>catch</code> methods in that order, giving each a callback. This happens <em>before</em> the callback passed to the constructor (i.e., the initial action) is executed, and leaves the promise in the state shown in Figure <a href="#f:promises-object-b" data-reference-type="ref" data-reference="f:promises-object-b">[f:promises-object-b]</a>:</p>
 <figure>
-<img src="figures/promises-object-b.svg" id="f:promises-object-b" /><figcaption>Promises as Objects (after then and catch)<span label="f:promises-object-b"></span></figcaption>
+<img src="figures/promises-object-b.svg" /><figcaption><span id="f:promises-object-b">Promises as Objects (after then and catch)</span></figcaption>
 </figure>
 <p>Calling <code>then</code> and <code>catch</code> assigns callbacks to the success action and error action members of the promise object. Those methods are then passed into the initial action callback as <code>resolve</code> and <code>reject</code>, i.e., if <code>resolve</code> is called because the page was fetched successfully, what’s actually called is the promise’s success action, which is the callback that was given to <code>then</code>. If <code>reject</code> is called, on the other hand, it triggers execution of the error action, which is the callback that was passed to <code>catch</code>.</p>
 <p>Yes, this is complicated—so complicated that another layer (which we will look at in Section <a href="#s:promises-async-await" data-reference-type="ref" data-reference="s:promises-async-await">9.4</a>) has been added to JavaScript to hide these details. Without this complexity, though, it’s extremely difficult to handle errors from delayed computations. If we run this using JavaScript’s <code>try {...} catch {...}</code> syntax for handling exceptions:</p>
@@ -2635,7 +2632,7 @@ inside immediate handler for c</code></pre>
 <li><p>then run <code>fetch(url)</code>, which fails without anything in place to catch the exception because the <code>try...catch</code> has already finished so <code>console.log</code> never runs and the error message doesn’t appear.</p></li>
 </ol>
 <figure>
-<img src="figures/promises-try-catch-fail.svg" id="f:try-catch-fail" /><figcaption>When Try...Catch Fails<span label="f:try-catch-fail"></span></figcaption>
+<img src="figures/promises-try-catch-fail.svg" /><figcaption><span id="f:try-catch-fail">When Try...Catch Fails</span></figcaption>
 </figure>
 <p>There are two passes of execution in this block: The first is the <code>try...catch</code> event loop, and the second is <code>fetch</code>. JavaScript rips the asynchronous code right out of the execution context! There’s no error, because <code>fetch</code> hasn’t yet had the chance to run.</p>
 <p>Going back to the <code>fs-extra.stat</code> example above, what if we want to process multiple files, e.g., calculate their total size? We could write a loop:</p>
@@ -2689,7 +2686,7 @@ inside immediate handler for c</code></pre>
   &#39;first&#39;,
   &#39;second&#39;,
   &#39;third&#39; ]</code></pre>
-<p>The full path to Node is the first argument; the name of our script is the second, and all of the extra arguments provided by the users follow that. If we want the first of those, we therefore need <code>process.argv[2]</code>.</p>
+<p>The full path to Node is the first argument, the name of our script is the second, and all of the extra arguments provided by the users follow that. If we want the first of those, we therefore need <code>process.argv[2]</code>.</p>
 <p>The first step in counting lines is now to find the input files:</p>
 <div class="sourceCode" id="cb227"><pre class="sourceCode js"><code class="sourceCode javascript"><a class="sourceLine" id="cb227-1" data-line-number="1"><span class="kw">const</span> fs <span class="op">=</span> <span class="at">require</span>(<span class="st">&#39;fs-extra&#39;</span>)</a>
 <a class="sourceLine" id="cb227-2" data-line-number="2"><span class="kw">const</span> glob <span class="op">=</span> <span class="at">require</span>(<span class="st">&#39;glob-promise&#39;</span>)</a>
@@ -2912,7 +2909,7 @@ Finished.</code></pre>
 <a class="sourceLine" id="cb247-8" data-line-number="8">  numbers <span class="op">=&gt;</span> <span class="at">___</span>(numbers))</a></code></pre></div>
 <p>Now adapt the function so that it returns only <code>2</code>. (Hint: you can achieve this by changing only one of the blank fields.)</p>
 <h3 id="async-therefore-i-am" class="unnumbered unnumbered"><code>async</code>, Therefore I Am</h3>
-<p>Using <code>async</code> and <code>await</code>, convert the completed function above into an asynchronous function with the same behaviour and output. Do you find your solution easier to read and follow than the original version? Do you think that that is only because you wrote this version?</p>
+<p>Using <code>async</code> and <code>await</code>, convert the completed function above into an asynchronous function with the same behavior and output. Do you find your solution easier to read and follow than the original version? Do you think that that is only because you wrote this version?</p>
 <h2 id="key-points-8" class="unnumbered unnumbered">Key Points</h2>
 <ul>
 <li><p>JavaScript keeps an execution queue for delayed computations.</p></li>
@@ -2977,7 +2974,7 @@ Finished.</code></pre>
 <a class="sourceLine" id="cb249-32" data-line-number="32">&lt;/html<span class="op">&gt;</span></a></code></pre></div>
 <p>Working from bottom to top, the <code>ReactDOM.render</code> call inserts whatever HTML is produced by <code>&lt;Counter /&gt;</code> into the element whose ID is <code>&quot;app&quot;</code>. In this case, though, the counter is not a function, but a class with three parts:</p>
 <ol>
-<li><p>Its constructor passes the properties provided by the user up to <code>React.Component</code>’s constructor. (There aren’t any properties in this case, but there will be in future examples, so it’s a good habit to get into.) The constructor then creates a property called <code>state</code> that holds this component’s state. This property <em>must</em> have this name so that React knows to watch it for changes.</p></li>
+<li><p>Its constructor passes the properties provided by the user to <code>React.Component</code>’s constructor. (There aren’t any properties in this case, but there will be in future examples, so it’s a good habit to get into.) The constructor then creates a property called <code>state</code> that holds this component’s state. This property <em>must</em> have this name so that React knows to watch it for changes.</p></li>
 <li><p>The <code>increment</code> method uses <code>setState</code> (inherited from <code>React.Component</code>) to change the value of the counter. We <em>must</em> do this rather than creating and modifying <code>this.counter</code> so that React will notice the change in state and re-draw what it needs to.</p></li>
 <li><p>The <code>render</code> method takes the place of the functions we have been using so far. It can do anything it wants, but must return some HTML (using JSX). Here, it creates a button with an event handler and displays the current value of the counter.</p></li>
 </ol>
@@ -3150,7 +3147,7 @@ Server running at http://localhost:4000
 <a class="sourceLine" id="cb263-23" data-line-number="23">  <span class="op">}</span></a>
 <a class="sourceLine" id="cb263-24" data-line-number="24"><span class="op">}</span></a></code></pre></div>
 <figure>
-<img src="figures/interactive-objects-dom.svg" id="f:interactive-objects-dom" /><figcaption>React Objects and the DOM<span label="f:interactive-objects-dom"></span></figcaption>
+<img src="figures/interactive-objects-dom.svg" /><figcaption><span id="f:interactive-objects-dom">React Objects and the DOM</span></figcaption>
 </figure>
 <p>We must import the dependencies as we did with the other components. As well as <code>React</code> and <code>ReactDOM</code>, we need to include the components that we’ve written. Dependencies stored locally can be imported by providing the path to the file in which they are defined, with the <code>.js</code> removed from the file name:</p>
 <div class="sourceCode" id="cb264"><pre class="sourceCode js"><code class="sourceCode javascript"><a class="sourceLine" id="cb264-1" data-line-number="1"><span class="im">import</span> React <span class="im">from</span> <span class="st">&quot;react&quot;</span></a>
@@ -3166,7 +3163,7 @@ Server running at http://localhost:4000
 <a class="sourceLine" id="cb265-4" data-line-number="4"><span class="va">ReactDOM</span>.<span class="at">render</span>(<span class="op">&lt;</span>App/<span class="op">&gt;,</span> mount)</a></code></pre></div>
 <p>This seems pretty complicated because it is: our small example would be much simpler without all this indirection. However, we need this strategy to manage large applications: data and event handlers are defined in one class, then passed into display components to be displayed and interacted with.</p>
 <h2 id="s:interactive-fetching">Fetching Data</h2>
-<p>Let’s use what we’ve learned to look at how the world might end. NASA provides a web API to get information about near-approach asteroids. We will use it to build a small display with:</p>
+<p>Let’s use what we’ve learned to look at how the world might end. NASA provides a web interface to get information about near-approach asteroids. We will use it to build a small display with:</p>
 <ul>
 <li><p>a text box for submitting a starting date (get one week by default), and</p></li>
 <li><p>a list of asteroids in that time period.</p></li>
@@ -3262,9 +3259,7 @@ Server running at http://localhost:4000
 <a class="sourceLine" id="cb269-7" data-line-number="7"></a>
 <a class="sourceLine" id="cb269-8" data-line-number="8"><span class="im">export</span> <span class="op">{</span>DateSubmit<span class="op">}</span></a></code></pre></div>
 <p>and run it to get Figure <a href="#f:interactive-asteroids-screenshot" data-reference-type="ref" data-reference="f:interactive-asteroids-screenshot">[f:interactive-asteroids-screenshot]</a>.</p>
-<figure>
-<img src="figures/interactive-asteroids-screenshot.png" alt="Asteroids Application" id="f:interactive-asteroids-screenshot" /><figcaption>Asteroids Application<span label="f:interactive-asteroids-screenshot"></span></figcaption>
-</figure>
+
 <p>The next step is to handle date submission. Since we’re trying to instill good practices, we will make a reusable component whose caller will pass in:</p>
 <ul>
 <li><p>a text label;</p></li>
@@ -3561,7 +3556,7 @@ Server running at http://localhost:4000
 <a class="sourceLine" id="cb286-6" data-line-number="6">  <span class="cf">return</span> sum / <span class="va">values</span>.<span class="at">length</span></a>
 <a class="sourceLine" id="cb286-7" data-line-number="7"><span class="op">}</span></a></code></pre></div>
 <p>It would be more natural for <code>_average</code> to take an array rather than a variable number of arguments, but we want to be able to use it in the same way that we use <code>Math.min</code> and <code>Math.max</code>, so we have to conform to their signature.</p>
-<p>After some thought we realize that it’s possible for <code>subset</code> to be empty—i.e., it’s possible that there are years that have no data in our data set. We should filter these out, to prevent unnecessary effort being made to render summary statistics with <code>NaN</code> values. Remembering that empty arrays are not falsy in JavaScript (Chapter <a href="#s:basics" data-reference-type="ref" data-reference="s:basics">2</a>), we decide to test that the <code>subset</code> returned by filtering for each year contains at least one entry.</p>
+<p>After some thought we realize that it’s possible for <code>subset</code> to be empty—i.e., it’s possible that there are years that have no data in our dataset. We should filter these out, to prevent unnecessary effort being made to render summary statistics with <code>NaN</code> values. Remembering that empty arrays are not falsy in JavaScript (Chapter <a href="#s:basics" data-reference-type="ref" data-reference="s:basics">2</a>), we decide to test that the <code>subset</code> returned by filtering for each year contains at least one entry.</p>
 <p>The last thing that we need to ensure is that each data object has a unique key, which will make it much easier for React to efficiently update the display of the data when we are ready to render it.</p>
 <p>The method to get the values for a range of years is now:</p>
 <div class="sourceCode" id="cb287"><pre class="sourceCode js"><code class="sourceCode javascript"><a class="sourceLine" id="cb287-1" data-line-number="1">  <span class="at">getSurveyRange</span> (minYear<span class="op">,</span> maxYear) <span class="op">{</span></a>
@@ -3621,7 +3616,7 @@ Server running at http://localhost:4000
 <h2 id="s:server-http">HTTP</h2>
 <p>Almost everything on the web communicates via the HyperText Transfer Protocol (<a href="#g:http"><strong>HTTP</strong></a>). The core of HTTP is a <a href="#g:http-request"><strong>request</strong></a>/<a href="#g:http-response"><strong>response</strong></a> cycle that specifies the kinds of requests applications can make of servers, how they exchange data, and so on. Figure <a href="#f:server-cycle" data-reference-type="ref" data-reference="f:server-cycle">[f:server-cycle]</a> shows this cycle in action for a page that includes one image.</p>
 <figure>
-<img src="figures/server-cycle.svg" id="f:server-cycle" /><figcaption>HTTP Request/Response Cycle<span label="f:server-cycle"></span></figcaption>
+<img src="figures/server-cycle.svg" /><figcaption><span id="f:server-cycle">HTTP Request/Response Cycle</span></figcaption>
 </figure>
 <ol>
 <li><p>The client (a browser or some other program) makes a connection to a server.</p></li>
@@ -3647,11 +3642,11 @@ Server running at http://localhost:4000
 </ul>
 <p>(Unlike a dictionary, a key may appear any number of times, which allows a request to do things like specify that it’s willing to accept several types of content. The <a href="#g:body-http"><strong>body</strong></a> of the request is any extra data associated with it, such as files that are being uploaded. If a body is present, the request must contain the <code>Content-Length</code> header so that the server knows how much data to read (Figure <a href="#f:server-request" data-reference-type="ref" data-reference="f:server-request">[f:server-request]</a>).</p>
 <figure>
-<img src="figures/server-request.svg" id="f:server-request" /><figcaption>Structure of an HTTP Request<span label="f:server-request"></span></figcaption>
+<img src="figures/server-request.svg" /><figcaption><span id="f:server-request">Structure of an HTTP Request</span></figcaption>
 </figure>
 <p>The headers and body in an HTTP response have the same form, and mean the same thing. Crucially, the response also includes a <a href="#g:http-status-code"><strong>status code</strong></a> to indicate what happened: 200 for OK, 404 for “page not found”, and so on. Some of the more common are shown in Table <a href="#t:server-codes" data-reference-type="ref" data-reference="t:server-codes">[t:server-codes]</a>.</p>
 <table class="table table-striped">
-<caption>HTTP Status Codes<span label="t:server-codes"></span></caption>
+<caption><span>HTTP Status Codes</span><span id="t:server-codes" label="t:server-codes">[t:server-codes]</span></caption>
 <tbody>
 <tr class="odd">
 <td style="text-align: left;"><strong>Code</strong></td>
@@ -3821,7 +3816,7 @@ Server running at http://localhost:4000
 <pre class="shell"><code>$ node serve-pages.js ./web-dir</code></pre>
 <p>we can then ask for <code>http://localhost:3418/title.html</code> and get the content of <code>web-dir/title.html</code>. Notice that the directory <code>./web-dir</code> doesn’t appear in the URL: our server interprets all paths as if the directory we’ve given it is the root of the filesystem.</p>
 <figure>
-<img src="figures/server-mapping.svg" id="f:server-mapping" /><figcaption>Mapping URLs to Files<span label="f:server-mapping"></span></figcaption>
+<img src="figures/server-mapping.svg" /><figcaption><span id="f:server-mapping">Mapping URLs to Files</span></figcaption>
 </figure>
 <p>If we ask for a nonexistent page like <code>http://localhost:3418/missing.html</code> we get this:</p>
 <pre class="text"><code>Error: ENOENT: no such file or directory, open &#39;web-dir/missing.html&#39;
@@ -3853,6 +3848,10 @@ Server running at http://localhost:4000
 <a class="sourceLine" id="cb297-16" data-line-number="16">  <span class="op">}</span></a>
 <a class="sourceLine" id="cb297-17" data-line-number="17"><span class="op">}</span>)</a></code></pre></div>
 <p>What’s different here is that when the requested path ends with <code>.json</code> we explicitly set the <code>Content-Type</code> header to <code>application/json</code> to tell the client how to interpret the bytes we’re sending back. If we run this server with <code>web-dir</code> as the directory to serve from and ask for <code>http://localhost:3418/data.json</code>, a modern browser will provide a folding display of the data rather than displaying the raw text.</p>
+<blockquote>
+<h4 id="so-whats-an-api" class="unnumbered unnumbered">So What’s an API?</h4>
+<p>A library’s <a href="#g:api"><strong>Application Programming Interface</strong></a> (API) is simply the set of functions other programs are allowed to call. This is usually a subset of all of the functions defined in the library, since many may be helpers intended for internal use only. Similarly, a server’s API is the set of requests it knows how to respond to. For example, NASA’s near-approach asteroid API (Section <a href="#s:interactive-fetching" data-reference-type="ref" data-reference="s:interactive-fetching">10.3</a>) can handle requests that include an authentication key and a starting data, while the server we have built in this chapter can respond to requests for HTML and JSON files. We will look a little more closely at API design in Section <a href="#s:capstone-server" data-reference-type="ref" data-reference="s:capstone-server">15.2</a>.</p>
+</blockquote>
 <h2 id="s:server-exercises">Exercises</h2>
 <h3 id="report-missing-files" class="unnumbered unnumbered">Report Missing Files</h3>
 <p>Modify the version of the server that returns files from disk to report a 404 error if a file cannot be found. What should it return if the file exists but cannot be read (e.g., if the server does not have permissions)?</p>
@@ -3876,7 +3875,7 @@ Server running at http://localhost:4000
 </ul>
 <h1 id="s:testing">Testing</h1>
 <p>We are bad people, because we have been writing code without testing it. In this lesson we will redeem ourselves (partially) by correcting that (also partially).</p>
-<p>JavaScript uses the same pattern for <a href="#g:unit-test"><strong>unit testing</strong></a> as most other modern languages. Each test is written as a function, and each of those functions tests one particular aspect of the code. A standalone program called a <a href="#g:test-runner"><strong>test runner</strong></a> finds test functions, runs them, and reports the results. Any setup code that needs to be run before each test to create a <a href="#g:fixture"><strong>fixture</strong></a> is put in a function of its own. Similarly (but less frequently), if some teardown needs to be done <em>after</em> each test, we put those operations in a function as well.</p>
+<p>JavaScript uses the same pattern for <a href="#g:unit-test"><strong>unit testing</strong></a> as most other modern languages. Each test is written as a function, and each of those functions tests one particular aspect of the code. A standalone program called a <a href="#g:test-runner"><strong>test runner</strong></a> finds test functions, runs them, and reports the results. Any setup code that needs to be run before each test to create the data the test’s input (called its <a href="#g:fixture"><strong>fixture</strong></a>) is put in a function of its own. Similarly (but less frequently), if some teardown needs to be done <em>after</em> each test, we put those operations in a function as well.</p>
 <p>Each unit test can have one of three results:</p>
 <ul>
 <li><p>pass: everything worked</p></li>
@@ -3918,7 +3917,7 @@ Server running at http://localhost:4000
 <pre class="shell"><code>$ npm test -- path/to/test.js</code></pre>
 <p>(Again, everything after <code>--</code> is passed to the script itself.) If we don’t specify where to find tests, Mocha looks for a directory called <code>test</code> and runs the files it finds there whose names begin with <code>test</code> (Figure <a href="#f:testing-mocha" data-reference-type="ref" data-reference="f:testing-mocha">[f:testing-mocha]</a>).</p>
 <figure>
-<img src="figures/testing-mocha.svg" id="f:testing-mocha" /><figcaption>Mocha in Action<span label="f:testing-mocha"></span></figcaption>
+<img src="figures/testing-mocha.svg" /><figcaption><span id="f:testing-mocha">Mocha in Action</span></figcaption>
 </figure>
 <h2 id="s:testing-refactoring">Refactoring</h2>
 <p>The next step is to <a href="#g:refactor"><strong>refactor</strong></a> our software to make it testable. In the case of our server, we have to:</p>
@@ -3950,7 +3949,7 @@ Server running at http://localhost:4000
 <h2 id="s:testing-server">Testing the Server</h2>
 <p>All right: now that we have extracted the code that’s specific to our server, how do we test it? The answer is yet another library called <a href="https://github.com/visionmedia/supertest">supertest</a> that sends fake HTTP requests to an Express server that has been split in the way we just split ours and lets us interact with that server’s replies.</p>
 <figure>
-<img src="figures/testing-supertest.svg" id="f:testing-supertest" /><figcaption>Supertest versus Reality<span label="f:testing-supertest"></span></figcaption>
+<img src="figures/testing-supertest.svg" /><figcaption><span id="f:testing-supertest">Supertest versus Reality</span></figcaption>
 </figure>
 <p>Here’s a test of a simple request that uses Mocha to manage the test, and supertest’s <code>request</code> function to send something to the server and check the result:</p>
 <div class="sourceCode" id="cb307"><pre class="sourceCode js"><code class="sourceCode javascript"><a class="sourceLine" id="cb307-1" data-line-number="1"><span class="kw">const</span> assert <span class="op">=</span> <span class="at">require</span>(<span class="st">&#39;assert&#39;</span>)</a>
@@ -4229,7 +4228,7 @@ Server running at http://localhost:4000
      columnNames: [ &#39;ones&#39;, &#39;tens&#39; ] } }</code></pre>
 <p>Each column is stored as a <code>Series</code> object; once in a while, we will need to work with these objects directly instead of with the dataframe as a whole. (Figure <a href="#f:dataforge-rows-and-columns" data-reference-type="ref" data-reference="f:dataforge-rows-and-columns">[f:dataforge-rows-and-columns]</a>). If we want to see the actual data, we need to convert the dataframe back to an array of objects:</p>
 <figure>
-<img src="figures/dataforge-rows-and-columns.svg" id="f:dataforge-rows-and-columns" /><figcaption>How Tables Are Stored<span label="f:dataforge-rows-and-columns"></span></figcaption>
+<img src="figures/dataforge-rows-and-columns.svg" /><figcaption><span id="f:dataforge-rows-and-columns">How Tables Are Stored</span></figcaption>
 </figure>
 <div class="sourceCode" id="cb315"><pre class="sourceCode js"><code class="sourceCode javascript"><a class="sourceLine" id="cb315-1" data-line-number="1"><span class="va">console</span>.<span class="at">log</span>(<span class="st">&#39;fromObjects as array:</span><span class="sc">\n</span><span class="st">&#39;</span><span class="op">,</span> <span class="va">fromObjects</span>.<span class="at">toArray</span>())</a></code></pre></div>
 <pre class="text"><code>fromObjects as array:
@@ -4315,7 +4314,7 @@ Server running at http://localhost:4000
 <a class="sourceLine" id="cb335-6" data-line-number="6">  .<span class="at">dropSeries</span>([<span class="st">&quot;ones&quot;</span><span class="op">,</span> <span class="st">&quot;tens&quot;</span><span class="op">,</span> <span class="st">&quot;hundreds&quot;</span>])</a>
 <a class="sourceLine" id="cb335-7" data-line-number="7">  .<span class="at">toArray</span>()</a></code></pre></div>
 <figure>
-<img src="figures/dataforge-method-chaining.svg" id="f:dataforge-method-chaining" /><figcaption>A More Complicated Pipeline<span label="f:dataforge-method-chaining"></span></figcaption>
+<img src="figures/dataforge-method-chaining.svg" /><figcaption><span id="f:dataforge-method-chaining">A More Complicated Pipeline</span></figcaption>
 </figure>
 <p>To make results easier to understand, we will often want to sort our data. Suppose we have a file containing the red-green-blue values for several colors:</p>
 <pre class="text"><code>name,red,green,blue
@@ -4347,7 +4346,7 @@ aqua,0,255,255</code></pre>
   { name: &#39;maroon&#39;, red: &#39;128&#39;, green: &#39;0&#39;, blue: &#39;0&#39; },
   { name: &#39;navy&#39;, red: &#39;0&#39;, green: &#39;0&#39;, blue: &#39;128&#39; },
   { name: &#39;yellow&#39;, red: &#39;255&#39;, green: &#39;255&#39;, blue: &#39;0&#39; } ]</code></pre>
-<p>To sub-sort by another column we use <code>thenBy</code>:</p>
+<p>To sub-sort (Figure <a href="#f:dataforge-sorting" data-reference-type="ref" data-reference="f:dataforge-sorting">[f:dataforge-sorting]</a>) by another column we use <code>thenBy</code>:</p>
 <div class="sourceCode" id="cb341"><pre class="sourceCode js"><code class="sourceCode javascript"><a class="sourceLine" id="cb341-1" data-line-number="1"><span class="kw">const</span> doubleSorted <span class="op">=</span> colors</a>
 <a class="sourceLine" id="cb341-2" data-line-number="2">      .<span class="at">orderBy</span>(row <span class="op">=&gt;</span> <span class="va">row</span>.<span class="at">green</span>)</a>
 <a class="sourceLine" id="cb341-3" data-line-number="3">      .<span class="at">thenBy</span>(row <span class="op">=&gt;</span> <span class="va">row</span>.<span class="at">blue</span>)</a>
@@ -4360,7 +4359,7 @@ aqua,0,255,255</code></pre>
   { green: &#39;255&#39;, blue: &#39;0&#39; },
   { green: &#39;255&#39;, blue: &#39;255&#39; } ]</code></pre>
 <figure>
-<img src="figures/dataforge-sorting.svg" id="f:dataforge-sorting" /><figcaption>Sorting and Sub-sorting<span label="f:dataforge-sorting"></span></figcaption>
+<img src="figures/dataforge-sorting.svg" /><figcaption><span id="f:dataforge-sorting">Sorting and Sub-sorting</span></figcaption>
 </figure>
 <p>We can remove duplicates with <code>distinct</code>:</p>
 <div class="sourceCode" id="cb343"><pre class="sourceCode js"><code class="sourceCode javascript"><a class="sourceLine" id="cb343-1" data-line-number="1"><span class="kw">const</span> notTheSame <span class="op">=</span> <span class="va">colors</span>.<span class="at">distinct</span>(row <span class="op">=&gt;</span> <span class="va">row</span>.<span class="at">red</span>)</a>
@@ -4426,7 +4425,7 @@ aqua,0,255,255</code></pre>
     Longitude: 13.2952,
     Depth_Km: 7.5,
     Magnitude: 3 } ]</code></pre>
-<p>If we want data from the middle of the table, we can skip a few rows and then take as many as we want:</p>
+<p>If we want data from the middle of the table, we can skip a few rows and then take as many as we want (Figure <a href="#f:dataforge-positional" data-reference-type="ref" data-reference="f:dataforge-positional">[f:dataforge-positional]</a>):</p>
 <div class="sourceCode" id="cb353"><pre class="sourceCode js"><code class="sourceCode javascript"><a class="sourceLine" id="cb353-1" data-line-number="1"><span class="va">console</span>.<span class="at">log</span>(<span class="va">earthquakes</span>.<span class="at">skip</span>(<span class="dv">10</span>).<span class="at">take</span>(<span class="dv">3</span>).<span class="at">toArray</span>())</a></code></pre></div>
 <pre class="text"><code>[ { Time: 2016-08-24T07:47:51.540Z,
     Latitude: 42.6675,
@@ -4444,7 +4443,7 @@ aqua,0,255,255</code></pre>
     Depth_Km: 10.9,
     Magnitude: 3.1 } ]</code></pre>
 <figure>
-<img src="figures/dataforge-positional.svg" id="f:dataforge-positional" /><figcaption>Selecting by Position<span label="f:dataforge-positional"></span></figcaption>
+<img src="figures/dataforge-positional.svg" /><figcaption><span id="f:dataforge-positional">Selecting by Position</span></figcaption>
 </figure>
 <p>However, it’s far more common to select rows by the values they contain rather than by their position. Just like the <code>Array.filter</code> method we met way back in Section <a href="#s:callbacks-functional" data-reference-type="ref" data-reference="s:callbacks-functional">3.4</a>, we do this by giving Data-Forge a callback function that tells it whether a given row should be kept or not. This text can be as complex as desired, but must work row by row: we cannot make a decision about one row based on the values in the rows before it or after it.</p>
 <div class="sourceCode" id="cb355"><pre class="sourceCode js"><code class="sourceCode javascript"><a class="sourceLine" id="cb355-1" data-line-number="1"><span class="kw">const</span> large <span class="op">=</span> <span class="va">earthquakes</span>.<span class="at">where</span>(row <span class="op">=&gt;</span> (<span class="va">row</span>.<span class="at">Magnitude</span> <span class="op">&gt;=</span> <span class="fl">5.0</span>))</a>
@@ -4519,7 +4518,7 @@ aqua,0,255,255</code></pre>
 </ol>
 <p>Figure <a href="#f:dataforge-summarizing" data-reference-type="ref" data-reference="f:dataforge-summarizing">[f:dataforge-summarizing]</a> shows these steps graphically. It’s easy to forget the <code>inflate</code> and <code>deflate</code> steps at first (we did when writing this example), but they quickly become habitual.</p>
 <figure>
-<img src="figures/dataforge-summarizing.svg" id="f:dataforge-summarizing" /><figcaption>Summarizing Groups<span label="f:dataforge-summarizing"></span></figcaption>
+<img src="figures/dataforge-summarizing.svg" /><figcaption><span id="f:dataforge-summarizing">Summarizing Groups</span></figcaption>
 </figure>
 <h2 id="s:dataforge-real">In Real Life</h2>
 <p>To wrap up our exploration of Data-Forge, we will explore data from <a href="http://dataisplural/data.world" class="uri">http://dataisplural/data.world</a> to find the annual recreational visits to national parks in the United States for the last ten years. Our strategy is to:</p>
@@ -4643,7 +4642,7 @@ __index__  Type    Frequency  Column
 255,0
 255,255</code></pre>
 <h3 id="revisiting-data-manipulation" class="unnumbered unnumbered">Revisiting Data Manipulation</h3>
-<p>Back in the chapter on data manipulation, we aggregated <code>surveys.csv</code> to find the minimum, maximum and average values for <code>year</code>, <code>hindfoot_length</code>, and <code>weight</code>. Repeat this exercise using the methods of <code>data-forge</code>.</p>
+<p>Back in the chapter on data manipulation, we aggregated <code>surveys.csv</code> to find the minimum, maximum, and average values for <code>year</code>, <code>hindfoot_length</code>, and <code>weight</code>. Repeat this exercise using the methods of <code>data-forge</code>.</p>
 <h3 id="grouping-and-aggregating" class="unnumbered unnumbered">Grouping and Aggregating</h3>
 <p>Retrace the steps in the example that calculated the average depth of earthquakes of different magnitudes and show the data structure after each method call. Are they all dataframes, or are other data structures created or manipulated as well?</p>
 <h3 id="not-a-number" class="unnumbered unnumbered">Not a Number</h3>
@@ -4704,37 +4703,55 @@ __index__  Type    Frequency  Column
 <a class="sourceLine" id="cb379-8" data-line-number="8">      <span class="cf">return</span> <span class="op">{</span></a>
 <a class="sourceLine" id="cb379-9" data-line-number="9">        <span class="dt">key</span><span class="op">:</span> <span class="at">toString</span>(year)<span class="op">,</span></a>
 <a class="sourceLine" id="cb379-10" data-line-number="10">        <span class="dt">year</span><span class="op">:</span> year<span class="op">,</span></a>
-<a class="sourceLine" id="cb379-11" data-line-number="11">        <span class="dt">min_hindfoot_length</span><span class="op">:</span> <span class="va">subset</span>.<span class="at">deflate</span>(r <span class="op">=&gt;</span> <span class="va">r</span>.<span class="at">hindfoot_length</span>).<span class="at">min</span>()<span class="op">,</span></a>
-<a class="sourceLine" id="cb379-12" data-line-number="12">        <span class="dt">ave_hindfoot_length</span><span class="op">:</span> <span class="va">subset</span>.<span class="at">deflate</span>(r <span class="op">=&gt;</span> <span class="va">r</span>.<span class="at">hindfoot_length</span>).<span class="at">average</span>()<span class="op">,</span></a>
-<a class="sourceLine" id="cb379-13" data-line-number="13">        <span class="dt">max_hindfoot_length</span><span class="op">:</span> <span class="va">subset</span>.<span class="at">deflate</span>(r <span class="op">=&gt;</span> <span class="va">r</span>.<span class="at">hindfoot_length</span>).<span class="at">max</span>()<span class="op">,</span></a>
-<a class="sourceLine" id="cb379-14" data-line-number="14">        <span class="dt">min_weight</span><span class="op">:</span> <span class="va">subset</span>.<span class="at">deflate</span>(r <span class="op">=&gt;</span> <span class="va">r</span>.<span class="at">weight</span>).<span class="at">min</span>()<span class="op">,</span></a>
-<a class="sourceLine" id="cb379-15" data-line-number="15">        <span class="dt">ave_weight</span><span class="op">:</span> <span class="va">subset</span>.<span class="at">deflate</span>(r <span class="op">=&gt;</span> <span class="va">r</span>.<span class="at">weight</span>).<span class="at">average</span>()<span class="op">,</span></a>
-<a class="sourceLine" id="cb379-16" data-line-number="16">        <span class="dt">max_weight</span><span class="op">:</span> <span class="va">subset</span>.<span class="at">deflate</span>(r <span class="op">=&gt;</span> <span class="va">r</span>.<span class="at">weight</span>).<span class="at">max</span>()</a>
-<a class="sourceLine" id="cb379-17" data-line-number="17">      <span class="op">}</span></a>
-<a class="sourceLine" id="cb379-18" data-line-number="18">    <span class="op">}</span></a>
-<a class="sourceLine" id="cb379-19" data-line-number="19">  <span class="op">}</span>)</a>
-<a class="sourceLine" id="cb379-20" data-line-number="20"><span class="op">}</span></a></code></pre></div>
+<a class="sourceLine" id="cb379-11" data-line-number="11">        <span class="dt">min_hindfoot_length</span><span class="op">:</span> <span class="va">subset</span>.<span class="at">deflate</span>(r <span class="op">=&gt;</span> <span class="va">r</span>.<span class="at">hindfoot_length</span>)</a>
+<a class="sourceLine" id="cb379-12" data-line-number="12">                                   .<span class="at">min</span>()<span class="op">,</span></a>
+<a class="sourceLine" id="cb379-13" data-line-number="13">        <span class="dt">ave_hindfoot_length</span><span class="op">:</span> <span class="va">subset</span>.<span class="at">deflate</span>(r <span class="op">=&gt;</span> <span class="va">r</span>.<span class="at">hindfoot_length</span>)</a>
+<a class="sourceLine" id="cb379-14" data-line-number="14">                                   .<span class="at">average</span>()<span class="op">,</span></a>
+<a class="sourceLine" id="cb379-15" data-line-number="15">        <span class="dt">max_hindfoot_length</span><span class="op">:</span> <span class="va">subset</span>.<span class="at">deflate</span>(r <span class="op">=&gt;</span> <span class="va">r</span>.<span class="at">hindfoot_length</span>)</a>
+<a class="sourceLine" id="cb379-16" data-line-number="16">                                   .<span class="at">max</span>()<span class="op">,</span></a>
+<a class="sourceLine" id="cb379-17" data-line-number="17">        <span class="dt">min_weight</span><span class="op">:</span> <span class="va">subset</span>.<span class="at">deflate</span>(r <span class="op">=&gt;</span> <span class="va">r</span>.<span class="at">weight</span>)</a>
+<a class="sourceLine" id="cb379-18" data-line-number="18">                          .<span class="at">min</span>()<span class="op">,</span></a>
+<a class="sourceLine" id="cb379-19" data-line-number="19">        <span class="dt">ave_weight</span><span class="op">:</span> <span class="va">subset</span>.<span class="at">deflate</span>(r <span class="op">=&gt;</span> <span class="va">r</span>.<span class="at">weight</span>)</a>
+<a class="sourceLine" id="cb379-20" data-line-number="20">                          .<span class="at">average</span>()<span class="op">,</span></a>
+<a class="sourceLine" id="cb379-21" data-line-number="21">        <span class="dt">max_weight</span><span class="op">:</span> <span class="va">subset</span>.<span class="at">deflate</span>(r <span class="op">=&gt;</span> <span class="va">r</span>.<span class="at">weight</span>)</a>
+<a class="sourceLine" id="cb379-22" data-line-number="22">                          .<span class="at">max</span>()</a>
+<a class="sourceLine" id="cb379-23" data-line-number="23">      <span class="op">}</span></a>
+<a class="sourceLine" id="cb379-24" data-line-number="24">    <span class="op">}</span></a>
+<a class="sourceLine" id="cb379-25" data-line-number="25">  <span class="op">}</span>)</a>
+<a class="sourceLine" id="cb379-26" data-line-number="26"><span class="op">}</span></a></code></pre></div>
 <p>This removes the need for the <code>_get</code> method, but when we test the code we find that blank spaces are displayed where the summary values should be for a suspicious number of years. On closer inspection, we discover that <code>min</code> and other summarizing methods are sensitive to missing data: they return <code>NaN</code> if any values are absent in the series on which they are called, or <code>undefined</code> if they’re all missing. We therefore need an additional filter step to remove the rows with missing data in the columns that we’re interested in (weight and hindfoot length):</p>
 <div class="sourceCode" id="cb380"><pre class="sourceCode js"><code class="sourceCode javascript"><a class="sourceLine" id="cb380-1" data-line-number="1"><span class="co">// ...as before...</span></a>
 <a class="sourceLine" id="cb380-2" data-line-number="2">      <span class="cf">if</span> (<span class="va">subset</span>.<span class="at">count</span>()) <span class="op">{</span></a>
 <a class="sourceLine" id="cb380-3" data-line-number="3">        <span class="cf">return</span> <span class="op">{</span></a>
 <a class="sourceLine" id="cb380-4" data-line-number="4">          <span class="dt">key</span><span class="op">:</span> <span class="at">toString</span>(year)<span class="op">,</span></a>
 <a class="sourceLine" id="cb380-5" data-line-number="5">          <span class="dt">year</span><span class="op">:</span> year<span class="op">,</span></a>
-<a class="sourceLine" id="cb380-6" data-line-number="6">          <span class="dt">min_hindfoot_length</span><span class="op">:</span> <span class="va">subset</span>.<span class="at">where</span>(r <span class="op">=&gt;</span> <span class="op">!</span><span class="at">isNaN</span>(<span class="va">r</span>.<span class="at">hindfoot_length</span>))</a>
-<a class="sourceLine" id="cb380-7" data-line-number="7">                                     .<span class="at">deflate</span>(r <span class="op">=&gt;</span> <span class="va">r</span>.<span class="at">hindfoot_length</span>).<span class="at">min</span>()<span class="op">,</span></a>
-<a class="sourceLine" id="cb380-8" data-line-number="8">          <span class="dt">ave_hindfoot_length</span><span class="op">:</span> <span class="va">subset</span>.<span class="at">where</span>(r <span class="op">=&gt;</span> <span class="op">!</span><span class="at">isNaN</span>(<span class="va">r</span>.<span class="at">hindfoot_length</span>))</a>
-<a class="sourceLine" id="cb380-9" data-line-number="9">                                     .<span class="at">deflate</span>(r <span class="op">=&gt;</span> <span class="va">r</span>.<span class="at">hindfoot_length</span>).<span class="at">average</span>()<span class="op">,</span></a>
-<a class="sourceLine" id="cb380-10" data-line-number="10">          <span class="dt">max_hindfoot_length</span><span class="op">:</span> <span class="va">subset</span>.<span class="at">where</span>(r <span class="op">=&gt;</span> <span class="op">!</span><span class="at">isNaN</span>(<span class="va">r</span>.<span class="at">hindfoot_length</span>))</a>
-<a class="sourceLine" id="cb380-11" data-line-number="11">                                     .<span class="at">deflate</span>(r <span class="op">=&gt;</span> <span class="va">r</span>.<span class="at">hindfoot_length</span>).<span class="at">max</span>()<span class="op">,</span></a>
-<a class="sourceLine" id="cb380-12" data-line-number="12">          <span class="dt">min_weight</span><span class="op">:</span> <span class="va">subset</span>.<span class="at">where</span>(r <span class="op">=&gt;</span> <span class="op">!</span><span class="at">isNaN</span>(<span class="va">r</span>.<span class="at">weight</span>))</a>
-<a class="sourceLine" id="cb380-13" data-line-number="13">                            .<span class="at">deflate</span>(r <span class="op">=&gt;</span> <span class="va">r</span>.<span class="at">weight</span>).<span class="at">min</span>()<span class="op">,</span></a>
-<a class="sourceLine" id="cb380-14" data-line-number="14">          <span class="dt">ave_weight</span><span class="op">:</span> <span class="va">subset</span>.<span class="at">where</span>(r <span class="op">=&gt;</span> <span class="op">!</span><span class="at">isNaN</span>(<span class="va">r</span>.<span class="at">weight</span>))</a>
-<a class="sourceLine" id="cb380-15" data-line-number="15">                            .<span class="at">deflate</span>(r <span class="op">=&gt;</span> <span class="va">r</span>.<span class="at">weight</span>).<span class="at">average</span>()<span class="op">,</span></a>
-<a class="sourceLine" id="cb380-16" data-line-number="16">          <span class="dt">max_weight</span><span class="op">:</span> <span class="va">subset</span>.<span class="at">where</span>(r <span class="op">=&gt;</span> <span class="op">!</span><span class="at">isNaN</span>(<span class="va">r</span>.<span class="at">weight</span>))</a>
-<a class="sourceLine" id="cb380-17" data-line-number="17">                            .<span class="at">deflate</span>(r <span class="op">=&gt;</span> <span class="va">r</span>.<span class="at">weight</span>).<span class="at">max</span>()</a>
-<a class="sourceLine" id="cb380-18" data-line-number="18">        <span class="op">}</span></a>
-<a class="sourceLine" id="cb380-19" data-line-number="19">      <span class="op">}</span></a>
-<a class="sourceLine" id="cb380-20" data-line-number="20"><span class="co">// ...as before...</span></a></code></pre></div>
+<a class="sourceLine" id="cb380-6" data-line-number="6">          <span class="dt">min_hindfoot_length</span><span class="op">:</span> subset</a>
+<a class="sourceLine" id="cb380-7" data-line-number="7">                               .<span class="at">where</span>(r <span class="op">=&gt;</span> <span class="op">!</span><span class="at">isNaN</span>(<span class="va">r</span>.<span class="at">hindfoot_length</span>))</a>
+<a class="sourceLine" id="cb380-8" data-line-number="8">                               .<span class="at">deflate</span>(r <span class="op">=&gt;</span> <span class="va">r</span>.<span class="at">hindfoot_length</span>)</a>
+<a class="sourceLine" id="cb380-9" data-line-number="9">                               .<span class="at">min</span>()<span class="op">,</span></a>
+<a class="sourceLine" id="cb380-10" data-line-number="10">          <span class="dt">ave_hindfoot_length</span><span class="op">:</span> subset</a>
+<a class="sourceLine" id="cb380-11" data-line-number="11">                               .<span class="at">where</span>(r <span class="op">=&gt;</span> <span class="op">!</span><span class="at">isNaN</span>(<span class="va">r</span>.<span class="at">hindfoot_length</span>))</a>
+<a class="sourceLine" id="cb380-12" data-line-number="12">                               .<span class="at">deflate</span>(r <span class="op">=&gt;</span> <span class="va">r</span>.<span class="at">hindfoot_length</span>)</a>
+<a class="sourceLine" id="cb380-13" data-line-number="13">                               .<span class="at">average</span>()<span class="op">,</span></a>
+<a class="sourceLine" id="cb380-14" data-line-number="14">          <span class="dt">max_hindfoot_length</span><span class="op">:</span> subset</a>
+<a class="sourceLine" id="cb380-15" data-line-number="15">                               .<span class="at">where</span>(r <span class="op">=&gt;</span> <span class="op">!</span><span class="at">isNaN</span>(<span class="va">r</span>.<span class="at">hindfoot_length</span>))</a>
+<a class="sourceLine" id="cb380-16" data-line-number="16">                               .<span class="at">deflate</span>(r <span class="op">=&gt;</span> <span class="va">r</span>.<span class="at">hindfoot_length</span>)</a>
+<a class="sourceLine" id="cb380-17" data-line-number="17">                               .<span class="at">max</span>()<span class="op">,</span></a>
+<a class="sourceLine" id="cb380-18" data-line-number="18">          <span class="dt">min_weight</span><span class="op">:</span> subset</a>
+<a class="sourceLine" id="cb380-19" data-line-number="19">                      .<span class="at">where</span>(r <span class="op">=&gt;</span> <span class="op">!</span><span class="at">isNaN</span>(<span class="va">r</span>.<span class="at">weight</span>))</a>
+<a class="sourceLine" id="cb380-20" data-line-number="20">                      .<span class="at">deflate</span>(r <span class="op">=&gt;</span> <span class="va">r</span>.<span class="at">weight</span>)</a>
+<a class="sourceLine" id="cb380-21" data-line-number="21">                      .<span class="at">min</span>()<span class="op">,</span></a>
+<a class="sourceLine" id="cb380-22" data-line-number="22">          <span class="dt">ave_weight</span><span class="op">:</span> subset</a>
+<a class="sourceLine" id="cb380-23" data-line-number="23">                      .<span class="at">where</span>(r <span class="op">=&gt;</span> <span class="op">!</span><span class="at">isNaN</span>(<span class="va">r</span>.<span class="at">weight</span>))</a>
+<a class="sourceLine" id="cb380-24" data-line-number="24">                      .<span class="at">deflate</span>(r <span class="op">=&gt;</span> <span class="va">r</span>.<span class="at">weight</span>)</a>
+<a class="sourceLine" id="cb380-25" data-line-number="25">                      .<span class="at">average</span>()<span class="op">,</span></a>
+<a class="sourceLine" id="cb380-26" data-line-number="26">          <span class="dt">max_weight</span><span class="op">:</span> subset</a>
+<a class="sourceLine" id="cb380-27" data-line-number="27">                      .<span class="at">where</span>(r <span class="op">=&gt;</span> <span class="op">!</span><span class="at">isNaN</span>(<span class="va">r</span>.<span class="at">weight</span>))</a>
+<a class="sourceLine" id="cb380-28" data-line-number="28">                      .<span class="at">deflate</span>(r <span class="op">=&gt;</span> <span class="va">r</span>.<span class="at">weight</span>)</a>
+<a class="sourceLine" id="cb380-29" data-line-number="29">                      .<span class="at">max</span>()</a>
+<a class="sourceLine" id="cb380-30" data-line-number="30">        <span class="op">}</span></a>
+<a class="sourceLine" id="cb380-31" data-line-number="31">      <span class="op">}</span></a>
+<a class="sourceLine" id="cb380-32" data-line-number="32"><span class="co">// ...as before...</span></a></code></pre></div>
 <p>Making these changes we discover that, although the summarizing functions run and return <code>NaN</code> or <code>undefined</code> when presented with a series with at least one missing piece observation, they throw an error when called on a completely empty series (that is, a series of length zero). To make our data manager robust to this, we go back to writing internal methods to ensure that data is only summarized if it actually exists in the first place:</p>
 <div class="sourceCode" id="cb381"><pre class="sourceCode js"><code class="sourceCode javascript"><a class="sourceLine" id="cb381-1" data-line-number="1">    <span class="at">getSurveyRange</span> (minYear<span class="op">,</span> maxYear) <span class="op">{</span></a>
 <a class="sourceLine" id="cb381-2" data-line-number="2">      <span class="cf">return</span> <span class="at">Array</span>(<span class="dv">1</span> <span class="op">+</span> maxYear <span class="op">-</span> minYear)</a>
@@ -4992,7 +5009,7 @@ __index__  Type    Frequency  Column
 <a class="sourceLine" id="cb394-16" data-line-number="16">    )</a>
 <a class="sourceLine" id="cb394-17" data-line-number="17">  <span class="op">}</span></a></code></pre></div>
 <h2 id="s:capstone-tables">The Tables</h2>
-<p>We will display survey stats as tables, with a paragraph fallback when there’s no data. First, we display summary statistics for the whole data set (as returned by the <code>GET /survey/stats</code> query we wrote a handler for earlier) as a table at the top of the page. (Again, we need parentheses around the HTML fragment so that it will parse properly.)</p>
+<p>We will display survey stats as tables, with a paragraph fallback when there’s no data. First, we display summary statistics for the whole dataset (as returned by the <code>GET /survey/stats</code> query we wrote a handler for earlier) as a table at the top of the page. (Again, we need parentheses around the HTML fragment so that it will parse properly.)</p>
 <div class="sourceCode" id="cb395"><pre class="sourceCode js"><code class="sourceCode javascript"><a class="sourceLine" id="cb395-1" data-line-number="1"><span class="im">import</span> React <span class="im">from</span> <span class="st">&#39;react&#39;</span></a>
 <a class="sourceLine" id="cb395-2" data-line-number="2"></a>
 <a class="sourceLine" id="cb395-3" data-line-number="3"><span class="kw">const</span> SurveyStats <span class="op">=</span> (<span class="op">{</span>data<span class="op">}</span>) <span class="op">=&gt;</span> <span class="op">{</span></a>
@@ -5101,9 +5118,7 @@ __index__  Type    Frequency  Column
 
 Server running at http://localhost:4000
 +  Built in 20.15s.</code></pre>
-<figure>
-<img src="figures/capstone-first-attempt.png" alt="First Attempt at Viewing Capstone Project" id="f:capstone-first-attempt" /><figcaption>First Attempt at Viewing Capstone Project<span label="f:capstone-first-attempt"></span></figcaption>
-</figure>
+
 <p>We then open <code>http://localhost:4000</code> in our browser and see Figure <a href="#f:capstone-first-attempt" data-reference-type="ref" data-reference="f:capstone-first-attempt">[f:capstone-first-attempt]</a>. That’s unexpected: we should see the initial data displayed. If we open the console in the browser and reload the page, we see this error message:</p>
 <pre class="text"><code>Cross-Origin Request Blocked:
 The Same Origin Policy disallows reading the remote resource \
@@ -5136,13 +5151,9 @@ The Same Origin Policy disallows reading the remote resource \
 <p>Since this code is saved in <code>server-1.js</code>, we need to create a copy of the driver called <code>driver-1.js</code> that invokes it. Let’s run that:</p>
 <pre class="shell"><code>$ node src/capstone/back/driver-1.js src/capstone/back/test-data.csv</code></pre>
 <p>and then re-launch our application to get Figure <a href="#f:capstone-second-attempt" data-reference-type="ref" data-reference="f:capstone-second-attempt">[f:capstone-second-attempt]</a>.</p>
-<figure>
-<img src="figures/capstone-second-attempt.png" alt="Second Attempt at Viewing Capstone Project" id="f:capstone-second-attempt" /><figcaption>Second Attempt at Viewing Capstone Project<span label="f:capstone-second-attempt"></span></figcaption>
-</figure>
+
 <p>This is much better. We can now type some dates into the “start” and “end” boxes and, after we press “update”, we get a chart and table of the aggregated statistics for the year range given (Figure <a href="#f:capstone-complete" data-reference-type="ref" data-reference="f:capstone-complete">[f:capstone-complete]</a>).</p>
-<figure>
-<img src="figures/capstone-complete.png" alt="Completed Capstone Project" id="f:capstone-complete" /><figcaption>Completed Capstone Project<span label="f:capstone-complete"></span></figcaption>
-</figure>
+
 <p>We’ve built an interface, used it to submit queries that are then handled by a server, which returns data that can be converted to content by our React components, and our capstone project is complete.</p>
 <h2 id="s:capstone-exercises">Exercises</h2>
 <h3 id="reporting-other-data" class="unnumbered unnumbered">Reporting Other Data</h3>
@@ -5154,7 +5165,7 @@ The Same Origin Policy disallows reading the remote resource \
 <h3 id="error-checking" class="unnumbered unnumbered">Error Checking</h3>
 <ol>
 <li><p>Modify the server to return 400 with an error message if the range of years requested is invalid</p></li>
-<li><p>Compare your implementation to someone else’s. Did you define “invalid” in the same way? I.e., will your programs always return the same status codes for every query?</p></li>
+<li><p>Compare your implementation to someone else’s. Did you define “invalid” in the same way, i.e., will your programs always return the same status codes for every query?</p></li>
 </ol>
 <h3 id="adding-more-tests" class="unnumbered unnumbered">Adding More Tests</h3>
 <ol>
@@ -5183,7 +5194,7 @@ The Same Origin Policy disallows reading the remote resource \
 <h1 id="s:finale">Finale</h1>
 <p>We have come a long way since <code>console.log(’hello, world’)</code> in Chapter <a href="#s:basics" data-reference-type="ref" data-reference="s:basics">2</a>. Callbacks and promises, JSON and web servers, packaging, unit tests, and visualization: every modern language can do them, but JavaScript is an increasingly popular choice. Yes, it has its flaws, but if we avoid some of the legacy features in Appendix <a href="#s:legacy" data-reference-type="ref" data-reference="s:legacy">23</a> it’s both usable and powerful.</p>
 <p>Our journey doesn’t stop here, though. The appendices explore some next steps, such as logging what our server does (Appendix <a href="#s:logging" data-reference-type="ref" data-reference="s:logging">25</a>) and using a relational database (Appendix <a href="#s:db" data-reference-type="ref" data-reference="s:db">27</a>) instead of a text file as a data store. Beyond that, you could look at more advanced techniques in JavaScript,[<a class="cite" href="#ref-Have2018">Have2018</a>] explore the full power of the <a href="https://d3js.org/">D3</a> library for interactive visualization,[<a class="cite" href="#ref-Meek2017">Meek2017</a>] dive into data wrangling,[<a class="cite" href="#ref-Davi2018">Davi2018</a>] or start over completely the way JavaScript programmers do every eight months and rewrite everything with <a href="https://developer.mozilla.org/en-US/docs/Web/Web_Components">Web Components</a>. Whatever you do, we hope that this tutorial has helped you get started.</p>
-<p>Contributions of all kinds are welcome, from errata and minor improvements to entirely new sections and chapters. Please <a href="https://github.com/software-tools-in-javascript/js4ds/issues">file an issue</a> or <a href="https://github.com/software-tools-in-javascript/js4ds/pulls">submit a pull request</a> in <a href="https://github.com/software-tools-in-javascript/js4ds/">our GitHub repository</a>. Everyone whose work is incorporated will be acknowledged. Please see the contributors’s guide for more information, and please note that all contributors are required to abide by our Code of Conduct.</p>
+<p>Contributions of all kinds are welcome, from errata and minor improvements to entirely new sections and chapters. Please <a href="https://github.com/software-tools-in-javascript/js4ds/issues">file an issue</a> or <a href="https://github.com/software-tools-in-javascript/js4ds/pulls">submit a pull request</a> in <a href="https://github.com/software-tools-in-javascript/js4ds/">our GitHub repository</a>. Everyone whose work is incorporated will be acknowledged. Please see the contributors’ guide for more information, and please note that all contributors are required to abide by our Code of Conduct.</p>
 <h2 id="key-points-15" class="unnumbered unnumbered">Key Points</h2>
 <ul>
 <li><p>We have learned a lot.</p></li>
@@ -5263,6 +5274,9 @@ The Same Origin Policy disallows reading the remote resource \
 <dt><span id="g:anonymous-function">anonymous function</span></dt>
 <dd><p>A function that is defined without giving it a name, such as a callback defined where it is used. Anonymous functions are sometimes called <em>lambda functions</em> because the Greek letter lambda is used for them in mathematics.</p>
 </dd>
+<dt><span id="g:api">Application Programming Interface (API)</span></dt>
+<dd><p>the set of functions that a library or web service makes available for other code to use.</p>
+</dd>
 <dt><span id="g:argument">argument</span></dt>
 <dd><p>see <a href="#g:parameter"><strong>parameter</strong></a>.</p>
 </dd>
@@ -5324,7 +5338,7 @@ The Same Origin Policy disallows reading the remote resource \
 <dd><p>A programming structure that defines the properties and behavior of a family of related <a href="#g:object"><strong>objects</strong></a>. Classes can <a href="#g:inherit"><strong>inherit</strong></a> from other classes to specify or change behavior incrementally.</p>
 </dd>
 <dt><span id="g:client">client</span></dt>
-<dd><p>A program such as a browser that sends requests to a <a href="#g:server"><strong>server</strong></a> and does something with the response. It is sometimes helpful to think of clients as sorcerors petitioning ancient gods for favors. Sometimes.</p>
+<dd><p>A program such as a browser that sends requests to a <a href="#g:server"><strong>server</strong></a> and does something with the response. It is sometimes helpful to think of clients as sorcerers petitioning ancient gods for favors. Sometimes.</p>
 </dd>
 <dt><span id="g:client-page-gen">client-side page generation</span></dt>
 <dd><p>To create an HTML page within a <a href="#g:client"><strong>client</strong></a> using data provided by a <a href="#g:server"><strong>server</strong></a>. See also <a href="#g:server-page-gen"><strong>server-side page generation</strong></a>.</p>
@@ -5336,7 +5350,7 @@ The Same Origin Policy disallows reading the remote resource \
 <dd><p>A user-defined “tag” associated with a call to a function that generates HTML.</p>
 </dd>
 <dt><span id="g:condition">condition</span></dt>
-<dd><p>The logical test that controls whether or not the <a href="#g:body-statement"><strong>o</strong></a>f an <code>if</code> statement executes or not.</p>
+<dd><p>The logical test that controls whether or not the <a href="#g:body-statement"><strong>body</strong></a> of an <code>if</code> statement executes or not.</p>
 </dd>
 <dt><span id="g:constructor">constructor</span></dt>
 <dd><p>A “method” that is automatically called to initialize an object when it is created.</p>
@@ -5417,7 +5431,7 @@ The Same Origin Policy disallows reading the remote resource \
 <dd><p>A horrible neologism meaning “equivalent to false”. See also the equally horrible <a href="#g:truthy"><strong>truthy</strong></a>.</p>
 </dd>
 <dt><span id="g:fat-arrow">fat arrow function</span></dt>
-<dd><p>A JavaScript function defined using the syntax <code>(...parameters...) =&gt; {...body...}</code>. Fat arrow functions treat the special value <code>this</code> in a less inconsistent way than their older equivalents.</p>
+<dd><p>A function defined using <code>(parameters) =&gt; {body}</code>. Fat arrow functions treat the special value <code>this</code> in a less inconsistent way than their older equivalents.</p>
 </dd>
 <dt><span id="g:field">field</span></dt>
 <dd><p>A named part of a <a href="#g:record"><strong>record</strong></a> in a <a href="#g:relational-database"><strong>relational database</strong></a>. Fields are typically shown as columns in a <a href="#g:table"><strong>table</strong></a>.</p>
@@ -5450,7 +5464,7 @@ The Same Origin Policy disallows reading the remote resource \
 <dd><p>Having a single type. For example, an <a href="#g:array"><strong>array</strong></a> is said to be homogeneous if it contains only numbers or only character strings, but not a mix of the two.</p>
 </dd>
 <dt><span id="g:hostname">hostname</span></dt>
-<dd><p>The part of a URL that specifies the computer to talk to. In <code>http://example.com/something/</code>, the hostname is <code>example.com</code>; in <code>http://localhost:1234/</code>, it is <code>localhost</code>.</p>
+<dd><p>The part of a URL that specifies the computer to talk to. In the URL <code>http://example.com/something/</code>, the hostname is <code>example.com</code>; in the URL <code>http://localhost:1234/</code>, it is <code>localhost</code>.</p>
 </dd>
 <dt><span id="g:http">HyperText Transfer Protocol (HTTP)</span></dt>
 <dd><p>The HyperText Transfer Protocol used to exchange information between browsers and websites, and more generally between other <a href="#g:client"><strong>clients</strong></a> and <a href="#g:server"><strong>servers</strong></a>. HTTP is a <a href="#g:stateless"><strong>stateless</strong></a> protocol in which communication consists of <a href="#g:http-request"><strong>requests</strong></a> and <a href="#g:http-response"><strong>responses</strong></a>.</p>
@@ -5624,7 +5638,7 @@ The Same Origin Policy disallows reading the remote resource \
 <dd><p>A function that can generate a series of <a href="#g:pseudo-random-number"><strong>pseudo-random numbers</strong></a> after being initialized with a <a href="#g:seed"><strong>seed</strong></a>.</p>
 </dd>
 <dt><span id="g:cc-0">public domain license (CC-0)</span></dt>
-<dd><p>A license that allow people to re-use material however they want with no restrictions and no requirement of attribution.</p>
+<dd><p>A license that allows people to re-use material however they want with no restrictions and no requirement of attribution.</p>
 </dd>
 <dt><span id="g:race-condition">race condition</span></dt>
 <dd><p>A situation in which the result of a computation can vary due to operations being performed in different orders.</p>
@@ -5747,7 +5761,7 @@ The Same Origin Policy disallows reading the remote resource \
 <dd><p>A test that exercises one property or expected behavior of a system.</p>
 </dd>
 <dt><span id="g:url">URL</span></dt>
-<dd><p>A multi-part identifier that specifies something on a computer network. A URL may contain a protocol (such as <code>http</code>), a hostname (such as <code>example.com</code>), a port (such as <code>80</code>), a path (such as <code>/homepage.html</code>), and <a href="#g:query-parameter"><strong>query parameters</strong></a></p>
+<dd><p>A multi-part identifier that specifies something on a computer network. A URL may contain a protocol (such as <code>http</code>), a hostname (such as <code>example.com</code>), a port (such as <code>80</code>), a path (such as <code>/homepage.html</code>), and <a href="#g:query-parameter"><strong>query parameters</strong></a>.</p>
 </dd>
 <dt><span id="g:utf-8">UTF-8</span></dt>
 <dd><p>A way to store the numeric codes representing Unicode characters in memory that is <a href="#g:backward-compatible"><strong>backward-compatible</strong></a> with the older <a href="#g:ascii"><strong>ASCII</strong></a> standard.</p>
@@ -5964,7 +5978,7 @@ The Same Origin Policy disallows reading the remote resource \
 <p>You may copy, distribute and modify the software as long as you track changes/dates in source files. Any modifications to or software including (via compiler) GPL-licensed code must also be made available under the GPL along with build &amp; install instructions.</p>
 <p>— <a href="https://tldrlegal.com/license/gnu-general-public-license-v3-(gpl-3)">tl;dr</a></p>
 </blockquote>
-<p>We recommend the MIT license: it places the fewest restrictions on future action, it can be made stricter later on, and the last thirty years shows that it’s good enough to keep work open.</p>
+<p>We recommend the MIT license: it places the fewest restrictions on future action, it can be made stricter later on, and the last thirty years show that it’s good enough to keep work open.</p>
 <h2 id="s:collab-datadocs">Licensing Data and Documentation</h2>
 <p>The MIT license and the GPL apply to software. When it comes to data and reports, the most widely used family of licenses are those produced by <a href="https://creativecommons.org/">Creative Commons</a>, which have been written and checked by lawyers and are well understood by the community.</p>
 <p>The most liberal license is referred to as <a href="#g:cc-0"><strong>CC-0</strong></a>, where the “0” stands for “zero restrictions”. CC-0 puts work in the public domain, i.e., allows anyone who wants to use it to do so however they want with no restrictions. This is usually the best choice for data, since it simplifies aggregate analysis. For example, if you choose a license for data that requires people to cite their source, then anyone who uses that data in an analysis must cite you; so must anyone who cites <em>their</em> results, and so on, which quickly becomes unwieldy.</p>
@@ -6009,7 +6023,7 @@ The Same Origin Policy disallows reading the remote resource \
 <h2 id="s:legacy-equality">Equality</h2>
 <p>Gary Bernhardt’s <a href="https://www.destroyallsoftware.com/talks/wat">lightning talk from 2012</a> may be the most-watched presentation on JavaScript ever. In it, he rattles through some truths about the language that may surprise you (Table <a href="#t:legacy-surprises" data-reference-type="ref" data-reference="t:legacy-surprises">[t:legacy-surprises]</a>).</p>
 <table class="table table-striped">
-<caption>Surprising Results<span label="t:legacy-surprises"></span></caption>
+<caption><span>Surprising Results</span><span id="t:legacy-surprises" label="t:legacy-surprises">[t:legacy-surprises]</span></caption>
 <tbody>
 <tr class="odd">
 <td style="text-align: left;">Operation</td>
@@ -6035,6 +6049,11 @@ The Same Origin Policy disallows reading the remote resource \
 <td style="text-align: left;">empty object plus empty object</td>
 <td style="text-align: left;"><code>{} + {}</code></td>
 <td style="text-align: left;"><code>NaN</code> (not a number)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
 </tr>
 </tbody>
 </table>
@@ -6105,7 +6124,7 @@ element 2 of x,y,z is z</code></pre>
 <a class="sourceLine" id="cb413-2" data-line-number="2"><span class="va">console</span>.<span class="at">log</span>(<span class="vs">`flavor &quot;</span><span class="sc">${</span><span class="va">dessert</span>.<span class="at">flavor</span><span class="sc">}</span><span class="vs">&quot; size &quot;</span><span class="sc">${</span><span class="va">dessert</span>.<span class="at">size</span><span class="sc">}</span><span class="vs">&quot;`</span>)</a></code></pre></div>
 <pre class="text"><code>flavor &quot;mustard&quot; size &quot;large&quot;</code></pre>
 <figure>
-<img src="figures/legacy-prototype.svg" id="f:legacy-prototype" /><figcaption>Prototypes<span label="f:legacy-prototype"></span></figcaption>
+<img src="figures/legacy-prototype.svg" /><figcaption><span id="f:legacy-prototype">Prototypes</span></figcaption>
 </figure>
 <p>If we change the <code>size</code> of our dessert, lookup finds the object’s property before looking up the chain to find the parent object’s:</p>
 <div class="sourceCode" id="cb415"><pre class="sourceCode js"><code class="sourceCode javascript"><a class="sourceLine" id="cb415-1" data-line-number="1"><span class="va">dessert</span>.<span class="at">size</span> <span class="op">=</span> <span class="st">&#39;extra-large&#39;</span></a>
@@ -6126,7 +6145,7 @@ element 2 of x,y,z is z</code></pre>
 <li><p>If we want to put a special character like <code>.</code>, <code>*</code>, <code>+</code>, or <code>|</code> in a regular expression, we have to <a href="#g:escape-sequence"><strong>escape</strong></a> it with a backslash <code>\</code>. This means that <code>/stop\./</code> only matches “stop.”, while <code>stop.</code> matches “stops” as well.</p></li>
 </ul>
 <table class="table table-striped">
-<caption>Regular Expression Matches<span label="t:regexp-examples"></span></caption>
+<caption><span>Regular Expression Matches</span><span id="t:regexp-examples" label="t:regexp-examples">[t:regexp-examples]</span></caption>
 <tbody>
 <tr class="odd">
 <td style="text-align: left;">Text</td>
@@ -6193,6 +6212,12 @@ element 2 of x,y,z is z</code></pre>
 <td style="text-align: left;">/(Dr|Prof)<span>\</span>./</td>
 <td style="text-align: left;">yes</td>
 <td style="text-align: left;">contains either “Dr” or “Prof” followed by literal ’.’</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
 </tr>
 </tbody>
 </table>
@@ -6409,7 +6434,7 @@ aszego@euphoric.edu</code></pre>
 { workshopId: 2,
   workshopName: &#39;ENIAC Programming&#39;,
   workshopDuration: 150 }</code></pre>
-<p>That seems to have worked: <code>getAll</code> was called, and the result is an array of objects, one per record, whose names are the derived in an obvious way from the names of the columns.</p>
+<p>That seems to have worked: <code>getAll</code> was called, and the result is an array of objects, one per record, whose names are derived in an obvious way from the names of the columns.</p>
 <h2 id="s:db-in-memory">In-Memory Database</h2>
 <p>The previous example always manipulates database on disk. For testing purposes, it’s faster and safer to use an <a href="#g:in-memory-database"><strong>in-memory database</strong></a>. Let’s modify the constructor of <code>Database</code> to set this up:</p>
 <div class="sourceCode" id="cb431"><pre class="sourceCode js"><code class="sourceCode javascript"><a class="sourceLine" id="cb431-1" data-line-number="1">  <span class="at">constructor</span> (mode<span class="op">,</span> path) <span class="op">{</span></a>
@@ -6642,7 +6667,7 @@ TypeError: Cannot read property &#39;Symbol(Symbol.iterator)&#39; of undefined
 <a class="sourceLine" id="cb444-51" data-line-number="51">  <span class="op">}</span>)</a>
 <a class="sourceLine" id="cb444-52" data-line-number="52"></a>
 <a class="sourceLine" id="cb444-53" data-line-number="53"><span class="op">}</span>)</a></code></pre></div>
-<p>Each test has the same structure: we define the expected result, create an entirely new database in memory, and then call the method being tested, passing it the fixture and the callback that will receives results. That callback uses <code>assert</code> to check results and <code>done</code> to signal that the test has completed.</p>
+<p>Each test has the same structure: we define the expected result, create an entirely new database in memory, and then call the method being tested, passing it the fixture and the callback that will receive results. That callback uses <code>assert</code> to check results and <code>done</code> to signal that the test has completed.</p>
 <h2 id="s:db-mutate">Updating the Database</h2>
 <p>The data manager we built in Chapter <a href="#s:dataman" data-reference-type="ref" data-reference="s:dataman">11</a> only let us read data; we couldn’t modify it. Let’s add a bit more to our database class to support <a href="#g:mutation"><strong>mutation</strong></a>:</p>
 <div class="sourceCode" id="cb445"><pre class="sourceCode js"><code class="sourceCode javascript"><a class="sourceLine" id="cb445-1" data-line-number="1"><span class="co">// ...imports as before...</span></a>
@@ -6696,7 +6721,7 @@ TypeError: Cannot read property &#39;Symbol(Symbol.iterator)&#39; of undefined
 <a class="sourceLine" id="cb445-49" data-line-number="49"><span class="op">}</span></a>
 <a class="sourceLine" id="cb445-50" data-line-number="50"></a>
 <a class="sourceLine" id="cb445-51" data-line-number="51"><span class="va">module</span>.<span class="at">exports</span> <span class="op">=</span> Database</a></code></pre></div>
-<p>The additions are straightforward: the query that does the work is passed to <code>this.db.run</code> along with the incoming arguments that specify what is to be added or deleted, and an empty list of rows is passed to the action callback (since adding and deleting don’t return anything). Testing involves a little more typing, since want to check that the database is in the right state after the operation:</p>
+<p>The additions are straightforward: the query that does the work is passed to <code>this.db.run</code> along with the incoming arguments that specify what is to be added or deleted, and an empty list of rows is passed to the action callback (since adding and deleting don’t return anything). Testing involves a little more typing, since we want to check that the database is in the right state after the operation:</p>
 <div class="sourceCode" id="cb446"><pre class="sourceCode js"><code class="sourceCode javascript"><a class="sourceLine" id="cb446-1" data-line-number="1"><span class="co">// ...imports as before...</span></a>
 <a class="sourceLine" id="cb446-2" data-line-number="2"></a>
 <a class="sourceLine" id="cb446-3" data-line-number="3"><span class="kw">const</span> FIXTURE <span class="op">=</span> <span class="co">// ...as before...</span></a>
@@ -6754,7 +6779,7 @@ TypeError: Cannot read property &#39;Symbol(Symbol.iterator)&#39; of undefined
 <a class="sourceLine" id="cb447-5" data-line-number="5">])</a></code></pre></div>
 <p>Your <code>Database.getLongerThan</code> method’s SQL query will need to use a <code>where</code> clause that selects specific records.</p>
 <h3 id="more-filtering" class="unnumbered unnumbered">More Filtering</h3>
-<p>The SQL query encapsulated in the variable below can be used to find all workshop whose duration falls within a range.</p>
+<p>The SQL query encapsulated in the variable below can be used to find all workshops whose duration falls within a range.</p>
 <div class="sourceCode" id="cb448"><pre class="sourceCode js"><code class="sourceCode javascript"><a class="sourceLine" id="cb448-1" data-line-number="1"><span class="kw">const</span> Q_WORKSHOP_DURATION_RANGE <span class="op">=</span> <span class="vs">`</span></a>
 <a class="sourceLine" id="cb448-2" data-line-number="2"><span class="vs">select</span></a>
 <a class="sourceLine" id="cb448-3" data-line-number="3"><span class="vs">  Workshop.ident        as workshopId,</span></a>
@@ -6767,7 +6792,7 @@ TypeError: Cannot read property &#39;Symbol(Symbol.iterator)&#39; of undefined
 <a class="sourceLine" id="cb448-10" data-line-number="10"><span class="vs">`</span></a></code></pre></div>
 <p>What do the <code>?</code>s mean in this query? Write another method for the <code>Database</code> class called <code>getWithinLengthRange([args])</code> that uses this query, taking arguments from the commandline as before. What happens when you provide the wrong number of arguments to this function? Or if you provide them in the wrong order? Can you write a test that provides more useful feedback than this?</p>
 <h3 id="handling-errors" class="unnumbered unnumbered">Handling Errors</h3>
-<p>The <code>Database</code> class prints a message and exits when it detects an error. This is bad practice, and I should be ashamed of having done it. The right thing to do is to <a href="#g:throw"><strong>throw</strong></a> an <a href="#g:exception"><strong>exception</strong></a> that main program can <a href="#g:catch"><strong>catch</strong></a> and handle however it wants.</p>
+<p>The <code>Database</code> class prints a message and exits when it detects an error. This is bad practice, and I should be ashamed of having done it. The right thing to do is to <a href="#g:throw"><strong>throw</strong></a> an <a href="#g:exception"><strong>exception</strong></a> that the main program can <a href="#g:catch"><strong>catch</strong></a> and handle however it wants.</p>
 <ol>
 <li><p>Modify the code to do this.</p></li>
 <li><p>Modify the tests to check that the right exceptions are thrown when they should be.</p></li>
@@ -6786,9 +6811,7 @@ TypeError: Cannot read property &#39;Symbol(Symbol.iterator)&#39; of undefined
 <li><p><code>public/style.css</code>: the CSS that styles the application. Again, inside <code>views/index.html</code> we refer to this file as <code>/style.css</code> without naming the <code>public</code> folder.</p></li>
 <li><p><code>.env</code>: a shell script that defines any secret configuration variables the application needs, such as passwords for databases. Unlike the files above, this one <em>isn’t</em> automatically copied when someone clones our application. If we define a variable called <code>PASSWORD</code> in this file, then our server can get its value (as a string) using <code>process.env.PASSWORD</code>. Life might have been a little simpler if Glitch’s creators had used a JSON file instead of a shell script, but as long as we stick to simple <code>NAME=VALUE</code> pairs, we’ll be OK.</p></li>
 </ul>
-<figure>
-<img src="figures/glitch.png" alt="Glitch Deployment" id="f:deploy-glitch" /><figcaption>Glitch Deployment<span label="f:deploy-glitch"></span></figcaption>
-</figure>
+
 <p>Two things that <em>aren’t</em> automatically present are a license and a Code of Conduct, but both can easily be added by clicking on the “New File” button. Several widely-used open source licenses are available, and the Code of Conduct is based on one that is also widely used in open source projects. Adding both makes it clear what we are allowing and expecting people to do with our project.</p>
 <p>The “Rewind” button in the bottom of the file explorer lets us view the project’s history. Glitch uses Git to store changes, but presents those changes as a timeline so that we can scroll backward and forward to see what was altered when. The “Tools” button (also in the bottom of the file explorer) gives us access to run logs and performance information, and lets us connect our project to a repository on GitHub.</p>
 <p>Behind the scenes, every Glitch application runs in a virtual machine. Any data that it creates or modifies (such as files on disk or SQLite databases Appendix <a href="#s:db" data-reference-type="ref" data-reference="s:db">27</a>) are automatically saved, up to a limit of 128 MByte. An application is allowed to handle several thousand requests per hour; if it doesn’t receive any requests for 5 minutes, the virtual machine is put to sleep. It is automatically restarted the next time a request comes in, but there will be a lag as it wakes up.</p>
@@ -6803,7 +6826,7 @@ TypeError: Cannot read property &#39;Symbol(Symbol.iterator)&#39; of undefined
 <p><strong>[Davi2018]</strong> Davis, Ashley. <em>Data Wrangling with Javascript</em>. Manning, 2018. A step-by-step guide to managing data with JavaScript.</p>
 </div>
 <div id="ref-Foge2005">
-<p><strong>[Foge2005]</strong> Fogel, Karl. <em>Producing Open Source Software: How to Run a Successful Free Software Project</em>. O’Reilly Media, 2005. The definite guide to managing open source software development projects.</p>
+<p><strong>[Foge2005]</strong> Fogel, Karl. <em>Producing Open Source Software: How to Run a Successful Free Software Project</em>. O’Reilly Media, 2005. The definitive guide to managing open source software development projects.</p>
 </div>
 <div id="ref-Free1972">
 <p><strong>[Free1972]</strong> Freeman, Jo. “The Tyranny of Structurelessness.” <em>The Second Wave</em> 2, no. 1 (1972). Points out that every organization has a power structure: the only question is whether it’s accountable or not.</p>
