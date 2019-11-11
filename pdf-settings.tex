@@ -129,6 +129,13 @@
 \caplbl{#2}{#3}%
 \end{figure}}
 
+% Image figures with scale (for screenshots).
+\newcommand{\figimgscale}[4]{\begin{figure}%
+\centering%
+\includegraphics[scale=#4]{#1}%
+\caplbl{#2}{#3}%
+\end{figure}}
+
 % PDF figures.
 \newcommand{\figpdf}[3]{\begin{figure}%
 \centering%
