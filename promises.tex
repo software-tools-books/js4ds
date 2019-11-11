@@ -77,7 +77,7 @@ Here it is in operation:
 \begin{minted}{js}
 [1000, 1500, 500].forEach(t => {
   console.log(`about to setTimeout for ${t}`)
-  setTimeout(() => {console.log(`inside timer handler for ${t}`)}, t)
+  setTimeout(() => {console.log(`inside handler for ${t}`)}, t)
 })
 \end{minted}
 
@@ -85,9 +85,9 @@ Here it is in operation:
 about to setTimeout for 1000
 about to setTimeout for 1500
 about to setTimeout for 500
-inside timer handler for 500
-inside timer handler for 1000
-inside timer handler for 1500
+inside handler for 500
+inside handler for 1000
+inside handler for 1500
 \end{minted}
 
 That's not surprising:
@@ -100,7 +100,7 @@ const values = [1000, 1500, 500]
 console.log('starting...')
 values.forEach(t => {
   console.log(`about to setTimeout for ${t}`)
-  setTimeout(() => {console.log(`inside timer handler for ${t}`)}, 0)
+  setTimeout(() => {console.log(`inside handler for ${t}`)}, 0)
 })
 console.log('...finishing')
 \end{minted}
@@ -111,9 +111,9 @@ about to setTimeout for 1000
 about to setTimeout for 1500
 about to setTimeout for 500
 ...finishing
-inside timer handler for 1000
-inside timer handler for 1500
-inside timer handler for 500
+inside handler for 1000
+inside handler for 1500
+inside handler for 500
 \end{minted}
 
 \figpdf{figures/promises-queue.pdf}{Run Queue}{f:promises-queue}
