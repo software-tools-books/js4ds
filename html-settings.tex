@@ -27,36 +27,34 @@
 \newcommand{\htmltag}[1]{\texttt{{\textless}{#1}{\textgreater}}}
 
 % Chapters, sections, and appendices with labels.
-\newcommand{\chaplbl}[2]{\chapter{#1}\label{#2}}
-\newcommand{\seclbl}[2]{\section{#1}\label{#2}}
 \newcommand{\appref}[1]{Appendix~\ref{#1}}
 \newcommand{\chapref}[1]{Chapter~\ref{#1}}
 \newcommand{\figref}[1]{Figure~\ref{#1}}
 \newcommand{\secref}[1]{Section~\ref{#1}}
 \newcommand{\tblref}[1]{Table~\ref{#1}}
 
+% Always put \label after \caption.
+\newcommand{\caplbl}[2]{\caption{{#1}\label{#2}}}
+
 % Image figures.
 \newcommand{\figimg}[3]{\begin{figure}%
 \centering%
 \includegraphics[width=\textwidth]{#1}%
-\caption{#2}%
-\label{#3}%
+\caplbl{#2}{#3}%
 \end{figure}}
 
 % PDF figures.
 \newcommand{\figpdf}[3]{\begin{figure}%
 \centering%
 \includegraphics[scale=0.6]{#1}%
-\caption{#2}%
-\label{#3}%
+\caplbl{#2}{#3}%
 \end{figure}}
 
 % PDF figures forcing location.
 \newcommand{\figpdfhere}[3]{\begin{figure}[H]%
 \centering%
 \includegraphics[scale=0.6]{#1}%
-\caption{#2}%
-\label{#3}%
+\caplbl{#2}{#3}%
 \end{figure}}
 
 % Exercise headings.
