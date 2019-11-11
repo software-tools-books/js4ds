@@ -13,17 +13,15 @@ In it,
 he rattles through some truths about the language that may surprise you
 (\tblref{t:legacy-surprises}).
 
-\begin{table}
 \begin{longtable}{lll}
 Operation & Code & Result \\
 empty array plus empty array & \texttt{[]\ +\ []} & \texttt{""} (empty string) \\
 empty array plus empty object & \texttt{[]\ +\ \{\}} & \texttt{\{\}} (empty object) \\
 empty object plus empty array & \texttt{\{\}\ +\ []} & \texttt{0} (number zero) \\
 empty object plus empty object & \texttt{\{\}\ +\ \{\}} & \texttt{NaN} (not a number) \\
-\end{longtable}
 \caption{Surprising Results}
 \label{t:legacy-surprises}
-\end{table}
+\end{longtable}
 
 In order to understand this, we need to know several things
 (which are laid out in more detail in \hreffoot{https://medium.com/dailyjs/the-why-behind-the-wat-an-explanation-of-javascripts-weird-type-system-83b92879a8db}{this article} by Abhinav Suri):
