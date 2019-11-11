@@ -110,9 +110,8 @@ but a class with three parts:
 
 React calls each component's \texttt{render} method each time \texttt{setState} is used to update the component's state.
 Behind the scenes,
-React does some thinking to minimize how much redrawing takes place:
-while it may look as though the paragraph, button, and current count are all being redrawn each time,
-React will only actually redraw as little as it can.
+React does some thinking to minimize how much redrawing takes place
+in order to make the application more responsive and minimize flickering and jumpiness.
 
 \section{But It Doesn't Work}\label{s:interactive-babel}
 
