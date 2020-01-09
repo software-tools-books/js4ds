@@ -154,7 +154,7 @@ that we're interested in (weight and hindfoot length):
 Making these changes we discover that,
 although the summarizing functions run and return
 \texttt{NaN} or \texttt{undefined}
-when presented with a series with at least one missing piece observation,
+when presented with a series with at least one missing observation,
 they throw an error when called on a completely empty series
 (that is, a series of length zero).
 To make our data manager robust to this,
@@ -234,7 +234,7 @@ app.listen(PORT, () => {
 \end{minted}
 
 \noindent
-As you can probably guess from the fact that we've called it \texttt{driver-0},
+As you can probably guess from the fact that we're referring to \texttt{server-0},
 we're going to be making some changes down the road{\ldots}
 Here's the start of the server it works with:
 
@@ -465,7 +465,7 @@ we have no control over the order in which bits of display are initialized.
 On the upside,
 we can use \texttt{response.json()} directly because we know the source is returning JSON data.
 This method is the only place where the summary is updated,
-since the data isn't changing underneath us:
+since the data isn't changing underneath us.
 
 Next up we need to handle typing in the ``start'' and ``end'' boxes.
 The HTML controls in the web page will capture the characters without our help,
@@ -518,7 +518,7 @@ Now let's update the display with \texttt{SurveyStats},
 which are all stateless components
 (i.e., they display things but don't change anything):
 
-\begin{minted}{js}
+\begin{minted}{jsx}
   render = () => {
     const tableStyle = {overflow: 'scroll', height: '200px'}
     return (
@@ -540,14 +540,14 @@ which are all stateless components
 
 \section{The Tables}\label{s:capstone-tables}
 
-We will display survey stats as tables,
+We will display survey statistics as tables,
 with a paragraph fallback when there's no data.
 First, we display summary statistics for the whole dataset
 (as returned by the \texttt{GET /survey/stats} query we wrote a handler for earlier)
 as a table at the top of the page.
 (Again, we need parentheses around the HTML fragment so that it will parse properly.)
 
-\begin{minted}{js}
+\begin{minted}{jsx}
 import React from 'react'
 
 const SurveyStats = ({data}) => {
@@ -572,7 +572,7 @@ Next, we display aggregated statistics for a given range of years
 (the \texttt{GET /survey/:start/:end} query)
 in another table.
 
-\begin{minted}{js}
+\begin{minted}{jsx}
 import React from 'react'
 
 const DataDisplay = ({data}) => {
@@ -639,7 +639,7 @@ The steps are:
   Return an instance of the \texttt{VegaLite} component.
 \end{enumerate}
 
-\begin{minted}{js}
+\begin{minted}{jsx}
 import React from 'react'
 import VegaLite from 'react-vega-lite'
 

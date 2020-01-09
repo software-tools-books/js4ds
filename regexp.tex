@@ -140,7 +140,7 @@ const pattern = /[a-z]+@[a-z]+\.[a-z]+/g
 
 console.log(`pattern is ${pattern}`)
 for (let test of Tests) {
-  console.log(`\ntested against ${test}`)
+  console.log(`tested against ${test}`)
   const matches = test.match(pattern)
   if (matches === null) {
     console.log('-no matches-')

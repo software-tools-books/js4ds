@@ -127,7 +127,7 @@ and \texttt{value} is the changing array value of \texttt{otherValues}.
 Finally, within the curly braces we perform our desired operation on every value.
 
 Note that we use \texttt{let} rather than the older \texttt{var}
-and \texttt{of} and not \texttt{in}:
+and \texttt{of} rather than \texttt{in}:
 the latter returns the indexes of the collection (e.g., 0, 1, 2),
 which has some traps for the unwary (\appref{s:legacy-iteration}).
 Note also that indexing starts from 0 rather than 1,
@@ -278,8 +278,7 @@ An \gref{g:object}{object} in JavaScript is a collection of key-value pairs,
 and is equivalent in simple cases to what Python would call a dictionary.
 It's common to visualize an object as a two-column table
 with the keys in one column and the values in another (\figref{f:basics-object-table}).
-The keys do not have to be strings,\index{object!keys}
-but almost always are;
+The keys must be strings;\index{object!keys}
 the values can be anything.\index{object!values}
 We can create an object by putting key-value pairs in curly brackets;
 there must be a colon between the key and the value,
@@ -375,14 +374,14 @@ function limits (values) {
 
 Its definition consists of the keyword \texttt{function},\index{function!classic}
 its name,
-a parameterized list of \grefdex{g:parameter}{parameters}{parameter}\index{function!parameter}
+a parenthesized list of \grefdex{g:parameter}{parameters}{parameter}\index{function!parameter}
 (which might be empty),
 and its body.
 
 The body of the function begins with a test of the thing,
 referred to inside the function as \texttt{values},
-provided as an \gref{g:argument}{argument} to the function:
-if \texttt{values} has no length---i.e.,
+provided as an \gref{g:argument}{argument} to the function.
+If \texttt{values} has no length---i.e.,
 it does not consist of multiple entries---the function returns \texttt{[undefined,undefined]}.
 (We will address the rationale behind this behavior in the exercises.)
 

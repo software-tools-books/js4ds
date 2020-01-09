@@ -58,7 +58,7 @@ then introduce a tool called JSX that simplifies things.
 
 Let's begin by saying hello:
 
-\begin{minted}{html}
+\begin{minted}{jsx}
 <!DOCTYPE html>
 <html>
   <head>
@@ -119,7 +119,7 @@ we have to use \texttt{fontStyle} rather than \texttt{font-style}
 so that the attribute object's keys look like legal JavaScript variables---but
 the mechanism is seductively easy to use:
 
-\begin{minted}{html}
+\begin{minted}{jsx}
   <body>
     <div id="app"></div>
     <script>
@@ -146,7 +146,7 @@ And yes,
 those JavaScript function calls then produce HTML---it's a funny world.
 Here's an example:
 
-\begin{minted}{html}
+\begin{minted}{jsx}
 <!DOCTYPE html>
 <html>
   <head>
@@ -181,7 +181,7 @@ More generally,
 JSX lets us put JavaScript inside our HTML (inside our JavaScript (inside our HTML)),
 so we can (for example) use \texttt{map} to turn a list of strings into an HTML list:
 
-\begin{minted}{html}
+\begin{minted}{jsx}
   <body>
     <h1>JSX List</h1>
     <div id="app"></div>
@@ -224,7 +224,7 @@ define a function \texttt{ListOfNames} to generate our list of names,
 then put that element directly in \texttt{ReactDOM.Render}
 just as we would put an \texttt{h1} or \texttt{p}:
 
-\begin{minted}{html}
+\begin{minted}{jsx}
   <body>
     <h1>Create Component</h1>
     <div id="app"></div>
@@ -255,7 +255,7 @@ all the attributes we put inside the component's tag
 are passed to our function in
 a single \texttt{props} object:\index{React!parameter}\index{React!\texttt{props} object}\index{parameter!React}
 
-\begin{minted}{html}
+\begin{minted}{jsx}
   <body>
     <h1>Pass Parameters</h1>
     <div id="app"></div>
@@ -399,7 +399,7 @@ there is no standard way to add comments to a JSON file{\ldots}
 Now that we can bundle things up,
 let's move our JSX into \texttt{app.js} and load that in the \texttt{head} of the page:
 
-\begin{minted}{html}
+\begin{minted}{jsx}
 <!DOCTYPE html>
 <html>
   <head>
@@ -498,7 +498,7 @@ to add the \texttt{async} attribute\index{asynchronous loading}\index{running Ja
 to the script in the head of the page,
 which tells the browser not to do anything with the JavaScript until the page has finished building:
 
-\begin{minted}{html}
+\begin{minted}{jsx}
 <!DOCTYPE html>
 <html>
   <head>
@@ -518,7 +518,7 @@ which tells the browser not to do anything with the JavaScript until the page ha
 
 Our list-building example includes this line of code:
 
-\begin{minted}{js}
+\begin{minted}{jsx}
         <ul>{allNames.map((name) => <li>{name}</li> )}</ul>,
 \end{minted}
 

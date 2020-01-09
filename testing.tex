@@ -13,7 +13,7 @@ finds test functions,
 runs them,
 and reports the results.
 Any setup code that needs to be run before each test
-to create the data the test's input (called its \gref{g:fixture}{fixture})
+to create the data for the test's input (called its \gref{g:fixture}{fixture})
 is put in a function of its own.
 Similarly (but less frequently),
 if some teardown needs to be done \emph{after} each test,
@@ -23,11 +23,11 @@ Each unit test can have one of three results:
 
 \begin{itemize}
 \item
-  pass: everything worked
+  pass: everything worked,
 \item
-  fail: the system being tested didn't do what was expected
+  fail: the system being tested didn't do what was expected, or
 \item
-  error: something went wrong with the test itself
+  error: something went wrong with the test itself.
 \end{itemize}
 
 We can combine tests into \grefdex{g:test-suite}{test suites}{test suite}

@@ -256,7 +256,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><a href="#s:collab-software">Licensing Software</a></li>
 <li><a href="#s:collab-datadocs">Licensing Data and Documentation</a></li>
 <li><a href="#s:collab-conduct">Code of Conduct</a></li>
-<li><a href="#governance">Governance</a></li>
+<li><a href="#s:collab-governance">Governance</a></li>
 </ul></li>
 <li><a href="#s:legacy">Legacy JavaScript Issues</a><ul>
 <li><a href="#s:legacy-equality">Equality</a></li>
@@ -414,7 +414,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 the type of undefined is undefined
 the type of null is object</code></pre>
 <p>As the example above shows, we create an array of values to loop through called <code>otherValues</code>. We initiate our loop with the word <code>for</code>. Within the parentheses, <code>let</code> creates a variable called <code>value</code> to iterate over each element within <code>otherValues</code>, and <code>value</code> is the changing array value of <code>otherValues</code>. Finally, within the curly braces we perform our desired operation on every value.</p>
-<p>Note that we use <code>let</code> rather than the older <code>var</code> and <code>of</code> and not <code>in</code>: the latter returns the indexes of the collection (e.g., 0, 1, 2), which has some traps for the unwary (Appendix <a href="#s:legacy-iteration" data-reference-type="ref" data-reference="s:legacy-iteration">23.2</a>). Note also that indexing starts from 0 rather than 1, and that indentation is optional and for readability purposes only. This may be different from the language that you’re used to.</p>
+<p>Note that we use <code>let</code> rather than the older <code>var</code> and <code>of</code> rather than <code>in</code>: the latter returns the indexes of the collection (e.g., 0, 1, 2), which has some traps for the unwary (Appendix <a href="#s:legacy-iteration" data-reference-type="ref" data-reference="s:legacy-iteration">23.2</a>). Note also that indexing starts from 0 rather than 1, and that indentation is optional and for readability purposes only. This may be different from the language that you’re used to.</p>
 <blockquote>
 <h4 id="constants-versus-variables" class="unnumbered unnumbered">Constants versus Variables</h4>
 <p>You should make things constants unless they really need to be variables because it’s easier for both people and computers to keep track of things that are defined once and never change.</p>
@@ -472,7 +472,7 @@ color is blue and capitalized is BLUE</code></pre>
 <p>This allows us to succinctly add variables to a string instead of:</p>
 <div class="sourceCode" id="cb20"><pre class="sourceCode js"><code class="sourceCode javascript"><a class="sourceLine" id="cb20-1" data-line-number="1"><span class="kw">const</span> message <span class="op">=</span> <span class="st">&quot;color is&quot;</span> <span class="op">+</span> color <span class="op">+</span> <span class="st">&quot;and capitalized is &quot;</span> <span class="op">+</span> <span class="va">color</span>.<span class="at">toUpperCase</span>()</a></code></pre></div>
 <h2 id="s:basics-objects">Objects</h2>
-<p>An <a href="#g:object"><strong>object</strong></a> in JavaScript is a collection of key-value pairs, and is equivalent in simple cases to what Python would call a dictionary. It’s common to visualize an object as a two-column table with the keys in one column and the values in another (Figure <a href="#f:basics-object-table" data-reference-type="ref" data-reference="f:basics-object-table">[f:basics-object-table]</a>). The keys do not have to be strings, but almost always are; the values can be anything. We can create an object by putting key-value pairs in curly brackets; there must be a colon between the key and the value, and pairs must be separated by commas like the elements of arrays:</p>
+<p>An <a href="#g:object"><strong>object</strong></a> in JavaScript is a collection of key-value pairs, and is equivalent in simple cases to what Python would call a dictionary. It’s common to visualize an object as a two-column table with the keys in one column and the values in another (Figure <a href="#f:basics-object-table" data-reference-type="ref" data-reference="f:basics-object-table">[f:basics-object-table]</a>). The keys must be strings; the values can be anything. We can create an object by putting key-value pairs in curly brackets; there must be a colon between the key and the value, and pairs must be separated by commas like the elements of arrays:</p>
 <figure>
 <img src="figures/basics-object-table.svg" /><figcaption><span id="f:basics-object-table">Objects in Memory</span></figcaption>
 </figure>
@@ -521,8 +521,8 @@ creature[species] is Jacchus</code></pre>
 <a class="sourceLine" id="cb26-10" data-line-number="10">  <span class="op">}</span></a>
 <a class="sourceLine" id="cb26-11" data-line-number="11">  <span class="cf">return</span> [low<span class="op">,</span> high]</a>
 <a class="sourceLine" id="cb26-12" data-line-number="12"><span class="op">}</span></a></code></pre></div>
-<p>Its definition consists of the keyword <code>function</code>, its name, a parameterized list of <a href="#g:parameter"><strong>parameters</strong></a> (which might be empty), and its body.</p>
-<p>The body of the function begins with a test of the thing, referred to inside the function as <code>values</code>, provided as an <a href="#g:argument"><strong>argument</strong></a> to the function: if <code>values</code> has no length—i.e., it does not consist of multiple entries—the function returns <code>[undefined,undefined]</code>. (We will address the rationale behind this behavior in the exercises.)</p>
+<p>Its definition consists of the keyword <code>function</code>, its name, a parenthesized list of <a href="#g:parameter"><strong>parameters</strong></a> (which might be empty), and its body.</p>
+<p>The body of the function begins with a test of the thing, referred to inside the function as <code>values</code>, provided as an <a href="#g:argument"><strong>argument</strong></a> to the function. If <code>values</code> has no length—i.e., it does not consist of multiple entries—the function returns <code>[undefined,undefined]</code>. (We will address the rationale behind this behavior in the exercises.)</p>
 <div class="sourceCode" id="cb27"><pre class="sourceCode js"><code class="sourceCode javascript"><a class="sourceLine" id="cb27-1" data-line-number="1">  <span class="cf">if</span> (<span class="op">!</span><span class="va">values</span>.<span class="at">length</span>) <span class="op">{</span></a>
 <a class="sourceLine" id="cb27-2" data-line-number="2">    <span class="cf">return</span> [<span class="kw">undefined</span><span class="op">,</span> <span class="kw">undefined</span>]</a>
 <a class="sourceLine" id="cb27-3" data-line-number="3">  <span class="op">}</span></a></code></pre></div>
@@ -884,7 +884,7 @@ hello</code></pre>
 <a class="sourceLine" id="cb68-13" data-line-number="13"><span class="co">// Original array has been modified</span></a>
 <a class="sourceLine" id="cb68-14" data-line-number="14"><span class="va">console</span>.<span class="at">log</span>(<span class="vs">`test: </span><span class="sc">${</span>test<span class="sc">}</span><span class="vs">`</span>)</a></code></pre></div>
 <pre class="text"><code>test: 2,3,4</code></pre>
-<p>and would politely, even patiently, suggest that it be rewritten like this:</p>
+<p>and would politely but firmly suggest that it be rewritten like this:</p>
 <div class="sourceCode" id="cb70"><pre class="sourceCode js"><code class="sourceCode javascript"><a class="sourceLine" id="cb70-1" data-line-number="1"><span class="kw">const</span> test <span class="op">=</span> [<span class="dv">1</span><span class="op">,</span><span class="dv">2</span><span class="op">,</span><span class="dv">3</span>]</a>
 <a class="sourceLine" id="cb70-2" data-line-number="2"></a>
 <a class="sourceLine" id="cb70-3" data-line-number="3"><span class="kw">const</span> pure <span class="op">=</span> (values) <span class="op">-&gt;</span> <span class="op">{</span></a>
@@ -1098,7 +1098,7 @@ circle: area 28.274333882308138 perimeter 18.84955592153876</code></pre>
 circle: area 28.274333882308138 perimeter 18.84955592153876
 rectangle: area 6 perimeter 10</code></pre>
 <h2 id="s:oop-classes">Classes</h2>
-<p>Building every object by hand and calling <code>thing.function(thing)</code> is clumsy. JavaScript solved these problems using <a href="#g:prototype"><strong>prototypes</strong></a>, which also turned out to be almost as clumsy as our hand-rolled solution (Section <a href="#s:legacy-prototypes" data-reference-type="ref" data-reference="s:legacy-prototypes">23.3</a>). Most object-oriented languages use <a href="#g:class"><strong>classes</strong></a> instead (Figure <a href="#f:oop-memory" data-reference-type="ref" data-reference="f:oop-memory">[f:oop-memory]</a>); these were added to JavaScript in ES6, and we will use them instead of prototypes throughout. Here’s how we create a class that defines the properties of a square, without actually creating any specific squares:</p>
+<p>Building every object by hand and calling <code>thing.function(thing)</code> is clumsy. JavaScript solved these problems using <a href="#g:prototype"><strong>prototypes</strong></a>, which turned out to be almost as clumsy as our hand-rolled solution (Section <a href="#s:legacy-prototypes" data-reference-type="ref" data-reference="s:legacy-prototypes">23.3</a>). Most object-oriented languages use <a href="#g:class"><strong>classes</strong></a> instead (Figure <a href="#f:oop-memory" data-reference-type="ref" data-reference="f:oop-memory">[f:oop-memory]</a>); these were added to JavaScript in ES6, and we will use them instead of prototypes throughout. Here’s how we create a class that defines the properties of a square, without actually creating any specific squares:</p>
 <div class="sourceCode" id="cb106"><pre class="sourceCode js"><code class="sourceCode javascript"><a class="sourceLine" id="cb106-1" data-line-number="1"><span class="kw">class</span> Square <span class="op">{</span></a>
 <a class="sourceLine" id="cb106-2" data-line-number="2">  <span class="at">constructor</span> (size) <span class="op">{</span></a>
 <a class="sourceLine" id="cb106-3" data-line-number="3">    <span class="kw">this</span>.<span class="at">name</span> <span class="op">=</span> <span class="st">&#39;square&#39;</span></a>
@@ -1995,7 +1995,7 @@ home page (relative path)</code></pre>
 <a class="sourceLine" id="cb173-24" data-line-number="24">  &lt;/body<span class="op">&gt;</span></a>
 <a class="sourceLine" id="cb173-25" data-line-number="25">&lt;/html<span class="op">&gt;</span></a></code></pre></div>
 <p>Defining a function: check. Calling that function when the DOM is ready: check. What about inside the function? It’s pretty easy to guess that <code>Date()</code> creates an object that holds a date, and from the fact that we’re assigning that object to a variable called <code>today</code>, you might even guess that if we don’t specify which date we want, we get today’s values. We then pull the hours, minutes, and seconds out of the date and put them in an array so that we can turn each value into a two-character string, padded with a leading zero if necessary, and then join those strings to create a time like <code>17:48:02</code> to stuff into the element whose ID is <code>current</code>.</p>
-<p>But what does <code>setTimeout</code> do?<code>setTimeout@setTimeout</code> It tells the browser to run a function after some number of milliseconds have passed. In this case, we’re running the same function <code>startTime</code> a second from now. That call will change the displayed time, then set up another callback to run a second later, and so on forever. When we load the page, we see the current time updating itself second by second to remind us just how quickly life is passing by.</p>
+<p>But what does <code>setTimeout</code> do? It tells the browser to run a function after some number of milliseconds have passed. In this case, we’re running the same function <code>startTime</code> a second from now. That call will change the displayed time, then set up another callback to run a second later, and so on forever. When we load the page, we see the current time updating itself second by second to remind us just how quickly life is passing by.</p>
 <h2 id="s:pages-exercises">Exercises</h2>
 <h3 id="what-encoding-is-this" class="unnumbered unnumbered">What Encoding Is This?</h3>
 <ol>
@@ -2013,7 +2013,7 @@ home page (relative path)</code></pre>
 <li><p>Modify the example so that it only includes <code>h2</code> elements that have an <code>id</code> attribute in the table of contents.</p></li>
 </ol>
 <h3 id="explicitly-creating-nodes" class="unnumbered unnumbered">Explicitly Creating Nodes</h3>
-<p>Find documentation online for the two function <code>document.createElement</code> and <code>document.createTextNode</code>, then rewrite the table of contents example to use these methods (and any others like them that you need) instead of assigning to a node’s <code>innerHTML</code> property.</p>
+<p>Find documentation online for the two functions <code>document.createElement</code> and <code>document.createTextNode</code>, then rewrite the table of contents example to use these methods (and any others like them that you need) instead of assigning to a node’s <code>innerHTML</code> property.</p>
 <h2 id="key-points-5" class="unnumbered unnumbered">Key Points</h2>
 <ul>
 <li><p>Use a <code>meta</code> tag in a page’s header to specify the page’s character encoding.</p></li>
@@ -2044,26 +2044,26 @@ home page (relative path)</code></pre>
 <p>We will show how to use it in pure JavaScript, then introduce a tool called JSX that simplifies things.</p>
 <h2 id="s:dynamic-hello">Hello, World</h2>
 <p>Let’s begin by saying hello:</p>
-<div class="sourceCode" id="cb174"><pre class="sourceCode html"><code class="sourceCode html"><a class="sourceLine" id="cb174-1" data-line-number="1"><span class="dt">&lt;!DOCTYPE </span>html<span class="dt">&gt;</span></a>
-<a class="sourceLine" id="cb174-2" data-line-number="2"><span class="kw">&lt;html&gt;</span></a>
-<a class="sourceLine" id="cb174-3" data-line-number="3">  <span class="kw">&lt;head&gt;</span></a>
-<a class="sourceLine" id="cb174-4" data-line-number="4">    <span class="kw">&lt;meta</span><span class="ot"> charset=</span><span class="st">&quot;utf-8&quot;</span><span class="kw">&gt;</span></a>
-<a class="sourceLine" id="cb174-5" data-line-number="5">    <span class="kw">&lt;title&gt;</span>Hello React<span class="kw">&lt;/title&gt;</span></a>
-<a class="sourceLine" id="cb174-6" data-line-number="6">    <span class="kw">&lt;script</span><span class="ot"> src=</span><span class="st">&quot;https://fb.me/react-15.0.1.js&quot;</span><span class="kw">&gt;&lt;/script&gt;</span></a>
-<a class="sourceLine" id="cb174-7" data-line-number="7">    <span class="kw">&lt;script</span><span class="ot"> src=</span><span class="st">&quot;https://fb.me/react-dom-15.0.1.js&quot;</span><span class="kw">&gt;&lt;/script&gt;</span></a>
-<a class="sourceLine" id="cb174-8" data-line-number="8">  <span class="kw">&lt;/head&gt;</span></a>
-<a class="sourceLine" id="cb174-9" data-line-number="9">  <span class="kw">&lt;body&gt;</span></a>
-<a class="sourceLine" id="cb174-10" data-line-number="10">    <span class="kw">&lt;div</span><span class="ot"> id=</span><span class="st">&quot;app&quot;</span><span class="kw">&gt;</span></a>
-<a class="sourceLine" id="cb174-11" data-line-number="11">      <span class="co">&lt;!-- this is filled in --&gt;</span></a>
-<a class="sourceLine" id="cb174-12" data-line-number="12">    <span class="kw">&lt;/div&gt;</span></a>
-<a class="sourceLine" id="cb174-13" data-line-number="13">    <span class="kw">&lt;script&gt;</span></a>
-<a class="sourceLine" id="cb174-14" data-line-number="14">      <span class="va">ReactDOM</span>.<span class="at">render</span>(</a>
-<a class="sourceLine" id="cb174-15" data-line-number="15">        <span class="va">React</span>.<span class="va">DOM</span>.<span class="at">h1</span>(<span class="kw">null</span><span class="op">,</span> <span class="st">&quot;Hello React&quot;</span>)<span class="op">,</span></a>
-<a class="sourceLine" id="cb174-16" data-line-number="16">        <span class="va">document</span>.<span class="at">getElementById</span>(<span class="st">&quot;app&quot;</span>)</a>
-<a class="sourceLine" id="cb174-17" data-line-number="17">      )</a>
-<a class="sourceLine" id="cb174-18" data-line-number="18">    <span class="kw">&lt;/script&gt;</span></a>
-<a class="sourceLine" id="cb174-19" data-line-number="19">  <span class="kw">&lt;/body&gt;</span></a>
-<a class="sourceLine" id="cb174-20" data-line-number="20"><span class="kw">&lt;/html&gt;</span></a></code></pre></div>
+<pre class="jsx"><code>&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+  &lt;head&gt;
+    &lt;meta charset=&quot;utf-8&quot;&gt;
+    &lt;title&gt;Hello React&lt;/title&gt;
+    &lt;script src=&quot;https://fb.me/react-15.0.1.js&quot;&gt;&lt;/script&gt;
+    &lt;script src=&quot;https://fb.me/react-dom-15.0.1.js&quot;&gt;&lt;/script&gt;
+  &lt;/head&gt;
+  &lt;body&gt;
+    &lt;div id=&quot;app&quot;&gt;
+      &lt;!-- this is filled in --&gt;
+    &lt;/div&gt;
+    &lt;script&gt;
+      ReactDOM.render(
+        React.DOM.h1(null, &quot;Hello React&quot;),
+        document.getElementById(&quot;app&quot;)
+      )
+    &lt;/script&gt;
+  &lt;/body&gt;
+&lt;/html&gt;</code></pre>
 <p>The <code>head</code> of the page loads two React libraries from the web; we will use locally-installed libraries later. The <code>body</code> contains a <code>div</code> with an ID to make it findable. When our script runs, React will put the HTML it generates into this <code>div</code>.</p>
 <p>The script itself creates an <code>h1</code> with the text “Hello, React” using <code>React.DOM.h1</code>, then finds the document element whose ID is <code>&quot;app&quot;</code> and uses <code>ReactDOM.render</code> to insert the former into the latter. This alters the representation of the page in memory, not the source of the page on disk; if we want to inspect the resulting HTML, we have to do so in the browser. Finally, we put the script at the bottom of the page so that the browser will have turned the HTML into a DOM tree in memory before the script runs. We will come back and fix this later.</p>
 <blockquote>
@@ -2071,94 +2071,94 @@ home page (relative path)</code></pre>
 <p>If you are using the Firefox browser, you can open the developer tools pane by going to the main menu and selecting <code>Tools… Web Developer… Toggle Tools</code>. A tabbed display will open in the bottom of your page; choose <code>Inspector</code> to view the content of your page and page’s CSS. As you move your mouse around the page itself, corresponding structural elements will be highlighted. It’s actually pretty cool<span>…</span></p>
 </blockquote>
 <p>The first parameter to <code>React.DOM.h1</code> is <code>null</code> in the example above, but it can more generally be an object that specifies the attributes we want the newly-created node to have. There are a few quirks in this—for example, we have to use <code>fontStyle</code> rather than <code>font-style</code> so that the attribute object’s keys look like legal JavaScript variables—but the mechanism is seductively easy to use:</p>
-<div class="sourceCode" id="cb175"><pre class="sourceCode html"><code class="sourceCode html"><a class="sourceLine" id="cb175-1" data-line-number="1">  <span class="kw">&lt;body&gt;</span></a>
-<a class="sourceLine" id="cb175-2" data-line-number="2">    <span class="kw">&lt;div</span><span class="ot"> id=</span><span class="st">&quot;app&quot;</span><span class="kw">&gt;&lt;/div&gt;</span></a>
-<a class="sourceLine" id="cb175-3" data-line-number="3">    <span class="kw">&lt;script&gt;</span></a>
-<a class="sourceLine" id="cb175-4" data-line-number="4">      <span class="kw">const</span> attributes <span class="op">=</span> <span class="op">{</span></a>
-<a class="sourceLine" id="cb175-5" data-line-number="5">        <span class="st">&#39;style&#39;</span><span class="op">:</span> <span class="op">{</span></a>
-<a class="sourceLine" id="cb175-6" data-line-number="6">          <span class="st">&#39;background&#39;</span><span class="op">:</span> <span class="st">&#39;pink&#39;</span><span class="op">,</span></a>
-<a class="sourceLine" id="cb175-7" data-line-number="7">          <span class="st">&#39;fontStyle&#39;</span><span class="op">:</span> <span class="st">&#39;italic&#39;</span></a>
-<a class="sourceLine" id="cb175-8" data-line-number="8">        <span class="op">}</span></a>
-<a class="sourceLine" id="cb175-9" data-line-number="9">      <span class="op">}</span></a>
-<a class="sourceLine" id="cb175-10" data-line-number="10">      <span class="va">ReactDOM</span>.<span class="at">render</span>(</a>
-<a class="sourceLine" id="cb175-11" data-line-number="11">        <span class="va">React</span>.<span class="va">DOM</span>.<span class="at">h1</span>(attributes<span class="op">,</span> <span class="st">&quot;Hello Stylish&quot;</span>)<span class="op">,</span></a>
-<a class="sourceLine" id="cb175-12" data-line-number="12">        <span class="va">document</span>.<span class="at">getElementById</span>(<span class="st">&quot;app&quot;</span>)</a>
-<a class="sourceLine" id="cb175-13" data-line-number="13">      )</a>
-<a class="sourceLine" id="cb175-14" data-line-number="14">    <span class="kw">&lt;/script&gt;</span></a>
-<a class="sourceLine" id="cb175-15" data-line-number="15">  <span class="kw">&lt;/body&gt;</span></a></code></pre></div>
+<pre class="jsx"><code>  &lt;body&gt;
+    &lt;div id=&quot;app&quot;&gt;&lt;/div&gt;
+    &lt;script&gt;
+      const attributes = {
+        &#39;style&#39;: {
+          &#39;background&#39;: &#39;pink&#39;,
+          &#39;fontStyle&#39;: &#39;italic&#39;
+        }
+      }
+      ReactDOM.render(
+        React.DOM.h1(attributes, &quot;Hello Stylish&quot;),
+        document.getElementById(&quot;app&quot;)
+      )
+    &lt;/script&gt;
+  &lt;/body&gt;</code></pre>
 <h2 id="s:dynamic-jsx">JSX</h2>
 <p>Writing nested functions is a clumsy way to write HTML, so most React programmers use a tool called <a href="https://reactjs.org/docs/introducing-jsx.html">JSX</a> that translates HTML into JavaScript function calls. And yes, those JavaScript function calls then produce HTML—it’s a funny world. Here’s an example:</p>
-<div class="sourceCode" id="cb176"><pre class="sourceCode html"><code class="sourceCode html"><a class="sourceLine" id="cb176-1" data-line-number="1"><span class="dt">&lt;!DOCTYPE </span>html<span class="dt">&gt;</span></a>
-<a class="sourceLine" id="cb176-2" data-line-number="2"><span class="kw">&lt;html&gt;</span></a>
-<a class="sourceLine" id="cb176-3" data-line-number="3">  <span class="kw">&lt;head&gt;</span></a>
-<a class="sourceLine" id="cb176-4" data-line-number="4">    <span class="kw">&lt;meta</span><span class="ot"> charset=</span><span class="st">&quot;utf-8&quot;</span><span class="kw">&gt;</span></a>
-<a class="sourceLine" id="cb176-5" data-line-number="5">    <span class="kw">&lt;title&gt;</span>Hello JSX<span class="kw">&lt;/title&gt;</span></a>
-<a class="sourceLine" id="cb176-6" data-line-number="6">    <span class="kw">&lt;script</span><span class="ot"> src=</span><span class="st">&quot;https://fb.me/react-15.0.1.js&quot;</span><span class="kw">&gt;&lt;/script&gt;</span></a>
-<a class="sourceLine" id="cb176-7" data-line-number="7">    <span class="kw">&lt;script</span><span class="ot"> src=</span><span class="st">&quot;https://fb.me/react-dom-15.0.1.js&quot;</span><span class="kw">&gt;&lt;/script&gt;</span></a>
-<a class="sourceLine" id="cb176-8" data-line-number="8">    <span class="kw">&lt;script</span><span class="ot"> src=</span><span class="st">&quot;https://unpkg.com/babel-standalone@6/babel.js&quot;</span><span class="kw">&gt;&lt;/script&gt;</span></a>
-<a class="sourceLine" id="cb176-9" data-line-number="9">  <span class="kw">&lt;/head&gt;</span></a>
-<a class="sourceLine" id="cb176-10" data-line-number="10">  <span class="kw">&lt;body&gt;</span></a>
-<a class="sourceLine" id="cb176-11" data-line-number="11">    <span class="kw">&lt;div</span><span class="ot"> id=</span><span class="st">&quot;app&quot;</span><span class="kw">&gt;&lt;/div&gt;</span></a>
-<a class="sourceLine" id="cb176-12" data-line-number="12">    <span class="kw">&lt;script</span><span class="ot"> type=</span><span class="st">&quot;text/babel&quot;</span><span class="kw">&gt;</span></a>
-<a class="sourceLine" id="cb176-13" data-line-number="13">      <span class="va">ReactDOM</span>.<span class="at">render</span>(</a>
-<a class="sourceLine" id="cb176-14" data-line-number="14">        <span class="op">&lt;</span>h1<span class="op">&gt;</span>Hello JSX&lt;/h1<span class="op">&gt;,</span></a>
-<a class="sourceLine" id="cb176-15" data-line-number="15">        <span class="va">document</span>.<span class="at">getElementById</span>(<span class="st">&#39;app&#39;</span>)</a>
-<a class="sourceLine" id="cb176-16" data-line-number="16">      )</a>
-<a class="sourceLine" id="cb176-17" data-line-number="17">    <span class="kw">&lt;/script&gt;</span></a>
-<a class="sourceLine" id="cb176-18" data-line-number="18">  <span class="kw">&lt;/body&gt;</span></a>
-<a class="sourceLine" id="cb176-19" data-line-number="19"><span class="kw">&lt;/html&gt;</span></a></code></pre></div>
+<pre class="jsx"><code>&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+  &lt;head&gt;
+    &lt;meta charset=&quot;utf-8&quot;&gt;
+    &lt;title&gt;Hello JSX&lt;/title&gt;
+    &lt;script src=&quot;https://fb.me/react-15.0.1.js&quot;&gt;&lt;/script&gt;
+    &lt;script src=&quot;https://fb.me/react-dom-15.0.1.js&quot;&gt;&lt;/script&gt;
+    &lt;script src=&quot;https://unpkg.com/babel-standalone@6/babel.js&quot;&gt;&lt;/script&gt;
+  &lt;/head&gt;
+  &lt;body&gt;
+    &lt;div id=&quot;app&quot;&gt;&lt;/div&gt;
+    &lt;script type=&quot;text/babel&quot;&gt;
+      ReactDOM.render(
+        &lt;h1&gt;Hello JSX&lt;/h1&gt;,
+        document.getElementById(&#39;app&#39;)
+      )
+    &lt;/script&gt;
+  &lt;/body&gt;
+&lt;/html&gt;</code></pre>
 <p>Along with the two React libraries, this page includes a tool called <a href="https://babeljs.io/">Babel</a> to translate a mix of HTML and JavaScript into pure JavaScript. To trigger translation, we add the attribute <code>type=&quot;text/babel&quot;</code> to the <code>script</code> tag.</p>
 <p>Why bother? Because as the example above shows, it allows us to write <code>&lt;h1&gt;Hello JSX&lt;/h1&gt;</code> instead of calling a function. More generally, JSX lets us put JavaScript inside our HTML (inside our JavaScript (inside our HTML)), so we can (for example) use <code>map</code> to turn a list of strings into an HTML list:</p>
-<div class="sourceCode" id="cb177"><pre class="sourceCode html"><code class="sourceCode html"><a class="sourceLine" id="cb177-1" data-line-number="1">  <span class="kw">&lt;body&gt;</span></a>
-<a class="sourceLine" id="cb177-2" data-line-number="2">    <span class="kw">&lt;h1&gt;</span>JSX List<span class="kw">&lt;/h1&gt;</span></a>
-<a class="sourceLine" id="cb177-3" data-line-number="3">    <span class="kw">&lt;div</span><span class="ot"> id=</span><span class="st">&quot;app&quot;</span><span class="kw">&gt;&lt;/div&gt;</span></a>
-<a class="sourceLine" id="cb177-4" data-line-number="4">    <span class="kw">&lt;script</span><span class="ot"> type=</span><span class="st">&quot;text/babel&quot;</span><span class="kw">&gt;</span></a>
-<a class="sourceLine" id="cb177-5" data-line-number="5">      <span class="kw">const</span> allNames <span class="op">=</span> [<span class="st">&#39;McNulty&#39;</span><span class="op">,</span> <span class="st">&#39;Jennings&#39;</span><span class="op">,</span> <span class="st">&#39;Snyder&#39;</span><span class="op">,</span></a>
-<a class="sourceLine" id="cb177-6" data-line-number="6">                        <span class="st">&#39;Meltzer&#39;</span><span class="op">,</span> <span class="st">&#39;Bilas&#39;</span><span class="op">,</span> <span class="st">&#39;Lichterman&#39;</span>]</a>
-<a class="sourceLine" id="cb177-7" data-line-number="7">      <span class="va">ReactDOM</span>.<span class="at">render</span>(</a>
-<a class="sourceLine" id="cb177-8" data-line-number="8">        <span class="op">&lt;</span>ul<span class="op">&gt;{</span><span class="va">allNames</span>.<span class="at">map</span>((name) <span class="op">=&gt;</span> <span class="op">&lt;</span>li<span class="op">&gt;{</span>name<span class="op">}</span>&lt;/li<span class="op">&gt;</span> )<span class="op">}</span>&lt;/ul<span class="op">&gt;,</span></a>
-<a class="sourceLine" id="cb177-9" data-line-number="9">        <span class="va">document</span>.<span class="at">getElementById</span>(<span class="st">&#39;app&#39;</span>)</a>
-<a class="sourceLine" id="cb177-10" data-line-number="10">      )</a>
-<a class="sourceLine" id="cb177-11" data-line-number="11">    <span class="kw">&lt;/script&gt;</span></a>
-<a class="sourceLine" id="cb177-12" data-line-number="12">  <span class="kw">&lt;/body&gt;</span></a></code></pre></div>
+<pre class="jsx"><code>  &lt;body&gt;
+    &lt;h1&gt;JSX List&lt;/h1&gt;
+    &lt;div id=&quot;app&quot;&gt;&lt;/div&gt;
+    &lt;script type=&quot;text/babel&quot;&gt;
+      const allNames = [&#39;McNulty&#39;, &#39;Jennings&#39;, &#39;Snyder&#39;,
+                        &#39;Meltzer&#39;, &#39;Bilas&#39;, &#39;Lichterman&#39;]
+      ReactDOM.render(
+        &lt;ul&gt;{allNames.map((name) =&gt; &lt;li&gt;{name}&lt;/li&gt; )}&lt;/ul&gt;,
+        document.getElementById(&#39;app&#39;)
+      )
+    &lt;/script&gt;
+  &lt;/body&gt;</code></pre>
 <p>We have to use <code>map</code> rather than a loop because whatever code we run has to return something that can be inserted into the DOM, and <code>for</code> loops don’t return anything. (We could use a loop to build up a string through repeated concatenation, but <code>map</code> is cleaner.) And note: we must return exactly one node, because this is one function call. We will look in the exercises at why the curly braces immediately inside the <code>&lt;ul&gt;</code> element are necessary.</p>
 <p>Note also that when we run this, the browser console will warn us that each list element ought to have a unique <code>key</code> property, because React wants each element of the page to be selectable. We will add this later.</p>
 <h2 id="s:dynamic-components">Creating Components</h2>
 <p>One of the most powerful features of React is that it lets us create new <a href="#g:component"><strong>components</strong></a> that look like custom HTML tags, but are associated with functions that we write. React requires the names of these components to start with a capital letter to differentiate them from regular tags. We can, for example, define a function <code>ListOfNames</code> to generate our list of names, then put that element directly in <code>ReactDOM.Render</code> just as we would put an <code>h1</code> or <code>p</code>:</p>
-<div class="sourceCode" id="cb178"><pre class="sourceCode html"><code class="sourceCode html"><a class="sourceLine" id="cb178-1" data-line-number="1">  <span class="kw">&lt;body&gt;</span></a>
-<a class="sourceLine" id="cb178-2" data-line-number="2">    <span class="kw">&lt;h1&gt;</span>Create Component<span class="kw">&lt;/h1&gt;</span></a>
-<a class="sourceLine" id="cb178-3" data-line-number="3">    <span class="kw">&lt;div</span><span class="ot"> id=</span><span class="st">&quot;app&quot;</span><span class="kw">&gt;&lt;/div&gt;</span></a>
-<a class="sourceLine" id="cb178-4" data-line-number="4">    <span class="kw">&lt;script</span><span class="ot"> type=</span><span class="st">&quot;text/babel&quot;</span><span class="kw">&gt;</span></a>
-<a class="sourceLine" id="cb178-5" data-line-number="5">      <span class="kw">const</span> allNames <span class="op">=</span> [<span class="st">&#39;McNulty&#39;</span><span class="op">,</span> <span class="st">&#39;Jennings&#39;</span><span class="op">,</span> <span class="st">&#39;Snyder&#39;</span><span class="op">,</span></a>
-<a class="sourceLine" id="cb178-6" data-line-number="6">                        <span class="st">&#39;Meltzer&#39;</span><span class="op">,</span> <span class="st">&#39;Bilas&#39;</span><span class="op">,</span> <span class="st">&#39;Lichterman&#39;</span>]</a>
-<a class="sourceLine" id="cb178-7" data-line-number="7"></a>
-<a class="sourceLine" id="cb178-8" data-line-number="8">      <span class="kw">const</span> ListOfNames <span class="op">=</span> () <span class="op">=&gt;</span> <span class="op">{</span></a>
-<a class="sourceLine" id="cb178-9" data-line-number="9">        <span class="cf">return</span> (<span class="op">&lt;</span>ul<span class="op">&gt;{</span><span class="va">allNames</span>.<span class="at">map</span>((name) <span class="op">=&gt;</span> <span class="op">&lt;</span>li<span class="op">&gt;{</span>name<span class="op">}</span>&lt;/li<span class="op">&gt;</span> )<span class="op">}</span>&lt;/ul<span class="op">&gt;</span>)</a>
-<a class="sourceLine" id="cb178-10" data-line-number="10">      <span class="op">}</span></a>
-<a class="sourceLine" id="cb178-11" data-line-number="11"></a>
-<a class="sourceLine" id="cb178-12" data-line-number="12">      <span class="va">ReactDOM</span>.<span class="at">render</span>(</a>
-<a class="sourceLine" id="cb178-13" data-line-number="13">        <span class="op">&lt;</span>ListOfNames /<span class="op">&gt;,</span></a>
-<a class="sourceLine" id="cb178-14" data-line-number="14">        <span class="va">document</span>.<span class="at">getElementById</span>(<span class="st">&#39;app&#39;</span>)</a>
-<a class="sourceLine" id="cb178-15" data-line-number="15">      )</a>
-<a class="sourceLine" id="cb178-16" data-line-number="16">    <span class="kw">&lt;/script&gt;</span></a>
-<a class="sourceLine" id="cb178-17" data-line-number="17">  <span class="kw">&lt;/body&gt;</span></a></code></pre></div>
+<pre class="jsx"><code>  &lt;body&gt;
+    &lt;h1&gt;Create Component&lt;/h1&gt;
+    &lt;div id=&quot;app&quot;&gt;&lt;/div&gt;
+    &lt;script type=&quot;text/babel&quot;&gt;
+      const allNames = [&#39;McNulty&#39;, &#39;Jennings&#39;, &#39;Snyder&#39;,
+                        &#39;Meltzer&#39;, &#39;Bilas&#39;, &#39;Lichterman&#39;]
+
+      const ListOfNames = () =&gt; {
+        return (&lt;ul&gt;{allNames.map((name) =&gt; &lt;li&gt;{name}&lt;/li&gt; )}&lt;/ul&gt;)
+      }
+
+      ReactDOM.render(
+        &lt;ListOfNames /&gt;,
+        document.getElementById(&#39;app&#39;)
+      )
+    &lt;/script&gt;
+  &lt;/body&gt;</code></pre>
 <p>What we really want to do, though, is pass parameters to these components: after all, JSX is turning them into functions, and functions are far more useful when we can give them data. In React, all the attributes we put inside the component’s tag are passed to our function in a single <code>props</code> object:</p>
-<div class="sourceCode" id="cb179"><pre class="sourceCode html"><code class="sourceCode html"><a class="sourceLine" id="cb179-1" data-line-number="1">  <span class="kw">&lt;body&gt;</span></a>
-<a class="sourceLine" id="cb179-2" data-line-number="2">    <span class="kw">&lt;h1&gt;</span>Pass Parameters<span class="kw">&lt;/h1&gt;</span></a>
-<a class="sourceLine" id="cb179-3" data-line-number="3">    <span class="kw">&lt;div</span><span class="ot"> id=</span><span class="st">&quot;app&quot;</span><span class="kw">&gt;&lt;/div&gt;</span></a>
-<a class="sourceLine" id="cb179-4" data-line-number="4">    <span class="kw">&lt;script</span><span class="ot"> type=</span><span class="st">&quot;text/babel&quot;</span><span class="kw">&gt;</span></a>
-<a class="sourceLine" id="cb179-5" data-line-number="5">      <span class="kw">const</span> allNames <span class="op">=</span> [<span class="st">&#39;McNulty&#39;</span><span class="op">,</span> <span class="st">&#39;Jennings&#39;</span><span class="op">,</span> <span class="st">&#39;Snyder&#39;</span><span class="op">,</span></a>
-<a class="sourceLine" id="cb179-6" data-line-number="6">                        <span class="st">&#39;Meltzer&#39;</span><span class="op">,</span> <span class="st">&#39;Bilas&#39;</span><span class="op">,</span> <span class="st">&#39;Lichterman&#39;</span>]</a>
-<a class="sourceLine" id="cb179-7" data-line-number="7"></a>
-<a class="sourceLine" id="cb179-8" data-line-number="8">      <span class="kw">const</span> ListElement <span class="op">=</span> (props) <span class="op">=&gt;</span></a>
-<a class="sourceLine" id="cb179-9" data-line-number="9">            (<span class="op">&lt;</span>li id<span class="op">={</span><span class="va">props</span>.<span class="at">name</span><span class="op">}&gt;&lt;</span>em<span class="op">&gt;{</span><span class="va">props</span>.<span class="at">name</span><span class="op">}</span>&lt;/em<span class="op">&gt;</span>&lt;/li<span class="op">&gt;</span>)</a>
-<a class="sourceLine" id="cb179-10" data-line-number="10"></a>
-<a class="sourceLine" id="cb179-11" data-line-number="11">      <span class="va">ReactDOM</span>.<span class="at">render</span>(</a>
-<a class="sourceLine" id="cb179-12" data-line-number="12">        <span class="op">&lt;</span>ul<span class="op">&gt;{</span><span class="va">allNames</span>.<span class="at">map</span>((name) <span class="op">=&gt;</span> <span class="op">&lt;</span>ListElement name<span class="op">={</span>name<span class="op">}</span> /&gt; )<span class="op">}</span>&lt;/ul<span class="op">&gt;,</span></a>
-<a class="sourceLine" id="cb179-13" data-line-number="13">        <span class="va">document</span>.<span class="at">getElementById</span>(<span class="st">&#39;app&#39;</span>)</a>
-<a class="sourceLine" id="cb179-14" data-line-number="14">      )</a>
-<a class="sourceLine" id="cb179-15" data-line-number="15">    <span class="kw">&lt;/script&gt;</span></a>
-<a class="sourceLine" id="cb179-16" data-line-number="16">  <span class="kw">&lt;/body&gt;</span></a></code></pre></div>
+<pre class="jsx"><code>  &lt;body&gt;
+    &lt;h1&gt;Pass Parameters&lt;/h1&gt;
+    &lt;div id=&quot;app&quot;&gt;&lt;/div&gt;
+    &lt;script type=&quot;text/babel&quot;&gt;
+      const allNames = [&#39;McNulty&#39;, &#39;Jennings&#39;, &#39;Snyder&#39;,
+                        &#39;Meltzer&#39;, &#39;Bilas&#39;, &#39;Lichterman&#39;]
+
+      const ListElement = (props) =&gt;
+            (&lt;li id={props.name}&gt;&lt;em&gt;{props.name}&lt;/em&gt;&lt;/li&gt;)
+
+      ReactDOM.render(
+        &lt;ul&gt;{allNames.map((name) =&gt; &lt;ListElement name={name} /&gt; )}&lt;/ul&gt;,
+        document.getElementById(&#39;app&#39;)
+      )
+    &lt;/script&gt;
+  &lt;/body&gt;</code></pre>
 <p>If you look carefully, you’ll see that the <code>name</code> attribute passed to the use of <code>ListElement</code> becomes the value of <code>prop.names</code> inside the function that implements <code>ListElement</code>.</p>
 <p>Before we <code>map</code> each component of our array within <code>ReactDOM.render</code> as in the examples above, the <code>ListElement</code> function gives us exactly one logical place to set attributes. Here we’ve used <code>ListElement</code> to italicize each element in our array and give them ids, but these functions can also be used for any transformation or calculation on each element to be rendered.</p>
 <h2 id="s:dynamic-parcel">Developing with Parcel</h2>
@@ -2202,21 +2202,21 @@ home page (relative path)</code></pre>
 </blockquote>
 <h2 id="s:dynamic-multiple">Multiple Files</h2>
 <p>Now that we can bundle things up, let’s move our JSX into <code>app.js</code> and load that in the <code>head</code> of the page:</p>
-<div class="sourceCode" id="cb185"><pre class="sourceCode html"><code class="sourceCode html"><a class="sourceLine" id="cb185-1" data-line-number="1"><span class="dt">&lt;!DOCTYPE </span>html<span class="dt">&gt;</span></a>
-<a class="sourceLine" id="cb185-2" data-line-number="2"><span class="kw">&lt;html&gt;</span></a>
-<a class="sourceLine" id="cb185-3" data-line-number="3">  <span class="kw">&lt;head&gt;</span></a>
-<a class="sourceLine" id="cb185-4" data-line-number="4">    <span class="kw">&lt;meta</span><span class="ot"> charset=</span><span class="st">&quot;utf-8&quot;</span><span class="kw">&gt;</span></a>
-<a class="sourceLine" id="cb185-5" data-line-number="5">    <span class="kw">&lt;title&gt;</span>Hello Separate<span class="kw">&lt;/title&gt;</span></a>
-<a class="sourceLine" id="cb185-6" data-line-number="6">    <span class="kw">&lt;script</span><span class="ot"> src=</span><span class="st">&quot;https://fb.me/react-15.0.1.js&quot;</span><span class="kw">&gt;&lt;/script&gt;</span></a>
-<a class="sourceLine" id="cb185-7" data-line-number="7">    <span class="kw">&lt;script</span><span class="ot"> src=</span><span class="st">&quot;https://fb.me/react-dom-15.0.1.js&quot;</span><span class="kw">&gt;&lt;/script&gt;</span></a>
-<a class="sourceLine" id="cb185-8" data-line-number="8">    <span class="kw">&lt;script</span><span class="ot"> src=</span><span class="st">&quot;https://unpkg.com/babel-standalone@6/babel.js&quot;</span><span class="kw">&gt;&lt;/script&gt;</span></a>
-<a class="sourceLine" id="cb185-9" data-line-number="9">    <span class="kw">&lt;script</span><span class="ot"> src=</span><span class="st">&quot;app.js&quot;</span><span class="ot"> type=</span><span class="st">&quot;text/babel&quot;</span><span class="kw">&gt;&lt;/script&gt;</span></a>
-<a class="sourceLine" id="cb185-10" data-line-number="10">  <span class="kw">&lt;/head&gt;</span></a>
-<a class="sourceLine" id="cb185-11" data-line-number="11">  <span class="kw">&lt;body&gt;</span></a>
-<a class="sourceLine" id="cb185-12" data-line-number="12">    <span class="kw">&lt;h1&gt;</span>Hello Separate<span class="kw">&lt;/h1&gt;</span></a>
-<a class="sourceLine" id="cb185-13" data-line-number="13">    <span class="kw">&lt;div</span><span class="ot"> id=</span><span class="st">&quot;app&quot;</span><span class="kw">&gt;&lt;/div&gt;</span></a>
-<a class="sourceLine" id="cb185-14" data-line-number="14">  <span class="kw">&lt;/body&gt;</span></a>
-<a class="sourceLine" id="cb185-15" data-line-number="15"><span class="kw">&lt;/html&gt;</span></a></code></pre></div>
+<pre class="jsx"><code>&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+  &lt;head&gt;
+    &lt;meta charset=&quot;utf-8&quot;&gt;
+    &lt;title&gt;Hello Separate&lt;/title&gt;
+    &lt;script src=&quot;https://fb.me/react-15.0.1.js&quot;&gt;&lt;/script&gt;
+    &lt;script src=&quot;https://fb.me/react-dom-15.0.1.js&quot;&gt;&lt;/script&gt;
+    &lt;script src=&quot;https://unpkg.com/babel-standalone@6/babel.js&quot;&gt;&lt;/script&gt;
+    &lt;script src=&quot;app.js&quot; type=&quot;text/babel&quot;&gt;&lt;/script&gt;
+  &lt;/head&gt;
+  &lt;body&gt;
+    &lt;h1&gt;Hello Separate&lt;/h1&gt;
+    &lt;div id=&quot;app&quot;&gt;&lt;/div&gt;
+  &lt;/body&gt;
+&lt;/html&gt;</code></pre>
 <p>For now, the JavaScript in <code>app.js</code> is:</p>
 <div class="sourceCode" id="cb186"><pre class="sourceCode js"><code class="sourceCode javascript"><a class="sourceLine" id="cb186-1" data-line-number="1"><span class="va">ReactDOM</span>.<span class="at">render</span>(</a>
 <a class="sourceLine" id="cb186-2" data-line-number="2">  <span class="op">&lt;</span>p<span class="op">&gt;</span>Rendered by React&lt;/p<span class="op">&gt;,</span></a>
@@ -2254,21 +2254,21 @@ $ npm install reactDOM</code></pre>
 <a class="sourceLine" id="cb190-7" data-line-number="7">)</a></code></pre></div>
 <p>We don’t have to shut down the server and restart it every time we make changes like this, because Parcel watches for changes in files and relaunches itself as needed. Each time it does so, it looks at the libraries <code>app.js</code> loads and rebundles what it needs: right now, for example, <code>dist/app.ef6b320b.js</code> is 19930 lines long.</p>
 <p>A more modern option than loading in the bottom is to add the <code>async</code> attribute to the script in the head of the page, which tells the browser not to do anything with the JavaScript until the page has finished building:</p>
-<div class="sourceCode" id="cb191"><pre class="sourceCode html"><code class="sourceCode html"><a class="sourceLine" id="cb191-1" data-line-number="1"><span class="dt">&lt;!DOCTYPE </span>html<span class="dt">&gt;</span></a>
-<a class="sourceLine" id="cb191-2" data-line-number="2"><span class="kw">&lt;html&gt;</span></a>
-<a class="sourceLine" id="cb191-3" data-line-number="3">  <span class="kw">&lt;head&gt;</span></a>
-<a class="sourceLine" id="cb191-4" data-line-number="4">    <span class="kw">&lt;meta</span><span class="ot"> charset=</span><span class="st">&quot;utf-8&quot;</span><span class="kw">&gt;</span></a>
-<a class="sourceLine" id="cb191-5" data-line-number="5">    <span class="kw">&lt;title&gt;</span>Hello Parcel<span class="kw">&lt;/title&gt;</span></a>
-<a class="sourceLine" id="cb191-6" data-line-number="6">    <span class="kw">&lt;script</span><span class="ot"> src=</span><span class="st">&quot;./app.js&quot;</span><span class="ot"> type=</span><span class="st">&quot;text/babel&quot;</span><span class="ot"> async</span><span class="kw">&gt;&lt;/script&gt;</span></a>
-<a class="sourceLine" id="cb191-7" data-line-number="7">  <span class="kw">&lt;/head&gt;</span></a>
-<a class="sourceLine" id="cb191-8" data-line-number="8">  <span class="kw">&lt;body&gt;</span></a>
-<a class="sourceLine" id="cb191-9" data-line-number="9">    <span class="kw">&lt;div</span><span class="ot"> id=</span><span class="st">&quot;app&quot;</span><span class="kw">&gt;&lt;/div&gt;</span></a>
-<a class="sourceLine" id="cb191-10" data-line-number="10">  <span class="kw">&lt;/body&gt;</span></a>
-<a class="sourceLine" id="cb191-11" data-line-number="11"><span class="kw">&lt;/html&gt;</span></a></code></pre></div>
+<pre class="jsx"><code>&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+  &lt;head&gt;
+    &lt;meta charset=&quot;utf-8&quot;&gt;
+    &lt;title&gt;Hello Parcel&lt;/title&gt;
+    &lt;script src=&quot;./app.js&quot; type=&quot;text/babel&quot; async&gt;&lt;/script&gt;
+  &lt;/head&gt;
+  &lt;body&gt;
+    &lt;div id=&quot;app&quot;&gt;&lt;/div&gt;
+  &lt;/body&gt;
+&lt;/html&gt;</code></pre>
 <h2 id="s:dynamic-exercises">Exercises</h2>
 <h3 id="those-damn-curly-braces" class="unnumbered unnumbered">Those Damn Curly Braces</h3>
 <p>Our list-building example includes this line of code:</p>
-<div class="sourceCode" id="cb192"><pre class="sourceCode js"><code class="sourceCode javascript"><a class="sourceLine" id="cb192-1" data-line-number="1">        <span class="op">&lt;</span>ul<span class="op">&gt;{</span><span class="va">allNames</span>.<span class="at">map</span>((name) <span class="op">=&gt;</span> <span class="op">&lt;</span>li<span class="op">&gt;{</span>name<span class="op">}</span>&lt;/li<span class="op">&gt;</span> )<span class="op">}</span>&lt;/ul<span class="op">&gt;,</span></a></code></pre></div>
+<pre class="jsx"><code>        &lt;ul&gt;{allNames.map((name) =&gt; &lt;li&gt;{name}&lt;/li&gt; )}&lt;/ul&gt;,</code></pre>
 <p>Why are the curly braces immediately inside the <code>&lt;ul&gt;</code> element necessary? What happens if you take them out?</p>
 <h3 id="real-data" class="unnumbered unnumbered">Real Data</h3>
 <ol>
@@ -2535,7 +2535,7 @@ inside handler for 500</code></pre>
 <figure>
 <img src="figures/promises-queue.svg" /><figcaption><span id="f:promises-queue">Run Queue</span></figcaption>
 </figure>
-<p>Figure <a href="#f:promises-queue" data-reference-type="ref" data-reference="f:promises-queue">[f:promises-queue]</a> shows what the run queue looks like just before the program prints <code>...finishing</code>. We can use <code>setTimeout</code><code>setTimeout@setTimeout</code> to build a generic non-blocking function:</p>
+<p>Figure <a href="#f:promises-queue" data-reference-type="ref" data-reference="f:promises-queue">[f:promises-queue]</a> shows what the run queue looks like just before the program prints <code>...finishing</code>. We can use <code>setTimeout</code> to build a generic non-blocking function:</p>
 <div class="sourceCode" id="cb210"><pre class="sourceCode js"><code class="sourceCode javascript"><a class="sourceLine" id="cb210-1" data-line-number="1"><span class="kw">const</span> nonBlocking <span class="op">=</span> (callback) <span class="op">=&gt;</span> <span class="op">{</span></a>
 <a class="sourceLine" id="cb210-2" data-line-number="2">  <span class="at">setTimeout</span>(callback<span class="op">,</span> <span class="dv">0</span>)</a>
 <a class="sourceLine" id="cb210-3" data-line-number="3"><span class="op">}</span></a>
@@ -2618,7 +2618,7 @@ inside immediate handler for c</code></pre>
 <div class="sourceCode" id="cb219"><pre class="sourceCode js"><code class="sourceCode javascript"><a class="sourceLine" id="cb219-1" data-line-number="1"><span class="kw">const</span> fetch <span class="op">=</span> <span class="at">require</span>(<span class="st">&#39;node-fetch&#39;</span>)</a>
 <a class="sourceLine" id="cb219-2" data-line-number="2"></a>
 <a class="sourceLine" id="cb219-3" data-line-number="3">url <span class="op">=</span> <span class="st">&#39;https://api.nasa.gov/neo/rest/v1/feed&#39;</span> <span class="op">+</span></a>
-<a class="sourceLine" id="cb219-4" data-line-number="4">      <span class="st">&#39;?api_key=DEMO_KEY&amp;start_date=2018-08-20&#39;</span></a>
+<a class="sourceLine" id="cb219-4" data-line-number="4">      <span class="st">&#39;?api_key=DEMO_KEY&amp;start_date=2018-80-20&#39;</span> <span class="co">// illegal date</span></a>
 <a class="sourceLine" id="cb219-5" data-line-number="5"><span class="cf">try</span> <span class="op">{</span></a>
 <a class="sourceLine" id="cb219-6" data-line-number="6">  <span class="at">fetch</span>(url)</a>
 <a class="sourceLine" id="cb219-7" data-line-number="7"><span class="op">}</span></a>
@@ -2635,7 +2635,7 @@ inside immediate handler for c</code></pre>
 <img src="figures/promises-try-catch-fail.svg" /><figcaption><span id="f:try-catch-fail">When Try...Catch Fails</span></figcaption>
 </figure>
 <p>There are two passes of execution in this block: The first is the <code>try...catch</code> event loop, and the second is <code>fetch</code>. JavaScript rips the asynchronous code right out of the execution context! There’s no error, because <code>fetch</code> hasn’t yet had the chance to run.</p>
-<p>Going back to the <code>fs-extra.stat</code> example above, what if we want to process multiple files, e.g., calculate their total size? We could write a loop:</p>
+<p>Going back to the <code>fs-extra.stat</code> example above, what if we want to process multiple files, for example to calculate their total size? We could write a loop:</p>
 <div class="sourceCode" id="cb220"><pre class="sourceCode js"><code class="sourceCode javascript"><a class="sourceLine" id="cb220-1" data-line-number="1"><span class="kw">const</span> fs <span class="op">=</span> <span class="at">require</span>(<span class="st">&#39;fs-extra&#39;</span>)</a>
 <a class="sourceLine" id="cb220-2" data-line-number="2"></a>
 <a class="sourceLine" id="cb220-3" data-line-number="3"><span class="kw">let</span> total_size <span class="op">=</span> <span class="dv">0</span></a>
@@ -2672,10 +2672,10 @@ inside immediate handler for c</code></pre>
 <a class="sourceLine" id="cb222-7" data-line-number="7">  <span class="at">then</span>(stats <span class="op">=&gt;</span> <span class="va">stats</span>.<span class="at">reduce</span>((total<span class="op">,</span> s) <span class="op">=&gt;</span> <span class="op">{</span><span class="cf">return</span> total <span class="op">+</span> <span class="va">s</span>.<span class="at">size</span><span class="op">},</span> <span class="dv">0</span>)).</a>
 <a class="sourceLine" id="cb222-8" data-line-number="8">  <span class="at">then</span>(<span class="va">console</span>.<span class="at">log</span>)</a></code></pre></div>
 <pre class="text"><code>2594901</code></pre>
-<p>We can also use <code>Promise.race</code>, which takes an array of promises and returns the result of the first one to complete.</p>
+<p>In future, we might also find an opportunity to use <code>Promise.race</code>, which takes an array of promises and returns the result of the first one to complete.</p>
 <h2 id="s:promises-usage">Using Promises</h2>
 <p>Promises don’t really make sense until we start to use them, so let’s try counting the number of lines in a set of files that are larger than a specified threshold. This is a slightly complex example but we will go through and build it up step-by-step.</p>
-<p>Before we begin, we will want the name of the directory we want to search for files. We could put this in our code, but it’s a lot more convenient if we allow users to provide it as a command-line argument when they run our script. To aid this, we’ll use the property within Node called <code>process.argv</code> which is an array containing all the command line arguments passed to the script.</p>
+<p>Before we begin, we will want the name of the directory to search for files. We could put this in our code, but it’s a lot more convenient if we allow users to provide it as a command-line argument when they run our script. To aid this, we’ll use the property within Node called <code>process.argv</code> which is an array containing all the command line arguments passed to the script.</p>
 <p>If we put this line in a file called <code>echo.js</code>:</p>
 <div class="sourceCode" id="cb224"><pre class="sourceCode js"><code class="sourceCode javascript"><a class="sourceLine" id="cb224-1" data-line-number="1"><span class="va">console</span>.<span class="at">log</span>(<span class="st">&#39;arguments are:&#39;</span><span class="op">,</span> <span class="va">process</span>.<span class="at">argv</span>)</a></code></pre></div>
 <p>and run it like this:</p>
@@ -2923,55 +2923,55 @@ Finished.</code></pre>
 <h1 id="s:interactive">Interactive Sites</h1>
 <p>Browsers allow us to define <a href="#g:event-handler"><strong>event handlers</strong></a> to specify what to do in response to an externally-triggered action, such as a page loading or a user pressing a button. These event handlers are just callback functions that are (usually) given an <a href="#g:event-object"><strong>event object</strong></a> containing information about what happened, and while we can write them in pure JavaScript, they’re even easier to build in React.</p>
 <p>Let’s switch back to single-page examples for a moment to show how we pass a callback function as a specifically-named property of the thing whose behavior we are specifying. (Don’t forget to load the required libraries in the HTML header, like we did in Chapter <a href="#s:dynamic" data-reference-type="ref" data-reference="s:dynamic">7</a>.)</p>
-<div class="sourceCode" id="cb248"><pre class="sourceCode js"><code class="sourceCode javascript"><a class="sourceLine" id="cb248-1" data-line-number="1">  <span class="op">&lt;</span>body<span class="op">&gt;</span></a>
-<a class="sourceLine" id="cb248-2" data-line-number="2">    <span class="op">&lt;</span>div id<span class="op">=</span><span class="st">&quot;app&quot;</span><span class="op">&gt;</span>&lt;/div<span class="op">&gt;</span></a>
-<a class="sourceLine" id="cb248-3" data-line-number="3">    <span class="op">&lt;</span>script type<span class="op">=</span><span class="st">&quot;text/babel&quot;</span><span class="op">&gt;</span></a>
-<a class="sourceLine" id="cb248-4" data-line-number="4">      <span class="kw">let</span> counter <span class="op">=</span> <span class="dv">0</span></a>
-<a class="sourceLine" id="cb248-5" data-line-number="5">      <span class="kw">const</span> sayHello <span class="op">=</span> (event) <span class="op">=&gt;</span> <span class="op">{</span></a>
-<a class="sourceLine" id="cb248-6" data-line-number="6">        counter <span class="op">+=</span> <span class="dv">1</span></a>
-<a class="sourceLine" id="cb248-7" data-line-number="7">        <span class="va">console</span>.<span class="at">log</span>(<span class="vs">`Hello, button: </span><span class="sc">${</span>counter<span class="sc">}</span><span class="vs">`</span>)</a>
-<a class="sourceLine" id="cb248-8" data-line-number="8">      <span class="op">}</span></a>
-<a class="sourceLine" id="cb248-9" data-line-number="9"></a>
-<a class="sourceLine" id="cb248-10" data-line-number="10">      <span class="va">ReactDOM</span>.<span class="at">render</span>(</a>
-<a class="sourceLine" id="cb248-11" data-line-number="11">        <span class="op">&lt;</span>button onClick<span class="op">={</span>sayHello<span class="op">}&gt;</span>click <span class="kw">this</span>&lt;/button<span class="op">&gt;,</span></a>
-<a class="sourceLine" id="cb248-12" data-line-number="12">        <span class="va">document</span>.<span class="at">getElementById</span>(<span class="st">&quot;app&quot;</span>)</a>
-<a class="sourceLine" id="cb248-13" data-line-number="13">      )</a>
-<a class="sourceLine" id="cb248-14" data-line-number="14">    &lt;/script<span class="op">&gt;</span></a>
-<a class="sourceLine" id="cb248-15" data-line-number="15">  &lt;/body<span class="op">&gt;</span></a></code></pre></div>
+<pre class="jsx"><code>  &lt;body&gt;
+    &lt;div id=&quot;app&quot;&gt;&lt;/div&gt;
+    &lt;script type=&quot;text/babel&quot;&gt;
+      let counter = 0
+      const sayHello = (event) =&gt; {
+        counter += 1
+        console.log(`Hello, button: ${counter}`)
+      }
+
+      ReactDOM.render(
+        &lt;button onClick={sayHello}&gt;click this&lt;/button&gt;,
+        document.getElementById(&quot;app&quot;)
+      )
+    &lt;/script&gt;
+  &lt;/body&gt;</code></pre>
 <p>As its name suggests, <code>onClick</code> is the event handler called when a button is clicked. Here, we are telling React to call <code>sayHello</code>, which adds one to the event object <code>counter</code> and then prints its value along with a greeting message.</p>
 <p>Global variables and functions are a poor way to structure code. It’s far better to define the component as a class and then use a method as the event handler:</p>
-<div class="sourceCode" id="cb249"><pre class="sourceCode js"><code class="sourceCode javascript"><a class="sourceLine" id="cb249-1" data-line-number="1">  <span class="op">&lt;</span>body<span class="op">&gt;</span></a>
-<a class="sourceLine" id="cb249-2" data-line-number="2">    <span class="op">&lt;</span>div id<span class="op">=</span><span class="st">&quot;app&quot;</span><span class="op">&gt;</span>&lt;/div<span class="op">&gt;</span></a>
-<a class="sourceLine" id="cb249-3" data-line-number="3">    <span class="op">&lt;</span>script type<span class="op">=</span><span class="st">&quot;text/babel&quot;</span><span class="op">&gt;</span></a>
-<a class="sourceLine" id="cb249-4" data-line-number="4">      <span class="kw">class</span> Counter <span class="kw">extends</span> <span class="va">React</span>.<span class="at">Component</span> <span class="op">{</span></a>
-<a class="sourceLine" id="cb249-5" data-line-number="5"></a>
-<a class="sourceLine" id="cb249-6" data-line-number="6">        <span class="at">constructor</span> (props) <span class="op">{</span></a>
-<a class="sourceLine" id="cb249-7" data-line-number="7">          <span class="kw">super</span>(props)</a>
-<a class="sourceLine" id="cb249-8" data-line-number="8">          <span class="kw">this</span>.<span class="at">state</span> <span class="op">=</span> <span class="op">{</span><span class="dt">counter</span><span class="op">:</span> <span class="dv">0</span><span class="op">}</span></a>
-<a class="sourceLine" id="cb249-9" data-line-number="9">        <span class="op">}</span></a>
-<a class="sourceLine" id="cb249-10" data-line-number="10"></a>
-<a class="sourceLine" id="cb249-11" data-line-number="11">        increment <span class="op">=</span> (event) <span class="op">=&gt;</span> <span class="op">{</span></a>
-<a class="sourceLine" id="cb249-12" data-line-number="12">          <span class="kw">this</span>.<span class="at">setState</span>(<span class="op">{</span><span class="dt">counter</span><span class="op">:</span> <span class="kw">this</span>.<span class="va">state</span>.<span class="at">counter</span><span class="op">+</span><span class="dv">1</span><span class="op">}</span>)</a>
-<a class="sourceLine" id="cb249-13" data-line-number="13">        <span class="op">}</span></a>
-<a class="sourceLine" id="cb249-14" data-line-number="14"></a>
-<a class="sourceLine" id="cb249-15" data-line-number="15">        render <span class="op">=</span> () <span class="op">=&gt;</span> <span class="op">{</span></a>
-<a class="sourceLine" id="cb249-16" data-line-number="16">          <span class="cf">return</span> (</a>
-<a class="sourceLine" id="cb249-17" data-line-number="17">            <span class="op">&lt;</span>p<span class="op">&gt;</span></a>
-<a class="sourceLine" id="cb249-18" data-line-number="18">              <span class="op">&lt;</span>button onClick<span class="op">={</span><span class="kw">this</span>.<span class="at">increment</span><span class="op">}&gt;</span>increment&lt;/button<span class="op">&gt;</span></a>
-<a class="sourceLine" id="cb249-19" data-line-number="19">              <span class="op">&lt;</span>br/<span class="op">&gt;</span></a>
-<a class="sourceLine" id="cb249-20" data-line-number="20">              <span class="dt">current</span><span class="op">:</span> <span class="op">{</span><span class="kw">this</span>.<span class="va">state</span>.<span class="at">counter</span><span class="op">}</span></a>
-<a class="sourceLine" id="cb249-21" data-line-number="21">            &lt;/p<span class="op">&gt;</span></a>
-<a class="sourceLine" id="cb249-22" data-line-number="22">          )</a>
-<a class="sourceLine" id="cb249-23" data-line-number="23">        <span class="op">}</span></a>
-<a class="sourceLine" id="cb249-24" data-line-number="24">      <span class="op">}</span></a>
-<a class="sourceLine" id="cb249-25" data-line-number="25"></a>
-<a class="sourceLine" id="cb249-26" data-line-number="26">      <span class="va">ReactDOM</span>.<span class="at">render</span>(</a>
-<a class="sourceLine" id="cb249-27" data-line-number="27">        <span class="op">&lt;</span>Counter /<span class="op">&gt;,</span></a>
-<a class="sourceLine" id="cb249-28" data-line-number="28">        <span class="va">document</span>.<span class="at">getElementById</span>(<span class="st">&quot;app&quot;</span>)</a>
-<a class="sourceLine" id="cb249-29" data-line-number="29">      )</a>
-<a class="sourceLine" id="cb249-30" data-line-number="30">    &lt;/script<span class="op">&gt;</span></a>
-<a class="sourceLine" id="cb249-31" data-line-number="31">  &lt;/body<span class="op">&gt;</span></a>
-<a class="sourceLine" id="cb249-32" data-line-number="32">&lt;/html<span class="op">&gt;</span></a></code></pre></div>
+<pre class="jsx"><code>  &lt;body&gt;
+    &lt;div id=&quot;app&quot;&gt;&lt;/div&gt;
+    &lt;script type=&quot;text/babel&quot;&gt;
+      class Counter extends React.Component {
+
+        constructor (props) {
+          super(props)
+          this.state = {counter: 0}
+        }
+
+        increment = (event) =&gt; {
+          this.setState({counter: this.state.counter+1})
+        }
+
+        render = () =&gt; {
+          return (
+            &lt;p&gt;
+              &lt;button onClick={this.increment}&gt;increment&lt;/button&gt;
+              &lt;br/&gt;
+              current: {this.state.counter}
+            &lt;/p&gt;
+          )
+        }
+      }
+
+      ReactDOM.render(
+        &lt;Counter /&gt;,
+        document.getElementById(&quot;app&quot;)
+      )
+    &lt;/script&gt;
+  &lt;/body&gt;
+&lt;/html&gt;</code></pre>
 <p>Working from bottom to top, the <code>ReactDOM.render</code> call inserts whatever HTML is produced by <code>&lt;Counter /&gt;</code> into the element whose ID is <code>&quot;app&quot;</code>. In this case, though, the counter is not a function, but a class with three parts:</p>
 <ol>
 <li><p>Its constructor passes the properties provided by the user to <code>React.Component</code>’s constructor. (There aren’t any properties in this case, but there will be in future examples, so it’s a good habit to get into.) The constructor then creates a property called <code>state</code> that holds this component’s state. This property <em>must</em> have this name so that React knows to watch it for changes.</p></li>
@@ -2993,28 +2993,28 @@ Finished.</code></pre>
 <a class="sourceLine" id="cb251-8" data-line-number="8">    <span class="kw">&lt;div</span><span class="ot"> id=</span><span class="st">&quot;app&quot;</span><span class="kw">&gt;&lt;/div&gt;</span></a>
 <a class="sourceLine" id="cb251-9" data-line-number="9">  <span class="kw">&lt;/body&gt;</span></a>
 <a class="sourceLine" id="cb251-10" data-line-number="10"><span class="kw">&lt;/html&gt;</span></a></code></pre></div>
-<div class="sourceCode" id="cb252"><pre class="sourceCode js"><code class="sourceCode javascript"><a class="sourceLine" id="cb252-1" data-line-number="1"><span class="im">import</span> React <span class="im">from</span> <span class="st">&#39;react&#39;</span></a>
-<a class="sourceLine" id="cb252-2" data-line-number="2"><span class="im">import</span> ReactDOM <span class="im">from</span> <span class="st">&#39;react-dom&#39;</span></a>
-<a class="sourceLine" id="cb252-3" data-line-number="3"></a>
-<a class="sourceLine" id="cb252-4" data-line-number="4"><span class="kw">class</span> Counter <span class="kw">extends</span> <span class="va">React</span>.<span class="at">Component</span> <span class="op">{</span></a>
-<a class="sourceLine" id="cb252-5" data-line-number="5"></a>
-<a class="sourceLine" id="cb252-6" data-line-number="6">  <span class="at">constructor</span> (props) <span class="op">{</span></a>
-<a class="sourceLine" id="cb252-7" data-line-number="7">    <span class="co">// ...as before...</span></a>
-<a class="sourceLine" id="cb252-8" data-line-number="8">  <span class="op">}</span></a>
-<a class="sourceLine" id="cb252-9" data-line-number="9"></a>
-<a class="sourceLine" id="cb252-10" data-line-number="10">  increment <span class="op">=</span> (event) <span class="op">=&gt;</span> <span class="op">{</span></a>
-<a class="sourceLine" id="cb252-11" data-line-number="11">    <span class="kw">this</span>.<span class="at">setState</span>(<span class="op">{</span><span class="dt">counter</span><span class="op">:</span> <span class="kw">this</span>.<span class="va">state</span>.<span class="at">counter</span><span class="op">+</span><span class="dv">1</span><span class="op">}</span>)</a>
-<a class="sourceLine" id="cb252-12" data-line-number="12">  <span class="op">}</span></a>
-<a class="sourceLine" id="cb252-13" data-line-number="13"></a>
-<a class="sourceLine" id="cb252-14" data-line-number="14">  render <span class="op">=</span> () <span class="op">=&gt;</span> <span class="op">{</span></a>
-<a class="sourceLine" id="cb252-15" data-line-number="15">    <span class="co">// ...as before...</span></a>
-<a class="sourceLine" id="cb252-16" data-line-number="16">  <span class="op">}</span></a>
-<a class="sourceLine" id="cb252-17" data-line-number="17"><span class="op">}</span></a>
-<a class="sourceLine" id="cb252-18" data-line-number="18"></a>
-<a class="sourceLine" id="cb252-19" data-line-number="19"><span class="va">ReactDOM</span>.<span class="at">render</span>(</a>
-<a class="sourceLine" id="cb252-20" data-line-number="20">  <span class="op">&lt;</span>Counter /<span class="op">&gt;,</span></a>
-<a class="sourceLine" id="cb252-21" data-line-number="21">  <span class="va">document</span>.<span class="at">getElementById</span>(<span class="st">&#39;app&#39;</span>)</a>
-<a class="sourceLine" id="cb252-22" data-line-number="22">)</a></code></pre></div>
+<pre class="jsx"><code>import React from &#39;react&#39;
+import ReactDOM from &#39;react-dom&#39;
+
+class Counter extends React.Component {
+
+  constructor (props) {
+    // ...as before...
+  }
+
+  increment = (event) =&gt; {
+    this.setState({counter: this.state.counter+1})
+  }
+
+  render = () =&gt; {
+    // ...as before...
+  }
+}
+
+ReactDOM.render(
+  &lt;Counter /&gt;,
+  document.getElementById(&#39;app&#39;)
+)</code></pre>
 <p>Let’s try running this:</p>
 <pre class="shell"><code>$ npm run dev -- src/interactive/counter/index.html</code></pre>
 <pre class="text"><code>&gt; js4ds@0.1.0 dev /Users/stj/js4ds
@@ -3031,31 +3031,31 @@ Server running at http://localhost:4000
   13 |   }
   14 |</code></pre>
 <p>It seems that Parcel doesn’t like fat arrow methods. This happens because React is still using ES6 JavaScript by default, and fat arrow methods weren’t included in JavaScript at that point. All right, let’s try using “normal” function-style method definitions instead:</p>
-<div class="sourceCode" id="cb255"><pre class="sourceCode js"><code class="sourceCode javascript"><a class="sourceLine" id="cb255-1" data-line-number="1"><span class="co">// ...imports as before...</span></a>
-<a class="sourceLine" id="cb255-2" data-line-number="2"></a>
-<a class="sourceLine" id="cb255-3" data-line-number="3"><span class="kw">class</span> Counter <span class="kw">extends</span> <span class="va">React</span>.<span class="at">Component</span> <span class="op">{</span></a>
-<a class="sourceLine" id="cb255-4" data-line-number="4"></a>
-<a class="sourceLine" id="cb255-5" data-line-number="5">  <span class="at">constructor</span> (props) <span class="op">{</span></a>
-<a class="sourceLine" id="cb255-6" data-line-number="6">    <span class="kw">super</span>(props)</a>
-<a class="sourceLine" id="cb255-7" data-line-number="7">    <span class="kw">this</span>.<span class="at">state</span> <span class="op">=</span> <span class="op">{</span><span class="dt">counter</span><span class="op">:</span> <span class="dv">0</span><span class="op">}</span></a>
-<a class="sourceLine" id="cb255-8" data-line-number="8">  <span class="op">}</span></a>
-<a class="sourceLine" id="cb255-9" data-line-number="9"></a>
-<a class="sourceLine" id="cb255-10" data-line-number="10">  <span class="at">increment</span> (event) <span class="op">{</span></a>
-<a class="sourceLine" id="cb255-11" data-line-number="11">    <span class="kw">this</span>.<span class="at">setState</span>(<span class="op">{</span><span class="dt">counter</span><span class="op">:</span> <span class="kw">this</span>.<span class="va">state</span>.<span class="at">counter</span><span class="op">+</span><span class="dv">1</span><span class="op">}</span>)</a>
-<a class="sourceLine" id="cb255-12" data-line-number="12">  <span class="op">}</span></a>
-<a class="sourceLine" id="cb255-13" data-line-number="13"></a>
-<a class="sourceLine" id="cb255-14" data-line-number="14">  <span class="at">render</span> () <span class="op">{</span></a>
-<a class="sourceLine" id="cb255-15" data-line-number="15">    <span class="cf">return</span> (</a>
-<a class="sourceLine" id="cb255-16" data-line-number="16">      <span class="op">&lt;</span>p<span class="op">&gt;</span></a>
-<a class="sourceLine" id="cb255-17" data-line-number="17">        <span class="op">&lt;</span>button onClick<span class="op">={</span><span class="kw">this</span>.<span class="at">increment</span><span class="op">}&gt;</span>increment&lt;/button<span class="op">&gt;</span></a>
-<a class="sourceLine" id="cb255-18" data-line-number="18">        <span class="op">&lt;</span>br/<span class="op">&gt;</span></a>
-<a class="sourceLine" id="cb255-19" data-line-number="19">        <span class="dt">current</span><span class="op">:</span> <span class="op">{</span><span class="kw">this</span>.<span class="va">state</span>.<span class="at">counter</span><span class="op">}</span></a>
-<a class="sourceLine" id="cb255-20" data-line-number="20">      &lt;/p<span class="op">&gt;</span></a>
-<a class="sourceLine" id="cb255-21" data-line-number="21">    )</a>
-<a class="sourceLine" id="cb255-22" data-line-number="22">  <span class="op">}</span></a>
-<a class="sourceLine" id="cb255-23" data-line-number="23"><span class="op">}</span></a>
-<a class="sourceLine" id="cb255-24" data-line-number="24"></a>
-<a class="sourceLine" id="cb255-25" data-line-number="25"><span class="co">// ...render as before...</span></a></code></pre></div>
+<pre class="jsx"><code>// ...imports as before...
+
+class Counter extends React.Component {
+
+  constructor (props) {
+    super(props)
+    this.state = {counter: 0}
+  }
+
+  increment (event) {
+    this.setState({counter: this.state.counter+1})
+  }
+
+  render () {
+    return (
+      &lt;p&gt;
+        &lt;button onClick={this.increment}&gt;increment&lt;/button&gt;
+        &lt;br/&gt;
+        current: {this.state.counter}
+      &lt;/p&gt;
+    )
+  }
+}
+
+// ...render as before...</code></pre>
 <p>Parcel runs this without complaint, but clicking on the button doesn’t change the display. Despair is once again our friend—our <em>only</em> friend—but we persevere. When we open the debugging console in the browser, we see the message <code>TypeError: this is undefined</code>. Section <a href="#s:legacy-prototypes" data-reference-type="ref" data-reference="s:legacy-prototypes">23.3</a> explains in detail why this happens; for now, suffice to say that some poor choices were made early in JavaScript’s development about variable scoping.</p>
 <p>At this point it appears that we can compile but not run, or not bundle files together. But wait—when we used an in-page script, we specified the type as <code>text/babel</code> and loaded:</p>
 <pre class="text"><code>https://unpkg.com/babel-standalone@6/babel.js</code></pre>
@@ -3092,70 +3092,70 @@ Server running at http://localhost:4000
 <a class="sourceLine" id="cb258-9" data-line-number="9">  <span class="kw">&lt;/body&gt;</span></a>
 <a class="sourceLine" id="cb258-10" data-line-number="10"><span class="kw">&lt;/html&gt;</span></a></code></pre></div>
 <p>The <code>NumberDisplay</code> class takes a label and a value and puts them in a paragraph (remember, the label and value will appear in our function as properties of the <code>props</code> parameter):</p>
-<div class="sourceCode" id="cb259"><pre class="sourceCode js"><code class="sourceCode javascript"><a class="sourceLine" id="cb259-1" data-line-number="1"><span class="kw">const</span> NumberDisplay <span class="op">=</span> (props) <span class="op">=&gt;</span> <span class="op">{</span></a>
-<a class="sourceLine" id="cb259-2" data-line-number="2">  <span class="cf">return</span> (<span class="op">&lt;</span>p<span class="op">&gt;{</span><span class="va">props</span>.<span class="at">label</span><span class="op">}:</span> <span class="op">{</span><span class="va">props</span>.<span class="at">value</span><span class="op">}</span>&lt;/p<span class="op">&gt;</span>)</a>
-<a class="sourceLine" id="cb259-3" data-line-number="3"><span class="op">}</span></a></code></pre></div>
+<pre class="jsx"><code>const NumberDisplay = (props) =&gt; {
+  return (&lt;p&gt;{props.label}: {props.value}&lt;/p&gt;)
+}</code></pre>
 <p>Similarly, <code>UpAndDown</code> expects two functions as its <code>up</code> and <code>down</code> properties, and makes each the event handler for an appropriately-labelled button:</p>
-<div class="sourceCode" id="cb260"><pre class="sourceCode js"><code class="sourceCode javascript"><a class="sourceLine" id="cb260-1" data-line-number="1"><span class="kw">const</span> UpAndDown <span class="op">=</span> (props) <span class="op">=&gt;</span> <span class="op">{</span></a>
-<a class="sourceLine" id="cb260-2" data-line-number="2">  <span class="cf">return</span> (</a>
-<a class="sourceLine" id="cb260-3" data-line-number="3">    <span class="op">&lt;</span>p<span class="op">&gt;</span></a>
-<a class="sourceLine" id="cb260-4" data-line-number="4">      <span class="op">&lt;</span>button onClick<span class="op">={</span><span class="va">props</span>.<span class="at">up</span><span class="op">}&gt;</span> [<span class="op">+</span>] &lt;/button<span class="op">&gt;</span></a>
-<a class="sourceLine" id="cb260-5" data-line-number="5">      <span class="op">&lt;</span>button onClick<span class="op">={</span><span class="va">props</span>.<span class="at">down</span><span class="op">}&gt;</span> [<span class="op">-</span>] &lt;/button<span class="op">&gt;</span></a>
-<a class="sourceLine" id="cb260-6" data-line-number="6">    &lt;/p<span class="op">&gt;</span></a>
-<a class="sourceLine" id="cb260-7" data-line-number="7">  )</a>
-<a class="sourceLine" id="cb260-8" data-line-number="8"><span class="op">}</span></a></code></pre></div>
+<pre class="jsx"><code>const UpAndDown = (props) =&gt; {
+  return (
+    &lt;p&gt;
+      &lt;button onClick={props.up}&gt; [+] &lt;/button&gt;
+      &lt;button onClick={props.down}&gt; [-] &lt;/button&gt;
+    &lt;/p&gt;
+  )
+}</code></pre>
 <p>Both of these components will use React and ReactDOM when they are rendered so we must import these. We do this by adding import statements to the beginning of both components:</p>
 <div class="sourceCode" id="cb261"><pre class="sourceCode js"><code class="sourceCode javascript"><a class="sourceLine" id="cb261-1" data-line-number="1"><span class="im">import</span> React <span class="im">from</span> <span class="st">&quot;react&quot;</span></a>
 <a class="sourceLine" id="cb261-2" data-line-number="2"><span class="im">import</span> ReactDOM <span class="im">from</span> <span class="st">&quot;react-dom&quot;</span></a></code></pre></div>
 <p>Similarly, our application will need to import the <code>UpAndDown</code> and <code>NumberDisplay</code> components, so we need to export them after they’ve been defined. This is done by adding <code>export {&lt;object_name&gt;}</code> to the end of the component script. (We will explore why the curly braces are necessary in the exercises.) After we’ve done this for <code>UpAndDown</code>, the complete component script looks like this:</p>
-<div class="sourceCode" id="cb262"><pre class="sourceCode js"><code class="sourceCode javascript"><a class="sourceLine" id="cb262-1" data-line-number="1"><span class="im">import</span> React <span class="im">from</span> <span class="st">&quot;react&quot;</span></a>
-<a class="sourceLine" id="cb262-2" data-line-number="2"><span class="im">import</span> ReactDOM <span class="im">from</span> <span class="st">&quot;react-dom&quot;</span></a>
-<a class="sourceLine" id="cb262-3" data-line-number="3"></a>
-<a class="sourceLine" id="cb262-4" data-line-number="4"><span class="kw">const</span> UpAndDown <span class="op">=</span> (props) <span class="op">=&gt;</span> <span class="op">{</span></a>
-<a class="sourceLine" id="cb262-5" data-line-number="5">  <span class="cf">return</span> (</a>
-<a class="sourceLine" id="cb262-6" data-line-number="6">    <span class="op">&lt;</span>p<span class="op">&gt;</span></a>
-<a class="sourceLine" id="cb262-7" data-line-number="7">      <span class="op">&lt;</span>button onClick<span class="op">={</span><span class="va">props</span>.<span class="at">up</span><span class="op">}&gt;</span> [<span class="op">+</span>] &lt;/button<span class="op">&gt;</span></a>
-<a class="sourceLine" id="cb262-8" data-line-number="8">      <span class="op">&lt;</span>button onClick<span class="op">={</span><span class="va">props</span>.<span class="at">down</span><span class="op">}&gt;</span> [<span class="op">-</span>] &lt;/button<span class="op">&gt;</span></a>
-<a class="sourceLine" id="cb262-9" data-line-number="9">    &lt;/p<span class="op">&gt;</span></a>
-<a class="sourceLine" id="cb262-10" data-line-number="10">  )</a>
-<a class="sourceLine" id="cb262-11" data-line-number="11"><span class="op">}</span></a>
-<a class="sourceLine" id="cb262-12" data-line-number="12"></a>
-<a class="sourceLine" id="cb262-13" data-line-number="13"><span class="im">export</span> <span class="op">{</span>UpAndDown<span class="op">}</span></a></code></pre></div>
+<pre class="jsx"><code>import React from &quot;react&quot;
+import ReactDOM from &quot;react-dom&quot;
+
+const UpAndDown = (props) =&gt; {
+  return (
+    &lt;p&gt;
+      &lt;button onClick={props.up}&gt; [+] &lt;/button&gt;
+      &lt;button onClick={props.down}&gt; [-] &lt;/button&gt;
+    &lt;/p&gt;
+  )
+}
+
+export {UpAndDown}</code></pre>
 <p>We are now ready to build the overall application. It creates a <code>state</code> containing a counter and defines methods to increment or decrement the counter’s value. Its <code>render</code> method then lays out the buttons and the current state using those elements (Figure <a href="#f:interactive-objects-dom" data-reference-type="ref" data-reference="f:interactive-objects-dom">[f:interactive-objects-dom]</a>):</p>
-<div class="sourceCode" id="cb263"><pre class="sourceCode js"><code class="sourceCode javascript"><a class="sourceLine" id="cb263-1" data-line-number="1"><span class="kw">class</span> App <span class="kw">extends</span> <span class="va">React</span>.<span class="at">Component</span> <span class="op">{</span></a>
-<a class="sourceLine" id="cb263-2" data-line-number="2"></a>
-<a class="sourceLine" id="cb263-3" data-line-number="3">  <span class="at">constructor</span> (props) <span class="op">{</span></a>
-<a class="sourceLine" id="cb263-4" data-line-number="4">    <span class="kw">super</span>(props)</a>
-<a class="sourceLine" id="cb263-5" data-line-number="5">    <span class="kw">this</span>.<span class="at">state</span> <span class="op">=</span> <span class="op">{</span><span class="dt">counter</span><span class="op">:</span> <span class="dv">0</span><span class="op">}</span></a>
-<a class="sourceLine" id="cb263-6" data-line-number="6">  <span class="op">}</span></a>
-<a class="sourceLine" id="cb263-7" data-line-number="7"></a>
-<a class="sourceLine" id="cb263-8" data-line-number="8">  increment <span class="op">=</span> (event) <span class="op">=&gt;</span> <span class="op">{</span></a>
-<a class="sourceLine" id="cb263-9" data-line-number="9">    <span class="kw">this</span>.<span class="at">setState</span>(<span class="op">{</span><span class="dt">counter</span><span class="op">:</span> <span class="kw">this</span>.<span class="va">state</span>.<span class="at">counter</span> <span class="op">+</span> <span class="dv">1</span><span class="op">}</span>)</a>
-<a class="sourceLine" id="cb263-10" data-line-number="10">  <span class="op">}</span></a>
-<a class="sourceLine" id="cb263-11" data-line-number="11"></a>
-<a class="sourceLine" id="cb263-12" data-line-number="12">  decrement <span class="op">=</span> (event) <span class="op">=&gt;</span> <span class="op">{</span></a>
-<a class="sourceLine" id="cb263-13" data-line-number="13">    <span class="kw">this</span>.<span class="at">setState</span>(<span class="op">{</span><span class="dt">counter</span><span class="op">:</span> <span class="kw">this</span>.<span class="va">state</span>.<span class="at">counter</span> <span class="op">-</span> <span class="dv">1</span><span class="op">}</span>)</a>
-<a class="sourceLine" id="cb263-14" data-line-number="14">  <span class="op">}</span></a>
-<a class="sourceLine" id="cb263-15" data-line-number="15"></a>
-<a class="sourceLine" id="cb263-16" data-line-number="16">  render <span class="op">=</span> () <span class="op">=&gt;</span> <span class="op">{</span></a>
-<a class="sourceLine" id="cb263-17" data-line-number="17">    <span class="cf">return</span> (</a>
-<a class="sourceLine" id="cb263-18" data-line-number="18">      <span class="op">&lt;</span>div<span class="op">&gt;</span></a>
-<a class="sourceLine" id="cb263-19" data-line-number="19">        <span class="op">&lt;</span>UpAndDown up<span class="op">={</span><span class="kw">this</span>.<span class="at">increment</span><span class="op">}</span> down<span class="op">={</span><span class="kw">this</span>.<span class="at">decrement</span><span class="op">}</span> /&gt;</a>
-<a class="sourceLine" id="cb263-20" data-line-number="20">        <span class="op">&lt;</span>NumberDisplay label<span class="op">=</span><span class="st">&#39;counter&#39;</span> value<span class="op">={</span><span class="kw">this</span>.<span class="va">state</span>.<span class="at">counter</span><span class="op">}</span> /&gt;</a>
-<a class="sourceLine" id="cb263-21" data-line-number="21">      &lt;/div<span class="op">&gt;</span></a>
-<a class="sourceLine" id="cb263-22" data-line-number="22">    )</a>
-<a class="sourceLine" id="cb263-23" data-line-number="23">  <span class="op">}</span></a>
-<a class="sourceLine" id="cb263-24" data-line-number="24"><span class="op">}</span></a></code></pre></div>
+<pre class="jsx"><code>class App extends React.Component {
+
+  constructor (props) {
+    super(props)
+    this.state = {counter: 0}
+  }
+
+  increment = (event) =&gt; {
+    this.setState({counter: this.state.counter + 1})
+  }
+
+  decrement = (event) =&gt; {
+    this.setState({counter: this.state.counter - 1})
+  }
+
+  render = () =&gt; {
+    return (
+      &lt;div&gt;
+        &lt;UpAndDown up={this.increment} down={this.decrement} /&gt;
+        &lt;NumberDisplay label=&#39;counter&#39; value={this.state.counter} /&gt;
+      &lt;/div&gt;
+    )
+  }
+}</code></pre>
 <figure>
 <img src="figures/interactive-objects-dom.svg" /><figcaption><span id="f:interactive-objects-dom">React Objects and the DOM</span></figcaption>
 </figure>
 <p>We must import the dependencies as we did with the other components. As well as <code>React</code> and <code>ReactDOM</code>, we need to include the components that we’ve written. Dependencies stored locally can be imported by providing the path to the file in which they are defined, with the <code>.js</code> removed from the file name:</p>
-<div class="sourceCode" id="cb264"><pre class="sourceCode js"><code class="sourceCode javascript"><a class="sourceLine" id="cb264-1" data-line-number="1"><span class="im">import</span> React <span class="im">from</span> <span class="st">&quot;react&quot;</span></a>
-<a class="sourceLine" id="cb264-2" data-line-number="2"><span class="im">import</span> ReactDOM <span class="im">from</span> <span class="st">&quot;react-dom&quot;</span></a>
-<a class="sourceLine" id="cb264-3" data-line-number="3"><span class="im">import</span> <span class="op">{</span>UpAndDown<span class="op">}</span> <span class="im">from</span> <span class="st">&quot;./UpAndDown&quot;</span></a>
-<a class="sourceLine" id="cb264-4" data-line-number="4"><span class="im">import</span> <span class="op">{</span>NumberDisplay<span class="op">}</span> <span class="im">from</span> <span class="st">&quot;./NumberDisplay&quot;</span></a>
-<a class="sourceLine" id="cb264-5" data-line-number="5"></a>
-<a class="sourceLine" id="cb264-6" data-line-number="6"><span class="co">// ...script body...</span></a></code></pre></div>
+<pre class="jsx"><code>import React from &quot;react&quot;
+import ReactDOM from &quot;react-dom&quot;
+import {UpAndDown} from &quot;./UpAndDown&quot;
+import {NumberDisplay} from &quot;./NumberDisplay&quot;
+
+// ...script body...</code></pre>
 <p>Finally, we can render the application with <code>ReactDOM</code> as before:</p>
 <div class="sourceCode" id="cb265"><pre class="sourceCode js"><code class="sourceCode javascript"><a class="sourceLine" id="cb265-1" data-line-number="1"><span class="co">// ...script body...</span></a>
 <a class="sourceLine" id="cb265-2" data-line-number="2"></a>
@@ -3169,179 +3169,179 @@ Server running at http://localhost:4000
 <li><p>a list of asteroids in that time period.</p></li>
 </ul>
 <p>Here’s the first version of our <code>App</code> class:</p>
-<div class="sourceCode" id="cb266"><pre class="sourceCode js"><code class="sourceCode javascript"><a class="sourceLine" id="cb266-1" data-line-number="1"><span class="im">import</span> React <span class="im">from</span> <span class="st">&quot;react&quot;</span></a>
-<a class="sourceLine" id="cb266-2" data-line-number="2"><span class="im">import</span> ReactDOM <span class="im">from</span> <span class="st">&quot;react-dom&quot;</span></a>
-<a class="sourceLine" id="cb266-3" data-line-number="3"><span class="im">import</span> <span class="op">{</span>AsteroidList<span class="op">}</span> <span class="im">from</span> <span class="st">&quot;./AsteroidList&quot;</span></a>
-<a class="sourceLine" id="cb266-4" data-line-number="4"><span class="im">import</span> <span class="op">{</span>DateSubmit<span class="op">}</span> <span class="im">from</span> <span class="st">&quot;./DateSubmit&quot;</span></a>
-<a class="sourceLine" id="cb266-5" data-line-number="5"></a>
-<a class="sourceLine" id="cb266-6" data-line-number="6"><span class="kw">class</span> App <span class="kw">extends</span> <span class="va">React</span>.<span class="at">Component</span> <span class="op">{</span></a>
-<a class="sourceLine" id="cb266-7" data-line-number="7"></a>
-<a class="sourceLine" id="cb266-8" data-line-number="8">  <span class="at">constructor</span> (props) <span class="op">{</span></a>
-<a class="sourceLine" id="cb266-9" data-line-number="9">    <span class="kw">super</span>(props)</a>
-<a class="sourceLine" id="cb266-10" data-line-number="10">    <span class="kw">this</span>.<span class="at">state</span> <span class="op">=</span> <span class="op">{</span></a>
-<a class="sourceLine" id="cb266-11" data-line-number="11">      <span class="co">// ...fill in...</span></a>
-<a class="sourceLine" id="cb266-12" data-line-number="12">    <span class="op">}</span></a>
-<a class="sourceLine" id="cb266-13" data-line-number="13">  <span class="op">}</span></a>
-<a class="sourceLine" id="cb266-14" data-line-number="14"></a>
-<a class="sourceLine" id="cb266-15" data-line-number="15">  onNewDate <span class="op">=</span> (text) <span class="op">=&gt;</span> <span class="op">{</span></a>
-<a class="sourceLine" id="cb266-16" data-line-number="16">    <span class="co">// ...fill in...</span></a>
-<a class="sourceLine" id="cb266-17" data-line-number="17">  <span class="op">}</span></a>
-<a class="sourceLine" id="cb266-18" data-line-number="18"></a>
-<a class="sourceLine" id="cb266-19" data-line-number="19">  render <span class="op">=</span> () <span class="op">=&gt;</span> <span class="op">{</span></a>
-<a class="sourceLine" id="cb266-20" data-line-number="20">    <span class="cf">return</span> (</a>
-<a class="sourceLine" id="cb266-21" data-line-number="21">      <span class="op">&lt;</span>div<span class="op">&gt;</span></a>
-<a class="sourceLine" id="cb266-22" data-line-number="22">        <span class="op">&lt;</span>DateSubmit newValue<span class="op">={</span><span class="kw">this</span>.<span class="at">onNewDate</span><span class="op">}</span> /&gt;</a>
-<a class="sourceLine" id="cb266-23" data-line-number="23">        <span class="op">&lt;</span>AsteroidList asteroids<span class="op">={</span><span class="kw">this</span>.<span class="va">state</span>.<span class="at">asteroids</span><span class="op">}</span> /&gt;</a>
-<a class="sourceLine" id="cb266-24" data-line-number="24">      &lt;/div<span class="op">&gt;</span></a>
-<a class="sourceLine" id="cb266-25" data-line-number="25">    )</a>
-<a class="sourceLine" id="cb266-26" data-line-number="26">  <span class="op">}</span></a>
-<a class="sourceLine" id="cb266-27" data-line-number="27"><span class="op">}</span></a>
-<a class="sourceLine" id="cb266-28" data-line-number="28"></a>
-<a class="sourceLine" id="cb266-29" data-line-number="29"><span class="kw">const</span> mount <span class="op">=</span> <span class="va">document</span>.<span class="at">getElementById</span>(<span class="st">&quot;app&quot;</span>)</a>
-<a class="sourceLine" id="cb266-30" data-line-number="30"><span class="va">ReactDOM</span>.<span class="at">render</span>(<span class="op">&lt;</span>App/<span class="op">&gt;,</span> mount)</a></code></pre></div>
+<pre class="jsx"><code>import React from &quot;react&quot;
+import ReactDOM from &quot;react-dom&quot;
+import {AsteroidList} from &quot;./AsteroidList&quot;
+import {DateSubmit} from &quot;./DateSubmit&quot;
+
+class App extends React.Component {
+
+  constructor (props) {
+    super(props)
+    this.state = {
+      // ...fill in...
+    }
+  }
+
+  onNewDate = (text) =&gt; {
+    // ...fill in...
+  }
+
+  render = () =&gt; {
+    return (
+      &lt;div&gt;
+        &lt;DateSubmit newValue={this.onNewDate} /&gt;
+        &lt;AsteroidList asteroids={this.state.asteroids} /&gt;
+      &lt;/div&gt;
+    )
+  }
+}
+
+const mount = document.getElementById(&quot;app&quot;)
+ReactDOM.render(&lt;App/&gt;, mount)</code></pre>
 <p>We’ll test it by displaying asteroids using fake data; as in our first example, the display component <code>AsteroidList</code> doesn’t modify data, but just displays it in a table:</p>
-<div class="sourceCode" id="cb267"><pre class="sourceCode js"><code class="sourceCode javascript"><a class="sourceLine" id="cb267-1" data-line-number="1"><span class="im">import</span> React <span class="im">from</span> <span class="st">&quot;react&quot;</span></a>
-<a class="sourceLine" id="cb267-2" data-line-number="2"><span class="im">import</span> ReactDOM <span class="im">from</span> <span class="st">&quot;react-dom&quot;</span></a>
-<a class="sourceLine" id="cb267-3" data-line-number="3"></a>
-<a class="sourceLine" id="cb267-4" data-line-number="4"><span class="kw">const</span> AsteroidList <span class="op">=</span> (props) <span class="op">=&gt;</span> <span class="op">{</span></a>
-<a class="sourceLine" id="cb267-5" data-line-number="5">  <span class="cf">return</span> (</a>
-<a class="sourceLine" id="cb267-6" data-line-number="6">    <span class="op">&lt;</span>table<span class="op">&gt;</span></a>
-<a class="sourceLine" id="cb267-7" data-line-number="7">      <span class="op">&lt;</span>tbody<span class="op">&gt;</span></a>
-<a class="sourceLine" id="cb267-8" data-line-number="8">      <span class="op">&lt;</span>tr<span class="op">&gt;</span></a>
-<a class="sourceLine" id="cb267-9" data-line-number="9">        <span class="op">&lt;</span>th<span class="op">&gt;</span>Name&lt;/th<span class="op">&gt;</span></a>
-<a class="sourceLine" id="cb267-10" data-line-number="10">        <span class="op">&lt;</span>th<span class="op">&gt;</span>Date&lt;/th<span class="op">&gt;</span></a>
-<a class="sourceLine" id="cb267-11" data-line-number="11">        <span class="op">&lt;</span>th<span class="op">&gt;</span><span class="at">Diameter</span> (m)&lt;/th<span class="op">&gt;</span></a>
-<a class="sourceLine" id="cb267-12" data-line-number="12">        <span class="op">&lt;</span>th<span class="op">&gt;</span><span class="at">Approach</span> (km)&lt;/th<span class="op">&gt;</span></a>
-<a class="sourceLine" id="cb267-13" data-line-number="13">      &lt;/tr<span class="op">&gt;</span></a>
-<a class="sourceLine" id="cb267-14" data-line-number="14">      <span class="op">{</span><span class="va">props</span>.<span class="va">asteroids</span>.<span class="at">map</span>((a) <span class="op">=&gt;</span> <span class="op">{</span></a>
-<a class="sourceLine" id="cb267-15" data-line-number="15">        <span class="cf">return</span> (</a>
-<a class="sourceLine" id="cb267-16" data-line-number="16">          <span class="op">&lt;</span>tr key<span class="op">={</span><span class="va">a</span>.<span class="at">name</span><span class="op">}&gt;</span></a>
-<a class="sourceLine" id="cb267-17" data-line-number="17">            <span class="op">&lt;</span>td<span class="op">&gt;{</span><span class="va">a</span>.<span class="at">name</span><span class="op">}</span>&lt;/td<span class="op">&gt;</span></a>
-<a class="sourceLine" id="cb267-18" data-line-number="18">            <span class="op">&lt;</span>td<span class="op">&gt;{</span><span class="va">a</span>.<span class="at">date</span><span class="op">}</span>&lt;/td<span class="op">&gt;</span></a>
-<a class="sourceLine" id="cb267-19" data-line-number="19">            <span class="op">&lt;</span>td<span class="op">&gt;{</span><span class="va">a</span>.<span class="at">diameter</span><span class="op">}</span>&lt;/td<span class="op">&gt;</span></a>
-<a class="sourceLine" id="cb267-20" data-line-number="20">            <span class="op">&lt;</span>td<span class="op">&gt;{</span><span class="va">a</span>.<span class="at">distance</span><span class="op">}</span>&lt;/td<span class="op">&gt;</span></a>
-<a class="sourceLine" id="cb267-21" data-line-number="21">          &lt;/tr<span class="op">&gt;</span></a>
-<a class="sourceLine" id="cb267-22" data-line-number="22">        )</a>
-<a class="sourceLine" id="cb267-23" data-line-number="23">      <span class="op">}</span>)<span class="op">}</span></a>
-<a class="sourceLine" id="cb267-24" data-line-number="24">      &lt;/tbody<span class="op">&gt;</span></a>
-<a class="sourceLine" id="cb267-25" data-line-number="25">    &lt;/table<span class="op">&gt;</span></a>
-<a class="sourceLine" id="cb267-26" data-line-number="26">  )</a>
-<a class="sourceLine" id="cb267-27" data-line-number="27"><span class="op">}</span></a>
-<a class="sourceLine" id="cb267-28" data-line-number="28"></a>
-<a class="sourceLine" id="cb267-29" data-line-number="29"><span class="im">export</span> <span class="op">{</span>AsteroidList<span class="op">}</span></a></code></pre></div>
+<pre class="jsx"><code>import React from &quot;react&quot;
+import ReactDOM from &quot;react-dom&quot;
+
+const AsteroidList = (props) =&gt; {
+  return (
+    &lt;table&gt;
+      &lt;tbody&gt;
+      &lt;tr&gt;
+        &lt;th&gt;Name&lt;/th&gt;
+        &lt;th&gt;Date&lt;/th&gt;
+        &lt;th&gt;Diameter (m)&lt;/th&gt;
+        &lt;th&gt;Approach (km)&lt;/th&gt;
+      &lt;/tr&gt;
+      {props.asteroids.map((a) =&gt; {
+        return (
+          &lt;tr key={a.name}&gt;
+            &lt;td&gt;{a.name}&lt;/td&gt;
+            &lt;td&gt;{a.date}&lt;/td&gt;
+            &lt;td&gt;{a.diameter}&lt;/td&gt;
+            &lt;td&gt;{a.distance}&lt;/td&gt;
+          &lt;/tr&gt;
+        )
+      })}
+      &lt;/tbody&gt;
+    &lt;/table&gt;
+  )
+}
+
+export {AsteroidList}</code></pre>
 <p><code>React</code> will complain if we don’t provide a unique key to distinguish elements that we create, since having these keys helps it keep track of the component-to-DOM relationship, which in turn <a href="https://stackoverflow.com/questions/28329382/understanding-unique-keys-for-array-children-in-react-js">makes updates much more efficient</a>. Since each asteroid’s name is supposed to be unique, we use that name as the key for each table row.</p>
 <p><code>AsteroidList</code> expects data to arrive in <code>props.asteroids</code>, so let’s put some made-up values in <code>App</code> for now that we can then pass in:</p>
-<div class="sourceCode" id="cb268"><pre class="sourceCode js"><code class="sourceCode javascript"><a class="sourceLine" id="cb268-1" data-line-number="1"><span class="kw">class</span> App <span class="kw">extends</span> <span class="va">React</span>.<span class="at">Component</span> <span class="op">{</span></a>
-<a class="sourceLine" id="cb268-2" data-line-number="2"></a>
-<a class="sourceLine" id="cb268-3" data-line-number="3">  <span class="at">constructor</span> (props) <span class="op">{</span></a>
-<a class="sourceLine" id="cb268-4" data-line-number="4">    <span class="kw">super</span>(props)</a>
-<a class="sourceLine" id="cb268-5" data-line-number="5">    <span class="kw">this</span>.<span class="at">state</span> <span class="op">=</span> <span class="op">{</span></a>
-<a class="sourceLine" id="cb268-6" data-line-number="6">      <span class="dt">asteroids</span><span class="op">:</span> [</a>
-<a class="sourceLine" id="cb268-7" data-line-number="7">        <span class="op">{</span><span class="dt">name</span><span class="op">:</span> <span class="st">&#39;a30x1000&#39;</span><span class="op">,</span> <span class="dt">date</span><span class="op">:</span> <span class="st">&#39;2017-03-03&#39;</span><span class="op">,</span></a>
-<a class="sourceLine" id="cb268-8" data-line-number="8">         <span class="dt">diameter</span><span class="op">:</span> <span class="dv">30</span><span class="op">,</span> <span class="dt">distance</span><span class="op">:</span> <span class="dv">1000</span><span class="op">},</span></a>
-<a class="sourceLine" id="cb268-9" data-line-number="9">        <span class="op">{</span><span class="dt">name</span><span class="op">:</span> <span class="st">&#39;a5x500&#39;</span><span class="op">,</span> <span class="dt">date</span><span class="op">:</span> <span class="st">&#39;2017-05-05&#39;</span><span class="op">,</span></a>
-<a class="sourceLine" id="cb268-10" data-line-number="10">         <span class="dt">diameter</span><span class="op">:</span> <span class="dv">5</span><span class="op">,</span> <span class="dt">distance</span><span class="op">:</span> <span class="dv">500</span><span class="op">},</span></a>
-<a class="sourceLine" id="cb268-11" data-line-number="11">        <span class="op">{</span><span class="dt">name</span><span class="op">:</span> <span class="st">&#39;a2000x200&#39;</span><span class="op">,</span> <span class="dt">date</span><span class="op">:</span> <span class="st">&#39;2017-02-02&#39;</span><span class="op">,</span></a>
-<a class="sourceLine" id="cb268-12" data-line-number="12">         <span class="dt">diameter</span><span class="op">:</span> <span class="dv">2000</span><span class="op">,</span> <span class="dt">distance</span><span class="op">:</span> <span class="dv">200</span><span class="op">}</span></a>
-<a class="sourceLine" id="cb268-13" data-line-number="13">      ]</a>
-<a class="sourceLine" id="cb268-14" data-line-number="14">    <span class="op">}</span></a>
-<a class="sourceLine" id="cb268-15" data-line-number="15">  <span class="op">}</span></a>
-<a class="sourceLine" id="cb268-16" data-line-number="16"></a>
-<a class="sourceLine" id="cb268-17" data-line-number="17">  <span class="co">// ...other code...</span></a>
-<a class="sourceLine" id="cb268-18" data-line-number="18"><span class="op">}</span></a></code></pre></div>
+<pre class="jsx"><code>class App extends React.Component {
+
+  constructor (props) {
+    super(props)
+    this.state = {
+      asteroids: [
+        {name: &#39;a30x1000&#39;, date: &#39;2017-03-03&#39;,
+         diameter: 30, distance: 1000},
+        {name: &#39;a5x500&#39;, date: &#39;2017-05-05&#39;,
+         diameter: 5, distance: 500},
+        {name: &#39;a2000x200&#39;, date: &#39;2017-02-02&#39;,
+         diameter: 2000, distance: 200}
+      ]
+    }
+  }
+
+  // ...other code...
+}</code></pre>
 <p>Let’s also create a placeholder for <code>DateSubmit</code>:</p>
-<div class="sourceCode" id="cb269"><pre class="sourceCode js"><code class="sourceCode javascript"><a class="sourceLine" id="cb269-1" data-line-number="1"><span class="im">import</span> React <span class="im">from</span> <span class="st">&quot;react&quot;</span></a>
-<a class="sourceLine" id="cb269-2" data-line-number="2"><span class="im">import</span> ReactDOM <span class="im">from</span> <span class="st">&quot;react-dom&quot;</span></a>
-<a class="sourceLine" id="cb269-3" data-line-number="3"></a>
-<a class="sourceLine" id="cb269-4" data-line-number="4"><span class="kw">const</span> DateSubmit <span class="op">=</span> (props) <span class="op">=&gt;</span> <span class="op">{</span></a>
-<a class="sourceLine" id="cb269-5" data-line-number="5">  <span class="cf">return</span> (<span class="op">&lt;</span>p<span class="op">&gt;</span>DateSubmit&lt;/p<span class="op">&gt;</span>)</a>
-<a class="sourceLine" id="cb269-6" data-line-number="6"><span class="op">}</span></a>
-<a class="sourceLine" id="cb269-7" data-line-number="7"></a>
-<a class="sourceLine" id="cb269-8" data-line-number="8"><span class="im">export</span> <span class="op">{</span>DateSubmit<span class="op">}</span></a></code></pre></div>
+<pre class="jsx"><code>import React from &quot;react&quot;
+import ReactDOM from &quot;react-dom&quot;
+
+const DateSubmit = (props) =&gt; {
+  return (&lt;p&gt;DateSubmit&lt;/p&gt;)
+}
+
+export {DateSubmit}</code></pre>
 <p>and run it to get Figure <a href="#f:interactive-asteroids-screenshot" data-reference-type="ref" data-reference="f:interactive-asteroids-screenshot">[f:interactive-asteroids-screenshot]</a>.</p>
 
 <p>The next step is to handle date submission. Since we’re trying to instill good practices, we will make a reusable component whose caller will pass in:</p>
 <ul>
 <li><p>a text label;</p></li>
 <li><p>a variable to update with the current value of a text box;</p></li>
-<li><p>a function to call when text box’s value changes, and</p></li>
+<li><p>a function to call when the text box’s value changes, and</p></li>
 <li><p>another function to call when a button is clicked to submit.</p></li>
 </ul>
-<div class="sourceCode" id="cb270"><pre class="sourceCode js"><code class="sourceCode javascript"><a class="sourceLine" id="cb270-1" data-line-number="1"><span class="co">// ...imports as before...</span></a>
-<a class="sourceLine" id="cb270-2" data-line-number="2"></a>
-<a class="sourceLine" id="cb270-3" data-line-number="3"><span class="kw">const</span> DateSubmit <span class="op">=</span> (<span class="op">{</span>label<span class="op">,</span> value<span class="op">,</span> onChange<span class="op">,</span> onCommit<span class="op">}</span>) <span class="op">=&gt;</span> <span class="op">{</span></a>
-<a class="sourceLine" id="cb270-4" data-line-number="4">  <span class="cf">return</span> (</a>
-<a class="sourceLine" id="cb270-5" data-line-number="5">    <span class="op">&lt;</span>p<span class="op">&gt;</span></a>
-<a class="sourceLine" id="cb270-6" data-line-number="6">      <span class="op">{</span>label<span class="op">}:</span></a>
-<a class="sourceLine" id="cb270-7" data-line-number="7">      <span class="op">&lt;</span>input type<span class="op">=</span><span class="st">&quot;text&quot;</span> value<span class="op">={</span>value<span class="op">}</span></a>
-<a class="sourceLine" id="cb270-8" data-line-number="8">             onChange<span class="op">={</span>(event) <span class="op">=&gt;</span> <span class="at">onChange</span>(<span class="va">event</span>.<span class="va">target</span>.<span class="at">value</span>)<span class="op">}</span> /&gt;</a>
-<a class="sourceLine" id="cb270-9" data-line-number="9">      <span class="op">&lt;</span>button onClick<span class="op">={</span>(event) <span class="op">=&gt;</span> <span class="at">onCommit</span>(value)<span class="op">}&gt;</span><span class="kw">new</span>&lt;/button<span class="op">&gt;</span></a>
-<a class="sourceLine" id="cb270-10" data-line-number="10">    &lt;/p<span class="op">&gt;</span></a>
-<a class="sourceLine" id="cb270-11" data-line-number="11">  )</a>
-<a class="sourceLine" id="cb270-12" data-line-number="12"><span class="op">}</span></a>
-<a class="sourceLine" id="cb270-13" data-line-number="13"></a>
-<a class="sourceLine" id="cb270-14" data-line-number="14"><span class="im">export</span> <span class="op">{</span>DateSubmit<span class="op">}</span></a></code></pre></div>
+<pre class="jsx"><code>// ...imports as before...
+
+const DateSubmit = ({label, value, onChange, onCommit}) =&gt; {
+  return (
+    &lt;p&gt;
+      {label}:
+      &lt;input type=&quot;text&quot; value={value}
+             onChange={(event) =&gt; onChange(event.target.value)} /&gt;
+      &lt;button onClick={(event) =&gt; onCommit(value)}&gt;new&lt;/button&gt;
+    &lt;/p&gt;
+  )
+}
+
+export {DateSubmit}</code></pre>
 <p>Note the use of destructuring in <code>DateSubmit</code>’s parameter list; this was introduced in Section <a href="#s:pages-citations" data-reference-type="ref" data-reference="s:pages-citations">6.4</a> and is an easy way to pull values out of the <code>props</code> parameter.</p>
 <p>It’s important to understand the order of operations in the example above. <code>value={value}</code> puts a value in the input box to display each time <code>DateSubmit</code> is called. We re-bind <code>onChange</code> and <code>onClick</code> to functions on each call as well (remember, JSX gets translated into function calls). So yes, this whole paragraph is being re-created every time someone types, but React and the browser work together to minimize recalculation.</p>
 <p>Back to our application:</p>
-<div class="sourceCode" id="cb271"><pre class="sourceCode js"><code class="sourceCode javascript"><a class="sourceLine" id="cb271-1" data-line-number="1"><span class="co">// ...imports as before...</span></a>
-<a class="sourceLine" id="cb271-2" data-line-number="2"></a>
-<a class="sourceLine" id="cb271-3" data-line-number="3"><span class="kw">class</span> App <span class="kw">extends</span> <span class="va">React</span>.<span class="at">Component</span> <span class="op">{</span></a>
-<a class="sourceLine" id="cb271-4" data-line-number="4"></a>
-<a class="sourceLine" id="cb271-5" data-line-number="5">  <span class="at">constructor</span> (props) <span class="op">{</span></a>
-<a class="sourceLine" id="cb271-6" data-line-number="6">    <span class="kw">super</span>(props)</a>
-<a class="sourceLine" id="cb271-7" data-line-number="7">    <span class="kw">this</span>.<span class="at">state</span> <span class="op">=</span> <span class="op">{</span></a>
-<a class="sourceLine" id="cb271-8" data-line-number="8">      <span class="dt">newDate</span><span class="op">:</span> <span class="st">&#39;&#39;</span><span class="op">,</span></a>
-<a class="sourceLine" id="cb271-9" data-line-number="9">      <span class="dt">asteroids</span><span class="op">:</span> [</a>
-<a class="sourceLine" id="cb271-10" data-line-number="10">        <span class="co">//...data as before...</span></a>
-<a class="sourceLine" id="cb271-11" data-line-number="11">      ]</a>
-<a class="sourceLine" id="cb271-12" data-line-number="12">    <span class="op">}</span></a>
-<a class="sourceLine" id="cb271-13" data-line-number="13">  <span class="op">}</span></a>
-<a class="sourceLine" id="cb271-14" data-line-number="14"></a>
-<a class="sourceLine" id="cb271-15" data-line-number="15">  onEditNewDate <span class="op">=</span> (text) <span class="op">=&gt;</span> <span class="op">{</span></a>
-<a class="sourceLine" id="cb271-16" data-line-number="16">    <span class="kw">this</span>.<span class="at">setState</span>(<span class="op">{</span><span class="dt">newDate</span><span class="op">:</span> text<span class="op">}</span>)</a>
-<a class="sourceLine" id="cb271-17" data-line-number="17">  <span class="op">}</span></a>
-<a class="sourceLine" id="cb271-18" data-line-number="18"></a>
-<a class="sourceLine" id="cb271-19" data-line-number="19">  onSubmitNewDate <span class="op">=</span> (text) <span class="op">=&gt;</span> <span class="op">{</span></a>
-<a class="sourceLine" id="cb271-20" data-line-number="20">    <span class="va">console</span>.<span class="at">log</span>(<span class="vs">`new date </span><span class="sc">${</span>text<span class="sc">}</span><span class="vs">`</span>)</a>
-<a class="sourceLine" id="cb271-21" data-line-number="21">    <span class="kw">this</span>.<span class="at">setState</span>(<span class="op">{</span><span class="dt">newDate</span><span class="op">:</span> <span class="st">&#39;&#39;</span><span class="op">}</span>)</a>
-<a class="sourceLine" id="cb271-22" data-line-number="22">  <span class="op">}</span></a>
-<a class="sourceLine" id="cb271-23" data-line-number="23"></a>
-<a class="sourceLine" id="cb271-24" data-line-number="24">  render <span class="op">=</span> () <span class="op">=&gt;</span> <span class="op">{</span></a>
-<a class="sourceLine" id="cb271-25" data-line-number="25">    <span class="cf">return</span> (</a>
-<a class="sourceLine" id="cb271-26" data-line-number="26">      <span class="op">&lt;</span>div<span class="op">&gt;</span></a>
-<a class="sourceLine" id="cb271-27" data-line-number="27">        <span class="op">&lt;</span>h1<span class="op">&gt;</span>Asteroids&lt;/h1<span class="op">&gt;</span></a>
-<a class="sourceLine" id="cb271-28" data-line-number="28">        <span class="op">&lt;</span>DateSubmit</a>
-<a class="sourceLine" id="cb271-29" data-line-number="29">          label<span class="op">=</span><span class="st">&#39;Date&#39;</span></a>
-<a class="sourceLine" id="cb271-30" data-line-number="30">          value<span class="op">={</span><span class="kw">this</span>.<span class="va">state</span>.<span class="at">newDate</span><span class="op">}</span></a>
-<a class="sourceLine" id="cb271-31" data-line-number="31">          onChange<span class="op">={</span><span class="kw">this</span>.<span class="at">onEditNewDate</span><span class="op">}</span></a>
-<a class="sourceLine" id="cb271-32" data-line-number="32">          onCommit<span class="op">={</span><span class="kw">this</span>.<span class="at">onSubmitNewDate</span><span class="op">}</span> /&gt;</a>
-<a class="sourceLine" id="cb271-33" data-line-number="33">        <span class="op">&lt;</span>AsteroidList asteroids<span class="op">={</span><span class="kw">this</span>.<span class="va">state</span>.<span class="at">asteroids</span><span class="op">}</span> /&gt;</a>
-<a class="sourceLine" id="cb271-34" data-line-number="34">      &lt;/div<span class="op">&gt;</span></a>
-<a class="sourceLine" id="cb271-35" data-line-number="35">    )</a>
-<a class="sourceLine" id="cb271-36" data-line-number="36">  <span class="op">}</span></a>
-<a class="sourceLine" id="cb271-37" data-line-number="37"><span class="op">}</span></a>
-<a class="sourceLine" id="cb271-38" data-line-number="38"></a>
-<a class="sourceLine" id="cb271-39" data-line-number="39"><span class="co">// ...mount as before...</span></a></code></pre></div>
+<pre class="jsx"><code>// ...imports as before...
+
+class App extends React.Component {
+
+  constructor (props) {
+    super(props)
+    this.state = {
+      newDate: &#39;&#39;,
+      asteroids: [
+        //...data as before...
+      ]
+    }
+  }
+
+  onEditNewDate = (text) =&gt; {
+    this.setState({newDate: text})
+  }
+
+  onSubmitNewDate = (text) =&gt; {
+    console.log(`new date ${text}`)
+    this.setState({newDate: &#39;&#39;})
+  }
+
+  render = () =&gt; {
+    return (
+      &lt;div&gt;
+        &lt;h1&gt;Asteroids&lt;/h1&gt;
+        &lt;DateSubmit
+          label=&#39;Date&#39;
+          value={this.state.newDate}
+          onChange={this.onEditNewDate}
+          onCommit={this.onSubmitNewDate} /&gt;
+        &lt;AsteroidList asteroids={this.state.asteroids} /&gt;
+      &lt;/div&gt;
+    )
+  }
+}
+
+// ...mount as before...</code></pre>
 <p>It’s safe to pass <code>this.state.newDate</code> to <code>value</code> because we’re re-drawing each time there’s a change; remember, we’re passing a value for display, not a reference to be modified. And note that we are not doing any kind of validation: the user could type <code>abc123</code> as a date and we would blithely try to process it.</p>
 <p>It’s now time to get real data, which we will do using <code>fetch</code> with a URL. This returns a promise (Chapter <a href="#s:promises" data-reference-type="ref" data-reference="s:promises">9</a>), so we’ll handle the result of the fetch in the promise’s <code>then</code> method, and then chain another <code>then</code> method to transform the data into what we need:</p>
-<div class="sourceCode" id="cb272"><pre class="sourceCode js"><code class="sourceCode javascript"><a class="sourceLine" id="cb272-1" data-line-number="1"><span class="co">// ...previous code as before...</span></a>
-<a class="sourceLine" id="cb272-2" data-line-number="2"></a>
-<a class="sourceLine" id="cb272-3" data-line-number="3">  onSubmitNewDate <span class="op">=</span> (text) <span class="op">=&gt;</span> <span class="op">{</span></a>
-<a class="sourceLine" id="cb272-4" data-line-number="4">    <span class="kw">const</span> url <span class="op">=</span> <span class="st">&#39;https://api.nasa.gov/neo/rest/v1/feed&#39;</span> <span class="op">+</span></a>
-<a class="sourceLine" id="cb272-5" data-line-number="5">                <span class="vs">`?api_key=DEMO_KEY&amp;start_date=</span><span class="sc">${</span>text<span class="sc">}</span><span class="vs">`</span></a>
-<a class="sourceLine" id="cb272-6" data-line-number="6">    <span class="at">fetch</span>(url).<span class="at">then</span>((response) <span class="op">=&gt;</span> <span class="op">{</span></a>
-<a class="sourceLine" id="cb272-7" data-line-number="7">      <span class="cf">return</span> <span class="va">response</span>.<span class="at">json</span>()</a>
-<a class="sourceLine" id="cb272-8" data-line-number="8">    <span class="op">}</span>).<span class="at">then</span>((raw) <span class="op">=&gt;</span> <span class="op">{</span></a>
-<a class="sourceLine" id="cb272-9" data-line-number="9">      <span class="kw">const</span> asteroids <span class="op">=</span> <span class="kw">this</span>.<span class="at">transform</span>(raw)</a>
-<a class="sourceLine" id="cb272-10" data-line-number="10">      <span class="kw">this</span>.<span class="at">setState</span>(<span class="op">{</span></a>
-<a class="sourceLine" id="cb272-11" data-line-number="11">        <span class="dt">newDate</span><span class="op">:</span> <span class="st">&#39;&#39;</span><span class="op">,</span></a>
-<a class="sourceLine" id="cb272-12" data-line-number="12">        <span class="dt">asteroids</span><span class="op">:</span> asteroids</a>
-<a class="sourceLine" id="cb272-13" data-line-number="13">      <span class="op">}</span>)</a>
-<a class="sourceLine" id="cb272-14" data-line-number="14">    <span class="op">}</span>)</a>
-<a class="sourceLine" id="cb272-15" data-line-number="15">  <span class="op">}</span></a>
-<a class="sourceLine" id="cb272-16" data-line-number="16"></a>
-<a class="sourceLine" id="cb272-17" data-line-number="17"><span class="co">//...render as before...</span></a></code></pre></div>
+<pre class="jsx"><code>// ...previous code as before...
+
+  onSubmitNewDate = (text) =&gt; {
+    const url = &#39;https://api.nasa.gov/neo/rest/v1/feed&#39; +
+                `?api_key=DEMO_KEY&amp;start_date=${text}`
+    fetch(url).then((response) =&gt; {
+      return response.json()
+    }).then((raw) =&gt; {
+      const asteroids = this.transform(raw)
+      this.setState({
+        newDate: &#39;&#39;,
+        asteroids: asteroids
+      })
+    })
+  }
+
+//...render as before...</code></pre>
 <p>Line by line, the steps are:</p>
 <ol>
 <li><p>Build the URL for the data</p></li>
@@ -3352,24 +3352,24 @@ Server running at http://localhost:4000
 <li><p>Set state</p></li>
 </ol>
 <p>Finally, the method to transform the data NASA gives us is:</p>
-<div class="sourceCode" id="cb273"><pre class="sourceCode js"><code class="sourceCode javascript"><a class="sourceLine" id="cb273-1" data-line-number="1"><span class="co">// ...previous code as before...</span></a>
-<a class="sourceLine" id="cb273-2" data-line-number="2"></a>
-<a class="sourceLine" id="cb273-3" data-line-number="3">  transform <span class="op">=</span> (raw) <span class="op">=&gt;</span> <span class="op">{</span></a>
-<a class="sourceLine" id="cb273-4" data-line-number="4">    <span class="kw">let</span> result <span class="op">=</span> []</a>
-<a class="sourceLine" id="cb273-5" data-line-number="5">    <span class="cf">for</span> (<span class="kw">let</span> key <span class="kw">in</span> <span class="va">raw</span>.<span class="at">near_earth_objects</span>) <span class="op">{</span></a>
-<a class="sourceLine" id="cb273-6" data-line-number="6">      <span class="va">raw</span>.<span class="at">near_earth_objects</span>[key].<span class="at">forEach</span>((asteroid) <span class="op">=&gt;</span> <span class="op">{</span></a>
-<a class="sourceLine" id="cb273-7" data-line-number="7">        <span class="va">result</span>.<span class="at">push</span>(<span class="op">{</span></a>
-<a class="sourceLine" id="cb273-8" data-line-number="8">          <span class="dt">name</span><span class="op">:</span> <span class="va">asteroid</span>.<span class="at">name</span><span class="op">,</span></a>
-<a class="sourceLine" id="cb273-9" data-line-number="9">          <span class="dt">date</span><span class="op">:</span> <span class="va">asteroid</span>.<span class="at">close_approach_data</span>[<span class="dv">0</span>].<span class="at">close_approach_date</span><span class="op">,</span></a>
-<a class="sourceLine" id="cb273-10" data-line-number="10">          <span class="dt">diameter</span><span class="op">:</span> <span class="va">asteroid</span>.<span class="va">estimated_diameter</span>.<span class="va">meters</span>.<span class="at">estimated_diameter_max</span><span class="op">,</span></a>
-<a class="sourceLine" id="cb273-11" data-line-number="11">          <span class="dt">distance</span><span class="op">:</span> <span class="va">asteroid</span>.<span class="at">close_approach_data</span>[<span class="dv">0</span>].<span class="va">miss_distance</span>.<span class="at">kilometers</span></a>
-<a class="sourceLine" id="cb273-12" data-line-number="12">        <span class="op">}</span>)</a>
-<a class="sourceLine" id="cb273-13" data-line-number="13">      <span class="op">}</span>)</a>
-<a class="sourceLine" id="cb273-14" data-line-number="14">    <span class="op">}</span></a>
-<a class="sourceLine" id="cb273-15" data-line-number="15">    <span class="cf">return</span> result</a>
-<a class="sourceLine" id="cb273-16" data-line-number="16">  <span class="op">}</span></a>
-<a class="sourceLine" id="cb273-17" data-line-number="17"></a>
-<a class="sourceLine" id="cb273-18" data-line-number="18"><span class="co">// ...render as before...</span></a></code></pre></div>
+<pre class="jsx"><code>// ...previous code as before...
+
+  transform = (raw) =&gt; {
+    let result = []
+    for (let key in raw.near_earth_objects) {
+      raw.near_earth_objects[key].forEach((asteroid) =&gt; {
+        result.push({
+          name: asteroid.name,
+          date: asteroid.close_approach_data[0].close_approach_date,
+          diameter: asteroid.estimated_diameter.meters.estimated_diameter_max,
+          distance: asteroid.close_approach_data[0].miss_distance.kilometers
+        })
+      })
+    }
+    return result
+  }
+
+// ...render as before...</code></pre>
 <p>We built this by looking at the structure of the JSON that NASA returned and figuring out how to index the fields we need. (Unfortunately, the top level of <code>near_earth_objects</code> is an object with dates as keys rather than an array, so we have to use <code>let... in...</code> rather than purely <code>map</code> or <code>forEach</code>.)</p>
 <h2 id="s:interactive-exercises">Exercises</h2>
 <h3 id="reset" class="unnumbered unnumbered">Reset</h3>
@@ -3546,7 +3546,7 @@ Server running at http://localhost:4000
 <a class="sourceLine" id="cb285-11" data-line-number="11">  <span class="at">_get</span>(values<span class="op">,</span> field<span class="op">,</span> func) <span class="op">{</span></a>
 <a class="sourceLine" id="cb285-12" data-line-number="12">    <span class="cf">return</span> <span class="at">func</span>(...<span class="va">values</span>.<span class="at">map</span>(rec <span class="op">=&gt;</span> rec[field]).<span class="at">filter</span>(val <span class="op">=&gt;</span> <span class="op">!</span><span class="at">isNaN</span>(val)))</a>
 <a class="sourceLine" id="cb285-13" data-line-number="13">  <span class="op">}</span></a></code></pre></div>
-<p>Functions like <code>Math.min</code> and <code>Math.max</code> take any number of scalar values as arguments, but do not directly process arrays. Enter <a href="#g:spread-syntax"><strong>spread syntax</strong></a> <code>...</code>: the notation <code>func(...array)</code> means “pass all the values in the array as separate arguments”, which saves us from writing our own minimum and maximum functions. Thus, <code>func(...this.data.map(rec =&gt; rec[field]))</code> means “select the specified field from each record in <code>this.data</code> to create an array of fields, then pass all of those values as arguments to <code>func</code>. We include an underscore to the start of the name of <code>_get</code> to indicate that we intend it to be used only inside <code>DataManager</code> and not to be called elsewhere.</p>
+<p>Functions like <code>Math.min</code> and <code>Math.max</code> take any number of scalar values as arguments, but do not directly process arrays. Enter <a href="#g:spread-syntax"><strong>spread syntax</strong></a> <code>...</code>: the notation <code>func(...array)</code> means “pass all the values in the array as separate arguments”, which saves us from writing our own minimum and maximum functions. Thus, <code>func(...this.data.map(rec =&gt; rec[field]))</code> means “select the specified field from each record in <code>this.data</code> to create an array of fields, then pass all of those values as arguments to <code>func</code>. We include an underscore at the start of the name of <code>_get</code> to indicate that we intend it to be used only inside <code>DataManager</code> and not to be called elsewhere.</p>
 <p>Adding the method to get weight and hindfoot length for a range of years is comparatively straightforward. First, we write a function to calculate the average of one or more arguments:</p>
 <div class="sourceCode" id="cb286"><pre class="sourceCode js"><code class="sourceCode javascript"><a class="sourceLine" id="cb286-1" data-line-number="1"><span class="kw">const</span> _average <span class="op">=</span> (...<span class="at">values</span>) <span class="op">=&gt;</span> <span class="op">{</span></a>
 <a class="sourceLine" id="cb286-2" data-line-number="2">  <span class="kw">let</span> sum <span class="op">=</span> <span class="dv">0</span></a>
@@ -3640,7 +3640,7 @@ Server running at http://localhost:4000
 <li><p><code>&quot;Accept-Language: fr, en&quot;</code> to specify that the client prefers French, but will accept English</p></li>
 <li><p><code>&quot;If-Modified-Since: 16-May-2018&quot;</code> to tell the server that the client is only interested in recent data</p></li>
 </ul>
-<p>(Unlike a dictionary, a key may appear any number of times, which allows a request to do things like specify that it’s willing to accept several types of content. The <a href="#g:body-http"><strong>body</strong></a> of the request is any extra data associated with it, such as files that are being uploaded. If a body is present, the request must contain the <code>Content-Length</code> header so that the server knows how much data to read (Figure <a href="#f:server-request" data-reference-type="ref" data-reference="f:server-request">[f:server-request]</a>).</p>
+<p>Unlike a dictionary, a key may appear any number of times, which allows a request to do things like specify that it’s willing to accept several types of content. The <a href="#g:body-http"><strong>body</strong></a> of the request is any extra data associated with it, such as files that are being uploaded. If a body is present, the request must contain the <code>Content-Length</code> header so that the server knows how much data to read (Figure <a href="#f:server-request" data-reference-type="ref" data-reference="f:server-request">[f:server-request]</a>).</p>
 <figure>
 <img src="figures/server-request.svg" /><figcaption><span id="f:server-request">Structure of an HTTP Request</span></figcaption>
 </figure>
@@ -3850,7 +3850,7 @@ Server running at http://localhost:4000
 <p>What’s different here is that when the requested path ends with <code>.json</code> we explicitly set the <code>Content-Type</code> header to <code>application/json</code> to tell the client how to interpret the bytes we’re sending back. If we run this server with <code>web-dir</code> as the directory to serve from and ask for <code>http://localhost:3418/data.json</code>, a modern browser will provide a folding display of the data rather than displaying the raw text.</p>
 <blockquote>
 <h4 id="so-whats-an-api" class="unnumbered unnumbered">So What’s an API?</h4>
-<p>A library’s <a href="#g:api"><strong>Application Programming Interface</strong></a> (API) is simply the set of functions other programs are allowed to call. This is usually a subset of all of the functions defined in the library, since many may be helpers intended for internal use only. Similarly, a server’s API is the set of requests it knows how to respond to. For example, NASA’s near-approach asteroid API (Section <a href="#s:interactive-fetching" data-reference-type="ref" data-reference="s:interactive-fetching">10.3</a>) can handle requests that include an authentication key and a starting data, while the server we have built in this chapter can respond to requests for HTML and JSON files. We will look a little more closely at API design in Section <a href="#s:capstone-server" data-reference-type="ref" data-reference="s:capstone-server">15.2</a>.</p>
+<p>A library’s <a href="#g:api"><strong>Application Programming Interface</strong></a> (API) is simply the set of functions other programs are allowed to call. This is usually a subset of all of the functions defined in the library, since many may be helpers intended for internal use only. Similarly, a server’s API is the set of requests it knows how to respond to. For example, NASA’s near-approach asteroid API (Section <a href="#s:interactive-fetching" data-reference-type="ref" data-reference="s:interactive-fetching">10.3</a>) can handle requests that include an authentication key and a starting date, while the server we have built in this chapter can respond to requests for HTML and JSON files. We will look a little more closely at API design in Section <a href="#s:capstone-server" data-reference-type="ref" data-reference="s:capstone-server">15.2</a>.</p>
 </blockquote>
 <h2 id="s:server-exercises">Exercises</h2>
 <h3 id="report-missing-files" class="unnumbered unnumbered">Report Missing Files</h3>
@@ -3875,12 +3875,12 @@ Server running at http://localhost:4000
 </ul>
 <h1 id="s:testing">Testing</h1>
 <p>We are bad people, because we have been writing code without testing it. In this lesson we will redeem ourselves (partially) by correcting that (also partially).</p>
-<p>JavaScript uses the same pattern for <a href="#g:unit-test"><strong>unit testing</strong></a> as most other modern languages. Each test is written as a function, and each of those functions tests one particular aspect of the code. A standalone program called a <a href="#g:test-runner"><strong>test runner</strong></a> finds test functions, runs them, and reports the results. Any setup code that needs to be run before each test to create the data the test’s input (called its <a href="#g:fixture"><strong>fixture</strong></a>) is put in a function of its own. Similarly (but less frequently), if some teardown needs to be done <em>after</em> each test, we put those operations in a function as well.</p>
+<p>JavaScript uses the same pattern for <a href="#g:unit-test"><strong>unit testing</strong></a> as most other modern languages. Each test is written as a function, and each of those functions tests one particular aspect of the code. A standalone program called a <a href="#g:test-runner"><strong>test runner</strong></a> finds test functions, runs them, and reports the results. Any setup code that needs to be run before each test to create the data for the test’s input (called its <a href="#g:fixture"><strong>fixture</strong></a>) is put in a function of its own. Similarly (but less frequently), if some teardown needs to be done <em>after</em> each test, we put those operations in a function as well.</p>
 <p>Each unit test can have one of three results:</p>
 <ul>
-<li><p>pass: everything worked</p></li>
-<li><p>fail: the system being tested didn’t do what was expected</p></li>
-<li><p>error: something went wrong with the test itself</p></li>
+<li><p>pass: everything worked,</p></li>
+<li><p>fail: the system being tested didn’t do what was expected, or</p></li>
+<li><p>error: something went wrong with the test itself.</p></li>
 </ul>
 <p>We can combine tests into <a href="#g:test-suite"><strong>test suites</strong></a> (and test suites into larger suites, and so on) so that we can more easily run related sets of tests. This makes testing during development faster, which in turn makes it more likely that we’ll actually do it. Finally, we write the tests themselves using <a href="#g:assertion"><strong>assertions</strong></a>: statements that check whether or not some condition holds and generate an error if it doesn’t. Node provides an <code>assert</code> library with some useful functions for asserting various things; we’ll explore this as we go along.</p>
 <h2 id="s:testing-mocha">Introducing Mocha</h2>
@@ -4649,7 +4649,10 @@ __index__  Type    Frequency  Column
 <p>Write a short pipeline that prints out the values in the <code>year</code> and <code>visitors</code> columns that wind up being converted to <code>NaN</code>. (Hint: copy the columns, convert the copies to numbers, filter to keep those rows, then print the original values.)</p>
 <h2 id="key-points-13" class="unnumbered unnumbered">Key Points</h2>
 <ul>
-<li><p>Create a <code>DataFrame</code> from an array of objects with identical keys, from a spec with <code>columnNames</code> and <code>rows</code> fields, or by parse text that contains CSV or JSON.</p></li>
+<li><p>Create a <code>DataFrame</code> from an array of objects with identical keys, from a spec with <code>columnNames</code> and <code>rows</code> fields, or by parsing text that contains CSV or JSON.</p></li>
+<li><p>If you’re using a loop on a dataframe, you’re doing the wrong thing.</p></li>
+<li><p>Use method chaining to create pipelines that filter data and create new values from old.</p></li>
+<li><p>Use grouping and aggregation to summarize data.</p></li>
 </ul>
 <h1 id="s:capstone">Capstone Project</h1>
 <p>It’s time to bring everything together in an extended example: a (slightly) interactive visualization of species data from the <a href="https://figshare.com/articles/Portal_Project_Teaching_Database/1314459">Portal Project Teaching Database</a>. Our plan is to:</p>
@@ -4752,7 +4755,7 @@ __index__  Type    Frequency  Column
 <a class="sourceLine" id="cb380-30" data-line-number="30">        <span class="op">}</span></a>
 <a class="sourceLine" id="cb380-31" data-line-number="31">      <span class="op">}</span></a>
 <a class="sourceLine" id="cb380-32" data-line-number="32"><span class="co">// ...as before...</span></a></code></pre></div>
-<p>Making these changes we discover that, although the summarizing functions run and return <code>NaN</code> or <code>undefined</code> when presented with a series with at least one missing piece observation, they throw an error when called on a completely empty series (that is, a series of length zero). To make our data manager robust to this, we go back to writing internal methods to ensure that data is only summarized if it actually exists in the first place:</p>
+<p>Making these changes we discover that, although the summarizing functions run and return <code>NaN</code> or <code>undefined</code> when presented with a series with at least one missing observation, they throw an error when called on a completely empty series (that is, a series of length zero). To make our data manager robust to this, we go back to writing internal methods to ensure that data is only summarized if it actually exists in the first place:</p>
 <div class="sourceCode" id="cb381"><pre class="sourceCode js"><code class="sourceCode javascript"><a class="sourceLine" id="cb381-1" data-line-number="1">    <span class="at">getSurveyRange</span> (minYear<span class="op">,</span> maxYear) <span class="op">{</span></a>
 <a class="sourceLine" id="cb381-2" data-line-number="2">      <span class="cf">return</span> <span class="at">Array</span>(<span class="dv">1</span> <span class="op">+</span> maxYear <span class="op">-</span> minYear)</a>
 <a class="sourceLine" id="cb381-3" data-line-number="3">        .<span class="at">fill</span>(<span class="dv">0</span>)</a>
@@ -4813,7 +4816,7 @@ __index__  Type    Frequency  Column
 <a class="sourceLine" id="cb382-9" data-line-number="9"><span class="va">app</span>.<span class="at">listen</span>(PORT<span class="op">,</span> () <span class="op">=&gt;</span> <span class="op">{</span></a>
 <a class="sourceLine" id="cb382-10" data-line-number="10">  <span class="va">console</span>.<span class="at">log</span>(<span class="vs">`listening on port </span><span class="sc">${</span>PORT<span class="sc">}</span><span class="vs">...`</span>)</a>
 <a class="sourceLine" id="cb382-11" data-line-number="11"><span class="op">}</span>)</a></code></pre></div>
-<p>As you can probably guess from the fact that we’ve called it <code>driver-0</code>, we’re going to be making some changes down the road<span>…</span> Here’s the start of the server it works with:</p>
+<p>As you can probably guess from the fact that we’re referring to <code>server-0</code>, we’re going to be making some changes down the road<span>…</span> Here’s the start of the server it works with:</p>
 <div class="sourceCode" id="cb383"><pre class="sourceCode js"><code class="sourceCode javascript"><a class="sourceLine" id="cb383-1" data-line-number="1"><span class="kw">const</span> express <span class="op">=</span> <span class="at">require</span>(<span class="st">&#39;express&#39;</span>)</a>
 <a class="sourceLine" id="cb383-2" data-line-number="2"></a>
 <a class="sourceLine" id="cb383-3" data-line-number="3"><span class="co">// &#39;dataManager&#39; is a global variable that refers to our database.</span></a>
@@ -4959,7 +4962,7 @@ __index__  Type    Frequency  Column
 <a class="sourceLine" id="cb391-8" data-line-number="8">      <span class="op">}</span>)</a>
 <a class="sourceLine" id="cb391-9" data-line-number="9">    <span class="op">}</span>)</a>
 <a class="sourceLine" id="cb391-10" data-line-number="10">  <span class="op">}</span></a></code></pre></div>
-<p>We don’t call this method ourselves; instead, React automatically calls it once our application and its children have been loaded and initialized. We can’t fetch the initial data in the application’s constructor because we have no control over the order in which bits of display are initialized. On the upside, we can use <code>response.json()</code> directly because we know the source is returning JSON data. This method is the only place where the summary is updated, since the data isn’t changing underneath us:</p>
+<p>We don’t call this method ourselves; instead, React automatically calls it once our application and its children have been loaded and initialized. We can’t fetch the initial data in the application’s constructor because we have no control over the order in which bits of display are initialized. On the upside, we can use <code>response.json()</code> directly because we know the source is returning JSON data. This method is the only place where the summary is updated, since the data isn’t changing underneath us.</p>
 <p>Next up we need to handle typing in the “start” and “end” boxes. The HTML controls in the web page will capture the characters without our help, but we need those values in our state variables:</p>
 <div class="sourceCode" id="cb392"><pre class="sourceCode js"><code class="sourceCode javascript"><a class="sourceLine" id="cb392-1" data-line-number="1">  onStart <span class="op">=</span> (start) <span class="op">=&gt;</span> <span class="op">{</span></a>
 <a class="sourceLine" id="cb392-2" data-line-number="2">    <span class="kw">this</span>.<span class="at">setState</span>(<span class="op">{</span></a>
@@ -4991,75 +4994,75 @@ __index__  Type    Frequency  Column
 <a class="sourceLine" id="cb393-16" data-line-number="16">    <span class="op">}</span>)</a>
 <a class="sourceLine" id="cb393-17" data-line-number="17">  <span class="op">}</span></a></code></pre></div>
 <p>Now let’s update the display with <code>SurveyStats</code>, <code>ChooseRange</code>, <code>DataChart</code>, and <code>DataDisplay</code>, which are all stateless components (i.e., they display things but don’t change anything):</p>
-<div class="sourceCode" id="cb394"><pre class="sourceCode js"><code class="sourceCode javascript"><a class="sourceLine" id="cb394-1" data-line-number="1">  render <span class="op">=</span> () <span class="op">=&gt;</span> <span class="op">{</span></a>
-<a class="sourceLine" id="cb394-2" data-line-number="2">    <span class="kw">const</span> tableStyle <span class="op">=</span> <span class="op">{</span><span class="dt">overflow</span><span class="op">:</span> <span class="st">&#39;scroll&#39;</span><span class="op">,</span> <span class="dt">height</span><span class="op">:</span> <span class="st">&#39;200px&#39;</span><span class="op">}</span></a>
-<a class="sourceLine" id="cb394-3" data-line-number="3">    <span class="cf">return</span> (</a>
-<a class="sourceLine" id="cb394-4" data-line-number="4">      <span class="op">&lt;</span>div<span class="op">&gt;</span></a>
-<a class="sourceLine" id="cb394-5" data-line-number="5">        <span class="op">&lt;</span>h1<span class="op">&gt;</span>Creatures&lt;/h1<span class="op">&gt;</span></a>
-<a class="sourceLine" id="cb394-6" data-line-number="6">        <span class="op">&lt;</span>SurveyStats data<span class="op">={</span><span class="kw">this</span>.<span class="va">state</span>.<span class="at">summary</span><span class="op">}</span> /&gt;</a>
-<a class="sourceLine" id="cb394-7" data-line-number="7">        <span class="op">&lt;</span>ChooseRange</a>
-<a class="sourceLine" id="cb394-8" data-line-number="8">          start<span class="op">={</span><span class="kw">this</span>.<span class="va">state</span>.<span class="at">start</span><span class="op">}</span> onStart<span class="op">={</span><span class="kw">this</span>.<span class="at">onStart</span><span class="op">}</span></a>
-<a class="sourceLine" id="cb394-9" data-line-number="9">          end<span class="op">={</span><span class="kw">this</span>.<span class="va">state</span>.<span class="at">end</span><span class="op">}</span> onEnd<span class="op">={</span><span class="kw">this</span>.<span class="at">onEnd</span><span class="op">}</span></a>
-<a class="sourceLine" id="cb394-10" data-line-number="10">          onNewRange<span class="op">={</span><span class="kw">this</span>.<span class="at">onNewRange</span><span class="op">}</span> /&gt;</a>
-<a class="sourceLine" id="cb394-11" data-line-number="11">        <span class="op">&lt;</span>DataChart data<span class="op">={</span><span class="kw">this</span>.<span class="va">state</span>.<span class="at">data</span><span class="op">}</span> /&gt;</a>
-<a class="sourceLine" id="cb394-12" data-line-number="12">        <span class="op">&lt;</span>div style<span class="op">={</span>tableStyle<span class="op">}&gt;</span></a>
-<a class="sourceLine" id="cb394-13" data-line-number="13">          <span class="op">&lt;</span>DataDisplay data<span class="op">={</span><span class="kw">this</span>.<span class="va">state</span>.<span class="at">data</span><span class="op">}</span> /&gt;</a>
-<a class="sourceLine" id="cb394-14" data-line-number="14">        &lt;/div<span class="op">&gt;</span></a>
-<a class="sourceLine" id="cb394-15" data-line-number="15">      &lt;/div<span class="op">&gt;</span></a>
-<a class="sourceLine" id="cb394-16" data-line-number="16">    )</a>
-<a class="sourceLine" id="cb394-17" data-line-number="17">  <span class="op">}</span></a></code></pre></div>
+<pre class="jsx"><code>  render = () =&gt; {
+    const tableStyle = {overflow: &#39;scroll&#39;, height: &#39;200px&#39;}
+    return (
+      &lt;div&gt;
+        &lt;h1&gt;Creatures&lt;/h1&gt;
+        &lt;SurveyStats data={this.state.summary} /&gt;
+        &lt;ChooseRange
+          start={this.state.start} onStart={this.onStart}
+          end={this.state.end} onEnd={this.onEnd}
+          onNewRange={this.onNewRange} /&gt;
+        &lt;DataChart data={this.state.data} /&gt;
+        &lt;div style={tableStyle}&gt;
+          &lt;DataDisplay data={this.state.data} /&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+    )
+  }</code></pre>
 <h2 id="s:capstone-tables">The Tables</h2>
-<p>We will display survey stats as tables, with a paragraph fallback when there’s no data. First, we display summary statistics for the whole dataset (as returned by the <code>GET /survey/stats</code> query we wrote a handler for earlier) as a table at the top of the page. (Again, we need parentheses around the HTML fragment so that it will parse properly.)</p>
-<div class="sourceCode" id="cb395"><pre class="sourceCode js"><code class="sourceCode javascript"><a class="sourceLine" id="cb395-1" data-line-number="1"><span class="im">import</span> React <span class="im">from</span> <span class="st">&#39;react&#39;</span></a>
-<a class="sourceLine" id="cb395-2" data-line-number="2"></a>
-<a class="sourceLine" id="cb395-3" data-line-number="3"><span class="kw">const</span> SurveyStats <span class="op">=</span> (<span class="op">{</span>data<span class="op">}</span>) <span class="op">=&gt;</span> <span class="op">{</span></a>
-<a class="sourceLine" id="cb395-4" data-line-number="4">  <span class="cf">if</span> (data <span class="op">===</span> <span class="kw">null</span>) <span class="op">{</span></a>
-<a class="sourceLine" id="cb395-5" data-line-number="5">    <span class="cf">return</span> (<span class="op">&lt;</span>p<span class="op">&gt;</span>no data&lt;/p<span class="op">&gt;</span>)</a>
-<a class="sourceLine" id="cb395-6" data-line-number="6">  <span class="op">}</span></a>
-<a class="sourceLine" id="cb395-7" data-line-number="7">  <span class="cf">return</span> (</a>
-<a class="sourceLine" id="cb395-8" data-line-number="8">    <span class="op">&lt;</span>table<span class="op">&gt;</span></a>
-<a class="sourceLine" id="cb395-9" data-line-number="9">      <span class="op">&lt;</span>tbody<span class="op">&gt;</span></a>
-<a class="sourceLine" id="cb395-10" data-line-number="10">        <span class="op">&lt;</span>tr<span class="op">&gt;&lt;</span>th<span class="op">&gt;</span>record count&lt;/th<span class="op">&gt;&lt;</span>td<span class="op">&gt;{</span><span class="va">data</span>.<span class="at">record_count</span><span class="op">}</span>&lt;/td<span class="op">&gt;</span>&lt;/tr<span class="op">&gt;</span></a>
-<a class="sourceLine" id="cb395-11" data-line-number="11">        <span class="op">&lt;</span>tr<span class="op">&gt;&lt;</span>th<span class="op">&gt;</span>year low&lt;/th<span class="op">&gt;&lt;</span>td<span class="op">&gt;{</span><span class="va">data</span>.<span class="at">year_low</span><span class="op">}</span>&lt;/td<span class="op">&gt;</span>&lt;/tr<span class="op">&gt;</span></a>
-<a class="sourceLine" id="cb395-12" data-line-number="12">        <span class="op">&lt;</span>tr<span class="op">&gt;&lt;</span>th<span class="op">&gt;</span>year high&lt;/th<span class="op">&gt;&lt;</span>td<span class="op">&gt;{</span><span class="va">data</span>.<span class="at">year_high</span><span class="op">}</span>&lt;/td<span class="op">&gt;</span>&lt;/tr<span class="op">&gt;</span></a>
-<a class="sourceLine" id="cb395-13" data-line-number="13">      &lt;/tbody<span class="op">&gt;</span></a>
-<a class="sourceLine" id="cb395-14" data-line-number="14">    &lt;/table<span class="op">&gt;</span></a>
-<a class="sourceLine" id="cb395-15" data-line-number="15">  )</a>
-<a class="sourceLine" id="cb395-16" data-line-number="16"><span class="op">}</span></a>
-<a class="sourceLine" id="cb395-17" data-line-number="17"></a>
-<a class="sourceLine" id="cb395-18" data-line-number="18"><span class="im">export</span> <span class="im">default</span> SurveyStats</a></code></pre></div>
+<p>We will display survey statistics as tables, with a paragraph fallback when there’s no data. First, we display summary statistics for the whole dataset (as returned by the <code>GET /survey/stats</code> query we wrote a handler for earlier) as a table at the top of the page. (Again, we need parentheses around the HTML fragment so that it will parse properly.)</p>
+<pre class="jsx"><code>import React from &#39;react&#39;
+
+const SurveyStats = ({data}) =&gt; {
+  if (data === null) {
+    return (&lt;p&gt;no data&lt;/p&gt;)
+  }
+  return (
+    &lt;table&gt;
+      &lt;tbody&gt;
+        &lt;tr&gt;&lt;th&gt;record count&lt;/th&gt;&lt;td&gt;{data.record_count}&lt;/td&gt;&lt;/tr&gt;
+        &lt;tr&gt;&lt;th&gt;year low&lt;/th&gt;&lt;td&gt;{data.year_low}&lt;/td&gt;&lt;/tr&gt;
+        &lt;tr&gt;&lt;th&gt;year high&lt;/th&gt;&lt;td&gt;{data.year_high}&lt;/td&gt;&lt;/tr&gt;
+      &lt;/tbody&gt;
+    &lt;/table&gt;
+  )
+}
+
+export default SurveyStats</code></pre>
 <p>Next, we display aggregated statistics for a given range of years (the <code>GET /survey/:start/:end</code> query) in another table.</p>
-<div class="sourceCode" id="cb396"><pre class="sourceCode js"><code class="sourceCode javascript"><a class="sourceLine" id="cb396-1" data-line-number="1"><span class="im">import</span> React <span class="im">from</span> <span class="st">&#39;react&#39;</span></a>
-<a class="sourceLine" id="cb396-2" data-line-number="2"></a>
-<a class="sourceLine" id="cb396-3" data-line-number="3"><span class="kw">const</span> DataDisplay <span class="op">=</span> (<span class="op">{</span>data<span class="op">}</span>) <span class="op">=&gt;</span> <span class="op">{</span></a>
-<a class="sourceLine" id="cb396-4" data-line-number="4"></a>
-<a class="sourceLine" id="cb396-5" data-line-number="5">  <span class="cf">if</span> (<span class="op">!</span> data) <span class="op">{</span></a>
-<a class="sourceLine" id="cb396-6" data-line-number="6">    <span class="cf">return</span> (<span class="op">&lt;</span>p<span class="op">&gt;</span>no data&lt;/p<span class="op">&gt;</span>)</a>
-<a class="sourceLine" id="cb396-7" data-line-number="7">  <span class="op">}</span></a>
-<a class="sourceLine" id="cb396-8" data-line-number="8"></a>
-<a class="sourceLine" id="cb396-9" data-line-number="9">  <span class="kw">const</span> columns <span class="op">=</span> [</a>
-<a class="sourceLine" id="cb396-10" data-line-number="10">    <span class="st">&#39;year&#39;</span><span class="op">,</span></a>
-<a class="sourceLine" id="cb396-11" data-line-number="11">    <span class="st">&#39;min_hindfoot_length&#39;</span><span class="op">,</span></a>
-<a class="sourceLine" id="cb396-12" data-line-number="12">    <span class="st">&#39;ave_hindfoot_length&#39;</span><span class="op">,</span></a>
-<a class="sourceLine" id="cb396-13" data-line-number="13">    <span class="st">&#39;max_hindfoot_length&#39;</span><span class="op">,</span></a>
-<a class="sourceLine" id="cb396-14" data-line-number="14">    <span class="st">&#39;min_weight&#39;</span><span class="op">,</span></a>
-<a class="sourceLine" id="cb396-15" data-line-number="15">    <span class="st">&#39;ave_weight&#39;</span><span class="op">,</span></a>
-<a class="sourceLine" id="cb396-16" data-line-number="16">    <span class="st">&#39;max_weight&#39;</span></a>
-<a class="sourceLine" id="cb396-17" data-line-number="17">  ]</a>
-<a class="sourceLine" id="cb396-18" data-line-number="18"></a>
-<a class="sourceLine" id="cb396-19" data-line-number="19">  <span class="cf">return</span> (</a>
-<a class="sourceLine" id="cb396-20" data-line-number="20">    <span class="op">&lt;</span>table<span class="op">&gt;</span></a>
-<a class="sourceLine" id="cb396-21" data-line-number="21">      <span class="op">&lt;</span>tbody<span class="op">&gt;</span></a>
-<a class="sourceLine" id="cb396-22" data-line-number="22">        <span class="op">&lt;</span>tr<span class="op">&gt;{</span><span class="va">columns</span>.<span class="at">map</span>((c) <span class="op">=&gt;</span> (<span class="op">&lt;</span>th<span class="op">&gt;{</span>c<span class="op">}</span>&lt;/th<span class="op">&gt;</span>))<span class="op">}</span>&lt;/tr<span class="op">&gt;</span></a>
-<a class="sourceLine" id="cb396-23" data-line-number="23">        <span class="op">{</span><span class="va">data</span>.<span class="at">filter</span>(r <span class="op">=&gt;</span> r).<span class="at">map</span>((record) <span class="op">=&gt;</span> <span class="op">{</span></a>
-<a class="sourceLine" id="cb396-24" data-line-number="24">          <span class="cf">return</span> (<span class="op">&lt;</span>tr<span class="op">&gt;{</span><span class="va">columns</span>.<span class="at">map</span>((c) <span class="op">=&gt;</span> (<span class="op">&lt;</span>td<span class="op">&gt;{</span>record[c]<span class="op">}</span>&lt;/td<span class="op">&gt;</span>))<span class="op">}</span>&lt;/tr<span class="op">&gt;</span>)</a>
-<a class="sourceLine" id="cb396-25" data-line-number="25">        <span class="op">}</span>)<span class="op">}</span></a>
-<a class="sourceLine" id="cb396-26" data-line-number="26">      &lt;/tbody<span class="op">&gt;</span></a>
-<a class="sourceLine" id="cb396-27" data-line-number="27">    &lt;/table<span class="op">&gt;</span></a>
-<a class="sourceLine" id="cb396-28" data-line-number="28">  )</a>
-<a class="sourceLine" id="cb396-29" data-line-number="29"><span class="op">}</span></a>
-<a class="sourceLine" id="cb396-30" data-line-number="30"></a>
-<a class="sourceLine" id="cb396-31" data-line-number="31"><span class="im">export</span> <span class="im">default</span> DataDisplay</a></code></pre></div>
+<pre class="jsx"><code>import React from &#39;react&#39;
+
+const DataDisplay = ({data}) =&gt; {
+
+  if (! data) {
+    return (&lt;p&gt;no data&lt;/p&gt;)
+  }
+
+  const columns = [
+    &#39;year&#39;,
+    &#39;min_hindfoot_length&#39;,
+    &#39;ave_hindfoot_length&#39;,
+    &#39;max_hindfoot_length&#39;,
+    &#39;min_weight&#39;,
+    &#39;ave_weight&#39;,
+    &#39;max_weight&#39;
+  ]
+
+  return (
+    &lt;table&gt;
+      &lt;tbody&gt;
+        &lt;tr&gt;{columns.map((c) =&gt; (&lt;th&gt;{c}&lt;/th&gt;))}&lt;/tr&gt;
+        {data.filter(r =&gt; r).map((record) =&gt; {
+          return (&lt;tr&gt;{columns.map((c) =&gt; (&lt;td&gt;{record[c]}&lt;/td&gt;))}&lt;/tr&gt;)
+        })}
+      &lt;/tbody&gt;
+    &lt;/table&gt;
+  )
+}
+
+export default DataDisplay</code></pre>
 <p>Like <code>SurveyStats</code>, <code>DataDisplay</code> returns a table listing the results returned from the server. Unlike <code>SurveyStats</code>, this component needs to check whether each record exists before it builds the table row. Remember that, when we defined how the year range query is handled in <code>DataManager</code> earlier, we told it to only return record objects for those years that have data. Here, we add <code>.filter(r =&gt; r)</code> before mapping the data to the callback to ensure that <code>DataDisplay</code> will only try to make <code>tr</code> elements from non-<code>null</code> records. We do the same when plotting the data.</p>
 <h2 id="s:capstone-chart">The Chart</h2>
 <p>We initially tried using Vega-Lite directly for the chart, but after a few failures and some online searching, we switched to <code>react-vega-lite</code>: Vega-Lite’s <code>vega-embed</code> wants to modify an existing DOM element when called, while <code>react-vega-lite</code> constructs an element to be put in place at the right time, which proved easier to use. The steps are:</p>
@@ -5070,40 +5073,40 @@ __index__  Type    Frequency  Column
 <li><p>Create options to turn off the annoying links (also seen before).</p></li>
 <li><p>Return an instance of the <code>VegaLite</code> component.</p></li>
 </ol>
-<div class="sourceCode" id="cb397"><pre class="sourceCode js"><code class="sourceCode javascript"><a class="sourceLine" id="cb397-1" data-line-number="1"><span class="im">import</span> React <span class="im">from</span> <span class="st">&#39;react&#39;</span></a>
-<a class="sourceLine" id="cb397-2" data-line-number="2"><span class="im">import</span> VegaLite <span class="im">from</span> <span class="st">&#39;react-vega-lite&#39;</span></a>
-<a class="sourceLine" id="cb397-3" data-line-number="3"></a>
-<a class="sourceLine" id="cb397-4" data-line-number="4"><span class="kw">const</span> DataChart <span class="op">=</span> (<span class="op">{</span>data<span class="op">}</span>) <span class="op">=&gt;</span> <span class="op">{</span></a>
-<a class="sourceLine" id="cb397-5" data-line-number="5">  <span class="cf">if</span> (<span class="op">!</span> data) <span class="op">{</span></a>
-<a class="sourceLine" id="cb397-6" data-line-number="6">    <span class="cf">return</span> (<span class="op">&lt;</span>p<span class="op">&gt;</span>no data&lt;/p<span class="op">&gt;</span>)</a>
-<a class="sourceLine" id="cb397-7" data-line-number="7">  <span class="op">}</span></a>
-<a class="sourceLine" id="cb397-8" data-line-number="8"></a>
-<a class="sourceLine" id="cb397-9" data-line-number="9">  <span class="kw">const</span> values <span class="op">=</span> data</a>
-<a class="sourceLine" id="cb397-10" data-line-number="10">        .<span class="at">filter</span>(r <span class="op">=&gt;</span> r)</a>
-<a class="sourceLine" id="cb397-11" data-line-number="11">        .<span class="at">map</span>(r <span class="op">=&gt;</span> (<span class="op">{</span><span class="dt">x</span><span class="op">:</span> <span class="va">r</span>.<span class="at">ave_hindfoot_length</span><span class="op">,</span> <span class="dt">y</span><span class="op">:</span> <span class="va">r</span>.<span class="at">ave_weight</span><span class="op">}</span>))</a>
-<a class="sourceLine" id="cb397-12" data-line-number="12">  <span class="kw">let</span> spec <span class="op">=</span> <span class="op">{</span></a>
-<a class="sourceLine" id="cb397-13" data-line-number="13">    <span class="st">&#39;$schema&#39;</span><span class="op">:</span> <span class="st">&#39;https://vega.github.io/schema/vega-lite/v2.0.json&#39;</span><span class="op">,</span></a>
-<a class="sourceLine" id="cb397-14" data-line-number="14">    <span class="st">&#39;description&#39;</span><span class="op">:</span> <span class="st">&#39;Mean Weight vs Mean Hindfoot Length&#39;</span><span class="op">,</span></a>
-<a class="sourceLine" id="cb397-15" data-line-number="15">    <span class="st">&#39;mark&#39;</span><span class="op">:</span> <span class="st">&#39;point&#39;</span><span class="op">,</span></a>
-<a class="sourceLine" id="cb397-16" data-line-number="16">    <span class="st">&#39;encoding&#39;</span><span class="op">:</span> <span class="op">{</span></a>
-<a class="sourceLine" id="cb397-17" data-line-number="17">      <span class="st">&#39;x&#39;</span><span class="op">:</span> <span class="op">{</span><span class="st">&#39;field&#39;</span><span class="op">:</span> <span class="st">&#39;x&#39;</span><span class="op">,</span> <span class="st">&#39;type&#39;</span><span class="op">:</span> <span class="st">&#39;quantitative&#39;</span><span class="op">},</span></a>
-<a class="sourceLine" id="cb397-18" data-line-number="18">      <span class="st">&#39;y&#39;</span><span class="op">:</span> <span class="op">{</span><span class="st">&#39;field&#39;</span><span class="op">:</span> <span class="st">&#39;y&#39;</span><span class="op">,</span> <span class="st">&#39;type&#39;</span><span class="op">:</span> <span class="st">&#39;quantitative&#39;</span><span class="op">}</span></a>
-<a class="sourceLine" id="cb397-19" data-line-number="19">    <span class="op">}</span></a>
-<a class="sourceLine" id="cb397-20" data-line-number="20">  <span class="op">}</span></a>
-<a class="sourceLine" id="cb397-21" data-line-number="21">  <span class="kw">let</span> options <span class="op">=</span> <span class="op">{</span></a>
-<a class="sourceLine" id="cb397-22" data-line-number="22">    <span class="st">&#39;actions&#39;</span><span class="op">:</span> <span class="op">{</span></a>
-<a class="sourceLine" id="cb397-23" data-line-number="23">      <span class="st">&#39;export&#39;</span><span class="op">:</span> <span class="kw">false</span><span class="op">,</span></a>
-<a class="sourceLine" id="cb397-24" data-line-number="24">      <span class="st">&#39;source&#39;</span><span class="op">:</span> <span class="kw">false</span><span class="op">,</span></a>
-<a class="sourceLine" id="cb397-25" data-line-number="25">      <span class="st">&#39;editor&#39;</span><span class="op">:</span> <span class="kw">false</span></a>
-<a class="sourceLine" id="cb397-26" data-line-number="26">    <span class="op">}</span></a>
-<a class="sourceLine" id="cb397-27" data-line-number="27">  <span class="op">}</span></a>
-<a class="sourceLine" id="cb397-28" data-line-number="28">  <span class="kw">let</span> scatterData <span class="op">=</span> <span class="op">{</span></a>
-<a class="sourceLine" id="cb397-29" data-line-number="29">    <span class="st">&#39;values&#39;</span><span class="op">:</span> values</a>
-<a class="sourceLine" id="cb397-30" data-line-number="30">  <span class="op">}</span></a>
-<a class="sourceLine" id="cb397-31" data-line-number="31">  <span class="cf">return</span> (<span class="op">&lt;</span>VegaLite spec<span class="op">={</span>spec<span class="op">}</span> data<span class="op">={</span>scatterData<span class="op">}</span> options<span class="op">={</span>options<span class="op">}</span>/&gt;)</a>
-<a class="sourceLine" id="cb397-32" data-line-number="32"><span class="op">}</span></a>
-<a class="sourceLine" id="cb397-33" data-line-number="33"></a>
-<a class="sourceLine" id="cb397-34" data-line-number="34"><span class="im">export</span> <span class="im">default</span> DataChart</a></code></pre></div>
+<pre class="jsx"><code>import React from &#39;react&#39;
+import VegaLite from &#39;react-vega-lite&#39;
+
+const DataChart = ({data}) =&gt; {
+  if (! data) {
+    return (&lt;p&gt;no data&lt;/p&gt;)
+  }
+
+  const values = data
+        .filter(r =&gt; r)
+        .map(r =&gt; ({x: r.ave_hindfoot_length, y: r.ave_weight}))
+  let spec = {
+    &#39;$schema&#39;: &#39;https://vega.github.io/schema/vega-lite/v2.0.json&#39;,
+    &#39;description&#39;: &#39;Mean Weight vs Mean Hindfoot Length&#39;,
+    &#39;mark&#39;: &#39;point&#39;,
+    &#39;encoding&#39;: {
+      &#39;x&#39;: {&#39;field&#39;: &#39;x&#39;, &#39;type&#39;: &#39;quantitative&#39;},
+      &#39;y&#39;: {&#39;field&#39;: &#39;y&#39;, &#39;type&#39;: &#39;quantitative&#39;}
+    }
+  }
+  let options = {
+    &#39;actions&#39;: {
+      &#39;export&#39;: false,
+      &#39;source&#39;: false,
+      &#39;editor&#39;: false
+    }
+  }
+  let scatterData = {
+    &#39;values&#39;: values
+  }
+  return (&lt;VegaLite spec={spec} data={scatterData} options={options}/&gt;)
+}
+
+export default DataChart</code></pre>
 <p>The other components are similar to those we have seen before.</p>
 <h2 id="s:capstone-run">Running It</h2>
 <p>In order to test our application, we need to run a data server, and then launch our application with Parcel. The easiest way to do that is to open two windows on our computer and make each half the width (or height) of our screen so that we can see messages from both halves of what we’re doing.</p>
@@ -5548,10 +5551,7 @@ The Same Origin Policy disallows reading the remote resource \
 <dd><p>A license that allows people to re-use software with no restrictions.</p>
 </dd>
 <dt><span id="g:model">model (of data)</span></dt>
-<dd><p>How data is stored. See also</p>
-</dd>
-<dt><span id="g:view">view</span></dt>
-<dd><p>.</p>
+<dd><p>How data is stored. See also <a href="#g:view"><strong>view</strong></a>.</p>
 </dd>
 <dt><span id="g:module">module</span></dt>
 <dd><p>A set of variables, functions, and/or classes grouped together for easier management (typically but not always in a single file). Modules are sometimes also called <a href="#g:library"><strong>libraries</strong></a>.</p>
@@ -5608,7 +5608,7 @@ The Same Origin Policy disallows reading the remote resource \
 <dd><p>An existing <a href="#g:class"><strong>class</strong></a> that has been <a href="#g:extend"><strong>extended</strong></a> to create a new class. (The new class is called the <a href="#g:child-class"><strong>child class</strong></a>.)</p>
 </dd>
 <dt><span id="g:parent-node">parent node</span></dt>
-<dd><p>the <a href="#g:node"><strong>node</strong></a> in a <a href="#g:tree"><strong>tree</strong></a> that is above some other node. Every node has a parent except the <a href="#g:root-node"><strong>root node</strong></a>.</p>
+<dd><p>The <a href="#g:node"><strong>node</strong></a> in a <a href="#g:tree"><strong>tree</strong></a> that is above some other node. Every node has a parent except the <a href="#g:root-node"><strong>root node</strong></a>.</p>
 </dd>
 <dt><span id="g:parse">parsing</span></dt>
 <dd><p>To translate the text of a program or web page into a data structure in memory that the program can then manipulate.</p>
@@ -5770,10 +5770,7 @@ The Same Origin Policy disallows reading the remote resource \
 <dd><p>A name in a program that has some data associated with it. A variable’s value can be changed after definition. See also <a href="#g:constant"><strong>constant</strong></a>.</p>
 </dd>
 <dt><span id="g:view">view (of data)</span></dt>
-<dd><p>How data is presented. See also</p>
-</dd>
-<dt><span id="g:model">model</span></dt>
-<dd><p>.</p>
+<dd><p>How data is presented. See also <a href="#g:model"><strong>model</strong></a>.</p>
 </dd>
 <dt><span id="g:whitespace">whitespace</span></dt>
 <dd><p>The space, newline, carriage return, and horizontal and vertical tab characters that take up space but don’t create a visible mark. The name comes from their appearance on a printed page in the era of typewriters.</p>
@@ -5941,7 +5938,10 @@ The Same Origin Policy disallows reading the remote resource \
 </ul>
 <h2 id="using-data-forge" class="unnumbered unnumbered">Using Data-Forge</h2>
 <ul>
-<li><p>Create a <code>DataFrame</code> from an array of objects with identical keys, from a spec with <code>columnNames</code> and <code>rows</code> fields, or by parse text that contains CSV or JSON.</p></li>
+<li><p>Create a <code>DataFrame</code> from an array of objects with identical keys, from a spec with <code>columnNames</code> and <code>rows</code> fields, or by parsing text that contains CSV or JSON.</p></li>
+<li><p>If you’re using a loop on a dataframe, you’re doing the wrong thing.</p></li>
+<li><p>Use method chaining to create pipelines that filter data and create new values from old.</p></li>
+<li><p>Use grouping and aggregation to summarize data.</p></li>
 </ul>
 <h2 id="capstone-project" class="unnumbered unnumbered">Capstone Project</h2>
 <ul>
@@ -5994,8 +5994,7 @@ The Same Origin Policy disallows reading the remote resource \
 <p>Having a Code of Conduct is particularly important for people from marginalized or under-represented groups, who have probably experienced harassment or unwelcoming behavior before. By adopting one, you signal that your project is trying to be a better place than YouTube, Twitter, and other online cesspools. Some people may push back claiming that it’s unnecessary, or that it infringes freedom of speech, but in our experience, what they often mean is that thinking about how they might have benefited from past inequity makes them feel uncomfortable, or that they like to argue for the sake of arguing. If having a Code of Conduct leads to them going elsewhere, that will probably make your project run more smoothly.</p>
 <p>Just as you shouldn’t write your own license for a project, you probably shouldn’t write your own Code of Conduct. We recommend using the <a href="https://www.contributor-covenant.org">Contributor Covenant</a> for development projects and the <a href="http://geekfeminism.wikia.com/wiki/Conference_anti-harassment/Policy">model code of conduct</a> from the <a href="http://geekfeminism.wikia.com/">Geek Feminism Wiki</a> for in-person events. Both have been thought through carefully and revised in the light of experience, and both are now used widely enough that many potential participants in your project will not need to have them explained.</p>
 <p>Rules are meaningless if they aren’t enforced. If you adopt a Code of Conduct, it is therefore important to be clear about how to report issues and who will handle them.[<a class="cite" href="#ref-Auro2018">Auro2018</a>] is a short, practical guide to handling incidents; like the Contributor Covenant and the model code of conduct, it’s better to start with something that other people have thought through and refined than to try to create something from scratch.</p>
-<h2 id="governance">Governance</h2>
-<p><span>s:collab-governance</span></p>
+<h2 id="s:collab-governance">Governance</h2>
 <p>If your project involves more than half a dozen people, you should be explicit about the way decisions are made. We recommend Martha’s Rules [<a class="cite" href="#ref-Mina1986">Mina1986</a>]:</p>
 <ol>
 <li><p>Before each meeting, anyone who wishes may sponsor a proposal. Proposals must be circulated at least 24 hours before a meeting in order to be considered at that meeting, and must include:</p>
@@ -6232,7 +6231,7 @@ element 2 of x,y,z is z</code></pre>
 <a class="sourceLine" id="cb417-8" data-line-number="8"></a>
 <a class="sourceLine" id="cb417-9" data-line-number="9"><span class="va">console</span>.<span class="at">log</span>(<span class="vs">`pattern is </span><span class="sc">${</span>pattern<span class="sc">}</span><span class="vs">`</span>)</a>
 <a class="sourceLine" id="cb417-10" data-line-number="10"><span class="cf">for</span> (<span class="kw">let</span> test of Tests) <span class="op">{</span></a>
-<a class="sourceLine" id="cb417-11" data-line-number="11">  <span class="va">console</span>.<span class="at">log</span>(<span class="vs">`</span><span class="sc">\n</span><span class="vs">tested against </span><span class="sc">${</span>test<span class="sc">}</span><span class="vs">`</span>)</a>
+<a class="sourceLine" id="cb417-11" data-line-number="11">  <span class="va">console</span>.<span class="at">log</span>(<span class="vs">`tested against </span><span class="sc">${</span>test<span class="sc">}</span><span class="vs">`</span>)</a>
 <a class="sourceLine" id="cb417-12" data-line-number="12">  <span class="kw">const</span> matches <span class="op">=</span> <span class="va">test</span>.<span class="at">match</span>(pattern)</a>
 <a class="sourceLine" id="cb417-13" data-line-number="13">  <span class="cf">if</span> (matches <span class="op">===</span> <span class="kw">null</span>) <span class="op">{</span></a>
 <a class="sourceLine" id="cb417-14" data-line-number="14">    <span class="va">console</span>.<span class="at">log</span>(<span class="st">&#39;-no matches-&#39;</span>)</a>
