@@ -35,7 +35,7 @@ const everything = [
   new Rectangle(1.5, 0.5)
 ]
 for (let thing of everything) {
-  const a = thing.area(thing)
-  const p = thing.perimeter(thing)
+  const a = thing.area()
+  const p = thing.perimeter()
   console.log(`${thing.name}: area ${a} perimeter ${p}`)
 }
