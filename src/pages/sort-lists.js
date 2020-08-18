@@ -1,5 +1,5 @@
 const sortLists = () => {
-  const allLists = Array.from(document.querySelectorAll('#sorted'))
+  const lists = Array.from(document.querySelectorAll('#sorted'))
   lists.forEach((list) => {
     const children = Array.from(list.childNodes)
           .filter(c => c.nodeName !== '#text')

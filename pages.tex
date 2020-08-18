@@ -357,7 +357,7 @@ and this as our initial script:
 
 \begin{minted}{js}
 const sortLists = () => {
-  const allLists = Array.from(document.querySelectorAll('#sorted'))
+  const lists = Array.from(document.querySelectorAll('#sorted'))
   lists.forEach((list) => {
     const children = Array.from(list.childNodes)
           .filter(c => c.nodeName !== '#text')
@@ -535,7 +535,7 @@ and one non-bibliographic link:
     </p>
     <hr/>
     <p><em>Visit <a href="http://somewhere.org">the author's site</a>.</em></p>
-    
+
   </body>
 </html>
 \end{minted}
