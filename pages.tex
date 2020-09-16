@@ -357,7 +357,7 @@ and this as our initial script:
 
 \begin{minted}{js}
 const sortLists = () => {
-  const allLists = Array.from(document.querySelectorAll('#sorted'))
+  const lists = Array.from(document.querySelectorAll('#sorted'))
   lists.forEach((list) => {
     const children = Array.from(list.childNodes)
           .filter(c => c.nodeName !== '#text')
@@ -535,7 +535,7 @@ and one non-bibliographic link:
     </p>
     <hr/>
     <p><em>Visit <a href="http://somewhere.org">the author's site</a>.</em></p>
-    
+
   </body>
 </html>
 \end{minted}
@@ -703,9 +703,9 @@ and square brackets around the whole thing:
 \end{minted}
 
 \noindent
-(We haven't shown the output in commas because typesetting it would overflow the page
+(We haven't shown the output in comments because typesetting it would overflow the page
 and because our pseudo-HTML notation gets really confusing
-once we're showing strings containing HTML that contain strings.)
+once we're showing strings containing HTML that contains strings.)
 
 The last stage in our pipeline uses \texttt{forEach} instead of \texttt{map}
 because we want to do something for each element of the array,
