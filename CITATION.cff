@@ -1,0 +1,29 @@
+cff-version: 1.2.0
+message: "Please cite this book as shown."
+authors:
+- family-names: "Gans"
+  given-names: "Maya"
+  orcid: ""
+- family-names: "Hodges"
+  given-names: "Toby"
+  orcid: ""
+- family-names: "Wilson"
+  given-names: "Greg"
+  orcid: "https://orcid.org/0000-0001-8659-8979"
+title: "JavaScript for Data Science"
+preferred-citation:
+  type: book
+  authors:
+  - family-names: "Gans"
+    given-names: "Maya"
+    orcid: ""
+  - family-names: "Hodges"
+    given-names: "Toby"
+    orcid: ""
+  - family-names: "Wilson"
+    given-names: "Greg"
+    orcid: "0000-0001-8659-8979"
+  isbn: "978-0367422486"
+  title: "JavaScript for Data Science"
+  year: "2020"
+  publisher: "Chapman & Hall/CRC Press"
