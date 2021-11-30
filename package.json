@@ -10,7 +10,7 @@
   "main": "index.js",
   "author": "Maya Gans, Toby Hodges, and Greg Wilson",
   "license": "SEE LICENSE IN LICENSE.md",
-  "homepage": "http://software-tools-in-javascript.github.io/js4ds/",
+  "homepage": "http://software-tools-books.github.io/js4ds/",
   "scripts": {
     "dev": "parcel serve -p 4000",
     "lint": "eslint bin/*.js src/**/*.js",
@@ -19,10 +19,10 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/software-tools-in-javascript/js4ds.git"
+    "url": "git+https://github.com/software-tools-books/js4ds.git"
   },
   "bugs": {
-    "url": "https://github.com/software-tools-in-javascript/js4ds/issues"
+    "url": "https://github.com/software-tools-books/js4ds/issues"
   },
   "standard": {
     "ignore": [

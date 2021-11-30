@@ -1,5 +1,6 @@
 # Book Proposal: JavaScript versus Data Science
 
+-   [Maya Gans](https://maya.rbind.io/)
 -   [Toby Hodges](https://tbyhdgs.info/)
 -   [Greg Wilson](http://third-bit.com/)
 
@@ -67,7 +68,7 @@ and visualize data in the browser.
 ## Source Code
 
 All material is available at
-<https://github.com/software-tools-in-javascript/js-vs-ds>.
+<https://github.com/software-tools-books/js-vs-ds>.
 
 ## Key Words
 
@@ -77,7 +78,7 @@ All material is available at
 
 ## Audience
 
-From <https://software-tools-in-javascript.github.io/js-vs-ds/en/intro/>:
+From <https://software-tools-books.github.io/js-vs-ds/en/intro/>:
 
 **Bhadra**
 received a BSc in microbiology five years ago,
