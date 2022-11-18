@@ -38,6 +38,54 @@ const annotateData = (array) => array.reduce(reducer, [])
 const newData = annotateData(data)
 ```
 
+## Objects and Classes
+
+### Delays
+
+```{js}
+class Delay {
+  constructor (initialValue) {
+    this.nextValue = initialValue
+  }
+
+  call (nextValue) {
+    let previousValue = this.nextValue
+    this.nextValue = nextValue
+    return previousValue
+  }
+}
+```
+
+### Filtering
+
+```{js}
+class Filter {
+  constructor (...values) {
+    this.filterValues = values
+  }
+
+  call (inputValue) {
+    return this.filterValues.some((value) => value === inputValue) ? null : inputValue
+  }
+}
+```
+
+### Pipelines
+
+```{js}
+class Pipeline {
+    constructor (...pipes) {
+        this.pipes = pipes
+    }
+
+    call (inputValue) {
+        return this.pipes.reduce(
+          (accumulator, currentValue) =>
+          accumulator ? currentValue.call(accumulator) : null, inputValue)
+    }
+}
+```
+
 ## Data-Forge
 
 ### Revisting Data Manipulation
